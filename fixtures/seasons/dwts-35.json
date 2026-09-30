@@ -64,7 +64,17 @@
         "derek-hough",
         "bruno-tonioli"
       ],
-      "dancesPerCouple": 1
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jackson-olson#1",
+        "tyler-cameron#1",
+        "conner-leavitt#1",
+        "guillermo-rodriguez#1",
+        "ezra-frech#1",
+        "connor-wood#1",
+        "taylor-hanson#1",
+        "harry-shum-jr#1"
+      ]
     },
     {
       "ep": 2,
@@ -78,7 +88,17 @@
         "derek-hough",
         "bruno-tonioli"
       ],
-      "dancesPerCouple": 1
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "tatyana-ali#1",
+        "amber-glenn#1",
+        "ciara-miller#1",
+        "giada-de-laurentiis#1",
+        "julia-stiles#1",
+        "maura-higgins#1",
+        "sarah-jane-nader#1",
+        "jenna-dewan#1"
+      ]
     },
     {
       "ep": 3,
