@@ -3,7 +3,7 @@
 > This file is loaded into every Claude session. Keep it lean and accurate.
 
 ## What This Is
-Friends rate each Dancing with the Stars performance 1-10 on their phones, blind and final, then see how the judges and everyone else scored it. Live at `dwts.xomware.com`. `armchair` is the working name and the permanent resource prefix; the domain is config and will move once the family domain is picked.
+Friends rate each Dancing with the Stars performance 1-10 on their phones, blind and final, then see how the judges and everyone else scored it. Brand is Armchair Judge: hub at `armchairjudge.com` (`hub/`), DWTS at `dwts.armchairjudge.com` (`frontend/`); `dwts.xomware.com` 301s there. `armchair` is the permanent resource prefix.
 
 The repo is `domgiordano/armchair` (repo id 1398549188), a public personal repo. Use `gh -R domgiordano/armchair`. The plan is `docs/features/dwts-companion/PLAN.md`, with `BRAINSTORM.md` and `RESEARCH.md` beside it.
 
