@@ -44,6 +44,11 @@ locals {
       invoke_arn = aws_lambda_function.api["friends_${l.name}"].invoke_arn
     })
   ]
+  notifications_endpoints = [
+    for l in local.notifications_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["notifications_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -67,14 +72,15 @@ module "api" {
   data_trace_enabled = false
 
   services = {
-    users    = { path_prefix = "users", endpoints = local.users_endpoints }
-    scores   = { path_prefix = "scores", endpoints = local.scores_endpoints }
-    episodes = { path_prefix = "episodes", endpoints = local.episodes_endpoints }
-    seasons  = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
-    admin    = { path_prefix = "admin", endpoints = local.admin_endpoints }
-    stats    = { path_prefix = "stats", endpoints = local.stats_endpoints }
-    groups   = { path_prefix = "groups", endpoints = local.groups_endpoints }
-    overview = { path_prefix = "overview", endpoints = local.overview_endpoints }
-    friends  = { path_prefix = "friends", endpoints = local.friends_endpoints }
+    users         = { path_prefix = "users", endpoints = local.users_endpoints }
+    scores        = { path_prefix = "scores", endpoints = local.scores_endpoints }
+    episodes      = { path_prefix = "episodes", endpoints = local.episodes_endpoints }
+    seasons       = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
+    admin         = { path_prefix = "admin", endpoints = local.admin_endpoints }
+    stats         = { path_prefix = "stats", endpoints = local.stats_endpoints }
+    groups        = { path_prefix = "groups", endpoints = local.groups_endpoints }
+    overview      = { path_prefix = "overview", endpoints = local.overview_endpoints }
+    friends       = { path_prefix = "friends", endpoints = local.friends_endpoints }
+    notifications = { path_prefix = "notifications", endpoints = local.notifications_endpoints }
   }
 }
