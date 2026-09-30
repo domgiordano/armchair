@@ -1,34 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useState, useSyncExternalStore } from "react";
+import { useCallback, useState } from "react";
 
 import { Brand } from "@/components/brand";
 import { Intro } from "@/components/intro";
 import { LandingDesk } from "@/components/landing-desk";
 import { LandingSteps } from "@/components/landing-steps";
 import { useReducedMotion } from "@/lib/motion";
-
-const SEEN = "armchair.dwts.intro-seen";
-
-function introSeen() {
-  try {
-    return sessionStorage.getItem(SEEN) === "1";
-  } catch {
-    // Storage blocked: skip rather than replay the intro on every visit.
-    return true;
-  }
-}
-
-function markIntroSeen() {
-  try {
-    sessionStorage.setItem(SEEN, "1");
-  } catch {
-    // Storage blocked; introSeen() already treats that as seen.
-  }
-}
-
-const noSubscribe = () => () => {};
 
 const BUTTON =
   "flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light disabled:cursor-not-allowed disabled:opacity-50";
@@ -42,21 +21,16 @@ interface LandingProps {
   onSignIn: () => Promise<void>;
 }
 
-/** The signed-out front door: the ballroom intro once per session, then the pitch. */
+/** The signed-out front door: the ballroom intro on every visit, then the pitch. */
 export function Landing({ status, onSignIn }: LandingProps) {
   const reduced = useReducedMotion();
-  // Server snapshot says "seen" so a prerender never paints the intro.
-  const seen = useSyncExternalStore(noSubscribe, introSeen, () => true);
   const [done, setDone] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
   const [error, setError] = useState(false);
 
-  const finishIntro = useCallback(() => {
-    markIntroSeen();
-    setDone(true);
-  }, []);
+  const finishIntro = useCallback(() => setDone(true), []);
 
-  if (!seen && !done && !reduced) return <Intro onDone={finishIntro} />;
+  if (!done && !reduced) return <Intro onDone={finishIntro} />;
 
   const start = async () => {
     setRedirecting(true);
