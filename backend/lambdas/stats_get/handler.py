@@ -1,7 +1,8 @@
 """
 GET /stats/get?season=dwts-35[&ep=05][&group=<gid>] - the caller's accuracy
 against the judges, for the season or one episode, and everyone else's over the
-same set.
+same set. Each of the caller's dances carries its style and the panel's values,
+for the charts on /stats/.
 
 Every number is computed from gate.visible_scores, so a performance the caller
 hasn't answered never counts, for them or for anyone else. `group` narrows
@@ -23,7 +24,7 @@ from lambdas.common.episodes_dynamo import (
     season_ref,
     season_rows,
 )
-from lambdas.common.gate import answered, visible_scores
+from lambdas.common.gate import answered, perf_key, visible_scores
 from lambdas.common.groups_dynamo import members
 
 
@@ -51,6 +52,7 @@ def handler(event, context):
             raise NotFoundError("No such episode", season=f"{show}-{season}", ep=ep)
 
     mine = []
+    details = {}
     per_episode = []
     everyone = defaultdict(list)
     for n, episode in episodes:
@@ -59,12 +61,21 @@ def handler(event, context):
         if not answered(sub, score_rows):
             continue
         panel = episode.get("panel") or rows["META"]["defaultPanel"]
-        by_owner = errors(panel, performances(pk), visible_scores(sub, score_rows, in_group))
+        perfs = performances(pk)
+        by_owner = errors(panel, perfs, visible_scores(sub, score_rows, in_group))
         for owner, errs in by_owner.items():
             everyone[owner] += errs
         if by_owner.get(sub):
             per_episode.append({"ep": n, **summary(by_owner[sub])})
             mine += [{"ep": n, **e} for e in by_owner[sub]]
+            # Only dances in `mine`, which the caller answered, ever read these.
+            for p in perfs:
+                details[(n, perf_key(p["sk"]))] = {
+                    "style": p.get("style"),
+                    "judges": {
+                        j: p["judges"][j]["value"] for j in panel if j in p.get("judges", {})
+                    },
+                }
 
     others = [
         {"sub": owner, "count": len(errs), "mae": summary(errs)["mae"]}
@@ -81,6 +92,7 @@ def handler(event, context):
                 {
                     **{k: d[k] for k in ("ep", "key", "paddle", "panelMean")},
                     "error": round(d["error"], 2),
+                    **details[(d["ep"], d["key"])],
                 }
                 for d in mine
             ],
