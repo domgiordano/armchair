@@ -26,6 +26,9 @@ locals {
   stats_lambdas = [
     { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  leaderboard_lambdas = [
+    { name = "get", description = "Users ranked by accuracy against the judges, from per-user sums", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -35,6 +38,7 @@ locals {
     { for l in local.admin_lambdas : "admin_${l.name}" => l },
     { for l in local.stats_lambdas : "stats_${l.name}" => l },
     { for l in local.groups_lambdas : "groups_${l.name}" => l },
+    { for l in local.leaderboard_lambdas : "leaderboard_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -47,10 +51,11 @@ locals {
     scores       = aws_dynamodb_table.scores.arn
     users        = aws_dynamodb_table.users.arn
     groups       = aws_dynamodb_table.groups.arn
+    board        = aws_dynamodb_table.board.arn
   }
   api_grants = {
     users_me          = ["users:UpdateItem"]
-    scores_submit     = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
+    scores_submit     = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem", "board:PutItem", "board:UpdateItem"]
     scores_reveal_all = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
     episodes_state    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     seasons_get       = ["catalog:Query"]
@@ -59,6 +64,7 @@ locals {
     groups_create     = ["groups:PutItem"]
     groups_join       = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine       = ["groups:Query", "users:BatchGetItem"]
+    leaderboard_get   = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "users:BatchGetItem"]
   }
 }
 

@@ -92,16 +92,16 @@ def mine(sub: str) -> list[dict]:
             {"id": gid, "name": meta["name"], "inviteCode": meta["inviteCode"], "members": subs}
         )
 
-    profiles = _profiles({s for g in groups for s in g["members"]})
+    people = profiles({s for g in groups for s in g["members"]})
     for g in groups:
         g["members"] = [
-            {"sub": s, **{f: profiles.get(s, {}).get(f) for f in AVATAR_FIELDS}}
+            {"sub": s, **{f: people.get(s, {}).get(f) for f in AVATAR_FIELDS}}
             for s in g["members"]
         ]
     return groups
 
 
-def _profiles(subs: set[str]) -> dict[str, dict]:
+def profiles(subs: set[str]) -> dict[str, dict]:
     """Users-table rows by sub, never the email: other members see a name and a face."""
     name = table("USERS_TABLE").name
     keys = [{"sub": s} for s in sorted(subs)]

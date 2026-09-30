@@ -42,6 +42,19 @@ data "aws_iam_policy_document" "poll_wiki" {
     resources = [aws_dynamodb_table.catalog.arn, aws_dynamodb_table.performances.arn]
   }
 
+  # Reconciling the leaderboard sums: reads answers, never writes them.
+  statement {
+    sid       = "ReadScores"
+    actions   = ["dynamodb:Query"]
+    resources = [aws_dynamodb_table.scores.arn]
+  }
+
+  statement {
+    sid       = "Board"
+    actions   = ["dynamodb:Query", "dynamodb:PutItem", "dynamodb:UpdateItem", "dynamodb:DeleteItem"]
+    resources = [aws_dynamodb_table.board.arn]
+  }
+
   statement {
     sid       = "UseKey"
     actions   = ["kms:Decrypt", "kms:Encrypt", "kms:GenerateDataKey"]
@@ -73,6 +86,8 @@ resource "aws_lambda_function" "poll_wiki" {
     variables = {
       CATALOG_TABLE      = aws_dynamodb_table.catalog.id
       PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
+      SCORES_TABLE       = aws_dynamodb_table.scores.id
+      BOARD_TABLE        = aws_dynamodb_table.board.id
     }
   }
 

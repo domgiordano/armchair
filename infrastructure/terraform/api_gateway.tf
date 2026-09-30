@@ -34,6 +34,11 @@ locals {
       invoke_arn = aws_lambda_function.api["stats_${l.name}"].invoke_arn
     })
   ]
+  leaderboard_endpoints = [
+    for l in local.leaderboard_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["leaderboard_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -64,5 +69,7 @@ module "api" {
     admin    = { path_prefix = "admin", endpoints = local.admin_endpoints }
     stats    = { path_prefix = "stats", endpoints = local.stats_endpoints }
     groups   = { path_prefix = "groups", endpoints = local.groups_endpoints }
+
+    leaderboard = { path_prefix = "leaderboard", endpoints = local.leaderboard_endpoints }
   }
 }
