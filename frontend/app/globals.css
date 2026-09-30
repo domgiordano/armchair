@@ -24,6 +24,12 @@
   /* The desk's paddle raise: up from behind the desk, a small overshoot, settle. */
   --animate-raise: raise 560ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
 
+  @keyframes sheet-in {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
   @keyframes raise {
     0% {
       transform: translateY(62px);
@@ -79,4 +85,9 @@
 body {
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
     env(safe-area-inset-left);
+}
+
+/* The phone menu is a modal <dialog>; keep the page behind it from scrolling. */
+html:has(dialog[open]) {
+  overflow: hidden;
 }

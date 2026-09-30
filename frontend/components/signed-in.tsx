@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 
+import { AppShell } from "@/components/app-shell";
 import { Brand } from "@/components/brand";
 import { rememberReturn } from "@/lib/auth/return-to";
 import { useAuth } from "@/lib/auth/use-auth";
@@ -12,9 +13,11 @@ interface SignedInProps {
   children: ReactNode;
 }
 
-/** Page chrome plus the sign-in wall. UX only: the API is what refuses a missing token. */
+/** The app shell once signed in, a sign-in wall before. UX only: the API is what refuses a missing token. */
 export function SignedIn({ title, children }: SignedInProps) {
   const { status, signInWithGoogle } = useAuth();
+
+  if (status === "signedIn") return <AppShell title={title}>{children}</AppShell>;
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col">
@@ -42,7 +45,6 @@ export function SignedIn({ title, children }: SignedInProps) {
             </button>
           </>
         )}
-        {status === "signedIn" && children}
       </main>
     </div>
   );
