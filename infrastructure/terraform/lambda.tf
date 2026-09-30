@@ -18,6 +18,9 @@ locals {
   admin_lambdas = [
     { name = "keyword", description = "Set a couple's SMS keyword override", path_part = "keyword", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
+  stats_lambdas = [
+    { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -25,6 +28,7 @@ locals {
     { for l in local.episodes_lambdas : "episodes_${l.name}" => l },
     { for l in local.seasons_lambdas : "seasons_${l.name}" => l },
     { for l in local.admin_lambdas : "admin_${l.name}" => l },
+    { for l in local.stats_lambdas : "stats_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -43,6 +47,7 @@ locals {
     episodes_state    = ["catalog:Query", "performances:Query", "scores:Query"]
     seasons_get       = ["catalog:Query"]
     admin_keyword     = ["catalog:UpdateItem"]
+    stats_get         = ["catalog:Query", "performances:Query", "scores:Query"]
   }
 }
 

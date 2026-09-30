@@ -71,6 +71,12 @@ function EpisodePicker({ season }: EpisodePickerProps) {
         <EpisodeView season={season} episode={episode} now={now} />
       </CatchUp>
       <Link
+        href="/stats/"
+        className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+      >
+        Your accuracy
+      </Link>
+      <Link
         href="/credits/"
         className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
       >
