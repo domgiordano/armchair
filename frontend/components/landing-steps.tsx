@@ -112,7 +112,7 @@ export function LandingSteps() {
           <svg viewBox="0 0 160 88" aria-hidden="true" className="w-full max-w-60">
             {s.diagram}
           </svg>
-          <p className="font-display text-sm font-semibold text-gold italic">{String(i + 1).padStart(2, "0")}</p>
+          <p className="font-display text-sm text-gold">{String(i + 1).padStart(2, "0")}</p>
           <h3 className="-mt-2 text-lg font-semibold text-silver">{s.title}</h3>
           <p className="text-sm leading-relaxed text-silver-dim">{s.body}</p>
         </li>

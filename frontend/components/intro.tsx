@@ -137,7 +137,7 @@ export function Intro({ onDone }: IntroProps) {
           <Image src="/brand/mark-320.png" alt="" width={160} height={160} unoptimized priority />
         </div>
         <p className={styles.wordmark}>
-          Armchair <span className="text-brand-gradient">Judge</span>
+          <span className="text-chrome">armchair judge</span>
         </p>
         <div aria-hidden="true" className={styles.paddles}>
           {[10, 10, 10, 10].map((n, i) => (

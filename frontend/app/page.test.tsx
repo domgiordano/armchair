@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 // next/font is a build-time transform; outside Next it has no loader.
 vi.mock("next/font/google", () => ({
   Poppins: () => ({ variable: "font-poppins", className: "font-poppins" }),
-  Playfair_Display: () => ({ variable: "font-playfair", className: "font-playfair" }),
+  Archivo_Black: () => ({ variable: "font-archivo", className: "font-archivo" }),
 }));
 
 import { metadata, viewport } from "./layout";

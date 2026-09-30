@@ -69,7 +69,7 @@ export function LandingDesk() {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-semibold tracking-[0.18em] text-gold uppercase">Week 4 · {dance.style}</p>
-          <p className="font-display text-xl font-semibold text-silver">{dance.couple}</p>
+          <p className="font-display text-xl tracking-[-0.03em] text-silver">{dance.couple}</p>
         </div>
         {!still && (
           <button

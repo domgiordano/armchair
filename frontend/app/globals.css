@@ -12,7 +12,7 @@
   --color-crown: #ffc93c;
 
   /* DWTS show theme: a glam ballroom in midnight navy, gold and mirror-ball silver. */
-  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-display: var(--font-archivo), "Arial Black", ui-sans-serif, sans-serif;
   --color-ballroom: #0a1440;
   --color-gold: #e8c268;
   --color-gold-light: #f7e2a4;
@@ -50,16 +50,30 @@
   color: transparent;
 }
 
-@utility text-gold-gradient {
+/* Polished chrome for our own display headlines. Never the show's name: that stays in the UI face.
+   Put it on an inline element: clone gives each wrapped line its own specular band.
+   The darkest stop keeps 4.6:1 against ink. */
+@utility text-chrome {
   background-image: linear-gradient(
-    100deg,
-    var(--color-gold-deep),
-    var(--color-gold-light) 45%,
-    var(--color-gold) 70%,
-    var(--color-gold-deep)
+    180deg,
+    #fbfcff 0%,
+    var(--color-silver) 30%,
+    #a3adc4 45%,
+    #f8faff 50%,
+    #6f7a96 55%,
+    var(--color-silver-dim) 72%,
+    #e7ebf4 100%
   );
   background-clip: text;
+  box-decoration-break: clone;
   color: transparent;
+  filter: drop-shadow(0 1px 0 rgb(2 8 30 / 0.9)) drop-shadow(0 0 1px rgb(2 8 30 / 0.7));
+
+  @media (forced-colors: active) {
+    background-image: none;
+    color: CanvasText;
+    filter: none;
+  }
 }
 
 body {
