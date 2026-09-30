@@ -10,17 +10,19 @@ import { SignedIn } from "@/components/signed-in";
 import { ALL_TIME, getLeaderboard, type Leaderboard, type Ranked, type Scope } from "@/lib/api/leaderboard";
 import type { Judge } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
-import { SEASON, useSeason } from "@/lib/show/use-season";
+import { seasonLabel as shellSeasonLabel, useSeasonId } from "@/lib/show/seasons";
+import { useSeason } from "@/lib/show/use-season";
 
 type BoardLoad = { kind: "loading" } | { kind: "ready"; board: Leaderboard } | { kind: "error"; message: string };
+
+const TAB_NAMES: Record<Scope, string> = { global: "Global", friends: "Friends", group: "Groups" };
 
 const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300";
 const SELECT = `min-h-11 rounded-md border border-neutral-700 bg-neutral-900 px-3 text-base text-neutral-100 ${FOCUS}`;
 
 export const off = (mae: number) => `${mae.toFixed(2)} off`;
 
-export const seasonLabel = (season: string) =>
-  season === ALL_TIME ? "All-time" : `Season ${season.split("-")[1]}`;
+export const seasonLabel = (season: string) => (season === ALL_TIME ? "All-time" : shellSeasonLabel(season));
 
 /** Past seasons' guest judges aren't in this season's catalog; their id is their name, slugged. */
 export function judgeName(id: string, judges: Judge[]): string {
@@ -42,8 +44,11 @@ function Controls() {
   const seasonLoad = useSeason();
   const filter = useGroupFilter();
 
-  const season = params.get("season") === ALL_TIME ? ALL_TIME : SEASON;
-  const scope: Scope = params.get("scope") === "group" ? "group" : "global";
+  // The shell's picker sets a season; All-time is this page's own option on top.
+  const picked = useSeasonId();
+  const season = params.get("season") === ALL_TIME ? ALL_TIME : picked;
+  const asScope = params.get("scope");
+  const scope: Scope = asScope === "group" || asScope === "friends" ? asScope : "global";
   const groups = filter.groups ?? [];
   const asked = params.get("group") ?? filter.group;
   const group = groups.find((g) => g.id === asked)?.id ?? groups[0]?.id ?? null;
@@ -62,19 +67,19 @@ function Controls() {
 
   return (
     <>
-      <div className="sticky top-0 z-10 -mx-4 -mt-6 flex flex-col gap-3 border-b border-neutral-800 bg-ink/95 px-4 pt-4 pb-3 backdrop-blur">
+      <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between gap-3">
           <h1 className="text-xl font-semibold tracking-tight">Leaderboard</h1>
           <label className="flex items-center gap-2 text-sm text-neutral-400">
-            <span className="sr-only">Season</span>
+            <span className="sr-only">Standings for</span>
             <select value={season} onChange={(e) => go({ season: e.target.value })} className={SELECT}>
-              <option value={SEASON}>{seasonLabel(SEASON)}</option>
+              <option value={picked}>{seasonLabel(picked)}</option>
               <option value={ALL_TIME}>{seasonLabel(ALL_TIME)}</option>
             </select>
           </label>
         </div>
-        <div role="tablist" aria-label="Who to rank" className="grid grid-cols-2 gap-1 rounded-lg bg-neutral-900 p-1">
-          {(["global", "group"] as const).map((s) => (
+        <div role="tablist" aria-label="Who to rank" className="grid grid-cols-3 gap-1 rounded-lg bg-neutral-900 p-1">
+          {(["global", "friends", "group"] as const).map((s) => (
             <button
               key={s}
               type="button"
@@ -85,7 +90,7 @@ function Controls() {
                 scope === s ? "bg-neutral-100 text-neutral-950" : "text-neutral-400 hover:text-neutral-100"
               }`}
             >
-              {s === "global" ? "Global" : "Groups"}
+              {TAB_NAMES[s]}
             </button>
           ))}
         </div>

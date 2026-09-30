@@ -1,7 +1,7 @@
 import { request } from "./client";
 import type { GroupMember } from "./groups";
 
-export type Scope = "global" | "group";
+export type Scope = "global" | "friends" | "group";
 
 export interface Standing extends GroupMember {
   count: number;

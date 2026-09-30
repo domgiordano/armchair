@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 const replace = vi.fn();
 let search = new URLSearchParams();
 vi.mock("next/navigation", () => ({
+  usePathname: () => "/leaderboard/",
   useRouter: () => ({ replace }),
   useSearchParams: () => search,
 }));
@@ -124,8 +125,16 @@ describe("LeaderboardScreen", () => {
     render(<LeaderboardScreen />);
     fireEvent.click(await screen.findByRole("tab", { name: "Groups" }));
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=dwts-35&scope=group&group=fam");
-    fireEvent.change(screen.getByRole("combobox", { name: "Season" }), { target: { value: "all" } });
+    fireEvent.change(screen.getByRole("combobox", { name: "Standings for" }), { target: { value: "all" } });
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=all&scope=global");
+    fireEvent.click(screen.getByRole("tab", { name: "Friends" }));
+    expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=dwts-35&scope=friends");
+  });
+
+  it("ranks friends from the Friends tab", async () => {
+    search = new URLSearchParams({ scope: "friends" });
+    render(<LeaderboardScreen />);
+    await vi.waitFor(() => expect(getLeaderboard).toHaveBeenCalledWith("dwts-35", "friends", null));
   });
 
   it("points to groups when the caller has none", async () => {
