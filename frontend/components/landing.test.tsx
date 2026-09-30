@@ -58,7 +58,7 @@ describe("Landing", () => {
 
     // The landing mounts from an async auth update, so its effects (the intro's timer) flush on the scheduler first.
     await act(() => vi.advanceTimersByTimeAsync(0));
-    act(() => vi.advanceTimersByTime(5199));
+    act(() => vi.advanceTimersByTime(5799));
     expect(screen.getByRole("button", { name: "Skip intro" })).toBeTruthy();
     act(() => vi.advanceTimersByTime(1));
     expect(screen.getByRole("heading", HEADLINE)).toBeTruthy();

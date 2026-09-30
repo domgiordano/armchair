@@ -34,6 +34,11 @@ locals {
       invoke_arn = aws_lambda_function.api["stats_${l.name}"].invoke_arn
     })
   ]
+  leaderboard_endpoints = [
+    for l in local.leaderboard_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["leaderboard_${l.name}"].invoke_arn
+    })
+  ]
   overview_endpoints = [
     for l in local.overview_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["overview_${l.name}"].invoke_arn
@@ -42,6 +47,11 @@ locals {
   friends_endpoints = [
     for l in local.friends_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["friends_${l.name}"].invoke_arn
+    })
+  ]
+  notifications_endpoints = [
+    for l in local.notifications_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["notifications_${l.name}"].invoke_arn
     })
   ]
 }
@@ -76,5 +86,17 @@ module "api" {
     groups   = { path_prefix = "groups", endpoints = local.groups_endpoints }
     overview = { path_prefix = "overview", endpoints = local.overview_endpoints }
     friends  = { path_prefix = "friends", endpoints = local.friends_endpoints }
+
+    leaderboard   = { path_prefix = "leaderboard", endpoints = local.leaderboard_endpoints }
+    users         = { path_prefix = "users", endpoints = local.users_endpoints }
+    scores        = { path_prefix = "scores", endpoints = local.scores_endpoints }
+    episodes      = { path_prefix = "episodes", endpoints = local.episodes_endpoints }
+    seasons       = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
+    admin         = { path_prefix = "admin", endpoints = local.admin_endpoints }
+    stats         = { path_prefix = "stats", endpoints = local.stats_endpoints }
+    groups        = { path_prefix = "groups", endpoints = local.groups_endpoints }
+    overview      = { path_prefix = "overview", endpoints = local.overview_endpoints }
+    friends       = { path_prefix = "friends", endpoints = local.friends_endpoints }
+    notifications = { path_prefix = "notifications", endpoints = local.notifications_endpoints }
   }
 }

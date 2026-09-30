@@ -201,3 +201,27 @@ def _answer(row: dict | None) -> dict | None:
     if row.get("forfeit"):
         return {"forfeit": True}
     return {"value": int(row["value"])}
+
+
+def standing(row: dict | None) -> dict:
+    """
+    What a leaderboard shows of anyone: a count and means over the dances they
+    scored, never a dance. Other users' numbers here cover their own answers,
+    not the viewer's: docs/features/v2/PLAN.md "Leaderboards".
+    """
+    row = row or {}
+    count = int(row.get("n") or 0)
+    judges = {
+        k.split("#")[1]: (int(row[k]), row[k.removesuffix("#n") + "#err"])
+        for k in row
+        if k.startswith("J#") and k.endswith("#n")
+    }
+    closest = min(
+        ((float(e) / n, j) for j, (n, e) in judges.items() if n),
+        default=None,
+    )
+    return {
+        "count": count,
+        "mae": round(float(row["err"]) / count, 2) if count else None,
+        "closestJudge": closest and {"id": closest[1], "mae": round(closest[0], 2)},
+    }

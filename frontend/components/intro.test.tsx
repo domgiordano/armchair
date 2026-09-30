@@ -1,8 +1,9 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+// The stand-in scene "draws its first frame" when clicked.
 vi.mock("./intro-scene/intro-scene", () => ({
-  IntroScene: ({ start }: { start: number }) => <div data-testid="scene" data-start={start} />,
+  IntroScene: ({ onReady }: { onReady: () => void }) => <button type="button" data-testid="scene" onClick={onReady} />,
 }));
 
 // intro.tsx probes WebGL once per page load, so each test loads a fresh copy.
@@ -19,7 +20,9 @@ async function load({ webgl }: { webgl: boolean }) {
   return { Intro, lose };
 }
 
-const stage = () => screen.getByRole("region", { name: "Intro" }).getAttribute("data-stage");
+const region = () => screen.getByRole("region", { name: "Intro" });
+const stage = () => region().getAttribute("data-stage");
+const playing = () => region().hasAttribute("data-playing");
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -32,7 +35,10 @@ describe("Intro", () => {
     const { Intro } = await load({ webgl: false });
     render(<Intro onDone={() => {}} />);
     expect(stage()).toBe("2d");
-    expect(screen.getAllByText("10")).toHaveLength(3);
+    expect(playing()).toBe(true);
+    expect(screen.getAllByText("9")).toHaveLength(1);
+    expect(screen.getAllByText("10")).toHaveLength(2);
+    expect(screen.getByText("29")).toBeTruthy();
     expect(screen.queryByTestId("scene")).toBeNull();
     expect(screen.getByText("armchair judge")).toBeTruthy();
   });
@@ -46,13 +52,47 @@ describe("Intro", () => {
     expect(await screen.findByTestId("scene")).toBeTruthy();
   });
 
+  it("holds on the poster until the scene's first frame, then starts the show's clock", async () => {
+    const { Intro } = await load({ webgl: true });
+    const onDone = vi.fn();
+    render(<Intro onDone={onDone} />);
+    const scene = await screen.findByTestId("scene");
+    vi.useFakeTimers();
+    expect(playing()).toBe(false);
+    expect(screen.queryByText("armchair judge")).toBeNull();
+
+    act(() => vi.advanceTimersByTime(2000));
+    fireEvent.click(scene);
+    expect(playing()).toBe(true);
+    expect(screen.getByText("armchair judge")).toBeTruthy();
+
+    act(() => vi.advanceTimersByTime(5799));
+    expect(onDone).not.toHaveBeenCalled();
+    act(() => vi.advanceTimersByTime(1));
+    expect(onDone).toHaveBeenCalledTimes(1);
+  });
+
+  it("plays the 2D ballroom when the scene never draws", async () => {
+    const { Intro } = await load({ webgl: true });
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    render(<Intro onDone={() => {}} />);
+    await screen.findByTestId("scene");
+    act(() => vi.advanceTimersByTime(3000));
+    expect(stage()).toBe("2d");
+    expect(playing()).toBe(true);
+    expect(screen.queryByTestId("scene")).toBeNull();
+    expect(screen.getByText("29")).toBeTruthy();
+  });
+
   it("falls back to the 2D ballroom when the 3D chunk won't load", async () => {
     vi.doMock("./intro-scene/intro-scene", () => {
       throw new Error("ChunkLoadError");
     });
     const { Intro } = await load({ webgl: true });
-    render(<Intro onDone={() => {}} />);
-    expect(await screen.findAllByText("10")).toHaveLength(3);
+    const { container } = render(<Intro onDone={() => {}} />);
+    expect(await screen.findAllByText("10")).toHaveLength(2);
+    expect(stage()).toBe("2d");
+    expect(container.querySelector("img")).toBeNull();
     expect(screen.queryByTestId("scene")).toBeNull();
     vi.doUnmock("./intro-scene/intro-scene");
   });
@@ -72,7 +112,7 @@ describe("Intro", () => {
     vi.useFakeTimers();
     const onDone = vi.fn();
     render(<Intro onDone={onDone} />);
-    act(() => vi.advanceTimersByTime(5199));
+    act(() => vi.advanceTimersByTime(5799));
     expect(onDone).not.toHaveBeenCalled();
     act(() => vi.advanceTimersByTime(1));
     expect(onDone).toHaveBeenCalledTimes(1);

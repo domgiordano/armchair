@@ -22,6 +22,7 @@ function Joiner() {
   const router = useRouter();
   const code = useSearchParams().get("code");
   const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState<string | null>(null);
 
   useEffect(() => {
     if (!code) return;
@@ -29,6 +30,10 @@ function Joiner() {
     joinGroup(code).then(
       (group) => {
         if (cancelled) return;
+        if (group.pending) {
+          setPending(group.name);
+          return;
+        }
         saveGroup(group.id);
         router.replace("/episode/");
       },
@@ -39,6 +44,19 @@ function Joiner() {
     };
   }, [code, router]);
 
+  if (pending !== null) {
+    return (
+      <div role="status" className="flex flex-col items-start gap-3">
+        <p>
+          Asked to join <span className="font-semibold">{pending}</span>. You&apos;ll get a notification when the owner
+          lets you in.
+        </p>
+        <Link href="/friends/?tab=groups" className={SECONDARY}>
+          Your groups
+        </Link>
+      </div>
+    );
+  }
   if (code && error === null) return <p className="text-neutral-400">Joining the group...</p>;
   return (
     <div role="alert" className="flex flex-col items-start gap-3">

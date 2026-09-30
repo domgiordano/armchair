@@ -7,6 +7,7 @@ CATALOG_TABLE = "t-armchair-catalog"
 PERFORMANCES_TABLE = "t-armchair-performances"
 SCORES_TABLE = "t-armchair-scores"
 GROUPS_TABLE = "t-armchair-groups"
+BOARD_TABLE = "t-armchair-board"
 SOCIAL_TABLE = "t-armchair-social"
 AVATARS_BUCKET = "t-armchair-avatars"
 AVATARS_URL = "https://avatars.example.net"
@@ -36,6 +37,7 @@ def aws(monkeypatch):
         "PERFORMANCES_TABLE": PERFORMANCES_TABLE,
         "SCORES_TABLE": SCORES_TABLE,
         "GROUPS_TABLE": GROUPS_TABLE,
+        "BOARD_TABLE": BOARD_TABLE,
         "SOCIAL_TABLE": SOCIAL_TABLE,
         "AVATARS_BUCKET": AVATARS_BUCKET,
         "AVATARS_URL": AVATARS_URL,
@@ -51,7 +53,8 @@ def aws(monkeypatch):
             AttributeDefinitions=[{"AttributeName": "sub", "AttributeType": "S"}],
             BillingMode="PAY_PER_REQUEST",
         )
-        for name in (CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE, GROUPS_TABLE, SOCIAL_TABLE):
+        tables = (CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE, GROUPS_TABLE, BOARD_TABLE)
+        for name in (*tables, SOCIAL_TABLE):
             client.create_table(TableName=name, BillingMode="PAY_PER_REQUEST", **PK_SK)
         boto3.client("s3").create_bucket(Bucket=AVATARS_BUCKET)
         yield boto3.resource("dynamodb")
@@ -71,3 +74,13 @@ def set_admins(value: str) -> None:
     boto3.client("ssm").put_parameter(
         Name=ADMIN_EMAILS_PARAM, Type="StringList", Value=value, Overwrite=True
     )
+
+
+@pytest.fixture
+def people(aws):
+    """Three signed-in users, each with a profile and a search row."""
+    from tests.social import A, B, C, sign_in
+
+    sign_in(A, "Ada Lovelace")
+    sign_in(B, "Bea Arthur", picture=None)
+    sign_in(C, "Adam Driver")

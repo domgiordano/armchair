@@ -20,6 +20,14 @@ export class ApiError extends Error {
 }
 
 export async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  return (await requestWithMeta<T>(path, init)).data;
+}
+
+/** For list endpoints that page or count in `meta`. */
+export async function requestWithMeta<T>(
+  path: string,
+  init: RequestInit = {},
+): Promise<{ data: T; meta: Record<string, unknown> | null }> {
   // The ID token, not the access token: only the ID token carries email, name
   // and picture, which users_me reads from the authorizer's claims. Fetched per
   // call because Amplify caches and refreshes it already.
@@ -40,7 +48,7 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
       body.error?.detail,
     );
   }
-  return body.data as T;
+  return { data: body.data as T, meta: body.meta ?? null };
 }
 
 export type AvatarKind = "google" | "upload" | "initials";

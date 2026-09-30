@@ -7,11 +7,11 @@ import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { Avatar } from "@/components/avatar";
 import { Brand } from "@/components/brand";
 import { NavSheet } from "@/components/nav-sheet";
+import { NotificationsBell } from "@/components/notifications";
 import { Popover } from "@/components/popover";
 import { getMe, type Me } from "@/lib/api/client";
 import { useAuth } from "@/lib/auth/use-auth";
 import { SEASONS, seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
-import { useNotifications } from "@/lib/social/use-notifications";
 
 export const HUB_URL = "https://armchairjudge.com";
 
@@ -205,24 +205,6 @@ function SeasonPicker({ season }: { season: string }) {
   );
 }
 
-function NotificationsBell() {
-  const { unread } = useNotifications();
-  const label = unread > 0 ? `Notifications, ${unread} unread` : "Notifications";
-  return (
-    <Link href="/notifications/" aria-label={label} className={ICON_BUTTON}>
-      <BellIcon />
-      {unread > 0 && (
-        <span
-          aria-hidden="true"
-          className="absolute top-1.5 right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-magenta px-1 text-[10px] leading-none font-semibold text-pearl tabular-nums"
-        >
-          {unread > 9 ? "9+" : unread}
-        </span>
-      )}
-    </Link>
-  );
-}
-
 function AppsMenu() {
   return (
     <Popover
@@ -326,15 +308,6 @@ function CloseIcon() {
   return (
     <svg {...ICON}>
       <path d="M6 6l12 12M18 6L6 18" />
-    </svg>
-  );
-}
-
-function BellIcon() {
-  return (
-    <svg {...ICON}>
-      <path d="M6 9a6 6 0 1 1 12 0c0 5 2 6.5 2 6.5H4S6 14 6 9Z" />
-      <path d="M10 19a2 2 0 0 0 4 0" />
     </svg>
   );
 }
