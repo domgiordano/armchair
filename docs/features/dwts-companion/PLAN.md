@@ -238,7 +238,7 @@ Sizes count hand-written logic only; HCL copied from smirnoff with renames count
 - [x] 1. `armchair` is the permanent prefix. No existing "Armchair Judge" app found; `domgiordano/armchair` is free on GitHub. Closest: `utzn/armchair-judge` (boxing scorer) and a 2022-23 combat-sports podcast.
 - [x] 2. New pool goes in `xomware-infrastructure`.
 - [x] 3. Users score couples in any order, any time. An unscored performance simply stays locked and scorable. "Skip" is renamed **Reveal without scoring**: an explicit, final forfeit that unlocks the reveal and is excluded from accuracy.
-- [x] 4. Opening episode N with N-1 unfinished shows an interstitial: "Finish week N-1" or "Go to week N". Going ahead leaves N-1's performances unanswered and still scorable; the elimination leak is accepted.
+- [x] 4. Opening episode N with N-1 unfinished shows an interstitial: "Finish week N-1" or "Go to week N". Going ahead leaves N-1's performances unanswered and still scorable; the elimination leak is accepted. Amended 9/30: the question counts every unfinished earlier episode and offers "Catch up on N earlier episodes" or "Skip to this week" (`/scores/skip-before`, a bulk forfeit of everything unanswered before N, through `gate.py`). Opening N and leaving the rest scorable stays as a link. A finished season offers "Just browse" (skip the whole season) or "Score from the start".
 - [x] 5. Global desk: judges + you + global-average paddle; individual seats only under a group filter.
 - [x] 6. No reporter plan for the finale; Wikipedia is expected to work, delayed fill is acceptable.
 - [x] 7. Weeks 1-3 are scorable after the fact. Add a per-episode **Reveal all** (bulk forfeit of every unanswered performance) for catch-up users.

@@ -11,6 +11,7 @@ locals {
   scores_lambdas = [
     { name = "submit", description = "Record the caller's final answer on one performance", path_part = "submit", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "reveal_all", description = "Forfeit every performance the caller left unanswered in one episode", path_part = "reveal-all", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "skip_before", description = "Forfeit every performance the caller left unanswered in the aired episodes before one", path_part = "skip-before", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
   episodes_lambdas = [
     { name = "state", description = "One episode as the caller may see it, through the gate", path_part = "state", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
@@ -166,6 +167,7 @@ locals {
     friends_search     = ["social:Query"]
     users_update       = ["users:GetItem", "users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     users_get          = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem"]
+    scores_skip_before = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem"]
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
