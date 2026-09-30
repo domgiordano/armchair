@@ -70,6 +70,24 @@ def test_catalog_aliases_resolve_every_row_the_parser_has_seen():
         assert parsed["panel"] == judges
 
 
+def test_premiere_nights_list_the_couples_the_page_puts_on_each_night():
+    aliases = {a: c["id"] for c in SEASON["contestants"] for a in c["aliases"]}
+    wikitext = (FIXTURES / "wiki" / "s35-1377681547.wikitext").read_text()
+    parsed = parse_week(wikitext, 1, aliases)["performances"]
+    for e in SEASON["episodes"][:2]:
+        danced = [f"{p['contestants'][0]}#{p['n']}" for p in parsed if p["night"] == e["ep"]]
+        assert sorted(e["rateableKeys"]) == sorted(danced) and len(danced) == 8
+    assert all("rateableKeys" not in e for e in SEASON["episodes"][2:])
+
+
+def test_reseed_replaces_rateable_keys(table):
+    rows = items(SEASON)
+    table.put_item(Item={"pk": PK, "sk": "EP#01", "week": 1})
+    write(table, rows)
+    ep = table.get_item(Key={"pk": PK, "sk": "EP#01"})["Item"]
+    assert len(ep["rateableKeys"]) == 8
+
+
 def test_reseed_keeps_what_the_poller_and_admins_wrote(table):
     rows = items(SEASON)
     write(table, rows)
