@@ -114,3 +114,27 @@ resource "aws_iam_role_policy" "deploy_backend" {
   role   = aws_iam_role.deploy.id
   policy = data.aws_iam_policy_document.deploy_backend.json
 }
+
+# The Seed Season workflow writes catalog items. The table is encrypted with
+# the app CMK, so the writes also need the key.
+data "aws_iam_policy_document" "deploy_seed" {
+  statement {
+    sid       = "SeedCatalog"
+    effect    = "Allow"
+    actions   = ["dynamodb:UpdateItem", "dynamodb:DescribeTable"]
+    resources = [aws_dynamodb_table.catalog.arn]
+  }
+
+  statement {
+    sid       = "UseAppKey"
+    effect    = "Allow"
+    actions   = ["kms:Decrypt", "kms:Encrypt", "kms:GenerateDataKey*", "kms:DescribeKey"]
+    resources = [aws_kms_key.app.arn]
+  }
+}
+
+resource "aws_iam_role_policy" "deploy_seed" {
+  name   = "seed-catalog"
+  role   = aws_iam_role.deploy.id
+  policy = data.aws_iam_policy_document.deploy_seed.json
+}
