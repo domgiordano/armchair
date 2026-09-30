@@ -34,7 +34,7 @@ def aws(monkeypatch):
         "SCORES_TABLE": SCORES_TABLE,
         "GROUPS_TABLE": GROUPS_TABLE,
         "APP_NAME": "armchair",
-        "CORS_ALLOW_ORIGIN": "https://dwts.xomware.com,http://localhost:3000",
+        "CORS_ALLOW_ORIGIN": "https://dwts.armchairjudge.com,http://localhost:3000",
     }.items():
         monkeypatch.setenv(k, v)
     with mock_aws():

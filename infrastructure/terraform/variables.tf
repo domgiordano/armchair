@@ -13,13 +13,13 @@ variable "app_name" {
 variable "domain_name" {
   description = "Public hostname for the site. Also the site bucket's name."
   type        = string
-  default     = "dwts.xomware.com"
+  default     = "dwts.armchairjudge.com"
 }
 
 variable "route53_zone_name" {
   description = "Hosted zone that domain_name lives in."
   type        = string
-  default     = "xomware.com"
+  default     = "armchairjudge.com"
 }
 
 variable "environment" {

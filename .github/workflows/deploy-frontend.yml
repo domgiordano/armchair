@@ -11,7 +11,7 @@ on:
 env:
   AWS_REGION: us-east-1
   # The site bucket is named after the domain (Terraform var.domain_name).
-  S3_BUCKET: dwts.xomware.com
+  S3_BUCKET: dwts.armchairjudge.com
 
 permissions:
   contents: read

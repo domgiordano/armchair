@@ -5,7 +5,7 @@ PICTURE = "https://lh3.googleusercontent.com/a/example=s96-c"
 
 
 def authorized_event(
-    origin="https://dwts.xomware.com",
+    origin="https://dwts.armchairjudge.com",
     path="/users/me",
     method="GET",
     body=None,
