@@ -9,7 +9,12 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
   getSeason: vi.fn(),
 }));
 vi.mock("@/lib/api/stats", () => ({ getStats: vi.fn() }));
+vi.mock("@/lib/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+  getMyGroups: vi.fn(),
+}));
 
+import { getMyGroups } from "@/lib/api/groups";
 import { getSeason, type Season } from "@/lib/api/show";
 import { getStats, type Stats } from "@/lib/api/stats";
 import { StatsScreen } from "./stats-screen";
@@ -57,6 +62,8 @@ const STATS: Stats = {
 beforeEach(() => {
   vi.mocked(getSeason).mockResolvedValue(SEASON);
   vi.mocked(getStats).mockResolvedValue(STATS);
+  vi.mocked(getMyGroups).mockResolvedValue([]);
+  window.localStorage.clear();
 });
 
 afterEach(() => {
@@ -67,8 +74,19 @@ describe("StatsScreen", () => {
   it("shows the gap to the judges' average and the caller's rank", async () => {
     render(<StatsScreen />);
     expect(await screen.findByText("1.3 off")).toBeTruthy();
-    expect(getStats).toHaveBeenCalledWith("dwts-35");
+    expect(getStats).toHaveBeenCalledWith("dwts-35", null);
     expect(screen.getByText(/over 3 dances\. You rank 2 of 3/)).toBeTruthy();
+  });
+
+  it("reloads the stats for the group picked here or on the episode screen", async () => {
+    vi.mocked(getMyGroups).mockResolvedValue([{ id: "fam", name: "Family", inviteCode: "c".repeat(16), members: [] }]);
+    window.localStorage.setItem("armchair.group", "fam");
+    render(<StatsScreen />);
+    const picker = await screen.findByRole("combobox", { name: "Compare with" });
+    expect(getStats).toHaveBeenLastCalledWith("dwts-35", "fam");
+
+    fireEvent.change(picker, { target: { value: "" } });
+    await vi.waitFor(() => expect(getStats).toHaveBeenLastCalledWith("dwts-35", null));
   });
 
   it("names the closest judge and lists every judge by gap", async () => {

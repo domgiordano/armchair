@@ -6,6 +6,8 @@ from decimal import Decimal
 
 import pytest
 
+from lambdas.common.groups_dynamo import create as create_group
+from lambdas.common.groups_dynamo import join as join_group
 from lambdas.scores_submit.handler import handler as submit_handler
 from lambdas.stats_get.handler import handler
 from scripts.seed_season import SEASONS, items, write
@@ -14,6 +16,7 @@ from tests.events import SUB as A
 from tests.events import authorized_event
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
+C = "3f1c2b9a-0000-4000-8000-000000000003"
 SEASON = json.loads((SEASONS / "dwts-35.json").read_text())
 X, Y = "tyler-cameron", "amber-glenn"
 CARRIE, DEREK, BRUNO = SEASON["defaultPanel"]
@@ -126,6 +129,33 @@ def test_ep_narrows_to_one_episode(show):
     assert data["ep"] == 5
     assert [d["ep"] for d in data["dances"]] == [5]
     assert data["mine"]["mae"] == 0
+
+
+def test_group_narrows_others_to_members_on_answered_performances(show):
+    family = create_group(A, "Family")
+    join_group(B, family["inviteCode"])
+    answer(B, X, value=10)
+    answer(B, Y, value=1)
+    answer(C, X, value=2)
+    answer(A, X, value=8)
+
+    data = stats(group=family["id"])
+    assert data["others"] == [{"sub": B, "count": 1, "mae": 2}]
+    assert data["mine"]["count"] == 1
+    assert {o["sub"] for o in stats()["others"]} == {B, C}
+
+
+def test_group_filter_is_403_for_a_non_member(show):
+    gid = create_group(B, "Family")["id"]
+    answer(B, X, value=10)
+    answer(A, X, value=8)
+    status, body = get(group=gid)
+    assert status == 403
+    assert body["data"] is None and B not in json.dumps(body)
+
+
+def test_group_that_does_not_exist_is_403(show):
+    assert get(group="no-such-group")[0] == 403
 
 
 def test_unknown_season_is_404(show):

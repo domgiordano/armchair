@@ -1,10 +1,12 @@
 """
-GET /stats/get?season=dwts-35[&ep=05] - the caller's accuracy against the
-judges, for the season or one episode, and everyone else's over the same set.
+GET /stats/get?season=dwts-35[&ep=05][&group=<gid>] - the caller's accuracy
+against the judges, for the season or one episode, and everyone else's over the
+same set.
 
 Every number is computed from gate.visible_scores, so a performance the caller
-hasn't answered never counts, for them or for anyone else. Identity is the
-Cognito sub.
+hasn't answered never counts, for them or for anyone else. `group` narrows
+everyone else to that group's members and is 403 unless the caller is one.
+Identity is the Cognito sub.
 """
 
 from __future__ import annotations
@@ -12,7 +14,7 @@ from __future__ import annotations
 from collections import defaultdict
 
 from lambdas.common.accuracy import errors, summary
-from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
+from lambdas.common.api import ForbiddenError, NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.episodes_dynamo import (
     episode_pk,
     performances,
@@ -22,6 +24,7 @@ from lambdas.common.episodes_dynamo import (
     season_rows,
 )
 from lambdas.common.gate import answered, visible_scores
+from lambdas.common.groups_dynamo import members
 
 
 @api_handler("stats_get")
@@ -29,6 +32,13 @@ def handler(event, context):
     sub = caller_sub(event)
     params = query(event)
     show, season, ep = ref(params) if params.get("ep") else (*season_ref(params), None)
+    group = params.get("group")
+    in_group = None
+    if group:
+        in_group = members(group)
+        # A group that doesn't exist answers the same, so a guess learns nothing.
+        if sub not in in_group:
+            raise ForbiddenError("Not a member of that group")
     rows = {r["sk"]: r for r in season_rows(show, season)}
     if "META" not in rows:
         raise NotFoundError("No such season", season=f"{show}-{season}")
@@ -49,7 +59,7 @@ def handler(event, context):
         if not answered(sub, score_rows):
             continue
         panel = episode.get("panel") or rows["META"]["defaultPanel"]
-        by_owner = errors(panel, performances(pk), visible_scores(sub, score_rows))
+        by_owner = errors(panel, performances(pk), visible_scores(sub, score_rows, in_group))
         for owner, errs in by_owner.items():
             everyone[owner] += errs
         if by_owner.get(sub):
