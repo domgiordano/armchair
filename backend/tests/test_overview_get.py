@@ -86,6 +86,8 @@ def couple(d: dict, cid: str) -> dict:
 def test_a_new_user_sees_the_schedule_and_nothing_scored(show):
     d = data()
     assert d["progress"] == {"aired": 5, "total": 12, "couples": 16, "couplesLeft": 16}
+    assert [j["id"] for j in d["judges"]] == sorted(SEASON["defaultPanel"])
+    assert d["judges"][0]["name"] == "Bruno Tonioli"
     assert d["me"] == {"scored": 0, "count": 0, "mae": None, "closestJudge": None, "streak": 0}
     assert d["next"] == {
         "ep": 6,

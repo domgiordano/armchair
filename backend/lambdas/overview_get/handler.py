@@ -116,6 +116,9 @@ def handler(event, context):
         {
             "season": f"{show}-{season}",
             "timezone": meta["timezone"],
+            "judges": [
+                {"id": j, **{k: r.get(k) for k in ("name", "headshot")}} for j, r in judges.items()
+            ],
             "progress": {
                 "aired": len(aired),
                 "total": len(episodes),
