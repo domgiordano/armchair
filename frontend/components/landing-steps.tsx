@@ -12,7 +12,7 @@ const LINE = "stroke-silver-dim/70";
 const STEPS: Step[] = [
   {
     title: "Pick the couple",
-    body: "When a couple takes the floor, tap their card. The running order follows the live show.",
+    body: "When a couple takes the floor, tap their card. Cards stay alphabetical, so the order never spoils who danced.",
     diagram: (
       <>
         {[10, 34, 58].map((y, i) => (
