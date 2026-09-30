@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import { LoadError } from "@/components/load-error";
+import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
 import { GroupPicker } from "@/components/group-picker";
 import { formatScore } from "@/components/performance-card";
 import { SignedIn } from "@/components/signed-in";
@@ -11,6 +12,7 @@ import { getStats, type Dance, type Stats } from "@/lib/api/stats";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel } from "@/lib/show/schedule";
 import { useSeason } from "@/lib/show/use-season";
+import { byStyle, distribution, extremes, type Bar } from "@/lib/show/stats-summary";
 
 type StatsLoad = { kind: "loading" } | { kind: "ready"; stats: Stats } | { kind: "error"; message: string };
 
@@ -87,8 +89,16 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
     );
   }
 
-  const judges = Object.entries(mine.judges).sort(([, a], [, b]) => a.mae - b.mae);
+  const judges: Bar[] = Object.entries(mine.judges)
+    .map(([id, j]) => ({ label: judgeName(id), value: j.mae, count: j.count }))
+    .sort((a, b) => a.value - b.value);
   const rank = stats.others.filter((o) => o.mae < (mine.mae ?? 0)).length + 1;
+  const short = (ep: number) => label(ep).replace("Week ", "W").replace(", night ", "/");
+  const celebrity = (key: string) => {
+    const c = season.contestants.find((x) => x.id === key.split("#")[0]);
+    return c?.members.find((m) => m.role === "celebrity")?.name ?? key.split("#")[0];
+  };
+  const { closest, furthest } = extremes(stats.dances);
 
   return (
     <>
@@ -104,26 +114,31 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
         </p>
       </section>
 
+      <Card id="trend" title="Your season" note="Points off per episode. Lower is closer.">
+        <TrendChart points={stats.episodes.map((e) => ({ label: short(e.ep), mae: e.mae ?? 0 }))} />
+      </Card>
+
       {judges.length > 0 && (
-        <section aria-labelledby="per-judge" className="flex flex-col gap-2">
-          <h2 id="per-judge" className="font-semibold">
-            Closest to {judgeName(judges[0][0])}
-          </h2>
-          <dl className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 text-sm">
-            {judges.map(([id, j]) => (
-              <div key={id} className="contents">
-                <dt>{judgeName(id)}</dt>
-                <dd className="text-right tabular-nums">{off(j.mae)}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
+        <Card id="per-judge" title={`Closest to ${judges[0].label}`} note="Points off each judge, and dances counted.">
+          <BarList bars={judges} label="By judge" />
+        </Card>
       )}
 
-      <section aria-labelledby="progression" className="flex flex-col gap-2">
-        <h2 id="progression" className="font-semibold">
-          You vs the judges, dance by dance
-        </h2>
+      <Card id="by-style" title="By dance style" note="Points off the judges' average, and dances counted.">
+        <BarList bars={byStyle(stats.dances)} label="By dance style" />
+      </Card>
+
+      <Card id="distribution" title="How you score" note="Share of your paddles and the judges' scores at each value.">
+        <Histogram bins={distribution(stats.dances)} />
+        <Legend
+          items={[
+            { label: "You", swatch: "bg-gold" },
+            { label: "Judges", swatch: "bg-silver-dim" },
+          ]}
+        />
+      </Card>
+
+      <Card id="progression" title="You vs the judges, dance by dance">
         <Progression dances={stats.dances} label={label} />
         <p className="flex gap-4 text-xs text-neutral-400">
           <span className="flex items-center gap-1">
@@ -135,24 +150,67 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
             Judges&apos; average
           </span>
         </p>
-      </section>
+      </Card>
 
-      <section aria-labelledby="by-episode" className="flex flex-col gap-2">
-        <h2 id="by-episode" className="font-semibold">
-          By episode
-        </h2>
-        <ul className="flex flex-col divide-y divide-neutral-800 text-sm">
-          {stats.episodes.map((e) => (
-            <li key={e.ep} className="flex items-baseline justify-between gap-3 py-2">
-              <span>{label(e.ep)}</span>
-              <span className="tabular-nums text-neutral-400">
-                {e.count} {e.count === 1 ? "dance" : "dances"} · <span className="text-neutral-100">{off(e.mae ?? 0)}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <Card id="calls" title="Best calls and biggest misses">
+        <Calls title="Best calls" dances={closest} celebrity={celebrity} short={short} />
+        {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} celebrity={celebrity} short={short} />}
+      </Card>
     </>
+  );
+}
+
+function Card({ id, title, note, children }: { id: string; title: string; note?: string; children: ReactNode }) {
+  return (
+    <section
+      aria-labelledby={id}
+      className="flex flex-col gap-3 rounded-xl border border-neutral-800 bg-ballroom/40 p-4"
+    >
+      <div className="flex flex-col gap-0.5">
+        <h2 id={id} className="font-semibold">
+          {title}
+        </h2>
+        {note && <p className="text-xs text-neutral-400">{note}</p>}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function Calls({
+  title,
+  dances,
+  celebrity,
+  short,
+}: {
+  title: string;
+  dances: Dance[];
+  celebrity: (key: string) => string;
+  short: (ep: number) => string;
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <h3 className="text-xs font-semibold tracking-wide text-neutral-400 uppercase">{title}</h3>
+      <ul aria-label={title} className="flex flex-col divide-y divide-neutral-800 text-sm">
+        {dances.map((d) => (
+          <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
+            <span className="flex min-w-0 flex-col">
+              <span className="truncate">{celebrity(d.key)}</span>
+              <span className="truncate text-xs text-neutral-400">
+                {short(d.ep)}
+                {d.style && ` · ${d.style}`}
+              </span>
+            </span>
+            <span className="shrink-0 text-right tabular-nums">
+              <span className="block">
+                You {d.paddle} · judges {formatScore(d.panelMean)}
+              </span>
+              <span className="block text-xs text-neutral-400">{off(d.error)}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

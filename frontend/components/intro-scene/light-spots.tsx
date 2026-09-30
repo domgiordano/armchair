@@ -4,9 +4,9 @@ import { useFrame } from "@react-three/fiber";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import { AdditiveBlending, Color, type InstancedMesh, Matrix4, Quaternion, Vector3 } from "three";
 
-import { BALL, CEILING, ROOM_RADIUS, SPIN } from "./timeline";
+import { BALL_REST, CEILING, ROOM_RADIUS, SPIN, ballY } from "./timeline";
 
-const COUNT = 320;
+const COUNT = 150;
 const Z = new Vector3(0, 0, 1);
 
 // Soft-edged squares: a mirror tile's reflection is a blurred copy of the tile.
@@ -24,8 +24,8 @@ const fragment = /* glsl */ `
   varying vec3 vColor;
   void main() {
     vec2 d = abs(vUv);
-    float box = 1.0 - smoothstep(0.55, 1.0, max(d.x, d.y));
-    float disc = 1.0 - smoothstep(0.2, 1.0, length(vUv));
+    float box = 1.0 - smoothstep(0.35, 1.0, max(d.x, d.y));
+    float disc = 1.0 - smoothstep(0.1, 1.0, length(vUv));
     gl_FragColor = vec4(vColor * box * disc, 1.0);
   }
 `;
@@ -38,16 +38,17 @@ interface Spot {
   phase: number;
 }
 
-const PALETTE = ["#fff3dc", "#fff3dc", "#ffd27a", "#cfe0ff"].map((c) => new Color(c));
+const PALETTE = ["#fff0d6", "#ffd98f", "#ffd98f", "#dfe6ff"].map((c) => new Color(c));
 
 // Where a ray from the ball first meets the room: curtain wall, floor or ceiling.
-function hit(dir: Vector3, point: Vector3, normal: Vector3) {
+// The wall is treated as a cylinder round the ball's axis, near enough to the room's.
+function hit(ball: Vector3, dir: Vector3, point: Vector3, normal: Vector3) {
   const h = Math.hypot(dir.x, dir.z);
   const toWall = h > 1e-4 ? ROOM_RADIUS / h : Infinity;
-  const toFloor = dir.y < 0 ? -BALL.y / dir.y : Infinity;
-  const toCeiling = dir.y > 0 ? (CEILING - BALL.y) / dir.y : Infinity;
+  const toFloor = dir.y < 0 ? -ball.y / dir.y : Infinity;
+  const toCeiling = dir.y > 0 ? (CEILING - ball.y) / dir.y : Infinity;
   const t = Math.min(toWall, toFloor, toCeiling);
-  point.copy(dir).multiplyScalar(t).add(BALL);
+  point.copy(dir).multiplyScalar(t).add(ball);
   if (t === toFloor) normal.set(0, 1, 0);
   else if (t === toCeiling) normal.set(0, -1, 0);
   else normal.set(-point.x, 0, -point.z).normalize();
@@ -66,21 +67,21 @@ export function LightSpots({ random, now }: LightSpotsProps) {
   const spots = useMemo<Spot[]>(
     () =>
       Array.from({ length: COUNT }, () => {
-        const y = -0.92 + random() * 1.3;
+        const y = -0.95 + random() * 1.2;
         const a = random() * Math.PI * 2;
         const r = Math.sqrt(1 - y * y);
         return {
           dir: new Vector3(Math.cos(a) * r, y, Math.sin(a) * r),
           color: PALETTE[Math.floor(random() * PALETTE.length)],
-          size: 0.6 + random() * 0.8,
-          rate: 1.5 + random() * 4,
+          size: 0.9 + random() * 0.9,
+          rate: 0.8 + random() * 1.6,
           phase: random() * Math.PI * 2,
         };
       }),
     [random],
   );
   const tmp = useMemo(
-    () => ({ dir: new Vector3(), p: new Vector3(), n: new Vector3(), q: new Quaternion(), s: new Vector3(), m: new Matrix4(), c: new Color() }),
+    () => ({ ball: new Vector3(), dir: new Vector3(), p: new Vector3(), n: new Vector3(), q: new Quaternion(), s: new Vector3(), m: new Matrix4(), c: new Color() }),
     [],
   );
 
@@ -96,21 +97,22 @@ export function LightSpots({ random, now }: LightSpotsProps) {
     if (!m) return;
     const t = now();
     const angle = t * SPIN;
+    tmp.ball.set(BALL_REST.x, ballY(t), BALL_REST.z);
     spots.forEach((spot, i) => {
       tmp.dir.copy(spot.dir).applyAxisAngle(Y, angle);
-      const dist = hit(tmp.dir, tmp.p, tmp.n);
+      const dist = hit(tmp.ball, tmp.dir, tmp.p, tmp.n);
       tmp.q.setFromUnitVectors(Z, tmp.n);
-      tmp.s.setScalar(dist * 0.022 * spot.size);
+      tmp.s.setScalar(dist * 0.028 * spot.size);
       m.setMatrixAt(i, tmp.m.compose(tmp.p, tmp.q, tmp.s));
-      const twinkle = 0.55 + 0.45 * Math.sin(t * spot.rate + spot.phase);
-      m.setColorAt(i, tmp.c.copy(spot.color).multiplyScalar(1.6 * twinkle));
+      const twinkle = 0.75 + 0.25 * Math.sin(t * spot.rate + spot.phase);
+      m.setColorAt(i, tmp.c.copy(spot.color).multiplyScalar(0.9 * twinkle));
     });
     m.instanceMatrix.needsUpdate = true;
     if (m.instanceColor) m.instanceColor.needsUpdate = true;
   });
 
   return (
-    <instancedMesh ref={mesh} args={[undefined, undefined, COUNT]} frustumCulled={false}>
+    <instancedMesh ref={mesh} args={[undefined, undefined, COUNT]} frustumCulled={false} renderOrder={2}>
       <planeGeometry args={[1, 1]} />
       <shaderMaterial
         vertexShader={vertex}

@@ -11,7 +11,7 @@ export function GroupPicker({ groups, failed, group, pick }: GroupFilter) {
   if (groups === null) return null;
   if (groups.length === 0) {
     return (
-      <Link href="/groups/" className={`${LINK} self-start`}>
+      <Link href="/friends/?tab=groups" className={`${LINK} self-start`}>
         Start a group to compare with friends
       </Link>
     );
@@ -34,7 +34,7 @@ export function GroupPicker({ groups, failed, group, pick }: GroupFilter) {
           ))}
         </select>
       </label>
-      <Link href="/groups/" className={`${LINK} self-center`}>
+      <Link href="/friends/?tab=groups" className={`${LINK} self-center`}>
         Groups
       </Link>
     </div>

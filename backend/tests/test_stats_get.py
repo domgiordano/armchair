@@ -34,6 +34,7 @@ def show(aws):
                     "sk": f"PERF#{cid}#1",
                     "contestants": [cid],
                     "rateable": True,
+                    "style": "Tango",
                     "judges": {
                         j: {"value": Decimal(v), "state": "confirmed"}
                         for j, v in zip(SEASON["defaultPanel"], values)
@@ -86,9 +87,26 @@ def test_mean_and_per_judge_over_the_season(show):
         BRUNO: {"count": 2, "mae": 2},
     }
     assert [(e["ep"], e["mae"]) for e in data["episodes"]] == [(4, 2), (5, 0)]
+    judges = {CARRIE: 7, DEREK: 8, BRUNO: 9}
     assert data["dances"] == [
-        {"ep": 4, "key": f"{X}#1", "paddle": 6, "panelMean": 8, "error": 2},
-        {"ep": 5, "key": f"{X}#1", "paddle": 8, "panelMean": 8, "error": 0},
+        {
+            "ep": 4,
+            "key": f"{X}#1",
+            "paddle": 6,
+            "panelMean": 8,
+            "error": 2,
+            "style": "Tango",
+            "judges": judges,
+        },
+        {
+            "ep": 5,
+            "key": f"{X}#1",
+            "paddle": 8,
+            "panelMean": 8,
+            "error": 0,
+            "style": "Tango",
+            "judges": judges,
+        },
     ]
 
 
@@ -120,6 +138,13 @@ def test_provisional_judges_keep_a_performance_out(show):
     )
     answer(A, X, value=8)
     assert stats()["mine"]["count"] == 0
+
+
+def test_dance_details_cover_only_answered_dances(show):
+    answer(B, Y, value=1)
+    answer(A, X, value=8)
+    assert [d["key"] for d in stats()["dances"]] == [f"{X}#1"]
+    assert "6" not in json.dumps(stats()["dances"][0]["judges"])
 
 
 def test_ep_narrows_to_one_episode(show):

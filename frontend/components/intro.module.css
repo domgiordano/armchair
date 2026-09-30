@@ -1,8 +1,10 @@
-/* Timeline, against LENGTH = 5200 ms in intro.tsx and intro-scene/timeline.ts:
-   3D: 0-2.4 s push in on the ball · 1.9-3.7 s tilt down to the floor · 3.05 s paddles rise
-   2D: 0-1.3 s ball drops · 0.9-3.7 s beams sweep · 1.3-4.6 s sparkles scatter, then gather
-   3.3 s ball lifts away · 3.05 s paddles
-   Both: 3.9 s wordmark · 4.7 s fade out */
+/* Timeline, against LENGTH = 5800 ms in intro.tsx and intro-scene/timeline.ts, counted
+   from data-playing (the 3D scene's first drawn frame, or mount for the 2D stage):
+   3D: 0-1.5 s the ball turns, sparkles scatter · 1.3-2.5 s tilt down to the couples
+   2.6-3.3 s crane back over the judges' desk · 2.9 s spots on the desk
+   2D: 0-1.3 s ball drops, sparkles scatter · 1.6 s ball lifts away · 0.9-3.7 s beams sweep
+   Both: 3.2 / 3.55 / 3.9 s cards 9, 10, 10 with the total ticking to 29 · 4.5 s wordmark
+   5.3 s fade out */
 
 .scene {
   position: fixed;
@@ -10,8 +12,11 @@
   z-index: 50;
   overflow: hidden;
   isolation: isolate;
-  background: radial-gradient(ellipse 90% 60% at 50% 18%, #17266b 0%, var(--color-ballroom) 42%, var(--color-ink) 85%);
-  animation: fade-out 500ms 4700ms ease-in forwards;
+  background: radial-gradient(ellipse 90% 60% at 50% 30%, #0c1850 0%, #050c30 45%, var(--color-ink) 90%);
+}
+
+.scene[data-playing] {
+  animation: fade-out 500ms 5300ms ease-in forwards;
 }
 
 .floor {
@@ -43,7 +48,7 @@
   translate: -50% -50%;
   animation:
     drop 1300ms cubic-bezier(0.2, 0.9, 0.3, 1.08) both,
-    lift 800ms 3300ms cubic-bezier(0.5, 0, 0.8, 0.4) forwards;
+    lift 800ms 1600ms cubic-bezier(0.5, 0, 0.8, 0.4) forwards;
 }
 
 .chain {
@@ -109,26 +114,97 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
+.poster[data-loaded] {
+  opacity: 1;
 }
 
 .finale {
   position: absolute;
   left: 0;
   right: 0;
-  top: 29vh;
+  top: 22vh;
   display: flex;
   justify-content: center;
   padding: 0 16px;
   pointer-events: none;
 }
 
+/* A dark pool behind the lockup so the chrome reads over the lit room. */
+.finale::before {
+  content: "";
+  position: absolute;
+  inset: -12vh 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgb(2 8 30 / 0.75), transparent 70%);
+  animation: pool 500ms 4450ms ease-out both;
+}
+
 .wordmark {
+  position: relative;
   font-family: var(--font-display);
-  font-size: clamp(40px, 9vmin, 92px);
+  font-size: clamp(44px, 10vmin, 100px);
   letter-spacing: -0.05em;
   line-height: 1;
   text-align: center;
-  animation: rise 600ms 3900ms ease-out both;
+  filter: drop-shadow(0 0 24px rgb(247 226 164 / 0.35));
+  animation: land 700ms 4500ms cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+
+/* The lower-third score bug. --total counts up as each card lands. */
+@property --total {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.total {
+  position: absolute;
+  left: 50%;
+  bottom: calc(76px + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 20px 10px;
+  translate: -50% 0;
+  border: 1px solid rgb(232 194 104 / 0.55);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgb(20 30 84 / 0.92), rgb(5 10 36 / 0.92));
+  box-shadow: 0 0 32px rgb(232 194 104 / 0.25);
+  animation: bug 380ms 3200ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+}
+
+.label {
+  color: var(--color-gold-light);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* The digits come from the counter, so the count animates; the text is there for no-@property browsers. */
+.sum {
+  min-width: 2ch;
+  color: var(--color-pearl);
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  counter-reset: total var(--total);
+  animation: tally 900ms 3200ms linear both;
+}
+
+@supports (counter-reset: total var(--total)) {
+  .sum {
+    font-size: 0;
+  }
+
+  .sum::after {
+    content: counter(total);
+    font-size: 32px;
+  }
 }
 
 .paddles {
@@ -145,7 +221,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: rise 560ms cubic-bezier(0.2, 0.8, 0.3, 1.2) both;
+  animation: pop 450ms cubic-bezier(0.2, 0.9, 0.3, 1.5) both;
 }
 
 .paddle::after {
@@ -286,6 +362,67 @@
 @keyframes pool {
   from {
     opacity: 0;
+  }
+}
+
+@keyframes land {
+  from {
+    opacity: 0;
+    transform: scale(1.35);
+    filter: blur(10px) drop-shadow(0 0 24px rgb(247 226 164 / 0.35));
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0) drop-shadow(0 0 24px rgb(247 226 164 / 0.35));
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bug {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Against 3200 ms: 9 lands at 0, 10 at 350 ms, 10 at 700 ms; each rolls up over ~170 ms. */
+@keyframes tally {
+  0% {
+    --total: 0;
+  }
+  19% {
+    --total: 9;
+  }
+  39% {
+    --total: 9;
+  }
+  58% {
+    --total: 19;
+  }
+  78% {
+    --total: 19;
+  }
+  97%,
+  100% {
+    --total: 29;
   }
 }
 
