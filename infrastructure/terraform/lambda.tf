@@ -4,6 +4,9 @@
 locals {
   users_lambdas = [
     { name = "me", description = "Upsert and return the caller's profile", path_part = "me", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "update", description = "Set the caller's display name and photo choice", path_part = "update", http_method = "PATCH", authorization = "COGNITO_USER_POOLS" },
+    { name = "avatar_upload", description = "Presign an S3 POST for one profile photo", path_part = "avatar-upload", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "get", description = "A profile with its season summary, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
   scores_lambdas = [
     { name = "submit", description = "Record the caller's final answer on one performance", path_part = "submit", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -80,6 +83,16 @@ locals {
     friends_block     = ["social:GetItem", "social:UpdateItem"]
     friends_list      = ["social:Query", "social:GetItem", "social:PutItem", "users:BatchGetItem"]
     friends_search    = ["social:Query"]
+    users_update      = ["users:GetItem", "users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
+    users_get         = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem"]
+  }
+
+  # Object actions on the avatars bucket (avatars.tf). The presigned POST is
+  # signed with the upload function's own credentials, so its PutObject is
+  # what S3 checks the browser's upload against.
+  avatar_grants = {
+    users_avatar_upload = ["s3:PutObject"]
+    users_update        = ["s3:DeleteObject"]
   }
 }
 
@@ -105,10 +118,19 @@ data "aws_iam_policy_document" "api" {
   }
 
   dynamic "statement" {
-    for_each = local.api_grants[each.key]
+    for_each = lookup(local.api_grants, each.key, [])
     content {
       actions   = ["dynamodb:${split(":", statement.value)[1]}"]
       resources = [local.api_tables[split(":", statement.value)[0]]]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = contains(keys(local.avatar_grants), each.key) ? [1] : []
+    content {
+      sid       = "Avatars"
+      actions   = local.avatar_grants[each.key]
+      resources = ["${aws_s3_bucket.avatars.arn}/avatars/*"]
     }
   }
 
