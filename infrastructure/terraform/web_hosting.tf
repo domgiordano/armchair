@@ -19,3 +19,27 @@ module "web" {
   minimum_tls_version = "TLSv1.2_2021"
   retain_on_delete    = false
 }
+
+# The Armchair Judge hub (hub/) on the apex of its own domain. The module
+# names its OAC, function and header policy after app_name, so this instance
+# needs its own.
+module "hub" {
+  source = "git::https://github.com/domgiordano/web-hosting.git?ref=v1.4.0"
+
+  app_name    = "${var.app_name}-hub"
+  domain_name = var.hub_domain_name
+  zone_id     = data.aws_route53_zone.hub_zone.zone_id
+  waf_acl_arn = data.aws_ssm_parameter.shared_cloudfront_waf_arn.value
+
+  # www is on the cert and distribution too; the viewer-request function
+  # 301s it to the apex.
+  subject_alternative_names = ["www.${var.hub_domain_name}"]
+  canonical_host            = var.hub_domain_name
+
+  enable_subroute_rewrite = true
+
+  spa_error_path      = "/index.html"
+  enable_cache        = true
+  minimum_tls_version = "TLSv1.2_2021"
+  retain_on_delete    = false
+}

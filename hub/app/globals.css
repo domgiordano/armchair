@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Brand tokens, read off brand/armchair-judge-logo.png. */
+@theme {
+  --color-night: #02081e;
+  --color-night-2: #070f2e;
+  --color-line: #1a2350;
+  --color-text: #eef0fb;
+  --color-muted: #a3aad0;
+  --color-blue: #3b5bff;
+  --color-violet: #7a2cff;
+  --color-magenta: #e83fd0;
+  --color-orange: #ff7a3d;
+  --color-gold: #ffc93c;
+
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+}
+
+@utility text-brand-gradient {
+  background-image: linear-gradient(90deg, var(--color-blue), var(--color-violet) 35%, var(--color-magenta) 70%, var(--color-orange));
+  background-clip: text;
+  color: transparent;
+}
+
+body {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
