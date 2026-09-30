@@ -1,6 +1,8 @@
-/* Timeline, against LENGTH = 5200 ms in intro.tsx:
-   0-1.3 s ball drops · 0.9-3.7 s beams sweep · 1.3-4.6 s sparkles scatter, then gather
-   3.3 s ball lifts away · 3.6 s mark · 3.9 s wordmark · 4.0 s paddles · 4.7 s fade out */
+/* Timeline, against LENGTH = 5200 ms in intro.tsx and intro-scene/timeline.ts:
+   3D: 0-2.4 s push in on the ball · 1.9-3.7 s tilt down to the floor · 3.05 s paddles rise
+   2D: 0-1.3 s ball drops · 0.9-3.7 s beams sweep · 1.3-4.6 s sparkles scatter, then gather
+   3.3 s ball lifts away · 3.05 s paddles
+   Both: 3.9 s wordmark · 4.7 s fade out */
 
 .scene {
   position: fixed;
@@ -101,45 +103,42 @@
   background: var(--color-gold-light);
 }
 
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .finale {
   position: absolute;
   left: 0;
   right: 0;
-  --mark: clamp(144px, 24vmin, 224px);
-  top: calc(48vh - var(--mark) / 2);
+  top: 29vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.mark {
-  width: var(--mark);
-  height: var(--mark);
-  overflow: hidden;
-  border-radius: 22%;
-  box-shadow:
-    0 0 0 1px rgb(232 194 104 / 0.45),
-    0 0 72px rgb(232 194 104 / 0.35);
-  animation: reveal 700ms 3600ms cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
-}
-
-.mark img {
-  width: 100%;
-  height: 100%;
+  justify-content: center;
+  padding: 0 16px;
+  pointer-events: none;
 }
 
 .wordmark {
   font-family: var(--font-display);
-  font-size: clamp(34px, 6.4vmin, 56px);
+  font-size: clamp(40px, 9vmin, 92px);
   letter-spacing: -0.05em;
   line-height: 1;
+  text-align: center;
   animation: rise 600ms 3900ms ease-out both;
 }
 
 .paddles {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 58vh;
   display: flex;
-  gap: 12px;
+  justify-content: center;
+  gap: 16px;
 }
 
 .paddle {
@@ -151,23 +150,24 @@
 
 .paddle::after {
   content: "";
-  width: 3px;
-  height: 24px;
-  border-radius: 2px;
-  background: #aab3c9;
+  width: 6px;
+  height: 40px;
+  border-radius: 0 0 3px 3px;
+  background: #1a1d2b;
 }
 
 .face {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 34px;
-  border-radius: 5px;
-  background: var(--color-gold);
-  box-shadow: inset 0 0 0 2px var(--color-gold-deep);
-  color: var(--color-ink);
-  font-size: 18px;
-  font-weight: 800;
+  width: 76px;
+  height: 60px;
+  border-radius: 6px;
+  background: linear-gradient(160deg, #fbfaf6 0%, var(--color-pearl) 45%, #d9d6cc 100%);
+  box-shadow: 0 10px 30px rgb(2 8 30 / 0.6);
+  color: #10131f;
+  font-family: var(--font-display);
+  font-size: 38px;
+  letter-spacing: -0.06em;
 }
 
 .skip {
@@ -269,17 +269,6 @@
   100% {
     opacity: 0;
     transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0);
-  }
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: scale(0.4);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
 

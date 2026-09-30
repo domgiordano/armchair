@@ -1,12 +1,34 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, type CSSProperties } from "react";
+import { getImageProps } from "next/image";
+import { lazy, Suspense, useEffect, useState, useSyncExternalStore, type CSSProperties } from "react";
 
 import styles from "./intro.module.css";
 
-// Scene length in ms; intro.module.css times every keyframe against it.
+// Scene length in ms; intro.module.css and the 3D timeline are both timed against it.
 const LENGTH = 5200;
+
+function probeWebGL() {
+  if (typeof window.WebGLRenderingContext === "undefined") return false;
+  const canvas = document.createElement("canvas");
+  const gl = canvas.getContext("webgl2") ?? canvas.getContext("webgl");
+  // Hand the probe context back now; iOS caps how many a page may hold.
+  gl?.getExtension("WEBGL_lose_context")?.loseContext();
+  return gl !== null;
+}
+
+let webglCache: boolean | undefined;
+const hasWebGL = () => (webglCache ??= probeWebGL());
+const noSubscribe = () => () => {};
+
+// three.js and friends stay out of the landing bundle. A chunk that fails to
+// download falls back to the 2D ballroom instead of an empty stage.
+const Scene = lazy(() =>
+  import("./intro-scene/intro-scene").then(
+    (m) => ({ default: m.IntroScene }),
+    () => ({ default: Ballroom }),
+  ),
+);
 
 interface IntroProps {
   onDone: () => void;
@@ -23,7 +45,7 @@ function random(seed: number) {
 }
 
 const next = random(35);
-// Offsets from the mirror ball: out across the room (vw/vh), then in to the mark.
+// Offsets from the mirror ball: out across the room (vw/vh), then in to the wordmark.
 const SPARKLES = Array.from({ length: 34 }, (_, i) => {
   const angle = next() * Math.PI * 2;
   const reach = 22 + next() * 34;
@@ -55,15 +77,47 @@ const FACETS = Array.from({ length: 14 }, () => ({
 const LATITUDES = [1, 2, 3, 4, 5, 6, 7].map((k) => 50 - 48 * Math.cos((k * Math.PI) / 8));
 const LONGITUDES = [1, 2, 3].map((k) => 48 * Math.sin((k * Math.PI) / 8));
 
-/** The ballroom intro: mirror ball, sweeping beams, sparkles that gather into the mark. */
+/** The ballroom intro: a real-time mirror ball scene where WebGL allows, the 2D ballroom where not. */
 export function Intro({ onDone }: IntroProps) {
+  const [start] = useState(() => performance.now());
+  // Undecided on the server and through hydration, so neither backdrop is baked into the HTML.
+  const webgl = useSyncExternalStore(noSubscribe, hasWebGL, () => null);
+
   useEffect(() => {
     const id = setTimeout(onDone, LENGTH);
     return () => clearTimeout(id);
   }, [onDone]);
 
   return (
-    <section aria-label="Intro" className={styles.scene}>
+    <section aria-label="Intro" data-stage={webgl === null ? undefined : webgl ? "3d" : "2d"} className={styles.scene}>
+      {webgl === null ? null : webgl ? (
+        <>
+          <Poster />
+          <Suspense>
+            <Scene start={start} />
+          </Suspense>
+        </>
+      ) : (
+        <Ballroom />
+      )}
+
+      <div className={styles.finale}>
+        <p className={styles.wordmark}>
+          <span className="text-chrome">armchair judge</span>
+        </p>
+      </div>
+
+      <button type="button" aria-label="Skip intro" onClick={onDone} className={styles.skip}>
+        Skip
+      </button>
+    </section>
+  );
+}
+
+/** The 2D ballroom: CSS mirror ball, sweeping beams, sparkles, paddles. */
+function Ballroom() {
+  return (
+    <>
       <div aria-hidden="true" className={styles.floor} />
 
       <div aria-hidden="true" className={styles.rig}>
@@ -132,25 +186,26 @@ export function Intro({ onDone }: IntroProps) {
         ))}
       </div>
 
-      <div className={styles.finale}>
-        <div className={styles.mark}>
-          <Image src="/brand/mark-320.png" alt="" width={160} height={160} unoptimized priority />
-        </div>
-        <p className={styles.wordmark}>
-          <span className="text-chrome">armchair judge</span>
-        </p>
-        <div aria-hidden="true" className={styles.paddles}>
-          {[10, 10, 10, 10].map((n, i) => (
-            <span key={i} className={styles.paddle} style={{ animationDelay: `${4000 + i * 90}ms` }}>
-              <span className={styles.face}>{n}</span>
-            </span>
-          ))}
-        </div>
+      <div aria-hidden="true" className={styles.paddles}>
+        {[10, 10, 10].map((n, i) => (
+          <span key={i} className={styles.paddle} style={{ animationDelay: `${3050 + i * 110}ms` }}>
+            <span className={styles.face}>{n}</span>
+          </span>
+        ))}
       </div>
+    </>
+  );
+}
 
-      <button type="button" aria-label="Skip intro" onClick={onDone} className={styles.skip}>
-        Skip
-      </button>
-    </section>
+// A still of the scene's opening, shown until the WebGL chunk has loaded and drawn.
+function Poster() {
+  const common = { alt: "", unoptimized: true, priority: true };
+  const portrait = getImageProps({ ...common, src: "/intro/poster-portrait.webp", width: 780, height: 1688 }).props;
+  const { props } = getImageProps({ ...common, src: "/intro/poster.webp", width: 1600, height: 1000 });
+  return (
+    <picture>
+      <source media="(orientation: portrait)" srcSet={portrait.srcSet ?? portrait.src} />
+      <img {...props} alt="" className={styles.poster} />
+    </picture>
   );
 }
