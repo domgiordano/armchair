@@ -44,6 +44,23 @@ describe("landing", () => {
     expect(screen.getByText("Illustration · invented scores")).toBeTruthy();
   });
 
+  it("marks what isn't live yet instead of implying it ships today", () => {
+    render(<HomePage />);
+    const card = screen.getByRole("heading", { name: "Every past season" }).closest("li") as HTMLElement;
+    expect(within(card).getByText("COMING SOON")).toBeTruthy();
+  });
+
+  it("says plainly that paddles are not votes on the show", () => {
+    render(<HomePage />);
+    const q = screen.getByText("Does my score count as a vote on the show?").closest("details") as HTMLElement;
+    expect(q.textContent).toMatch(/No\. Paddles here .* never reach the show/);
+  });
+
+  it("keeps the About section Google's brand review reads", () => {
+    render(<HomePage />);
+    expect(screen.getByRole("heading", { name: /what it does with your Google account/ })).toBeTruthy();
+  });
+
   it("carries the not-affiliated line", () => {
     render(<HomePage />);
     expect(screen.getByText(/Not affiliated with ABC, Disney, BBC, Peacock, CBS/)).toBeTruthy();
