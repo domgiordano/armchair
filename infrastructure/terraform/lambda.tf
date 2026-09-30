@@ -12,6 +12,11 @@ locals {
   episodes_lambdas = [
     { name = "state", description = "One episode as the caller may see it, through the gate", path_part = "state", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  groups_lambdas = [
+    { name = "create", description = "Start a group with the caller as its first member", path_part = "create", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "join", description = "Join a group by invite code", path_part = "join", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "mine", description = "The caller's groups with member names and avatars", path_part = "mine", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
   seasons_lambdas = [
     { name = "get", description = "Schedule, roster, judges and headshot credits for one season", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
@@ -21,23 +26,29 @@ locals {
     { for l in local.scores_lambdas : "scores_${l.name}" => l },
     { for l in local.episodes_lambdas : "episodes_${l.name}" => l },
     { for l in local.seasons_lambdas : "seasons_${l.name}" => l },
+    { for l in local.groups_lambdas : "groups_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
   # PutItem can still overwrite, so the conditional put in episodes_dynamo is
-  # the only thing keeping an answer final.
+  # the only thing keeping an answer final. TransactWriteItems is authorized
+  # per item, as PutItem or UpdateItem.
   api_tables = {
     catalog      = aws_dynamodb_table.catalog.arn
     performances = aws_dynamodb_table.performances.arn
     scores       = aws_dynamodb_table.scores.arn
     users        = aws_dynamodb_table.users.arn
+    groups       = aws_dynamodb_table.groups.arn
   }
   api_grants = {
     users_me          = ["users:UpdateItem"]
     scores_submit     = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
     scores_reveal_all = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
-    episodes_state    = ["catalog:Query", "performances:Query", "scores:Query"]
+    episodes_state    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     seasons_get       = ["catalog:Query"]
+    groups_create     = ["groups:PutItem"]
+    groups_join       = ["groups:GetItem", "groups:UpdateItem"]
+    groups_mine       = ["groups:Query", "users:BatchGetItem"]
   }
 }
 

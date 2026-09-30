@@ -3,8 +3,9 @@
 import { Hub } from "aws-amplify/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import { takeReturn } from "@/lib/auth/return-to";
 import { useAuth } from "@/lib/auth/use-auth";
 
 // A Hosted UI round trip can fail without the browser reporting it (revoked
@@ -12,11 +13,13 @@ import { useAuth } from "@/lib/auth/use-auth";
 // says so instead of waiting forever.
 const TIMEOUT_MS = 8000;
 
-/** Waits for Amplify, which reads `?code=` and exchanges it on load, then goes home. */
+/** Waits for Amplify, which reads `?code=` and exchanges it on load, then goes back where sign-in began. */
 export function AuthCallback() {
   const router = useRouter();
   const { status, refresh } = useAuth();
   const [failed, setFailed] = useState(false);
+  // Read once: a second run of the effect below would find the path already taken.
+  const returnTo = useRef<string | null>(null);
 
   useEffect(() => {
     const stop = Hub.listen("auth", ({ payload }) => {
@@ -32,7 +35,9 @@ export function AuthCallback() {
 
   useEffect(() => {
     // replace(), not push(): the callback URL holds a spent authorization code.
-    if (status === "signedIn") router.replace("/");
+    if (status !== "signedIn") return;
+    returnTo.current ??= takeReturn();
+    router.replace(returnTo.current);
   }, [status, router]);
 
   if (failed && status !== "signedIn") {

@@ -20,5 +20,6 @@ locals {
     CATALOG_TABLE      = aws_dynamodb_table.catalog.id
     PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
     SCORES_TABLE       = aws_dynamodb_table.scores.id
+    GROUPS_TABLE       = aws_dynamodb_table.groups.id
   }
 }

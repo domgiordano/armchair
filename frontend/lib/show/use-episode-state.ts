@@ -17,7 +17,12 @@ export interface EpisodeLoad {
  * nothing while the tab is hidden. Coming back into view fetches at once.
  * A failed poll keeps the last good state and reports the error beside it.
  */
-export function useEpisodeState(season: string, tz: string, episode: Episode): EpisodeLoad {
+export function useEpisodeState(
+  season: string,
+  tz: string,
+  episode: Episode,
+  group: string | null = null,
+): EpisodeLoad {
   const [data, setData] = useState<EpisodeState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
@@ -35,7 +40,7 @@ export function useEpisodeState(season: string, tz: string, episode: Episode): E
 
     const load = async () => {
       try {
-        const next = await getEpisodeState(season, episode.ep);
+        const next = await getEpisodeState(season, episode.ep, group);
         if (cancelled) return;
         setData(next);
         setError(null);
@@ -58,7 +63,7 @@ export function useEpisodeState(season: string, tz: string, episode: Episode): E
       clearTimeout(timer);
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [season, tz, episode, attempt]);
+  }, [season, tz, episode, group, attempt]);
 
   const reload = useCallback(() => setAttempt((n) => n + 1), []);
   return { data, error, reload };
