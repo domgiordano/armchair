@@ -5,7 +5,12 @@ import { afterEach, vi } from "vitest";
 vi.stubGlobal("localStorage", (globalThis as unknown as { jsdom: { window: Window } }).jsdom.window.localStorage);
 
 // jsdom has no matchMedia. Nothing matches unless a test stubs its own.
-vi.stubGlobal("matchMedia", (media: string) => ({ matches: false, media }));
+vi.stubGlobal("matchMedia", (media: string) => ({
+  matches: false,
+  media,
+  addEventListener: () => {},
+  removeEventListener: () => {},
+}));
 
 // Testing Library only auto-cleans when the runner exposes a global afterEach;
 // vitest does not unless `globals: true`.

@@ -51,14 +51,16 @@ export function Intro() {
   useEffect(() => {
     if (!showing) return;
     const root = document.documentElement;
+    // #page wraps header, main and footer; all of it sits under the stage.
+    const page = document.getElementById("page");
     const main = document.getElementById("main");
     root.style.overflow = "hidden";
-    main?.setAttribute("inert", "");
+    page?.setAttribute("inert", "");
     const timer = window.setTimeout(timeUp, INTRO_MS);
     return () => {
       window.clearTimeout(timer);
       root.style.overflow = "";
-      main?.removeAttribute("inert");
+      page?.removeAttribute("inert");
       if (refocus.current) main?.focus();
     };
   }, [showing]);
