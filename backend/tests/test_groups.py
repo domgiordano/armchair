@@ -59,7 +59,7 @@ def test_join_is_idempotent(aws):
     group = create()[1]["data"]
     status, body = join(group["inviteCode"])
     assert status == 200
-    assert body["data"] == {"id": group["id"], "name": "Family"}
+    assert body["data"] == {"id": group["id"], "name": "Family", "pending": False}
     member = {"pk": f"GROUP#{group['id']}", "sk": f"MEMBER#{B}"}
     first = aws.Table(GROUPS_TABLE).get_item(Key=member)["Item"]["joinedAt"]
 

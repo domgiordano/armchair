@@ -8,6 +8,10 @@ score is confirmed and the Result column is filled.
 Invoke with {"backfill": true} to publish every episode that aired before today
 (ET) with its values confirmed at once. Their revisions are long settled, so
 there is no window to wait out. Run it from the Backfill Scores workflow.
+
+Every episode it processes is reconciled into the leaderboard sums
+(common/board_dynamo.py), so a backfill also counts dances scored before the
+board existed.
 """
 
 from __future__ import annotations
@@ -20,7 +24,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
-from lambdas.common import confirm
+from lambdas.common import board_dynamo, confirm
 from lambdas.common.dynamo import query_all, table, update
 from lambdas.common.episodes_dynamo import episode_pk, performances
 from lambdas.common.logger import get_logger
@@ -100,6 +104,7 @@ def publish(
     """
     Writes one episode's performances, then its results once every value is
     confirmed and every Result cell is filled. True if anything is still provisional.
+    Each performance's `panel` is JUDGE# ids; `panel` is the episode's.
     """
     ep = int(episode["sk"].removeprefix("EP#"))
     pk = episode_pk(SHOW, SEASON, ep)
@@ -118,7 +123,9 @@ def publish(
             "rateable": p["rateable"],
             "style": p["style"],
             "song": p["song"],
-            "judges": confirm.judges(old.get("judges", {}), panel, p["judges"], t, rev, window),
+            "judges": confirm.judges(
+                old.get("judges", {}), p["panel"], p["judges"], t, rev, window
+            ),
             "bonus": p["bonus"],
         }
         if any(old.get(k) != v for k, v in item.items()):
@@ -198,15 +205,26 @@ def handler(event, context):
         week = parse_week(text, w, aliases)
         if week is None:
             continue
-        panel = judge_ids(week["panel"], judges)
+        ids = {}
+        for p in [week] + week["performances"]:
+            key = tuple(p["panel"])
+            if key not in ids:
+                ids[key] = judge_ids(p["panel"], judges)
         # Two-night weeks are two EP items in air order; the parser numbers the nights.
         nights = [e for e in episodes if int(e["week"]) == w]
         for night, episode in enumerate(nights, start=1):
             if episode not in todo:
                 continue
-            perfs = [p for p in week["performances"] if p["night"] == night]
+            perfs = [
+                {**p, "panel": ids[tuple(p["panel"])]}
+                for p in week["performances"]
+                if p["night"] == night
+            ]
+            panel = perfs[0]["panel"] if perfs else ids[tuple(week["panel"])]
             pending |= publish(episode, panel, perfs, revid, t, window)
-            processed.append(int(episode["sk"].removeprefix("EP#")))
+            ep = int(episode["sk"].removeprefix("EP#"))
+            board_dynamo.reconcile(SHOW, SEASON, ep, panel)
+            processed.append(ep)
 
     if not backfill:
         update(

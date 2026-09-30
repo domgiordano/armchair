@@ -12,6 +12,8 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
+from lambdas.common import board_dynamo
+from lambdas.common.accuracy import judged
 from lambdas.common.api import (
     ConflictError,
     NotFoundError,
@@ -24,7 +26,7 @@ from lambdas.common.api import (
     whole,
 )
 from lambdas.common.episodes_dynamo import catalog, create_score, episode_pk, performances, ref
-from lambdas.common.gate import cid, rateable
+from lambdas.common.gate import cid, perf_key, rateable
 
 
 def answer(data: dict) -> dict:
@@ -44,13 +46,23 @@ def handler(event, context):
     n = whole(data, "n", 1, 9)
     given = answer(data)
 
-    _, episode, contestants = catalog(show, season, ep)
+    meta, episode, contestants = catalog(show, season, ep)
     pk = episode_pk(show, season, ep)
+    perfs = performances(pk)
     key = f"{contestant}#{n}"
-    if key not in rateable(ep, episode, contestants, performances(pk)):
+    if key not in rateable(ep, episode, contestants, perfs):
         if contestant not in {cid(c) for c in contestants}:
             raise NotFoundError("Unknown contestant", contestant=contestant)
         raise ValidationError("That performance can't be scored in this episode", key=key)
+
+    # Judges already confirmed (a late answer, a past season): the dance counts
+    # toward the leaderboard now. Otherwise the poller counts it on confirm.
+    also = []
+    perf = next((p for p in perfs if perf_key(p["sk"]) == key), None)
+    panel_values = perf and judged(perf, episode.get("panel") or meta["defaultPanel"])
+    if "value" in given and panel_values:
+        change = (key, None, board_dynamo.contribution(panel_values, given["value"]))
+        also = board_dynamo.ops(sub, show, season, ep, [change])
 
     stored = create_score(
         {
@@ -58,7 +70,8 @@ def handler(event, context):
             "sk": f"PERF#{key}#USER#{sub}",
             **given,
             "submittedAt": datetime.now(UTC).isoformat(timespec="seconds"),
-        }
+        },
+        also,
     )
     if stored.get("value") != given.get("value") or stored.get("forfeit") != given.get("forfeit"):
         raise ConflictError("Already answered; answers are final")

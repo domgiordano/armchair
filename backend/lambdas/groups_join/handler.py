@@ -1,8 +1,10 @@
 """
 POST /groups/join - join a group by its invite code.
 
-Body: {"code": "<inviteCode>"}. Returns {id, name}. Joining a group the
-caller is already in returns the same 200. Identity is the Cognito sub.
+Body: {"code": "<inviteCode>"}. Returns {id, name, pending}; pending is true
+when the group needs the owner's approval and a join request was filed
+instead. Joining a group the caller is already in returns the same 200.
+Identity is the Cognito sub.
 """
 
 from __future__ import annotations

@@ -12,6 +12,9 @@ export interface Dance {
   paddle: number;
   panelMean: number;
   error: number;
+  style: string | null;
+  /** The panel's values on this dance, by judge id. */
+  judges: Record<string, number>;
 }
 
 export interface Stats {

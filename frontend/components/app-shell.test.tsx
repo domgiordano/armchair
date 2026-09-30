@@ -15,7 +15,10 @@ const signOut = vi.hoisted(() => vi.fn(() => Promise.resolve()));
 vi.mock("@/lib/auth/use-auth", () => ({ useAuth: () => ({ signOut }) }));
 vi.mock("@/lib/api/client", () => ({ getMe: vi.fn() }));
 const unread = vi.hoisted(() => ({ n: 0 }));
-vi.mock("@/lib/social/use-notifications", () => ({ useNotifications: () => ({ unread: unread.n }) }));
+vi.mock("@/lib/social/notifications", () => ({
+  useNotifications: () => ({ unread: unread.n, items: [], loaded: true, error: null, more: false }),
+  useMarkAllReadOnView: () => {},
+}));
 
 import { getMe } from "@/lib/api/client";
 import { activeTab, AppShell } from "./app-shell";

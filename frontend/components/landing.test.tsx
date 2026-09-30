@@ -58,7 +58,7 @@ describe("Landing", () => {
 
     // The landing mounts from an async auth update, so its effects (the intro's timer) flush on the scheduler first.
     await act(() => vi.advanceTimersByTimeAsync(0));
-    act(() => vi.advanceTimersByTime(5199));
+    act(() => vi.advanceTimersByTime(5799));
     expect(screen.getByRole("button", { name: "Skip intro" })).toBeTruthy();
     act(() => vi.advanceTimersByTime(1));
     expect(screen.getByRole("heading", HEADLINE)).toBeTruthy();
@@ -106,7 +106,7 @@ describe("Landing", () => {
     });
     render(<Home />);
 
-    expect(await screen.findByRole("heading", { name: "Hi, Ada Lovelace" })).toBeTruthy();
+    expect(await screen.findByRole("main", { name: "Overview" })).toBeTruthy();
     expect(screen.queryByRole("button", { name: "Skip intro" })).toBeNull();
     expect(screen.queryByRole("heading", HEADLINE)).toBeNull();
   });

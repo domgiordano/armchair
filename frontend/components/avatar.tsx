@@ -7,6 +7,7 @@ interface AvatarProps {
   name: string | null;
   email: string;
   picture: string | null;
+  // Pixels on a side.
   size?: number;
 }
 
@@ -34,7 +35,7 @@ export function Avatar({ name, email, picture, size = 36 }: AvatarProps) {
         referrerPolicy="no-referrer"
         onError={() => setFailed(picture)}
         style={{ width: size, height: size }}
-        className="rounded-full bg-neutral-800 object-cover"
+        className="shrink-0 rounded-full bg-neutral-800 object-cover"
       />
     );
   }
@@ -43,7 +44,7 @@ export function Avatar({ name, email, picture, size = 36 }: AvatarProps) {
     <span
       role="img"
       aria-label={label}
-      style={{ width: size, height: size, fontSize: size * 0.39 }}
+      style={{ width: size, height: size, fontSize: Math.round(size * 0.39) }}
       className="flex shrink-0 items-center justify-center rounded-full bg-amber-300 font-semibold text-amber-950"
     >
       <span aria-hidden="true">{initials(name, email)}</span>

@@ -1,10 +1,2 @@
-"use client";
-
-export interface Notifications {
-  unread: number;
-}
-
-// A stub until the notifications API lands; the header bell already reads it.
-export function useNotifications(): Notifications {
-  return { unread: 0 };
-}
+// The shell's original import path; the store lives in ./notifications.
+export { useNotifications, type Notifications } from "./notifications";

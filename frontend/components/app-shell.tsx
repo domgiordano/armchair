@@ -7,11 +7,11 @@ import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { Avatar } from "@/components/avatar";
 import { Brand } from "@/components/brand";
 import { NavSheet } from "@/components/nav-sheet";
+import { NotificationsBell } from "@/components/notifications";
 import { Popover } from "@/components/popover";
 import { getMe, type Me } from "@/lib/api/client";
 import { useAuth } from "@/lib/auth/use-auth";
 import { SEASONS, seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
-import { useNotifications } from "@/lib/social/use-notifications";
 
 export const HUB_URL = "https://armchairjudge.com";
 
@@ -45,20 +45,24 @@ const PANEL_ITEM = `flex min-h-11 w-full items-center rounded-md px-3 text-left 
 interface AppShellProps {
   // Names the main landmark; the active tab already says where you are.
   title: string;
+  // Dashboard pages take the header's full width; forms and scorecards stay phone-width.
+  wide?: boolean;
   children: ReactNode;
 }
 
 /** Header, tabs and phone menu around every signed-in page. Callers handle the sign-in wall. */
-export function AppShell({ title, children }: AppShellProps) {
+export function AppShell({ title, wide = false, children }: AppShellProps) {
   // The season lives in the query string, which a static export only has on the client.
   return (
     <Suspense>
-      <Shell title={title}>{children}</Shell>
+      <Shell title={title} wide={wide}>
+        {children}
+      </Shell>
     </Suspense>
   );
 }
 
-function Shell({ title, children }: AppShellProps) {
+function Shell({ title, wide, children }: AppShellProps) {
   const pathname = usePathname();
   const season = useSeasonId();
   const current = activeTab(pathname);
@@ -149,7 +153,12 @@ function Shell({ title, children }: AppShellProps) {
           <ArrowIcon />
         </a>
       </NavSheet>
-      <main id="main" aria-label={title} aria-live="polite" className="mx-auto flex w-full max-w-md flex-1 flex-col gap-4 px-4 py-6">
+      <main
+        id="main"
+        aria-label={title}
+        aria-live="polite"
+        className={`mx-auto flex w-full flex-1 flex-col gap-4 px-4 py-6 ${wide ? "max-w-6xl sm:px-6" : "max-w-md"}`}
+      >
         {children}
       </main>
     </div>
@@ -193,24 +202,6 @@ function SeasonPicker({ season }: { season: string }) {
         ))}
       </select>
     </label>
-  );
-}
-
-function NotificationsBell() {
-  const { unread } = useNotifications();
-  const label = unread > 0 ? `Notifications, ${unread} unread` : "Notifications";
-  return (
-    <Link href="/notifications/" aria-label={label} className={ICON_BUTTON}>
-      <BellIcon />
-      {unread > 0 && (
-        <span
-          aria-hidden="true"
-          className="absolute top-1.5 right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-magenta px-1 text-[10px] leading-none font-semibold text-pearl tabular-nums"
-        >
-          {unread > 9 ? "9+" : unread}
-        </span>
-      )}
-    </Link>
   );
 }
 
@@ -317,15 +308,6 @@ function CloseIcon() {
   return (
     <svg {...ICON}>
       <path d="M6 6l12 12M18 6L6 18" />
-    </svg>
-  );
-}
-
-function BellIcon() {
-  return (
-    <svg {...ICON}>
-      <path d="M6 9a6 6 0 1 1 12 0c0 5 2 6.5 2 6.5H4S6 14 6 9Z" />
-      <path d="M10 19a2 2 0 0 0 4 0" />
     </svg>
   );
 }
