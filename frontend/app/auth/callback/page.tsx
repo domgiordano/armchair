@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { AuthCallback } from "@/components/auth-callback";
 
 export const metadata: Metadata = {
-  title: "Signing you in | Armchair",
+  title: "Signing you in",
 };
 
 // A real prerendered route, not a rewrite: the callback URI registered on the

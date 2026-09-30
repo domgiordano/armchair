@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { Brand } from "@/components/brand";
 import { useAuth } from "@/lib/auth/use-auth";
 import { PRIMARY } from "@/lib/ui";
 
@@ -17,13 +17,8 @@ export function SignedIn({ title, children }: SignedInProps) {
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col">
-      <header className="flex items-center justify-between gap-3 border-b border-neutral-800 px-4 py-3">
-        <Link
-          href="/"
-          className="rounded-md text-lg font-semibold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-        >
-          Armchair
-        </Link>
+      <header className="flex items-center justify-between gap-3 border-b border-neutral-800 px-4 py-2">
+        <Brand />
         <span className="text-sm text-neutral-400">{title}</span>
       </header>
       <main aria-live="polite" className="flex flex-1 flex-col gap-4 px-4 py-6">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
+import { Brand } from "@/components/brand";
 import { getMe, type Me } from "@/lib/api/client";
 import { useAuth } from "@/lib/auth/use-auth";
 
@@ -45,7 +46,9 @@ function Landing({ status, onSignIn }: LandingProps) {
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-6 px-6">
       <div className="flex flex-col gap-3">
-        <h1 className="text-3xl font-semibold tracking-tight">Armchair</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          Armchair <span className="text-brand-gradient">Judge</span>
+        </h1>
         <p className="text-neutral-400">
           Score each Dancing with the Stars performance 1 to 10, then see how the judges scored it.
         </p>
@@ -94,8 +97,8 @@ function SignedInHome({ onSignOut }: SignedInHomeProps) {
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col">
-      <header className="flex items-center justify-between gap-3 border-b border-neutral-800 px-6 py-3">
-        <span className="text-lg font-semibold tracking-tight">Armchair</span>
+      <header className="flex items-center justify-between gap-3 border-b border-neutral-800 px-4 py-2">
+        <Brand />
         <div className="flex items-center gap-2">
           {state.kind === "ready" && (
             <Avatar name={state.me.name} email={state.me.email} picture={state.me.picture} />
