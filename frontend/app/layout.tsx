@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   // Resolves the Open Graph image to an absolute URL for link previews.
-  metadataBase: new URL("https://dwts.xomware.com"),
+  metadataBase: new URL("https://dwts.armchairjudge.com"),
   title: {
     default: "Armchair Judge · Dancing with the Stars",
     template: "%s · Armchair Judge",
