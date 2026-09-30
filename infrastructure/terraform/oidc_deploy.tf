@@ -1,6 +1,6 @@
-# Deploy role for this repo's frontend workflow. It lives here rather than in
-# xomware-infrastructure because this stack owns the bucket and distribution
-# (see oidc_unmanaged_apps.tf there). Only main can assume it.
+# Deploy role for this repo's frontend and hub workflows. It lives here rather
+# than in xomware-infrastructure because this stack owns the buckets and
+# distributions (see oidc_unmanaged_apps.tf there). Only main can assume it.
 
 locals {
   # Both subject forms: this org emits the numeric one, and the plain form
@@ -46,10 +46,15 @@ resource "aws_iam_role" "deploy" {
 
 data "aws_iam_policy_document" "deploy" {
   statement {
-    sid       = "PublishSite"
-    effect    = "Allow"
-    actions   = ["s3:PutObject", "s3:DeleteObject", "s3:ListBucket"]
-    resources = [module.web.s3_bucket_arn, "${module.web.s3_bucket_arn}/*"]
+    sid     = "PublishSite"
+    effect  = "Allow"
+    actions = ["s3:PutObject", "s3:DeleteObject", "s3:ListBucket"]
+    resources = [
+      module.web.s3_bucket_arn,
+      "${module.web.s3_bucket_arn}/*",
+      module.hub.s3_bucket_arn,
+      "${module.hub.s3_bucket_arn}/*",
+    ]
   }
 
   # ListDistributions has no resource-level form. The workflow uses it to find
@@ -65,7 +70,7 @@ data "aws_iam_policy_document" "deploy" {
     sid       = "InvalidateCache"
     effect    = "Allow"
     actions   = ["cloudfront:CreateInvalidation", "cloudfront:GetInvalidation"]
-    resources = [module.web.cloudfront_distribution_arn]
+    resources = [module.web.cloudfront_distribution_arn, module.hub.cloudfront_distribution_arn]
   }
 
   # The frontend build bakes these into the bundle. xomware-infrastructure owns

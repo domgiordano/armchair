@@ -16,6 +16,12 @@ variable "domain_name" {
   default     = "dwts.xomware.com"
 }
 
+variable "hub_domain_name" {
+  description = "Public hostname for the Armchair Judge hub. Also the hub bucket's name."
+  type        = string
+  default     = "armchair.xomware.com"
+}
+
 variable "route53_zone_name" {
   description = "Hosted zone that domain_name lives in."
   type        = string

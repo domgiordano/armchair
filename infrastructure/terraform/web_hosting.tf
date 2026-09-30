@@ -19,3 +19,22 @@ module "web" {
   minimum_tls_version = "TLSv1.2_2021"
   retain_on_delete    = false
 }
+
+# The Armchair Judge hub (hub/), a second static site in the same zone. The
+# module names its OAC, function and header policy after app_name, so this
+# instance needs its own.
+module "hub" {
+  source = "git::https://github.com/domgiordano/web-hosting.git?ref=v1.4.0"
+
+  app_name    = "${var.app_name}-hub"
+  domain_name = var.hub_domain_name
+  zone_id     = data.aws_route53_zone.web_zone.zone_id
+  waf_acl_arn = data.aws_ssm_parameter.shared_cloudfront_waf_arn.value
+
+  enable_subroute_rewrite = true
+
+  spa_error_path      = "/index.html"
+  enable_cache        = true
+  minimum_tls_version = "TLSv1.2_2021"
+  retain_on_delete    = false
+}
