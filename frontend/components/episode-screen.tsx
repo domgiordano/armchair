@@ -17,6 +17,7 @@ import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
 import { useEpisodeState } from "@/lib/show/use-episode-state";
 import { useNow } from "@/lib/show/use-now";
+import { withSeason } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 
 export function EpisodeScreen() {
@@ -53,7 +54,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
         Episode
         <select
           value={episode.ep}
-          onChange={(e) => router.replace(`/episode/?ep=${e.target.value}`)}
+          onChange={(e) => router.replace(withSeason(`/episode/?ep=${e.target.value}`, season.season))}
           className="min-h-11 rounded-md border border-neutral-700 bg-neutral-900 px-3 text-base text-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
         >
           {season.episodes.map((e) => (
@@ -71,7 +72,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
         episodes={season.episodes}
         episode={episode}
         now={now}
-        onFinishPrevious={(previous) => router.replace(`/episode/?ep=${previous.ep}`)}
+        onFinishPrevious={(previous) => router.replace(withSeason(`/episode/?ep=${previous.ep}`, season.season))}
       >
         <EpisodeView
           season={season}

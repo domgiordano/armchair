@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 const SECTIONS = [
   { id: "top", label: "Top" },
   { id: "how", label: "How it works" },
+  { id: "features", label: "What you get" },
+  { id: "night", label: "Show night" },
+  { id: "account", label: "One account" },
   { id: "shows", label: "Shows" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export function SectionRail() {
