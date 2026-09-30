@@ -1,5 +1,6 @@
 "use client";
 
+import { Desk } from "@/components/desk";
 import { Headshot } from "@/components/headshot";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { PaddlePicker } from "@/components/paddle-picker";
@@ -53,7 +54,7 @@ export function PerformanceCard({ card, contestants, judges, airsOn, onSubmit }:
         </div>
       </div>
       {!card.locked ? (
-        <Scores card={card} judges={judges} />
+        <Desk card={card} judges={judges}><Scores card={card} judges={judges} /></Desk>
       ) : team ? (
         <p className="text-sm text-neutral-400">Not scored. Opens when you finish the episode.</p>
       ) : (
