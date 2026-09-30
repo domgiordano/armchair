@@ -17,9 +17,9 @@ variable "domain_name" {
 }
 
 variable "hub_domain_name" {
-  description = "Public hostname for the Armchair Judge hub. Also the hub bucket's name."
+  description = "Apex hostname for the Armchair Judge hub. Also the hub bucket's name and the hosted zone it lives in; www redirects here."
   type        = string
-  default     = "armchair.xomware.com"
+  default     = "armchairjudge.com"
 }
 
 variable "route53_zone_name" {

@@ -11,7 +11,7 @@ on:
 env:
   AWS_REGION: us-east-1
   # The hub bucket is named after its domain (Terraform var.hub_domain_name).
-  S3_BUCKET: armchair.xomware.com
+  S3_BUCKET: armchairjudge.com
 
 permissions:
   contents: read

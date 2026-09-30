@@ -17,7 +17,7 @@ export default function HomePage() {
         </h1>
         <p className="text-sm font-medium tracking-[0.35em] text-muted">DISCOVER / WATCH / JUDGE</p>
         <a
-          href="https://dwts.xomware.com"
+          href="https://dwts.armchairjudge.com"
           className="inline-flex min-h-11 items-center rounded-full bg-text px-6 font-semibold text-night hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
         >
           Judge Dancing with the Stars
