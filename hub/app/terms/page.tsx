@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { ISSUES_URL, LegalPage } from "@/components/legal-page";
 
@@ -13,6 +14,13 @@ export default function TermsPage() {
       <p>
         Armchair Judge is free. It is provided as-is, without warranties of any kind, and may change, break or go away
         at any time. We are not liable for any loss arising from its use.
+      </p>
+
+      <h2>Your account</h2>
+      <p>
+        You sign in with a Google account and must be at least 13 years old. Keep your Google account secure; you are
+        responsible for what is done with your Armchair Judge account. You can ask us to delete it at any time, as
+        described in the <Link href="/privacy/">privacy policy</Link>.
       </p>
 
       <h2>Your scores</h2>
@@ -35,6 +43,18 @@ export default function TermsPage() {
         Armchair Judge is not affiliated with ABC, Disney, BBC, Peacock, CBS or the shows&rsquo; producers. Show names are
         used to describe what you can rate. Judges&rsquo; scores are sourced from Wikipedia and headshots from Wikimedia
         Commons under their respective licenses.
+      </p>
+
+      <h2>Privacy</h2>
+      <p>
+        The <Link href="/privacy/">privacy policy</Link> explains what we collect, including Google user data, and how
+        it is used.
+      </p>
+
+      <h2>Changes to these terms</h2>
+      <p>
+        We may update these terms. The date at the top shows the latest version, and continuing to use Armchair Judge
+        after a change means you accept it.
       </p>
 
       <h2>Contact</h2>
