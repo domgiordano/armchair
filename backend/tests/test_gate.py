@@ -330,3 +330,9 @@ def test_unknown_contestant_is_404(show):
 
 def test_unknown_episode_submit_is_404(show):
     assert submit(ep="40", contestant="tyler-cameron", value=7)[0] == 404
+
+
+def test_empty_roster_keeps_results_hidden(show):
+    meta, episode, _, perfs, scores = _ep5_inputs(show)
+    view = episode_view(A, 5, meta, {**episode, "results": {"eliminated": ["x"]}}, [], perfs, scores)
+    assert "results" not in view
