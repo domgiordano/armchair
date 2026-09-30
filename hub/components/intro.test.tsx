@@ -7,16 +7,23 @@ import { INTRO_KEY, introSkipScript } from "@/lib/intro";
 const stage = () => screen.queryByRole("region", { name: "Armchair Judge intro" });
 
 function setReducedMotion(reduce: boolean) {
-  vi.stubGlobal("matchMedia", (query: string) => ({ matches: reduce && query.includes("reduce"), media: query }));
+  vi.stubGlobal("matchMedia", (query: string) => ({
+    matches: reduce && query.includes("reduce"),
+    media: query,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+  }));
 }
 
 function renderPage() {
   return render(
     <>
       <Intro />
-      <main id="main" tabIndex={-1}>
-        <a href="/x">Landing link</a>
-      </main>
+      <div id="page">
+        <main id="main" tabIndex={-1}>
+          <a href="/x">Landing link</a>
+        </main>
+      </div>
     </>,
   );
 }
@@ -37,13 +44,13 @@ describe("Intro", () => {
   it("plays on the first visit, then hands off to the landing", () => {
     renderPage();
     expect(stage()).not.toBeNull();
-    expect(document.getElementById("main")?.hasAttribute("inert")).toBe(true);
+    expect(document.getElementById("page")?.hasAttribute("inert")).toBe(true);
     expect(document.documentElement.style.overflow).toBe("hidden");
 
     act(() => vi.advanceTimersByTime(INTRO_MS));
 
     expect(stage()).toBeNull();
-    expect(document.getElementById("main")?.hasAttribute("inert")).toBe(false);
+    expect(document.getElementById("page")?.hasAttribute("inert")).toBe(false);
     expect(document.documentElement.style.overflow).toBe("");
     expect(sessionStorage.getItem(INTRO_KEY)).toBe("1");
   });
@@ -52,7 +59,7 @@ describe("Intro", () => {
     sessionStorage.setItem(INTRO_KEY, "1");
     renderPage();
     expect(stage()).toBeNull();
-    expect(document.getElementById("main")?.hasAttribute("inert")).toBe(false);
+    expect(document.getElementById("page")?.hasAttribute("inert")).toBe(false);
   });
 
   it("skips straight to the landing and moves keyboard focus onto it", () => {
