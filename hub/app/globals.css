@@ -22,6 +22,12 @@
   color: transparent;
 }
 
+/* The intro locks scroll with overflow: hidden; a reserved gutter keeps that from
+   shifting the page sideways when the scrollbar comes back. */
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
     env(safe-area-inset-left);

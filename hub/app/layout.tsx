@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 
+import { introSkipScript } from "@/lib/intro";
+
 import "./globals.css";
+import "./intro.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,7 +29,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${poppins.variable} h-full antialiased`}>
+    // suppressHydrationWarning: the head script may set data-intro before hydration.
+    <html lang="en" className={`${poppins.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: introSkipScript }} />
+      </head>
       <body className="min-h-full bg-night font-display text-text">{children}</body>
     </html>
   );
