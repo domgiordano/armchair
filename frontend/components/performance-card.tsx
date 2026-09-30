@@ -1,0 +1,126 @@
+"use client";
+
+import { Headshot } from "@/components/headshot";
+import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
+import { PaddlePicker } from "@/components/paddle-picker";
+
+interface PerformanceCardProps {
+  card: Card;
+  contestants: Map<string, Contestant>;
+  judges: Map<string, Judge>;
+  airsOn: string | null;
+  onSubmit: (card: LockedCard, answer: Answer) => Promise<void>;
+}
+
+const celebrity = (c: Contestant | undefined): Member | undefined =>
+  c?.members.find((m) => m.role === "celebrity");
+
+/** 8, 7.5, 7.3: judges score in halves and averages need one decimal. */
+export const formatScore = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
+
+export function PerformanceCard({ card, contestants, judges, airsOn, onSubmit }: PerformanceCardProps) {
+  const team = card.contestants.length > 1;
+  const couple = contestants.get(card.contestants[0]);
+  const faces = team
+    ? card.contestants.map((id) => celebrity(contestants.get(id))).filter((m) => m !== undefined)
+    : (couple?.members ?? []);
+  const title = team
+    ? faces.map((m) => m.name).join(", ")
+    : (couple?.members.map((m) => m.name).join(" & ") ?? card.contestants[0]);
+  const details = [
+    team ? "Team dance" : card.n > 1 ? `Dance ${card.n}` : null,
+    card.style,
+    card.song && `"${card.song}"`,
+  ].filter(Boolean);
+  const headingId = `perf-${card.key}`;
+
+  return (
+    <article
+      aria-labelledby={headingId}
+      className="flex flex-col gap-4 rounded-lg border border-neutral-800 bg-neutral-900 p-4"
+    >
+      <div className="flex items-center gap-3">
+        <div className="flex -space-x-3">
+          {faces.map((m) => (
+            <Headshot key={m.name} person={m} />
+          ))}
+        </div>
+        <div className="flex min-w-0 flex-col">
+          <h3 id={headingId} className="font-semibold leading-tight">
+            {title}
+          </h3>
+          {details.length > 0 && <p className="text-sm text-neutral-400">{details.join(" · ")}</p>}
+        </div>
+      </div>
+      {!card.locked ? (
+        <Scores card={card} judges={judges} />
+      ) : team ? (
+        <p className="text-sm text-neutral-400">Not scored. Opens when you finish the episode.</p>
+      ) : (
+        <PaddlePicker label={title} airsOn={airsOn} onSubmit={(answer) => onSubmit(card, answer)} />
+      )}
+    </article>
+  );
+}
+
+interface ScoresProps {
+  card: RevealedCard;
+  judges: Map<string, Judge>;
+}
+
+function Scores({ card, judges }: ScoresProps) {
+  const values = card.judges.map((j) => j.value);
+  const allIn = values.every((v) => v !== null);
+  const judgesMean = allIn ? values.reduce<number>((a, v) => a + (v ?? 0), 0) / values.length : null;
+  const { mine, aggregate } = card;
+
+  return (
+    <dl className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 text-sm">
+      {card.judges.map((j) => (
+        <Row
+          key={j.id}
+          label={judges.get(j.id)?.name ?? j.id}
+          value={j.value === null ? "Pending" : formatScore(j.value)}
+          note={j.state === "provisional" ? "unconfirmed" : null}
+          muted={j.value === null}
+        />
+      ))}
+      <Row label="Judges' average" value={judgesMean === null ? "Pending" : formatScore(judgesMean)} strong />
+      <Row
+        label="You"
+        value={
+          mine === null ? "Not scored" : "forfeit" in mine ? "Revealed" : formatScore(mine.value)
+        }
+        strong
+      />
+      <Row
+        label="Everyone"
+        value={aggregate.mean === null ? "No scores yet" : formatScore(aggregate.mean)}
+        note={`${aggregate.count} ${aggregate.count === 1 ? "score" : "scores"}`}
+        strong
+      />
+    </dl>
+  );
+}
+
+interface RowProps {
+  label: string;
+  value: string;
+  note?: string | null;
+  muted?: boolean;
+  strong?: boolean;
+}
+
+function Row({ label, value, note, muted, strong }: RowProps) {
+  return (
+    <>
+      <dt className={strong ? "font-medium text-neutral-200" : "text-neutral-400"}>{label}</dt>
+      <dd
+        className={`text-right tabular-nums ${muted ? "text-neutral-500" : strong ? "font-semibold" : ""}`}
+      >
+        {value}
+        {note && <span className="ml-2 text-xs font-normal text-neutral-400">{note}</span>}
+      </dd>
+    </>
+  );
+}

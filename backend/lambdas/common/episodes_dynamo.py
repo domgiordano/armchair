@@ -18,17 +18,24 @@ SEASON = re.compile(r"([a-z]+)-(\d{1,3})")
 EP = re.compile(r"\d{1,2}")
 
 
-def ref(source: dict) -> tuple[str, int, int]:
-    """(show, season, ep) from `season=dwts-35` and `ep=05` in a query string or body."""
-    season, ep = require(source, "season", "ep")
+def season_ref(source: dict) -> tuple[str, int]:
+    """(show, season) from `season=dwts-35` in a query string or body."""
+    (season,) = require(source, "season")
     m = SEASON.fullmatch(str(season))
     if not m:
         raise ValidationError("season must look like dwts-35", field="season")
+    return m[1], int(m[2])
+
+
+def ref(source: dict) -> tuple[str, int, int]:
+    """(show, season, ep) from `season=dwts-35` and `ep=05` in a query string or body."""
+    show, season = season_ref(source)
+    (ep,) = require(source, "ep")
     if type(ep) is int:
         ep = str(ep)
     if not isinstance(ep, str) or not EP.fullmatch(ep) or int(ep) == 0:
         raise ValidationError("ep must be an episode number like 05", field="ep")
-    return m[1], int(m[2]), int(ep)
+    return show, season, int(ep)
 
 
 def episode_pk(show: str, season: int, ep: int) -> str:
@@ -37,13 +44,17 @@ def episode_pk(show: str, season: int, ep: int) -> str:
 
 def catalog(show: str, season: int, ep: int) -> tuple[dict, dict, list[dict]]:
     """(META, the EP item, every CONTESTANT item) for one episode, from one Query."""
-    rows = query_all(table("CATALOG_TABLE"), f"SEASON#{show}#{season}")
+    rows = season_rows(show, season)
     by_sk = {r["sk"]: r for r in rows}
     episode = by_sk.get(f"EP#{ep:02d}")
     if "META" not in by_sk or episode is None:
         raise NotFoundError("No such episode", season=f"{show}-{season}", ep=ep)
     contestants = [r for r in rows if r["sk"].startswith("CONTESTANT#")]
     return by_sk["META"], episode, contestants
+
+
+def season_rows(show: str, season: int) -> list[dict]:
+    return query_all(table("CATALOG_TABLE"), f"SEASON#{show}#{season}")
 
 
 def performances(pk: str) -> list[dict]:
