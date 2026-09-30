@@ -67,6 +67,28 @@ data "aws_iam_policy_document" "deploy" {
     actions   = ["cloudfront:CreateInvalidation", "cloudfront:GetInvalidation"]
     resources = [module.web.cloudfront_distribution_arn]
   }
+
+  # The frontend build bakes these into the bundle. xomware-infrastructure owns
+  # the Cognito ones (cognito_armchair.tf, cognito_armchair_google.tf).
+  statement {
+    sid     = "ReadCognitoConfig"
+    effect  = "Allow"
+    actions = ["ssm:GetParameter"]
+    resources = [
+      for name in [
+        "user-pool-id",
+        "hosted-ui-domain",
+        "clients/dwts-id",
+      ] : "arn:aws:ssm:${var.aws_region}:${local.account_id}:parameter/armchair/shared/cognito/${name}"
+    ]
+  }
+
+  statement {
+    sid       = "ReadApiUrl"
+    effect    = "Allow"
+    actions   = ["ssm:GetParameter"]
+    resources = [aws_ssm_parameter.api_url.arn]
+  }
 }
 
 data "aws_caller_identity" "current" {}
