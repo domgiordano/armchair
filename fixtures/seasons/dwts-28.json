@@ -1,0 +1,2499 @@
+{
+  "show": "dwts",
+  "season": 28,
+  "year": 2019,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 28",
+  "revid": 1372833395,
+  "revTimestamp": "2026-09-02T14:14:48Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "leah-remini",
+      "name": "Leah Remini",
+      "aliases": [
+        "Leah Remini"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "joey-fatone",
+      "name": "Joey Fatone",
+      "aliases": [
+        "Joey Fatone"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2019-09-16",
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "hannah-brown#1",
+        "kel-mitchell#1",
+        "kate-flannery#1",
+        "lamar-odom#1",
+        "lauren-alaina#1",
+        "sailor-brinkley-cook#1",
+        "karamo-brown#1",
+        "ray-lewis#1",
+        "mary-wilson#1",
+        "ally-brooke#1",
+        "sean-spicer#1",
+        "james-van-der-beek#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Wanna Dance with Somebody\" — Whitney Houston",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Sucker\" — Jonas Brothers",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kate-flannery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"She Works Hard for the Money\" — Donna Summer",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lamar-odom"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 11,
+          "judges": [
+            5,
+            3,
+            3
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Feeling Good\" — Michael Bublé",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Man! I Feel Like a Woman!\" — Shania Twain",
+          "result": null
+        },
+        {
+          "contestants": [
+            "sailor-brinkley-cook"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Uptown Girl\" — Billy Joel",
+          "result": null
+        },
+        {
+          "contestants": [
+            "karamo-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Juice\" — Lizzo",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ray-lewis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Hot in Herre\" — Nelly",
+          "result": null
+        },
+        {
+          "contestants": [
+            "mary-wilson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Baby Love\" — The Supremes",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            5,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Work from Home\" — Fifth Harmony",
+          "result": null
+        },
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            4,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Spice Up Your Life\" — Spice Girls",
+          "result": null
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Whatever It Takes\" — Imagine Dragons",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2019-09-23",
+      "start": null,
+      "end": null,
+      "theme": "First Elimination",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "james-van-der-beek#1",
+        "sailor-brinkley-cook#1",
+        "ray-lewis#1",
+        "ally-brooke#1",
+        "mary-wilson#1",
+        "lauren-alaina#1",
+        "sean-spicer#1",
+        "karamo-brown#1",
+        "kate-flannery#1",
+        "kel-mitchell#1",
+        "lamar-odom#1",
+        "hannah-brown#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Dancing on the Ceiling\" — Lionel Richie",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sailor-brinkley-cook"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Señorita\" — Shawn Mendes & Camila Cabello",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ray-lewis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"September\" — Earth, Wind & Fire",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Iris\" — Kina Grannis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mary-wilson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Think\" — Aretha Franklin",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Confident\" — Demi Lovato",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Shut Up and Dance\" — Walk the Moon",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "karamo-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            5,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Let's Go Crazy\" — Prince & The Revolution",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-flannery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Fly Me to the Moon\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Every Little Step\" — Bobby Brown",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lamar-odom"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            4,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Con Calma\" — Daddy Yankee, feat. Snow",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Lover\" — Taylor Swift",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2019-09-30",
+      "start": null,
+      "end": null,
+      "theme": "Movie Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "lauren-alaina#1",
+        "hannah-brown#1",
+        "karamo-brown#1",
+        "ally-brooke#1",
+        "james-van-der-beek#1",
+        "kate-flannery#1",
+        "lamar-odom#1",
+        "sailor-brinkley-cook#1",
+        "kel-mitchell#1",
+        "sean-spicer#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Oh, Pretty Woman\" — Roy Orbison",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Hold On\" — Wilson Phillips",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "karamo-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            5,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I'm Still Standing\" — Elton John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Dreaming of You\" — Selena",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Shallow\" — Lady Gaga & Bradley Cooper",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-flannery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"9 to 5\" — Dolly Parton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lamar-odom"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            4,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Old Time Rock and Roll\" — Bob Seger",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "sailor-brinkley-cook"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Mamma Mia\" — Meryl Streep",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"My Heart Will Go On\" — Celine Dion",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Night Fever\" — Bee Gees",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2019-10-07",
+      "start": null,
+      "end": null,
+      "theme": "Top 10",
+      "panel": [
+        "carrie-ann-inaba",
+        "leah-remini",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "sean-spicer#1",
+        "ally-brooke#1",
+        "kel-mitchell#1",
+        "kate-flannery#1",
+        "james-van-der-beek#1",
+        "hannah-brown#1",
+        "lamar-odom#1",
+        "sailor-brinkley-cook#1",
+        "lauren-alaina#1",
+        "karamo-brown#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            5,
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Bamboléo\" — Gipsy Kings",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Proud Mary\" — Tina Turner",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"If I Can't Have You\" — Shawn Mendes",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-flannery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Hands to Myself\" — Selena Gomez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Walking on Sunshine\" — Katrina and the Waves",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"I Love It\" — Icona Pop, feat. Charli XCX",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lamar-odom"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            5,
+            7,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Kiss from a Rose\" — Seal",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "sailor-brinkley-cook"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            7,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Ain't No Mountain High Enough\" — Marvin Gaye & Tammi Terrell",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Jolene\" — Dolly Parton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "karamo-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Old Town Road\" — Lil Nas X, feat. Billy Ray Cyrus",
+          "result": "Bottom two"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2019-10-14",
+      "start": null,
+      "end": null,
+      "theme": "Disney Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "sailor-brinkley-cook#1",
+        "karamo-brown#1",
+        "kate-flannery#1",
+        "sean-spicer#1",
+        "ally-brooke#1",
+        "lauren-alaina#1",
+        "kel-mitchell#1",
+        "hannah-brown#1",
+        "james-van-der-beek#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "sailor-brinkley-cook"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"A Dream Is a Wish Your Heart Makes\" — Lily James",
+          "result": null
+        },
+        {
+          "contestants": [
+            "karamo-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Just Can't Wait to Be King\" — JD McCrary, Shahadi Wright Joseph & John Oliver",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kate-flannery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"A Spoonful of Sugar\" — Julie Andrews",
+          "result": null
+        },
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You've Got a Friend in Me\" — Randy Newman",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Beauty and the Beast\" — Ariana Grande & John Legend",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Under the Sea\" — Samuel E. Wright",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"We're All in This Together\" — from High School Musical",
+          "result": null
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"A Whole New World\" — Zayn & Zhavia Ward",
+          "result": null
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"He's a Pirate\" — Klaus Badelt",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2019-10-21",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "ally-brooke#1",
+        "kate-flannery#1",
+        "kel-mitchell#1",
+        "karamo-brown#1",
+        "hannah-brown#1",
+        "sailor-brinkley-cook#1",
+        "sean-spicer#1",
+        "james-van-der-beek#1",
+        "lauren-alaina#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Take On Me\" — A-ha",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "kate-flannery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Have Nothing\" — Whitney Houston",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Part-Time Lover\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "karamo-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Someone You Loved\" — Lewis Capaldi",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Southbound\" — Carrie Underwood",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sailor-brinkley-cook"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Wake Me Up Before You Go-Go\" — Wham!",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Somebody to Love\" — Queen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Light It Up\" — Major Lazer, feat. Nyla & Fuse ODG",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"The Other Side\" — Lauren Alaina",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2019-10-28",
+      "start": null,
+      "end": null,
+      "theme": "Halloween Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "kel-mitchell#1",
+        "james-van-der-beek#1",
+        "ally-brooke#1",
+        "hannah-brown#1",
+        "karamo-brown#1",
+        "lauren-alaina#1",
+        "sean-spicer#1",
+        "kate-flannery#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Time Warp\" — from The Rocky Horror Picture Show",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Put a Spell on You\" — Annie Lennox",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Sweet but Psycho\" — Ava Max",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Bad Girls\" — Donna Summer",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "karamo-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Survivor\" — 2WEI",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Whatever Lola Wants\" — Gotan Project",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Monster Mash\" — Bobby Pickett",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-flannery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Wicked Game\" — Chris Isaak",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "ally-brooke",
+            "hannah-brown",
+            "james-van-der-beek",
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Trick)",
+          "song": "\"Somebody's Watching Me\" — Rockwell",
+          "result": "\"Somebody's Watching Me\" — Rockwell"
+        },
+        {
+          "contestants": [
+            "karamo-brown",
+            "kate-flannery",
+            "kel-mitchell",
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Treat)",
+          "song": "\"Sweet Dreams\" — Beyoncé",
+          "result": "\"Sweet Dreams\" — Beyoncé"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2019-11-04",
+      "start": null,
+      "end": null,
+      "theme": "Dance-Off Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "sean-spicer#1",
+        "lauren-alaina#1",
+        "kel-mitchell#1",
+        "ally-brooke#1",
+        "hannah-brown#1",
+        "kate-flannery#1",
+        "james-van-der-beek#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Come Sail Away\" — Styx",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hound Dog\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"This Is How We Do It\" — Montell Jordan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Higher\" — Ally Brooke, feat. Matoma",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"American Girl\" — Elle King",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-flannery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Heat Wave\" — Linda Ronstadt",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Don't Stop Believin'\" — Ray Chew",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2019-11-11",
+      "start": null,
+      "end": null,
+      "theme": "Boy Band & Girl Group Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "joey-fatone",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "james-van-der-beek#1",
+        "james-van-der-beek#2",
+        "sean-spicer#1",
+        "sean-spicer#2",
+        "hannah-brown#1",
+        "hannah-brown#2",
+        "ally-brooke#1",
+        "ally-brooke#2",
+        "lauren-alaina#1",
+        "lauren-alaina#2",
+        "kel-mitchell#1",
+        "kel-mitchell#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I'm So Excited\" — The Pointer Sisters",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            8,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Bye Bye Bye\" — NSYNC",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Bills, Bills, Bills\" — Destiny's Child",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "sean-spicer"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Story of My Life\" — One Direction",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"No Scrubs\" — TLC",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Boy with Luv\" — BTS",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Wannabe\" — Spice Girls",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Step by Step\" — New Kids on the Block",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You Can't Hurry Love\" — The Supremes",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I Want It That Way\" — Backstreet Boys",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Free Your Mind\" — En Vogue",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I'll Make Love to You\" — Boyz II Men",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2019-11-18",
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "lauren-alaina#1",
+        "lauren-alaina#2",
+        "kel-mitchell#1",
+        "kel-mitchell#2",
+        "ally-brooke#1",
+        "ally-brooke#2",
+        "hannah-brown#1",
+        "hannah-brown#2",
+        "james-van-der-beek#1",
+        "james-van-der-beek#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Stronger (What Doesn't Kill You)\" — Kelly Clarkson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Humble and Kind\" — Tim McGraw",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Get Ready\" — The Temptations",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"I Will Always Love You\" — Whitney Houston",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Perfect\" — Ed Sheeran",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Sing, Sing, Sing (With a Swing)\" — Benny Goodman",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Dancing with a Stranger\" — Sam Smith & Normani",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Lose You to Love Me\" — Selena Gomez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Canned Heat\" — Jamiroquai",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "james-van-der-beek"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Take Me to Church\" — Hozier",
+          "result": "Eliminated"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 11,
+      "night": 1,
+      "airDate": "2019-11-25",
+      "start": null,
+      "end": null,
+      "theme": "Finale",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "ally-brooke#1",
+        "ally-brooke#2",
+        "lauren-alaina#1",
+        "lauren-alaina#2",
+        "kel-mitchell#1",
+        "kel-mitchell#2",
+        "hannah-brown#1",
+        "hannah-brown#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Proud Mary\" — Tina Turner",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "ally-brooke"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Conga\" — Gloria Estefan & Miami Sound Machine",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Jolene\" — Dolly Parton",
+          "result": "Fourth place"
+        },
+        {
+          "contestants": [
+            "lauren-alaina"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Country Girl (Shake It for Me)\" — Luke Bryan",
+          "result": "Fourth place"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"We're All in This Together\" — from High School Musical",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "kel-mitchell"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Jump\" — Kris Kross",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Lover\" — Taylor Swift",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "hannah-brown"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Girl on Fire\" — Alicia Keys\n\"Hollaback Girl\" — Gwen Stefani",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "mary-wilson",
+      "aliases": [
+        "Mary"
+      ],
+      "members": [
+        {
+          "name": "Mary Wilson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Brandon Armstrong",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "ray-lewis",
+      "aliases": [
+        "Ray"
+      ],
+      "members": [
+        {
+          "name": "Ray Lewis",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "lamar-odom",
+      "aliases": [
+        "Lamar"
+      ],
+      "members": [
+        {
+          "name": "Lamar Odom",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Peta Murgatroyd",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "sailor-brinkley-cook",
+      "aliases": [
+        "Sailor"
+      ],
+      "members": [
+        {
+          "name": "Sailor Brinkley-Cook",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Valentin Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "karamo-brown",
+      "aliases": [
+        "Karamo"
+      ],
+      "members": [
+        {
+          "name": "Karamo Brown",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jenna Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "kate-flannery",
+      "aliases": [
+        "Kate"
+      ],
+      "members": [
+        {
+          "name": "Kate Flannery",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Pasha Pashkov",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "sean-spicer",
+      "aliases": [
+        "Sean"
+      ],
+      "members": [
+        {
+          "name": "Sean Spicer",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Lindsay Arnold",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "james-van-der-beek",
+      "aliases": [
+        "James"
+      ],
+      "members": [
+        {
+          "name": "James Van Der Beek",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "lauren-alaina",
+      "aliases": [
+        "Lauren"
+      ],
+      "members": [
+        {
+          "name": "Lauren Alaina",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Gleb Savchenko",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "ally-brooke",
+      "aliases": [
+        "Ally"
+      ],
+      "members": [
+        {
+          "name": "Ally Brooke",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sasha Farber",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "kel-mitchell",
+      "aliases": [
+        "Kel"
+      ],
+      "members": [
+        {
+          "name": "Kel Mitchell",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "hannah-brown",
+      "aliases": [
+        "Hannah"
+      ],
+      "members": [
+        {
+          "name": "Hannah Brown",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Alan Bersten",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

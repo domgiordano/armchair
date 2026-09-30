@@ -1,0 +1,2172 @@
+{
+  "show": "dwts",
+  "season": 4,
+  "year": 2007,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 4",
+  "revid": 1372834692,
+  "revTimestamp": "2026-09-02T14:22:49Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2007-03-19",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "ian-ziering#1",
+        "paulina-porizkova#1",
+        "billy-ray-cyrus#1",
+        "leeza-gibbons#1",
+        "joey-fatone#1",
+        "laila-ali#1",
+        "john-ratzenberger#1",
+        "shandi-finnessey#1",
+        "clyde-drexler#1",
+        "heather-mills#1",
+        "apolo-anton-ohno#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Mony Mony\" — Billy Idol",
+          "result": null
+        },
+        {
+          "contestants": [
+            "paulina-porizkova"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Too Darn Hot\" — Ella Fitzgerald",
+          "result": null
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            5,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Want My Mullet Back\" — Billy Ray Cyrus",
+          "result": null
+        },
+        {
+          "contestants": [
+            "leeza-gibbons"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Strangers in the Night\" — Frank Sinatra",
+          "result": null
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"You Should Be Dancing\" — Bee Gees",
+          "result": null
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"How Sweet It Is (To Be Loved By You)\" — Marvin Gaye",
+          "result": null
+        },
+        {
+          "contestants": [
+            "john-ratzenberger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Chain of Fools\" — Aretha Franklin",
+          "result": null
+        },
+        {
+          "contestants": [
+            "shandi-finnessey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The Power of Love\" — Huey Lewis and the News",
+          "result": null
+        },
+        {
+          "contestants": [
+            "clyde-drexler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Was Made to Love Her\" — Stevie Wonder",
+          "result": null
+        },
+        {
+          "contestants": [
+            "heather-mills"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Cheek to Cheek\" — Ella Fitzgerald",
+          "result": null
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Let's Hear It for the Boy\" — Deniece Williams",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2007-03-26",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "apolo-anton-ohno#1",
+        "shandi-finnessey#1",
+        "clyde-drexler#1",
+        "leeza-gibbons#1",
+        "ian-ziering#1",
+        "paulina-porizkova#1",
+        "billy-ray-cyrus#1",
+        "heather-mills#1",
+        "john-ratzenberger#1",
+        "laila-ali#1",
+        "joey-fatone#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Two Hearts\" — Phil Collins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shandi-finnessey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Right Now\" — The Pussycat Dolls",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "clyde-drexler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"(Your Love Keeps Lifting Me) Higher and Higher\" — Jackie Wilson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leeza-gibbons"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Independent Women Part I\" — Destiny's Child",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Don't Get Me Wrong\" — The Pretenders",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "paulina-porizkova"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"La Bamba\" — Ritchie Valens",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Ring of Fire\" — Johnny Cash",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heather-mills"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo Italiano\" — Dean Martin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "john-ratzenberger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Lady Is a Tramp\" — Sammy Davis Jr.",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Maracaibo Oriental\" — Benny Moré",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Tell Her About It\" — Billy Joel",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2007-04-02",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "shandi-finnessey#1",
+        "john-ratzenberger#1",
+        "clyde-drexler#1",
+        "laila-ali#1",
+        "apolo-anton-ohno#1",
+        "joey-fatone#1",
+        "ian-ziering#1",
+        "leeza-gibbons#1",
+        "heather-mills#1",
+        "billy-ray-cyrus#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "shandi-finnessey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Crocodile Rock\" — Elton John",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "john-ratzenberger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Libertango\" — Astor Piazolla",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "clyde-drexler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Bad Moon Rising\" — Creedence Clearwater Revival",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Goldfinger\" — Shirley Bassey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"You Never Can Tell\" — Chuck Berry",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Star Wars Theme/Cantina Band\" — Meco",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hard Headed Woman\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leeza-gibbons"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Jealousy\" — Billy Fury",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "heather-mills"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Can I Get a Witness\" — Marvin Gaye",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Rock the Casbah\" — The Clash",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2007-04-09",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "laila-ali#1",
+        "apolo-anton-ohno#1",
+        "leeza-gibbons#1",
+        "ian-ziering#1",
+        "john-ratzenberger#1",
+        "clyde-drexler#1",
+        "billy-ray-cyrus#1",
+        "heather-mills#1",
+        "joey-fatone#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Les toreadors\" — Georges Bizet",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"If You Don't Know Me by Now\" — Simply Red",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leeza-gibbons"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"You Give Love a Bad Name\" — Bon Jovi",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            7,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"He Was Beautiful\" — Shirley Bassey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "john-ratzenberger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"A Kind of Magic\" — Queen",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "clyde-drexler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            6,
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Foolish\" — Johnny Mathis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Black Betty\" — Ram Jam",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heather-mills"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Sandy's Song\" — Dolly Parton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Collecting the Ballots\" — James Horner",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2007-04-16",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "ian-ziering#1",
+        "clyde-drexler#1",
+        "heather-mills#1",
+        "joey-fatone#1",
+        "john-ratzenberger#1",
+        "laila-ali#1",
+        "apolo-anton-ohno#1",
+        "billy-ray-cyrus#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Dance Like This\" — Wyclef Jean, feat. Claudette Ortiz",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "clyde-drexler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            4,
+            5,
+            4
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"What's Going On\" — Marvin Gaye",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "heather-mills"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Heaven Must Be Missing an Angel\" — Tavares",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Besame Mucho\" — Consuelo Velázquez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "john-ratzenberger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Love Is in the Air\" — John Paul Young",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Put Your Records On\" — Corrine Bailey Rae",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Like to Move It\" — Reel 2 Real",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            6,
+            5
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"What's Love Got to Do with It\" — Tina Turner",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2007-04-23",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "joey-fatone#1",
+        "heather-mills#1",
+        "john-ratzenberger#1",
+        "laila-ali#1",
+        "billy-ray-cyrus#1",
+        "apolo-anton-ohno#1",
+        "ian-ziering#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"A Little Respect\" — Erasure",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heather-mills"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Don't Cry For Me Argentina\" — Julie Covington",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "john-ratzenberger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo Swing\" — Big Bad Voodoo Daddy",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Hold On, I'm Comin'\" — Sam & Dave",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I Love to Boogie\" — T. Rex",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Cool\" — Gwen Stefani",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Waiting for Tonight\" — Jennifer Lopez",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2007-04-30",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "laila-ali#1",
+        "laila-ali#2",
+        "john-ratzenberger#1",
+        "john-ratzenberger#2",
+        "apolo-anton-ohno#1",
+        "apolo-anton-ohno#2",
+        "ian-ziering#1",
+        "ian-ziering#2",
+        "billy-ray-cyrus#1",
+        "billy-ray-cyrus#2",
+        "joey-fatone#1",
+        "joey-fatone#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Part-Time Lover\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Brazil\" — Johnny Mathis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "john-ratzenberger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"That's Life\" — Frank Sinatra",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "john-ratzenberger"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Under Pressure\" — Queen & David Bowie",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Steppin' Out with My Baby\" — Dinah Shore",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Dr. Beat\" — Miami Sound Machine",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Holding Out for a Hero\" — Bonnie Tyler",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Gimme the Light\" — Sean Paul",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            5,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Play Me\" — Neil Diamond",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Living in America\" — James Brown",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The Way You Make Me Feel\" — Paul Anka",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Slippin' and Slidin'\" — Little Richard",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2007-05-07",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "ian-ziering#1",
+        "ian-ziering#2",
+        "joey-fatone#1",
+        "joey-fatone#2",
+        "billy-ray-cyrus#1",
+        "billy-ray-cyrus#2",
+        "laila-ali#1",
+        "laila-ali#2",
+        "apolo-anton-ohno#1",
+        "apolo-anton-ohno#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Baby, It's Cold Outside\" — Tom Jones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Imagine\" — John Lennon",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Always\" — Frank Sinatra",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Pump It\" — The Black Eyed Peas",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            7,
+            6,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Stand by Your Man\" — Tammy Wynette",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "billy-ray-cyrus"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"My Way\" — Los Lonely Boys",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"May Each Day\" — Andy Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Bad, Bad Leroy Brown\" — Jim Croce",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            8,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Jessie's Girl\" — Rick Springfield",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Carnaval de Paris\" — Dario G",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2007-05-14",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "apolo-anton-ohno#1",
+        "apolo-anton-ohno#2",
+        "ian-ziering#1",
+        "ian-ziering#2",
+        "laila-ali#1",
+        "laila-ali#2",
+        "joey-fatone#1",
+        "joey-fatone#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Mr. Pinstripe Suit\" — Big Bad Voodoo Daddy",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Push It\" — Salt-N-Pepa",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Maneater\" — Nelly Furtado",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "ian-ziering"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"All Shook Up\" — Elvis Presley",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Walk Like an Egyptian\" — The Bangles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"She's a Lady\" — Tom Jones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"My Guy\" — Mary Wells",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Jump, Jive an' Wail\" — The Brian Setzer Orchestra",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 3,
+      "rateableKeys": [
+        "laila-ali#1",
+        "laila-ali#2",
+        "laila-ali#3",
+        "apolo-anton-ohno#1",
+        "apolo-anton-ohno#2",
+        "apolo-anton-ohno#3",
+        "joey-fatone#1",
+        "joey-fatone#2",
+        "joey-fatone#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"España cañí\" — Erich Kunzel",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Shake Your Body (Down to the Ground)\" — The Jacksons",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "laila-ali"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Maracaibo Oriental\" — Benny Moré",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Midnight Train to Georgia\" — Gladys Knight & the Pips",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Bust a Move\" — Young MC",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "apolo-anton-ohno"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Carnaval de Paris\" — Dario G",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Groove Is in the Heart\" — Deee-Lite",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Last Dance\" — Donna Summer",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "joey-fatone"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Star Wars Theme/Cantina Band\" — Meco",
+          "result": "Runners-up"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "paulina-porizkova",
+      "aliases": [
+        "Paulina"
+      ],
+      "members": [
+        {
+          "name": "Paulina Porizkova",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Alec Mazo",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "shandi-finnessey",
+      "aliases": [
+        "Shandi"
+      ],
+      "members": [
+        {
+          "name": "Shandi Finnessey",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Brian Fortuna",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "leeza-gibbons",
+      "aliases": [
+        "Leeza"
+      ],
+      "members": [
+        {
+          "name": "Leeza Gibbons",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "clyde-drexler",
+      "aliases": [
+        "Clyde"
+      ],
+      "members": [
+        {
+          "name": "Clyde Drexler",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Elena Grinenko",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "heather-mills",
+      "aliases": [
+        "Heather"
+      ],
+      "members": [
+        {
+          "name": "Heather Mills",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jonathan Roberts",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "john-ratzenberger",
+      "aliases": [
+        "John"
+      ],
+      "members": [
+        {
+          "name": "John Ratzenberger",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "billy-ray-cyrus",
+      "aliases": [
+        "Billy Ray"
+      ],
+      "members": [
+        {
+          "name": "Billy Ray Cyrus",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "ian-ziering",
+      "aliases": [
+        "Ian"
+      ],
+      "members": [
+        {
+          "name": "Ian Ziering",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "laila-ali",
+      "aliases": [
+        "Laila"
+      ],
+      "members": [
+        {
+          "name": "Laila Ali",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "joey-fatone",
+      "aliases": [
+        "Joey"
+      ],
+      "members": [
+        {
+          "name": "Joey Fatone",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Kym Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "apolo-anton-ohno",
+      "aliases": [
+        "Apolo"
+      ],
+      "members": [
+        {
+          "name": "Apolo Anton Ohno",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Julianne Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 6,
+      "night": 1,
+      "row": "Apolo & Julianne\nBilly Ray & Karina\nHeather & Jonathan\nIan & Cheryl\nJoey & Kym\nJohn & Edyta\nLaila & Maks",
+      "reason": "no scores received"
+    }
+  ]
+}

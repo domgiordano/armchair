@@ -1,0 +1,2848 @@
+{
+  "show": "dwts",
+  "season": 34,
+  "year": 2025,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 34",
+  "revid": 1375977389,
+  "revTimestamp": "2026-09-21T06:20:04Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "derek-hough",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "derek-hough",
+      "name": "Derek Hough",
+      "aliases": [
+        "Derek Hough"
+      ],
+      "headshot": {
+        "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+        "author": "Kevin Paul",
+        "license": "CC BY 4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+      }
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "kym-johnson",
+      "name": "Kym Johnson",
+      "aliases": [
+        "Kym Johnson"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "jon-m-chu",
+      "name": "Jon M. Chu",
+      "aliases": [
+        "Jon M. Chu"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "cheryl-burke",
+      "name": "Cheryl Burke",
+      "aliases": [
+        "Cheryl Burke"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "flavor-flav",
+      "name": "Flavor Flav",
+      "aliases": [
+        "Flavor Flav"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "tom-bergeron",
+      "name": "Tom Bergeron",
+      "aliases": [
+        "Tom Bergeron"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2025-09-16",
+      "start": null,
+      "end": null,
+      "theme": "Premiere",
+      "panel": [
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jordan-chiles#1",
+        "dylan-efron#1",
+        "elaine-hendrix#1",
+        "whitney-leavitt#1",
+        "baron-davis#1",
+        "alix-earle#1",
+        "scott-hoying#1",
+        "danielle-fishel#1",
+        "jen-affleck#1",
+        "corey-feldman#1",
+        "lauren-jauregui#1",
+        "andy-richter#1",
+        "hilaria-baldwin#1",
+        "robert-irwin#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 10,
+          "judges": [
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Break My Soul\" — Beyoncé",
+          "result": null
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 10,
+          "judges": [
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Milkshake\" — Kelis",
+          "result": null
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Woman\" — Kesha, feat. the Dap-Kings Horns",
+          "result": null
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Golden\" — Huntrix",
+          "result": null
+        },
+        {
+          "contestants": [
+            "baron-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 10,
+          "judges": [
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"U Can't Touch This\" — MC Hammer",
+          "result": null
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Circus\" — Britney Spears",
+          "result": null
+        },
+        {
+          "contestants": [
+            "scott-hoying"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 10,
+          "judges": [
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Abracadabra\" — Lady Gaga",
+          "result": null
+        },
+        {
+          "contestants": [
+            "danielle-fishel"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Stronger (What Doesn't Kill You)\" — Kelly Clarkson",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jen-affleck"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Nuevayol\" — Bad Bunny",
+          "result": null
+        },
+        {
+          "contestants": [
+            "corey-feldman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 9,
+          "judges": [
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"It's Still Rock and Roll to Me\" — Billy Joel",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lauren-jauregui"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Yes, And?\" — Ariana Grande",
+          "result": null
+        },
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 9,
+          "judges": [
+            5,
+            4
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Hold On, I'm Comin'\" — Sam & Dave",
+          "result": null
+        },
+        {
+          "contestants": [
+            "hilaria-baldwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Let's Get Loud\" — Jennifer Lopez",
+          "result": null
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Born to be Wild\" — Steppenwolf",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2025-09-24",
+      "start": null,
+      "end": null,
+      "theme": "One-Hit Wonders Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "alix-earle#1",
+        "danielle-fishel#1",
+        "andy-richter#1",
+        "lauren-jauregui#1",
+        "jordan-chiles#1",
+        "corey-feldman#1",
+        "jen-affleck#1",
+        "robert-irwin#1",
+        "elaine-hendrix#1",
+        "baron-davis#1",
+        "whitney-leavitt#1",
+        "hilaria-baldwin#1",
+        "dylan-efron#1",
+        "scott-hoying#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Mambo No. 5\" — Lou Bega",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danielle-fishel"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"The Rhythm of the Night\" — Corona",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"It's Raining Men\" — The Weather Girls",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lauren-jauregui"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Lovefool\" — The Cardigans",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Maniac\" — Michael Sembello",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corey-feldman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Baby Got Back\" — Sir Mix-a-Lot",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jen-affleck"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Take On Me\" — a-ha",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Move Your Feet\" — Junior Senior",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hey Mickey\" — Toni Basil",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "baron-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Return of the Mack\" — Mark Morrison",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Play That Funky Music\" — Wild Cherry",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hilaria-baldwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"What Is Love\" — Haddaway",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Macarena (Bayside Boys Remix)\" — Los del Río",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "scott-hoying"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Blue (Da Ba Dee)\" — Eiffel 65",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2025-09-30",
+      "start": null,
+      "end": null,
+      "theme": "TikTok Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jen-affleck#1",
+        "lauren-jauregui#1",
+        "danielle-fishel#1",
+        "jordan-chiles#1",
+        "dylan-efron#1",
+        "elaine-hendrix#1",
+        "whitney-leavitt#1",
+        "scott-hoying#1",
+        "hilaria-baldwin#1",
+        "andy-richter#1",
+        "robert-irwin#1",
+        "alix-earle#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jen-affleck"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"She's a Bad Mama Jama (She's Built, She's Stacked)\" — Carl Carlton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lauren-jauregui"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Work from Home\" — Fifth Harmony, feat. Ty Dolla Sign",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "danielle-fishel"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Manchild\" — Sabrina Carpenter",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Anxiety\" — Doechii",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Yukon\" — Justin Bieber",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Gnarly\" — Katseye",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Shake Ya Ass (Radio Edit)\" — Mystikal",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "scott-hoying"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Like Jennie\" — Jennie",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hilaria-baldwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Shake It to the Max (Fly) [Remix]\" — Moliy, Silent Addy, Skillibeng & Shenseea",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Northern Attitude\" — Noah Kahan & Hozier",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Million Dollar Baby\" — Tommy Richman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Pop Muzik\" — M/Robin Scott",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2025-10-07",
+      "start": null,
+      "end": null,
+      "theme": "Disney Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "dylan-efron#1",
+        "danielle-fishel#1",
+        "scott-hoying#1",
+        "alix-earle#1",
+        "hilaria-baldwin#1",
+        "andy-richter#1",
+        "robert-irwin#1",
+        "elaine-hendrix#1",
+        "whitney-leavitt#1",
+        "jordan-chiles#1",
+        "jen-affleck#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Life Is a Highway\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danielle-fishel"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"I Wan’na Be Like You (The Monkey Song)\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "scott-hoying"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Bop to the Top\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Once Upon a Dream\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hilaria-baldwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Cantina Band\"",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Le Festin\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Try Everything\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Space Mountain\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The Room Where It Happens\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Special Spice\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jen-affleck"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Friend Like Me\"",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2025-10-14",
+      "start": null,
+      "end": null,
+      "theme": "Dedication Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "kym-johnson",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "andy-richter#1",
+        "robert-irwin#1",
+        "elaine-hendrix#1",
+        "whitney-leavitt#1",
+        "jen-affleck#1",
+        "dylan-efron#1",
+        "jordan-chiles#1",
+        "scott-hoying#1",
+        "danielle-fishel#1",
+        "alix-earle#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Jump In the Line\" — Harry Belafonte",
+          "result": null
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            8,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"You'll Be in My Heart\" — Phil Collins",
+          "result": null
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            8,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"This Will Be (An Everlasting Love)\" — Natalie Cole",
+          "result": null
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            9,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Heal\" — Jamal Roberts",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jen-affleck"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            8,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Rescue\" — Lauren Daigle",
+          "result": null
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Rewrite the Stars\" — Zac Efron & Zendaya",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Daughters\" — John Mayer",
+          "result": null
+        },
+        {
+          "contestants": [
+            "scott-hoying"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Parallel\" — Scott Hoying",
+          "result": null
+        },
+        {
+          "contestants": [
+            "danielle-fishel"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Boy Meets World (Theme)\" — Twenty Cent Crush feat. Phil Rosenthal",
+          "result": null
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            8,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Sparks\" — Coldplay",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2025-10-21",
+      "start": null,
+      "end": null,
+      "theme": "Wicked Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "jon-m-chu",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "scott-hoying#1",
+        "alix-earle#1",
+        "robert-irwin#1",
+        "whitney-leavitt#1",
+        "dylan-efron#1",
+        "andy-richter#1",
+        "elaine-hendrix#1",
+        "jen-affleck#1",
+        "danielle-fishel#1",
+        "jordan-chiles#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "scott-hoying"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"The Wizard and I\" — Cynthia Erivo, feat. Michelle Yeoh",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"What Is This Feeling?\" — Ariana Grande & Cynthia Erivo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Dancing Through Life\" — Jonathan Bailey, feat. Ariana Grande, Ethan Slater, Marissa Bode & Cynthia Erivo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Popular\" — Ariana Grande",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I'm Not That Girl\" — Cynthia Erivo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"One Short Day\" — Cynthia Erivo, Ariana Grande, Kristin Chenoweth & Idina Menzel, feat. Michael McCorry Rose",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Defying Gravity\" — Cynthia Erivo, feat. Ariana Grande",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jen-affleck"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"As Long As You're Mine\" — Cynthia Erivo & Jonathan Bailey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danielle-fishel"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"No Good Deed\" — Cynthia Erivo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"For Good\" — Cynthia Erivo & Ariana Grande",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2025-10-28",
+      "start": null,
+      "end": null,
+      "theme": "Halloween Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "cheryl-burke",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "whitney-leavitt#1",
+        "jordan-chiles#1",
+        "andy-richter#1",
+        "elaine-hendrix#1",
+        "danielle-fishel#1",
+        "robert-irwin#1",
+        "jen-affleck#1",
+        "alix-earle#1",
+        "dylan-efron#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": 5,
+          "style": "Jazz",
+          "song": "\"Brain Stew\" — Green Day",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            8,
+            9
+          ],
+          "bonus": 4,
+          "style": "Contemporary",
+          "song": "\"Elastic Heart\" — Sia",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": 1,
+          "style": "Paso doble",
+          "song": "\"Symphony No. 5 in C Minor, Op. 67: I. Allegro con brio\" — Ludwig van Beethoven",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": 0,
+          "style": "Argentine tango",
+          "song": "\"Bad to the Bone\" — 2WEI & Bri Bryant",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danielle-fishel"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": 2,
+          "style": "Viennese waltz",
+          "song": "\"Die with a Smile\" — Lady Gaga & Bruno Mars",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            9,
+            10
+          ],
+          "bonus": 3,
+          "style": "Argentine tango",
+          "song": "\"Sweet Dreams (Are Made of This)\" — Hampton String Quartet",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jen-affleck"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": 2,
+          "style": "Contemporary",
+          "song": "\"Look What You Made Me Do\" — Taylor Swift",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            10,
+            9,
+            10
+          ],
+          "bonus": 4,
+          "style": "Tango",
+          "song": "\"Bury a Friend\" — Billie Eilish",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            9,
+            8,
+            9
+          ],
+          "bonus": 3,
+          "style": "Viennese waltz",
+          "song": "\"Can't Help Falling in Love (Dark)\" — Tommee Profitt & Brooke",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2025-11-04",
+      "start": null,
+      "end": null,
+      "theme": "Rock & Roll Hall of Fame Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "flavor-flav",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "dylan-efron#1",
+        "alix-earle#1",
+        "andy-richter#1",
+        "whitney-leavitt#1",
+        "danielle-fishel#1",
+        "elaine-hendrix#1",
+        "jordan-chiles#1",
+        "robert-irwin#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            8,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I'm Still Standing\" — Elton John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Livin' on a Prayer\" — Bon Jovi",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            7,
+            9,
+            7
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"God Only Knows\" — The Beach Boys",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            9,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"No More Tears\" — Ozzy Osbourne",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danielle-fishel"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Dream On\" — Aerosmith",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"What the World Needs Now is Love\" — Dionne Warwick",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"River Deep – Mountain High\" — Ike & Tina Turner",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Icky Thump\" — The White Stripes",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danielle-fishel",
+            "whitney-leavitt",
+            "jordan-chiles",
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Chicago)",
+          "song": "\"25 or 6 to 4\" — Chicago",
+          "result": "\"25 or 6 to 4\" — Chicago"
+        },
+        {
+          "contestants": [
+            "andy-richter",
+            "robert-irwin",
+            "alix-earle",
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 38,
+          "judges": [
+            9,
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Kool)",
+          "song": "\"Celebration\" — Kool & the Gang",
+          "result": "\"Celebration\" — Kool & the Gang"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2025-11-11",
+      "start": null,
+      "end": null,
+      "theme": "20th Birthday Party",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "tom-bergeron",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "elaine-hendrix#1",
+        "robert-irwin#1",
+        "andy-richter#1",
+        "dylan-efron#1",
+        "jordan-chiles#1",
+        "alix-earle#1",
+        "whitney-leavitt#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"It Takes Two\" — Rob Base & DJ E-Z Rock",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Footprints in the Sand\" — Leona Lewis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "andy-richter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            8,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Puttin' on the Ritz\" — Robbie Williams",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Ain't No Sunshine\" — Bill Withers",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Get Up\" — Ciara, feat. Chamillionaire",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Singin' in the Rain\" — Matthew Morrison",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Cell Block Tango\" (from Chicago)",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2025-11-18",
+      "start": null,
+      "end": null,
+      "theme": "Prince Night (Semi-Finals)",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "elaine-hendrix#1",
+        "elaine-hendrix#2",
+        "alix-earle#1",
+        "alix-earle#2",
+        "whitney-leavitt#1",
+        "whitney-leavitt#2",
+        "dylan-efron#1",
+        "dylan-efron#2",
+        "jordan-chiles#1",
+        "jordan-chiles#2",
+        "robert-irwin#1",
+        "robert-irwin#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I Wanna Be Your Lover\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"When Doves Cry\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Little Red Corvette\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Purple Rain\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"1999\"",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "whitney-leavitt"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Slow Love\"",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"I Would Die 4 U\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Kiss\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Raspberry Beret\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"U Got the Look\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Baby I'm a Star\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"WOW\"",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 11,
+      "night": 1,
+      "airDate": "2025-11-25",
+      "start": null,
+      "end": null,
+      "theme": "Finale",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 3,
+      "rateableKeys": [
+        "alix-earle#1",
+        "alix-earle#2",
+        "alix-earle#3",
+        "dylan-efron#1",
+        "dylan-efron#2",
+        "dylan-efron#3",
+        "elaine-hendrix#1",
+        "elaine-hendrix#2",
+        "elaine-hendrix#3",
+        "robert-irwin#1",
+        "robert-irwin#2",
+        "robert-irwin#3",
+        "jordan-chiles#1",
+        "jordan-chiles#2",
+        "jordan-chiles#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Hip Hip Chin Chin\" — Club des Belugas",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Where Is My Husband\" — RAYE",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "alix-earle"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Maneater\" — Nelly Furtado\n& \"Sports Car\" — Tate McRae",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Stampede\" — Alexander Jean, feat. Lindsey Stirling",
+          "result": "Fourth place"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Ordinary\" — Alex Warren",
+          "result": "Fourth place"
+        },
+        {
+          "contestants": [
+            "dylan-efron"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Something in the Heavens\" — Lewis Capaldi",
+          "result": "Fourth place"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Take My Breath Away\" — Jae Hall",
+          "result": "Fifth place"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You Can't Hurry Love\" — The Supremes",
+          "result": "Fifth place"
+        },
+        {
+          "contestants": [
+            "elaine-hendrix"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"I Hope I Get It\" — District 78\n(from A Chorus Line)",
+          "result": "Fifth place"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Are You Gonna Be My Girl\" — Jet",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Cake by the Ocean\" — DNCE",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "robert-irwin"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Black and Gold\" — Sam Sparro\n& \"The Nights\" — Avicii",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Breakin' Dishes\" — Rihanna",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"I Like It\" — Alesso & Nate Smith",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "jordan-chiles"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Bow Down (Homecoming Live)\" — Beyoncé\n& \"Motivation\" — Normani",
+          "result": "Third place"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "baron-davis",
+      "aliases": [
+        "Baron"
+      ],
+      "members": [
+        {
+          "name": "Baron Davis",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Britt Stewart",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "corey-feldman",
+      "aliases": [
+        "Corey"
+      ],
+      "members": [
+        {
+          "name": "Corey Feldman",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jenna Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "lauren-jauregui",
+      "aliases": [
+        "Lauren"
+      ],
+      "members": [
+        {
+          "name": "Lauren Jauregui",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Brandon Armstrong",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "hilaria-baldwin",
+      "aliases": [
+        "Hilaria"
+      ],
+      "members": [
+        {
+          "name": "Hilaria Baldwin",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Gleb Savchenko",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "scott-hoying",
+      "aliases": [
+        "Scott"
+      ],
+      "members": [
+        {
+          "name": "Scott Hoying",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Rylee Arnold",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "jen-affleck",
+      "aliases": [
+        "Jen"
+      ],
+      "members": [
+        {
+          "name": "Jen Affleck",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jan Ravnik",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "danielle-fishel",
+      "aliases": [
+        "Danielle"
+      ],
+      "members": [
+        {
+          "name": "Danielle Fishel",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Pasha Pashkov",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "andy-richter",
+      "aliases": [
+        "Andy"
+      ],
+      "members": [
+        {
+          "name": "Andy Richter",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "whitney-leavitt",
+      "aliases": [
+        "Whitney"
+      ],
+      "members": [
+        {
+          "name": "Whitney Leavitt",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "elaine-hendrix",
+      "aliases": [
+        "Elaine"
+      ],
+      "members": [
+        {
+          "name": "Elaine Hendrix",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Alan Bersten",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "dylan-efron",
+      "aliases": [
+        "Dylan"
+      ],
+      "members": [
+        {
+          "name": "Dylan Efron",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Daniella Karagach",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "jordan-chiles",
+      "aliases": [
+        "Jordan"
+      ],
+      "members": [
+        {
+          "name": "Jordan Chiles",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Ezra Sosa",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "alix-earle",
+      "aliases": [
+        "Alix"
+      ],
+      "members": [
+        {
+          "name": "Alix Earle",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Val Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "robert-irwin",
+      "aliases": [
+        "Robert"
+      ],
+      "members": [
+        {
+          "name": "Robert Irwin",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

@@ -60,3 +60,8 @@ Beyond the dwts-35 shape:
 - Headshots are null except judges already credited in dwts-35.json.
 - S10 and S11 week 4 gave each dance a technical and a performance score; they load
   as dance 1 and dance 2 of the same routine.
+
+The past-season files are facts read from the English Wikipedia articles
+"Dancing with the Stars (American TV series) season N" at the revision each file
+records, which are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+S34 is pinned to 1375977389, not the newer unreviewed 1376084251 (see fixtures/wiki/README.md).

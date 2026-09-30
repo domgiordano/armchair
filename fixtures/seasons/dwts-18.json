@@ -1,0 +1,2375 @@
+{
+  "show": "dwts",
+  "season": 18,
+  "year": 2014,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 18",
+  "revid": 1369970435,
+  "revTimestamp": "2026-08-18T09:04:00Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "robin-roberts",
+      "name": "Robin Roberts",
+      "aliases": [
+        "Robin Roberts"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "julianne-hough",
+      "name": "Julianne Hough",
+      "aliases": [
+        "Julianne Hough"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "donny-osmond",
+      "name": "Donny Osmond",
+      "aliases": [
+        "Donny Osmond"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "redfoo",
+      "name": "Redfoo",
+      "aliases": [
+        "Redfoo"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "ricky-martin",
+      "name": "Ricky Martin",
+      "aliases": [
+        "Ricky Martin"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "abby-lee-miller",
+      "name": "Abby Lee Miller",
+      "aliases": [
+        "Abby Lee Miller"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "kenny-ortega",
+      "name": "Kenny Ortega",
+      "aliases": [
+        "Kenny Ortega"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2014-03-17",
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "nene-leakes#1",
+        "james-maslow#1",
+        "danica-mckellar#1",
+        "sean-avery#1",
+        "billy-dee-williams#1",
+        "meryl-davis#1",
+        "candace-cameron-bure#1",
+        "cody-simpson#1",
+        "drew-carey#1",
+        "amy-purdy#1",
+        "diana-nyad#1",
+        "charlie-white#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "nene-leakes"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Give It 2 U\" — Robin Thicke, feat. Kendrick Lamar",
+          "result": null
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Story of My Life\" — One Direction",
+          "result": null
+        },
+        {
+          "contestants": [
+            "danica-mckellar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Walk Away\" — Kelly Clarkson",
+          "result": null
+        },
+        {
+          "contestants": [
+            "sean-avery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Somewhere Only We Know\" — Keane",
+          "result": null
+        },
+        {
+          "contestants": [
+            "billy-dee-williams"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Star Wars Theme/Cantina Band\" — Meco",
+          "result": null
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"All Night\" — Icona Pop",
+          "result": null
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Burn\" — Ellie Goulding",
+          "result": null
+        },
+        {
+          "contestants": [
+            "cody-simpson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Timber\" — Pitbull, feat. Kesha",
+          "result": null
+        },
+        {
+          "contestants": [
+            "drew-carey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Money (That's What I Want)\" — Barrett Strong",
+          "result": null
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Counting Stars\" — OneRepublic",
+          "result": null
+        },
+        {
+          "contestants": [
+            "diana-nyad"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Beyond the Sea\" — Bobby Darin",
+          "result": null
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Let Her Go\"—Passenger",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2014-03-24",
+      "start": null,
+      "end": null,
+      "theme": "Celebrity's Pick Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "drew-carey#1",
+        "danica-mckellar#1",
+        "billy-dee-williams#1",
+        "meryl-davis#1",
+        "candace-cameron-bure#1",
+        "amy-purdy#1",
+        "james-maslow#1",
+        "charlie-white#1",
+        "nene-leakes#1",
+        "sean-avery#1",
+        "cody-simpson#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "drew-carey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"You Can't Sit Down\" — The Dovells",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danica-mckellar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"All Nite (Don't Stop)\" — Janet Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "billy-dee-williams"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Peter Gunn\" — Henry Mancini",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Swing",
+          "song": "\"Big and Bad\" — Big Bad Voodoo Daddy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Say Something\"  —A Great Big World & Christina Aguilera",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Swing",
+          "song": "\"Swing Set\" — Jurassic 5",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Follow the Leader\" — Wisin & Yandel, feat. Jennifer Lopez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Addicted to You\" — Avicii",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nene-leakes"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Do My Thing\" — Estelle, feat. Janelle Monáe",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sean-avery"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Dance Bailalo\"  —Kat DeLuna",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "cody-simpson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Yeah 3x\" — Chris Brown",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2014-03-31",
+      "start": null,
+      "end": null,
+      "theme": "Most Memorable Year Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "robin-roberts",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "james-maslow#1",
+        "nene-leakes#1",
+        "cody-simpson#1",
+        "danica-mckellar#1",
+        "drew-carey#1",
+        "meryl-davis#1",
+        "amy-purdy#1",
+        "charlie-white#1",
+        "candace-cameron-bure#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Middle\" — Jimmy Eat World",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nene-leakes"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I Believe in You and Me\" — Whitney Houston",
+          "result": null
+        },
+        {
+          "contestants": [
+            "cody-simpson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Surfboard\" — Cody Simpson",
+          "result": null
+        },
+        {
+          "contestants": [
+            "danica-mckellar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Lullabye (Goodnight, My Angel)\" — Billy Joel",
+          "result": null
+        },
+        {
+          "contestants": [
+            "drew-carey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Fade into You\" — Sam Palladio & Clare Bowen",
+          "result": null
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"All of Me\" — John Legend",
+          "result": null
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Human\" — Christina Perri",
+          "result": null
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Happy\" — Pharrell Williams",
+          "result": null
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Blue Suede Shoes\" — Elvis Presley",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2014-04-07",
+      "start": null,
+      "end": null,
+      "theme": "Switch-Up Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "candace-cameron-bure#1",
+        "james-maslow#1",
+        "drew-carey#1",
+        "danica-mckellar#1",
+        "charlie-white#1",
+        "amy-purdy#1",
+        "cody-simpson#1",
+        "nene-leakes#1",
+        "meryl-davis#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Ballroom Blitz\" — Sweet",
+          "result": null
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Dark Horse\" — Katy Perry, feat. Juicy J",
+          "result": null
+        },
+        {
+          "contestants": [
+            "drew-carey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Sugarfoot\" — Black Joe Lewis & the Honeybears",
+          "result": null
+        },
+        {
+          "contestants": [
+            "danica-mckellar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Love Me Right!\" — The Swag Geeks, feat. Brook Penning",
+          "result": null
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            7,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Wildest Moments\" — Jessie Ware",
+          "result": null
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Brand New\" — Pharrell, feat. Justin Timberlake",
+          "result": null
+        },
+        {
+          "contestants": [
+            "cody-simpson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I'm Yours\" — Jason Mraz",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nene-leakes"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Grown Woman\" — Beyoncé",
+          "result": null
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Too Close\" — Alex Clare",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2014-04-14",
+      "start": null,
+      "end": null,
+      "theme": "Disney Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "donny-osmond",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "drew-carey#1",
+        "charlie-white#1",
+        "danica-mckellar#1",
+        "amy-purdy#1",
+        "cody-simpson#1",
+        "nene-leakes#1",
+        "james-maslow#1",
+        "meryl-davis#1",
+        "candace-cameron-bure#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "drew-carey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Friend Like Me\" — Robin Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Supercalifragilisticexpialidocious\" — Julie Andrews & Dick Van Dyke",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danica-mckellar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Be Our Guest\" — Jerry Orbach & Angela Lansbury",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"So This Is Love\" — Ilene Woods",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cody-simpson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Just Can't Wait to Be King\" — Jason Weaver, Laura Williams & Rowan Atkinson",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nene-leakes"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Cruella De Vil — Bill Lee",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Let It Go\" — Idina Menzel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Wan'na Be Like You (The Monkey Song)\" — Louis Prima",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            8,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Under the Sea\" — Samuel E. Wright",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2014-04-21",
+      "start": null,
+      "end": null,
+      "theme": "Party Anthems Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "redfoo",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "nene-leakes#1",
+        "candace-cameron-bure#1",
+        "james-maslow#1",
+        "danica-mckellar#1",
+        "meryl-davis#1",
+        "drew-carey#1",
+        "charlie-white#1",
+        "amy-purdy#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "nene-leakes"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Hot in Herre\" — Nelly",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Love It\" — Icona Pop, feat. Charli XCX",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You're the One That I Want\" — John Travolta & Olivia Newton-John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danica-mckellar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Wanna Dance with Somebody (Who Loves Me)\" — Whitney Houston",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Feel So Close\" — Calvin Harris",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "drew-carey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            9,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Super Freak\" — Rick James",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Gonna Make You Sweat (Everybody Dance Now)\" — C+C Music Factory",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Shout\" — The Isley Brothers",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2014-04-28",
+      "start": null,
+      "end": null,
+      "theme": "Latin Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "ricky-martin",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "amy-purdy#1",
+        "james-maslow#1",
+        "danica-mckellar#1",
+        "nene-leakes#1",
+        "charlie-white#1",
+        "candace-cameron-bure#1",
+        "meryl-davis#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Light My Fire\" — José Feliciano",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Gasolina\" — Daddy Yankee",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danica-mckellar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Watch Out for This (Bumaye)\" — Major Lazer, feat. Busy Signal, The Flexican & FS Green",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nene-leakes"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Can't Remember to Forget You\" — Shakira, feat. Rihanna",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            10,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Sail\" — Awolnation",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            8,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"1977\" — Ana Tijoux",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Adrenalina\" — Wisin, feat. Ricky Martin & Jennifer Lopez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charlie-white",
+            "james-maslow",
+            "nene-leakes"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 35,
+          "judges": [
+            8,
+            10,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Latin Freestyle\n(Team Vida)",
+          "song": "\"La Copa de la Vida\" — Ricky Martin",
+          "result": "\"La Copa de la Vida\" — Ricky Martin"
+        },
+        {
+          "contestants": [
+            "amy-purdy",
+            "candace-cameron-bure",
+            "danica-mckellar",
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 39,
+          "judges": [
+            10,
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Latin Freestyle\n(Team Loca)",
+          "song": "\"Livin' la Vida Loca — Ricky Martin",
+          "result": "\"Livin' la Vida Loca — Ricky Martin"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2014-05-05",
+      "start": null,
+      "end": null,
+      "theme": "Celebrity Dance Duels Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "abby-lee-miller",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "charlie-white#1",
+        "danica-mckellar#1",
+        "meryl-davis#1",
+        "candace-cameron-bure#1",
+        "james-maslow#1",
+        "amy-purdy#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"My Heart Goes Boom\" — Miss Li",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danica-mckellar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Everybody Wants to Rule the World\" — Lorde",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            8,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Read All About It (Pt. III)\" — Emeli Sandé",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"That's It, I Quit, I'm Movin' On\" — Sam Cooke",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            8,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"6'2\" — Marie Miller",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Heart Upon My Sleeve\" — Avicii",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "danica-mckellar",
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 34,
+          "judges": [
+            8,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Luh Ya Papi\" — Jennifer Lopez, feat. French Montana",
+          "result": "\"I Luh Ya Papi\" — Jennifer Lopez, feat. French Montana"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure",
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 38,
+          "judges": [
+            9,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Stay with Me\" — Sam Smith",
+          "result": "\"Stay with Me\" — Sam Smith"
+        },
+        {
+          "contestants": [
+            "amy-purdy",
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 39,
+          "judges": [
+            9,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Ain't Nothing Wrong with That\" — Robert Randolph and the Family Band",
+          "result": "\"Ain't Nothing Wrong with That\" — Robert Randolph and the Family Band"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2014-05-12",
+      "start": null,
+      "end": null,
+      "theme": "American Icons Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "kenny-ortega",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "candace-cameron-bure#1",
+        "candace-cameron-bure#2",
+        "charlie-white#1",
+        "charlie-white#2",
+        "amy-purdy#1",
+        "amy-purdy#2",
+        "james-maslow#1",
+        "james-maslow#2",
+        "meryl-davis#1",
+        "meryl-davis#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"If I Knew\" — Bruno Mars",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Nasty\" — Janet Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"New York, New York\" — Frank Sinatra",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "charlie-white"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Mo Money Mo Problems\" — The Notorious B.I.G.",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You Can't Hurry Love\" — The Supremes",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            9,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Too Darn Hot (RAC Mix)\" — Ella Fitzgerald",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Love Never Felt So Good\" — Michael Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Islands in the Stream\" — Kenny Rogers, feat. Dolly Parton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hound Dog\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Just a Fool\" — Christina Aguilera & Blake Shelton",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2014-05-19",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "james-maslow#1",
+        "james-maslow#2",
+        "meryl-davis#1",
+        "meryl-davis#2",
+        "candace-cameron-bure#1",
+        "candace-cameron-bure#2",
+        "amy-purdy#1",
+        "amy-purdy#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Adore You (Cedric Gervais Remix)\" — Miley Cyrus",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "james-maslow"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Original Don\" — Major Lazer, feat. The Partysquad",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Montserrat\" — Bajofondo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Latch (Acoustic)\" — Sam Smith",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Umbrella\" — The Baseballs",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Canned Heat\" — Jamiroquai",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Ran Kan Kan\" — Tito Puente",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Dare You\" — Hardwell",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 2,
+      "airDate": "2014-05-20",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "amy-purdy#3",
+        "candace-cameron-bure#3",
+        "meryl-davis#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "amy-purdy"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango\n& Cha-cha-cha",
+          "song": "\"Rather Be\" — Clean Bandit, feat. Jess Glynne",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "candace-cameron-bure"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep\n& Samba",
+          "song": "\"Sir Duke\" — Stevie Wonder",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "meryl-davis"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha\n& Foxtrot",
+          "song": "\"Glowing\" — Nikki Williams",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "diana-nyad",
+      "aliases": [
+        "Diana"
+      ],
+      "members": [
+        {
+          "name": "Diana Nyad",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Henry Byalikov",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "sean-avery",
+      "aliases": [
+        "Sean"
+      ],
+      "members": [
+        {
+          "name": "Sean Avery",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "billy-dee-williams",
+      "aliases": [
+        "Billy Dee"
+      ],
+      "members": [
+        {
+          "name": "Billy Dee Williams",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "cody-simpson",
+      "aliases": [
+        "Cody"
+      ],
+      "members": [
+        {
+          "name": "Cody Simpson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "drew-carey",
+      "aliases": [
+        "Drew"
+      ],
+      "members": [
+        {
+          "name": "Drew Carey",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "nene-leakes",
+      "aliases": [
+        "NeNe"
+      ],
+      "members": [
+        {
+          "name": "NeNe Leakes",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "danica-mckellar",
+      "aliases": [
+        "Danica"
+      ],
+      "members": [
+        {
+          "name": "Danica McKellar",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Valentin Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "charlie-white",
+      "aliases": [
+        "Charlie"
+      ],
+      "members": [
+        {
+          "name": "Charlie White",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sharna Burgess",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "james-maslow",
+      "aliases": [
+        "James"
+      ],
+      "members": [
+        {
+          "name": "James Maslow",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Peta Murgatroyd",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "candace-cameron-bure",
+      "aliases": [
+        "Candace"
+      ],
+      "members": [
+        {
+          "name": "Candace Cameron Bure",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "amy-purdy",
+      "aliases": [
+        "Amy"
+      ],
+      "members": [
+        {
+          "name": "Amy Purdy",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "meryl-davis",
+      "aliases": [
+        "Meryl"
+      ],
+      "members": [
+        {
+          "name": "Meryl Davis",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 2,
+      "night": 1,
+      "row": "Diana & Henry",
+      "reason": "no scores received"
+    }
+  ]
+}

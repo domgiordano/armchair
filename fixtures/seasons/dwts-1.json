@@ -1,0 +1,849 @@
+{
+  "show": "dwts",
+  "season": 1,
+  "year": 2005,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 1",
+  "revid": 1375742773,
+  "revTimestamp": "2026-09-19T19:41:48Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2005-06-01",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "joey-mcintyre#1",
+        "rachel-hunter#1",
+        "evander-holyfield#1",
+        "kelly-monaco#1",
+        "john-ohurley#1",
+        "trista-sutter#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "joey-mcintyre"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Crazy in Love\" — Beyoncé, feat. Jay-Z",
+          "result": null
+        },
+        {
+          "contestants": [
+            "rachel-hunter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Three Times A Lady\" — Commodores",
+          "result": null
+        },
+        {
+          "contestants": [
+            "evander-holyfield"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            5,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Respect\" — Aretha Franklin",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kelly-monaco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            5,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"I Have Nothing\" — Whitney Houston",
+          "result": null
+        },
+        {
+          "contestants": [
+            "john-ohurley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"September\" — Earth, Wind & Fire",
+          "result": null
+        },
+        {
+          "contestants": [
+            "trista-sutter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Come Away with Me\" — Norah Jones",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2005-06-08",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "rachel-hunter#1",
+        "joey-mcintyre#1",
+        "trista-sutter#1",
+        "john-ohurley#1",
+        "kelly-monaco#1",
+        "evander-holyfield#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "rachel-hunter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I Don't Wanna Miss a Thing\" — Aerosmith",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "joey-mcintyre"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            8,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You're The One That I Want\" — John Travolta & Olivia Newton-John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "trista-sutter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Endless Love\" — Diana Ross & Lionel Richie",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "john-ohurley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Let's Face the Music and Dance\" — Irving Berlin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kelly-monaco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            5,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Hero\" — Enrique Iglesias",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evander-holyfield"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            5,
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"It Don't Mean a Thing\" — Duke Ellington",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2005-06-15",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "evander-holyfield#1",
+        "rachel-hunter#1",
+        "kelly-monaco#1",
+        "john-ohurley#1",
+        "joey-mcintyre#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "evander-holyfield"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            5,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Reet Petite\" — Jackie Wilson",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "rachel-hunter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Toxic\" — Britney Spears",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kelly-monaco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            6,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Footloose\" — Kenny Loggins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "john-ohurley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            9,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Dance with Me\" — Debelah Morgan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-mcintyre"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I'm Still Standing\" — Elton John",
+          "result": "Bottom two"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2005-06-22",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "joey-mcintyre#1",
+        "rachel-hunter#1",
+        "john-ohurley#1",
+        "kelly-monaco#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "joey-mcintyre"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Tequila\" — The Champs",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rachel-hunter"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Soul Bossa Nova\" — Quincy Jones",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "john-ohurley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            8,
+            6
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Just The Two of Us\" — Grover Washington, Jr. & Bill Withers",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "kelly-monaco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Bailamos\" — Enrique Iglesias",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2005-06-29",
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "john-ohurley#1",
+        "john-ohurley#2",
+        "kelly-monaco#1",
+        "kelly-monaco#2",
+        "joey-mcintyre#1",
+        "joey-mcintyre#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "john-ohurley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Let There Be Love\" — Nat King Cole",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "john-ohurley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"España cañí\" — Mexicana Aleque la-Band",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kelly-monaco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Don't Know Why\" — Norah Jones",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "kelly-monaco"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Bamboleo\" — Gipsy Kings",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "joey-mcintyre"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            8,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Big Spender\" — Shirley Bassey",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "joey-mcintyre"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Eye of the Tiger\" — Survivor",
+          "result": "Eliminated"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2005-07-06",
+      "start": null,
+      "end": null,
+      "theme": "Finale",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "john-ohurley#1",
+        "john-ohurley#2",
+        "kelly-monaco#1",
+        "kelly-monaco#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "john-ohurley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Let's Face the Music and Dance\" — Irving Berlin",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "john-ohurley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"I'm So Excited\" — The Pointer Sisters",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "kelly-monaco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Bailamos\" — Enrique Iglesias",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "kelly-monaco"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Let's Get Loud\" — Jennifer Lopez",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "trista-sutter",
+      "aliases": [
+        "Trista"
+      ],
+      "members": [
+        {
+          "name": "Trista Sutter",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Louis van Amstel",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "evander-holyfield",
+      "aliases": [
+        "Evander"
+      ],
+      "members": [
+        {
+          "name": "Evander Holyfield",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "rachel-hunter",
+      "aliases": [
+        "Rachel"
+      ],
+      "members": [
+        {
+          "name": "Rachel Hunter",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jonathan Roberts",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "joey-mcintyre",
+      "aliases": [
+        "Joey"
+      ],
+      "members": [
+        {
+          "name": "Joey McIntyre",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Ashly DelGrosso",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "john-ohurley",
+      "aliases": [
+        "John"
+      ],
+      "members": [
+        {
+          "name": "John O'Hurley",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Charlotte Jørgensen",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "kelly-monaco",
+      "aliases": [
+        "Kelly"
+      ],
+      "members": [
+        {
+          "name": "Kelly Monaco",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Alec Mazo",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 4,
+      "night": 1,
+      "row": "Joey & Ashly\nJohn & Charlotte\nKelly & Alec\nRachel & Jonathan",
+      "reason": "no scores received"
+    }
+  ]
+}

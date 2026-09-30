@@ -1,0 +1,2697 @@
+{
+  "show": "dwts",
+  "season": 23,
+  "year": 2016,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 23",
+  "revid": 1372834084,
+  "revTimestamp": "2026-09-02T14:18:55Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "julianne-hough",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "julianne-hough",
+      "name": "Julianne Hough",
+      "aliases": [
+        "Julianne Hough"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "pitbull",
+      "name": "Pitbull",
+      "aliases": [
+        "Pitbull"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "idina-menzel",
+      "name": "Idina Menzel",
+      "aliases": [
+        "Idina Menzel"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2016-09-12",
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "marilu-henner#1",
+        "james-hinchcliffe#1",
+        "calvin-johnson-jr#1",
+        "maureen-mccormick#1",
+        "babyface#1",
+        "amber-rose#1",
+        "vanilla-ice#1",
+        "jana-kramer#1",
+        "jake-t-austin#1",
+        "rick-perry#1",
+        "terra-jole#1",
+        "ryan-lochte#1",
+        "laurie-hernandez#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Can't Stop Dancin'\" — Captain & Tennille",
+          "result": null
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Live Life\" — Zayde Wølf",
+          "result": null
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"That's What I Like\" — Flo Rida, feat. Fitz",
+          "result": null
+        },
+        {
+          "contestants": [
+            "maureen-mccormick"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            6,
+            5,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"(You Make Me Feel Like) A Natural Woman\" — Mary J. Blige",
+          "result": null
+        },
+        {
+          "contestants": [
+            "babyface"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"'Deed I Do\" — Ray Charles",
+          "result": null
+        },
+        {
+          "contestants": [
+            "amber-rose"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Here\" — Alessia Cara",
+          "result": null
+        },
+        {
+          "contestants": [
+            "vanilla-ice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            5,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Ice Ice Baby\" — Vanilla Ice",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            6,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Dangerous Woman\" — Ariana Grande",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jake-t-austin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            5,
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Kiss You\" — One Direction",
+          "result": null
+        },
+        {
+          "contestants": [
+            "rick-perry"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"God Blessed Texas\" — Little Texas",
+          "result": null
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Stuff Like That There\" — Betty Hutton",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Call Me Irresponsible\" — Michael Bublé",
+          "result": null
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"American Girl\" — Bonnie McKee",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2016-09-19",
+      "start": null,
+      "end": null,
+      "theme": "TV Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "maureen-mccormick#1",
+        "jana-kramer#1",
+        "rick-perry#1",
+        "calvin-johnson-jr#1",
+        "amber-rose#1",
+        "jake-t-austin#1",
+        "vanilla-ice#1",
+        "terra-jole#1",
+        "babyface#1",
+        "laurie-hernandez#1",
+        "james-hinchcliffe#1",
+        "marilu-henner#1",
+        "ryan-lochte#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "maureen-mccormick"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Brady Bunch Theme\" — Peppermint Trolley Company",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"I Don't Want to Be\" — Gavin DeGraw",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rick-perry"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            6,
+            5,
+            6,
+            5
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Green Acres Theme\" — Vic Mizzy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"As Days Go By\" — Jesse Frederick",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-rose"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Game of Thrones Theme\" — Ramin Djawadi",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jake-t-austin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Go, Diego, Go! Theme\" — George Noriega & Joel Someillan",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "vanilla-ice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            6,
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Love and Marriage\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Bewitched Theme\" — Howard Greenfield & Jack Keller",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "babyface"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            8,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"The X-Files\" — Mark Snow",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"DuckTales Theme\" — Mark Mueller",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Walking Dead Theme\"—Bear McCreary",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Angela\" — Bob James",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Muppet Show Theme\" — Jim Henson & Sam Pottle",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2016-09-26",
+      "start": null,
+      "end": null,
+      "theme": "Face-off Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "babyface#1",
+        "jana-kramer#1",
+        "rick-perry#1",
+        "vanilla-ice#1",
+        "james-hinchcliffe#1",
+        "ryan-lochte#1",
+        "terra-jole#1",
+        "calvin-johnson-jr#1",
+        "amber-rose#1",
+        "maureen-mccormick#1",
+        "laurie-hernandez#1",
+        "marilu-henner#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "babyface"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Great Gosh A'Mighty\" — Little Richard",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            6,
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Too Many Fish in the Sea\" — Bette Midler",
+          "result": "Immunity"
+        },
+        {
+          "contestants": [
+            "rick-perry"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            6,
+            5,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Tamacun\" — Rodrigo y Gabriela",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "vanilla-ice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            6,
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Save Tonight\" — Zayde Wølf",
+          "result": "Immunity"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Big Trouble\" — Outasight",
+          "result": "Immunity"
+        },
+        {
+          "contestants": [
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            6,
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"If It Ain't Love\" — Jason Derulo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            8,
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Iris\" — Goo Goo Dolls",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Woman's World\" — BJ the Chicago Kid",
+          "result": "Immunity"
+        },
+        {
+          "contestants": [
+            "amber-rose"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Booty\" — Jennifer Lopez, feat. Iggy Azalea",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "maureen-mccormick"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Tres Deseos\" — Gloria Estefan",
+          "result": "Immunity"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            7,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Into the Sunset (Headhunterz radio edit)\" — Crystal Lake, feat. Kifi",
+          "result": "Immunity"
+        },
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Battle Cry\" — Imagine Dragons",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2016-10-03",
+      "start": null,
+      "end": null,
+      "theme": "Cirque du Soleil Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "calvin-johnson-jr#1",
+        "maureen-mccormick#1",
+        "jana-kramer#1",
+        "marilu-henner#1",
+        "amber-rose#1",
+        "ryan-lochte#1",
+        "babyface#1",
+        "terra-jole#1",
+        "laurie-hernandez#1",
+        "vanilla-ice#1",
+        "james-hinchcliffe#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Bella Donna Twist\" — Raphaël Beau",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "maureen-mccormick"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"High Bar/Taiko\" — Benoît Jutras",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Here Comes the Sun\" — The Beatles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Battlefield\" — René Dupéré",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-rose"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Tickle Tango\" — Simon Carpentier",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Jeux d'Eau\" — Benoît Jutras",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "babyface"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Come Together\" — The Beatles",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Tzelma\" — Benoît Jutras",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"The Way You Make Me Feel\" — Michael Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vanilla-ice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"La Nouba\" — Benoît Jutras",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Hollywood Wiz\" — Guy Dubuc & Marc Lessard",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2016-10-10",
+      "start": null,
+      "end": null,
+      "theme": "Most Memorable Year Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "maureen-mccormick#1",
+        "calvin-johnson-jr#1",
+        "jana-kramer#1",
+        "ryan-lochte#1",
+        "laurie-hernandez#1",
+        "marilu-henner#1",
+        "amber-rose#1",
+        "james-hinchcliffe#1",
+        "terra-jole#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "maureen-mccormick"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"From the Ground Up\" — Dan + Shay",
+          "result": null
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Ain't No Mountain High Enough\" — Marvin Gaye & Tammi Terrell",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"In My Daughter's Eyes\" — Martina McBride",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"A Song for You\" — Leon Russell",
+          "result": null
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Rise\" — Katy Perry",
+          "result": null
+        },
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Surprise Yourself\" — Jack Garratt",
+          "result": null
+        },
+        {
+          "contestants": [
+            "amber-rose"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Woman Up\" — Meghan Trainor",
+          "result": null
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Right Time\" — Yves V, feat. Mike James",
+          "result": null
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Stand by Me\" — Florence + The Machine",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2016-10-17",
+      "start": null,
+      "end": null,
+      "theme": "Latin Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "pitbull",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "ryan-lochte#1",
+        "terra-jole#1",
+        "amber-rose#1",
+        "james-hinchcliffe#1",
+        "marilu-henner#1",
+        "jana-kramer#1",
+        "maureen-mccormick#1",
+        "calvin-johnson-jr#1",
+        "laurie-hernandez#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"La Negra Tiene Tumbao\" — Celia Cruz",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Don't Let Me Be Misunderstood\" — Santa Esmeralda",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-rose"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Bla Bla Bla Cha Cha Cha\" — Petty Booka",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Need the Sun to Break\" — James Bay",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Echa pa'lante\" — Thalía",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Hands to Myself\" — Selena Gomez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "maureen-mccormick"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Mas que Nada\" — Sérgio Mendes, feat. The Black Eyed Peas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Hotel California\" — Eagles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Light It Up\" — Major Lazer, feat. Nyla & Fuse ODG",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2016-10-24",
+      "start": null,
+      "end": null,
+      "theme": "Eras Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "laurie-hernandez#1",
+        "ryan-lochte#1",
+        "marilu-henner#1",
+        "calvin-johnson-jr#1",
+        "maureen-mccormick#1",
+        "terra-jole#1",
+        "jana-kramer#1",
+        "james-hinchcliffe#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"One Fine Day\" — The Chiffons",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I Don't Want to Miss a Thing\" — Aerosmith",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Never Forget You\" — Postmodern Jukebox, feat. Addie Hamilton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Good Golly, Miss Molly\" — Little Richard",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "maureen-mccormick"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"You Give Love a Bad Name\" — Bon Jovi",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Cheek to Cheek\" — Ella Fitzgerald & Louis Armstrong",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Get Down Tonight\" — KC and the Sunshine Band",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jitterbug",
+          "song": "\"In the Mood\" — Glenn Miller",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr",
+            "james-hinchcliffe",
+            "maureen-mccormick",
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Past)",
+          "song": "\"The Skye Boat Song\" — Raya Yarbrough",
+          "result": "\"The Skye Boat Song\" — Raya Yarbrough"
+        },
+        {
+          "contestants": [
+            "jana-kramer",
+            "laurie-hernandez",
+            "marilu-henner",
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 35,
+          "judges": [
+            8,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Future)",
+          "song": "\"Embrace\" — Armin van Buuren, feat. Eric Vloeimans",
+          "result": "\"Embrace\" — Armin van Buuren, feat. Eric Vloeimans"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2016-10-31",
+      "start": null,
+      "end": null,
+      "theme": "Halloween Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "terra-jole#1",
+        "laurie-hernandez#1",
+        "marilu-henner#1",
+        "calvin-johnson-jr#1",
+        "ryan-lochte#1",
+        "jana-kramer#1",
+        "james-hinchcliffe#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Day-O (The Banana Boat Song)\" — Harry Belafonte",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Pure Imagination\" — Jane Monheit",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Sweet Dreams (Are Made of This)\" — Emily Browning",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Dr. Bones\" — Cherry Poppin' Daddies",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ryan-lochte"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Howlin' for You\" — The Black Keys",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Little Shop of Horrors\" — Alan Menken",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"You Don't Own Me\" — Grace, feat. G-Eazy",
+          "result": "Immunity"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2016-11-07",
+      "start": null,
+      "end": null,
+      "theme": "Showstoppers Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "idina-menzel",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "marilu-henner#1",
+        "calvin-johnson-jr#1",
+        "james-hinchcliffe#1",
+        "terra-jole#1",
+        "jana-kramer#1",
+        "laurie-hernandez#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "marilu-henner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"December, 1963 (Oh, What a Night)\" — The Four Seasons",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Memory\" — Leona Lewis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"A Brand New Day\" — Luther Vandross",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"If My Friends Could See Me Now\" — Cy Coleman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"She Used to Be Mine\" — Sara Bareilles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Cell Block Tango\" — Kander and Ebb",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe",
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"No Good\" — Kaleo",
+          "result": "\"No Good\" — Kaleo"
+        },
+        {
+          "contestants": [
+            "marilu-henner",
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Big Noise from Winnetka\" — Bette Midler",
+          "result": "\"Big Noise from Winnetka\" — Bette Midler"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez",
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Bird Set Free\" — Sia",
+          "result": "\"Bird Set Free\" — Sia"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2016-11-14",
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "james-hinchcliffe#1",
+        "james-hinchcliffe#2",
+        "terra-jole#1",
+        "terra-jole#2",
+        "jana-kramer#1",
+        "jana-kramer#2",
+        "calvin-johnson-jr#1",
+        "calvin-johnson-jr#2",
+        "laurie-hernandez#1",
+        "laurie-hernandez#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Santa María (del Buen Ayre)\" — Gotan Project",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Gimme Some Lovin'\" — The Spencer Davis Group",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Scars to Your Beautiful\" — Alessia Cara",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "terra-jole"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Hideaway\" — Kiesza",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Go Mama\" — Wayne Beckford",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Kill of the Night\" — Gin Wigmore",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Seven Nation Army\" — The White Stripes",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Limbo\" — Daddy Yankee",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Hollow\" — Tori Kelly",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Magalenha\"  —Sérgio Mendes, feat. Carlinhos Brown",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 11,
+      "night": 1,
+      "airDate": "2016-11-21",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "calvin-johnson-jr#1",
+        "calvin-johnson-jr#2",
+        "jana-kramer#1",
+        "jana-kramer#2",
+        "laurie-hernandez#1",
+        "laurie-hernandez#2",
+        "james-hinchcliffe#1",
+        "james-hinchcliffe#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            8,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Am Your Man\" — Ryan Shaw",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"I Want You Back\" — The Jackson 5\n\"Please Mr. Postman\" — The Marvelettes",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            8,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Stay the Night\" — Zedd, feat. Hayley Williams",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jana-kramer"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Unstoppable\" — Sia",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Wicked Ones\" — Dorothy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Brand New\" — Ben Rector",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"It Had to Be You\" — Harry Connick Jr.",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Beethoven's 5 Secrets\" — The Piano Guys",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 12,
+      "week": 11,
+      "night": 2,
+      "airDate": "2016-11-22",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "james-hinchcliffe#3",
+        "calvin-johnson-jr#3",
+        "laurie-hernandez#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "james-hinchcliffe"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot &\nViennese waltz",
+          "song": "\"Over and Over Again\" — Nathan Sykes, feat. Ariana Grande",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "calvin-johnson-jr"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive &\nQuickstep",
+          "song": "\"Tutti Frutti\" — Little Richard",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "laurie-hernandez"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango\n& Foxtrot",
+          "song": "\"We Are the Ones\" — Myon",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "jake-t-austin",
+      "aliases": [
+        "Jake"
+      ],
+      "members": [
+        {
+          "name": "Jake T. Austin",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jenna Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "rick-perry",
+      "aliases": [
+        "Rick"
+      ],
+      "members": [
+        {
+          "name": "Rick Perry",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "babyface",
+      "aliases": [
+        "Babyface"
+      ],
+      "members": [
+        {
+          "name": "Babyface",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Allison Holker",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "vanilla-ice",
+      "aliases": [
+        "Vanilla Ice"
+      ],
+      "members": [
+        {
+          "name": "Vanilla Ice",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "amber-rose",
+      "aliases": [
+        "Amber"
+      ],
+      "members": [
+        {
+          "name": "Amber Rose",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "maureen-mccormick",
+      "aliases": [
+        "Maureen"
+      ],
+      "members": [
+        {
+          "name": "Maureen McCormick",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Artem Chigvintsev",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "ryan-lochte",
+      "aliases": [
+        "Ryan"
+      ],
+      "members": [
+        {
+          "name": "Ryan Lochte",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "marilu-henner",
+      "aliases": [
+        "Marilu"
+      ],
+      "members": [
+        {
+          "name": "Marilu Henner",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "terra-jole",
+      "aliases": [
+        "Terra"
+      ],
+      "members": [
+        {
+          "name": "Terra Jolé",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sasha Farber",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "jana-kramer",
+      "aliases": [
+        "Jana"
+      ],
+      "members": [
+        {
+          "name": "Jana Kramer",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Gleb Savchenko",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 11
+    },
+    {
+      "id": "calvin-johnson-jr",
+      "aliases": [
+        "Calvin"
+      ],
+      "members": [
+        {
+          "name": "Calvin Johnson Jr.",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Lindsay Arnold",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "james-hinchcliffe",
+      "aliases": [
+        "James"
+      ],
+      "members": [
+        {
+          "name": "James Hinchcliffe",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sharna Burgess",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "laurie-hernandez",
+      "aliases": [
+        "Laurie"
+      ],
+      "members": [
+        {
+          "name": "Laurie Hernandez",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Valentin Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

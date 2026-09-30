@@ -1,0 +1,2131 @@
+{
+  "show": "dwts",
+  "season": 12,
+  "year": 2011,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 12",
+  "revid": 1372835689,
+  "revTimestamp": "2026-09-02T14:29:14Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "donnie-burns",
+      "name": "Donnie Burns",
+      "aliases": [
+        "Donnie Burns"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "chelsea-kane#1",
+        "wendy-williams#1",
+        "hines-ward#1",
+        "petra-nemcova#1",
+        "romeo#1",
+        "sugar-ray-leonard#1",
+        "kendra-wilkinson#1",
+        "ralph-macchio#1",
+        "chris-jericho#1",
+        "mike-catherwood#1",
+        "kirstie-alley#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"King of Anything\" — Sara Bareilles",
+          "result": null
+        },
+        {
+          "contestants": [
+            "wendy-williams"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            5,
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I'm Every Woman\" — Chaka Khan",
+          "result": null
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Club Can't Handle Me\" — Flo Rida, feat. David Guetta",
+          "result": null
+        },
+        {
+          "contestants": [
+            "petra-nemcova"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Don't Know Why\" — Norah Jones",
+          "result": null
+        },
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Romeo\" — Basement Jaxx",
+          "result": null
+        },
+        {
+          "contestants": [
+            "sugar-ray-leonard"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The Power of Love\" — Huey Lewis & the News",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kendra-wilkinson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"When Love Takes Over\" — David Guetta, feat. Kelly Rowland",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Ain't That a Kick in the Head?\" — Dean Martin",
+          "result": null
+        },
+        {
+          "contestants": [
+            "chris-jericho"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Should I Stay or Should I Go\" — The Clash",
+          "result": null
+        },
+        {
+          "contestants": [
+            "mike-catherwood"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            5,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Cooler Than Me\" — Mike Posner",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Forget You\" — Cee Lo Green",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "First Elimination",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "sugar-ray-leonard#1",
+        "kendra-wilkinson#1",
+        "chelsea-kane#1",
+        "chris-jericho#1",
+        "petra-nemcova#1",
+        "kirstie-alley#1",
+        "mike-catherwood#1",
+        "romeo#1",
+        "wendy-williams#1",
+        "ralph-macchio#1",
+        "hines-ward#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "sugar-ray-leonard"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Sweet Soul Music\" — Arthur Conley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kendra-wilkinson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Gotta Work\" — Amerie",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            5,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I Write Sins Not Tragedies\" — Panic! at the Disco",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chris-jericho"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"I Got Rhythm\" — Judy Garland",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "petra-nemcova"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Crazy Little Thing Called Love\" — Queen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Black Horse and the Cherry Tree\" — KT Tunstall",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mike-catherwood"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Boys Are Back in Town\" — Thin Lizzy",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You're the One That I Want\" — John Travolta & Olivia Newton-John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wendy-williams"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Do Your Thing\" — Basement Jaxx",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Nobody But Me\" — The Human Beinz",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Part-Time Lover\" — Stevie Wonder",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "Personal Story Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "wendy-williams#1",
+        "chelsea-kane#1",
+        "chris-jericho#1",
+        "kendra-wilkinson#1",
+        "romeo#1",
+        "hines-ward#1",
+        "petra-nemcova#1",
+        "sugar-ray-leonard#1",
+        "kirstie-alley#1",
+        "ralph-macchio#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "wendy-williams"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Last Night a D.J. Saved My Life\" — Indeep",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Chelsea\" — The Summer Set",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chris-jericho"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Let It Be\" — The Beatles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kendra-wilkinson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"You and Me\" — Musiq Soulchild",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I'll Be There\" — The Jackson 5",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Fantasy\" — Earth, Wind and Fire",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "petra-nemcova"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"You Raise Me Up\" — Josh Groban",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sugar-ray-leonard"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"My Prerogative\" — Bobby Brown",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Over the Rainbow\" — Israel Kamakawiwo'ole",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Stay Gold\" — Stevie Wonder",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "Classical Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "romeo#1",
+        "kendra-wilkinson#1",
+        "sugar-ray-leonard#1",
+        "petra-nemcova#1",
+        "ralph-macchio#1",
+        "hines-ward#1",
+        "chelsea-kane#1",
+        "chris-jericho#1",
+        "kirstie-alley#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Palladio\" — Karl Jenkins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kendra-wilkinson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Con te partirò (Time to Say Goodbye)\" — Katherine Jenkins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sugar-ray-leonard"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Waltz of the Flowers\" — Pyotr Ilyich Tchaikovsky",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "petra-nemcova"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"March of the Toreadors\" — Georges Bizet",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Romeo and Juliet\" — Nino Rota",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Explosive / Adagio for Strings\" — Bond",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Hedwig's Theme\" — John Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chris-jericho"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"I Dovregubbens Hall\" — Edvard Grieg",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"The Flower Duet\" — Katherine Jenkins",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "American Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "ralph-macchio#1",
+        "chris-jericho#1",
+        "petra-nemcova#1",
+        "romeo#1",
+        "hines-ward#1",
+        "kirstie-alley#1",
+        "kendra-wilkinson#1",
+        "chelsea-kane#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Sweet Home Alabama\" — Lynyrd Skynyrd",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chris-jericho"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"America the Beautiful\" — Whitney Houston",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "petra-nemcova"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Viva Las Vegas\" — Elvis Presley",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"New York, New York\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"God Bless The USA\" — Lee Greenwood",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"American Woman\" — The Guess Who",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kendra-wilkinson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Yankee Doodle Dandy(The Yankee Doodle Boy)\" — James Cagney",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Party in the U.S.A.\" — Miley Cyrus",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "Guilty Pleasure Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "kirstie-alley#1",
+        "chris-jericho#1",
+        "romeo#1",
+        "chelsea-kane#1",
+        "kendra-wilkinson#1",
+        "hines-ward#1",
+        "ralph-macchio#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Baby One More Time\" — Britney Spears",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chris-jericho"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Don't Stop Believin'\" — Journey",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"My Heart Will Go On\" — Celine Dion",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Walking on Sunshine\" — Katrina and the Waves",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kendra-wilkinson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Livin' la Vida Loca\" — Ricky Martin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"End of the Road\" — Boyz II Men",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Gonna Make You Sweat (Everybody Dance Now)\" — C+C Music Factory",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "Ballroom Greats Week",
+      "panel": [
+        "donnie-burns",
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "chelsea-kane#1",
+        "kendra-wilkinson#1",
+        "kirstie-alley#1",
+        "ralph-macchio#1",
+        "hines-ward#1",
+        "romeo#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chelsea-kane",
+            "ralph-macchio",
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 30,
+          "judges": [
+            8,
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Team\nCha-cha-cha",
+          "song": "\"Born This Way\" — Lady Gaga",
+          "result": "\"Born This Way\" — Lady Gaga"
+        },
+        {
+          "contestants": [
+            "hines-ward",
+            "kendra-wilkinson",
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 30,
+          "judges": [
+            7,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Team\nCha-cha-cha",
+          "song": "\"We R Who We R\" — Ke$ha",
+          "result": "\"We R Who We R\" — Ke$ha"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Ghosts 'N Stuff\" — Deadmau5, feat. Rob Swire",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kendra-wilkinson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Jalousie\" — Billy Fury",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            9,
+            7,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"La Bamba\" — Ritchie Valens",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            10,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Pencil Full Of Lead\" — Paolo Nutini",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            8,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Tango Misterioso\" — Pedro Gomez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Say Hey (I Love You)\" — Michael Franti & Spearhead",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "Instant Choreography Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "chelsea-kane#1",
+        "chelsea-kane#2",
+        "hines-ward#1",
+        "hines-ward#2",
+        "romeo#1",
+        "romeo#2",
+        "ralph-macchio#1",
+        "ralph-macchio#2",
+        "kirstie-alley#1",
+        "kirstie-alley#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"My Love\" — Sia",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Instant Salsa",
+          "song": "\"Get Busy\" — Sean Paul",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"This Will Be (An Everlasting Love)\" — Natalie Cole",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Instant Jive",
+          "song": "\"Chantilly Lace\" — Jerry Lee Lewis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Hold It Against Me\" — Britney Spears",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "romeo"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Instant Salsa",
+          "song": "\"Tequila\" — Xavier Cugat",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Maybe I Maybe You\" — Scorpions",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Instant Cha-cha-cha",
+          "song": "\"Stuck in the Middle With You\" — Stealers Wheel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Cité Tango\" — Ástor Piazzolla",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Instant Salsa",
+          "song": "\"Cobrastyle\" — Teddybears, feat. Mad Cobra",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "ralph-macchio#1",
+        "ralph-macchio#2",
+        "kirstie-alley#1",
+        "kirstie-alley#2",
+        "chelsea-kane#1",
+        "chelsea-kane#2",
+        "hines-ward#1",
+        "hines-ward#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Violentango\" — Astor Piazzolla",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "ralph-macchio"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"I Know You Want Me (Calle Ocho)\" — Pitbull",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"One and Only\" — Adele",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"White Room\" — Cream",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Assassin’s Tango\" — John Powell",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Eyes On Fire\" — Blue Foundation",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Perhaps, Perhaps, Perhaps\" — Doris Day",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Hello\" — The Cat Empire",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "chelsea-kane#1",
+        "chelsea-kane#2",
+        "kirstie-alley#1",
+        "kirstie-alley#2",
+        "hines-ward#1",
+        "hines-ward#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Hip Hip Chin Chin\" — Club des Belugas",
+          "result": null
+        },
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Latinos\" — Proyecto Uno",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Magalenha\" — Sérgio Mendes, feat. Carlinhos Brown",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Perfect\" — Pink",
+          "result": null
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Puttin' On The Ritz\" — Irving Berlin",
+          "result": null
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Dancing Machine\" & \"I Want You Back\" — The Jackson 5",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 2,
+      "airDate": null,
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "chelsea-kane#3",
+        "kirstie-alley#3",
+        "hines-ward#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chelsea-kane"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Hedwig's Theme\" — John Williams",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "kirstie-alley"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Forget You\" — Cee Lo Green",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "hines-ward"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Fantasy\" — Earth, Wind, and Fire",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "mike-catherwood",
+      "aliases": [
+        "Mike"
+      ],
+      "members": [
+        {
+          "name": "Mike Catherwood",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Lacey Schwimmer",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "wendy-williams",
+      "aliases": [
+        "Wendy"
+      ],
+      "members": [
+        {
+          "name": "Wendy Williams",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "sugar-ray-leonard",
+      "aliases": [
+        "Sugar Ray"
+      ],
+      "members": [
+        {
+          "name": "Sugar Ray Leonard",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Anna Trebunskaya",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "petra-nemcova",
+      "aliases": [
+        "Petra"
+      ],
+      "members": [
+        {
+          "name": "Petra Němcová",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Dmitry Chaplin",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "chris-jericho",
+      "aliases": [
+        "Chris"
+      ],
+      "members": [
+        {
+          "name": "Chris Jericho",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "kendra-wilkinson",
+      "aliases": [
+        "Kendra"
+      ],
+      "members": [
+        {
+          "name": "Kendra Wilkinson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Louis van Amstel",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "romeo",
+      "aliases": [
+        "Romeo"
+      ],
+      "members": [
+        {
+          "name": "Romeo",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Chelsie Hightower",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "ralph-macchio",
+      "aliases": [
+        "Ralph"
+      ],
+      "members": [
+        {
+          "name": "Ralph Macchio",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "chelsea-kane",
+      "aliases": [
+        "Chelsea"
+      ],
+      "members": [
+        {
+          "name": "Chelsea Kane",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "kirstie-alley",
+      "aliases": [
+        "Kirstie"
+      ],
+      "members": [
+        {
+          "name": "Kirstie Alley",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "hines-ward",
+      "aliases": [
+        "Hines"
+      ],
+      "members": [
+        {
+          "name": "Hines Ward",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Kym Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

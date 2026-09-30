@@ -1,0 +1,2754 @@
+{
+  "show": "dwts",
+  "season": 19,
+  "year": 2014,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 19",
+  "revid": 1372837530,
+  "revTimestamp": "2026-09-02T14:41:26Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "julianne-hough",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "julianne-hough",
+      "name": "Julianne Hough",
+      "aliases": [
+        "Julianne Hough"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "kevin-hart",
+      "name": "Kevin Hart",
+      "aliases": [
+        "Kevin Hart"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "americas-score",
+      "name": "America's Score",
+      "aliases": [
+        "America's Score"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "jessie-j",
+      "name": "Jessie J",
+      "aliases": [
+        "Jessie J"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "pitbull",
+      "name": "Pitbull",
+      "aliases": [
+        "Pitbull"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2014-09-15",
+      "start": null,
+      "end": null,
+      "theme": "Premiere Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "antonio-sabato-jr#1",
+        "lea-thompson#1",
+        "janel-parrish#1",
+        "lolo-jones#1",
+        "betsey-johnson#1",
+        "tavis-smiley#1",
+        "sadie-robertson#1",
+        "michael-waltrip#1",
+        "jonathan-bennett#1",
+        "tommy-chong#1",
+        "randy-couture#1",
+        "bethany-mota#1",
+        "alfonso-ribeiro#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "antonio-sabato-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            6,
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Tonight (I'm Lovin' You)\" — Enrique Iglesias, feat. Ludacris & DJ Frank E",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"This Will Be (An Everlasting Love)\" — Natalie Cole",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Bang Bang\" — Jessie J, Ariana Grande & Nicki Minaj",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lolo-jones"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            6,
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Tell Her\" — Rizzle Kicks",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "betsey-johnson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Material Girl\" — Madonna",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "tavis-smiley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Pride and Joy\" — Marvin Gaye",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Birthday\" — Katy Perry",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Born to Be Wild\" — Steppenwolf",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jonathan-bennett"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            8,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Dance with Me Tonight\" — Olly Murs",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Drop It Like It's Hot\" — Snoop Dogg, feat. Pharrell",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "randy-couture"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The Way You Look Tonight\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Shake It Off\" — Taylor Swift",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"3-6-9\" — Cupid, feat. B.o.B",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2014-09-22",
+      "start": null,
+      "end": null,
+      "theme": "My Jam Monday",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "randy-couture#1",
+        "janel-parrish#1",
+        "lea-thompson#1",
+        "michael-waltrip#1",
+        "tavis-smiley#1",
+        "alfonso-ribeiro#1",
+        "bethany-mota#1",
+        "betsey-johnson#1",
+        "antonio-sabato-jr#1",
+        "tommy-chong#1",
+        "jonathan-bennett#1",
+        "sadie-robertson#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "randy-couture"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"(I Can't Get No) Satisfaction\" — Otis Redding",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Call Me Maybe\" — Carly Rae Jepsen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Land of a Thousand Dances\" — Wilson Pickett",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Girls in Bikinis\" — Lee Brice",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tavis-smiley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Boogie Wonderland\" — Earth, Wind & Fire",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Gettin' Jiggy wit It\" — Will Smith",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"All About That Bass\" — Meghan Trainor",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "betsey-johnson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Girls Just Want to Have Fun\" — Cyndi Lauper",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-sabato-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Adorn\" — Miguel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Higher\" — Gloria Estefan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jonathan-bennett"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Sing\" — Ed Sheeran",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"She's Country\" — Jason Aldean",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2014-09-29",
+      "start": null,
+      "end": null,
+      "theme": "Movie Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "kevin-hart",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "randy-couture#1",
+        "alfonso-ribeiro#1",
+        "betsey-johnson#1",
+        "lea-thompson#1",
+        "michael-waltrip#1",
+        "antonio-sabato-jr#1",
+        "sadie-robertson#1",
+        "jonathan-bennett#1",
+        "janel-parrish#1",
+        "tommy-chong#1",
+        "bethany-mota#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "randy-couture"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Eye of the Tiger\" — Survivor",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hey Goldmember\" — Beyoncé, feat. Devin & Solange",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "betsey-johnson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            9,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Unchained Melody\" — The Righteous Brothers",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            7,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"The Power of Love\" — Huey Lewis and the News",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"(Everything I Do) I Do It for You\" — Bryan Adams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-sabato-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Ain't No Mountain High Enough\" — Marvin Gaye & Tammi Terrell",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Married Life\" — Michael Giacchino",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jonathan-bennett"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Back to Black\" — Beyoncé & André 3000",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"America\" — Leonard Bernstein",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            10,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Por una Cabeza\" — The Tango Project",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Singin' in the Rain\" — Gene Kelly",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2014-10-06",
+      "start": null,
+      "end": null,
+      "theme": "Most Memorable Year Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "julianne-hough",
+        "bruno-tonioli",
+        "americas-score"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "janel-parrish#1",
+        "jonathan-bennett#1",
+        "betsey-johnson#1",
+        "bethany-mota#1",
+        "michael-waltrip#1",
+        "lea-thompson#1",
+        "antonio-sabato-jr#1",
+        "tommy-chong#1",
+        "sadie-robertson#1",
+        "alfonso-ribeiro#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"How Will I Know\" — Sam Smith",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jonathan-bennett"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Milkshake\" — Kelis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "betsey-johnson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            8,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Love Will Keep Us Together\" — Captain & Tennille",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Try\" — Colbie Caillat",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            6,
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Giving It Up for Your Love\" — Delbert McClinton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Dance with My Father\" — Luther Vandross",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-sabato-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Love Will Never Do (Without You)\" — Janet Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Jailhouse Rock\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Hunter\" — Pharrell Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"It's Not Unusual\" — Tom Jones",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2014-10-13",
+      "start": null,
+      "end": null,
+      "theme": "Switch-Up Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "jessie-j",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "antonio-sabato-jr#1",
+        "bethany-mota#1",
+        "jonathan-bennett#1",
+        "alfonso-ribeiro#1",
+        "janel-parrish#1",
+        "michael-waltrip#1",
+        "tommy-chong#1",
+        "sadie-robertson#1",
+        "lea-thompson#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "antonio-sabato-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            8,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Bollywood",
+          "song": "\"One Two Three Four (Get On The Dance Floor)\" — Vishal Dadlani, Hamsika Iyer & Sricharan",
+          "result": null
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Hip-hop",
+          "song": "\"She Came to Give It to You\"  —Usher, feat. Nicki Minaj",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jonathan-bennett"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jitterbug",
+          "song": "\"Rock This Town\" — Joey Fatone",
+          "result": null
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Flamenco",
+          "song": "\"Angelica\" — Hans Zimmer",
+          "result": null
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Burlesque",
+          "song": "\"Mamma Knows Best\" — Jessie J",
+          "result": null
+        },
+        {
+          "contestants": [
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Disco",
+          "song": "\"Car Wash\" — Rose Royce",
+          "result": null
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            6,
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Pass the Dutchie\" — Musical Youth",
+          "result": null
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Crazy Stupid Love\" — Cheryl, feat. Tinie Tempah",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Broadway",
+          "song": "\"You Can't Stop the Beat\" — from Hairspray",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2014-10-20",
+      "start": null,
+      "end": null,
+      "theme": "Pitbull Joins the Party",
+      "panel": [
+        "carrie-ann-inaba",
+        "pitbull",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jonathan-bennett#1",
+        "janel-parrish#1",
+        "tommy-chong#1",
+        "antonio-sabato-jr#1",
+        "sadie-robertson#1",
+        "lea-thompson#1",
+        "michael-waltrip#1",
+        "bethany-mota#1",
+        "alfonso-ribeiro#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jonathan-bennett"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Back in Time\" — Pitbull",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            7,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"La Vida Es Un Carnaval\" — Celia Cruz",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"September\" — Earth, Wind & Fire",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-sabato-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Bailando\" — Enrique Iglesias, feat. Gente de Zona, Descemer Bueno & Sean Paul",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            10,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Diamonds\" — Rihanna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Sexy People (The Fiat Song)\" — Arianna, feat. Pitbull",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            8,
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Give Me Everything\" — Ray Chew",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Jealous (I Ain't with It)\" — Chromeo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Booty\" — Jennifer Lopez, feat. Pitbull",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2014-10-27",
+      "start": null,
+      "end": null,
+      "theme": "Halloween Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "tommy-chong#1",
+        "lea-thompson#1",
+        "bethany-mota#1",
+        "antonio-sabato-jr#1",
+        "michael-waltrip#1",
+        "janel-parrish#1",
+        "alfonso-ribeiro#1",
+        "sadie-robertson#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"That Old Black Magic\" — Louis Prima & Keely Smith",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Necessary Evil\" — Nikki Yanofsky",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Run Boy Run\" — Woodkid",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-sabato-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            6,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Put a Spell on You\" — Nina Simone",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Devil Went Down to Georgia\" — Charlie Daniels Band",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Secret\" — The Pierces",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Ghost\" — Ella Henderson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Come with Me Now\" — Kongos",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota",
+            "janel-parrish",
+            "lea-thompson",
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team \"Itsy Bitsy\")",
+          "song": "\"Black Widow\" — Iggy Azalea, feat. Rita Ora",
+          "result": "\"Black Widow\" — Iggy Azalea, feat. Rita Ora"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro",
+            "antonio-sabato-jr",
+            "sadie-robertson",
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team \"Creepy\")",
+          "song": "\"Time Warp\" — from Glee",
+          "result": "\"Time Warp\" — from Glee"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2014-11-03",
+      "start": null,
+      "end": null,
+      "theme": "Dynamic Duos Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "lea-thompson#1",
+        "michael-waltrip#1",
+        "janel-parrish#1",
+        "tommy-chong#1",
+        "sadie-robertson#1",
+        "alfonso-ribeiro#1",
+        "bethany-mota#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Somethin' Bad\" — Miranda Lambert & Carrie Underwood",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "michael-waltrip"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            6,
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"You'll Be in My Heart\" — Phil Collins",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Everybody's Free (To Feel Good)\" — Quindon Tarver",
+          "result": "Immunity"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            6,
+            7,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Ring of Fire\" — Johnny Cash",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Uninvited\" — BC Jean",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Trust\" — Prince",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Babalu\" — Desi Arnaz",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2014-11-10",
+      "start": null,
+      "end": null,
+      "theme": "America's Choice Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "alfonso-ribeiro#1",
+        "alfonso-ribeiro#2",
+        "tommy-chong#1",
+        "tommy-chong#2",
+        "lea-thompson#1",
+        "lea-thompson#2",
+        "bethany-mota#1",
+        "bethany-mota#2",
+        "sadie-robertson#1",
+        "sadie-robertson#2",
+        "janel-parrish#1",
+        "janel-parrish#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Ain't That a Kick in the Head?\" — Robbie Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Turn Down for What\" — DJ Snake & Lil Jon",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Trouble\" — Ray LaMontagne",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Talk Dirty\" — Jason Derulo, feat. 2 Chainz",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Animals\" — Maroon 5",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "lea-thompson"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Black Betty\" — Ram Jam",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Say You Love Me\" — Jessie Ware",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Jungle\" — X Ambassadors & Jamie N Commons, feat. Jay-Z",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"1, 2, 3 Turnaround\" — Christian TV",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Can't Take My Eyes Off You\" — Frankie Valli",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hey Boy! Hey Girl!\" — Louis Prima & Keely Smith",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Morning Drums\" — Gregor Salto",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2014-11-11",
+      "start": null,
+      "end": null,
+      "theme": "Plugged/Unplugged Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "sadie-robertson#1",
+        "sadie-robertson#2",
+        "tommy-chong#1",
+        "tommy-chong#2",
+        "bethany-mota#1",
+        "bethany-mota#2",
+        "janel-parrish#1",
+        "janel-parrish#2",
+        "alfonso-ribeiro#1",
+        "alfonso-ribeiro#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Problem\"  —Ariana Grande, feat. Iggy Azalea",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Problem\"  —Ariana Grande, feat. Iggy Azalea",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Tainted Love\" — Soft Cell",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "tommy-chong"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Tainted Love\" — Soft Cell",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Want You Back\" — The Jackson 5",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"I Want You Back\" — The Jackson 5",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Blame\" — Calvin Harris, feat. John Newman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Blame\" — Calvin Harris, feat. John Newman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Love Runs Out\" — OneRepublic",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Love Runs Out\" — OneRepublic",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 11,
+      "night": 1,
+      "airDate": "2014-11-24",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "bethany-mota#1",
+        "bethany-mota#2",
+        "sadie-robertson#1",
+        "sadie-robertson#2",
+        "janel-parrish#1",
+        "janel-parrish#2",
+        "alfonso-ribeiro#1",
+        "alfonso-ribeiro#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Shake It Off\" — Taylor Swift",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "bethany-mota"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Revolution (District 78 Remix)\" — Diplo, feat. Faustix & Imanos and Kai",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Hunter\" — Pharrell Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Super Mario Bros. Theme\" — Koji Kondo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"La Vida Es Un Carnaval\" — Celia Cruz",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"I'm Gonna Be (500 Miles)\" — Sleeping at Last",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"3-6-9\" — Cupid, feat. B.o.B",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Sing, Sing, Sing (With a Swing)\" — Benny Goodman\n\"Apache\" — The Sugarhill Gang",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 12,
+      "week": 11,
+      "night": 2,
+      "airDate": "2014-11-25",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "sadie-robertson#3",
+        "janel-parrish#3",
+        "alfonso-ribeiro#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "sadie-robertson"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep\n& Samba",
+          "song": "\"Nitty Gritty\" — Kimberly Cole",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "janel-parrish"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot &\nPaso doble",
+          "song": "\"Hideaway\" — Kiesza",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "alfonso-ribeiro"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango\n& Cha-cha-cha",
+          "song": "\"Shut Up and Dance\" — Walk the Moon",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "lolo-jones",
+      "aliases": [
+        "Lolo"
+      ],
+      "members": [
+        {
+          "name": "Lolo Jones",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Keo Motsepe",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "tavis-smiley",
+      "aliases": [
+        "Tavis"
+      ],
+      "members": [
+        {
+          "name": "Tavis Smiley",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sharna Burgess",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "randy-couture",
+      "aliases": [
+        "Randy"
+      ],
+      "members": [
+        {
+          "name": "Randy Couture",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "betsey-johnson",
+      "aliases": [
+        "Betsey"
+      ],
+      "members": [
+        {
+          "name": "Betsey Johnson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "jonathan-bennett",
+      "aliases": [
+        "Jonathan"
+      ],
+      "members": [
+        {
+          "name": "Jonathan Bennett",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Allison Holker",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "antonio-sabato-jr",
+      "aliases": [
+        "Antonio"
+      ],
+      "members": [
+        {
+          "name": "Antonio Sabàto Jr.",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "michael-waltrip",
+      "aliases": [
+        "Michael"
+      ],
+      "members": [
+        {
+          "name": "Michael Waltrip",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "lea-thompson",
+      "aliases": [
+        "Lea"
+      ],
+      "members": [
+        {
+          "name": "Lea Thompson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Artem Chigvintsev",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "tommy-chong",
+      "aliases": [
+        "Tommy"
+      ],
+      "members": [
+        {
+          "name": "Tommy Chong",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Peta Murgatroyd",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "bethany-mota",
+      "aliases": [
+        "Bethany"
+      ],
+      "members": [
+        {
+          "name": "Bethany Mota",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 11
+    },
+    {
+      "id": "janel-parrish",
+      "aliases": [
+        "Janel"
+      ],
+      "members": [
+        {
+          "name": "Janel Parrish",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Valentin Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "sadie-robertson",
+      "aliases": [
+        "Sadie"
+      ],
+      "members": [
+        {
+          "name": "Sadie Robertson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "alfonso-ribeiro",
+      "aliases": [
+        "Alfonso"
+      ],
+      "members": [
+        {
+          "name": "Alfonso Ribeiro",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

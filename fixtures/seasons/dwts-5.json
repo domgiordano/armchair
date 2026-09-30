@@ -1,0 +1,2230 @@
+{
+  "show": "dwts",
+  "season": 5,
+  "year": 2007,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 5",
+  "revid": 1372834823,
+  "revTimestamp": "2026-09-02T14:23:37Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2007-09-24",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jennie-garth#1",
+        "josie-maran#1",
+        "sabrina-bryan#1",
+        "marie-osmond#1",
+        "mel-b#1",
+        "jane-seymour#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Uptown Girl\" — Billy Joel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "josie-maran"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Walkin' My Baby Back Home\" — Nat King Cole",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "sabrina-bryan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Don't Cha\" — Pussycat Dolls",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I Hear a Symphony\" — The Supremes",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"A Deeper Love\" — Aretha Franklin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jane-seymour"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Let's Do It, Let's Fall in Love\" — Eartha Kitt",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 1,
+      "night": 2,
+      "airDate": "2007-09-25",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "cameron-mathison#1",
+        "floyd-mayweather-jr#1",
+        "helio-castroneves#1",
+        "albert-reed#1",
+        "mark-cuban#1",
+        "wayne-newton#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Moondance\" — Van Morrison",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "floyd-mayweather-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"The Way You Move\" — OutKast",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Bewitched\" — Steve Lawrence",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "albert-reed"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"A Little Less Conversation\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mark-cuban"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"King of the Road\" — Roger Miller",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "wayne-newton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"You're the First, the Last, My Everything\" — Barry White",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 2,
+      "night": 1,
+      "airDate": "2007-10-01",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "mel-b#1",
+        "mark-cuban#1",
+        "wayne-newton#1",
+        "marie-osmond#1",
+        "albert-reed#1",
+        "helio-castroneves#1",
+        "jennie-garth#1",
+        "cameron-mathison#1",
+        "floyd-mayweather-jr#1",
+        "jane-seymour#1",
+        "sabrina-bryan#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Take On Me\" — A-ha",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mark-cuban"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Ride wit Me\" — Nelly, feat. City Spud",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-newton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Viva Las Vegas\" — Elvis Presley",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo (Uno, Dos, Tres)\" — Perez Prado",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "albert-reed"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"99 Red Balloons\" — Nena",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Para los Rumberos\" — Santana",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Suddenly I See\" — KT Tunstall",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mas Que Nada\" — Sérgio Mendes & The Black Eyed Peas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "floyd-mayweather-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Signed, Sealed, Delivered I'm Yours\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jane-seymour"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Cuban Pete\" — Desi Arnaz",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sabrina-bryan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"They're Red Hot\" — Robert Johnson",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 3,
+      "night": 1,
+      "airDate": "2007-10-08",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "sabrina-bryan#1",
+        "cameron-mathison#1",
+        "mark-cuban#1",
+        "jennie-garth#1",
+        "mel-b#1",
+        "wayne-newton#1",
+        "floyd-mayweather-jr#1",
+        "jane-seymour#1",
+        "helio-castroneves#1",
+        "marie-osmond#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "sabrina-bryan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Shake, Rattle, and Roll\" — Huey Lewis and the News",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Beat Goes On\" — Sonny & Cher",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mark-cuban"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"New Shoes\" — Paolo Nutini",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Cité Tango\" — Astor Piazolla",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Sweet Soul Music\" — Sam & Dave",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-newton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"La Cumparsita\" — Danny Malando",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "floyd-mayweather-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Mess Around\" — Ray Charles",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "jane-seymour"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Perfidia\" — John Altman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Kids in America\" — Kim Wilde",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Please Mr. Brown\" — Alma Cogan",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 4,
+      "night": 1,
+      "airDate": "2007-10-15",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "mark-cuban#1",
+        "sabrina-bryan#1",
+        "jane-seymour#1",
+        "floyd-mayweather-jr#1",
+        "mel-b#1",
+        "cameron-mathison#1",
+        "marie-osmond#1",
+        "jennie-garth#1",
+        "helio-castroneves#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "mark-cuban"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Mr. Bojangles\" — Robbie Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sabrina-bryan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"You Spin Me Round (Like a Record)\" — Dead or Alive",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jane-seymour"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Piano Man\" — Billy Joel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "floyd-mayweather-jr"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Captain from Castile\" — United States Air Force Band",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Breakaway\" — Kelly Clarkson",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Theme from Superman\" — John Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Can't Help Falling in Love\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            8,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Because We Can\" — Fatboy Slim",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Iris\" — Goo Goo Dolls",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 5,
+      "night": 1,
+      "airDate": "2007-10-22",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "marie-osmond#1",
+        "jane-seymour#1",
+        "mark-cuban#1",
+        "sabrina-bryan#1",
+        "jennie-garth#1",
+        "helio-castroneves#1",
+        "mel-b#1",
+        "cameron-mathison#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Crickets Sing for Anamaria\" — Astrud Gilberto",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jane-seymour"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Breathe Again\" — Toni Braxton",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "mark-cuban"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Dream of Jeannie\" — The Hit Crew",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "sabrina-bryan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Me & Mrs. Jones\" — Billy Paul",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Cosmic Girl\" — Jamiroquai",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Apologize\" — Timbaland, feat. OneRepublic",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Spice Up Your Life\" — Spice Girls",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I've Got to See You Again\" — Norah Jones",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 6,
+      "night": 1,
+      "airDate": "2007-10-29",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "sabrina-bryan#1",
+        "jennie-garth#1",
+        "jane-seymour#1",
+        "cameron-mathison#1",
+        "mel-b#1",
+        "marie-osmond#1",
+        "helio-castroneves#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "sabrina-bryan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I'm a Woman\" — Peggy Lee",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo Baby\" — Ruth Brown",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jane-seymour"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Modern Love\" — David Bowie",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Magalenha\" — Sérgio Mendes",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"A Woman's Worth\" — Alicia Keys",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Erythrina Fusca\" — Unidad musical de la Guardia Real España",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Get Up Offa That Thing\" — James Brown",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 7,
+      "night": 1,
+      "airDate": "2007-11-05",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "helio-castroneves#1",
+        "helio-castroneves#2",
+        "marie-osmond#1",
+        "marie-osmond#2",
+        "mel-b#1",
+        "mel-b#2",
+        "jane-seymour#1",
+        "jane-seymour#2",
+        "jennie-garth#1",
+        "jennie-garth#2",
+        "cameron-mathison#1",
+        "cameron-mathison#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Jean Genie\" — David Bowie",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Candela\" — Buena Vista Social Club",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Boogie Woogie Bugle Boy\" — The Andrews Sisters",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Venus\" — Bananarama",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Jimmy Mack\" — Martha and the Vandellas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Free Your Mind\" — En Vogue",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jane-seymour"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"I Walk the Line\" — Johnny Cash",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jane-seymour"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"The Shoop Shoop Song (It's in His Kiss)\" — Betty Everett",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Runaway\" — The Corrs",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Fallen\" — Lauren Wood",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Why Can't I Be You?\" — The Cure",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Boy from New York City\" — The Manhattan Transfer",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 8,
+      "night": 1,
+      "airDate": "2007-11-12",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "jennie-garth#1",
+        "jennie-garth#2",
+        "cameron-mathison#1",
+        "cameron-mathison#2",
+        "marie-osmond#1",
+        "marie-osmond#2",
+        "helio-castroneves#1",
+        "helio-castroneves#2",
+        "mel-b#1",
+        "mel-b#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"It Takes Two\" — Marvin Gaye & Kim Weston",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I've Got You Under My Skin\" — Michael Bublé",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Hedwig's Theme\" — John Williams",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "cameron-mathison"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Brown Sugar\" — Rolling Stones",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"My Cherie Amour\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Whose Bed Have Your Boots Been Under?\" — Shania Twain",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Amparito Roca\" — Unidad musical de la Guardia Real España",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hey! Pachuco!\" — Royal Crown Revue",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Personal Jesus\" — Depeche Mode",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo Jambo\" — Perez Prado",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 9,
+      "night": 1,
+      "airDate": "2007-11-19",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "marie-osmond#1",
+        "marie-osmond#2",
+        "mel-b#1",
+        "mel-b#2",
+        "jennie-garth#1",
+        "jennie-garth#2",
+        "helio-castroneves#1",
+        "helio-castroneves#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Good Morning\" — from Singin' in the Rain",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Guaglione\" — Perez Prado",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Somebody to Love\" — Queen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"(I Can't Get No) Satisfaction\" — The Rolling Stones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Take Over, the Breaks Over\" — Fall Out Boy",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jennie-garth"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Mustang Sally\" — Wilson Pickett",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Ain't That a Kick in the Head?\" — Dean Martin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Love Rollercoaster\" — Red Hot Chili Peppers",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 1,
+      "airDate": "2007-11-26",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "mel-b#1",
+        "mel-b#2",
+        "marie-osmond#1",
+        "marie-osmond#2",
+        "helio-castroneves#1",
+        "helio-castroneves#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Car Wash\" — Rose Royce",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"The Way I Are\" — Timbaland, feat. Keri Hilson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Chica Chica Boom Chic\" — Carmen Miranda",
+          "result": "Eliminated\n(Third place)"
+        },
+        {
+          "contestants": [
+            "marie-osmond"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Start Me Up\" — The Rolling Stones",
+          "result": "Eliminated\n(Third place)"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Let's Twist Again\" — Chubby Checker",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Land of 1000 Dances\" — Wilson Pickett",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 12,
+      "week": 10,
+      "night": 2,
+      "airDate": "2007-11-27",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "mel-b#3",
+        "helio-castroneves#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "mel-b"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo Jambo\" — Perez Prado",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "helio-castroneves"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hey! Pachuco!\" — Royal Crown Revue",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "josie-maran",
+      "aliases": [
+        "Josie"
+      ],
+      "members": [
+        {
+          "name": "Josie Maran",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Alec Mazo",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "albert-reed",
+      "aliases": [
+        "Albert"
+      ],
+      "members": [
+        {
+          "name": "Albert Reed",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Anna Trebunskaya",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "wayne-newton",
+      "aliases": [
+        "Wayne"
+      ],
+      "members": [
+        {
+          "name": "Wayne Newton",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "floyd-mayweather-jr",
+      "aliases": [
+        "Floyd"
+      ],
+      "members": [
+        {
+          "name": "Floyd Mayweather Jr.",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "mark-cuban",
+      "aliases": [
+        "Mark"
+      ],
+      "members": [
+        {
+          "name": "Mark Cuban",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Kym Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "sabrina-bryan",
+      "aliases": [
+        "Sabrina"
+      ],
+      "members": [
+        {
+          "name": "Sabrina Bryan",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "jane-seymour",
+      "aliases": [
+        "Jane"
+      ],
+      "members": [
+        {
+          "name": "Jane Seymour",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "cameron-mathison",
+      "aliases": [
+        "Cameron"
+      ],
+      "members": [
+        {
+          "name": "Cameron Mathison",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "jennie-garth",
+      "aliases": [
+        "Jennie"
+      ],
+      "members": [
+        {
+          "name": "Jennie Garth",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "marie-osmond",
+      "aliases": [
+        "Marie"
+      ],
+      "members": [
+        {
+          "name": "Marie Osmond",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jonathan Roberts",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "mel-b",
+      "aliases": [
+        "Mel"
+      ],
+      "members": [
+        {
+          "name": "Mel B",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "helio-castroneves",
+      "aliases": [
+        "Helio",
+        "Hélio"
+      ],
+      "members": [
+        {
+          "name": "Hélio Castroneves",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Julianne Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 6,
+      "night": 1,
+      "row": "Cameron & Edyta\nHelio & Julianne\nJane & Tony\nJennie & Derek\nMarie & Jonathan\nMel & Maks\nSabrina & Mark",
+      "reason": "no scores received"
+    }
+  ]
+}

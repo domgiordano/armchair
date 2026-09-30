@@ -1,0 +1,1902 @@
+{
+  "show": "dwts",
+  "season": 3,
+  "year": 2006,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 3",
+  "revid": 1375458126,
+  "revTimestamp": "2026-09-17T22:22:02Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2006-09-12",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "joey-lawrence#1",
+        "sara-evans#1",
+        "tucker-carlson#1",
+        "monique-coleman#1",
+        "emmitt-smith#1",
+        "willa-ford#1",
+        "mario-lopez#1",
+        "shanna-moakler#1",
+        "harry-hamlin#1",
+        "vivica-a-fox#1",
+        "jerry-springer#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Like The Way (You Move)\" — Body Rockers",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sara-evans"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Mandy\" — Barry Manilow",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tucker-carlson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            5,
+            4,
+            3
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Dancing In The Street\" — David Bowie & Mick Jagger",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Baby Love\" — The Supremes",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Son of a Preacher Man\" — Dusty Springfield",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "willa-ford"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"True\" — Spandau Ballet",
+          "result": "Bottom three"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Walkin' on the Sun\" — Smash Mouth",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shanna-moakler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            7,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Saving All My Love For You\" — Whitney Houston",
+          "result": "Bottom three"
+        },
+        {
+          "contestants": [
+            "harry-hamlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            5,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Disco Inferno\" — The Trammps",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vivica-a-fox"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            6,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I Just Wanna Make Love to You\" — Etta James",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-springer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            5,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Daddy\" — Della Reese",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2006-09-19",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "willa-ford#1",
+        "harry-hamlin#1",
+        "monique-coleman#1",
+        "mario-lopez#1",
+        "shanna-moakler#1",
+        "jerry-springer#1",
+        "vivica-a-fox#1",
+        "joey-lawrence#1",
+        "sara-evans#1",
+        "emmitt-smith#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "willa-ford"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Get Busy\" — Sean Paul",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "harry-hamlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Lust for Life\" — Iggy Pop",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Bop to the Top\" — Ashley Tisdale & Lucas Grabeel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Do Your Thing\" — Basement Jaxx",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shanna-moakler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Jump\" — Kris Kross",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jerry-springer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Sing, Sing, Sing\" — The Andrews Sisters",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vivica-a-fox"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Betece\" — Africando All Stars",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"I Got Rhythm\" — Ella Fitzgerald",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sara-evans"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Papa Loves Mambo\" — Perry Como",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Black Horse and the Cherry Tree\" — KT Tunstall",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2006-09-26",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "emmitt-smith#1",
+        "monique-coleman#1",
+        "harry-hamlin#1",
+        "willa-ford#1",
+        "jerry-springer#1",
+        "sara-evans#1",
+        "mario-lopez#1",
+        "vivica-a-fox#1",
+        "joey-lawrence#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Simply Irresistible\" — Robert Palmer",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Heat Is On\" — Glenn Frey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "harry-hamlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Santa Maria (Del Buen Ayre)\" — Gotan Project",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "willa-ford"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"SOS\" — Rihanna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-springer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Hernando's Hideaway\" — Ella Fitzgerald",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "sara-evans"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"These Boots Are Made For Walkin'\" — Nancy Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"What You Waiting For\" — Gwen Stefani",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vivica-a-fox"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Hey Sexy Lady\" — Shaggy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Blue Suede Shoes\" — Elvis Presley",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2006-10-03",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "monique-coleman#1",
+        "emmitt-smith#1",
+        "willa-ford#1",
+        "sara-evans#1",
+        "jerry-springer#1",
+        "vivica-a-fox#1",
+        "joey-lawrence#1",
+        "mario-lopez#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"If I Were A Painting\" — Kenny Rogers",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"España cañí\" — Erich Kunzel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "willa-ford"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"You Light Up My Life\" — Debby Boone",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sara-evans"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Phantom of the Opera\" — from The Phantom of the Opera",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-springer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Tennessee Waltz\" — Patti Page",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vivica-a-fox"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"It's My Life\" — Bon Jovi",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Take It to the Limit\" — The Eagles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Canción del Mariachi\" — Los Lobos & Antonio Banderas",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2006-10-10",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "joey-lawrence#1",
+        "willa-ford#1",
+        "sara-evans#1",
+        "mario-lopez#1",
+        "jerry-springer#1",
+        "monique-coleman#1",
+        "emmitt-smith#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Freedom! '90\" — George Michael",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "willa-ford"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Every Breath You Take\" — The Police",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "sara-evans"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Wish\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"The Way You Look Tonight\" — Michael Bublé",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-springer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Eso Beso\" — Paul Anka",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"So Nice\" — Bebel Gilberto",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Cha Cha\" — Chelo",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2006-10-17",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "mario-lopez#1",
+        "monique-coleman#1",
+        "joey-lawrence#1",
+        "emmitt-smith#1",
+        "jerry-springer#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Ran Kan Kan\" — Tito Puente",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            9,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"ABC\" — The Jackson 5",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Father Figure\" — George Michael",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Lewis Boogie Blues\" — T-Bone Burnett",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-springer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            7,
+            6,
+            5
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Habañera\" — Charlotte Church",
+          "result": "Bottom two"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2006-10-24",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "jerry-springer#1",
+        "jerry-springer#2",
+        "monique-coleman#1",
+        "monique-coleman#2",
+        "emmitt-smith#1",
+        "emmitt-smith#2",
+        "mario-lopez#1",
+        "mario-lopez#2",
+        "joey-lawrence#1",
+        "joey-lawrence#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jerry-springer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"My Way\" — Frank Sinatra",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jerry-springer"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Annie, I'm Not Your Daddy\" — Kid Creole and the Coconuts",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Luck Be a Lady\" — Frank Sinatra",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Reflex\" — Duran Duran",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Hushabye Mountain\" — from Chitty Chitty Bang Bang",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Que Bueno Baila Usted\" — Oscar D'León",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I Wanna Be Loved By You\" — Marilyn Monroe",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Shake a Tail Feather\" — Ray Charles & The Blues Brothers",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Singin' in the Rain\" — Gene Kelly",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo No. 5\" — Lou Bega",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2006-10-31",
+      "start": null,
+      "end": null,
+      "theme": "Halloween Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "joey-lawrence#1",
+        "joey-lawrence#2",
+        "mario-lopez#1",
+        "mario-lopez#2",
+        "monique-coleman#1",
+        "monique-coleman#2",
+        "emmitt-smith#1",
+        "emmitt-smith#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Addams Family Theme\" — from The Addams Family",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Sympathy for the Devil\" — The Rolling Stones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Dark Waltz\" — Hayley Westenra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Superstition\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Somebody's Watching Me\" — Rockwell",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "monique-coleman"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Ghostbusters\" — Ray Parker Jr.",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Witchcraft\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Spooky\" — Dusty Springfield",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2006-11-07",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "mario-lopez#1",
+        "mario-lopez#2",
+        "emmitt-smith#1",
+        "emmitt-smith#2",
+        "joey-lawrence#1",
+        "joey-lawrence#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Whatever Lola Wants\" — Gwen Verdon",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Bad\" — Michael Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"At This Moment\" — Billy Vera & The Beaters",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Dance to the Music\" — Sly & The Family Stone",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"42nd Street\" — Lee Roy Reams",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "joey-lawrence"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Eternal Flame\" — The Bangles",
+          "result": "Eliminated"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2006-11-14",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 3,
+      "rateableKeys": [
+        "emmitt-smith#1",
+        "emmitt-smith#2",
+        "emmitt-smith#3",
+        "mario-lopez#1",
+        "mario-lopez#2",
+        "mario-lopez#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Sir Duke\" — Stevie Wonder",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Que Bueno Baila Usted\" — Oscar D'León",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "emmitt-smith"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"U Can't Touch This\" — MC Hammer",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Sir Duke\" — Stevie Wonder",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Canción del Mariachi\" — Los Lobos & Antonio Banderas",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "mario-lopez"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"It Takes Two\" — Rob Base and DJ E-Z Rock",
+          "result": "Runners-up"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "tucker-carlson",
+      "aliases": [
+        "Tucker"
+      ],
+      "members": [
+        {
+          "name": "Tucker Carlson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Elena Grinenko",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "shanna-moakler",
+      "aliases": [
+        "Shanna"
+      ],
+      "members": [
+        {
+          "name": "Shanna Moakler",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jesse DeSoto",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "harry-hamlin",
+      "aliases": [
+        "Harry"
+      ],
+      "members": [
+        {
+          "name": "Harry Hamlin",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Ashly DelGrosso",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "vivica-a-fox",
+      "aliases": [
+        "Vivica"
+      ],
+      "members": [
+        {
+          "name": "Vivica A. Fox",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Nick Kosovich",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "willa-ford",
+      "aliases": [
+        "Willa"
+      ],
+      "members": [
+        {
+          "name": "Willa Ford",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "sara-evans",
+      "aliases": [
+        "Sara"
+      ],
+      "members": [
+        {
+          "name": "Sara Evans",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "jerry-springer",
+      "aliases": [
+        "Jerry"
+      ],
+      "members": [
+        {
+          "name": "Jerry Springer",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Kym Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "monique-coleman",
+      "aliases": [
+        "Monique"
+      ],
+      "members": [
+        {
+          "name": "Monique Coleman",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Louis van Amstel",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "joey-lawrence",
+      "aliases": [
+        "Joey"
+      ],
+      "members": [
+        {
+          "name": "Joey Lawrence",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "mario-lopez",
+      "aliases": [
+        "Mario"
+      ],
+      "members": [
+        {
+          "name": "Mario Lopez",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "emmitt-smith",
+      "aliases": [
+        "Emmitt"
+      ],
+      "members": [
+        {
+          "name": "Emmitt Smith",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 6,
+      "night": 1,
+      "row": "Emmitt & Cheryl\nJerry & Kym\nJoey & Edyta\nMario & Karina\nMonique & Louis",
+      "reason": "no scores received"
+    }
+  ]
+}

@@ -1,0 +1,2140 @@
+{
+  "show": "dwts",
+  "season": 13,
+  "year": 2011,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 13",
+  "revid": 1374841804,
+  "revTimestamp": "2026-09-14T11:11:47Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2011-09-19",
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "ron-artest#1",
+        "rob-kardashian#1",
+        "kristin-cavallari#1",
+        "chynna-phillips#1",
+        "nancy-grace#1",
+        "david-arquette#1",
+        "elisabetta-canalis#1",
+        "hope-solo#1",
+        "carson-kressley#1",
+        "j-r-martinez#1",
+        "ricki-lake#1",
+        "chaz-bono#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ron-artest"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            5,
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Krazy\" — Pitbull, feat. Lil Jon",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Lake Michigan\" — Rogue Wave",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristin-cavallari"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Dynamite\" — Taio Cruz",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chynna-phillips"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"If I Ain't Got You\" — Alicia Keys",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            5,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Cry Baby\" — Cee Lo Green",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "david-arquette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Somebody to Love\" — Queen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elisabetta-canalis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Last Friday Night (T.G.I.F.)\" — Katy Perry",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Satellite\" — Dave Matthews Band",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "carson-kressley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Moves Like Jagger\" — Maroon 5, feat. Christina Aguilera",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Breakaway\" — Kelly Clarkson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"This Year's Love\" — David Gray",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chaz-bono"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Dancing in the Street\" — Martha & the Vandellas",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2011-09-26",
+      "start": null,
+      "end": null,
+      "theme": "Top 11",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "hope-solo#1",
+        "kristin-cavallari#1",
+        "david-arquette#1",
+        "elisabetta-canalis#1",
+        "rob-kardashian#1",
+        "carson-kressley#1",
+        "ricki-lake#1",
+        "chaz-bono#1",
+        "chynna-phillips#1",
+        "nancy-grace#1",
+        "j-r-martinez#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Girlfriend\" — Avril Lavigne",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristin-cavallari"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Diamonds Are a Girl's Best Friend\" — from Gentlemen Prefer Blondes",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "david-arquette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Runaway Baby\" — Bruno Mars",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "elisabetta-canalis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Don't Get Me Wrong\" — The Pretenders",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Surfin' Safari\" — The Beach Boys",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "carson-kressley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Walkin' Back to Happiness\" — Helen Shapiro",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hey Ya!\" — OutKast",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chaz-bono"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Love Is All Around\" — Joan Jett & the Blackhearts",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chynna-phillips"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Boy Does Nothing\" — Alesha Dixon",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            6,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"It Don't Mean a Thing (If It Ain't Got That Swing)\" — Duke Ellington",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Jump, Jive an' Wail\" — The Brian Setzer Orchestra",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2011-10-03",
+      "start": null,
+      "end": null,
+      "theme": "Most Memorable Year Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "rob-kardashian#1",
+        "chynna-phillips#1",
+        "chaz-bono#1",
+        "kristin-cavallari#1",
+        "carson-kressley#1",
+        "j-r-martinez#1",
+        "nancy-grace#1",
+        "ricki-lake#1",
+        "hope-solo#1",
+        "david-arquette#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Fly Me to the Moon\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chynna-phillips"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Hold On\" — Wilson Phillips",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chaz-bono"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Laugh at Me\" — Sonny Bono",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristin-cavallari"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Crazy in Love\" — Beyoncé, feat. Jay-Z",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "carson-kressley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"It's My Life\" — No Doubt",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"If You're Reading This\" — Tim McGraw",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Moon River\" — Andy Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Gravity\" — Sara Bareilles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Tonight (I'm Lovin' You)\" — Enrique Iglesias, feat. Ludacris",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "david-arquette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"O-o-h Child\" — Five Stairsteps",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2011-10-10",
+      "start": null,
+      "end": null,
+      "theme": "Movie Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "chynna-phillips#1",
+        "david-arquette#1",
+        "carson-kressley#1",
+        "nancy-grace#1",
+        "hope-solo#1",
+        "rob-kardashian#1",
+        "ricki-lake#1",
+        "chaz-bono#1",
+        "j-r-martinez#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chynna-phillips"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Theme from Mission: Impossible\" — Adam Clayton & Larry Mullen, Jr.",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "david-arquette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Raiders March\" — John Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "carson-kressley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"The Black Pearl\" — Klaus Badelt",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Flash's Theme\" — Queen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"You've Got a Friend in Me\" — Randy Newman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Theme from Superman\" — John Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Murder\" — Bernard Herrmann",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chaz-bono"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Gonna Fly Now\" — Bill Conti",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The Pink Panther Theme\" — Henry Mancini",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2011-10-17",
+      "start": null,
+      "end": null,
+      "theme": "'80s Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "hope-solo#1",
+        "carson-kressley#1",
+        "nancy-grace#1",
+        "j-r-martinez#1",
+        "rob-kardashian#1",
+        "chaz-bono#1",
+        "david-arquette#1",
+        "ricki-lake#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Livin' on a Prayer\" — Bon Jovi",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "carson-kressley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Wake Me Up Before You Go-Go\" — Wham!",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"True\" — Spandau Ballet",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Conga\" — Gloria Estefan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Hello\" — Lionel Richie",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chaz-bono"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Get Down on It\" — Kool & the Gang",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "david-arquette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Tainted Love\" — Soft Cell",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Easy Lover\" — Phillip Bailey & Phil Collins",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2011-10-24",
+      "start": null,
+      "end": null,
+      "theme": "Broadway Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "rob-kardashian#1",
+        "nancy-grace#1",
+        "david-arquette#1",
+        "ricki-lake#1",
+        "chaz-bono#1",
+        "hope-solo#1",
+        "j-r-martinez#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Walk Like a Man\" — The Four Seasons",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            9,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Always Look on the Bright Side of Life\" — Monty Python",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "david-arquette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"We Go Together\" — Jim Jacobs & Warren Casey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Luck Be a Lady\" — Frank Loesser",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chaz-bono"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Phantom of the Opera\" — Andrew Lloyd Webber",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Seasons of Love\" — Jonathan Larson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hot Honey Rag\" — Kander and Ebb",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2011-10-31",
+      "start": null,
+      "end": null,
+      "theme": "Halloween Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "david-arquette#1",
+        "j-r-martinez#1",
+        "nancy-grace#1",
+        "rob-kardashian#1",
+        "ricki-lake#1",
+        "hope-solo#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "david-arquette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Abracadabra\" — Steve Miller Band",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Ghostbusters\" — Ray Parker Jr.",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Devil Went Down to Georgia\" — Charlie Daniels Band",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Addams Family Theme\" — Vic Mizzy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Sweet Dreams\" — Beyoncé",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Werewolves of London\" — Warren Zevon",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "david-arquette",
+            "j-r-martinez",
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Team\nTango",
+          "song": "\"Disturbia\" — Rihanna",
+          "result": "\"Disturbia\" — Rihanna"
+        },
+        {
+          "contestants": [
+            "hope-solo",
+            "ricki-lake",
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Team\nPaso doble",
+          "song": "\"Bring Me to Life\" — Evanescence",
+          "result": "\"Bring Me to Life\" — Evanescence"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2011-11-07",
+      "start": null,
+      "end": null,
+      "theme": "Instant Choreography Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "rob-kardashian#1",
+        "rob-kardashian#2",
+        "hope-solo#1",
+        "hope-solo#2",
+        "ricki-lake#1",
+        "ricki-lake#2",
+        "nancy-grace#1",
+        "nancy-grace#2",
+        "j-r-martinez#1",
+        "j-r-martinez#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Take On Me\" — A-ha",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Maneater\" — Hall & Oates",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Valerie\" — Mark Ronson, feat. Amy Winehouse",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Best Damn Thing\" — Avril Lavigne",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"(You Make Me Feel Like) A Natural Woman\" — Aretha Franklin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Land of a Thousand Dances\" — Wilson Pickett",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Naughty Lady of Shady Lane\" — The Ames Brothers",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nancy-grace"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Upside Down\" — Paloma Faith",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"What the World Needs Now Is Love\" — Burt Bacharach",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Tutti Frutti\" — Little Richard",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2011-11-14",
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "hope-solo#1",
+        "hope-solo#2",
+        "j-r-martinez#1",
+        "j-r-martinez#2",
+        "rob-kardashian#1",
+        "rob-kardashian#2",
+        "ricki-lake#1",
+        "ricki-lake#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Can't Be Tamed\" — Miley Cyrus",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "hope-solo"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": 4,
+          "style": "Argentine tango",
+          "song": "\"Whatever Lola Wants\" — Gwen Verdon",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Spanish Tango\" — James Horner",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": 6,
+          "style": "Argentine tango",
+          "song": "\"Bust Your Windows\" — Jazmine Sullivan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Go to Rio\" — Pablo Cruise",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": 10,
+          "style": "Argentine tango",
+          "song": "\"Libertango\" — Bond",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Jump in the Line\" — Harry Belafonte",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": 8,
+          "style": "Argentine tango",
+          "song": "\"Allerdings Otros Aires\" — Otros Aires",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2011-11-21",
+      "start": null,
+      "end": null,
+      "theme": "Finale",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "ricki-lake#1",
+        "ricki-lake#2",
+        "rob-kardashian#1",
+        "rob-kardashian#2",
+        "j-r-martinez#1",
+        "j-r-martinez#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Yeah 3x\" — Chris Brown",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ricki-lake"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": 30,
+          "style": "Freestyle",
+          "song": "\"Can't Touch It\" — Ricki-Lee Coulter",
+          "result": null
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"It Is You (I Have Loved)\" — Dana Glover",
+          "result": null
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": 26,
+          "style": "Freestyle",
+          "song": "\"Minnie the Moocher\" — Cab Calloway",
+          "result": null
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Let's Get Loud\" — Jennifer Lopez",
+          "result": null
+        },
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": 28,
+          "style": "Freestyle",
+          "song": "\"Whine Up\" — Kat DeLuna, feat. Elephant Man",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 2,
+      "airDate": "2011-11-22",
+      "start": null,
+      "end": null,
+      "theme": "Finale",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "j-r-martinez#3",
+        "rob-kardashian#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "j-r-martinez"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Shake Your Bon-Bon\" — Ricky Martin",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "rob-kardashian"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Shake Your Bon-Bon\" — Ricky Martin",
+          "result": "Runners-up"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "ron-artest",
+      "aliases": [
+        "Ron"
+      ],
+      "members": [
+        {
+          "name": "Ron Artest",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Peta Murgatroyd",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "elisabetta-canalis",
+      "aliases": [
+        "Elisabetta"
+      ],
+      "members": [
+        {
+          "name": "Elisabetta Canalis",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Valentin Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "kristin-cavallari",
+      "aliases": [
+        "Kristin"
+      ],
+      "members": [
+        {
+          "name": "Kristin Cavallari",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "chynna-phillips",
+      "aliases": [
+        "Chynna"
+      ],
+      "members": [
+        {
+          "name": "Chynna Phillips",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "carson-kressley",
+      "aliases": [
+        "Carson"
+      ],
+      "members": [
+        {
+          "name": "Carson Kressley",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Anna Trebunskaya",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "chaz-bono",
+      "aliases": [
+        "Chaz"
+      ],
+      "members": [
+        {
+          "name": "Chaz Bono",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Lacey Schwimmer",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "david-arquette",
+      "aliases": [
+        "David"
+      ],
+      "members": [
+        {
+          "name": "David Arquette",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Kym Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "nancy-grace",
+      "aliases": [
+        "Nancy"
+      ],
+      "members": [
+        {
+          "name": "Nancy Grace",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tristan MacManus",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "hope-solo",
+      "aliases": [
+        "Hope"
+      ],
+      "members": [
+        {
+          "name": "Hope Solo",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "ricki-lake",
+      "aliases": [
+        "Ricki"
+      ],
+      "members": [
+        {
+          "name": "Ricki Lake",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "rob-kardashian",
+      "aliases": [
+        "Rob"
+      ],
+      "members": [
+        {
+          "name": "Rob Kardashian",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "j-r-martinez",
+      "aliases": [
+        "J.R."
+      ],
+      "members": [
+        {
+          "name": "J. R. Martinez",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 6,
+      "night": 1,
+      "row": "Chaz & Lacey\nDavid & Kym\nHope & Maks\nJ.R. & Karina\nNancy & Tristan\nRicki & Derek\nRob & Cheryl",
+      "reason": "no scores received"
+    }
+  ]
+}

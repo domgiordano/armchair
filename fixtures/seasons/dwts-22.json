@@ -1,0 +1,2317 @@
+{
+  "show": "dwts",
+  "season": 22,
+  "year": 2016,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 22",
+  "revid": 1372932534,
+  "revTimestamp": "2026-09-03T01:30:36Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "zendaya",
+      "name": "Zendaya",
+      "aliases": [
+        "Zendaya"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "maksim-chmerkovskiy",
+      "name": "Maksim Chmerkovskiy",
+      "aliases": [
+        "Maksim Chmerkovskiy"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2016-03-21",
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "kim-fields#1",
+        "paige-vanzant#1",
+        "doug-flutie#1",
+        "jodie-sweetin#1",
+        "geraldo-rivera#1",
+        "marla-maples#1",
+        "wanya-morris#1",
+        "ginger-zee#1",
+        "mischa-barton#1",
+        "nyle-dimarco#1",
+        "antonio-brown#1",
+        "von-miller#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "kim-fields"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Sax\" — Fleur East",
+          "result": null
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Ain't Got Far to Go\" — Jess Glynne",
+          "result": null
+        },
+        {
+          "contestants": [
+            "doug-flutie"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Sweet Caroline\" — Neil Diamond",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jodie-sweetin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Confident\" — Demi Lovato",
+          "result": null
+        },
+        {
+          "contestants": [
+            "geraldo-rivera"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            5,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Treasure\" — Bruno Mars",
+          "result": null
+        },
+        {
+          "contestants": [
+            "marla-maples"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Sparkling Diamonds\" — Nicole Kidman",
+          "result": null
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Motownphilly\" — Boyz II Men",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Move (You're Steppin' on My Heart)\" — Henry Krieger",
+          "result": null
+        },
+        {
+          "contestants": [
+            "mischa-barton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            5,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"In the Night\" — The Weeknd",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Cake by the Ocean\" — DNCE",
+          "result": null
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            8,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Bad Man\" — Pitbull, feat. Robin Thicke, Joe Perry & Travis Barker",
+          "result": null
+        },
+        {
+          "contestants": [
+            "von-miller"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            8,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"My House\" — Flo Rida",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2016-03-28",
+      "start": null,
+      "end": null,
+      "theme": "Latin Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jodie-sweetin#1",
+        "marla-maples#1",
+        "geraldo-rivera#1",
+        "paige-vanzant#1",
+        "antonio-brown#1",
+        "kim-fields#1",
+        "nyle-dimarco#1",
+        "mischa-barton#1",
+        "von-miller#1",
+        "wanya-morris#1",
+        "doug-flutie#1",
+        "ginger-zee#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jodie-sweetin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Bun Up the Dance\" — Dillon Francis & Skrillex",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marla-maples"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Don't\" — Ed Sheeran",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "geraldo-rivera"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            5,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Ran Kan Kan\" — Tito Puente",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Danza Kuduro\" — Don Omar, feat. Lucenzo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Adorn\" — Miguel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kim-fields"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Conga\" — Miami Sound Machine",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Stole the Show\" — Kygo, feat. Parson James",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mischa-barton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Pata Pata\" — Miriam Makeba",
+          "result": "Bottom three"
+        },
+        {
+          "contestants": [
+            "von-miller"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Ain't Too Cool\" — LunchMoney Lewis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Echa Pa'lla (Manos Pa'rriba)\" — Pitbull",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "doug-flutie"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Buster Voodoo\" — Rodrigo y Gabriela",
+          "result": "Bottom three"
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Sorry (Latino remix)\" — Justin Bieber, feat. J. Balvin",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2016-04-04",
+      "start": null,
+      "end": null,
+      "theme": "Most Memorable Year Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "ginger-zee#1",
+        "doug-flutie#1",
+        "kim-fields#1",
+        "von-miller#1",
+        "marla-maples#1",
+        "antonio-brown#1",
+        "paige-vanzant#1",
+        "jodie-sweetin#1",
+        "mischa-barton#1",
+        "wanya-morris#1",
+        "nyle-dimarco#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Home\" — Phillip Phillips",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "doug-flutie"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Rainbow Connection\" — Kermit the Frog",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kim-fields"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Theme from The Facts of Life\" — Al Burton, Gloria Loring & Alan Thicke",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "von-miller"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"In the Air Tonight\" — Phil Collins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marla-maples"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Happy\" — Pharrell Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"7 Years\" — Lukas Graham",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"300 Violin Orchestra\" — Jorge Quintero",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jodie-sweetin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Rise Up\" — Andra Day",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mischa-barton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Party in the U.S.A.\" — Miley Cyrus",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"The Star-Spangled Banner\" — Boyz II Men",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Verge\" — Owl City, feat. Aloe Blacc",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2016-04-11",
+      "start": null,
+      "end": null,
+      "theme": "Disney Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "zendaya",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "antonio-brown#1",
+        "marla-maples#1",
+        "nyle-dimarco#1",
+        "doug-flutie#1",
+        "kim-fields#1",
+        "jodie-sweetin#1",
+        "von-miller#1",
+        "ginger-zee#1",
+        "wanya-morris#1",
+        "paige-vanzant#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Friend Like Me\" — Ne-Yo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marla-maples"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Part of Your World\" — Jodi Benson",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Trashin' the Camp\" — Phil Collins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "doug-flutie"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"A Spoonful of Sugar\" — Julie Andrews",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kim-fields"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"I Wan'na Be Like You (The Monkey Song)\" — Fall Out Boy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jodie-sweetin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Try Everything\" — Shakira",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "von-miller"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"A Dream Is a Wish Your Heart Makes\" — Lily James",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Belle\" — Paige O'Hara",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            8,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Circle of Life (District 78 remix)\" — District 78",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You've Got a Friend in Me\" — Randy Newman",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2016-04-18",
+      "start": null,
+      "end": null,
+      "theme": "Switch-Up Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "maksim-chmerkovskiy",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "wanya-morris#1",
+        "kim-fields#1",
+        "doug-flutie#1",
+        "ginger-zee#1",
+        "antonio-brown#1",
+        "paige-vanzant#1",
+        "von-miller#1",
+        "nyle-dimarco#1",
+        "jodie-sweetin#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            8,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Hold Back the River\" — James Bay",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kim-fields"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            8,
+            6,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"These Arms of Mine\" — Otis Redding",
+          "result": null
+        },
+        {
+          "contestants": [
+            "doug-flutie"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Black and Gold\" — Sam Sparro",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"La Malanga\" — Eddie Palmieri",
+          "result": null
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Son of a Preacher Man\" — Dusty Springfield",
+          "result": null
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Perfect\" — One Direction",
+          "result": null
+        },
+        {
+          "contestants": [
+            "von-miller"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            8,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hips\" — Beans & Fatback",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Get to Love You\" — Ruelle",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jodie-sweetin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Under Control\" — Calvin Harris & Alesso, feat. Hurts",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2016-04-25",
+      "start": null,
+      "end": null,
+      "theme": "Famous Dances Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "kim-fields#1",
+        "von-miller#1",
+        "jodie-sweetin#1",
+        "paige-vanzant#1",
+        "nyle-dimarco#1",
+        "ginger-zee#1",
+        "doug-flutie#1",
+        "wanya-morris#1",
+        "antonio-brown#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "kim-fields"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"You Can't Stop the Beat\" — from Hairspray",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "von-miller"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Bad\" — Michael Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jodie-sweetin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Try\" — Pink",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Soul Bossa Nova\" — Quincy Jones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hey! Pachuco!\" — Royal Crown Revue",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Nasty\" — Janet Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "doug-flutie"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Bollywood",
+          "song": "\"Jai Ho\" — A. R. Rahman",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Bye Bye Bye\" — NSYNC",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Footloose\" — Kenny Loggins",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2016-05-02",
+      "start": null,
+      "end": null,
+      "theme": "Icons Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jodie-sweetin#1",
+        "kim-fields#1",
+        "nyle-dimarco#1",
+        "antonio-brown#1",
+        "wanya-morris#1",
+        "ginger-zee#1",
+        "von-miller#1",
+        "paige-vanzant#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jodie-sweetin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"For Once in My Life\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kim-fields"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"ABC\" — The Jackson 5",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Beautiful Day\" — U2",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Paint It Black\" — The Rolling Stones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I Say a Little Prayer\" — Aretha Franklin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Have Nothing\" — Whitney Houston",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "von-miller"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"A Little Less Conversation\" — Elvis Presley",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Proud Mary\" — Tina Turner",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-brown",
+            "nyle-dimarco",
+            "von-miller",
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team James Brown)",
+          "song": "\"Super Bad\",\n\"Living in America\" &\n\"I Got You (I Feel Good)\"\nAll by James Brown",
+          "result": "\"Super Bad\",\n\"Living in America\" &\n\"I Got You (I Feel Good)\"\nAll by James Brown"
+        },
+        {
+          "contestants": [
+            "ginger-zee",
+            "jodie-sweetin",
+            "kim-fields",
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Beyoncé)",
+          "song": "\"End of Time\",\n\"If I Were a Boy\"\n& \"Crazy in Love\"\nAll by Beyoncé",
+          "result": "\"End of Time\",\n\"If I Were a Boy\"\n& \"Crazy in Love\"\nAll by Beyoncé"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2016-05-09",
+      "start": null,
+      "end": null,
+      "theme": "Judges' Team-up Challenge",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "nyle-dimarco#1",
+        "antonio-brown#1",
+        "jodie-sweetin#1",
+        "paige-vanzant#1",
+        "ginger-zee#1",
+        "wanya-morris#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Victorious\" — Panic! at the Disco",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Love on the Brain\" — Rihanna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jodie-sweetin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Something's Got a Hold on Me\" — Etta James",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Stone Cold\" — Demi Lovato",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Telephone\" — Martynas Levickis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Can You Do This\" — Aloe Blacc",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2016-05-16",
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "paige-vanzant#1",
+        "paige-vanzant#2",
+        "antonio-brown#1",
+        "antonio-brown#2",
+        "wanya-morris#1",
+        "wanya-morris#2",
+        "nyle-dimarco#1",
+        "nyle-dimarco#2",
+        "ginger-zee#1",
+        "ginger-zee#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Hip Hip Chin Chin\" — Club des Belugas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"One Time\" — Marian Hill",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Mi Confesión\" — Gotan Project",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "antonio-brown"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Hall of Fame\" — The Script, feat. will.i.am",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Explosive\" — David Garrett & Royal Philharmonic Orchestra",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "wanya-morris"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Shame on Me\" — Avicii, feat. Sterling Fox & Audra Mae",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hit the Road Jack\" — Hermes House Band",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Unsteady\" — X Ambassadors",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Shot Me Down\" — David Guetta, feat. Skylar Grey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Fire Under My Feet\" — Leona Lewis",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2016-05-23",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "ginger-zee#1",
+        "ginger-zee#2",
+        "nyle-dimarco#1",
+        "nyle-dimarco#2",
+        "paige-vanzant#1",
+        "paige-vanzant#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Adventure of a Lifetime\" — Coldplay",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Orange Colored Sky\" — Nat King Cole",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"S.O.B.\" — Nathaniel Rateliff & the Night Sweats",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"The Sound of Silence\" — Disturbed",
+          "result": null
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Fireball\" — Pitbull, feat. John Ryan",
+          "result": null
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Over the Rainbow\" — BC Jean",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 2,
+      "airDate": "2016-05-24",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "ginger-zee#3",
+        "nyle-dimarco#3",
+        "paige-vanzant#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "ginger-zee"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango\n& Foxtrot",
+          "song": "\"Just Like Fire\" — Pink",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "nyle-dimarco"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha\n& Tango",
+          "song": "\"Summer\" — Calvin Harris",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "paige-vanzant"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive &\nSalsa",
+          "song": "\"Little Bitty Pretty One\" — Thurston Harris and the Sharps",
+          "result": "Runners-up"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "geraldo-rivera",
+      "aliases": [
+        "Geraldo"
+      ],
+      "members": [
+        {
+          "name": "Geraldo Rivera",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "mischa-barton",
+      "aliases": [
+        "Mischa"
+      ],
+      "members": [
+        {
+          "name": "Mischa Barton",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Artem Chigvintsev",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "marla-maples",
+      "aliases": [
+        "Marla"
+      ],
+      "members": [
+        {
+          "name": "Marla Maples",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "doug-flutie",
+      "aliases": [
+        "Doug"
+      ],
+      "members": [
+        {
+          "name": "Doug Flutie",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "kim-fields",
+      "aliases": [
+        "Kim"
+      ],
+      "members": [
+        {
+          "name": "Kim Fields",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sasha Farber",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "von-miller",
+      "aliases": [
+        "Von"
+      ],
+      "members": [
+        {
+          "name": "Von Miller",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "jodie-sweetin",
+      "aliases": [
+        "Jodie"
+      ],
+      "members": [
+        {
+          "name": "Jodie Sweetin",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Keo Motsepe",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "antonio-brown",
+      "aliases": [
+        "Antonio"
+      ],
+      "members": [
+        {
+          "name": "Antonio Brown",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sharna Burgess",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "wanya-morris",
+      "aliases": [
+        "Wanyá"
+      ],
+      "members": [
+        {
+          "name": "Wanyá Morris",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Lindsay Arnold",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "ginger-zee",
+      "aliases": [
+        "Ginger"
+      ],
+      "members": [
+        {
+          "name": "Ginger Zee",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Valentin Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "paige-vanzant",
+      "aliases": [
+        "Paige"
+      ],
+      "members": [
+        {
+          "name": "Paige VanZant",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "nyle-dimarco",
+      "aliases": [
+        "Nyle"
+      ],
+      "members": [
+        {
+          "name": "Nyle DiMarco",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Peta Murgatroyd",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 8,
+      "night": 1,
+      "row": "Jodie & Keo\nNyle & Peta",
+      "reason": "4 judge values for a panel of 3"
+    },
+    {
+      "week": 8,
+      "night": 1,
+      "row": "Ginger & Val\nWanyá & Lindsay",
+      "reason": "4 judge values for a panel of 3"
+    },
+    {
+      "week": 8,
+      "night": 1,
+      "row": "Antonio & Sharna\nPaige & Mark",
+      "reason": "4 judge values for a panel of 3"
+    }
+  ]
+}
