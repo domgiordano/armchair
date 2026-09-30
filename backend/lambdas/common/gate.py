@@ -46,17 +46,22 @@ def rateable(
     return [k for k in keys if k not in off]
 
 
+def answered(sub: str, scores: list[dict]) -> set[str]:
+    """Keys the caller holds a row for, a value or a forfeit alike."""
+    return {key for key, owner in map(score_owner, scores) if owner == sub}
+
+
 def visible_scores(sub: str, scores: list[dict], members: set[str] | None = None) -> list[dict]:
     """
     Score rows the caller may see: only on performances they have answered, and
     only the caller's own plus `members` when a group is given. Every stat is
     computed over this and nothing wider.
     """
-    answered = {key for key, owner in map(score_owner, scores) if owner == sub}
+    done = answered(sub, scores)
     out = []
     for row in scores:
         key, owner = score_owner(row)
-        if key not in answered:
+        if key not in done:
             continue
         if members is not None and owner != sub and owner not in members:
             continue

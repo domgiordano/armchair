@@ -15,9 +15,17 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
   getSeason: vi.fn(),
   getEpisodeState: vi.fn(),
   submitScore: vi.fn(),
+  revealAll: vi.fn(),
 }));
 
-import { getEpisodeState, getSeason, submitScore, type EpisodeState, type Season } from "@/lib/api/show";
+import {
+  getEpisodeState,
+  getSeason,
+  revealAll,
+  submitScore,
+  type EpisodeState,
+  type Season,
+} from "@/lib/api/show";
 import { EpisodeScreen } from "./episode-screen";
 
 const person = (name: string) => ({ name, headshot: null });
@@ -79,6 +87,11 @@ const STATE: EpisodeState = {
   ],
 };
 
+/** Per-episode state for getEpisodeState, each a patch over STATE. */
+function episodes(byEp: Record<number, Partial<EpisodeState>>) {
+  vi.mocked(getEpisodeState).mockImplementation(async (_, ep) => ({ ...STATE, ...byEp[ep] }));
+}
+
 const value = (article: HTMLElement, label: string) =>
   within(article).getByText(label).nextElementSibling?.textContent;
 
@@ -132,7 +145,7 @@ describe("EpisodeScreen", () => {
 
   it("disables scoring before the picked episode airs", async () => {
     search = new URLSearchParams("ep=5");
-    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, ep: 5, performances: [{ key: "amber-glenn#1", ...LOCKED }] });
+    episodes({ 4: { answered: 2 }, 5: { ep: 5, answered: 0, performances: [{ key: "amber-glenn#1", ...LOCKED }] } });
     render(<EpisodeScreen />);
     const amber = await screen.findByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
     expect(within(amber).getByText("Airs Tue, Oct 6")).toBeTruthy();
@@ -143,5 +156,60 @@ describe("EpisodeScreen", () => {
     render(<EpisodeScreen />);
     fireEvent.change(await screen.findByRole("combobox", { name: "Episode" }), { target: { value: "5" } });
     expect(replace).toHaveBeenCalledWith("/episode/?ep=5");
+  });
+
+  it("offers Reveal all for what is left and reloads after it", async () => {
+    vi.mocked(revealAll).mockResolvedValue({ revealed: ["amber-glenn#1"] });
+    render(<EpisodeScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "Reveal all" }));
+
+    expect(screen.getByText("Reveal the 1 dance you haven't scored?")).toBeTruthy();
+    expect(revealAll).not.toHaveBeenCalled();
+    fireEvent.click(within(screen.getByRole("group", { name: "Reveal all" })).getByRole("button", { name: "Reveal all" }));
+
+    expect(revealAll).toHaveBeenCalledWith("dwts-35", 4);
+    await vi.waitFor(() => expect(getEpisodeState).toHaveBeenCalledTimes(2));
+  });
+
+  it("hides Reveal all once everything is answered", async () => {
+    episodes({ 4: { answered: 2 } });
+    render(<EpisodeScreen />);
+    await screen.findByRole("heading", { name: "Yacht Rock" });
+    expect(screen.queryByRole("button", { name: "Reveal all" })).toBeNull();
+  });
+});
+
+describe("catching up", () => {
+  beforeEach(() => {
+    vi.setSystemTime(Date.parse("2026-10-07T12:00:00Z"));
+  });
+
+  it("asks before opening week 4 while week 3 is unfinished", async () => {
+    episodes({ 4: { answered: 1 }, 5: { ep: 5, theme: "Mariah Carey" } });
+    render(<EpisodeScreen />);
+
+    expect(await screen.findByRole("heading", { name: "Finish week 3 first?" })).toBeTruthy();
+    expect(screen.getByText(/1 dance left to score in week 3/)).toBeTruthy();
+    expect(screen.queryByRole("article")).toBeNull();
+    expect(getEpisodeState).toHaveBeenCalledExactlyOnceWith("dwts-35", 4);
+
+    fireEvent.click(screen.getByRole("button", { name: "Finish week 3" }));
+    expect(replace).toHaveBeenCalledWith("/episode/?ep=4");
+  });
+
+  it("goes ahead to week 4 and leaves week 3 as it was", async () => {
+    episodes({ 4: { answered: 1 }, 5: { ep: 5, theme: "Mariah Carey" } });
+    render(<EpisodeScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "Go to week 4" }));
+
+    expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
+    expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 5);
+  });
+
+  it("skips the question when week 3 is finished", async () => {
+    episodes({ 4: { answered: 2 }, 5: { ep: 5, theme: "Mariah Carey" } });
+    render(<EpisodeScreen />);
+    expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
+    expect(screen.queryByRole("heading", { name: /first\?$/ })).toBeNull();
   });
 });

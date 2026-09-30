@@ -103,3 +103,9 @@ export const submitScore = (season: string, ep: number, card: LockedCard, answer
       ...answer,
     }),
   });
+
+export const revealAll = (season: string, ep: number) =>
+  request<{ revealed: string[] }>("/scores/reveal-all", {
+    method: "POST",
+    body: JSON.stringify({ season, ep: epParam(ep) }),
+  });

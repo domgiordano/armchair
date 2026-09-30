@@ -7,6 +7,7 @@ locals {
   ]
   scores_lambdas = [
     { name = "submit", description = "Record the caller's final answer on one performance", path_part = "submit", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "reveal_all", description = "Forfeit every performance the caller left unanswered in one episode", path_part = "reveal-all", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
   episodes_lambdas = [
     { name = "state", description = "One episode as the caller may see it, through the gate", path_part = "state", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
@@ -32,10 +33,11 @@ locals {
     users        = aws_dynamodb_table.users.arn
   }
   api_grants = {
-    users_me       = ["users:UpdateItem"]
-    scores_submit  = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
-    episodes_state = ["catalog:Query", "performances:Query", "scores:Query"]
-    seasons_get    = ["catalog:Query"]
+    users_me          = ["users:UpdateItem"]
+    scores_submit     = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
+    scores_reveal_all = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
+    episodes_state    = ["catalog:Query", "performances:Query", "scores:Query"]
+    seasons_get       = ["catalog:Query"]
   }
 }
 
