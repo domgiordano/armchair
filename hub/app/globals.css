@@ -198,3 +198,46 @@ body {
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/* Apps menu (components/apps-menu.tsx): a sheet that rises on mobile, a dropdown from sm up. */
+.apps-panel {
+  animation: apps-rise 260ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.apps-backdrop {
+  animation: apps-fade 200ms ease both;
+}
+
+@keyframes apps-rise {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes apps-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 40rem) {
+  .apps-panel {
+    transform-origin: top right;
+    animation-name: apps-drop;
+    animation-duration: 160ms;
+  }
+}
+
+@keyframes apps-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apps-panel,
+  .apps-backdrop {
+    animation: none;
+  }
+}
