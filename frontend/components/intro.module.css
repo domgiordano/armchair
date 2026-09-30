@@ -1,0 +1,308 @@
+/* Timeline, against LENGTH = 5200 ms in intro.tsx:
+   0-1.3 s ball drops · 0.9-3.7 s beams sweep · 1.3-4.6 s sparkles scatter, then gather
+   3.3 s ball lifts away · 3.6 s mark · 3.9 s wordmark · 4.0 s paddles · 4.7 s fade out */
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: hidden;
+  isolation: isolate;
+  background: radial-gradient(ellipse 90% 60% at 50% 18%, #17266b 0%, var(--color-ballroom) 42%, var(--color-ink) 85%);
+  animation: fade-out 500ms 4700ms ease-in forwards;
+}
+
+.floor {
+  position: absolute;
+  inset: auto 0 0;
+  height: 34vh;
+  border-top: 1px solid rgb(213 219 234 / 0.12);
+  background:
+    radial-gradient(ellipse 55% 70% at 50% 0%, rgb(232 194 104 / 0.22), transparent 70%),
+    linear-gradient(to bottom, rgb(10 20 64 / 0.9), var(--color-ink));
+  animation: pool 1400ms 700ms ease-out both;
+}
+
+/* Everything hangs from the mirror ball's resting centre. */
+.rig {
+  position: absolute;
+  left: 50%;
+  top: 30vh;
+  width: 0;
+  height: 0;
+}
+
+.ball {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(96px, 24vmin, 200px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  animation:
+    drop 1300ms cubic-bezier(0.2, 0.9, 0.3, 1.08) both,
+    lift 800ms 3300ms cubic-bezier(0.5, 0, 0.8, 0.4) forwards;
+}
+
+.chain {
+  position: absolute;
+  left: 50%;
+  bottom: 96%;
+  width: 2px;
+  height: 60vh;
+  translate: -50% 0;
+  background: linear-gradient(to top, #aab3c9, rgb(170 179 201 / 0.2));
+}
+
+.sphere {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 28px rgb(213 219 234 / 0.35));
+}
+
+.facet {
+  animation: glint 900ms ease-in-out infinite alternate;
+  opacity: 0.1;
+}
+
+.beam {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36vmax;
+  height: 130vh;
+  margin-left: -18vmax;
+  transform-origin: 50% 0;
+  clip-path: polygon(49.5% 0, 50.5% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom, rgb(213 219 234 / 0.5), rgb(213 219 234 / 0) 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: sweep 2800ms 900ms ease-in-out both;
+}
+
+.beam.gold {
+  background: linear-gradient(to bottom, rgb(247 226 164 / 0.55), rgb(232 194 104 / 0) 70%);
+}
+
+.sparkle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(6px, calc(var(--size) * 1vmin), 32px);
+  height: clamp(6px, calc(var(--size) * 1vmin), 32px);
+  background: #eef1fb;
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  opacity: 0;
+  animation: scatter 2400ms cubic-bezier(0.3, 0.7, 0.4, 1) both;
+}
+
+.sparkle.gold {
+  background: var(--color-gold-light);
+}
+
+.finale {
+  position: absolute;
+  left: 0;
+  right: 0;
+  --mark: clamp(144px, 24vmin, 224px);
+  top: calc(48vh - var(--mark) / 2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.mark {
+  width: var(--mark);
+  height: var(--mark);
+  overflow: hidden;
+  border-radius: 22%;
+  box-shadow:
+    0 0 0 1px rgb(232 194 104 / 0.45),
+    0 0 72px rgb(232 194 104 / 0.35);
+  animation: reveal 700ms 3600ms cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+
+.mark img {
+  width: 100%;
+  height: 100%;
+}
+
+.wordmark {
+  font-size: clamp(28px, 4.4vmin, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #f1f3fa;
+  animation: rise 600ms 3900ms ease-out both;
+}
+
+.paddles {
+  display: flex;
+  gap: 12px;
+}
+
+.paddle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: rise 560ms cubic-bezier(0.2, 0.8, 0.3, 1.2) both;
+}
+
+.paddle::after {
+  content: "";
+  width: 3px;
+  height: 24px;
+  border-radius: 2px;
+  background: #aab3c9;
+}
+
+.face {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 34px;
+  border-radius: 5px;
+  background: var(--color-gold);
+  box-shadow: inset 0 0 0 2px var(--color-gold-deep);
+  color: var(--color-ink);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.skip {
+  position: absolute;
+  right: calc(16px + env(safe-area-inset-right));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid rgb(213 219 234 / 0.35);
+  border-radius: 999px;
+  background: rgb(213 219 234 / 0.1);
+  color: var(--color-silver);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background-color 150ms;
+}
+
+.skip:hover {
+  background: rgb(213 219 234 / 0.2);
+}
+
+.skip:active {
+  background: rgb(213 219 234 / 0.28);
+}
+
+.skip:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 2px;
+}
+
+@keyframes drop {
+  from {
+    transform: translateY(-70vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes lift {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-70vh);
+    opacity: 0.4;
+  }
+}
+
+@keyframes glint {
+  to {
+    opacity: 0.95;
+  }
+}
+
+@keyframes sweep {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--from));
+  }
+  18% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--to));
+  }
+}
+
+@keyframes scatter {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  38% {
+    transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(1) rotate(45deg);
+  }
+  52% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(0.7) rotate(90deg);
+  }
+  64% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(1.1) rotate(135deg);
+  }
+  94% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0.5) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pool {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
