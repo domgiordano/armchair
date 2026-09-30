@@ -22,7 +22,7 @@ import { useSeason } from "@/lib/show/use-season";
 
 export function EpisodeScreen() {
   return (
-    <SignedIn title="Scorecard">
+    <SignedIn title="Scorecard" wide>
       <SeasonLoader />
     </SignedIn>
   );
@@ -50,21 +50,23 @@ function EpisodePicker({ season }: EpisodePickerProps) {
 
   return (
     <>
-      <label className="flex flex-col gap-1 text-sm text-neutral-400">
-        Episode
-        <select
-          value={episode.ep}
-          onChange={(e) => router.replace(withSeason(`/episode/?ep=${e.target.value}`, season.season))}
-          className="min-h-11 rounded-md border border-neutral-700 bg-neutral-900 px-3 text-base text-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-        >
-          {season.episodes.map((e) => (
-            <option key={e.ep} value={e.ep}>
-              {[episodeLabel(e, season.episodes), e.theme, formatAirDate(e.airDate)].filter(Boolean).join(" · ")}
-            </option>
-          ))}
-        </select>
-      </label>
-      <GroupPicker {...filter} />
+      <div className="grid gap-3 md:grid-cols-2 md:items-end">
+        <label className="flex flex-col gap-1 text-sm text-neutral-400">
+          Episode
+          <select
+            value={episode.ep}
+            onChange={(e) => router.replace(withSeason(`/episode/?ep=${e.target.value}`, season.season))}
+            className="min-h-11 rounded-md border border-neutral-700 bg-neutral-900 px-3 text-base text-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          >
+            {season.episodes.map((e) => (
+              <option key={e.ep} value={e.ep}>
+                {[episodeLabel(e, season.episodes), e.theme, formatAirDate(e.airDate)].filter(Boolean).join(" · ")}
+              </option>
+            ))}
+          </select>
+        </label>
+        <GroupPicker {...filter} />
+      </div>
       <CatchUp
         key={episode.ep}
         season={season.season}
@@ -82,18 +84,20 @@ function EpisodePicker({ season }: EpisodePickerProps) {
           members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
         />
       </CatchUp>
-      <Link
-        href="/stats/"
-        className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-      >
-        Your accuracy
-      </Link>
-      <Link
-        href="/credits/"
-        className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-      >
-        Photo credits
-      </Link>
+      <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <Link
+          href="/stats/"
+          className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+        >
+          Your accuracy
+        </Link>
+        <Link
+          href="/credits/"
+          className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+        >
+          Photo credits
+        </Link>
+      </div>
     </>
   );
 }
@@ -167,7 +171,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
       {data.performances.length === 0 ? (
         <p className="text-neutral-400">No performances in this episode yet.</p>
       ) : (
-        <ul className="flex flex-col gap-3">
+        <ul className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {data.performances.map((card) => (
             <li key={card.key}>
               <PerformanceCard

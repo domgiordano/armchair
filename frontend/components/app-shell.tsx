@@ -45,7 +45,7 @@ const PANEL_ITEM = `flex min-h-11 w-full items-center rounded-md px-3 text-left 
 interface AppShellProps {
   // Names the main landmark; the active tab already says where you are.
   title: string;
-  // Dashboard pages take the header's full width; forms and scorecards stay phone-width.
+  // Pages with a desktop layout take the header's full width; the rest stay a reading column.
   wide?: boolean;
   children: ReactNode;
 }
@@ -157,7 +157,7 @@ function Shell({ title, wide, children }: AppShellProps) {
         id="main"
         aria-label={title}
         aria-live="polite"
-        className={`mx-auto flex w-full flex-1 flex-col gap-4 px-4 py-6 ${wide ? "max-w-6xl sm:px-6" : "max-w-md"}`}
+        className={`mx-auto flex w-full flex-1 flex-col gap-4 px-4 py-6 sm:px-6 ${wide ? "max-w-6xl lg:py-8" : "max-w-md md:max-w-2xl"}`}
       >
         {children}
       </main>
