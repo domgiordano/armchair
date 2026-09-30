@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
+import { CatchUp } from "@/components/catch-up";
 import { LoadError } from "@/components/load-error";
 import { PerformanceCard } from "@/components/performance-card";
+import { RevealAll } from "@/components/reveal-all";
 import { SignedIn } from "@/components/signed-in";
-import { submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
+import { revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
 import { useEpisodeState } from "@/lib/show/use-episode-state";
 import { useNow } from "@/lib/show/use-now";
@@ -56,7 +58,17 @@ function EpisodePicker({ season }: EpisodePickerProps) {
           ))}
         </select>
       </label>
-      <EpisodeView key={episode.ep} season={season} episode={episode} now={now} />
+      <CatchUp
+        key={episode.ep}
+        season={season.season}
+        tz={season.timezone}
+        episodes={season.episodes}
+        episode={episode}
+        now={now}
+        onFinishPrevious={(previous) => router.replace(`/episode/?ep=${previous.ep}`)}
+      >
+        <EpisodeView season={season} episode={episode} now={now} />
+      </CatchUp>
       <Link
         href="/credits/"
         className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
@@ -84,6 +96,13 @@ function EpisodeView({ season, episode, now }: EpisodeViewProps) {
   }
 
   const airsOn = hasAired(episode, season.timezone, now) ? null : formatAirDate(episode.airDate);
+  const revealRest = async () => {
+    try {
+      await revealAll(season.season, episode.ep);
+    } finally {
+      reload();
+    }
+  };
   const submit = async (card: LockedCard, answer: Answer) => {
     try {
       await submitScore(season.season, episode.ep, card, answer);
@@ -106,6 +125,9 @@ function EpisodeView({ season, episode, now }: EpisodeViewProps) {
           {data.answered} of {data.rateable} answered
         </p>
       </div>
+      {airsOn === null && data.answered < data.rateable && (
+        <RevealAll open={data.rateable - data.answered} onConfirm={revealRest} />
+      )}
       {error !== null && (
         <p role="status" className="text-sm text-amber-200">
           Couldn&apos;t refresh: {error}. Showing the last scores loaded.
