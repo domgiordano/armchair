@@ -198,3 +198,106 @@ body {
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/* Feature illustrations (components/feature-art.tsx). Base styles are the end state. */
+.art-bob {
+  animation: art-bob 1800ms ease-in-out infinite alternate;
+}
+
+@keyframes art-bob {
+  from {
+    transform: translateY(3px);
+  }
+}
+
+.art-flip {
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  animation: art-flip 6000ms ease-in-out var(--delay) infinite both;
+}
+
+@keyframes art-flip {
+  0%,
+  18% {
+    transform: rotateY(0deg);
+  }
+  28%,
+  88% {
+    transform: rotateY(180deg);
+  }
+  98%,
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+.art-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.art-back {
+  transform: rotateY(180deg);
+}
+
+.art-draw {
+  stroke-dasharray: 1;
+  animation: art-draw 5000ms ease-in-out infinite both;
+}
+
+@keyframes art-draw {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  45%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Apps menu (components/apps-menu.tsx): a sheet that rises on mobile, a dropdown from sm up. */
+.apps-panel {
+  animation: apps-rise 260ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.apps-backdrop {
+  animation: apps-fade 200ms ease both;
+}
+
+@keyframes apps-rise {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes apps-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 40rem) {
+  .apps-panel {
+    transform-origin: top right;
+    animation-name: apps-drop;
+    animation-duration: 160ms;
+  }
+}
+
+@keyframes apps-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-bob,
+  .art-flip,
+  .art-draw,
+  .apps-panel,
+  .apps-backdrop {
+    animation: none;
+  }
+}

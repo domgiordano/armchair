@@ -4,9 +4,11 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from lambdas.common.dynamo import table
+from lambdas.common.dynamo import resource, table
 
 FIELDS = ("email", "name", "picture", "avatarKind", "createdAt", "lastSeenAt")
+# What other users may see of someone: a name and a face, never the email.
+CARD_FIELDS = ("name", "picture", "avatarKind")
 
 
 def upsert(sub: str, email: str, name: str | None, picture: str | None) -> dict:
@@ -51,3 +53,38 @@ def upsert(sub: str, email: str, name: str | None, picture: str | None) -> dict:
         ReturnValues="ALL_NEW",
     )["Attributes"]
     return {"sub": sub, **{k: item.get(k) for k in FIELDS}}
+
+
+def cards(subs: set[str]) -> dict[str, dict]:
+    """A card per sub, with None fields for a sub that has no profile yet."""
+    name = table("USERS_TABLE").name
+    keys = [{"sub": s} for s in sorted(subs)]
+    rows = {}
+    for i in range(0, len(keys), 100):
+        request = {
+            name: {
+                "Keys": keys[i : i + 100],
+                "ProjectionExpression": "#sub, #name, picture, avatarKind",
+                "ExpressionAttributeNames": {"#sub": "sub", "#name": "name"},
+            }
+        }
+        while request:
+            page = resource().batch_get_item(RequestItems=request)
+            for row in page["Responses"].get(name, []):
+                rows[row["sub"]] = row
+            request = page.get("UnprocessedKeys")
+    return {s: {"sub": s, **{f: rows.get(s, {}).get(f) for f in CARD_FIELDS}} for s in subs}
+
+
+def card(sub: str) -> dict | None:
+    """One user's card, or None when they have never signed in."""
+    row = (
+        table("USERS_TABLE")
+        .get_item(
+            Key={"sub": sub},
+            ProjectionExpression="#sub, #name, picture, avatarKind",
+            ExpressionAttributeNames={"#sub": "sub", "#name": "name"},
+        )
+        .get("Item")
+    )
+    return {"sub": sub, **{f: row.get(f) for f in CARD_FIELDS}} if row else None
