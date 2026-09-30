@@ -23,5 +23,8 @@ export interface Stats {
   others: { sub: string; count: number; mae: number }[];
 }
 
-export const getStats = (season: string) =>
-  request<Stats>(`/stats/get?season=${encodeURIComponent(season)}`);
+export const getStats = (season: string, group: string | null = null) => {
+  const query = new URLSearchParams({ season });
+  if (group) query.set("group", group);
+  return request<Stats>(`/stats/get?${query}`);
+};

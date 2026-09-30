@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 
 import { LoadError } from "@/components/load-error";
+import { GroupPicker } from "@/components/group-picker";
 import { formatScore } from "@/components/performance-card";
 import { SignedIn } from "@/components/signed-in";
 import type { Season } from "@/lib/api/show";
 import { getStats, type Dance, type Stats } from "@/lib/api/stats";
+import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel } from "@/lib/show/schedule";
 import { useSeason } from "@/lib/show/use-season";
 
@@ -28,12 +30,22 @@ function SeasonLoader() {
 }
 
 function StatsLoader({ season }: { season: Season }) {
+  const filter = useGroupFilter();
+  return (
+    <>
+      <GroupPicker {...filter} />
+      <StatsFetcher season={season} group={filter.group} />
+    </>
+  );
+}
+
+function StatsFetcher({ season, group }: { season: Season; group: string | null }) {
   const [load, setLoad] = useState<StatsLoad>({ kind: "loading" });
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
-    getStats(season.season).then(
+    getStats(season.season, group).then(
       (stats) => !cancelled && setLoad({ kind: "ready", stats }),
       (e: unknown) =>
         !cancelled && setLoad({ kind: "error", message: e instanceof Error ? e.message : "Request failed" }),
@@ -41,7 +53,7 @@ function StatsLoader({ season }: { season: Season }) {
     return () => {
       cancelled = true;
     };
-  }, [season.season, attempt]);
+  }, [season.season, group, attempt]);
 
   if (load.kind === "loading") return <p className="text-neutral-400">Loading your stats...</p>;
   if (load.kind === "error") {
