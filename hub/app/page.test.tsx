@@ -7,7 +7,7 @@ describe("hub", () => {
   it("links to the Dancing with the Stars app", () => {
     render(<HomePage />);
     expect(screen.getByRole("link", { name: "Judge Dancing with the Stars" }).getAttribute("href")).toBe(
-      "https://dwts.xomware.com",
+      "https://dwts.armchairjudge.com",
     );
   });
 });

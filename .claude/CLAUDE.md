@@ -10,7 +10,7 @@ The repo is `domgiordano/armchair` (repo id 1398549188), a public personal repo.
 ## Stack
 A derby-style monorepo copied from `/Users/dom/Code/smirnoff-league`:
 - `frontend/`: Next.js 16 static export (`output: "export"`, `trailingSlash: true`), Tailwind 4, vitest. Mobile-first.
-- `hub/`: the Armchair Judge hub at `armchair.xomware.com` (`var.hub_domain_name`), a second static Next app with the same config. Deployed by `deploy-hub.yml`.
+- `hub/`: the Armchair Judge hub at `armchairjudge.com` (`var.hub_domain_name`), a second static Next app with the same config. Deployed by `deploy-hub.yml`.
 - `backend/`: Python 3.12 Lambdas; shared code in `backend/lambdas/common/`, shipped as the `armchair-shared-packages` layer.
 - `infrastructure/terraform/`: S3 + CloudFront via `domgiordano/web-hosting` v1.4.0 behind the shared CloudFront WAF. State in `s3://xomware-terraform-state/armchair/terraform.tfstate`, locks in `xomware-terraform-locks`.
 

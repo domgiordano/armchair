@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   // Resolves the OG image to an absolute URL. Change with the hub's domain_name.
-  metadataBase: new URL("https://armchair.xomware.com"),
+  metadataBase: new URL("https://armchairjudge.com"),
   title: "Armchair Judge",
   description: "Score the show like a judge from your couch, then see how the real panel and everyone else scored it.",
 };
