@@ -1,2 +1,4 @@
 # Lambda layer dependencies. boto3 is omitted because the Lambda runtime
 # provides it; test-only packages are installed by the workflows, not shipped.
+# tzdata: zoneinfo's fallback when the runtime image has no /usr/share/zoneinfo.
+tzdata==2025.2

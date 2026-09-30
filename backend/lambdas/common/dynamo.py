@@ -10,6 +10,7 @@ from __future__ import annotations
 import os
 
 import boto3
+from botocore.exceptions import ClientError
 
 _resource = None
 
@@ -41,3 +42,25 @@ def query_all(tbl, pk: str) -> list[dict]:
         if "LastEvaluatedKey" not in page:
             return items
         kwargs["ExclusiveStartKey"] = page["LastEvaluatedKey"]
+
+
+def update(env_var: str, key: dict, values: dict, condition: str | None = None) -> bool:
+    """
+    SETs every attribute in `values`. Each is addressable in `condition` as
+    #name / :name. Returns False when the condition fails.
+    """
+    kwargs = {
+        "Key": key,
+        "UpdateExpression": "SET " + ", ".join(f"#{k} = :{k}" for k in values),
+        "ExpressionAttributeNames": {f"#{k}": k for k in values},
+        "ExpressionAttributeValues": {f":{k}": v for k, v in values.items()},
+    }
+    if condition:
+        kwargs["ConditionExpression"] = condition
+    try:
+        table(env_var).update_item(**kwargs)
+    except ClientError as e:
+        if e.response["Error"]["Code"] != "ConditionalCheckFailedException":
+            raise
+        return False
+    return True

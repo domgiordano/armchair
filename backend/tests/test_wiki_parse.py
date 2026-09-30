@@ -29,7 +29,52 @@ ALIASES = {"Amber": "amber-glenn"}
 def test_golden(case):
     text = (FIXTURES / "wiki" / case["fixture"]).read_text()
     aliases = GOLDEN["aliases"][case["aliases"]]
-    assert parse_week(text, case["expected"]["week"], aliases) == case["expected"]
+    week = parse_week(text, case["expected"]["week"], aliases)
+    # The golden predates style, song and result; test_s35_week_3_columns covers those.
+    for p in week["performances"]:
+        del p["style"], p["song"], p["result"]
+    assert week == case["expected"]
+
+
+# Hand-transcribed from the week 3 table in s35-1377681547.wikitext.
+S35_WK3_COLUMNS = [
+    ("Foxtrot", '"Hold the Line" — Toto', "Safe"),
+    ("Salsa", '"I Can\'t Go for That (No Can Do)" — Hall & Oates', "Safe"),
+    ("Foxtrot", '"Escape (The Piña Colada Song)" — Rupert Holmes', "Safe"),
+    ("Quickstep", '"Maneater" — Hall & Oates', "Safe"),
+    ("Jive", '"You Make My Dreams (Come True)" — Hall & Oates', "Safe"),
+    ("Foxtrot", '"What a Fool Believes" — The Doobie Brothers', "Eliminated"),
+    ("Quickstep", '"Turn Your Love Around" — George Benson', "Safe"),
+    ("Cha-cha-cha", '"Never Too Much" — Luther Vandross', "Safe"),
+    ("Paso doble", '"Easy Lover" — Phillip Bailey & Phil Collins', "Safe"),
+    ("Foxtrot", '"Everywhere" — Fleetwood Mac', "Safe"),
+    ("Samba", '"Africa" — Toto', "Safe"),
+    ("Jive", '"Still the One" — Orleans', "Safe"),
+    ("Foxtrot", '"Just the Two of Us" — Grover Washington Jr. feat. Bill Withers', "Safe"),
+]
+
+
+def test_s35_week_3_columns():
+    text = (FIXTURES / "wiki" / "s35-1377681547.wikitext").read_text()
+    week = parse_week(text, 3, GOLDEN["aliases"]["s35"])
+    got = [(p["style"], p["song"], p["result"]) for p in week["performances"]]
+    assert got == S35_WK3_COLUMNS
+
+
+def test_pre_show_row_has_no_columns():
+    text = (FIXTURES / "wiki" / "s35-1377681547.wikitext").read_text()
+    week = parse_week(text, 4, GOLDEN["aliases"]["s35"])
+    assert {(p["style"], p["song"], p["result"]) for p in week["performances"]} == {
+        (None, None, None)
+    }
+
+
+def test_music_column_matched_by_substring_and_missing_result_is_none():
+    text = (FIXTURES / "wiki" / "s34-1375977389.wikitext").read_text()
+    wk1 = parse_week(text, 1, GOLDEN["aliases"]["s34"])
+    assert all(p["result"] is None for p in wk1["performances"])
+    wk10 = parse_week(text, 10, GOLDEN["aliases"]["s34"])
+    assert all(p["song"] for p in wk10["performances"])
 
 
 def test_accepts_a_clean_row_with_wrappers_stripped():

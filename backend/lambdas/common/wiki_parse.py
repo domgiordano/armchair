@@ -144,6 +144,14 @@ def score_tables(section: str) -> list[tuple[list[list[dict]], list[str]]]:
     return found
 
 
+def column(row: list[dict], names: list[str], want: str) -> str | None:
+    """Text of the first column whose header contains `want` ("Mariah Carey music" is the music)."""
+    i = next((i for i, name in enumerate(names) if want in name), None)
+    if i is None or i >= len(row):
+        return None
+    return row[i]["text"] or None
+
+
 def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None:
     """Performances and rejected rows for `=== Week N`, or None if the heading isn't on the page.
 
@@ -205,6 +213,9 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
                     "total": total,
                     "judges": judges,
                     "bonus": None,
+                    "style": column(row, names, "dance"),
+                    "song": column(row, names, "music"),
+                    "result": column(row, names, "result"),
                 }
             )
 
