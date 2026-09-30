@@ -13,6 +13,7 @@ def authorized_event(
     sub=SUB,
     name="Test Viewer",
     picture=PICTURE,
+    query=None,
 ):
     """A request as API Gateway delivers it once the Cognito authorizer passes an ID token."""
     claims = {
@@ -33,7 +34,7 @@ def authorized_event(
         "path": path,
         "httpMethod": method,
         "headers": {"Authorization": "eyJraWQiOiJleGFtcGxlIn0", "origin": origin},
-        "queryStringParameters": None,
+        "queryStringParameters": query,
         "body": None if body is None else json.dumps(body),
         "isBase64Encoded": False,
         "requestContext": {

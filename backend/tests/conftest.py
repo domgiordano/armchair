@@ -3,6 +3,20 @@ import pytest
 from moto import mock_aws
 
 USERS_TABLE = "t-armchair-users"
+CATALOG_TABLE = "t-armchair-catalog"
+PERFORMANCES_TABLE = "t-armchair-performances"
+SCORES_TABLE = "t-armchair-scores"
+
+PK_SK = {
+    "KeySchema": [
+        {"AttributeName": "pk", "KeyType": "HASH"},
+        {"AttributeName": "sk", "KeyType": "RANGE"},
+    ],
+    "AttributeDefinitions": [
+        {"AttributeName": "pk", "AttributeType": "S"},
+        {"AttributeName": "sk", "AttributeType": "S"},
+    ],
+}
 
 
 @pytest.fixture
@@ -14,15 +28,21 @@ def aws(monkeypatch):
         "AWS_ACCESS_KEY_ID": "testing",
         "AWS_SECRET_ACCESS_KEY": "testing",
         "USERS_TABLE": USERS_TABLE,
+        "CATALOG_TABLE": CATALOG_TABLE,
+        "PERFORMANCES_TABLE": PERFORMANCES_TABLE,
+        "SCORES_TABLE": SCORES_TABLE,
         "APP_NAME": "armchair",
         "CORS_ALLOW_ORIGIN": "https://dwts.xomware.com,http://localhost:3000",
     }.items():
         monkeypatch.setenv(k, v)
     with mock_aws():
-        boto3.client("dynamodb").create_table(
+        client = boto3.client("dynamodb")
+        client.create_table(
             TableName=USERS_TABLE,
             KeySchema=[{"AttributeName": "sub", "KeyType": "HASH"}],
             AttributeDefinitions=[{"AttributeName": "sub", "AttributeType": "S"}],
             BillingMode="PAY_PER_REQUEST",
         )
+        for name in (CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE):
+            client.create_table(TableName=name, BillingMode="PAY_PER_REQUEST", **PK_SK)
         yield boto3.resource("dynamodb")
