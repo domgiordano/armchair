@@ -1,0 +1,1402 @@
+{{Use American English|date=March 2026}}
+{{Use mdy dates|date=May 2022}}
+{{Infobox television season
+| bgcolor      = #EEC83E
+| image        = Dancing with the Stars u.s. season 20.jpg
+| caption      = Promotional poster, featuring pro dancers [[Peta Murgatroyd]] and [[Valentin Chmerkovskiy]]
+| module1      = {{Infobox reality competition season
+| host                 = {{Plainlist|
+* [[Tom Bergeron]]
+* [[Erin Andrews]]
+}}
+| judges               = {{Plainlist|
+* [[Carrie Ann Inaba]]
+* [[Len Goodman]]
+* [[Bruno Tonioli]]
+* [[Julianne Hough]]
+}}
+| celebrity_winner     = [[Rumer Willis]]
+| professional_winner  = [[Valentin Chmerkovskiy]]
+}}
+| num_episodes = 14
+| network      = [[American Broadcasting Company|ABC]]
+| first_aired  = {{start date|2015|3|16}}
+| last_aired   = {{end date|2015|5|19}}
+}}
+
+'''Season twenty''' of ''[[Dancing with the Stars (American TV series)|Dancing with the Stars]]'' premiered on March 16, 2015,<ref>{{cite web|url=http://www.wetpaint.com/dancing-with-the-stars/articles/2015-01-14-season-20-premiere-date-announced|title=Dancing With the Stars Season 20 Premiere Date Announced|last=Martin|first=Rebecca|work=Wetpaint|date=January 14, 2015|access-date=February 15, 2015|archive-url=https://web.archive.org/web/20150214011429/http://www.wetpaint.com/dancing-with-the-stars/articles/2015-01-14-season-20-premiere-date-announced|archive-date=February 14, 2015|url-status=live}}</ref> and concluded on May 19, 2015.<ref>{{cite web |url=http://www.buddytv.com/articles/dancing-with-the-stars/abc-sets-2015-season-finale-da-56250.aspx |title=ABC Sets 2015 Season Finale Dates for 'Scandal,' 'Once Upon a Time' and More |first=Jeff |last=Dodge |work=BuddyTV |date=April 16, 2015 |access-date=April 17, 2015 |archive-url=https://web.archive.org/web/20150418004835/http://www.buddytv.com/articles/dancing-with-the-stars/abc-sets-2015-season-finale-da-56250.aspx |archive-date=April 18, 2015 |url-status=live }}</ref>
+
+This season marked the tenth anniversary of the show. In honor of this anniversary, winners [[Rumer Willis]] and [[Valentin Chmerkovskiy]] received a special 10th Anniversary golden Mirrorball Trophy.<ref name="Celebrity Cast">{{cite web |last=Sher |first=Lauren |date=February 24, 2015 |title={{-'}}Dancing With the Stars' 2015: Season 20 Celebrity Cast Announced |url=https://abcnews.go.com/Entertainment/dancing-stars-2015-season-20-celebrity-cast-announced/story?id=29166872 |url-status=live |archive-url=https://web.archive.org/web/20150224160502/https://abcnews.go.com/Entertainment/dancing-stars-2015-season-20-celebrity-cast-announced/story?id=29166872 |archive-date=February 24, 2015 |access-date=February 24, 2015 |work=[[ABC News (United States)|ABC News]]}}</ref> [[R5 (band)|R5]] singer [[Riker Lynch]] and [[Allison Holker]] finished in second place, while former soldier [[Noah Galloway]] and [[Sharna Burgess]] finished in third.
+
+==Cast==
+===Couples===
+This season featured twelve celebrity contestants. Ten of the professional partners were revealed on February 11, 2015, on ''[[Good Morning America]]''.<ref>{{cite web|url=https://www.usatoday.com/story/life/tv/2015/02/11/dancing-with-the-stars-new-season-pros/23224931/|title={{-'}}Dancing With the Stars' new season news!|first=Ann|last=Oldenburg|date=February 11, 2015|work=USA TODAY|access-date=February 15, 2015|archive-url=https://web.archive.org/web/20150214000630/http://www.usatoday.com/story/life/tv/2015/02/11/dancing-with-the-stars-new-season-pros/23224931/|archive-date=February 14, 2015|url-status=live}}</ref> Joining [[Lindsay Arnold]], [[Sasha Farber]], [[Henry Byalikov]], and [[Jenna Johnson (dancer)|Jenna Johnson]] in the troupe this season were [[Alan Bersten]], from the tenth season of ''[[So You Think You Can Dance (American season 10)|So You Think You Can Dance]]'', and Brittany Cherry. Eleven of the celebrity competitors and their professional partners were revealed on ''Good Morning America'' on February 24, 2015.<ref name="Celebrity Cast" /> Witney Carson's celebrity partner was reported to be [[Chris Soules]] from ''[[The Bachelor (American TV series)|The Bachelor]]'' on March 4, 2015; Soules was later confirmed on March 10, nearly 12 hours after [[The Bachelor (American season 19)|that show's finale]].<ref name="Soules">{{cite web|url=http://www.usmagazine.com/entertainment/news/bachelor-chris-soules-is-the-dancing-with-the-stars-mystery-contestant-201543|title=Dancing With the Stars Mystery Contestant Revealed: It's Bachelor Chris Soules!|work=[[Us Weekly]]|last=Bentley|first=Jean|date=March 4, 2015|access-date=March 5, 2015|archive-url=https://web.archive.org/web/20150305102804/http://www.usmagazine.com/entertainment/news/bachelor-chris-soules-is-the-dancing-with-the-stars-mystery-contestant-201543|archive-date=March 5, 2015|url-status=live}}</ref><ref>{{cite web | url=https://abcnews.go.com/Entertainment/bachelor-chris-soules-joins-dancing-stars-season-20/story?id=29417051 | title='Bachelor' Chris Soules Joins 'Dancing With the Stars' Season 20 Celebrity Cast | publisher=ABC News | work=[[Good Morning America]] | date=March 10, 2015 | access-date=March 10, 2015 | author=Sher, Lauren | archive-url=https://web.archive.org/web/20150311032512/https://abcnews.go.com/Entertainment/bachelor-chris-soules-joins-dancing-stars-season-20/story?id=29417051 | archive-date=March 11, 2015 | url-status=live }}</ref>
+
+{| class="wikitable sortable" style="text-align:center;"
+|-
+! scope="col" | Celebrity
+! scope="col" class="unsortable"| Notability
+! scope="col" | Professional partner
+! scope="col" | Status
+! scope="col" class="unsortable"| {{Abbr|Ref.|Reference}} 
+|-
+! scope="row" | {{sortname|Redfoo|}}
+| [[LMFAO]] singer, producer & rapper
+| {{sortname|Emma|Slater}}
+| style="background:#f4c7b8;" |Eliminated 1st<br />{{small|on March 23, 2015}}
+|<ref>{{cite web|url=http://news.lalate.com/2015/03/23/dancing-with-the-stars-2015-results-tonight-march-23-dwts-eliminates-redfoo/|title=Dancing with the Stars 2015 Results Tonight March 23: DWTS Eliminates Redfoo|work=lalate news - America's Fastest Growing Celebrity News Site!|access-date=March 24, 2015|archive-url=https://web.archive.org/web/20150402194234/http://news.lalate.com/2015/03/23/dancing-with-the-stars-2015-results-tonight-march-23-dwts-eliminates-redfoo/|archive-date=April 2, 2015|url-status=live}}</ref>
+|- 
+! scope="row" | {{sortname|Charlotte|McKinney}}
+| Model & actress
+| {{sortname|Keo|Motsepe}}
+| style="background:#f4c7b8;" |Eliminated 2nd<br />{{small|{{nowrap|on March 30, 2015}}}}
+|<ref>{{cite web|url=http://news.lalate.com/2015/03/30/dancing-with-the-stars-2015-results-tonight-march-30-dwts-eliminates-charlotte-mckinney/|title=Dancing with the Stars 2015 Results Tonight March 30: DWTS Eliminates Charlotte McKinney|work=lalate news - America's Fastest Growing Celebrity News Site!|access-date=March 30, 2015|archive-url=https://web.archive.org/web/20160304124218/http://news.lalate.com/2015/03/30/dancing-with-the-stars-2015-results-tonight-march-30-dwts-eliminates-charlotte-mckinney/|archive-date=March 4, 2016|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Michael|Sam}}
+| [[NFL]] defensive end
+| {{sortname|Peta|Murgatroyd}}
+| style="background:#f4c7b8;" |Eliminated 3rd<br />{{small|on April 6, 2015}}
+|<ref>{{cite web|url=http://news.lalate.com/2015/04/06/dancing-with-the-stars-2015-results-tonight-michael-sam-gets-dwts-elimination/|title=Dancing with the Stars 2015 Results Tonight: Michael Sam Gets DWTS Elimination|work=lalate news - America's Fastest Growing Celebrity News Site!|access-date=April 6, 2015|archive-url=https://web.archive.org/web/20150411041734/http://news.lalate.com/2015/04/06/dancing-with-the-stars-2015-results-tonight-michael-sam-gets-dwts-elimination|archive-date=April 11, 2015|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Suzanne|Somers}}
+| Television actress & author
+| {{sortname|Tony|Dovolani}}
+| style="background:#f4c7b8;" |Eliminated 4th<br />{{small|on April 13, 2015}}
+|<ref>{{cite web|url=http://news.lalate.com/2015/04/13/dancing-with-the-stars-2015-results-tonight-elimination-dwts-cuts-suzanne/|title=Dancing with the Stars 2015 Results Tonight: DWTS Cuts Suzanne|work=lalate news - America's Fastest Growing Celebrity News Site!|access-date=April 13, 2015|archive-url=https://web.archive.org/web/20150417175141/http://news.lalate.com/2015/04/13/dancing-with-the-stars-2015-results-tonight-elimination-dwts-cuts-suzanne/|archive-date=April 17, 2015|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Patti|LaBelle}}
+| [[Soul music|Soul]] singer 
+| {{sortname|Artem|Chigvintsev}}
+| style="background:#f4c7b8;" |Eliminated 5th<br />{{small|on April 20, 2015}}
+|<ref>{{cite web|url=http://news.lalate.com/2015/04/20/dancing-with-the-stars-2015-results-tonight-patti-labelle-gets-dwts-eliminated-420/|title=DancDancing with the Stars 2015 Results Tonight: Patti LaBelle Gets DWTS Eliminated 4/20|work=lalate news - America's Fastest Growing Celebrity News Site!|access-date=April 20, 2015|archive-url=https://web.archive.org/web/20150427111426/http://news.lalate.com/2015/04/20/dancing-with-the-stars-2015-results-tonight-patti-labelle-gets-dwts-eliminated-420/|archive-date=April 27, 2015|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Willow|Shields}}
+| ''[[The Hunger Games (film series)|The Hunger Games]]'' actress
+| {{sortname|Mark|Ballas}}
+| style="background:#f4c7b8;" |Eliminated 6th<br />{{small|on April 27, 2015}}
+|<ref>{{cite web|url=http://heavy.com/entertainment/2015/04/willow-shields-eliminated-dwts-elimination-dancing-with-the-stars-voted-off-who/|title=Willow Shields Eliminated Off 'Dancing With The Stars'|first=Lauren|last=Weigle|publisher=Heavy.com|date=April 27, 2015|access-date=April 27, 2015|archive-url=https://web.archive.org/web/20150501062957/http://heavy.com/entertainment/2015/04/willow-shields-eliminated-dwts-elimination-dancing-with-the-stars-voted-off-who/|archive-date=May 1, 2015|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Robert|Herjavec}}
+| ''[[Shark Tank]]'' panelist & businessman
+| {{sortname|Kym|Johnson|Kym Johnson-Herjavec}}
+| style="background:#f4c7b8;" |Eliminated 7th<br />{{small|on May 5, 2015}}
+|rowspan=2|<ref name="buddytv.com">{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-results-56421.aspx|title='Dancing with the Stars' Results: A Huge Double Elimination|access-date=May 6, 2015|archive-url=https://web.archive.org/web/20150507144201/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-results-56421.aspx|archive-date=May 7, 2015|url-status=dead}}</ref>
+|-
+! scope="row" | {{sortname|Chris|Soules}}
+| ''[[The Bachelor (American TV series)|The Bachelor]]'' star
+| {{sortname|Witney|Carson}}
+| style="background:#f4c7b8;" |Eliminated 8th<br />{{small|on May 5, 2015}}
+|-
+! scope="row" | {{sortname|Nastia|Liukin}}
+| [[Artistic gymnastics at the Summer Olympics|Olympic artistic gymnast]]
+| {{sortname|Derek|Hough}}<br>''{{small|Sasha Farber (Weeks 7–9)}}''
+| style="background:#f4c7b8;" |Eliminated 9th<br />{{small|on May 12, 2015}}
+|<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-results-56513.aspx|title='Dancing with the Stars' Results: Who's in the Finale?|access-date=May 12, 2015|archive-url=https://web.archive.org/web/20150514115331/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-results-56513.aspx|archive-date=May 14, 2015|url-status=dead}}</ref>
+|-
+! scope="row" | {{sortname|Noah|Galloway}}
+| Soldier & personal trainer
+| {{sortname|Sharna|Burgess}} 
+| style="background:tan;"|Third place<br />{{small|on May 19, 2015}}
+|rowspan=3|<ref name="Final3">{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-season-56578.aspx|title='Dancing with the Stars' Season 20 Finale Recap: Who Wins the Golden Mirror Ball?|last=Kubicek|first=John|date=May 19, 2015|access-date=May 19, 2015|publisher=BuddyTV|archive-url=https://web.archive.org/web/20150521024709/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-season-56578.aspx|archive-date=May 21, 2015|url-status=dead}}</ref>
+|-
+! scope="row" | {{sortname|Riker|Lynch}}
+| [[R5 (band)|R5]] singer & actor
+| {{sortname|Allison|Holker}}
+|style="background:silver;"|Runners-up<br />{{small|on May 19, 2015}}
+|-
+! scope="row" | {{sortname|Rumer|Willis}} 
+| Film & television actress
+| {{sortname|Valentin|Chmerkovskiy}}
+|style="background:gold;"|'''Winners'''<br />{{small|on May 19, 2015}}
+|}
+
+===Host and judges===
+[[Tom Bergeron]] returned as host alongside [[Erin Andrews]]. [[Len Goodman]], [[Carrie Ann Inaba]], [[Julianne Hough]], and [[Bruno Tonioli]] returned as judges.<ref name=usatoday>{{cite web|last1=Keveney|first1=Bill|title=Who's on 'Dancing's' 20th season?|url=https://www.usatoday.com/story/life/tv/2015/02/24/abc-dancing-with-the-stars-offers-eclectic-mix-for-10th-anniversary-season/23925407/|publisher=Gannett Company|access-date=February 25, 2015|archive-url=https://web.archive.org/web/20150225114448/http://www.usatoday.com/story/life/tv/2015/02/24/abc-dancing-with-the-stars-offers-eclectic-mix-for-10th-anniversary-season/23925407/|archive-date=February 25, 2015|url-status=live}}</ref>
+
+==Episodes==
+<onlyinclude>{{#invoke:Episode table|main|dontclose=y
+|background = #EEC83E
+|overall    = 5
+|season     = 6
+|title      = 40
+|titleR     = <ref name="The Futon Critic">{{cite web|url=http://www.thefutoncritic.com/showatch/dancing-with-the-stars/listings |title=''Dancing with the Stars'' Episode Listings|website=[[The Futon Critic]]}}</ref>
+|aux1       = 10
+|airdate    = 1r
+|country    = U.S.
+|viewers    = 10
+|viewersR= <ref name=ratings20>{{cite web|url=https://tvseriesfinale.com/tv-show/dancing-with-the-stars-season-20-ratings-35926/ |title=Dancing with the Stars: Season 20 Ratings |access-date=August 4, 2026}}</ref>
+|aux1T      = Rating<br>(18–49)
+|aux1R= <ref name=ratings20 />
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 346
+| EpisodeNumber2  = 1
+| Title           = Season Premiere
+| OriginalAirDate = {{Start date|2015|03|16}}
+| Aux1            = 2.07
+| Viewers         = 14.16
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 347
+| EpisodeNumber2  = 2
+| Title           = My Jam Monday
+| OriginalAirDate = {{Start date|2015|03|23}}
+| Aux1            = 2.04
+| Viewers         = 13.85
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 348
+| EpisodeNumber2  = 3
+| Title           = Latin Night
+| OriginalAirDate = {{Start date|2015|03|30}}
+| Aux1            = 2.07
+| Viewers         = 13.76
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 349
+| EpisodeNumber2  = 4
+| Title           = Most Memorable Year
+| OriginalAirDate = {{Start date|2015|04|06}}
+| Aux1            = 2.03
+| Viewers         = 13.75
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 350
+| EpisodeNumber2  = 5
+| Title           = Disney Night
+| OriginalAirDate = {{Start date|2015|04|13}}
+| Aux1            = 2.17
+| Viewers         = 13.89
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 351
+| EpisodeNumber2  = 6
+| Title           = Spring Break Special
+| OriginalAirDate = {{Start date|2015|04|30}}
+| Aux1            = 2.07
+| Viewers         = 13.41
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 352
+| EpisodeNumber2  = 7
+| Title           = Eras Night
+| OriginalAirDate = {{Start date|2015|04|27}}
+| Aux1            = 2.00
+| Viewers         = 13.22
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 353
+| EpisodeNumber2  = 8
+| Title           = 10th Anniversary Special
+| OriginalAirDate = {{Start date|2015|04|28}}
+| Aux1            = 1.70
+| Viewers         = 10.07
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 354
+| EpisodeNumber2  = 9
+| Title           = America's Choice
+| OriginalAirDate = {{Start date|2015|05|04}}
+| Aux1            = 1.90
+| Viewers         = 12.43
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 355
+| EpisodeNumber2  = 10
+| Title           = America's Choice: Results
+| OriginalAirDate = {{Start date|2015|05|05}}
+| Aux1            = 1.40
+| Viewers         = 10.29
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 356
+| EpisodeNumber2  = 11
+| Title           = Semifinals
+| OriginalAirDate = {{Start date|2015|05|11}}
+| Aux1            = 2.20
+| Viewers         = 13.48
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 357
+| EpisodeNumber2  = 12
+| Title           = Semifinals: Results
+| OriginalAirDate = {{Start date|2015|05|12}}
+| Aux1            = 1.50
+| Viewers         = 10.16
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 358
+| EpisodeNumber2  = 13
+| Title           = Finals: Night 1
+| OriginalAirDate = {{Start date|2015|05|18}}
+| Aux1            = 2.30
+| Viewers         = 14.35
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 20
+| EpisodeNumber   = 359
+| EpisodeNumber2  = 14
+| Title           = Finals: Night 2
+| OriginalAirDate = {{Start date|2015|05|19}}
+| Aux1            = 2.30
+| Viewers         = 13.49
+| ShortSummary    =
+| LineColor       = #EEC83E
+}}
+{{End|Episode table|html=y}}</onlyinclude>
+
+==Scoring chart==
+The highest score each week is indicated in {{fontcolor|#004600|'''bold green'''}} with a dagger ({{dagger}}), while the lowest score each week is indicated in {{fontcolor|#800000|''italicized red''}} with a double-dagger ({{double-dagger}}).
+
+'''Color key:'''
+{{columns-list|colwidth=20em|
+{{legend|gold|Winners}}
+{{legend|silver|Runners-up}}
+{{legend|tan|Third place}}
+{{legend|#f4c7b8|Eliminated}}
+}}
+{| class="wikitable sortable" style="text-align:center; font-size:95%"
+|+''Dancing with the Stars'' (season 20) - Weekly scores
+! scope="col" rowspan="3" style="text-align:center; line-height:15px; | Couple
+! scope="col" rowspan="3" style="text-align:center; line-height:15px; | {{Abbr|Pl.|Place}}
+! colspan="12" style="text-align:center; line-height:15px; | Week
+|-
+! scope="col" rowspan=2 style="line-height:15px; | 1
+! scope="col" rowspan=2 style="line-height:15px; | 2
+! scope="col" rowspan=2 style="line-height:15px; | 1+2
+! scope="col" rowspan=2 style="line-height:15px; | 3
+! scope="col" rowspan=2 style="line-height:15px; | 4
+! scope="col" rowspan=2 style="line-height:15px; | 5
+! scope="col" rowspan=2 style="line-height:15px; | 6
+! scope="col" rowspan=2 style="line-height:15px; | 7
+! scope="col" rowspan=2 style="line-height:15px; | 8
+! scope="col" rowspan=2 style="line-height:15px; | 9
+! scope="col" colspan=2 style="line-height:15px; | 10
+|-
+! style="line-height:15px; | Night 1
+! style="line-height:15px; | Night 2
+|-
+! scope="row" | Rumer & Val
+|1st
+|{{fontcolor|#004600|'''32'''}}{{dagger|alt=This was the highest score of the night.}}
+|32
+|{{fontcolor|#004600|'''64'''}}{{dagger|alt=This was the highest score of the night.}}
+|33
+|35
+|{{fontcolor|#004600|'''39'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|71|}} | 32+39=71
+| {{sort|37|}} | 35+2=37
+| {{sort|80|}} | 40+40={{fontcolor|#004600|'''80'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|68|}} | 38+30=68
+| {{sort|80|}} | 40+40={{fontcolor|#004600|'''80'''}}{{dagger|alt=This was the highest score of the night.}}
+|bgcolor=gold {{sort|120|}} | +40={{fontcolor|#004600|'''120'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple finished in first place.}}
+|-
+! scope="row" | Riker & Allison
+|2nd
+|31
+|32
+|63
+|{{fontcolor|#004600|'''34'''}}{{dagger|alt=This was the highest score of the night.}}
+|34
+|38
+| {{sort|76|}} | 37+39={{fontcolor|#004600|'''76'''}}{{dagger|alt=This was the highest score of the night.}}
+|37
+| {{sort|78|}} | 39+39=78
+| {{sort|70|}} | 40+30={{fontcolor|#004600|'''70'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|80|}} | 40+40={{fontcolor|#004600|'''80'''}}{{dagger|alt=This was the highest score of the night.}}
+|bgcolor=silver {{sort|120|}} | +40={{fontcolor|#004600|'''120'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple finished in second place.}}
+|-
+! scope="row" | Noah & Sharna
+|3rd
+|26
+|27
+|53
+|30
+|32
+|28
+| {{sort|68|}} | 29+39=68
+| {{sort|38|}} | 36+2=38 
+| {{sort|63|}} | 31+32=63
+| {{sort|66|}} | 36+30={{fontcolor|#800000|''66''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{sort|72|}} | 32+40={{fontcolor|#800000|''72''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|bgcolor=tan {{sort|108|}} | +36={{fontcolor|#800000|''108''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|This couple finished in third place.}}
+|-
+! scope="row" | Nastia & Derek
+|4th
+|30
+|{{fontcolor|#004600|'''34'''}}{{dagger|alt=This was the highest score of the night.}}
+|{{fontcolor|#004600|'''64'''}}{{dagger|alt=This was the highest score of the night.}}
+|{{fontcolor|#004600|'''34'''}}{{dagger|alt=This was the highest score of the night.}}
+|36
+|38
+| {{sort|73|}} | 34+39=73
+| {{sort|41|}} | 38+3={{fontcolor|#004600|'''41'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|76|}} | 36+40=76
+|bgcolor=f4c7b8 {{sort|70|}} | 40+30={{fontcolor|#004600|'''70'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|name=Elim}}
+| colspan="2" rowspan="9" style="background:darkgrey;" |
+|-
+! scope="row" | Chris & Witney
+|5th
+|26
+|{{fontcolor|#800000|''21''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|{{fontcolor|#800000|''47''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|28
+|{{fontcolor|#800000|''27''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|27
+| {{sort|70|}} | 31+39=70
+|{{fontcolor|#800000|''31''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|bgcolor=f4c7b8 {{sort|64|}} | 34+30=64{{efn|name=Elim}}
+| rowspan="8" style="background:darkgrey;" |
+|-
+! scope="row" | Robert & Kym
+|6th
+|28
+|28
+|56
+|29
+|34
+|{{fontcolor|#800000|''24''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{sort|67|}} | 28+39={{fontcolor|#800000|''67''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|{{fontcolor|#800000|''31''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|bgcolor=f4c7b8|33+29={{fontcolor|#800000|''62''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+|-
+! scope="row" | Willow & Mark
+|7th
+|25
+|32
+|57
+|32
+|{{fontcolor|#004600|'''39'''}}{{dagger|alt=This was the highest score of the night.}}
+|34
+| {{sort|73|}} | 34+39=73
+|bgcolor=f4c7b8 {{sort|39|}} | 37+2=39{{efn|name=Elim}}
+| rowspan="6" style="background:darkgrey;" |
+|-
+! scope="row" | Patti & Artem
+|8th
+|25
+|28
+|53
+|{{fontcolor|#800000|''22''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|30
+|27
+|bgcolor=f4c7b8 {{sort|68|}} | 29+39=68{{efn|name=Elim}}
+| rowspan="5" style="background:darkgrey;" |
+|- 
+! scope="row" | Suzanne & Tony
+|9th
+|25
+|28
+|53
+|25
+|28
+|bgcolor=f4c7b8|28{{efn|name=Elim}}
+| rowspan="4" style="background:darkgrey;" |
+|-
+! scope="row" | Michael & Peta
+|10th
+|26
+|28
+|54
+|24
+|bgcolor=f4c7b8|30{{efn|name=Elim}}
+| rowspan="3" style="background:darkgrey;" |
+|-
+! scope="row" | Charlotte & Keo
+|11th
+|{{fontcolor|#800000|''22''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|26
+|48
+|bgcolor=f4c7b8|{{fontcolor|#800000|''22''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| rowspan="2" style="background:darkgrey;" |
+|-
+! scope="row" nowrap | Redfoo & Emma
+|12th
+|{{fontcolor|#800000|''22''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|31
+|bgcolor=f4c7b8|53{{efn|name=Elim|This couple was eliminated.}}
+| style="background:darkgrey;" |
+|}
+;Notes
+{{notelist}}
+
+==Weekly scores==
+''Individual judges' scores in the charts below (given in parentheses) are listed in this order from left to right: [[Carrie Ann Inaba]], [[Len Goodman]], [[Julianne Hough]], [[Bruno Tonioli]].''
+
+=== Week 1: Premiere Night===
+Couples performed the [[Cha-cha-cha (dance)|cha-cha-cha]], [[foxtrot]], or [[Jive (dance)|jive]]. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-season-55947.aspx|title='Dancing with the Stars' Season 20 Premiere Recap: The 10th Anniversary Begins|date=March 16, 2015|access-date=March 16, 2015|archive-url=https://web.archive.org/web/20150317091123/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-season-55947.aspx|archive-date=March 17, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+|-
+! scope="row" | Willow & Mark
+| 25 (6, 6, 6, 7)
+| Cha-cha-cha
+| "[[Lips Are Movin]]" — [[Meghan Trainor]]
+|-
+! scope="row" | Robert & Kym
+| 28 (7, 7, 7, 7)
+| Cha-cha-cha
+| "[[Bills (LunchMoney Lewis song)|Bills]]" — [[LunchMoney Lewis]]
+|-
+! scope="row" | Riker & Allison
+| 31 (8, 7, 8, 8)
+| Jive
+| "[[What I Like About You (The Romantics song)|What I Like About You]]" — [[The Romantics]]
+|-
+! scope="row" | Charlotte & Keo
+| 22 (6, 5, 5, 6)
+| Jive
+| "[[Shake a Tail Feather]]" — [[The Blues Brothers]]
+|-
+! scope="row" | Patti & Artem
+| 25 (7, 6, 6, 6)
+| Foxtrot
+| "[[Lady Marmalade]]" — [[Labelle]]
+|-
+! scope="row" | Chris & Witney
+| 26 (7, 6, 6, 7)
+| Jive
+| "[[Footloose (song)|Footloose]]" — [[Kenny Loggins]]
+|-
+! scope="row" | Michael & Peta
+| 26 (6, 6, 7, 7)
+| Cha-cha-cha
+| "[[Uptown Funk]]" — [[Mark Ronson]], feat. [[Bruno Mars]]
+|-
+! scope="row" | Nastia & Derek
+| 30 (7, 7, 8, 8)
+| Foxtrot
+| "[[Theme from New York, New York|New York, New York (FWB Remix)]]" — [[Ray Quinn]], feat. Ultra Love
+|-
+! scope="row" | Redfoo & Emma
+| 22 (6, 5, 5, 6)
+| Cha-cha-cha
+| "[[Juicy Wiggle]]" — [[Redfoo]]
+|-
+! scope="row" | Noah & Sharna
+| 26 (7, 6, 6, 7)
+| Cha-cha-cha
+| "[[I Lived]]" — [[OneRepublic]]
+|-
+! scope="row" | Suzanne & Tony
+| 25 (6, 6, 6, 7)
+| Cha-cha-cha
+| "[[Physical (Olivia Newton-John song)|Physical]]" — [[Olivia Newton-John]]
+|-
+! scope="row" | Rumer & Val
+| 32 (8, 8, 8, 8)
+| Foxtrot
+| "[[Take Me to Church]]" — [[Hozier (musician)|Hozier]]
+|}
+
+===Week 2: My Jam Monday===
+Couples performed one unlearned dance to one of their favorite songs, and are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56010.aspx|title='Dancing with the Stars' Live Blog: My Jam Monday and the First Elimination|date=March 23, 2015|access-date=March 24, 2015|archive-url=https://web.archive.org/web/20150325003758/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56010.aspx|archive-date=March 25, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Chris & Witney
+| 21 (5, 6, 5, 5)
+| Cha-cha-cha
+| "[[Time of Our Lives (Pitbull and Ne-Yo song)|Time of Our Lives]]" ― [[Pitbull (rapper)|Pitbull]] & [[Ne-Yo]]
+| Safe
+|-
+! scope="row" | Suzanne & Tony
+| 28 (7, 7, 7, 7)
+| Jive
+| "[[Whole Lotta Shakin' Goin' On#Jerry Lee Lewis version|Whole Lotta Shakin' Goin' On]]" ― [[Jerry Lee Lewis]]
+| Safe
+|-
+! scope="row" | Robert & Kym
+| 28 (7, 7, 7, 7)
+| Foxtrot
+| "[[You Make Me Feel So Young]]" — [[Michael Bublé]]
+| Safe
+|-
+! scope="row" | Charlotte & Keo
+| 26 (7, 6, 7, 6)
+| Cha-cha-cha
+| "[[California Gurls]]" — [[Katy Perry]], feat. [[Snoop Dogg]]
+| Safe
+|-
+! scope="row" | Michael & Peta
+| 28 (7, 7, 7, 7)
+| Foxtrot
+| "[[Working My Way Back to You#The Spinners version|Working My Way Back to You]]" — [[The Spinners (American band)|The Spinners]]
+| Safe
+|-
+! scope="row" | Rumer & Val
+| 32 (8, 8, 8, 8)
+| Cha-cha-cha
+| "[[Rumour Has It (Adele song)|Rumour Has It]]" — [[Adele]]
+| Safe
+|-
+! scope="row" | Redfoo & Emma
+| 31 (8, 7, 8, 8)
+| Jive
+| "[[My Sharona]]" — [[The Knack]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Willow & Mark
+| 32 (8, 8, 8, 8)
+| Argentine tango
+| "[[Somebody That I Used to Know]]" — [[Gotye]], feat. [[Kimbra]]
+| Safe
+|-
+! scope="row" | Noah & Sharna
+| 27 (7, 6, 7, 7)
+| Samba
+| "[[Homegrown Honey]]" — [[Darius Rucker]]
+| Safe
+|-
+! scope="row" | Nastia & Derek
+| 34 (9, 8, 8, 9)
+| Rumba
+| "[[Thinking Out Loud (Ed Sheeran song)|Thinking Out Loud]]" — [[Ed Sheeran]]
+| Safe
+|-
+! scope="row" | Riker & Allison
+| 32 (8, 8, 8, 8)
+| Foxtrot
+| "[[Sugar (Maroon 5 song)|Sugar]]" — [[Maroon 5]]
+| Safe
+|-
+! scope="row" | Patti & Artem
+| 28 (7, 7, 7, 7)
+| Salsa
+| "[[In da Club]]" — [[50 Cent]]
+| Safe
+|}
+
+===Week 3: Latin Night===
+Couples performed one unlearned Latin-themed dance, and are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56073.aspx|title='Dancing with the Stars' Live Blog: Latin Night and the Second Elimination|date=March 30, 2015|access-date=March 31, 2015|archive-url=https://web.archive.org/web/20150401090930/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56073.aspx|archive-date=April 1, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Rumer & Val
+| 33 (8, 9, 8, 8)
+| Salsa
+| "[[Turn the Beat Around#Gloria Estefan version|Turn the Beat Around]]" — [[Gloria Estefan]]
+| Safe
+|-
+! scope="row" | Charlotte & Keo
+| 22 (6, 5, 5, 6)
+| Rumba
+| "[[Empire (Shakira song)|Empire]]" — [[Shakira]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Michael & Peta
+| 24 (6, 6, 6, 6)
+| Salsa
+| "[[Globalization (album)|Celebrate]]" — [[Pitbull (rapper)|Pitbull]]
+| Safe
+|-
+! scope="row" | Riker & Allison
+| 34 (9, 7, 9, 9)
+| Salsa
+| "[[Limbo (Daddy Yankee song)|Limbo]]" — [[Daddy Yankee]]
+| Safe
+|-
+! scope="row" | Suzanne & Tony
+| 25 (6, 6, 6, 7)
+| Samba
+| "[[Copacabana (song)|Copacabana]]" — [[Barry Manilow]]
+| Safe
+|-
+! scope="row" | Chris & Witney
+| 28 (7, 7, 7, 7)
+| Argentine tango
+| "[[Dangerous (David Guetta song)|Dangerous]]" — [[David Guetta]], feat. [[Sam Martin (singer)|Sam Martin]]
+| Safe
+|-
+! scope="row" | Robert & Kym
+| 29 (7, 7, 8, 7)
+| Rumba
+| "[[How Long Will I Love You?#Ellie Goulding version|How Long Will I Love You?]]" — [[Ellie Goulding]]
+| Safe
+|-
+! scope="row" | Patti & Artem
+| 22 (6, 5, 5, 6)
+| Cha-cha-cha
+| "[[Oye Como Va#Santana version|Oye 2014]]" — [[Santana (band)|Santana]], feat. [[Pitbull (rapper)|Pitbull]]
+| Safe
+|-
+! scope="row" | Willow & Mark
+| 32 (8, 8, 8, 8)
+| Paso doble
+| "[[11:11 (Rodrigo y Gabriela album)|Hanuman]]" — [[Rodrigo y Gabriela]], feat. [[John Tempesta]]
+| Safe
+|-
+! scope="row" | Noah & Sharna
+| 30 (7, 7, 8, 8)
+| Argentine tango
+| "[[Rather Be (Clean Bandit song)|Rather Be]]" — [[Clean Bandit]], feat. [[Jess Glynne]]
+| Safe
+|-
+! scope="row" | Nastia & Derek
+| 34 (9, 8, 9, 8)
+| Samba
+| "Chillando Goma" — [[Fulanito]]
+| Safe
+|}
+
+===Week 4: Most Memorable Year Night===
+Couples performed one unlearned dance to celebrate the most memorable years of their lives. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-recap-t-56132.aspx|title='Dancing with the Stars' Live Blog: The Most Memorable Years of the Top 10|date=April 6, 2015|access-date=April 7, 2015|archive-url=https://web.archive.org/web/20150408191508/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-recap-t-56132.aspx|archive-date=April 8, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Nastia & Derek
+| 36 (9, 8, 9, 10)
+| Argentine tango
+| "Variations on Dark Eyes" — [[Lara St. John]]
+| Safe
+|-
+! scope="row" | Michael & Peta
+| 30 (7, 7, 8, 8)
+| Rumba
+| "[[Kinky Boots (musical)|Not My Father's Son]]" — ''from [[Kinky Boots (musical)|Kinky Boots]]''
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Riker & Allison
+| 34 (8, 8, 9, 9)
+| Tango
+| "[[Shut Up and Dance (Walk the Moon song)|Shut Up and Dance]]" — [[Walk the Moon]]
+| Safe
+|-
+! scope="row" | Robert & Kym
+| 34 (8, 9, 8, 9)
+| Waltz
+| "[[The Last Waltz (song)|The Last Waltz]]" — [[Engelbert Humperdinck (singer)|Engelbert Humperdinck]]
+| Safe
+|-
+! scope="row" | Chris & Witney
+| 27 (7, 6, 7, 7)
+| Rumba
+| "[[The Book of Love (The Magnetic Fields song)|The Book of Love]]" — [[Gavin James (singer)|Gavin James]]
+| Safe
+|-
+! scope="row" | Patti & Artem
+| 30 (8, 7, 7, 8)
+| Jazz
+| "[[Patti LaBelle (album)|Dan Swit Me]]" — [[Patti LaBelle]]
+| Safe
+|-
+! scope="row" | Rumer & Val
+| 35 (9, 8, 9, 9)
+| Waltz
+| "[[Turning Tables]]" — [[Adele]]
+| Safe
+|-
+! scope="row" | Suzanne & Tony
+| 28 (7, 7, 7, 7)
+| Foxtrot
+| "[[Three's Company|Come and Knock on Our Door]]" — [[Ray Charles (musician, born 1918)|Ray Charles]] & Julia Rinker
+| Safe
+|-
+! scope="row" | Willow & Mark
+| 39 (10, 9, 10, 10)
+| Contemporary
+| "[[Atlas (Coldplay song)|Atlas]]" — [[Coldplay]]
+| Safe
+|-
+! scope="row" | Noah & Sharna
+| 32 (8, 8, 8, 8)
+| Contemporary
+| "[[American Soldier (song)|American Soldier]]" — [[Toby Keith]]
+| Safe
+|}
+
+===Week 5: Disney Night===
+Couples performed one unlearned dance to a song from a [[The Walt Disney Company|Disney]] film, and are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56202.aspx|title='Dancing with the Stars' Live Blog: Disney Night with the Top 9|date=April 13, 2015|access-date=April 14, 2015|archive-url=https://web.archive.org/web/20150416003451/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56202.aspx|archive-date=April 16, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|[[Disney]] film
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Suzanne & Tony
+| 28 (7, 7, 7, 7)
+| Jazz
+| "[[Lady and the Tramp|He's a Tramp]]" — [[Peggy Lee]]
+| ''[[Lady and the Tramp]]''
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Robert & Kym
+| 24 (6, 6, 6, 6)
+| Quickstep
+| "[[Step in Time]]" — [[Dick Van Dyke]]
+| ''[[Mary Poppins (film)|Mary Poppins]]''
+| Safe
+|-
+! scope="row" | Patti & Artem
+| 27 (7, 6, 7, 7)
+| Waltz
+| "[[When You Wish upon a Star]]" — [[Cliff Edwards]]
+| ''[[Pinocchio (1940 film)|Pinocchio]]''
+| Safe
+|-
+! scope="row" | Willow & Mark
+| 34 (8, 8, 9, 9)
+| Foxtrot
+| "[[Alice in Wonderland (film score)|Alice's Theme]]" — [[Danny Elfman]]
+| ''[[Alice in Wonderland (2010 film)|Alice in Wonderland]]''
+| Safe
+|-
+! scope="row" | Chris & Witney
+| 27 (7, 6, 7, 7)
+| Quickstep
+| "[[Hercules (1997 film)#Music|Zero to Hero]]" — [[Ariana Grande]]
+| ''[[Hercules (1997 film)|Hercules]]''
+| Safe
+|-
+! scope="row" | Noah & Sharna
+| 28 (7, 7, 7, 7)
+| Foxtrot
+| "[[A Whole New World]]" — [[Brad Kane]] & [[Lea Salonga]]
+| ''[[Aladdin (1992 Disney film)|Aladdin]]''
+| Safe
+|-
+! scope="row" | Riker & Allison
+| 38 (10, 9, 9, 10)
+| Paso doble
+| "[[He's a Pirate]]" — [[Klaus Badelt]]
+| ''[[Pirates of the Caribbean: The Curse of the Black Pearl]]''
+| Safe
+|-
+! scope="row" | Rumer & Val
+| {{nowrap|39 (10, 9, 10, 10)}}
+| Samba
+| "[[Poor Unfortunate Souls]]" — [[Pat Carroll]]
+| ''[[The Little Mermaid (1989 film)|The Little Mermaid]]''
+| Safe
+|-
+! scope="row" | Nastia & Derek
+| 38 (9, 9, 10, 10)
+| Jazz
+| "[[Love Is an Open Door]]" — [[Kristen Bell]] & [[Santino Fontana]]
+| ''[[Frozen (2013 film)|Frozen]]''
+| Safe
+|}
+
+===Week 6: Spring Break Night===
+Couples performed one unlearned dance and a team dance. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56276.aspx|title='Dancing with the Stars' Live Blog: Spring Break and the Team Dances|date=April 20, 2015|access-date=April 21, 2015|archive-url=https://web.archive.org/web/20150422235207/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56276.aspx|archive-date=April 22, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Patti & Artem
+| 29 (8, 7, 7, 7)
+| Quickstep
+| "[[Heat Wave (Martha and the Vandellas song)|Heat Wave]]" — [[Martha and the Vandellas]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Nastia & Derek
+| 34 (9, 8, 8, 9)
+| Tango
+| "[[Summer (Calvin Harris song)|Summer]]" — [[Calvin Harris]]
+| Safe
+|-
+! scope="row" | Willow & Mark
+| 34 (9, 8, 8, 9)
+| Salsa
+| "[[Tequila (Champs song)|Tequila]]" — [[Xavier Cugat]]
+| Safe
+|-
+! scope="row" | Robert & Kym
+| 28 (7, 7, 7, 7)
+| Jive
+| "[[Surfin' Safari (song)|Surfin' Safari]]" — [[The Beach Boys]]
+| Safe
+|-
+! scope="row" | Noah & Sharna
+| 29 (7, 7, 7, 8)
+| Rumba
+| "[[Waves (Mr Probz song)|Waves]]" — [[Mr Probz]]
+| Safe
+|-
+! scope="row" | Rumer & Val
+| 32 (8, 8, 7, 9)
+| Jazz
+| "[[Bootylicious]]" — [[Destiny's Child]]
+| Safe
+|-
+! scope="row" | Chris & Witney
+| 31 (8, 7, 8, 8)
+| Viennese waltz
+| "[[Hopelessly Devoted to You]]" — [[Olivia Newton-John]]
+| Safe
+|-
+! scope="row" | Riker & Allison
+| 37 (10, 8, 9, 10)
+| Samba
+| "[[Want to Want Me]]" — [[Jason Derulo]]
+| Safe
+|-
+! scope="row" | Nastia & Derek<br>Noah & Sharna<br>Robert & Kym<br>Willow & Mark
+| 39 (10, 9, 10, 10)
+| Freestyle<br />(Team YOLO)
+| colspan=2|"[[Wipe Out (instrumental)|Wipe Out]]" — [[The Surfaris]]
+|-
+! scope="row" | Chris & Witney<br>Patti & Artem<br>Riker & Allison<br>Rumer & Val
+| 39 (10, 9, 10, 10)
+| Freestyle<br />(Team Trouble)
+| colspan=2|"[[Trouble (Iggy Azalea song)|Trouble]]" — [[Iggy Azalea]], feat. [[Jennifer Hudson]]
+|}
+
+===Week 7: Eras Night===
+Couples performed one unlearned dance representing a different historical era.<ref>{{cite web |last=Lou |first=Shane |date=April 27, 2015 |title='Dancing With the Stars' Preview: What to Expect From 'Eras Night' |url=https://abcnews.go.com/Entertainment/dancing-stars-preview-expect-eras-night/story?id=30624785 |url-status=live |archive-url=https://web.archive.org/web/20150428063416/https://abcnews.go.com/Entertainment/dancing-stars-preview-expect-eras-night/story?id=30624785 |archive-date=April 28, 2015 |access-date=April 27, 2015 |publisher=ABCNews.com}}</ref> The couple with the highest score earned immunity from elimination, while the rest of the couples participated in dance-offs for extra points. For each dance-off, the couple with the highest score picked the opponent against whom they wanted to dance; the chosen opponent was allowed to pick the dance style (from cha-cha-cha, foxtrot, or salsa). The winner of each dance-off earned two points. For winning immunity, Nastia & Sasha received a three-point bonus. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|last1=Kubicek|first1=John|title='Dancing with the Stars' Live Blog: Eras, Immunity, Dance-Offs and the Top 7|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56340.aspx|website=BuddyTV|publisher=BuddyTV|access-date=April 27, 2015|date=April 27, 2015|archive-url=https://web.archive.org/web/20150429062338/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56340.aspx|archive-date=April 29, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Era
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | {{nowrap|Riker & Allison}}
+| 37 (9, 10, 9, 9)
+| Quickstep
+| 1920s
+| "[[Wiggle (song)|Wiggle]]" — [[Scott Bradlee]] & [[Postmodern Jukebox]]
+| Safe
+|-
+! scope="row" | Chris & Witney
+| 31 (8, 7, 8, 8)
+| Foxtrot
+| 1940s
+| "[[Five Minutes More]]" — [[Frank Sinatra]]
+| Safe
+|-
+! scope="row" | Rumer & Val
+| 35  (8, 9, 9, 9)
+| Jive
+| 1960s
+| "[[Dear Future Husband]]" — [[Meghan Trainor]]
+| Safe
+|-
+! scope="row" | {{nowrap|Noah & Sharna}}
+| 36  (10, 8, 9, 9)
+| Jazz
+| 1970s
+| "[[Super Bad (song)|Super Bad]]" — [[James Brown]]
+| Safe
+|-
+! scope="row" | Robert & Kym
+| 31 (7, 8, 8, 8)
+| Argentine tango
+| 1980s
+| "[[Word Up! (song)|Word Up!]]" — [[Cameo (band)|Cameo]]
+| Safe
+|-
+! scope="row" | {{nowrap|Nastia & Sasha}}
+| {{nowrap|38 (10, 9, 9, 10)}}
+| Charleston
+| Modern
+| "[[Honey, I'm Good.]]" — [[Andy Grammer]]
+| bgcolor="fff383" | '''Immunity'''
+|-
+! scope="row" | Willow & Mark
+| 37 (9, 9, 9, 10)
+| Jazz
+| Futuristic
+| "[[Electric Feel]]" — [[MGMT]]
+| bgcolor=f4c7b8 | Eliminated
+|}
+
+{| class="wikitable unsortable" style="text-align:center; width:90%"
+|+Dance-offs
+! scope="col" |Couple
+! scope="col" |Dance
+! scope="col" |Music
+! scope="col" |Result
+|-
+! scope="row" | Willow & Mark
+| rowspan=2|Salsa
+| rowspan=2|"[[Temperature (Sean Paul song)|Temperature]]" — [[Sean Paul]]
+| '''Winners'''
+|-
+! scope="row" | Riker & Allison
+| Losers
+|-
+! scope="row" | Noah & Sharna
+| rowspan=2|Cha-cha-cha
+| rowspan=2|"[[Dance with Me (Kelly Clarkson song)|Dance with Me]]" — [[Kelly Clarkson]]
+| '''Winners'''
+|-
+! scope="row" | Robert & Kym
+| Losers
+|-
+! scope="row" | Rumer & Val
+| rowspan=2|Foxtrot
+| rowspan=2|"[[Orange Colored Sky]]" — [[Nat King Cole]]
+| '''Winners'''
+|-
+! scope="row" | Chris & Witney
+| Losers
+|}
+
+===Week 8: America's Choice Night===
+Couples performed a routine featuring an unlearned dance and song that was chosen by the public, as well as a trio dance involving an eliminated pro or a member of the dance troupe. Couples are listed in the order they performed. Two couples were eliminated at the end of the night.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" class="unsortable"|Trio partner
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56405.aspx|title='Dancing with the Stars' Live Blog: America's Choice and the Trio Challenge|date=May 4, 2015|access-date=May 5, 2015|archive-url=https://web.archive.org/web/20150505040552/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56405.aspx|archive-date=May 5, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" rowspan=2|Noah & Sharna
+| rowspan="2" | Emma Slater
+| 31 (8, 7, 8, 8)
+| Tango
+| "[[Geronimo (Sheppard song)|Geronimo]]" — [[Sheppard (band)|Sheppard]]
+| rowspan=2|Safe
+|-
+| 32 (8, 8, 8, 8)
+| Salsa
+| "[[Mr. Put It Down]]" — [[Ricky Martin]], feat. [[Pitbull (rapper)|Pitbull]]
+|-
+! scope="row" rowspan=2|Chris & Witney
+| rowspan="2" | Lindsay Arnold
+| 34 (9, 8, 9, 8)
+| Contemporary
+| "[[Lay Me Down (Sam Smith song)|Lay Me Down]]" — [[Sam Smith (singer)|Sam Smith]]
+| rowspan=2 bgcolor=f4c7b8 |Eliminated
+|-
+| 30 (7, 7, 8, 8)
+| Paso doble
+| "[[Outside (Calvin Harris song)|Outside]]" — [[Calvin Harris]], feat. [[Ellie Goulding]]
+|-
+! scope="row" rowspan=2|Riker & Allison
+| rowspan="2" | Brittany Cherry
+| 39 (10, 9, 10, 10)
+| Viennese waltz
+| "[[What Now (song)|What Now]]" — [[Rihanna]]
+| rowspan=2|Safe
+|-
+| 39 (10, 9, 10, 10)
+| Jazz
+| "[[A Little Party Never Killed Nobody (All We Got)]]" — [[Fergie (singer)|Fergie]], [[Q-Tip (musician)|Q-Tip]] & [[GoonRock]]
+|-
+! scope="row" rowspan=2|Robert & Kym
+| rowspan="2" | Jenna Johnson
+| 33 (8, 8, 9, 8)
+| Contemporary 
+| "[[Champagne Kisses (Jessie Ware song)|Champagne Kisses]]" — [[Jessie Ware]]
+| rowspan=2 bgcolor=f4c7b8 |Eliminated
+|-
+| 29 (7, 7, 8, 7)
+| Samba
+| "[[Cinema Italiano]]" — [[Kate Hudson]]
+|-
+! scope="row" rowspan=2|Nastia & Sasha
+| rowspan="2" | Derek Hough
+| 36 (9, 9, 9, 9)
+| Paso doble
+| "[[Centuries (song)|Centuries]]" — [[Fall Out Boy]]
+| rowspan=2|Safe
+|-
+| 40 (10, 10, 10, 10)
+| Jive
+| "[[Diane Young]]" — [[Vampire Weekend]]
+|-
+! scope="row" rowspan=2|Rumer & Val
+| rowspan="2" | Artem Chigvintsev
+| 40 (10, 10, 10, 10)
+| Rumba
+| "[[Quizás, Quizás, Quizás|Perhaps, Perhaps, Perhaps]]" — [[Doris Day]]
+| rowspan=2|Safe
+|-
+| {{nowrap|40 (10, 10, 10, 10)}}
+| Paso doble
+| "[[Strictly Ballroom (soundtrack)|Scott & Fran's Paso Doble]]" — [[David Hirschfelder]] & The Bogo Pogo Orchestra
+|}
+
+===Week 9: Semifinals===
+Couples performed one unlearned dance, and a routine coached and styled by one of the four judges. To avoid favoritism, the judges did not score the couple they coached (their absent score is marked by an '''X''' below), so the second-round dances received a total score out of 30 instead of 40.<ref>{{cite web|last1=Jacobsen|first1=Kevin|title='Dancing With the Stars' Season 20 Cast: Len Goodman Coaching Nastia Liukin & Derek Hough This Week?|url=http://www.enstarz.com/articles/85052/20150508/dancing-with-the-stars-season-20-cast-len-goodman-coaching-nastia-liukin-derek-hough-this-week.htm|publisher=EnStarz|date=May 8, 2015|access-date=May 11, 2015|archive-url=https://web.archive.org/web/20150512124508/http://www.enstarz.com/articles/85052/20150508/dancing-with-the-stars-season-20-cast-len-goodman-coaching-nastia-liukin-derek-hough-this-week.htm|archive-date=May 12, 2015|url-status=live}}</ref><ref>{{cite news|last1=Field|first1=Sarah|title='Dancing With The Stars' Twist: Judges Get In On The Act|url=http://www.inquisitr.com/2074173/dancing-with-the-stars-twist-judges-get-in-on-the-act/|work=Inquisitr|date=May 8, 2015|access-date=May 11, 2015|archive-url=https://web.archive.org/web/20150510204624/http://www.inquisitr.com/2074173/dancing-with-the-stars-twist-judges-get-in-on-the-act/|archive-date=May 10, 2015|url-status=live}}</ref> Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" class="unsortable"|Judge
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56489.aspx|title='Dancing with the Stars' Live Blog: The Final 4 in the Semifinals|date=May 11, 2015|access-date=May 11, 2015|archive-url=https://web.archive.org/web/20150514043427/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56489.aspx|archive-date=May 14, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" rowspan=2|Rumer & Val
+| rowspan=2 | Bruno Tonioli
+| 38 (10, 9, 9, 10)
+| Viennese waltz
+| "[[Earned It]]" — [[The Weeknd]]
+| rowspan=2|Safe
+|-
+| 30 (10, 10, 10, '''X''')
+| Contemporary
+| "[[Swan Lake|Theme from Swan Lake, Op. 20]]" — [[Pyotr Ilyich Tchaikovsky]]
+|-
+! scope="row" rowspan=2|Noah & Sharna
+| rowspan=2 | Carrie Ann Inaba
+| 36 (9, 9, 9, 9)
+| Viennese waltz
+| "[[The Time of My Life (David Cook song)|The Time of My Life]]" — [[David Cook (singer)|David Cook]]
+| rowspan=2|Safe
+|-
+| 30 ('''X''', 10, 10, 10)
+| Paso doble
+| "Unstoppable" — [[E.S. Posthumus]]
+|-
+! scope="row" rowspan=2|Riker & Allison
+| rowspan=2 | Julianne Hough
+| 40 (10, 10, 10, 10)
+| Contemporary
+| "[[Work Song (Hozier song)|Work Song]]" — [[Hozier (musician)|Hozier]]
+| rowspan=2|Safe
+|-
+| 30 (10, 10, '''X''', 10)
+| Argentine tango
+| "[[Für Elise]]" — District 78
+|-
+! scope="row" |Nastia & Sasha
+| rowspan="2" |Len Goodman
+| {{nowrap|40 (10, 10, 10, 10)}}
+| Quickstep
+| "[[With Love (Christina Grimmie album)#Track listing|Feelin' Good]]" — [[Christina Grimmie]]
+| rowspan=2 bgcolor=f4c7b8 |Eliminated
+|-
+! scope="row" |Nastia & Derek
+| 30 (10, '''X''', 10, 10)
+| Viennese waltz
+| "[[Fall for You (album)|Fall for You]]" — [[Leela James]]
+|}
+
+===Week 10: Finals===
+On the first night, couples performed a dance that they had previously done, as well as their [[Street dance|freestyle]] routine. On the second night, the couples performed a fusion dance of two previously learned dance styles. Couples are listed in the order they performed.
+
+;Night 1
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56567.aspx|title='Dancing with the Stars' Live Blog: The Final 3 Perform|date=May 18, 2015|access-date=May 19, 2015|archive-url=https://web.archive.org/web/20150520000022/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-live-bl-56567.aspx|archive-date=May 20, 2015|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+|-
+! scope="row" rowspan=2|Noah & Sharna
+| 32 (8, 8, 8, 8)
+| Argentine tango
+| "[[Rather Be (Clean Bandit song)|Rather Be]]" — [[Clean Bandit]], feat. [[Jess Glynne]]
+|-
+| 40 (10, 10, 10, 10)
+| Freestyle
+| "[[Titanium (David Guetta song)|Titanium]]" — [[David Guetta]], feat. [[Sia]]<br>"[[Fix You]]" — [[Coldplay]]
+|-
+! scope="row" rowspan=2| Riker & Allison
+| 40 (10, 10, 10, 10)
+| Paso doble
+| "[[He's a Pirate]]" — [[Klaus Badelt]]
+|-
+| 40 (10, 10, 10, 10)
+| Freestyle
+| "[[I Won't Dance|I Won't Dance (Step Up 3D Remix)]]" — [[Fred Astaire]]
+|-
+! scope="row" rowspan=2|Rumer & Val
+| 40 (10, 10, 10, 10)
+| Foxtrot
+| "[[Take Me to Church]]" — [[Hozier (musician)|Hozier]]
+|-
+| 40 (10, 10, 10, 10)
+| Freestyle
+| "[[Toxic (song)|Toxic]]" — [[Rumer Willis]]
+|}
+;Night 2
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref name="week11">{{cite web|url=http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-season-56578.aspx|title='Dancing with the Stars' Season 20 Finale Recap: Who Wins the Golden Mirror Ball?|access-date=May 20, 2015|archive-url=https://web.archive.org/web/20150521024709/http://www.buddytv.com/articles/dancing-with-the-stars/dancing-with-the-stars-season-56578.aspx|archive-date=May 21, 2015|url-status=dead}}</ref>
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Noah & Sharna
+| 36 (9, 9, 9, 9)
+| Argentine tango<br />& Cha-cha-cha
+| "[[Surrender (Cash Cash song)|Surrender]]" — [[Cash Cash]], feat. [[Julia Michaels]]
+| bgcolor=tan | Third place
+|-
+! scope="row" | Riker & Allison
+| 40 (10, 10, 10, 10)
+| Quickstep<br>& Salsa
+| "[[Classic (MKTO song)|Classic]]" — [[MKTO]]
+| bgcolor=silver | Runners-up
+|-
+! scope="row" | Rumer & Val
+| 40 (10, 10, 10, 10)
+| Foxtrot &<br />Paso doble
+| "[[Big Jet Plane]]" - [[Angus Stone|Angus]] & [[Julia Stone]]"
+| bgcolor=gold | '''Winners'''
+|}
+
+==Dance chart==
+The couples performed the following each week:
+*Week 1: One unlearned dance (cha-cha-cha, foxtrot, or jive)
+*Week 2: One unlearned dance
+*Week 3: One unlearned dance
+*Week 4: One unlearned dance
+*Week 5: One unlearned dance
+*Week 6: One unlearned dance & team dance
+*Week 7: One unlearned dance & dance-offs
+*Week 8: One unlearned dance & trio dance
+*Week 9 (Semifinals): One unlearned dance & judge's choice
+*Week 10 (Finals, Night 1): Repeated dance & freestyle
+*Week 10 (Finals, Night 2): Fusion dance
+'''Color key:'''
+
+{{columns-list|colwidth=20em|
+{{legend|lightblue|No scores received}}
+}}
+{| class="wikitable unsortable" style="text-align:center; font-size:85%; line-height:20px"
+|+''Dancing with the Stars'' (season 20) - Dance chart
+! rowspan="3" scope="col" |Couple
+! colspan="16" |Week
+|-
+! rowspan="2" scope="col" | 1 
+! rowspan="2" scope="col" | 2 
+! rowspan="2" scope="col" | 3 
+! rowspan="2" scope="col" | 4 
+! rowspan="2" scope="col" | 5 
+! colspan="2" rowspan="2" scope="col" |6 
+! colspan="2" rowspan="2" scope="col" |7 
+! colspan="2" rowspan="2" scope="col" |8 
+! colspan="2" rowspan="2" scope="col" |9 
+! colspan="3" scope="col" |10
+|-
+! colspan="2" |Night 1
+! Night 2<ref name="Final3" />
+|-
+! scope="row" | Rumer & Val
+| Foxtrot
+| Cha-cha-cha
+| Salsa
+| Waltz
+| Samba
+| Jazz
+| Team Freestyle
+| Jive
+| Foxtrot
+| Rumba
+| Paso doble
+| Viennese waltz
+| {{Abbr|Contemp.|Contemporary}}
+| Foxtrot
+| Freestyle
+| Foxtrot &<br />Paso doble
+|-
+! scope="row" | Riker & Allison
+| Jive
+| Foxtrot
+| Salsa
+| Tango
+| Paso doble
+| Samba
+| Team Freestyle
+| Quickstep
+| Salsa
+| Viennese waltz
+| Jazz
+| {{Abbr|Contemp.|Contemporary}}
+| Argentine tango
+| Paso doble
+| Freestyle
+| Quickstep<br>& Salsa
+|-
+! scope="row" | Noah & Sharna
+| {{nowrap|Cha-cha}}-cha
+| Samba
+| Argentine tango
+| {{Abbr|Contemp.|Contemporary}}
+| Foxtrot
+| Rumba
+| Team Freestyle
+| Jazz
+| Cha-cha-cha
+| Tango
+| Salsa
+| Viennese waltz
+| Paso doble
+| Argentine tango
+| Freestyle
+| Argentine tango &<br>Cha-cha-cha
+|-
+! scope="row" | Nastia & Derek
+| Foxtrot
+| Rumba
+| Samba
+| Argentine tango
+| Jazz
+| Tango
+| Team Freestyle
+| Charleston
+| bgcolor="fff383" |'''Immunity'''
+| Paso doble
+| Jive
+| Quickstep
+| Viennese waltz
+| colspan="2" rowspan="9" style="background:darkgrey" |
+| style="background:lightblue" |Charleston{{efn|name=NoScore}}
+|-
+! scope="row" | Chris & Witney
+| Jive
+| Cha-cha-cha
+| Argentine tango
+| Rumba
+| Quickstep
+| Viennese waltz
+| Team Freestyle
+| Foxtrot
+| Foxtrot
+| {{Abbr|Contemp.|Contemporary}}
+| Paso doble
+| colspan="2" rowspan="8" style="background:darkgrey" |
+| style="background:lightblue" | Jive{{efn|name=NoScore}}
+|-
+! scope="row" | Robert & Kym
+| Cha-cha-cha
+| Foxtrot
+| Rumba
+| Waltz
+| Quickstep
+| Jive
+| Team Freestyle
+| Argentine tango
+| Cha-cha-cha
+| {{Abbr|Contemp.|Contemporary}}
+| Samba
+| style="background:lightblue" |Cha-cha-cha{{efn|name=NoScore}}
+|-
+! scope="row" | Willow & Mark
+| Cha-cha-cha
+| Argentine tango
+| Paso doble
+| {{Abbr|Contemp.|Contemporary}}
+| Foxtrot
+| Salsa
+| Team Freestyle
+| Jazz
+| Salsa
+| colspan="2" rowspan="6" style="background:darkgrey" |
+| style="background:lightblue" | Foxtrot{{efn|name=NoScore}}
+|-
+! scope="row" | Patti & Artem
+| Foxtrot
+| Salsa
+| Cha-cha-cha
+| Jazz
+| Waltz
+| Quickstep
+| Team Freestyle
+| colspan="2" rowspan="5" style="background:darkgrey" |
+| style="background:lightblue" |Salsa{{efn|name=NoScore}}
+|-
+! scope="row" | Suzanne & Tony
+| Cha-cha-cha
+| Jive
+| Samba
+| Foxtrot
+| Jazz
+| colspan="2" rowspan="4" style="background:darkgrey" |
+| style="background:lightblue" |Samba{{efn|name=NoScore}}
+|-
+! scope="row" | Michael & Peta
+| Cha-cha-cha
+| Foxtrot
+| Salsa
+| Rumba
+| rowspan="3" style="background:darkgrey" |
+| bgcolor="darkgray" |
+|-
+! scope="row" | Charlotte & Keo
+| Jive
+| Cha-cha-cha
+| Rumba
+| rowspan="2" style="background:darkgrey" |
+| style="background:lightblue" |Cha-cha-cha{{efn|name=NoScore}}
+|-
+! scope="row" | Redfoo & Emma
+| Cha-cha-cha
+| Jive
+| style="background:darkgrey" |
+| style="background:lightblue" |{{nowrap|Cha-cha-cha}}{{efn|name=NoScore|No scores were received for this dance.}}
+|}
+;Notes
+{{notelist}}
+
+==References==
+{{Reflist|30em}}
+
+==External links==
+*{{Official website|http://abc.go.com/shows/dancing-with-the-stars}}
+
+{{Dancing with the Stars (United States)}}
+
+[[Category:Dancing with the Stars (American TV series)]]
+[[Category:2015 American television seasons]]

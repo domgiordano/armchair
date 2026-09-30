@@ -1,0 +1,1796 @@
+{{More citations needed|date=July 2023}}
+{{Use American English|date=March 2026}}
+{{use mdy dates|date=April 2022}}
+{{Infobox television season
+| season_name  = ''Dancing with the Stars: All-Stars''
+| bgcolor      = #33336F
+| image        = DancingSeason15.jpeg
+| caption      = Promotional poster, featuring All-Star celebrity cast
+| module1      = {{Infobox reality competition season
+| host                 = {{Plainlist|
+* [[Tom Bergeron]]
+* [[Brooke Burke Charvet]]
+}}
+| judges               = {{Plainlist|
+* [[Carrie Ann Inaba]]
+* [[Len Goodman]]
+* [[Bruno Tonioli]]
+}}
+| celebrity_winner     = [[Melissa Rycroft]]
+| professional_winner  = [[Tony Dovolani]]
+}}
+| num_episodes = 19
+| network      = [[American Broadcasting Company|ABC]]
+| first_aired  = {{start date|2012|9|24}}
+| last_aired   = {{end date|2012|11|27}}
+}}
+
+'''Season fifteen''' of ''[[Dancing with the Stars (American TV series)|Dancing with the Stars]]'', called '''''Dancing with the Stars: All-Stars''''',<ref name=abc/> premiered on September 24, 2012, on the [[American Broadcasting Company|ABC]] network.<ref>{{cite web |url=http://tvbythenumbers.zap2it.com/2012/07/26/abc-announces-premiere-dates-for-modern-family-the-middle-dwts-greys-anatomy-once-upon-a-time-more/142961/ |title=ABC Announces Fall Premiere Dates: 'Modern Family', 'Revenge', 'DWTS:All-Stars', 'Grey's Anatomy', 'Once Upon a Time' & More - Ratings |publisher=Zap2it |access-date=2012-08-15 |archive-url=https://web.archive.org/web/20120828201742/http://tvbythenumbers.zap2it.com/2012/07/26/abc-announces-premiere-dates-for-modern-family-the-middle-dwts-greys-anatomy-once-upon-a-time-more/142961/ |archive-date=2012-08-28 |url-status=dead }}</ref>
+
+Season 15 was the first to feature an "all-star" cast of returning celebrities.<ref name=abc>{{cite web |url=http://beta.abc.go.com/shows/dancing-with-the-stars/cast-the-all-star-season/0-cast-season-15-of-dwts |title=Dancing With The Stars - ABC.com |publisher=Beta.abc.go.com |access-date=2012-08-15 |archive-url=https://web.archive.org/web/20120821163034/http://beta.abc.go.com/shows/dancing-with-the-stars/cast-the-all-star-season/0-cast-season-15-of-dwts |archive-date=2012-08-21 |url-status=dead }}</ref> Six of the returning finalists had already won the title in prior seasons: [[Kelly Monaco]], [[Drew Lachey]], [[Emmitt Smith]], [[Apolo Anton Ohno]], [[Hélio Castroneves]], and [[Shawn Johnson East|Shawn Johnson]]. Additionally, it was the only season to date to offer fractional (0.5) scores. Five contestants reunited with their original partners ([[Emmitt Smith]], [[Joey Fatone]], [[Melissa Rycroft]], [[Bristol Palin]], [[Kirstie Alley]]), while the other eight danced with new partners.
+
+[[Dancing with the Stars (American season 8)|Season 8]] finalist [[Melissa Rycroft]] defeated season 8 champion Shawn Johnson and [[Dancing with the Stars (American season 1)|season 1]] champion Kelly Monaco to win the trophy. This also marked the first win for professional [[Tony Dovolani]].
+
+==Cast==
+
+===Couples===
+This season featured thirteen returning celebrity contestants. The first twelve celebrities were revealed on July 27, 2012.<ref>{{cite web|author= |url=http://www.digitalspy.co.uk/ustv/s92/dancingwiththestars/news/a395839/dancing-with-the-stars-all-stars-bristol-palin-kirstie-alley-more.html|title=Dancing with the Stars: All-Stars: Bristol Palin, Kirstie Alley, more - Dancing with the Stars News - Reality TV|publisher=Digital Spy|date=2012-07-27|access-date=2012-08-15|archive-url=https://web.archive.org/web/20120728235817/http://www.digitalspy.co.uk/ustv/s92/dancingwiththestars/news/a395839/dancing-with-the-stars-all-stars-bristol-palin-kirstie-alley-more.html|archive-date=2012-07-28|url-status=live}}</ref> A thirteenth contestant was chosen by the public, from either [[Sabrina Bryan]], [[Kyle Massey]], or [[Carson Kressley]]. Sabrina Bryan was announced the winner on August 27.<ref>{{cite web|author=Lanford Beard |url=http://insidetv.ew.com/2012/08/27/dancing-with-the-stars-sabrina-bryan-viewers-choice/|title='Dancing With the Stars': Sabrina Bryan wins viewers' choice vote |publisher=Entertainment Weekly|date=2012-08-27|access-date=2012-08-27|archive-url=https://web.archive.org/web/20120828160610/http://insidetv.ew.com/2012/08/27/dancing-with-the-stars-sabrina-bryan-viewers-choice/|archive-date=2012-08-28|url-status=dead}}</ref> [[Louis van Amstel]] was partnered with Bryan, while the professional partners for the first twelve celebrities were revealed on August 13.<ref>{{cite web|author= |url=http://www.digitalspy.co.uk/ustv/s92/dancingwiththestars/news/a399081/dancing-with-the-stars-all-stars-professional-partners-confirmed.html|title='Dancing with the Stars All-Stars': Professional partners confirmed - Dancing with the Stars News - Reality TV|publisher=Digital Spy|date=2012-08-13|access-date=2012-08-15|archive-url=https://web.archive.org/web/20120825050901/http://www.digitalspy.co.uk/ustv/s92/dancingwiththestars/news/a399081/dancing-with-the-stars-all-stars-professional-partners-confirmed.html|archive-date=2012-08-25|url-status=live}}</ref> The members of the dance troupe for this season were [[Oksana Dmytrenko]], [[Emma Slater]], [[Sharna Burgess]], [[Henry Byalikov]], [[Sasha Farber]], and [[Sonny Fredie-Pedersen]].
+
+{| class="wikitable sortable" style="text-align:center;"
+|-
+! scope="col" | Celebrity
+! scope="col" class="unsortable"| Notability
+! scope="col" | Professional partner
+! scope="col" | Status
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Pamela|Anderson}}'''<br>''[[Dancing with the Stars (American season 10)|Season 10]]''
+| Film & television actress
+| {{sortname|Tristan|MacManus}}
+| style="background:#f4c7b8"|Eliminated 1st<br />{{small|on September 25, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Joey|Fatone}}'''<br>''[[Dancing with the Stars (American season 4)|Season 4]]''
+| [[NSYNC]] singer & actor
+| {{sortname|Kym|Johnson}}
+| style="background:#f4c7b8"|Eliminated 2nd<br />{{small|on October 2, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Drew|Lachey}}'''<br>''[[Dancing with the Stars (American season 2)|Season 2]]''
+| Singer & actor
+| {{sortname|Anna|Trebunskaya}}
+| style="background:#f4c7b8"|Eliminated 3rd<br />{{small|on October 9, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Hélio|Castroneves}}'''<br>''[[Dancing with the Stars (American season 5)|Season 5]]''
+| [[Indy 500]] champion
+| {{sortname|Chelsie|Hightower}}
+| style="background:#f4c7b8"|Eliminated 4th<br />{{small|on October 9, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Bristol|Palin}}'''<br>''[[Dancing with the Stars (American season 11)|Season 11]]''
+| Activist & author
+| {{sortname|Mark|Ballas}}
+| style="background:#f4c7b8"|Eliminated 5th<br />{{small|on October 16, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Sabrina|Bryan}}'''<br>''[[Dancing with the Stars (American season 5)|Season 5]]''
+| Singer & actress
+| {{sortname|Louis|van Amstel}}
+| style="background:#f4c7b8"|Eliminated 6th<br />{{small|on October 30, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Kirstie|Alley}}'''<br>''[[Dancing with the Stars (American season 12)|Season 12]]''
+| Film & television actress
+| {{sortname|Maksim|Chmerkovskiy}}
+| style="background:#f4c7b8"|Eliminated 7th<br />{{small|on November 13, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Gilles|Marini}}'''<br>''[[Dancing with the Stars (American season 8)|Season 8]]''
+| Film & television actor
+| {{sortname|Peta|Murgatroyd}}
+| style="background:#f4c7b8"|Eliminated 8th<br />{{small|on November 13, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Apolo Anton|Ohno}}'''<br>''[[Dancing with the Stars (American season 4)|Season 4]]''
+| [[Speed skating at the Winter Olympics|Olympic speed skater]]
+| {{sortname|Karina|Smirnoff}}
+| style="background:#f4c7b8"|Eliminated 9th<br />{{small|on November 20, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Emmitt|Smith}}'''<br>''[[Dancing with the Stars (American season 3)|Season 3]]''
+| [[NFL]] player
+| {{sortname|Cheryl|Burke}}
+| style="background:#f4c7b8"|Eliminated 10th<br />{{small|on November 20, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Kelly|Monaco}}'''<br>''[[Dancing with the Stars (American season 1)|Season 1]]''
+| Model & actress
+| {{sortname|Valentin|Chmerkovskiy}}
+| style="background:tan"|Third place<br />{{small|on November 27, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Shawn|Johnson}}'''<br>''[[Dancing with the Stars (American season 8)|Season 8]]''
+| [[Artistic gymnastics at the Summer Olympics|Olympic artistic gymnast]]
+| {{sortname|Derek|Hough}}<br>''{{small|Mark Ballas (Week 7)}}''
+| style="background:silver"|Runners-up<br />{{small|on November 27, 2012}}
+|-
+! scope="row" style="text-align:center;font-weight:normal" | '''{{sortname|Melissa|Rycroft}}'''<br>''[[Dancing with the Stars (American season 8)|Season 8]]''
+| Television host
+| {{sortname|Tony|Dovolani}}
+| style="background:gold"|'''Winners'''<br />{{small|on November 27, 2012}}
+|}
+
+=== Host and judges ===
+[[Tom Bergeron]] and [[Brooke Burke Charvet]] returned as hosts, while [[Carrie Ann Inaba]], [[Len Goodman]], and [[Bruno Tonioli]] returned as judges. The [[Harold Wheeler (musician)|Harold Wheeler]] orchestra and singers provided music throughout the season.
+
+==Scoring chart==
+The highest score each week is indicated in {{fontcolor|#004600|'''bold green'''}} with a dagger ({{dagger}}), while the lowest score each week is indicated in {{fontcolor|#800000|''italicized red''}} with a double-dagger ({{double-dagger}}).
+
+'''Color key:'''
+{{columns-list|colwidth=20em|
+{{legend|gold|Winners}}
+{{legend|silver|Runners-up}}
+{{legend|tan|Third place}}
+{{legend|lightblue|Bottom two}}
+{{legend|#f4c7b8|Eliminated}}
+}}
+{| class="wikitable sortable" style="text-align:center; font-size:85%"
+|+''Dancing with the Stars'' (season 15) - Weekly scores
+! scope="col" rowspan="3" style="text-align:center; line-height:15px; | Couple
+! scope="col" rowspan="3" style="text-align:center; line-height:15px; | {{Abbr|Pl.|Place}}
+! colspan="13" style="text-align:center; line-height:15px; | Week
+|-
+! scope="col" rowspan=2 style="line-height:15px; | 1
+! scope="col" rowspan=2 style="line-height:15px; | 2
+! scope="col" rowspan=2 style="line-height:15px; | 3
+! scope="col" rowspan=2 style="line-height:15px; | 4
+! scope="col" rowspan=2 style="line-height:15px; | 5
+! scope="col" rowspan=2 style="line-height:15px; | 6
+! scope="col" rowspan=2 style="line-height:15px; | 5+6
+! scope="col" rowspan=2 style="line-height:15px; | 7
+! scope="col" rowspan=2 style="line-height:15px; | 8
+! scope="col" rowspan=2 style="line-height:15px; | 7+8
+! scope="col" rowspan=2 style="line-height:15px; | 9
+! scope="col" colspan=2 style="line-height:15px; | 10
+|-
+! style="line-height:15px; | Night 1
+! style="line-height:15px; | Night 2
+|-
+! scope="row" | Melissa & Tony
+| 1st
+|21.0
+|23.5
+|{{fontcolor|#004600|'''27.0'''}}{{dagger|alt=This was the highest score of the night.}}
+|37.0
+| {{sort|56.5|}} | 27.0+29.5=56.5
+|29.5
+|86.0
+| {{sort|39|}} | 29.0+10={{fontcolor|#004600|'''39.0'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|60|}} | 30.0+30.0={{fontcolor|#004600|'''60.0'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''99.0'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|57.5|}} | 27.5+30.0=57.5
+| {{sort|60|}} | 30.0+30.0={{fontcolor|#004600|'''60.0'''}}{{dagger|alt=This was the highest score of the night.}}
+| bgcolor=gold {{sort|88.5|}} | +28.5={{fontcolor|#004600|'''88.5'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple finished in first place.}}
+|-
+! scope="row" | Shawn & Derek
+| 2nd
+|22.0
+|25.0
+|26.5
+|{{fontcolor|#004600|'''39.5'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|56.5|}} | 27.0+29.5=56.5
+|28.0
+|84.5
+| {{sort|38|}} | 30.0+8=38.0
+| {{sort|55.5|}} | 29.5+26.0=55.5
+|93.5
+| {{sort|59|}} | 30.0+29.0={{fontcolor|#004600|'''59.0'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|57|}} | 27.0+30.0={{fontcolor|#800000|''57.0''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| bgcolor=silver {{sort|87|}} | +30.0={{fontcolor|#800000|''87.0''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|This couple finished in second place.}}
+|-
+! scope="row" | Kelly & Val
+| 3rd
+|21.5
+|22.0
+|{{fontcolor|#004600|'''27.0'''}}{{dagger|alt=This was the highest score of the night.}}
+|37.5
+| {{sort|51.5|}} | 24.5+27.0={{fontcolor|#800000|''51.5''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|27.0
+|{{fontcolor|#800000|''78.5''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{sort|36|}} | 27.0+9=36.0
+| {{sort|56.5|}} | 28.0+28.5=56.5
+|92.5
+| {{sort|54|}} | 25.5+28.5={{fontcolor|#800000|''54.0''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{sort|59|}} | 29.5+29.5=59.0
+| bgcolor=tan {{sort|87.5|}} | +28.5=87.5{{efn|This couple finished in third place.}}
+|-
+! scope="row" | Emmitt & Cheryl
+|4th
+|{{fontcolor|#004600|'''24.5'''}}{{dagger|alt=This was the highest score of the night.}}
+|22.5
+|25.0
+|36.0
+| {{sort|56|}} | 29.0+27.0=56.0
+|{{fontcolor|#800000|''26.5''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|82.5
+| {{sort|34.5|}} | 27.5+7=34.5
+| {{sort|58|}} | 28.0+30.0=58.0
+|92.5
+| bgcolor=f4c7b8 {{sort|54|}} | 27.0+27.0={{fontcolor|#800000|''54.0''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| colspan="2" rowspan="10" style="background:darkgrey;" |
+|-
+! scope="row" | Apolo & Karina
+|5th
+|22.0
+|24.5
+|25.5
+|34.5
+| {{sort|56.5|}} | 27.0+29.5=56.5
+|{{fontcolor|#004600|'''30.0'''}}{{dagger|alt=This was the highest score of the night.}}
+|86.5
+| {{sort|33|}} | 27.0+6=33.0
+| {{sort|58.5|}} | 29.5+29.0=58.5
+|91.5
+|bgcolor=f4c7b8 {{sort|57|}} | 27.0+30.0=57.0{{efn|name=Elim}}
+|-
+! scope="row" | Gilles & Peta
+|6th
+|24.0
+|25.5
+|25.5
+|{{fontcolor|#004600|'''39.5'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|56.5|}} | 29.5+27.0=56.5
+|27.5
+|84.0
+| {{sort|33.5|}} | 28.5+5=33.5
+| {{sort|58.5|}} | 29.5+29.0=58.5
+| bgcolor=f4c7b8 | 92.0{{efn|name=Elim}}
+| rowspan="8" style="background:darkgrey;" |
+|-
+! scope="row" | Kirstie & Maks
+|7th
+|19.0
+|21.0
+|bgcolor=lightblue| 24.0{{efn|name=Bottom2}}
+|bgcolor=lightblue| {{fontcolor|#800000|''30.0''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Bottom2}}
+| {{sort|52.5|}} | 25.5+27.0=52.5
+| {{sort|29.5|}} | 27.5+2=29.5
+|82.0
+| {{sort|28|}} | 24.0+4={{fontcolor|#800000|''28.0''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{sort|51|}} | 27.0+24.0={{fontcolor|#800000|''51.0''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| bgcolor=f4c7b8 | {{fontcolor|#800000|''79.0''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+|-
+! scope="row" | Sabrina & Louis
+|8th
+|22.5
+|{{fontcolor|#004600|'''26.0'''}}{{dagger|alt=This was the highest score of the night.}}
+|bgcolor=lightblue| 25.5{{efn|name=Bottom2}}
+|35.5
+| {{sort|58.5|}} | 29.0+29.5={{fontcolor|#004600|'''58.5'''}}{{dagger|alt=This was the highest score of the night.}}
+|{{fontcolor|#004600|'''30.0'''}}{{dagger|alt=This was the highest score of the night.}}
+|bgcolor=f4c7b8 {{sort|88.5|}} | {{fontcolor|#004600|'''88.5'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|name=Elim}}
+| colspan="3" rowspan="6" style="background:darkgrey;" |
+|-
+! scope="row" | Bristol & Mark
+|9th
+|19.5
+|{{fontcolor|#800000|''18.0''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|{{fontcolor|#800000|''22.5''}}{{double-dagger|alt=This was the lowest score of the night.}}
+|bgcolor=f4c7b8|32.0{{efn|name=Elim}}
+| colspan="3" rowspan="5" style="background:darkgrey;" |
+|-
+! scope="row" | Hélio & Chelsie
+|10th
+|21.5
+|bgcolor=lightblue| 23.0{{efn|name=Bottom2}}
+|bgcolor=f4c7b8|25.5{{efn|name=Elim}}
+| rowspan="4" style="background:darkgrey;" |
+|-
+! scope="row" | Drew & Anna
+|11th
+|bgcolor=lightblue| 21.5{{efn|name=Bottom2|This couple was in the bottom two, but was not eliminated.}}
+|22.5
+|bgcolor=f4c7b8|24.0{{efn|name=Elim}}
+|-
+! scope="row" | Joey & Kym
+|12th
+|20.5
+|bgcolor=f4c7b8|22.5{{efn|name=Elim}}
+| rowspan="2" style="background:darkgrey;" |
+|-
+! scope="row" nowrap | Pamela & Tristan
+|13th
+|bgcolor=f4c7b8|{{fontcolor|#800000|''17.0''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim|This couple was eliminated.}}
+| style="background:darkgrey;" |
+|}
+;Notes
+{{notelist}}
+
+==Weekly scores==
+
+===Week 1: First Dances===
+Couples performed either the [[Cha-cha-cha (dance)|cha-cha-cha]] or [[foxtrot]], and are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+! scope="col" rowspan=2 class="unsortable"|Result
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Joey & Kym
+| 6.5
+| 7.0
+| 7.0
+| 20.5
+| Cha-cha-cha
+| "[[P.Y.T. (Pretty Young Thing)]]" — [[Michael Jackson]]
+| Safe
+|-
+! scope="row" | Shawn & Derek
+| 8.0
+| 6.5
+| 7.5
+| 22.0
+| Foxtrot
+| "[[Good Time (Owl City and Carly Rae Jepsen song)|Good Time]]" — [[Owl City]] & [[Carly Rae Jepsen]]
+| Safe
+|-
+! scope="row" | Sabrina & Louis
+| 7.5 
+| 7.5
+| 7.5
+| 22.5
+| Cha-cha-cha
+| "[[What Makes You Beautiful]]" — [[One Direction]]
+| Safe
+|-
+! scope="row" | Hélio & Chelsie
+| 7.0
+| 7.5
+| 7.0
+| 21.5
+| Foxtrot
+| "[[Pride and Joy (Marvin Gaye song)|Pride and Joy]]" — [[Marvin Gaye]]
+| Safe
+|-
+! scope="row" | {{nowrap|Pamela & Tristan}}
+| 5.5
+| 5.5
+| 6.0
+| 17.0
+| Cha-cha-cha
+| "[[You Know I'm No Good]]" — [[Amy Winehouse]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Melissa & Tony
+| 7.0
+| 7.0
+| 7.0
+| 21.0
+| Foxtrot
+| "[[Big Spender]]" — ''from [[Sweet Charity]]''
+| Safe
+|-
+! scope="row" | Apolo & Karina
+| 7.5
+| 7.0
+| 7.5
+| 22.0
+| Cha-cha-cha
+| "[[Party Rock Anthem]]" — [[LMFAO (group)|LMFAO]], feat. [[Lauren Bennett]] & [[GoonRock]]
+| Safe
+|-
+! scope="row" | Gilles & Peta
+| 8.0
+| 8.0
+| 8.0
+| 24.0
+| Foxtrot
+| "[[Call Me Irresponsible]]" — [[Bobby Darin]]
+| Safe
+|-
+! scope="row" | Bristol & Mark
+| 6.5
+| 6.5
+| 6.5
+| 19.5
+| Cha-cha-cha
+| "[[Blow Me (One Last Kiss)]]" — [[Pink (singer)|Pink]]
+| Safe
+|-
+! scope="row" | Drew & Anna
+| 7.0
+| 7.0
+| 7.5
+| 21.5
+| Foxtrot
+| "[[Love Song (Sara Bareilles song)|Love Song]]" — [[Sara Bareilles]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Kelly & Val
+| 7.0
+| 7.0
+| 7.5
+| 21.5
+| Cha-cha-cha
+| "Bang Bang" — [[David Sanborn]]
+| Safe
+|-
+! scope="row" | Kirstie & Maks
+| 6.5
+| 6.0
+| 6.5
+| 19.0
+| Foxtrot
+| "[[Set Fire to the Rain]]" — [[Adele]]
+| Safe
+|-
+! scope="row" | Emmitt & Cheryl
+| 8.0
+| 8.5
+| 8.0
+| 24.5
+| Cha-cha-cha
+| "[[Chain of Fools]]" — [[Aretha Franklin]]
+| Safe
+|}
+
+===Week 2: Top 12===
+Couples performed either the [[Jive (dance)|jive]] or [[quickstep]], and are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+! scope="col" rowspan=2 class="unsortable"|Result
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Melissa & Tony
+| 8.0
+| 8.0
+| 7.5
+| 23.5
+| Jive
+| "[[Shout (The Isley Brothers song)|Shout]]" — [[The Isley Brothers]]
+| Safe
+|-
+! scope="row" | Bristol & Mark
+| 6.0
+| 6.0
+| 6.0
+| 18.0
+| Quickstep
+| "[[Redneck Woman]]" — [[Gretchen Wilson]]
+| Safe
+|-
+! scope="row" | Hélio & Chelsie
+| 8.0
+| 7.5
+| 7.5
+| 23.0
+| Jive
+| "[[Everybody Talks]]" — [[Neon Trees]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Apolo & Karina
+| 8.5
+| 8.0
+| 8.0
+| 24.5
+| Quickstep
+| "[[The Wildest!|Five Months, Two Weeks, Two Days]]" — [[Louis Prima]]
+| Safe
+|-
+! scope="row" | Sabrina & Louis
+| 9.0
+| 8.5
+| 8.5
+| 26.0
+| Quickstep
+| "[[Black Betty]]" — [[Ram Jam]]
+| Safe
+|-
+! scope="row" | Kirstie & Maks
+| 7.0
+| 7.0
+| 7.0
+| 21.0
+| Jive
+| "Non, non, rien n'a changé" — [[Les Poppys]]
+| Safe
+|-
+! scope="row" | Emmitt & Cheryl
+| 7.5
+| 7.5
+| 7.5
+| 22.5
+| Quickstep
+| "A Cool Cat In Town" — Tape Five
+| Safe
+|-
+! scope="row" | Drew & Anna
+| 7.5
+| 7.5
+| 7.5
+| 22.5
+| Jive
+| "[[Dance, Dance (Fall Out Boy song)|Dance, Dance]]" — [[Fall Out Boy]]
+| Safe
+|-
+! scope="row" | Joey & Kym
+| 7.5
+| 7.5
+| 7.5
+| 22.5
+| Quickstep
+| "[[Creep (Radiohead song)|Creep]]" — [[Richard Cheese]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Shawn & Derek
+| 8.5
+| 8.5
+| 8.5
+| 25.5
+| Jive
+| "[[Hairspray (musical)|The Nicest Kids in Town]]" — ''from [[Hairspray (musical)|Hairspray]]''
+| Safe
+|-
+! scope="row" | Kelly & Val
+| 7.5
+| 7.0
+| 7.5
+| 22.0
+| Quickstep
+| "[[Who Says (Selena Gomez & the Scene song)|Who Says]]" — [[Selena Gomez & The Scene]]
+| Safe
+|-
+! scope="row" | Gilles & Peta
+| 8.5
+| 8.5
+| 8.5
+| 25.5
+| Jive
+| "[[Don't Stop Me Now]]" — [[Queen (band)|Queen]]
+| Safe
+|}
+
+===Week 3: Iconic Dances Week===
+Celebrities chose an iconic routine from the previous fourteen seasons and tried to make it as "iconic" as it previously had been. Couples are listed in the order they performed. There was a double elimination this week.
+ 
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+! scope="col" rowspan=2 class="unsortable"|Original<br>couple
+! scope="col" rowspan=2 class="unsortable"|Result
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Drew & Anna
+| 8.0
+| 8.0
+| 8.0
+| 24.0
+| Cha-cha-cha
+| "[[Crazy in Love (Beyoncé Knowles song)|Crazy in Love]]" — [[Beyoncé Knowles|Beyoncé]], feat. [[Jay-Z]]
+| Joey & Ashly<br>''([[Dancing with the Stars (American season 1)|Season 1]])''
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Gilles & Peta
+| 8.5
+| 8.5
+| 8.5
+| 25.5
+| Tango
+| "[[Sweet Dreams (Are Made of This)]]" — [[Eurythmics]]
+| Erin & Maks<br>''([[Dancing with the Stars (American season 10)|Season 10]])''
+| Safe
+|-
+! scope="row" | Melissa & Tony
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Samba
+| "[[Conga (song)|Conga]]" — [[Gloria Estefan]]
+| JR & Karina<br>''([[Dancing with the Stars (American season 13)|Season 13]])''
+| Safe
+|-
+! scope="row" | Apolo & Karina
+| 9.0
+| 8.0
+| 8.5
+| 25.5
+| Foxtrot
+| "[[Fever (Little Willie John song)|Fever]]" — [[Michael Bublé]]
+| Gilles & Cheryl<br>''([[Dancing with the Stars (American season 8)|Season 8]])''
+| Safe
+|-
+! scope="row" | Kelly & Val
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Paso doble
+| "[[España cañí]]" — [[Erich Kunzel]]
+| Laila & Maks<br>''([[Dancing with the Stars (American season 4)|Season 4]])''
+| Safe
+|-
+! scope="row" | Kirstie & Maks
+| 8.0
+| 8.0
+| 8.0
+| 24.0
+| Cha-cha-cha
+| "[[Moves like Jagger]]" — [[Maroon 5]], feat. [[Christina Aguilera]]
+| Carson & Anna<br>''([[Dancing with the Stars (American season 13)|Season 13]])''
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Sabrina & Louis
+| 8.5
+| 8.5
+| 8.5
+| 25.5
+| Paso doble
+| "[[Free Your Mind (En Vogue song)|Free Your Mind]]" — [[En Vogue]]
+| Mel B & Maks<br>''([[Dancing with the Stars (American season 5)|Season 5]])''
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Emmitt & Cheryl 
+| 8.5
+| 8.0
+| 8.5
+| 25.0
+| Paso doble
+| "[[Desperado: The Soundtrack|Canción del Mariachi]]" — [[Los Lobos]] & [[Antonio Banderas]]
+| Mario & Karina<br>''([[Dancing with the Stars (American season 3)|Season 3]])''
+| Safe
+|-
+! scope="row" | Hélio & Chelsie
+| 8.5
+| 8.5
+| 8.5
+| 25.5
+| Quickstep
+| "[[Americana Deluxe|Mr. Pinstripe Suit]]" — [[Big Bad Voodoo Daddy]]
+| Apolo & Julianne<br>''([[Dancing with the Stars (American season 4)|Season 4]])''
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Bristol & Mark
+| 7.5
+| 7.5
+| 7.5
+| 22.5
+| Paso doble
+| "[[Living on Video]]" — [[Trans-X]]
+| Joanna & Derek<br>''([[Dancing with the Stars (American season 9)|Season 9]])''
+| Safe
+|-
+! scope="row" | Shawn & Derek
+| 9.0
+| 8.0
+| 9.5
+| 26.5
+| Quickstep 
+| "[[The Mask (1994 film)#Music|Hey! Pachuco!]]" — [[Royal Crown Revue]]
+| Hélio & Julianne<br>''([[Dancing with the Stars (American season 5)|Season 5]])''
+| Safe
+|}
+
+===Week 4: Opponents' Choice Week===
+
+All of the celebrities selected a dance style for one of their opponents.<ref>October 9 results show.</ref> [[Paula Abdul]] served as guest judge.<ref>{{cite web |last=Stack |first=Tim |url=http://insidetv.ew.com/2012/10/08/paula-abdul-to-guest-judge-on-dancing-with-the-stars/ |title=Paula Abdul to guest judge on 'Dancing with the Stars' |publisher=Insidetv.ew.com |access-date=2012-10-25 |archive-url=https://web.archive.org/web/20140201225525/http://insidetv.ew.com/2012/10/08/paula-abdul-to-guest-judge-on-dancing-with-the-stars/ |archive-date=2014-02-01 |url-status=dead }}</ref> Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=4 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Chosen by
+! scope="col" rowspan=2 class="unsortable"|Music
+! scope="col" rowspan=2 class="unsortable"|Result
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Abdul
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Kirstie & Maks
+| 7.5
+| 7.5
+| 7.5
+| 7.5
+| 30.0
+| Charleston
+| Sabrina & Louis
+| "[[42nd Street (song)|42nd Street]]" — ''from [[42nd Street (musical)|42nd Street]]''
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Bristol & Mark
+| 8.0
+| 8.0
+| 8.0
+| 8.0
+| 32.0
+| Rock and Roll
+| Gilles & Peta
+| "[[At the Hop]]" — [[Danny and the Juniors]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Sabrina & Louis
+| 9.0
+| 9.0
+| 8.5
+| 9.0
+| 35.5
+| Disco
+| Kirstie & Maks
+| "[[You Should Be Dancing]]" — [[Bee Gees]]
+| Safe
+|-
+! scope="row" | Emmitt & Cheryl
+| 9.0
+| 9.0
+| 9.0
+| 9.0
+| 36.0
+| Bolero
+| Kelly & Val
+| "[[Better in Time]]" — [[Leona Lewis]]
+| Safe
+|-
+! scope="row" | Gilles & Peta
+| 10.0
+| 9.5
+| 10.0
+| 10.0
+| 39.5
+| Bollywood
+| Bristol & Mark
+| "[[Jai Ho (You Are My Destiny)]]" — [[The Pussycat Dolls]], feat. [[A. R. Rahman]]
+| Safe
+|-
+! scope="row" | Melissa & Tony
+| 9.0
+| 9.0
+| 9.5
+| 9.5
+| 37.0
+| Jitterbug
+| Apolo & Karina
+| "[[The Dirty Boogie|This Cat's on a Hot Tin Roof]]" — [[Brian Setzer Orchestra]]
+| Safe
+|-
+! scope="row" | Shawn & Derek
+| 10.0
+| 9.5
+| 10.0
+| 10.0
+| 39.5
+| Mambo
+| Hélio & Chelsie
+| "[[Santana (1971 album)|Para los Rumberos]]" — [[Santana (band)|Santana]]
+| Safe
+|-
+! scope="row" | Apolo & Karina
+| 8.5
+| 9.0
+| 8.5
+| 8.5
+| 34.5
+| Hip-hop
+| Melissa & Tony
+| "[[Poison (Bell Biv DeVoe song)|Poison]]" — [[Bell Biv DeVoe]]
+| Safe
+|-
+! scope="row" | Kelly & Val
+| 9.0
+| 9.5
+| 9.5
+| 9.5
+| 37.5
+| Contemporary
+| Emmitt & Cheryl
+| "[[Fix You]]" — [[Coldplay]]
+| Safe
+|}
+
+===Week 5: Guilty Pleasures Week===
+The two couples with the highest total cumulative point average became team captains and selected teams for the Team Freestyle. The captains were Gilles & Peta and Shawn & Derek. Due to a presidential debate on October 22, this week of competition consisted of two performance shows: October 22 and 23. There was no elimination. Couples are listed in the order they performed.
+
+;Night 1
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Kelly & Val 
+| 8.0
+| 8.0
+| 8.5
+| 24.5
+| Samba
+| "[[Want U Back]]" — [[Cher Lloyd]]
+|-
+! scope="row" | Gilles & Peta
+| 10.0
+| 9.5
+| 10.0
+| 29.5
+| Rumba 
+| "[[I Will Always Love You]]" — [[Whitney Houston]]
+|-
+! scope="row" | Kirstie & Maks 
+| 8.5
+| 8.5
+| 8.5
+| 25.5
+| Quickstep
+| "[[Mrs. Robinson]]" — [[Simon and Garfunkel]]
+|-
+! scope="row" | Emmitt & Cheryl
+| 9.5
+| 9.5
+| 10.0
+| 29.0
+| Samba
+| "[[Copacabana (song)|Copacabana]]" — [[Barry Manilow]]
+|-
+! scope="row" | Apolo & Karina<br>Melissa & Tony<br>Sabrina & Louis<br>Shawn & Derek
+| 9.5
+| 10.0
+| 10.0
+| 29.5
+| Freestyle<br />(Team Call Me Maybe)
+| "[[Call Me Maybe]]" — [[Carly Rae Jepsen]]
+|}
+
+;Night 2
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Melissa & Tony
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Tango
+| "[[Toxic (song)|Toxic]]" — [[Britney Spears]]
+|-
+! scope="row" | Shawn & Derek
+| 9.0
+| 8.0
+| 10.0
+| 27.0
+| Rumba
+| "[[My Heart Will Go On]]" — [[Celine Dion]]
+|-
+! scope="row" | Apolo & Karina
+| 8.5
+| 9.5
+| 9.0
+| 27.0
+| Samba
+| "[[Give It to Me Baby]]" — [[Rick James]]
+|-
+! scope="row" | Sabrina & Louis
+| 10.0
+| 9.5
+| 9.5
+| 29.0
+| Waltz
+| "[[So This is Love (Cinderella song)|So This is Love]]" — ''from [[Cinderella (1950 film)|Cinderella]]''
+|-
+! scope="row" | Emmitt & Cheryl<br>Gilles & Peta<br>Kelly & Val<br>Kirstie & Maks
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Freestyle<br />(Team Gangnam Style)
+| "[[Gangnam Style]]" — [[Psy (rapper)|Psy]]
+|}
+
+===Week 6: Country Week===
+Each couple danced to a country song. Each individual routine included a solo portion by the celebrity. All of the couples also did a group dance. The couple that impressed the judges the most received two bonus points; that was Kirstie & Maks.<ref>{{cite web|date=October 29, 2012|title='Dancing With the Stars: All-Stars,' Week 6 Performances: TV Recap|publisher=Wall Street Journal|url=https://blogs.wsj.com/speakeasy/2012/10/29/dancing-with-the-stars-all-stars-week-6-performances-tv-recap/?mod=google_news_blog|author=Lisa Reynolds|access-date=2012-10-29|archive-url=https://web.archive.org/web/20121101203053/http://blogs.wsj.com/speakeasy/2012/10/29/dancing-with-the-stars-all-stars-week-6-performances-tv-recap/?mod=google_news_blog|archive-date=November 1, 2012|url-status=live}}</ref> Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+! scope="col" rowspan=2 class="unsortable"|Result
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Gilles & Peta
+| 9.0
+| 9.0
+| 9.5
+| 27.5
+| Cha-cha-cha
+| "[[Man! I Feel Like a Woman!]]" — [[Shania Twain]]
+| Safe
+|-
+! scope="row" | Sabrina & Louis
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Rumba
+| "[[Wanted (Hunter Hayes song)|Wanted]]" — [[Hunter Hayes]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Kelly & Val
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Tango
+| "[[Good Girl (Carrie Underwood song)|Good Girl]]" — [[Carrie Underwood]]
+| Safe
+|-
+! scope="row" | Melissa & Tony
+| 9.5
+| 10.0
+| 10.0
+| 29.5
+| Viennese waltz
+| "[[Why Ya Wanna]]" — [[Jana Kramer]]
+| Safe
+|-
+! scope="row" | Shawn & Derek
+| 9.5
+| 8.5
+| 10.0
+| 28.0
+| Cha-cha-cha
+| "[[She Thinks My Tractor's Sexy]]" — [[Kenny Chesney]]
+| Safe
+|-
+! scope="row" | Kirstie & Maks
+| 9.5
+| 8.5
+| 9.5
+| 27.5 
+| Rumba
+| "[[Home (Michael Bublé song)|Home]]" — [[Blake Shelton]]
+| Safe
+|-
+! scope="row" | Apolo & Karina
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Viennese waltz
+| "[[Skin (Sarabeth)]]" — [[Rascal Flatts]]
+| Safe
+|-
+! scope="row" | Emmitt & Cheryl
+| 8.5
+| 8.5
+| 9.5
+| 26.5
+| Foxtrot
+| "[[Islands in the Stream (song)|Islands in the Stream]]" — [[Dolly Parton]] & [[Kenny Rogers]]
+| Safe
+|-
+! scope="row" | Apolo & Karina<br>{{nowrap|Emmitt & Cheryl}}<br>Gilles & Peta<br>Kelly & Val<br>Melissa & Tony<br>Sabrina & Louis<br>Shawn & Derek
+| colspan="4" rowspan=4 bgcolor="lightgray" | ''No scores<br>received'' 
+| Group<br>Freestyle
+| colspan="2" rowspan=2 | "[[Save a Horse (Ride a Cowboy)]]" — [[Big & Rich]]<br>& "I Play Chicken with a Train" — [[Cowboy Troy]]
+|}
+
+===Week 7: Dance Fusion Week===
+Each couple performed a fusion dance of two previously learned dance styles, followed by a [[Swing (dance)|swing dance]] marathon.<ref name="autogenerated1">Mentioned by Tom Bergeron on October 29 performance show.</ref> Due to the presidential election and the effects of [[Hurricane Sandy]] for East Coast viewers, no elimination took place. [[Mark Ballas]] performed with [[Shawn Johnson]] this week, because [[Derek Hough]] was out with an injury.<ref>{{cite web |author=Gina Carbone |url=http://www.wetpaint.com/dancing-with-the-stars/articles/injury-forces-derek-hough-to-step-out-next-week-on-dwts-all-stars-mark-ballas-to-step-in |title=Injury Forces Derek Hough to "Step Out" Next Week on DWTS All-Stars, Mark Ballas to Step In &#124; Dancing With The Stars |publisher=Wetpaint |date=2012-10-30 |access-date=2015-02-16 |archive-url=https://web.archive.org/web/20150216122145/http://www.wetpaint.com/dancing-with-the-stars/articles/injury-forces-derek-hough-to-step-out-next-week-on-dwts-all-stars-mark-ballas-to-step-in |archive-date=2015-02-16 |url-status=live }}</ref> Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Apolo & Karina 
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Cha-cha-cha<br>& Paso doble
+| "[[Scream (Usher song)|Scream]]" — [[Usher (entertainer)|Usher]] 
+|-
+! scope="row" | Emmitt & Cheryl 
+| 8.5
+| 9.5
+| 9.5
+| 27.5
+| Rumba &<br>Samba
+| "[[Fine By Me (song)|Fine By Me]]" — [[Andy Grammer]] 
+|-
+! scope="row" | Kirstie & Maks
+| 8.0
+| 8.0
+| 8.0
+| 24.0
+| Quickstep<br>& Samba
+| "[[Sir Duke]]" — [[Stevie Wonder]]
+|-
+! scope="row" | Kelly & Val
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Cha-cha-cha<br>& Foxtrot
+| "[[Holy Smoke (Gin Wigmore album)|Don't Stop]]" — [[Gin Wigmore]] 
+|-
+! scope="row" | Melissa & Tony
+| 10.0
+| 9.5
+| 9.5
+| 29.0
+| Cha-cha-cha<br>& Tango
+| "[[Die Young (Kesha song)|Die Young]]" — [[Ke$ha]]
+|-
+! scope="row" | Shawn & Mark
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Paso doble<br>& Tango
+| "[[Livin' On A Prayer]]" — [[Bon Jovi]]
+|-
+! scope="row" | Gilles & Peta
+| 9.5
+| 9.5
+| 9.5
+| 28.5
+| Argentine tango<br>& Samba
+| "[[When I Get You Alone]]" — [[Robin Thicke]]
+|-
+! scope="row" | Kirstie & Maks
+| colspan="4" rowspan=1 | 4
+| rowspan="7" | Swing<br>Marathon
+| rowspan="7" |"[[Do Your Thing (Basement Jaxx song)|Do Your Thing]]" — [[Basement Jaxx]]
+|-
+! scope="row" | Gilles & Peta
+| colspan="4" rowspan=1 | 5
+|-
+! scope="row" | Apolo & Karina
+| colspan="4" rowspan=1 | 6
+|-
+! scope="row" | Emmitt & Cheryl
+| colspan="4" rowspan=1 | 7
+|-
+! scope="row" | Shawn & Mark
+| colspan="4" rowspan=1 | 8
+|-
+! scope="row" | Kelly & Val
+| colspan="4" rowspan=1 | 9
+|-
+! scope="row" | Melissa & Tony
+| colspan="4" rowspan=1 | 10
+|}
+
+===Week 8: Veterans Day/Trio Week===
+In honor of [[Veterans Day]], the first round featured performances to songs that pay homage to servicemen and women.<ref>{{cite web |url=http://www.abcmedianet.com/Web/dnr/dispDNR.aspx?id=110912_11 |title=ABC Medianet |publisher=ABC Medianet |date=2012-11-09 |access-date=2015-02-16 |archive-url=https://web.archive.org/web/20150216132424/http://www.abcmedianet.com/Web/dnr/dispDNR.aspx?id=110912_11 |archive-date=2015-02-16 |url-status=dead }}</ref> Each couple also selected one professional who had either been previously eliminated or had participated in the dance troupe to perform with them in their Latin routine. There was a double elimination. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" rowspan=2 |Trio partner
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+! scope="col" rowspan=2 class="unsortable"|Result
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" rowspan=2|Shawn & Derek
+| rowspan="2" | Mark Ballas
+| 10.0
+| 9.5
+| 10.0
+| 29.5
+| Viennese waltz
+| "[[Angel (Sarah McLachlan song)|Angel]]" — [[Sarah McLachlan]]
+| rowspan=2|Safe
+|-
+| 10.0
+| 7.0
+| 9.0
+| 26.0
+| Samba
+| "Jungle Jazz" — [[Les Tambours du Bronx]]
+|-
+! scope="row" rowspan=2|Apolo & Karina
+| rowspan="2" | Sasha Farber
+| 10.0
+| 9.5
+| 10.0
+| 29.5
+| Tango
+| "[[Holding Out for a Hero]]" — [[Bonnie Tyler]]
+| rowspan=2|Safe
+|-
+| 9.5
+| 9.5
+| 10.0
+| 29.0
+| Jive
+| "[[Greased Lightnin' (song)|Greased Lightnin']]" — [[John Travolta]]
+|-
+! scope="row" rowspan=2|Kirstie & Maks
+| rowspan="2" | Tristan MacManus
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Viennese waltz
+| "[[Hallelujah (Leonard Cohen song)|Hallelujah]]" — [[Leonard Cohen]]
+| rowspan=2 bgcolor=f4c7b8 |Eliminated
+|-
+| 8.0
+| 8.0
+| 8.0
+| 24.0
+| Paso doble
+| "[[Bring Me to Life]]" — [[Evanescence]]
+|-
+! scope="row" rowspan=2|Kelly & Val
+| rowspan="2" | Louis van Amstel
+| 9.5
+| 9.0
+| 9.5
+| 28.0
+| Viennese waltz
+| "[[I'll Be (Edwin McCain song)|I'll Be]]" — [[Edwin McCain]]
+| rowspan=2|Safe
+|-
+| 9.5
+| 9.5
+| 9.5
+| 28.5
+| Jive
+| "[[Animal (Neon Trees song)|Animal]]" — [[Neon Trees]]
+|-
+! scope="row" rowspan=2|Gilles & Peta
+| rowspan="2" | Chelsie Hightower
+| 9.5
+| 10.0
+| 10.0
+| 29.5
+| Quickstep
+| "[[Danger Zone (song)|Danger Zone]]" — [[Kenny Loggins]]
+| rowspan=2 bgcolor=f4c7b8 |Eliminated
+|-
+| 9.5
+| 10.0
+| 9.5
+| 29.0
+| Salsa
+| "[[La Rebelión]]" — [[Joe Arroyo]]
+|-
+! scope="row" rowspan=2|Emmitt & Cheryl
+| rowspan="2" | Kym Johnson
+| 9.0
+| 9.5
+| 9.5
+| 28.0
+| Viennese waltz
+| "[[Love Letters (song)|Love Letters]]" — [[Ketty Lester]]
+| rowspan=2|Safe
+|-
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Salsa
+| "[[Mr. Saxobeat]]" — [[Alexandra Stan]]
+|-
+! scope="row" rowspan=2|Melissa & Tony
+| rowspan="2" | Henry Byalikov
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Quickstep
+| "[[Boogie Woogie Bugle Boy]]" — [[The Andrews Sisters]]
+| rowspan=2|Safe
+|-
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Paso doble
+| "[[Rumour Has It (Adele song)|Rumour Has It]]" — [[Adele]]
+|}
+
+===Week 9: Semifinals===
+The couples performed one unlearned dance to a song from [[Michael Jackson]]'s album ''[[Bad (album)|Bad]]'' and one dance chosen by the other couples. This was another double elimination this week. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance & Theme
+! scope="col" rowspan=2 class="unsortable"|Music
+! scope="col" rowspan=2 class="unsortable"|Result
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" rowspan=2|Melissa & Tony
+| 9.0
+| 9.5
+| 9.0
+| 27.5
+| "Caveman" Hustle
+| "[[Walk the Dinosaur]]" — [[Was (Not Was)]]
+| rowspan=2|Safe
+|-
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Argentine tango
+| "[[Dirty Diana]]" — [[Michael Jackson]]
+|-
+! scope="row" rowspan=2|Shawn & Derek
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| ''"[[Knight Rider]]"'' Bhangra
+| "[[Mundian to Bach Ke]]" — [[Panjabi MC]]
+| rowspan=2|Safe
+|-
+| 9.0
+| 10.0
+| 10.0
+| 29.0
+| Argentine tango
+| "[[Bad (Michael Jackson song)|Bad]]" — [[Michael Jackson]]
+|-
+! scope="row" rowspan=2|Apolo & Karina
+| 8.5
+| 9.0
+| 9.5
+| 27.0
+| "Big Top" Jazz
+| "[[What You Waiting For?]]" — [[Gwen Stefani]]
+| rowspan=2 bgcolor=f4c7b8 |Eliminated
+|-
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Rumba
+| "[[Man in the Mirror]]" — [[Michael Jackson]]
+|-
+! scope="row" rowspan=2| {{nowrap|Emmitt & Cheryl}}
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| "Espionage" Lindy Hop
+| "[[Secret Agent Man (Johnny Rivers song)|Secret Agent Man]]" — [[Johnny Rivers]]
+| rowspan=2 bgcolor=f4c7b8 |Eliminated
+|-
+| 9.0
+| 9.0
+| 9.0
+| 27.0
+| Tango
+| "[[Leave Me Alone (Michael Jackson song)|Leave Me Alone]]" — [[Michael Jackson]]
+|-
+! scope="row" rowspan=2|Kelly & Val
+| 8.0
+| 9.0
+| 8.5
+| 25.5
+| "Surfer" Flamenco
+| "[[Malagueña (song)|Malagueña]]" — [[Brian Setzer]]
+| rowspan=2|Safe
+|-
+| 9.5
+| 9.5
+| 9.5
+| 28.5
+| Rumba
+| "[[I Just Can't Stop Loving You]]" — [[Michael Jackson]]
+|}
+
+===Week 10: Finals===
+On the first night, each couple performed their favorite dance of the season and a super-sized [[Street dance|freestyle]] routine. On the second night, they performed an instant dance in which they had to choose their dance style and music that night. Couples are listed in the order they performed.
+
+;Night 1
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" rowspan=2|Kelly & Val
+| 9.5
+| 10.0
+| 10.0
+| 29.5
+| Paso doble
+| "[[España cañí]]" — [[Erich Kunzel]] 
+|-
+| 10.0
+| 9.5
+| 10.0
+| 29.5
+| Freestyle
+| "[[(I've Had) The Time of My Life]]" — [[Bill Medley]] & [[Jennifer Warnes]]
+|-
+! scope="row" rowspan=2|Melissa & Tony
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Samba
+| "[[Conga (song)|Conga]]" — [[Gloria Estefan]]
+|-
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Freestyle
+| "[[I Was Here (song)|I Was Here]]" — [[Beyoncé]]
+|-
+! scope="row" rowspan=2|Shawn & Derek
+| 9.0
+| 8.5
+| 9.5
+| 27.0
+| Quickstep
+| "[[The Mask (1994 film)#Music|Hey! Pachuco!]]" — [[Royal Crown Revue]]
+|-
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Freestyle
+| "[[Carnaval de Paris]]" — [[Dario G]]
+|}
+
+;Night 2
+{| class="wikitable sortable" style="text-align:center; font-size:90%; width:90%"
+|-
+! scope="col" rowspan=2 |Couple
+! scope="col" colspan=3 class="unsortable"|Scores
+! scope="col" rowspan=2 |Total<br>score
+! scope="col" rowspan=2 |Dance
+! scope="col" rowspan=2 class="unsortable"|Music
+! scope="col" rowspan=2 class="unsortable"|Result
+|-
+! class="unsortable" | Inaba
+! class="unsortable" | Goodman
+! class="unsortable" | Tonioli
+|-
+! scope="row" | Kelly & Val
+| 9.5
+| 9.5
+| 9.5
+| 28.5
+| Jive
+| "Cat and Mouse" — [[Nikki & Rich]]
+| bgcolor=tan | Third place
+|-
+! scope="row" | Melissa & Tony
+| 9.5
+| 9.5
+| 9.5
+| 28.5
+| Samba 
+| "[[Life Is a Highway]]" — [[Rascal Flatts]]
+| bgcolor=gold | '''Winners'''
+|-
+! scope="row" | Shawn & Derek 
+| 10.0
+| 10.0
+| 10.0
+| 30.0
+| Cha-cha-cha
+| "[[Respect (song)|Respect]]" — [[Aretha Franklin]]
+| bgcolor=silver | Runners-up
+|}
+
+==Dance chart==
+The couples performed the following each week:
+*Week 1: One unlearned dance (cha-cha-cha or foxtrot)
+*Week 2: One unlearned dance (jive or quickstep)
+*Week 3: One unlearned dance
+*Week 4: One new dance style
+*Week 5: One unlearned dance & team freestyle dance
+*Week 6: One unlearned dance & group freestyle dance
+*Week 7: Fusion dance & swing marathon
+*Week 8: One unlearned dance & trio dance
+*Week 9 (Semifinals): One unlearned dance & one new dance style
+*Week 10 (Finals, Night 1): Favorite dance & freestyle
+*Week 10 (Finals, Night 2): Instant dance
+
+{| class="wikitable unsortable" style="text-align:center; font-size:85%; line-height:20px"
+|+''Dancing with the Stars'' (season 15) - Dance chart
+! scope="col" rowspan="3" | Couple
+! colspan="17" | Week
+|-
+! rowspan="2" scope="col" | 1 
+! rowspan="2" scope="col" | 2 
+! rowspan="2" scope="col" | 3 
+! rowspan="2" scope="col" | 4 
+! colspan="2" rowspan="2" scope="col" |5
+! colspan="2" rowspan="2" scope="col" |6 
+! colspan="2" rowspan="2" scope="col" |7 
+! colspan="2" rowspan="2" scope="col" |8 
+! colspan="2" rowspan="2" scope="col" |9 
+! colspan="3" scope="col" |10
+|-
+! colspan="2" | {{nowrap|Night 1}}
+! {{nowrap|Night 2}}
+|-
+! scope="row" | Melissa & Tony
+| Foxtrot
+| Jive
+| Samba
+| Jitterbug
+| Tango
+| Team Freestyle
+| Viennese waltz
+| rowspan="8" |Group<br>Freestyle
+| Cha-cha-cha<br>& Tango
+| rowspan="7" |Swing<br>Marathon
+| Quickstep
+| Paso doble
+| Hustle
+| Argentine tango
+| Samba
+| Freestyle
+| Samba
+|-
+! scope="row" | Shawn {{nowrap|& Derek}}
+| Foxtrot
+| Jive
+| Quickstep
+| Mambo
+| Rumba
+| Team Freestyle
+| Cha-cha-cha
+| Paso doble<br>& Tango
+| Viennese waltz
+| Samba
+| Bhangra
+| Argentine tango
+| Quickstep
+| Freestyle
+| {{nowrap|Cha-cha}}-cha
+|-
+! scope="row" | Kelly & Val
+| Cha-cha-cha
+| Quickstep
+| Paso doble
+| {{Abbr|Contemp.|Contemporary}}
+| Samba
+| Team Freestyle
+| Tango
+| Cha-cha-cha<br>& Foxtrot
+| Viennese waltz
+| Jive
+| Flamenco
+| Rumba
+| Paso doble
+| Freestyle
+| Jive
+|-
+! scope="row" | Emmitt {{nowrap|& Cheryl}}
+| Cha-cha-cha
+| Quickstep
+| Paso doble
+| Bolero
+| Samba
+| Team Freestyle
+| Foxtrot
+| Rumba &<br>Samba
+| Viennese waltz
+| Salsa
+| Lindy Hop
+| Tango
+| colspan="3" rowspan="10" style="background:darkgrey" |
+|-
+! scope="row" | {{nowrap|Apolo &}} Karina
+| Cha-cha-cha
+| Quickstep
+| Foxtrot
+| Hip-hop
+| Samba
+| Team Freestyle
+| Viennese waltz
+| Cha-cha-cha<br>{{nowrap|& Paso doble}}
+| Tango
+| Jive
+| Jazz
+| Rumba
+|-
+! scope="row" | Gilles & Peta
+| Foxtrot
+| Jive
+| Tango
+| Bollywood
+| Rumba
+| Team Freestyle
+| Cha-cha-cha
+| Argentine tango<br>& Samba
+| Quickstep
+| Salsa
+| colspan="2" rowspan="8" style="background:darkgrey" |
+|-
+! scope="row" | Kirstie & Maks
+| Foxtrot
+| Jive
+| Cha-cha-cha
+| Charleston
+| Quickstep
+| Team Freestyle
+| Rumba
+| Quickstep<br>& Samba
+| Viennese waltz
+| Paso doble
+|-
+! scope="row" | Sabrina & Louis
+| Cha-cha-cha
+| Quickstep
+| Paso doble
+| Disco
+| Waltz
+| Team Freestyle
+| Rumba
+| colspan="4" rowspan="6" style="background:darkgrey" |
+|-
+! scope="row" | Bristol & Mark
+| Cha-cha-cha
+| Quickstep
+| Paso doble
+| Rock and Roll
+| colspan="4" rowspan="5" style="background:darkgrey" |
+|-
+! scope="row" | Hélio & Chelsie
+| Foxtrot
+| Jive
+| Quickstep
+| rowspan="4" style="background:darkgrey" |
+|-
+! scope="row" | Drew & Anna
+| Foxtrot
+| Jive
+| Cha-cha-cha
+|-
+! scope="row" | Joey & Kym
+| Cha-cha-cha
+| Quickstep
+| rowspan="2" style="background:darkgrey" |
+|-
+! scope="row" | {{nowrap|Pamela &}} Tristan
+| {{nowrap|Cha-cha}}-cha
+| style="background:darkgrey" |
+|}
+;
+
+==Ratings==
+{|class="wikitable" style="margin:0; width:100%;"
+|-
+! Show
+! Episode
+! Air date
+! Viewers<br />(millions)
+! Rating/share<br />(adults 18–49)
+! Rating/share<br />(household)
+! Note
+|-
+| style="text-align:center;"| 1
+| "Performance Show: Week 1"
+| style="text-align:center;"| September 24, 2012
+| style="text-align:center;"| 14.11
+| style="text-align:center;"| 2.5/7
+| style="text-align:center;"| 9.3/14
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/09/25/monday-final-ratings-tt/150036/|title=Monday Final Ratings: 'How I Met Your Mother', 'Mike and Molly', 'Voice', 'Bones' Adjusted Up; 'DWTS', 'Revolution', 'Castle' 'Hawaii Five-0' & 'LA Complex' Adjusted Down|last=Kondolojy|first=Amanda|date=September 25, 2012|work=TV by the Numbers|access-date=September 25, 2012|archive-url=https://web.archive.org/web/20121028173548/http://tvbythenumbers.zap2it.com/2012/09/25/monday-final-ratings-tt/150036/|archive-date=October 28, 2012|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/09/tv-ratings-dancing-with-the-stars-premiere-down-monday-revolution-stays-strong-and-nbc-wins-18-49.html|title=TV ratings: 'Dancing With the Stars' premiere down Monday; 'Revolution' stays strong and NBC wins 18-49|last=Porter|first=Rick|date=September 25, 2012|work=[[Zap2it]]|access-date=September 25, 2012|archive-url=https://web.archive.org/web/20130307232714/http://blog.zap2it.com/frominsidethebox/2012/09/tv-ratings-dancing-with-the-stars-premiere-down-monday-revolution-stays-strong-and-nbc-wins-18-49.html|archive-date=March 7, 2013|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 2
+| "Results Show: Week 1"
+| style="text-align:center;"| September 25, 2012
+| style="text-align:center;"| 11.79
+| style="text-align:center;"| 2.1/6
+| style="text-align:center;"| 7.7/12
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/09/26/tuesday-final-ratings-the-voice-new-girl-dancing-with-the-stars-ben-kate-adjusted-up/150234/|title=Tuesday Final Ratings: 'The Voice', 'New Girl', 'Dancing With the Stars', & 'Ben & Kate' Adjusted Up|publisher=TV by the Numbers|last=Kondolojy|first=Amanda|date=September 26, 2012|access-date=September 26, 2012|archive-url=https://web.archive.org/web/20121029202845/http://tvbythenumbers.zap2it.com/2012/09/26/tuesday-final-ratings-the-voice-new-girl-dancing-with-the-stars-ben-kate-adjusted-up/150234/|archive-date=October 29, 2012|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/09/tv-ratings-ncis-and-vegas-open-big-tuesday-while-the-mindy-project-starts-slowly.html?obref=obinsite|archive-url=https://archive.today/20121210211647/http://blog.zap2it.com/frominsidethebox/2012/09/tv-ratings-ncis-and-vegas-open-big-tuesday-while-the-mindy-project-starts-slowly.html?obref=obinsite|url-status=dead|archive-date=December 10, 2012|title=TV ratings: 'NCIS' and 'Vegas' open big Tuesday while 'The Mindy Project' starts slowly|last=Porter|first=Rick|date=September 26, 2012|work=Zap2it|access-date=September 26, 2012}}</ref>
+|-
+| style="text-align:center;"| 3
+| "Performance Show: Week 2"
+| style="text-align:center;"| October 1, 2012
+| style="text-align:center;"| 12.38
+| style="text-align:center;"| 2.1/5
+| style="text-align:center;"| 9.3/12
+| style="text-align:center;"| <ref>{{cite web |url=http://tvbythenumbers.zap2it.com/2012/10/02/monday-final-ratings-the-voice-how-i-met-your-mother-dancing-with-the-stars-2-broke-girls-iheartradio-music-festival-adjusted-down/150993/ |title=Monday Final Ratings: 'The Voice', 'How I Met Your Mother', 'Dancing With the Stars', '2 Broke Girls' & 'Hawaii Five-0' Adjusted Up; 'iHeartRadio Music Festival' Adjusted Down |last=Bibel |first=Sara |date=October 2, 2012 |work=TV by the Numbers |access-date=October 5, 2012 |url-status=dead |archive-url=https://web.archive.org/web/20121004225402/http://tvbythenumbers.zap2it.com/2012/10/02/monday-final-ratings-the-voice-how-i-met-your-mother-dancing-with-the-stars-2-broke-girls-iheartradio-music-festival-adjusted-down/150993/ |archive-date=October 4, 2012 }}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-the-voice-and-revolution-lead-monday-for-nbc-while-dancing-with-the-stars-struggles.html|title=TV ratings: 'The Voice' and 'Revolution' lead Monday for NBC while 'Dancing With the Stars' struggles|last=Porter|first=Rick|date=October 2, 2012|work=[[Zap2it]]|access-date=October 5, 2012|archive-url=https://web.archive.org/web/20130325040022/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-the-voice-and-revolution-lead-monday-for-nbc-while-dancing-with-the-stars-struggles.html|archive-date=March 25, 2013|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 4
+| "Results Show: Week 2"
+| style="text-align:center;"| October 2, 2012
+| style="text-align:center;"| 12.03
+| style="text-align:center;"| 2.1/5
+| style="text-align:center;"| 7.9/12
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/10/03/tuesday-final-ratings-ncis-the-voice-go-on-vegas-parenthood-adjusted-down/151335/|title=Tuesday Final Ratings: 'NCIS', 'The Voice', & 'Dancing With the Stars' Special Adjusted Up; 'Go On', 'Vegas' & 'Parenthood' Adjusted Down|publisher=TV by the Numbers|last=Bibel|first=Sara|date=October 3, 2012|work=TV by the Numbers|access-date=October 5, 2012|url-status=dead|archive-url=https://web.archive.org/web/20121005191718/http://tvbythenumbers.zap2it.com/2012/10/03/tuesday-final-ratings-ncis-the-voice-go-on-vegas-parenthood-adjusted-down/151335/|archive-date=October 5, 2012}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-ncis-stays-on-top-tuesday-as-the-mindy-project-and-new-shows-dip.html|title=TV ratings: 'NCIS' stays on top Tuesday as 'The Mindy Project' and new shows dip|last=Porter|first=Rick|date=October 3, 2012|work=TV by the Numbers|access-date=October 10, 2012|archive-url=https://web.archive.org/web/20121009104448/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-ncis-stays-on-top-tuesday-as-the-mindy-project-and-new-shows-dip.html|archive-date=October 9, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 5
+| "Performance Show: Week 3"
+| style="text-align:center;"| October 8, 2012
+| style="text-align:center;"| 13.55
+| style="text-align:center;"| 2.2/6
+| style="text-align:center;"| 8.9/13
+| style="text-align:center;"| <ref>{{cite web |url=http://tvbythenumbers.zap2it.com/2012/10/09/monday-final-ratings-the-voice-dwts-adjusted-up-90210-revolution-partners-2-broke-girls-mike-molly-hawaii-five-0-and-how-i-met-your-mother-adjusted-down/152108/ |title=Monday Final Ratings: 'The Voice', 'DWTS' Adjusted Up; '90210', 'Revolution', 'Partners', '2 Broke Girls', 'Mike & Molly', 'Hawaii Five-0', and 'How I Met Your Mother' Adjusted Down |last=Kondolojy |first=Amanda |date=October 9, 2012 |work=TV by the Numbers |access-date=October 9, 2012 |url-status=dead |archive-url=https://web.archive.org/web/20121011054224/http://tvbythenumbers.zap2it.com/2012/10/09/monday-final-ratings-the-voice-dwts-adjusted-up-90210-revolution-partners-2-broke-girls-mike-molly-hawaii-five-0-and-how-i-met-your-mother-adjusted-down/152108/ |archive-date=October 11, 2012 }}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-the-voice-hits-a-high-note-monday-but-gossip-girl-tanks.html|title=TV ratings: 'The Voice' hits a high note Monday but 'Gossip Girl' tanks|last=Porter|first=Rick|date=October 9, 2012|work=TV by the Numbers|access-date=October 9, 2012|archive-url=https://web.archive.org/web/20130330042651/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-the-voice-hits-a-high-note-monday-but-gossip-girl-tanks.html|archive-date=March 30, 2013|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 6
+| "Results Show: Week 3"
+| style="text-align:center;"| October 9, 2012
+| style="text-align:center;"| 13.33
+| style="text-align:center;"| 2.2/6
+| style="text-align:center;"| 9.0/13
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/10/10/tuesday-final-ratings-ncis-the-voice-hart-of-dixie-ncisla-go-on-adjusted-down/152365/|title=Tuesday Final Ratings: 'NCIS', 'The Voice', 'Hart of Dixie', 'NCIS:LA' & 'DWTS' Adjusted Up; 'Go On' Adjusted Down|publisher=TV by the Numbers|last=Kondolojy|first=Amanda|date=October 10, 2012|work=TV by the Numbers|access-date=October 10, 2012|url-status=dead|archive-url=https://web.archive.org/web/20121012234853/http://tvbythenumbers.zap2it.com/2012/10/10/tuesday-final-ratings-ncis-the-voice-hart-of-dixie-ncisla-go-on-adjusted-down/152365/|archive-date=October 12, 2012}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-the-voice-lifts-nbc-to-18-49-win-tuesday-new-girl-and-fox-comedies-hold-steady.html|title=TV ratings: 'The Voice' lifts NBC to 18-49 win Tuesday; 'New Girl' and FOX comedies hold steady|last=Porter|first=Rick|date=October 10, 2012|work=TV by the Numbers|access-date=October 10, 2012|archive-url=https://web.archive.org/web/20121012232533/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-the-voice-lifts-nbc-to-18-49-win-tuesday-new-girl-and-fox-comedies-hold-steady.html|archive-date=October 12, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 7
+| "Performance Show: Week 4"
+| style="text-align:center;"| October 15, 2012
+| style="text-align:center;"| 13.64
+| style="text-align:center;"| 2.1/5
+| style="text-align:center;"| 9.1/13
+| style="text-align:center;"| <ref>{{cite web |url=http://tvbythenumbers.zap2it.com/2012/10/16/monday-final-ratings-2-broke-girls-hawaii-five-0-adjusted-up-revolution-adjusted-down-plus-final-baseball-numbers/153156/ |title=Monday Final Ratings: '2 Broke Girls', 'Hawaii Five-0' Adjusted Up; 'Revolution' Adjusted Down Plus Final Baseball Numbers |publisher=TV by the Numbers |last=Bibel |first=Sara |date=October 16, 2012 |work=TV by the Numbers |access-date=October 16, 2012 |url-status=dead |archive-url=https://web.archive.org/web/20121018190139/http://tvbythenumbers.zap2it.com/2012/10/16/monday-final-ratings-2-broke-girls-hawaii-five-0-adjusted-up-revolution-adjusted-down-plus-final-baseball-numbers/153156/ |archive-date=October 18, 2012 }}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-revolution-and-the-voice-rise-monday-while-castle-hits-a-high-in-viewers.html|title=TV ratings: 'Revolution' and 'The Voice' rise Monday while 'Castle' hits a high in viewers|last=Porter|first=Rick|date=October 16, 2012|work=TV by the Numbers|access-date=October 16, 2012|archive-url=https://web.archive.org/web/20130308054613/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-revolution-and-the-voice-rise-monday-while-castle-hits-a-high-in-viewers.html|archive-date=March 8, 2013|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 8
+| "Results Show: Week 4"
+| style="text-align:center;"| October 16, 2012
+| style="text-align:center;"| 12.92
+| style="text-align:center;"| 2.0/6
+| style="text-align:center;"| 8.6/13
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/10/17/tuesday-final-ratings-dancing-with-the-stars-adjusted-down-plus-final-debate-numbers/153439/|title=Tuesday Final Ratings: 'Dancing With the Stars' Adjusted Down Plus Final Debate Numbers|publisher=TV by the Numbers|last=Bibel|first=Sara|date=October 17, 2012|work=TV by the Numbers|access-date=October 17, 2012|url-status=dead|archive-url=https://web.archive.org/web/20121018005558/http://tvbythenumbers.zap2it.com/2012/10/17/tuesday-final-ratings-dancing-with-the-stars-adjusted-down-plus-final-debate-numbers/153439/|archive-date=October 18, 2012}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-presidential-debate-draws-big-again-and-emily-owens-has-a-decent-start-tuesday.html|title=TV ratings: Presidential debate draws big again and 'Emily Owens' has a decent start Tuesday|last=Porter|first=Rick|date=October 17, 2012|work=TV by the Numbers|access-date=October 17, 2012|archive-url=https://web.archive.org/web/20121018132033/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-presidential-debate-draws-big-again-and-emily-owens-has-a-decent-start-tuesday.html|archive-date=October 18, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 9
+| "Performance Show 1: Week 5"
+| style="text-align:center;"| October 22, 2012
+| style="text-align:center;"| 13.27
+| style="text-align:center;"| 2.4/6
+| style="text-align:center;"| 8.7/13
+| style="text-align:center;"| <ref>{{cite web |url=http://tvbythenumbers.zap2it.com/2012/10/23/monday-final-ratings-the-voice-no-adjustment-for-90210-or-dancing-with-the-stars-final-debate-analysis-numbers/154282/ |title=Monday Final Ratings: 'The Voice' & MLB Baseball Adjusted up; No Adjustment for '90210' or 'Dancing With the Stars' + Final Debate Analysis Numbers |publisher=TV by the Numbers |last=Kondolojy |first=Amanda |date=October 23, 2012 |work=TV by the Numbers |access-date=October 23, 2012 |url-status=dead |archive-url=https://web.archive.org/web/20121026115002/http://tvbythenumbers.zap2it.com/2012/10/23/monday-final-ratings-the-voice-no-adjustment-for-90210-or-dancing-with-the-stars-final-debate-analysis-numbers/154282/ |archive-date=October 26, 2012 }}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-obama-and-romney-beat-baseball-monday-and-gossip-girl-up-a-little.html|title=TV ratings: Obama and Romney beat baseball Monday and 'Gossip Girl' up a little|last=Porter|first=Rick|date=October 23, 2012|work=TV by the Numbers|access-date=October 23, 2012|archive-url=https://web.archive.org/web/20121026023742/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-obama-and-romney-beat-baseball-monday-and-gossip-girl-up-a-little.html|archive-date=October 26, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 10
+| "Performance Show 2: Week 5"
+| style="text-align:center;"| October 23, 2012
+| style="text-align:center;"| 12.90
+| style="text-align:center;"| 2.3/7
+| style="text-align:center;"| 8.3/13
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/10/24/tuesday-final-ratings-the-voice-ncisla-dwts-vegas-adjusted-up-go-on-happy-endings-x-factor-the-new-normal-adjusted-down/154523/|title=Tuesday Final Ratings: 'The Voice', 'NCIS:LA', 'DWTS' & 'Vegas' Adjusted Up, 'Go On' 'Happy Endings', 'X Factor' & 'The New Normal' Adjusted Down|publisher=TV by the Numbers|last=Kondolojy|first=Amanda|date=October 24, 2012|work=TV by the Numbers|access-date=October 24, 2012|url-status=dead|archive-url=https://web.archive.org/web/20121027015840/http://tvbythenumbers.zap2it.com/2012/10/24/tuesday-final-ratings-the-voice-ncisla-dwts-vegas-adjusted-up-go-on-happy-endings-x-factor-the-new-normal-adjusted-down/154523/|archive-date=October 27, 2012}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-happy-endings-has-modest-premiere-tuesday-and-parenthood-beats-vegas-in-18-49.html|title=TV ratings: 'Happy Endings' has modest premiere Tuesday and 'Parenthood' beats 'Vegas' in 18-49|last=Porter|first=Rick|date=October 24, 2012|work=TV by the Numbers|access-date=October 24, 2012|archive-url=https://web.archive.org/web/20121027020521/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-happy-endings-has-modest-premiere-tuesday-and-parenthood-beats-vegas-in-18-49.html|archive-date=October 27, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 11
+| "Performance Show: Week 6"
+| style="text-align:center;"| October 29, 2012
+| style="text-align:center;"| 13.90
+| style="text-align:center;"| 2.3/5
+| style="text-align:center;"| 9.5/14
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/10/30/monday-final-ratings-revolution-castle-the-voice-dancing-with-the-stars-adjusted-down/155434/|title=Monday Final Ratings: 'Revolution', 'Castle', 'The Voice' & 'Dancing with the Stars' Adjusted Down|publisher=TV by the Numbers|last=Bibel|first=Sara|date=October 30, 2012|work=TV by the Numbers|access-date=October 31, 2012|url-status=dead|archive-url=https://web.archive.org/web/20121101221818/http://tvbythenumbers.zap2it.com/2012/10/30/monday-final-ratings-revolution-castle-the-voice-dancing-with-the-stars-adjusted-down/155434/|archive-date=November 1, 2012}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-the-voice-and-dancing-with-the-stars-lead-a-sandy-impacted-monday.html|title=TV ratings: 'The Voice' and 'Dancing With the Stars' lead a Sandy-impacted Monday|last=Porter|first=Rick|date=October 30, 2012|work=TV by the Numbers|access-date=October 31, 2012|archive-url=https://web.archive.org/web/20121101005755/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-the-voice-and-dancing-with-the-stars-lead-a-sandy-impacted-monday.html|archive-date=November 1, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 12
+| "Results Show: Week 6"
+| style="text-align:center;"| October 30, 2012
+| style="text-align:center;"| 11.49
+| style="text-align:center;"| 1.8/5
+| style="text-align:center;"| 7.9/12
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/10/31/tuesday-final-ratings-dancing-with-the-stars-adjusted-down/155498/|title=Tuesday Final Ratings: 'Dancing With the Stars' Adjusted Down|publisher=TV by the Numbers|last=Bibel|first=Sara|date=October 31, 2012|work=TV by the Numbers|access-date=October 31, 2012|url-status=dead|archive-url=https://web.archive.org/web/20130102140358/http://tvbythenumbers.zap2it.com/2012/10/31/tuesday-final-ratings-dancing-with-the-stars-adjusted-down/155498/|archive-date=January 2, 2013}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-ncis-and-the-voice-up-tuesday-but-new-girl-and-emily-owens-drop.html|title=TV ratings: 'NCIS' and 'The Voice' up Tuesday but 'New Girl' and 'Emily Owens' drop|last=Porter|first=Rick|date=October 31, 2012|work=TV by the Numbers|access-date=October 31, 2012|archive-url=https://web.archive.org/web/20121103021148/http://blog.zap2it.com/frominsidethebox/2012/10/tv-ratings-ncis-and-the-voice-up-tuesday-but-new-girl-and-emily-owens-drop.html|archive-date=November 3, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 13
+| "Performance Show: Week 7"
+| style="text-align:center;"| November 5, 2012
+| style="text-align:center;"| 13.48
+| style="text-align:center;"| 2.1/5
+| style="text-align:center;"| 9.0/13
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/11/06/monday-final-ratings-2-broke-girls-no-adjustment-for-the-mob-doctor-90210-or-the-voice/156346/|title=Monday Final Ratings: '2 Broke Girls', & 'Revolution' Adjusted Down; No Adjustment for 'The Mob Doctor', '90210' or 'The Voice'|last=Kondolojy|first=Amanda|date=November 6, 2012|work=TV by the Numbers|access-date=November 6, 2012|archive-url=https://web.archive.org/web/20121222005504/http://tvbythenumbers.zap2it.com/2012/11/06/monday-final-ratings-2-broke-girls-no-adjustment-for-the-mob-doctor-90210-or-the-voice/156346/|archive-date=December 22, 2012|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-dancing-with-the-stars-and-the-voice-lead-a-quiet-monday-cbs-comedies-low.html|title=TV ratings: 'Dancing With the Stars' and 'The Voice' lead a quiet Monday, CBS comedies low|last=Porter|first=Rick|date=November 5, 2012|work=TV by the Numbers|access-date=November 5, 2012|archive-url=https://web.archive.org/web/20130327120832/http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-dancing-with-the-stars-and-the-voice-lead-a-quiet-monday-cbs-comedies-low.html|archive-date=March 27, 2013|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 14
+| "Performance Show: Week 8"
+| style="text-align:center;"| November 12, 2012
+| style="text-align:center;"| 13.79
+| style="text-align:center;"| 2.1/5
+| style="text-align:center;"| 9.2/14
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/11/13/monday-final-ratings-the-voice-castle-dancing-with-the-stars-the-mob-doctor-adjusted-down/157268/|title=Monday Final Ratings: 'The Voice' & 'Hawaii Five-0' Adjusted Up; 'Castle', 'Dancing With the Stars' & 'The Mob Doctor' Adjusted Down|last=Bibel|first=Sara|date=November 13, 2012|work=TV by the Numbers|access-date=November 13, 2012|archive-url=https://web.archive.org/web/20121228151154/http://tvbythenumbers.zap2it.com/2012/11/13/monday-final-ratings-the-voice-castle-dancing-with-the-stars-the-mob-doctor-adjusted-down/157268/|archive-date=December 28, 2012|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-the-voice-drops-but-still-leads-monday-in-18-49-how-i-met-your-mother-up.html|title=TV ratings: 'The Voice' drops but still leads Monday in 18-49, 'How I Met Your Mother' up|last=Porter|first=Rick|date=November 13, 2012|work=TV by the Numbers|access-date=November 13, 2012|archive-url=https://web.archive.org/web/20130308132831/http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-the-voice-drops-but-still-leads-monday-in-18-49-how-i-met-your-mother-up.html|archive-date=March 8, 2013|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 15
+| "Results Show: Week 8"
+| style="text-align:center;"| November 13, 2012
+| style="text-align:center;"| 12.11
+| style="text-align:center;"| 1.9/5
+| style="text-align:center;"| 7.9/12
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/11/14/tuesday-final-ratings-the-voice-parenthood-go-on-hart-of-dixie-happy-endings-the-mindy-project-adjusted-down/157590/|title=Tuesday Final Ratings: 'The Voice', 'Parenthood' & 'NCIS' Adjusted Up; 'Go On', 'Hart of Dixie', 'Happy Endings' & 'The Mindy Project' Adjusted Down|last=Bibel|first=Sara|date=November 14, 2012|work=TV by the Numbers|access-date=November 14, 2012|archive-url=https://web.archive.org/web/20121201211142/http://tvbythenumbers.zap2it.com/2012/11/14/tuesday-final-ratings-the-voice-parenthood-go-on-hart-of-dixie-happy-endings-the-mindy-project-adjusted-down/157590/|archive-date=December 1, 2012|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-new-girl-and-ncis-fall-tuesday-but-hart-of-dixie-and-emily-owens-rise.html|title=TV ratings: 'New Girl' and 'NCIS' fall Tuesday but 'Hart of Dixie' and 'Emily Owens' rise|last=Porter|first=Rick|date=November 14, 2012|work=TV by the Numbers|access-date=November 14, 2012|archive-url=https://web.archive.org/web/20121117022325/http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-new-girl-and-ncis-fall-tuesday-but-hart-of-dixie-and-emily-owens-rise.html|archive-date=November 17, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 16
+| "Performance Show: Week 9"
+| style="text-align:center;"| November 19, 2012
+| style="text-align:center;"| 14.28
+| style="text-align:center;"| 2.4/6
+| style="text-align:center;"| 9.2/14
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/11/20/monday-final-ratings-dancing-with-the-stars-how-i-met-your-mother-adjusted-down/158386/|title=Monday Final Ratings: 'Dancing With the Stars' & 'Gossip Girl' Adjusted Up; 'How I Met Your Mother' Adjusted Down|last=Kondolojy|first=Amanda|date=November 20, 2012|work=TV by the Numbers|access-date=November 20, 2012|archive-url=https://web.archive.org/web/20121226190700/http://tvbythenumbers.zap2it.com/2012/11/20/monday-final-ratings-dancing-with-the-stars-how-i-met-your-mother-adjusted-down/158386/|archive-date=December 26, 2012|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-dancing-with-the-stars-up-in-18-49-monday-while-the-voice-drops.html|title=TV ratings: 'Dancing With the Stars' up in 18-49 Monday while 'The Voice' drops|last=Porter|first=Rick|date=November 20, 2012|work=TV by the Numbers|access-date=November 20, 2012|archive-url=https://web.archive.org/web/20130305083253/http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-dancing-with-the-stars-up-in-18-49-monday-while-the-voice-drops.html|archive-date=March 5, 2013|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 17
+| "Results Show: Week 9"
+| style="text-align:center;"| November 20, 2012
+| style="text-align:center;"| 13.01
+| style="text-align:center;"| 2.0/6
+| style="text-align:center;"| 8.5/13
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/11/21/tuesday-final-ratings-the-voice-dancing-with-the-stars-private-practice-go-on-happy-endings-the-new-normal-adjusted-down/158620/|title=Tuesday Final Ratings: 'The Voice', 'Dancing With the Stars', 'Private Practice' & 'Parenthood' Adjusted Up; 'Go On' 'Happy Endings' & 'The New Normal' Adjusted Down|last=Kondolojy|first=Amanda|date=November 21, 2012|work=TV by the Numbers|access-date=November 21, 2012|archive-url=https://web.archive.org/web/20121219145157/http://tvbythenumbers.zap2it.com/2012/11/21/tuesday-final-ratings-the-voice-dancing-with-the-stars-private-practice-go-on-happy-endings-the-new-normal-adjusted-down/158620/|archive-date=December 19, 2012|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-ncis-and-the-voice-lead-a-quiet-tuesday-while-new-girl-hits-series-low.html|title=TV ratings: 'NCIS' and 'The Voice' lead a quiet Tuesday while 'New Girl' hits series low|last=Porter|first=Rick|date=November 21, 2012|work=TV by the Numbers|access-date=November 21, 2012|archive-url=https://web.archive.org/web/20121122210757/http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-ncis-and-the-voice-lead-a-quiet-tuesday-while-new-girl-hits-series-low.html|archive-date=November 22, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 18
+| "Performance Show: Week 10"
+| style="text-align:center;"| November 26, 2012
+| style="text-align:center;"| 16.30
+| style="text-align:center;"| 2.7/7
+| style="text-align:center;"| 10.4/15
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/11/28/monday-final-ratings-dancing-with-the-stars-bones-how-i-met-your-mother-the-mob-doctor-adjusted-down/159182/|title=Monday Final Ratings: 'Dancing With the Stars', 'Bones' & '2 Broke Girls' Adjusted Up; 'How I Met Your Mother' & 'The Mob Doctor' Adjusted Down|last=Bibel|first=Sara|date=November 28, 2012|work=TV by the Numbers|access-date=November 28, 2012|archive-url=https://web.archive.org/web/20121228031007/http://tvbythenumbers.zap2it.com/2012/11/28/monday-final-ratings-dancing-with-the-stars-bones-how-i-met-your-mother-the-mob-doctor-adjusted-down/159182/|archive-date=December 28, 2012|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-dancing-with-the-stars-finale-hits-season-high-tuesday-ncis-and-the-voice-up-too.html|title=TV ratings: '2 Broke Girls' and 'Dancing With the Stars' hit season highs Monday, 'The Voice' rises too|last=Porter|first=Rick|date=November 28, 2012|work=TV by the Numbers|access-date=November 28, 2012|archive-url=https://web.archive.org/web/20121130150803/http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-dancing-with-the-stars-finale-hits-season-high-tuesday-ncis-and-the-voice-up-too.html|archive-date=November 30, 2012|url-status=dead}}</ref>
+|-
+| style="text-align:center;"| 19
+| "Season Finale"
+| style="text-align:center;"| November 27, 2012
+| style="text-align:center;"| 16.73
+| style="text-align:center;"| 3.0/8
+| style="text-align:center;"| 10.7/12
+| style="text-align:center;"| <ref>{{cite web|url=http://tvbythenumbers.zap2it.com/2012/11/28/tuesday-final-ratings-ncis-raising-hope-adjusted-up/159274/|title=Tuesday Final Ratings: 'NCIS' & 'Raising Hope' Adjusted Up|last=Bibel|first=Sara|date=November 28, 2012|work=TV by the Numbers|access-date=November 28, 2012|archive-url=https://web.archive.org/web/20130127160028/http://tvbythenumbers.zap2it.com/2012/11/28/tuesday-final-ratings-ncis-raising-hope-adjusted-up/159274/|archive-date=January 27, 2013|url-status=dead}}</ref><ref>{{cite web|url=http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-dancing-with-the-stars-finale-hits-season-high-tuesday-ncis-and-the-voice-up-too.html|title=TV ratings: 'Dancing With the Stars' finale hits season high Tuesday, 'NCIS' and 'The Voice' up too|last=Porter|first=Rick|date=November 28, 2012|work=TV by the Numbers|access-date=November 28, 2012|archive-url=https://web.archive.org/web/20121130150803/http://blog.zap2it.com/frominsidethebox/2012/11/tv-ratings-dancing-with-the-stars-finale-hits-season-high-tuesday-ncis-and-the-voice-up-too.html|archive-date=November 30, 2012|url-status=dead}}</ref>
+|}
+
+==References==
+{{Reflist|30em}}
+
+== External links ==
+*{{Official website|http://abc.go.com/shows/dancing-with-the-stars}}
+
+{{Dancing with the Stars (United States)}}
+
+[[Category:Dancing with the Stars (American TV series)]]
+[[Category:2012 American television seasons]]

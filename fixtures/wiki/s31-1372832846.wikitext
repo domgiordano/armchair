@@ -1,0 +1,1775 @@
+{{Use American English|date=March 2026}}
+{{Use mdy dates|date=September 2023}}
+{{Infobox television season
+| bgcolor      = #800080
+| image        = DWTS US Season 31 Poster.jpg
+| caption      = Promotional poster featuring pro dancers [[Witney Carson]], [[Brandon Armstrong (dancer) | Brandon Armstrong]], [[Artem Chigvintsev]], [[Cheryl Burke]], [[Daniella Karagach]], [[Pasha Pashkov]]
+| module1      = {{Infobox reality competition season
+| host                 = {{Plainlist|
+* [[Tyra Banks]]
+* [[Alfonso Ribeiro]]
+}}
+| judges               = {{Plainlist|
+* [[Carrie Ann Inaba]]
+* [[Len Goodman]]
+* [[Bruno Tonioli]]
+* [[Derek Hough]]
+}}
+| celebrity_winner     =  [[Charli D'Amelio]]
+| professional_winner  =  [[Mark Ballas]]
+}}
+| num_episodes = 11
+| network      = [[Disney+]]
+| first_aired  = {{Start date|2022|9|19}}
+| last_aired   = {{End date|2022|11|21}}
+}}
+
+'''Season thirty-one''' of ''[[Dancing with the Stars (American TV series)|Dancing with the Stars]]'' premiered on [[Disney+]] on September 19, 2022,<ref>{{cite press release|url=http://thefutoncritic.com/video/2022/08/03/video-disneyplus-reveals-anticipated-premiere-dates-and-trailers-at-television-critics-association-summer-2022-press-tour-840514/20220803disney01/|title=Video: Disney+ Reveals Anticipated Premiere Dates and Trailers at Television Critics Association Summer 2022 Press Tour|publisher=[[Disney+]]|via=[[The Futon Critic]]|date=August 3, 2022|access-date=August 3, 2022}}</ref><ref>{{cite web|url=https://deadline.com/2022/08/dancing-with-the-stars-premiere-disney-plus-september-1235084406/|title=''Dancing With The Stars'' Gets Disney+ Premiere Date|work=[[Deadline Hollywood]]|author=Lynette Rice|date=August 3, 2022|access-date=August 3, 2022|archive-date=August 3, 2022|archive-url=https://web.archive.org/web/20220803171241/https://deadline.com/2022/08/dancing-with-the-stars-premiere-disney-plus-september-1235084406/|url-status=live}}</ref> and concluded on November 21, 2022.<ref>{{cite web|url=https://www.tvline.com/lists/dancing-with-the-stars-recap-season-31-finalists-revealed-top-4/|title=''Dancing With the Stars'': The Finalists Are Set! Which Duos Made the Top 4?|work=[[TVLine]]|author=Rebecca Iannucci|date=November 14, 2022|access-date=November 17, 2022|archive-date=November 17, 2022|archive-url=https://web.archive.org/web/20221117035535/https://tvline.com/lists/dancing-with-the-stars-recap-season-31-finalists-revealed-top-4/|url-status=live}}</ref> This season marked the first live competition show to air on the streaming platform and the only season to not air on [[American Broadcasting Company|ABC]].<ref>{{cite web|url=https://deadline.com/2022/04/dancing-with-the-stars-leaving-abc-disney-plus-season-31-1234996886/|title=''Dancing With The Stars'' Moving To Disney+ In Stunning Move After 16 Years On ABC|work=[[Deadline Hollywood]]|author=Lynette Rice|date=April 8, 2022|access-date=August 3, 2022|archive-date=May 22, 2022|archive-url=https://web.archive.org/web/20220522191502/https://deadline.com/2022/04/dancing-with-the-stars-leaving-abc-disney-plus-season-31-1234996886/|url-status=live}}</ref> [[Tyra Banks]] returned as host, while [[Dancing with the Stars (American TV series) season 19|season nineteen]] champion [[Alfonso Ribeiro]] joined as co-host.
+
+Social media personality [[Charli D'Amelio]] and [[Mark Ballas]] were crowned the champions, while ''[[The Bachelorette (American TV series)|The Bachelorette]]'' star [[Gabby Windey]] and [[Val Chmerkovskiy]] finished in second place, comedian [[Wayne Brady]] and [[Witney Carson]] finished in third place, and drag queen [[Shangela]] and [[Gleb Savchenko]] finished in fourth.
+
+This marked the last season for host [[Tyra Banks]]<ref>{{cite web|url=https://deadline.com/2023/03/tyra-banks-leaving-dancing-with-the-stars-1235302893/|title=Tyra Banks Is Leaving ''Dancing With The Stars''|work=[[Deadline Hollywood]]|author=Lynette Rice|date=March 17, 2023|access-date=March 17, 2023|archive-date=March 19, 2023|archive-url=https://web.archive.org/web/20230319225118/https://deadline.com/2023/03/tyra-banks-leaving-dancing-with-the-stars-1235302893/|url-status=live}}</ref> and longtime judge [[Len Goodman]], who retired at the conclusion of the season, prior to his death five months later.<ref>{{cite web|url=https://deadline.com/2023/04/len-goodman-dies-former-strictly-come-dancing-dancing-with-the-stars-judge-was-78-1235334683/|title=Len Goodman Dies: Former ''Strictly Come Dancing'' & ''Dancing With The Stars'' Judge Was 78|work=[[Deadline Hollywood]]|author=Max Goldbart|date=April 24, 2023|access-date=April 24, 2023|archive-date=April 24, 2023|archive-url=https://web.archive.org/web/20230424084437/https://deadline.com/2023/04/len-goodman-dies-former-strictly-come-dancing-dancing-with-the-stars-judge-was-78-1235334683/|url-status=live}}</ref>
+
+==Cast==
+
+=== Couples ===
+This season featured sixteen celebrity contestants. On August 25, 2022, it was reported that [[Charli D'Amelio]] and her mother [[Heidi D'Amelio]] would be competing as celebrity participants.<ref>{{cite web|url=https://deadline.com/2022/08/dancing-with-the-stars-tiktok-star-charli-damelio-mom-heidi-season-31-1235100427/|title=''Dancing With The Stars'': TikTok Star Charli D'Amelio & Mom Heidi Joining Season 31|work=[[Deadline Hollywood]]|author=Lynette Rice|date=August 25, 2022|access-date=August 25, 2022|archive-date=August 26, 2022|archive-url=https://web.archive.org/web/20220826075616/https://deadline.com/2022/08/dancing-with-the-stars-tiktok-star-charli-damelio-mom-heidi-season-31-1235100427/|url-status=live}}</ref> Soon after, [[Joseph Baena]], [[Wayne Brady]], [[Daniel Durant]],<ref>{{cite web|url=https://heavy.com/entertainment/dancing-with-the-stars/joseph-baena-season-31-contestant-partner/|title=Son of Famous Actor Set to Compete on DWTS Season 31|work=[[Heavy (website)|Heavy]]|author=Beth Heyn|date=August 26, 2022|access-date=August 26, 2022|archive-date=August 26, 2022|archive-url=https://web.archive.org/web/20220826220550/https://heavy.com/entertainment/dancing-with-the-stars/joseph-baena-season-31-contestant-partner/|url-status=live}}</ref><ref>{{cite web|url=https://heavy.com/entertainment/dancing-with-the-stars/wayne-brady-cast-partner-witney-carson/|title=Superstar Comedian & Actor Announced as DWTS Pro Witney Carson Season 31 Partner|work=[[Heavy (website)|Heavy]]|author=Beth Heyn|date=August 27, 2022|access-date=August 27, 2022|archive-date=August 27, 2022|archive-url=https://web.archive.org/web/20220827171834/https://heavy.com/entertainment/dancing-with-the-stars/wayne-brady-cast-partner-witney-carson/|url-status=live}}</ref> [[Jordin Sparks]],<ref>{{cite web|url=https://heavy.com/entertainment/dancing-with-the-stars/jordin-sparks-season-31-partner-contestant/|title=''American Idol'' Winner Joins DWTS as Season 31 Contestant|work=[[Heavy (website)|Heavy]]|author=Beth Heyn|date=August 30, 2022|access-date=August 31, 2022|archive-date=August 31, 2022|archive-url=https://web.archive.org/web/20220831012903/https://heavy.com/entertainment/dancing-with-the-stars/jordin-sparks-season-31-partner-contestant/|url-status=live}}</ref> [[Gabby Windey]],<ref>{{cite web|url=https://heavy.com/entertainment/dancing-with-the-stars/bachelorette-gabby-windey-season-31/|title=''Bachelorette'' Joins ''Dancing With the Stars'' Season 31 [Report]|work=[[Heavy (website)|Heavy]]|author=Beth Heyn|date=September 2, 2022|access-date=September 2, 2022|archive-date=September 2, 2022|archive-url=https://web.archive.org/web/20220902183815/https://heavy.com/entertainment/dancing-with-the-stars/bachelorette-gabby-windey-season-31/|url-status=live}}</ref> and [[Trevor Donovan]]<ref>{{cite web|url=https://heavy.com/entertainment/dancing-with-the-stars/emma-slater-trevor-donovan-partner-season-31/|title=Emma Slater ''Dancing With the Stars'' Season 31 Partner Revealed|work=[[Heavy (website)|Heavy]]|author=Beth Heyn|date=September 5, 2022|access-date=September 5, 2022|archive-date=September 6, 2022|archive-url=https://web.archive.org/web/20220906014316/https://heavy.com/entertainment/dancing-with-the-stars/emma-slater-trevor-donovan-partner-season-31/|url-status=live}}</ref> were all reported as celebrity participants as well. Charli and Heidi D'Amelio were officially announced as part of the season's cast on September 7,<ref>{{cite magazine|url=https://ew.com/tv/dancing-with-the-stars-season-31-cast-revealed-charli-damelio/|title=Charli D'Amelio and her mom join ''Dancing With the Stars'' season 31 cast: 'I thought they were joking'|magazine=[[Entertainment Weekly]]|author=Joey Nolfi|date=September 7, 2022|access-date=September 7, 2022|archive-date=September 7, 2022|archive-url=https://web.archive.org/web/20220907231813/https://ew.com/tv/dancing-with-the-stars-season-31-cast-revealed-charli-damelio/|url-status=live}}</ref> with the full roster of celebrity participants and their partnerships officially revealed on ''[[Good Morning America]]'' the following day.<ref name="Ribeiro cohost">{{cite web|url=https://www.goodmorningamerica.com/culture/story/alfonso-ribeiro-joins-tyra-banks-host-dancing-stars-86754226|title=Alfonso Ribeiro joins Tyra Banks as co-host for ''Dancing With the Stars'' season 31|work=[[Good Morning America]]|author=Carson Blackwelder|date=July 14, 2022|access-date=August 3, 2022|archive-date=August 15, 2022|archive-url=https://web.archive.org/web/20220815102526/https://www.goodmorningamerica.com/culture/story/alfonso-ribeiro-joins-tyra-banks-host-dancing-stars-86754226|url-status=live}}</ref><ref name="TFC-PR cast">{{cite press release|url=http://www.thefutoncritic.com/news/2022/09/08/dancing-with-the-stars-is-back-for-season-31-with-an-all-new-celebrity-cast-dancing-their-way-to-disneyplus-and-the-mirrorball-trophy-688404/20220908disney02/|title=''Dancing with the Stars'' Is Back for Season 31 with an All-New Celebrity Cast Dancing Their Way to Disney+ and the Mirrorball Trophy|publisher=[[Disney+]]|via=[[The Futon Critic]]|date=September 8, 2022|access-date=September 8, 2022}}</ref> With sixteen couples, this season was tied with [[Dancing with the Stars (American TV series) season 9|season nine]] as having the largest cast in the show's history.<ref>{{cite web|url=https://variety.com/2022/tv/news/dancing-with-the-stars-disney-plus-abc-live-streaming-1235376935/|title=''Dancing With the Stars'' Will Look Different on Disney+: Inside the Show's Jump From ABC to Streaming|work=[[Variety (magazine)|Variety]]|author=Michael Schneider|date=September 19, 2022|access-date=September 20, 2022|archive-date=September 19, 2022|archive-url=https://web.archive.org/web/20220919232204/https://variety.com/2022/tv/news/dancing-with-the-stars-disney-plus-abc-live-streaming-1235376935/|url-status=live}}</ref>
+
+A promo for the season released on August 18 featured professional dancers [[Daniella Karagach]], [[Pasha Pashkov]], [[Artem Chigvintsev]], [[Witney Carson]], [[Brandon Armstrong (dancer)|Brandon Armstrong]], and [[Cheryl Burke]].<ref>{{cite web|url=https://www.etonline.com/dancing-with-the-stars-hypes-up-disney-plus-move-in-glittery-new-promo-exclusive-189301|title=''Dancing With the Stars'' Hypes Up Disney Plus Move in Glittery New Promo (Exclusive)|work=[[Entertainment Tonight]]|author=Philiana Ng|date=August 18, 2022|access-date=August 18, 2022|archive-date=August 18, 2022|archive-url=https://web.archive.org/web/20220818171918/https://www.etonline.com/dancing-with-the-stars-hypes-up-disney-plus-move-in-glittery-new-promo-exclusive-189301|url-status=live}}</ref> [[Britt Stewart]], [[Peta Murgatroyd]], [[Emma Slater]], [[Koko Iwasaki]], [[Val Chmerkovskiy]], [[Alan Bersten]], [[Gleb Savchenko]], and [[Louis van Amstel]] were later revealed to be the rest of the professional dancers for the season.<ref>{{cite web|url=https://heavy.com/entertainment/dancing-with-the-stars/season-31-pros-roster-lineup/|title=Every ''Dancing With the Stars'' Season 31 Professional Dancer Revealed|work=[[Heavy (website)|Heavy]]|author=Beth Heyn|date=August 30, 2022|access-date=August 31, 2022|archive-date=August 31, 2022|archive-url=https://web.archive.org/web/20220831022925/https://heavy.com/entertainment/dancing-with-the-stars/season-31-pros-roster-lineup/|url-status=live}}</ref> [[Mark Ballas]] was announced as a pro on September 8.<ref name="Ballas">{{cite web|url=https://www.usmagazine.com/entertainment/news/mark-ballas-returns-to-dwts-for-season-31-after-5-year-hiatus/|title=Mark Ballas Returns to ''Dancing With the Stars'' for Season 31 After 5-Year Absence|work=[[Us Magazine]]|author=Michelle McGahan|date=September 8, 2022|access-date=September 8, 2022}}</ref> [[Sasha Farber]] was initially reported to be a troupe member this season, but was later revealed to also be returning as a pro.<ref>{{cite web | url=https://heavy.com/entertainment/dancing-with-the-stars/fans-upset-sasha-farber-troupe-announcement/ | title=Fans Outraged After 'Dancing with the Stars' Pro is 'Demoted' | date=2 September 2022 | last1=Heyn | first1=Beth | access-date=September 9, 2022 | archive-date=September 9, 2022 | archive-url=https://web.archive.org/web/20220909143130/https://heavy.com/entertainment/dancing-with-the-stars/fans-upset-sasha-farber-troupe-announcement/ | url-status=live }}</ref><ref>{{cite web | url=https://heavy.com/entertainment/dancing-with-the-stars/sasha-farber-season-31-partner-celebrity/ | title=Sasha Farber's 'Dancing with the Stars' Season 31 Partner Revealed | date=8 September 2022 | access-date=September 9, 2022 | archive-date=September 9, 2022 | archive-url=https://web.archive.org/web/20220909143129/https://heavy.com/entertainment/dancing-with-the-stars/sasha-farber-season-31-partner-celebrity/ | url-status=live }}</ref> Three pro dancers from the previous season did not return, [[Jenna Johnson (dancer)|Jenna Johnson]], [[Sharna Burgess]], and [[Lindsay Arnold]]. Johnson was pregnant with her first child at the time, while Arnold wanted to spend time with her family.<ref>{{cite web|url=https://www.usmagazine.com/celebrity-moms/news/jenna-johnson-is-pregnant-expecting-1st-child-with-val-chmerkovskiy/|title=''DWTS'' Pro Jenna Johnson Is Pregnant, Expecting 1st Child With Husband Val Chmerkovskiy|work=[[Us Magazine]]|author=Meredith Nardino|date=July 15, 2022|access-date=August 31, 2022|archive-date=August 19, 2022|archive-url=https://web.archive.org/web/20220819165644/https://www.usmagazine.com/celebrity-moms/news/jenna-johnson-is-pregnant-expecting-1st-child-with-val-chmerkovskiy/|url-status=live}}</ref><ref>{{cite web|url=https://heavy.com/entertainment/dancing-with-the-stars/lindsay-arnold-return-back-leaving/|title=Fan-Favorite Professional Dancer Not Returning for DWTS Season 31|work=[[Heavy (website)|Heavy]]|author=Beth Heyn|date=August 29, 2022|access-date=August 31, 2022|archive-date=August 30, 2022|archive-url=https://web.archive.org/web/20220830072621/https://heavy.com/entertainment/dancing-with-the-stars/lindsay-arnold-return-back-leaving/|url-status=live}}</ref> Iwasaki, who was the runner-up on [[So You Think You Can Dance (American TV series) season 14|season 14]] of ''[[So You Think You Can Dance (American TV series)|So You Think You Can Dance]]'' and performed as part of the ''Dancing with the Stars Live! – 2022 Tour'', joined the show as a first-time pro.
+
+On September 26, 2022, it was announced that Daniella Karagach had [[COVID-19]] and would miss that night's performance. [[Alexis Warr]] replaced her as Joseph Baena's dance partner for two weeks.<ref name="Daniella COVID">{{cite web|url=https://deadline.com/2022/09/dancing-with-the-stars-daniella-karagach-tests-positive-for-covid-1235127358/|title=''Dancing With the Stars'': Pro Daniella Karagach Tests Positive for Covid; Will Miss Tonight's Performance|work=[[Deadline Hollywood]]|author=Lynette Rice|date=September 26, 2022|access-date=September 26, 2022|archive-date=September 26, 2022|archive-url=https://web.archive.org/web/20220926184218/https://deadline.com/2022/09/dancing-with-the-stars-daniella-karagach-tests-positive-for-covid-1235127358/|url-status=live}}</ref> On October 28, 2022, it was announced that Val Chmerkovskiy had COVID-19 and would miss the October 31 episode. Alan Bersten filled in for him as Gabby Windey's partner for the episode.<ref name="Val COVID">{{cite web|url=https://www.instagram.com/p/CkRThlnysgH/|title=Sending well wishes for a fast recovery to @valentin. He has tested positive for COVID and will not be performing in Monday's…|author=dancingwiththestars|author-link=Dancing with the Stars (American TV series)|via=[[Instagram]]|date=October 28, 2022|access-date=October 28, 2022}}</ref>
+
+On November 20, 2022, professional dancer Cheryl Burke announced her retirement from the show after 26 seasons.<ref>{{cite web|url=https://people.com/tv/dwts-cheryl-burke-says-goodbye-after-26-seasons-exclusive/|title=Cheryl Burke Is Saying Goodbye to ''DWTS'' After 26 Seasons: 'I Have Been Crying Nonstop'|work=[[People (magazine)|People]]|author=Lanae Brody|date=November 20, 2022|access-date=November 21, 2022|archive-date=November 20, 2022|archive-url=https://web.archive.org/web/20221120215152/https://people.com/tv/dwts-cheryl-burke-says-goodbye-after-26-seasons-exclusive/|url-status=live}}</ref>
+
+{| class="wikitable sortable" style="text-align:center;"
+|+Cast of ''Dancing with the Stars'' (season 31)
+|-
+! scope="col" | Celebrity<ref name="TFC-PR cast" />
+! scope="col" class="unsortable"| Notability
+! scope="col" | Professional partner
+! scope="col" | Status
+! scope="col" class="unsortable"| {{Abbr|Ref.|Reference}}
+|-
+! scope="row" | {{sortname|Jason|Lewis|Jason Lewis (actor)}}
+| ''[[Sex and the City]]'' actor
+| {{sortname|Peta|Murgatroyd}}
+| style="background:#f4c7b8"| Eliminated 1st<br />{{small|on September 19, 2022}}
+| <ref>{{cite web|url=https://people.com/tv/dancing-with-the-stars-recap-season-31-premiere-teresa-giudice-flips-table-selma-blair-cries/|title=''Dancing with the Stars'' Recap: Teresa Giudice Flips Another Table and Selma Blair Brings Fans to Tears|work=[[People (magazine)|People]]|author=Joelle Goldstein|date=September 19, 2022|access-date=September 19, 2022}}</ref>
+|-
+! scope="row" | {{sortname|Teresa|Giudice}}
+| ''[[The Real Housewives of New Jersey]]'' cast member
+| {{sortname|Pasha|Pashkov}}
+|style="background:#f4c7b8"| Eliminated 2nd<br />{{nowrap|{{small|on September 26, 2022}}}}
+| <ref>{{cite magazine|url=https://ew.com/tv/dancing-with-the-stars-week-2-elimination-recap/|title=''Dancing With the Stars'' elimination comes down to tie-breaking vote in week 2|magazine=[[Entertainment Weekly]]|author=Calie Schepp|date=September 26, 2022|access-date=September 27, 2022|archive-date=September 27, 2022|archive-url=https://web.archive.org/web/20220927071054/https://ew.com/tv/dancing-with-the-stars-week-2-elimination-recap/|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Cheryl|Ladd}}
+| ''[[Charlie's Angels]]'' actress & author
+| {{sortname|Louis|van Amstel}}
+| style="background:#f4c7b8"| Eliminated 3rd<br />{{small|on October 3, 2022}}
+| <ref>{{cite magazine|url=https://ew.com/tv/recaps/dancing-with-the-stars-season-31-episode-3/|title=Here's who was eliminated on ''Dancing With the Stars'' Bond night|magazine=[[Entertainment Weekly]]|author=Calie Schepp|date=October 3, 2022|access-date=October 4, 2022|archive-date=October 4, 2022|archive-url=https://web.archive.org/web/20221004052824/https://ew.com/tv/recaps/dancing-with-the-stars-season-31-episode-3/|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Sam|Champion}}
+| ''[[Good Morning America]]'' meteorologist
+| {{sortname|Cheryl|Burke}}
+| style="background:#f4c7b8"| Eliminated 4th<br />{{small|on October 10, 2022}}
+| <ref>{{cite web|url=https://deadline.com/2022/10/dancing-with-the-stars-week-4-disney-night-1235140668/|title=''Dancing With The Stars'': See Who Jazzed It Up To A ''Hamilton'' Tune, And Who Got Sent Packing, On Disney+ Night|work=[[Deadline Hollywood]]|author=Lynette Rice|date=October 10, 2022|access-date=October 11, 2022|archive-date=October 11, 2022|archive-url=https://web.archive.org/web/20221011020940/https://deadline.com/2022/10/dancing-with-the-stars-week-4-disney-night-1235140668/|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Selma|Blair}}
+| Film & television actress
+| {{sortname|Sasha|Farber}}
+| style=background:lightgreen| Withdrew<br />{{small|on October 17, 2022}}
+| <ref name="Selma exit">{{cite magazine|url=https://ew.com/tv/selma-blair-leaving-dancing-with-the-stars/|title=Selma Blair announces early exit from ''Dancing With the Stars'' due to health concerns|magazine=[[Entertainment Weekly]]|author=Maureen Lee Lenker|date=October 17, 2022|access-date=October 18, 2022|archive-date=October 18, 2022|archive-url=https://web.archive.org/web/20221018022102/https://ew.com/tv/selma-blair-leaving-dancing-with-the-stars/|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Joseph|Baena}}
+| Professional bodybuilder & actor
+| {{sortname|Daniella|Karagach}}<br />{{small|''[[Alexis Warr]] (Weeks 2–3)''}}
+| style="background:#f4c7b8"| Eliminated 5th<br />{{small|on October 18, 2022}}
+| <ref>{{cite magazine|url=https://ew.com/tv/recaps/dancing-with-the-stars-season-31-episode-5-6/|title=''Dancing With the Stars'' gives us a prom queen, a perfect score, and a shocking elimination|magazine=[[Entertainment Weekly]]|author=Calie Schepp|date=October 18, 2022|access-date=October 19, 2022|archive-date=October 19, 2022|archive-url=https://web.archive.org/web/20221019192857/https://ew.com/tv/recaps/dancing-with-the-stars-season-31-episode-5-6/|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Jessie James|Decker}}
+| [[Country music|Country]] singer
+| {{sortname|Alan|Bersten}}
+| style="background:#f4c7b8"| Eliminated 6th<br />{{small|on October 24, 2022}}
+| <ref>{{cite web|url=https://deadline.com/2022/10/dancing-with-the-stars-recap-michael-buble-night-1235153981/|title=''Dancing With The Stars'': A Reality Star Survives But A Singer Goes Home On Michael Bublé Night|work=[[Deadline Hollywood]]|author=Lynette Rice|date=October 24, 2022|access-date=October 25, 2022|archive-date=November 6, 2022|archive-url=https://web.archive.org/web/20221106011930/https://deadline.com/2022/10/dancing-with-the-stars-recap-michael-buble-night-1235153981/|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Jordin|Sparks}}
+| Singer-songwriter & actress
+| {{sortname|Brandon|Armstrong|Brandon Armstrong (dancer)}}
+| style="background:#f4c7b8"| Eliminated 7th<br />{{small|on October 31, 2022}}
+| <ref>{{cite magazine|url=https://ew.com/tv/recaps/dancing-with-the-stars-season-31-episode-8/|title=Halloween night shakes up ''Dancing With the Stars'' leaderboard|magazine=[[Entertainment Weekly]]|author=Calie Schepp|date=October 31, 2022|access-date=November 1, 2022}}</ref>
+|-
+! scope="row" | {{sortname|Heidi|D'Amelio}}
+| Social media personality
+| {{sortname|Artem|Chigvintsev}}
+| style="background:#f4c7b8"| Eliminated 8th<br />{{small|on November 7, 2022}}
+| rowspan=2| <ref>{{cite magazine|url=https://people.com/tv/dwts-recap-90s-night-sees-double-elimination-sex-bomb-routine-aaron-carter-tribute/|title=''DWTS'' Recap: '90s Night Ends in a Double Elimination and 1 Star Hits Judges with a 'Sex Bomb' Routine|magazine=[[People (magazine)|People]]|author=Joelle Goldstein|date=November 7, 2022|access-date=November 8, 2022|archive-date=November 8, 2022|archive-url=https://web.archive.org/web/20221108035231/https://people.com/tv/dwts-recap-90s-night-sees-double-elimination-sex-bomb-routine-aaron-carter-tribute/|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Vinny|Guadagnino}}
+| ''[[Jersey Shore (TV series)|Jersey Shore]]'' cast member
+| {{sortname|Koko|Iwasaki}}
+| style="background:#f4c7b8"| Eliminated 9th<br />{{small|on November 7, 2022}}
+|-
+! scope="row" | {{sortname|Trevor|Donovan}}
+| Actor & model
+| {{sortname|Emma|Slater}}
+| style="background:#f4c7b8"| Eliminated 10th<br />{{small|on November 14, 2022}}
+| rowspan=2| <ref>{{cite web|url=https://www.usmagazine.com/entertainment/pictures/dancing-with-the-stars-see-the-semifinals-elimination-results/|title=''Dancing With the Stars'' Semifinals: See Which Couples Were Eliminated and Who Is Headed to the Finale|work=[[Us Magazine]]|author=Sara Donnellan|date=November 14, 2022|access-date=November 17, 2022}}</ref>
+|-
+! scope="row" | {{sortname|Daniel|Durant}}
+| Film & television actor 
+| {{sortname|Britt|Stewart}}
+| style="background:#f4c7b8"| Eliminated 11th<br />{{small|on November 14, 2022}}
+|-
+! scope="row" | {{sortname||Shangela}}
+| [[Drag queen]] & ''[[RuPaul's Drag Race]]'' contestant
+| {{sortname|Gleb|Savchenko}}
+| style="background:#D1C571" | Fourth place<br />{{small|on November 21, 2022}}
+| rowspan=4| <ref>{{cite web|url=https://people.com/tv/dancing-with-the-stars-finale-season-31-winner/|title=''Dancing with the Stars'' Season 31 Finale: A New Celebrity Becomes the Mirrorball Champion|work=[[People (magazine)|People]]|author=Joelle Goldstein|date=November 21, 2022|access-date=November 22, 2022|archive-date=November 22, 2022|archive-url=https://web.archive.org/web/20221122031646/https://people.com/tv/dancing-with-the-stars-finale-season-31-winner/|url-status=live}}</ref>
+|-
+! scope="row" | {{sortname|Wayne|Brady}}
+| Comedian, actor & television personality
+| {{sortname|Witney|Carson}}
+| style="background:tan"|Third place<br />{{small|on November 21, 2022}}
+|-
+! scope="row" | {{sortname|Gabby|Windey}}
+| ''[[The Bachelorette (American TV series)|The Bachelorette]]'' star
+| {{sortname|Val|Chmerkovskiy}}<br />{{small|''Alan Bersten (Week 7)''}}
+| style="background:silver" |Runners-up<br />{{small|on November 21, 2022}}
+|-
+! scope="row" | {{sortname|Charli|D'Amelio}}
+| Social media personality & dancer
+| {{sortname|Mark|Ballas}}
+| style="background:gold"|'''Winners'''<br />{{small|on November 21, 2022}}
+|}
+
+===Host and judges===
+On July 14, 2022, it was announced that [[Tyra Banks]] would return as host, with [[Len Goodman]], [[Derek Hough]], [[Carrie Ann Inaba]], and [[Bruno Tonioli]] returning as judges. Additionally, it was announced that [[Dancing with the Stars (American TV series) season 19|season nineteen]] champion [[Alfonso Ribeiro]] would be joining the show alongside Banks as co-host.<ref name="Ribeiro cohost" /><ref>{{cite web|url=https://deadline.com/2022/07/dancing-with-the-stars-adds-alfonso-ribeiro-co-host-tyra-banks-1235063811/|title=''Dancing With The Stars'' Adds Alfonso Ribeiro As Co-Host; Tyra Banks To Return To Ballroom|work=[[Deadline Hollywood]]|author=Lynette Rice|date=July 14, 2022|access-date=August 3, 2022|archive-date=August 3, 2022|archive-url=https://web.archive.org/web/20220803212635/https://deadline.com/2022/07/dancing-with-the-stars-adds-alfonso-ribeiro-co-host-tyra-banks-1235063811/|url-status=live}}</ref> On October 24, [[Michael Bublé]] served as a guest judge.<ref name="Bublé guest judge">{{cite web|url=https://www.tvinsider.com/1066148/dancing-with-the-stars-michael-buble-night-dances-guest-judge/|title=What to Expect From Michael Bublé Night on ''Dancing With the Stars''|work=[[TV Insider]]|author=Eve Vawter|date=October 19, 2022|access-date=October 24, 2022}}</ref>
+
+During the semifinals, Goodman announced that this would be his final season as a judge.<ref name="Goodman retirement">{{cite web|url=https://people.com/tv/dancing-with-the-stars-head-judge-len-goodman-is-retiring/|title=''Dancing with the Stars'' Head Judge Len Goodman Announces His Retirement: 'Hasta La Vista Baby!'|work=[[People (magazine)|People]]|author=Joelle Goldstein|date=November 14, 2022|access-date=November 17, 2022|archive-date=November 17, 2022|archive-url=https://web.archive.org/web/20221117012801/https://people.com/tv/dancing-with-the-stars-head-judge-len-goodman-is-retiring/|url-status=live}}</ref>
+
+=== Dance troupe ===
+The dance troupe returned for season 31 after being absent for the previous three seasons and consisted of returning pro [[Ezra Sosa]] and new pros Kateryna Klishyna, [[Alexis Warr]], and D'Angelo Castro.<ref>{{cite web|url=https://heavy.com/entertainment/dancing-with-the-stars/artem-chigvintsev-season-31-partner-celebrity/|title=Artem Chigvintsev Season 31 ''Dancing With the Stars'' Partner Revealed|work=[[Heavy (website)|Heavy]]|author=Beth Heyn|date=September 8, 2022|access-date=September 8, 2022|archive-url=https://web.archive.org/web/20230111043700/https://heavy.com/entertainment/dancing-with-the-stars/artem-chigvintsev-season-31-partner-celebrity/|archive-date=January 11, 2023}}</ref>
+
+==Episodes==
+<onlyinclude>{{#invoke:Episode table|main|dontclose=y
+|background = #800080
+|overall    = 5
+|season     = 6
+|title      = 40
+|titleR     = <ref name="The Futon Critic">{{cite web|url=http://www.thefutoncritic.com/showatch/dancing-with-the-stars/listings |title=''Dancing with the Stars'' Episode Listings|website=[[The Futon Critic]]}}</ref>
+|airdate    = 1r
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 471
+| EpisodeNumber2  = 1
+| Title           = Premiere Night Party
+| OriginalAirDate = {{Start date|2022|09|19}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 472
+| EpisodeNumber2  = 2
+| Title           = Elvis Night
+| OriginalAirDate = {{Start date|2022|09|26}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 473
+| EpisodeNumber2  = 3
+| Title           = Bond Night
+| OriginalAirDate = {{Start date|2022|10|03}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 474
+| EpisodeNumber2  = 4
+| Title           = Disney+ Night
+| OriginalAirDate = {{Start date|2022|10|10}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 475
+| EpisodeNumber2  = 5
+| Title           = Most Memorable Year
+| OriginalAirDate = {{Start date|2022|10|17}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 476
+| EpisodeNumber2  = 6
+| Title           = Prom Night
+| OriginalAirDate = {{Start date|2022|10|18}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 477
+| EpisodeNumber2  = 7
+| Title           = Michael Bublé Night
+| OriginalAirDate = {{Start date|2022|10|24}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 478
+| EpisodeNumber2  = 8
+| Title           = Halloween Night
+| OriginalAirDate = {{Start date|2022|10|31}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 479
+| EpisodeNumber2  = 9
+| Title           = '90s Night
+| OriginalAirDate = {{Start date|2022|11|07}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 480
+| EpisodeNumber2  = 10
+| Title           = Semifinals
+| OriginalAirDate = {{Start date|2022|11|14}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 31
+| EpisodeNumber   = 481
+| EpisodeNumber2  = 11
+| Title           = Finale
+| OriginalAirDate = {{Start date|2022|11|21}}
+| ShortSummary    =
+| LineColor       = #800080
+}}
+{{End|Episode table|html=y}}</onlyinclude>
+
+==Scoring chart==
+The highest score each week is indicated in {{fontcolor|#004600|'''bold green'''}} with a dagger ({{dagger}}), while the lowest score each week is indicated in {{fontcolor|#800000|''italicized red''}} with a double-dagger ({{double-dagger}}).
+
+'''Color key:'''
+{{columns-list|colwidth=20em|
+{{legend|gold|Winners}}
+{{legend|silver|Runners-up}}
+{{legend|tan|Third place}}
+{{legend|#d1c571|Fourth place}}
+{{legend|lightblue|Bottom two}}
+{{legend|lightgreen|Withdrew from competition}}
+{{legend|#f4c7b8|Eliminated}}
+}}
+{| class="wikitable sortable" style="text-align:center; font-size:95%"
+|+''Dancing with the Stars'' (season 31) - Weekly scores
+! scope="col" rowspan="3" style="text-align:center; | Couple
+! scope="col" rowspan="3" style="text-align:center; | {{Abbr|Pl.|Place}}
+! colspan="12" style="text-align:center; | Week
+|-
+! rowspan="2" scope="col" | 1
+! rowspan="2" scope="col" | 2
+! rowspan="2" scope="col" | 3
+! rowspan="2" scope="col" | 4
+! colspan="3" scope="col" | 5
+! rowspan="2" scope="col" style="font-weight:normal" | '''6'''{{efn|The couples were scored on a 50-point scale due to the presence of a guest judge.}}
+! rowspan="2" scope="col" | 7
+! rowspan="2" scope="col" | 8
+! rowspan="2" scope="col" | 9
+! rowspan="2" scope="col" | 10
+|-
+! {{nowrap|Night 1}}
+! {{nowrap|Night 2}}
+! 1+2
+|-
+! scope="row" | Charli & Mark
+| 1st
+| {{fontcolor|#004600|'''32'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''32'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''33'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''36'''}}{{dagger|alt=This was the highest score of the night.}}
+| 39
+| {{sort|45|}} | 38+7=45
+| {{fontcolor|#004600|'''84'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''50'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|78|}} | 39+39={{fontcolor|#004600|'''78'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|45|}} | 40+5={{fontcolor|#004600|'''45'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|80|}} | 40+40={{fontcolor|#004600|'''80'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|80|}} bgcolor=gold | 40+40={{fontcolor|#004600|'''80'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple finished in first place.}}
+|-
+! scope="row" | Gabby & Val
+| 2nd
+| 28
+| {{fontcolor|#004600|'''32'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''33'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''36'''}}{{dagger|alt=This was the highest score of the night.}}
+| 36
+| {{sort|46|}} | 40+6={{fontcolor|#004600|'''46'''}}{{dagger|alt=This was the highest score of the night.}}
+| 82
+| 46
+| {{sort|71|}} | 38+33=71
+| 40
+| {{sort|80|}} | 40+40={{fontcolor|#004600|'''80'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|80|}} bgcolor=silver | 40+40={{fontcolor|#004600|'''80'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple finished in second place.}}
+|-
+! scope="row" | Wayne & Witney
+| 3rd
+| 29
+| {{fontcolor|#004600|'''32'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''33'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''36'''}}{{dagger|alt=This was the highest score of the night.}}
+| 37
+| {{sort|45|}} | 40+5=45
+| 82
+| 44
+| {{sort|76|}} | 37+39=76
+| {{sort|45|}} | 40+5={{fontcolor|#004600|'''45'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|73|}} | 36+37=73
+| {{sort|76|}} bgcolor=tan | 36+40={{fontcolor|#800000|''76''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|This couple finished in third place.}}
+|-
+! scope="row" | Shangela & Gleb
+| 4th
+| 28
+| 28
+| 30
+| 32
+| 32
+| {{sort|45|}} | 35+10=45
+| 77
+| 45
+| {{sort|73|}} | 40+33=73
+| {{sort|42|}} | 37+5=42
+| bgcolor=lightblue {{sort|73|}} | 36+37=73{{efn|name=Bottom2|This couple was in the bottom two, but was not eliminated.}}
+| {{sort|76|}} bgcolor=d1c571| 36+40={{fontcolor|#800000|''76''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|This couple finished in fourth place.}}
+|-
+! scope="row" | Daniel & Britt
+|5th
+| 27
+| 29
+| 31
+| 29
+| 34
+| {{sort|33|}} | 32+1=33
+| 67
+| 43
+| {{sort|73|}} | 34+39=73
+| 39
+| bgcolor= f4c7b8 {{sort|69|}} | 35+34=69{{efn|name=Elim}}
+| rowspan="12" bgcolor=darkgray | {{sort|05|}}
+|-
+! scope="row" | Trevor & Emma
+|6th
+| 21
+| 30
+| 27
+| bgcolor="lightblue" | 28{{efn|name=Bottom2}}
+| 32
+| {{sort|40|}} | 32+8=40
+| 72
+| bgcolor="lightblue" | 42{{efn|name=Bottom2}}
+| {{sort|78|}} | 39+39={{fontcolor|#004600|'''78'''}}{{dagger|alt=This was the highest score of the night.}}
+| bgcolor="lightblue" {{sort|39|}} | 34+5=39{{efn|name=Bottom2}}
+| bgcolor= f4c7b8 {{sort|65|}} | 32+33={{fontcolor|#800000|''65''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+|-
+! scope="row" | Vinny & Koko
+| 7th
+| {{fontcolor|#800000|''17''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| 27
+| {{fontcolor|#800000|''23''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| 29
+| 32
+| {{sort|30|}} | 28+2={{fontcolor|#800000|''30''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{fontcolor|#800000|''62''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{fontcolor|#800000|''36''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{sort|63|}} | 30+33={{fontcolor|#800000|''63''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| bgcolor= f4c7b8 | {{fontcolor|#800000|''29''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| rowspan="10" bgcolor=darkgray| {{sort|07|}}
+|-
+! scope="row" | Heidi & Artem
+| 8th
+| 24
+| 28
+| 32
+| 34
+| 36
+| {{sort|42|}} | 33+9=42
+| bgcolor="lightblue" | 78{{efn|name=Bottom2}}
+| 46
+| bgcolor="lightblue" {{sort|70|}} | 37+33=70{{efn|name=Bottom2}}
+| bgcolor= f4c7b8 | 35{{efn|name=Elim}}
+|-
+! scope="row" | Jordin & Brandon
+| 9th
+| 26
+| 27
+| 29
+| 34
+| 33
+| {{sort|38|}} | 35+3=38
+| 71
+| 43
+| bgcolor= f4c7b8 {{sort|69|}} | 36+33=69{{efn|name=Elim}}
+| rowspan="8" bgcolor="darkgray" | {{sort|08|}}
+|-
+! scope="row" | Jessie & Alan
+| 10th
+| 20
+| 25
+| 26
+| 31
+| {{fontcolor|#800000|''29''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{sort|43|}} | 32+11=43
+| 72
+| bgcolor= f4c7b8 | 41{{efn|name=Elim}}
+| rowspan="7" bgcolor="darkgray" | {{sort|07|}}
+|-
+! scope="row" nowrap | Joseph & Daniella
+| 11th
+| 23
+| 24
+| 29
+| 28
+| 34
+| {{sort|36|}} | 32+4=36
+| bgcolor= f4c7b8 | 70{{efn|name=Elim}}
+| rowspan="6" bgcolor="darkgray" | {{sort|06|}}
+|-
+! scope="row" | Selma & Sasha
+| 12th
+| 28
+| 28
+| 28
+| 32
+| bgcolor=lightgreen |{{fontcolor|#004600|'''40'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple withdrew from the competition.}}
+| colspan="2" rowspan="5" bgcolor="darkgray" | {{sort|05|}}
+|-
+! scope="row" | Sam & Cheryl
+| 13th
+| 20
+| 26
+| bgcolor=lightblue |25{{efn|name=Bottom2}}
+| bgcolor= f4c7b8 | {{fontcolor|#800000|''25''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| rowspan="4" bgcolor="darkgray" | {{sort|04|}}
+|-
+! scope="row" | Cheryl & Louis
+| 14th
+| 21
+| bgcolor=lightblue |{{fontcolor|#800000|''21''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Bottom2}}
+| bgcolor= f4c7b8 | 24{{efn|name=Elim}}
+| rowspan="3" bgcolor=darkgray | {{sort|03|}}
+|-
+! scope="row"| Teresa & Pasha
+| 15th
+| bgcolor=lightblue | 20{{efn|name=Bottom2}}
+| bgcolor= f4c7b8 | 23{{efn|name=Elim}}
+| rowspan="2" bgcolor=darkgray | {{sort|02|}}
+|-
+! scope="row"| Jason & Peta
+| 16th
+| bgcolor= f4c7b8 | 18{{efn|name=Elim|This couple was eliminated.}}
+| rowspan="3" bgcolor=darkgray | {{sort|01|}}
+|}
+;Notes
+{{notelist}}
+
+==Weekly scores==
+''Individual judges' scores in the charts below (given in parentheses) are listed in this order from left to right: [[Carrie Ann Inaba]], [[Len Goodman]], [[Derek Hough]], [[Bruno Tonioli]].''
+
+===Week 1: Premiere Night Party===
+Couples are listed in the order they performed.
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 1
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-season-31-premiere-recap-live-blog/|title=''Dancing with the Stars'' season 31 premiere recap: How did it go when the show made its Disney+ debut? [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=September 19, 2022|access-date=September 20, 2022}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Episode 1 Songs">{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-season-31-premiere-week-1-dances-songs/|title=Here is the ''Dancing with the Stars'' Season 31 Week 1 lineup — and how to vote on Disney+|work=[[Gold Derby]]|author=Joyce Eng|date=September 19, 2022|access-date=September 20, 2022|archive-date=September 19, 2022|archive-url=https://web.archive.org/web/20220919160340/https://www.goldderby.com/article/2022/dancing-with-the-stars-season-31-premiere-week-1-dances-songs/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Music<ref name="Episode 1 Songs"/>
+! scope="col" class="unsortable"| Result
+|-
+! scope="row" | Jordin & Brandon
+| 26 (7, 6, 6, 7)
+| Cha-cha-cha
+| "[[I Wanna Dance with Somebody (Who Loves Me)]]" — [[Whitney Houston]]
+| Safe
+|-
+! scope="row" | Sam & Cheryl
+| 20 (5, 5, 5, 5)
+| Foxtrot
+| "[[Hold Me Closer (Elton John and Britney Spears song)|Hold Me Closer]]" — [[Elton John]] & [[Britney Spears]]
+| Safe
+|-
+! scope="row" | Heidi & Artem
+| 24 (6, 6, 6, 6)
+| Cha-cha-cha
+| "[[Lady Marmalade]]" — [[Christina Aguilera]], [[Lil' Kim]], [[Mya (singer)|Mýa]] & [[Pink (singer)|Pink]]
+| Safe
+|-
+! scope="row" | Daniel & Britt
+| 27 (7, 6, 7, 7)
+| Tango
+| "[[Barbra Streisand (song)|Barbra Streisand]]" — [[Duck Sauce]]
+| Safe
+|-
+! scope="row" | Jessie & Alan
+| 20 (5, 5, 5, 5)
+| Cha-cha-cha
+| "[[Sweet Home Alabama]]" — [[Lynyrd Skynyrd]]
+| Safe
+|-
+! scope="row" | Teresa & Pasha
+| 20 (5, 5, 5, 5)
+| Tango
+| "[[We Found Love]]" — [[Rihanna]] & [[Calvin Harris]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Wayne & Witney
+| 29 (7, 7, 7, 8)
+| Cha-cha-cha
+| "[[She's a Bad Mama Jama (She's Built, She's Stacked)]]" — [[Carl Carlton]]
+| Safe
+|-
+! scope="row" | Cheryl & Louis
+| 21 (6, 5, 5, 5)
+| Cha-cha-cha
+| "[[Got to Give It Up]]" — [[Marvin Gaye]]
+| Safe
+|-
+! scope="row" | Vinny & Koko
+| 17 (4, 4, 5, 4) 
+| Salsa
+| "[[Tití Me Preguntó]]" — [[Bad Bunny]]
+| Safe
+|-
+! scope="row" | Shangela & Gleb
+| 28 (7, 7, 7, 7)
+| Salsa
+| "[[When I Grow Up (The Pussycat Dolls song)|When I Grow Up]]" — [[The Pussycat Dolls]]
+| Safe
+|-
+! scope="row" | Trevor & Emma
+| 21 (5, 5, 5, 6)
+| Quickstep
+| "[[Dancing with Myself]]" — [[Billy Idol]]
+| Safe
+|-
+! scope="row" | Gabby & Val
+| 28 (7, 7, 7, 7)
+| Jive
+| "[[As It Was]]" — [[Harry Styles]]
+| Safe
+|-
+! scope="row" | {{nowrap|Joseph & Daniella}}
+| 23 (6, 5, 6, 6)
+| Jive
+| "[[Pump It]]" — [[Black Eyed Peas]]
+| Safe
+|-
+! scope="row" | Jason & Peta
+| 18 (5, 4, 4, 5)
+| Cha-cha-cha
+| "[[Get Lucky (Daft Punk song)|Get Lucky]]" — [[Daft Punk]], [[Pharrell Williams]] & [[Nile Rodgers]]
+| bgcolor= f4c7b8 | Eliminated
+|-
+! scope="row" | Selma & Sasha
+| 28 (7, 7, 7, 7)
+| Viennese waltz
+| "[[The Time of My Life (David Cook song)|The Time of My Life]]" — [[David Cook (singer)|David Cook]]
+| Safe
+|-
+! scope="row" | Charli & Mark
+| {{nowrap|32 (8, 8, 8, 8)}}
+| Cha-cha-cha
+| "[[Savage (Megan Thee Stallion song)|Savage]] (Major Lazer Remix)" — [[Megan Thee Stallion]]
+| Safe
+|}
+;Judges' votes to save
+*Carrie Ann: Teresa & Pasha
+*Derek: Teresa & Pasha
+*Bruno: Teresa & Pasha
+*Len: ''Did not vote, but would have voted to save Teresa & Pasha''
+
+===Week 2: Elvis Night===
+Each couple performed one unlearned dance to a song by [[Elvis Presley]]. Couples are listed in the order they performed.
+
+[[Daniella Karagach]] tested positive for [[COVID-19]], so [[Joseph Baena]] performed with Alexis Warr instead.<ref name="Daniella COVID" />
+
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 2
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-elvis-night-recap-live-blog/|title=''Dancing with the Stars'' Elvis Night recap: Which celebs were 'All Shook Up' when they danced to songs by the King? [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=September 26, 2022|access-date=September 28, 2022|archive-date=September 28, 2022|archive-url=https://web.archive.org/web/20220928064755/https://www.goldderby.com/article/2022/dancing-with-the-stars-elvis-night-recap-live-blog/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 2">{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-season-31-week-2-dances-songs-elvis/|title=''Dancing with the Stars'' Elvis Night will feature several jives (duh)|work=[[Gold Derby]]|author=Joyce Eng|date=September 23, 2022|access-date=September 26, 2022}}</ref>
+! scope="col" class="unsortable" | [[Elvis Presley Discography|Elvis Presley music]]<ref name="Week 2" />
+!Result
+|-
+! scope="row" | Jessie & Alan
+| 25 (7, 6, 6, 6)
+| Foxtrot
+| "[[Trouble (Elvis Presley song)|Trouble]]"
+| Safe
+|-
+! scope="row" | {{nowrap|Jordin & Brandon}}
+| 27 (7, 6, 7, 7)
+| Quickstep
+| "[[Hound Dog (song)#Elvis Presley's version (1956)|Hound Dog]]"
+| Safe
+|-
+! scope="row" | Sam & Cheryl
+| 26 (6, 6, 7, 7)
+| Viennese waltz
+| "[[Heartbreak Hotel]]"
+| Safe
+|-
+! scope="row" | Shangela & Gleb
+| 28 (7, 7, 7, 7)
+| Quickstep
+| "[[Shake, Rattle and Roll#Elvis Presley versions|Shake, Rattle and Roll]]"
+| Safe
+|-
+! scope="row" | Teresa & Pasha
+| 23 (6, 5, 6, 6)
+| Jive
+| "[[All Shook Up]]"
+| bgcolor= f4c7b8 | Eliminated
+|-
+! scope="row" | Daniel & Britt
+| 29 (7, 7, 7, 8)
+| Jive
+| "[[King Creole (song)|King Creole]]"
+| Safe
+|-
+! scope="row" | Gabby & Val
+| 32 (8, 8, 8, 8)
+| Viennese waltz
+| "[[Can't Help Falling in Love]]"
+| Safe
+|-
+! scope="row" | Vinny & Koko
+| 27 (7, 6, 7, 7)
+| Quickstep
+| "[[Viva Las Vegas (song)|Viva Las Vegas]]"
+| Safe
+|-
+! scope="row" | Charli & Mark
+| 32 (8, 8, 8, 8)
+| Quickstep
+| "[[Bossa Nova Baby]]"
+| Safe
+|-
+! scope="row" | Selma & Sasha
+| 28 (7, 7, 7, 7)
+| Jive
+| "[[Jailhouse Rock (song)|Jailhouse Rock]]"
+| Safe
+|-
+! scope="row" | Cheryl & Louis
+| 21 (5, 6, 5, 5)
+| Tango
+| "[[A Little Less Conversation]]"
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Joseph & Alexis
+| 24 (6, 6, 6, 6)
+| Viennese waltz
+| "[[If I Can Dream]]"
+| Safe
+|-
+! scope="row" | Heidi & Artem
+| 28 (7, 7, 7, 7)
+| Foxtrot
+| "[[Suspicious Minds]]"
+| Safe
+|-
+! scope="row" | Trevor & Emma
+| 30 (7, 7, 8, 8)
+| Rumba
+| "[[Always On My Mind#Elvis Presley version|Always On My Mind]]"
+| Safe
+|-
+! scope="row" | Wayne & Witney
+| 32 (8, 8, 8, 8)
+| Jive
+| "[[Burning Love]]"
+| Safe
+|}
+;Judges' votes to save
+*Derek: Teresa & Pasha
+*Bruno: Teresa & Pasha
+*Carrie Ann: Cheryl & Louis
+*Len: Cheryl & Louis ''(Since the other judges were not unanimous, Len, as head judge, made the final decision to save Cheryl & Louis.)''
+
+===Week 3: Bond Night===
+Each couple performed one unlearned dance to a song from a [[James Bond]] film. Couples are listed in the order they performed.
+
+[[Joseph Baena]] again performed with Alexis Warr due to [[Daniella Karagach]] recovering from COVID-19.<ref name="US Weekly 9-28">{{cite web|url=https://www.usmagazine.com/entertainment/pictures/dwts-james-bond-week-which-couple-will-dance-to-which-song/|title=James Bond Night Is Coming to ''Dancing With the Stars'': Find Out Which Couple Will Dance to Which Song|work=[[Us Magazine]]|author=Sara Donnellan|date=September 28, 2022|access-date=September 28, 2022|archive-date=September 28, 2022|archive-url=https://web.archive.org/web/20220928200609/https://www.usmagazine.com/entertainment/pictures/dwts-james-bond-week-which-couple-will-dance-to-which-song/|url-status=live}}</ref>
+
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 3
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-bond-night-recap-live-bond/|title=''Dancing with the Stars'' Bond Night recap: Were the rumba-tastic tributes to 007 shaken or stirring? [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=October 3, 2022|access-date=October 4, 2022|archive-date=October 4, 2022|archive-url=https://web.archive.org/web/20221004041910/https://www.goldderby.com/article/2022/dancing-with-the-stars-bond-night-recap-live-bond/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="US Weekly 9-28" />
+! class="unsortable" scope="col" |Music<ref name="US Weekly 9-28" />
+! class="unsortable" scope="col" |[[James Bond]] film
+! class="unsortable" scope="col" |Result
+|-
+! scope="row" |Charli & Mark
+| {{nowrap|33 (8, 8, 8, 9)}}
+| Rumba
+| "[[No Time to Die (song)|No Time to Die]]" — [[Billie Eilish]]
+| ''[[No Time to Die]]''
+| Safe
+|-
+! scope="row" | Cheryl & Louis
+| 24 (6, 6, 6, 6)
+| Rumba
+| "[[Diamonds Are Forever (soundtrack)|Diamonds Are Forever]]" — [[Shirley Bassey]]
+| ''[[Diamonds Are Forever (film)|Diamonds Are Forever]]''
+| bgcolor= f4c7b8 | Eliminated
+|-
+! scope="row" |Trevor & Emma
+| 27 (7, 6, 7, 7)
+| Tango
+| "[[You Know My Name]]" — [[Chris Cornell]]
+| ''[[Casino Royale (2006 film)|Casino Royale]]''
+| Safe
+|-
+! scope="row" |Daniel & Britt
+| 31 (8, 7, 8, 8)
+| Rumba
+| "[[The World Is Not Enough (song)|The World Is Not Enough]]" — [[Garbage (band)|Garbage]]
+| ''[[The World Is Not Enough]]''
+| Safe
+|-
+! scope="row" | {{nowrap|Jordin & Brandon}}
+| 29 (7, 7, 7, 8)
+| Rumba
+| "[[Licence to Kill (song)|Licence to Kill]]" — [[Gladys Knight]]
+| ''[[Licence to Kill]]''
+| Safe
+|-
+! scope="row" |Sam & Cheryl
+| 25 (6, 6, 6, 7)
+| Samba
+| "[[Spectre (soundtrack)|Los Muertos Vivos Están]]" — [[Thomas Newman]], feat. [[Tambuco]]
+| ''[[Spectre (2015 film)|Spectre]]''
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" |Selma & Sasha
+| 28 (7, 7, 7, 7)
+| Rumba
+| "[[For Your Eyes Only (song)|For Your Eyes Only]]" — [[Sheena Easton]]
+| ''[[For Your Eyes Only (film)|For Your Eyes Only]]''
+| Safe
+|-
+! scope="row" |Wayne & Witney
+| 33 (8, 8, 8, 9)
+| Tango
+| "[[Casino Royale (2006 soundtrack)|The Name's Bond... James Bond]]" — [[David Arnold]] & Nicholas Dodd
+| ''[[Casino Royale (2006 film)|Casino Royale]]''
+| Safe
+|-
+! scope="row" |Vinny & Koko
+| 23 (6, 5, 6, 6)
+| Rumba
+| "[[Thunderball (soundtrack)|Thunderball]]" — [[Tom Jones (singer)|Tom Jones]]
+| ''[[Thunderball (film)|Thunderball]]''
+| Safe
+|-
+! scope="row" |Heidi & Artem
+| 32 (8, 8, 8, 8)
+| Argentine tango
+| "[[Another Way to Die]]" — [[Jack White]] & [[Alicia Keys]]
+|''[[Quantum of Solace]]''
+| Safe
+|-
+! scope="row" |Shangela & Gleb
+| 30 (8, 7, 7, 8)
+| Rumba
+| "[[GoldenEye (song)|GoldenEye]]" — [[Tina Turner]]
+| ''[[GoldenEye]]''
+| Safe
+|-
+! scope="row" |Jessie & Alan
+| 26 (6, 6, 7, 7)
+| Rumba
+| "[[Goldfinger (Shirley Bassey song)|Goldfinger]]" — [[Shirley Bassey]]
+| ''[[Goldfinger (film)|Goldfinger]]''
+| Safe
+|-
+! scope="row" |Joseph & Alexis
+| 29 (8, 7, 7, 7)
+| Argentine tango
+| "[[Writing's on the Wall (Sam Smith song)|Writing's on the Wall]]" — [[Sam Smith]]
+| ''[[Spectre (2015 film)|Spectre]]''
+| Safe
+|-
+! scope="row" |Gabby & Val
+| 33 (8, 8, 8, 9)
+| Cha-cha-cha
+| "[[Die Another Day (song)|Die Another Day]]" — [[Madonna]]
+| ''[[Die Another Day]]''
+| Safe
+|}
+;Judges' votes to save
+*Bruno: Sam & Cheryl 
+*Carrie Ann: Sam & Cheryl
+*Derek: Sam & Cheryl
+*Len: ''Did not vote, but would have voted to save Sam & Cheryl''
+
+===Week 4: Disney+ Night===
+Each couple performed one unlearned dance to a song from a film or television series featured on [[Disney+]]. Couples are listed in the order they performed.
+
+[[Jenifer Lewis]] performed "Dig a Little Deeper" live for [[Shangela]]'s Charleston.
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 4
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-disney-plus-night-recap-live-blog/|title=''Dancing with the Stars'' Disney+ Night recap: The streaming service celebrated everything from ''Mary Poppins'' to ''The Simpsons'' [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=October 10, 2022|access-date=October 10, 2022|archive-date=October 10, 2022|archive-url=https://web.archive.org/web/20221010233806/https://www.goldderby.com/article/2022/dancing-with-the-stars-disney-plus-night-recap-live-blog/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 4">{{cite web|url=https://parade.com/tv/dancing-with-the-stars-songs-music-week-4-2022|title=It's Disney+ Night! Check Out the Songs and Dances for Week 4 of ''Dancing With the Stars''|work=[[Parade (magazine)|Parade]]|author=Paulette Cohn|date=October 10, 2022|access-date=October 10, 2022}}</ref>
+! scope="col" class="unsortable" |Music<ref name="Week 4" />
+! scope="col" class="unsortable" |Film/Series<ref name="Week 4" />
+! scope="col" class="unsortable" |Result
+|-
+! scope="row" | {{nowrap|Joseph & Daniella}}
+| 28 (7, 7, 7, 7)
+| Charleston
+| "[[A Star Is Born (Hercules song)|A Star Is Born]]" — [[Lillias White]], [[LaChanze]], [[Roz Ryan]], Cheryl Freeman & [[Vaneese Thomas|Vanéese Y. Thomas]]
+| ''[[Hercules (1997 film)|Hercules]]''
+| Safe
+|-
+! scope="row" |Sam & Cheryl
+| 25 (7, 6, 6, 6)
+| Paso doble
+| "[[The Greatest Show]]" — [[Hugh Jackman]], [[Keala Settle]], [[Zac Efron]] & [[Zendaya]]
+| ''[[The Greatest Showman]]''
+| bgcolor= f4c7b8 | Eliminated
+|-
+! scope="row" |Jordin & Brandon
+| 34 (9, 8, 8, 9)
+| Jazz
+| "[[Remember Me (Coco song)|Remember Me]]" — [[Benjamin Bratt]]
+| ''[[Coco (2017 film)|Coco]]''
+| Safe
+|-
+! scope="row" |Wayne & Witney
+| 36 (9, 9, 9, 9)
+| Jazz
+| "[[Wait for It (song)|Wait for It]]" — [[Leslie Odom Jr.]]
+| ''[[Hamilton (2020 film)|Hamilton]]''
+| Safe
+|-
+! scope="row" |Daniel & Britt
+| 29 (7, 7, 7, 8)
+| Quickstep
+| "[[High School Musical: The Musical: The Series: The Soundtrack|Finally Free]]" — [[Joshua Bassett]]
+| ''[[High School Musical: The Musical: The Series]]''
+| Safe
+|-
+! scope="row" |Shangela & Gleb
+| 32 (8, 8, 8, 8)
+| Charleston
+| "[[The Princess and the Frog (soundtrack)|Dig a Little Deeper]]" — [[Jenifer Lewis]]
+| ''[[The Princess and the Frog]]''
+| Safe
+|-
+! scope="row" |Heidi & Artem
+| 34 (9, 8, 8, 9)
+| Viennese waltz
+| "[[Chim Chim Cher-ee]]" — [[Dick Van Dyke]] & [[Julie Andrews]]
+| ''[[Mary Poppins (film)|Mary Poppins]]''
+| Safe
+|-
+! scope="row" |Gabby & Val
+| 36 (9, 9, 9, 9)
+| Quickstep
+| "[[Mr. Blue Sky]]" — [[Electric Light Orchestra]]
+| ''[[Guardians of the Galaxy Vol. 2]]''
+| Safe
+|-
+! scope="row" |Trevor & Emma
+| 28 (7, 7, 7, 7)
+| Samba
+| "[[Life Is a Highway]]" — [[Rascal Flatts]]
+| ''[[Cars (film)|Cars]]''
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" |Vinny & Koko
+| 29 (8, 7, 7, 7)
+| Samba
+| "[[Luca (soundtrack)|Il gatto e la volpe]]" — [[Edoardo Bennato]]
+| ''[[Luca (2021 film)|Luca]]''
+| Safe
+|-
+! scope="row" |Selma & Sasha
+| 32 (8, 8, 8, 8)
+| Quickstep
+| "[[The Muppet Show Theme]]" — [[Jim Henson]] & [[Sam Pottle]]
+| ''[[The Muppet Show]]''
+| Safe
+|-
+! scope="row" |Jessie & Alan
+| 31 (8, 7, 8, 8)
+| Jive
+| "[[Hocus Pocus 2|One Way Or Another]]" — [[Bette Midler]], [[Sarah Jessica Parker]] & [[Kathy Najimy]]
+| ''[[Hocus Pocus 2]]''
+| Safe
+|-
+! scope="row" |Charli & Mark
+| 36 (9, 9, 9, 9)
+| Jazz
+| "[[The Simpsons Main Title Theme|The Simpsons Theme]]" — [[Danny Elfman]]
+| ''[[The Simpsons]]''
+| Safe
+|}
+;Judges' votes to save
+*Carrie Ann: Trevor & Emma
+*Bruno: Trevor & Emma
+*Derek: Trevor & Emma
+*Len: ''Did not vote, but would have voted to save Trevor & Emma''
+
+===Week 5: Stars' Stories Week===
+;Night 1 (Most Memorable Year)
+Each couple performed one unlearned dance to celebrate the most memorable year of their lives. Couples are listed in the order they performed.
+
+[[Selma Blair]] announced that she had to withdraw from the competition for medical reasons, although she and [[Sasha Farber]] still performed their [[waltz]]. As a result, no one else was eliminated at the end of the night.<ref name="Selma exit" />
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 5 (Night 1)
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-most-memorable-year-recap-live-blog/|title=''Dancing with the Stars'' Most Memorable Year recap: The 1st night of 2-night event ended with an emotional announcement [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=October 17, 2022|access-date=October 18, 2022|archive-date=October 17, 2022|archive-url=https://web.archive.org/web/20221017233057/https://www.goldderby.com/article/2022/dancing-with-the-stars-most-memorable-year-recap-live-blog/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 5 songs">{{cite magazine|url=https://ew.com/tv/dancing-with-the-stars-season-31-week-5-songs-dances/|title=Here's every song and dance on ''Dancing With the Stars''{{'}} Stars Stories week|magazine=[[Entertainment Weekly]]|author=Calie Scheep|date=October 17, 2022|access-date=October 18, 2022|archive-date=October 17, 2022|archive-url=https://web.archive.org/web/20221017201139/https://ew.com/tv/dancing-with-the-stars-season-31-week-5-songs-dances/|url-status=live}}</ref>
+! scope="col" class="unsortable" |Music<ref name="Week 5 songs" />
+! scope="col" class="unsortable" |Result
+|-
+! scope="row" |Trevor & Emma
+| 32 (8, 8, 8, 8)
+|Jazz
+|"[[Viva la Vida]]" — [[Coldplay]]
+| Safe
+|-
+! scope="row" |Shangela & Gleb
+| 32 (8, 8, 8, 8)
+|Foxtrot
+|"[[Roar (song)|Roar (Acoustic)]]" — [[Katy Perry]]
+| Safe
+|-
+! scope="row" |Jessie & Alan
+| 29 (7, 7, 8, 7)
+|Tango
+|"[[Jessie James (album)|Blue Jeans]]" — [[Jessie James Decker]]
+| Safe
+|-
+! scope="row" |Gabby & Val
+| 36 (9, 9, 9, 9)
+|Foxtrot
+|"[[JP Cooper discography|If the World Should Ever Stop]]" — [[JP Cooper]]
+| Safe
+|-
+! scope="row" | {{nowrap|Joseph & Daniella}}
+| 34 (9, 8, 9, 8)
+|Rumba
+|"[[My Way]]" — [[Frank Sinatra]]
+| Safe
+|-
+! scope="row" |Daniel & Britt
+| 34 (8, 8, 9, 9)
+|Contemporary
+|"[[Both Sides, Now]]" — [[Joni Mitchell]]
+| Safe
+|-
+! scope="row" |Jordin & Brandon
+| 33 (8, 8, 8, 9)
+|Salsa
+|"[[Let's Get Married (Jagged Edge song)|Let's Get Married (ReMarquable Remix)]]" — [[Jagged Edge (American group)|Jagged Edge]], feat. [[Joseph Simmons|RUN]]
+| Safe
+|-
+! scope="row" |Charli & Mark
+| 39 (10, 9, 10, 10)
+|Contemporary
+|"[[When the Party's Over (song)|When the Party's Over]]" — [[Lewis Capaldi]]
+| Safe
+|-
+! scope="row" |Vinny & Koko
+| 32 (8, 8, 8, 8)
+|Jazz
+|"[[Levels (Avicii song)|Levels]]" — [[Avicii]]
+| Safe
+|-
+! scope="row" |Heidi & Artem
+| 36 (9, 9, 9, 9)
+|Rumba
+|"[[Can't Take My Eyes Off You|Can't Take My Eyes Off of You (I Love You Baby)]]" — [[Lauryn Hill]]
+| Safe
+|-
+! scope="row" |Wayne & Witney
+| 37 (9, 9, 9, 10)
+|Foxtrot
+|"Beautiful" — [[Jim Brickman]] & [[Wayne Brady]]
+| Safe
+|-
+! scope="row" |Selma & Sasha
+| {{nowrap|40 (10, 10, 10, 10)}}
+|Waltz
+|"[[What the World Needs Now Is Love]]" — [[Andra Day]]
+| bgcolor=lightgreen | Withdrew
+|}
+
+;Night 2 (Prom Night)
+Each couple performed one unlearned dance recalling their high school prom nights, and a dance marathon to the [[Hustle (dance)|hustle]] and [[Lindy Hop]] for bonus points. Couples are listed in the order they performed.
+
+Due to [[Selma Blair]]'s withdrawal,<ref name="Selma exit" /> the judges' scores and viewer votes from both nights were combined.
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 5 (Night 2)
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-prom-night-recap-live-blog/|title=''Dancing with the Stars'' Prom Night recap: Stories Week continued with the return of the dance marathon [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=October 18, 2022|access-date=October 19, 2022|archive-date=October 19, 2022|archive-url=https://web.archive.org/web/20221019001541/https://www.goldderby.com/article/2022/dancing-with-the-stars-prom-night-recap-live-blog/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 5 songs" />
+! scope="col" class="unsortable" |Music<ref name="Week 5 songs" />
+! scope="col" class="unsortable" |Result
+|-
+! scope="row" |Daniel & Britt
+| 32 (8, 8, 8, 8)
+|Cha-cha-cha
+|"[[SexyBack]]" — [[Justin Timberlake]], feat. [[Timbaland]]
+| Safe
+|-
+! scope="row" |Heidi & Artem
+| 33 (8, 9, 8, 8)
+|Jazz
+|"[[Girls Just Want to Have Fun]]" — [[Cyndi Lauper]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" |Vinny & Koko
+| 28 (7, 7, 7, 7)
+|Viennese waltz
+|"[[You and Me (Lifehouse song)|You and Me]]" — [[Lifehouse (band)|Lifehouse]]
+| Safe
+|-
+! scope="row" |Shangela & Gleb
+| 35 (9, 8, 9, 9)
+|Cha-cha-cha
+|"[[Waiting for Tonight]]" — [[Jennifer Lopez]]
+| Safe
+|-
+! scope="row" |Charli & Mark
+| 38 (9, 10, 9, 10)
+|Jive
+|"[[You Make My Dreams]]" — [[Hall & Oates]]
+| Safe
+|-
+! scope="row" |Jessie & Alan
+| 32 (8, 8, 8, 8)
+|Viennese waltz
+|"[[Breakaway (Kelly Clarkson song)|Breakaway]]" — [[Kelly Clarkson]]
+| Safe
+|-
+! scope="row" |Gabby & Val
+| {{nowrap|40 (10, 10, 10, 10)}}
+|Tango
+|"[[Good Girls Go Bad]]" — [[Cobra Starship]], feat. [[Leighton Meester]]
+| Safe
+|-
+! scope="row" |Trevor & Emma
+| 32 (8, 8, 8, 8)
+|Jive
+|"[[Basket Case (song)|Basket Case]]" — [[Green Day]]
+| Safe
+|-
+! scope="row" | {{nowrap|Joseph & Daniella}}
+| 32 (8, 8, 8, 8)
+|Cha-cha-cha
+|"[[Shut Up and Dance (Walk the Moon song)|Shut Up and Dance]]" — [[Walk the Moon]]
+| bgcolor= f4c7b8 | Eliminated
+|-
+! scope="row" |Jordin & Brandon
+| 35 (9, 8, 9, 9)
+|Contemporary
+|"[[No Air]]" — [[Jordin Sparks]] & [[Chris Brown]]
+| Safe
+|-
+! scope="row" |Wayne & Witney
+| 40 (10, 10, 10, 10)
+|Samba
+|"[[It Takes Two (Rob Base & DJ E-Z Rock song)|It Takes Two]]" — [[Rob Base and DJ E-Z Rock|Rob Base & DJ E-Z Rock]]
+| Safe
+|-
+! scope="row" |Daniel & Britt
+| 1
+| rowspan="11" |Hustle &<br />Lindy Hop<br />Marathon
+| colspan="2" rowspan="11" |"[[Hot Stuff (Donna Summer song)|Hot Stuff]]" — [[Donna Summer]] &<br />"[[Jump, Jive an' Wail]]" — [[The Brian Setzer Orchestra]]
+|-
+! scope="row" |Vinny & Koko
+| 2
+|- 
+! scope="row" |Jordin & Brandon
+| 3
+|-
+! scope="row" |{{nowrap|Joseph & Daniella}}
+| 4
+|-
+! scope="row" |Wayne & Witney
+| 5
+|-
+! scope="row" |Gabby & Val
+| 6
+|-
+! scope="row" |Charli & Mark
+| 7
+|-
+! scope="row" |Trevor & Emma
+| 8
+|-
+! scope="row" |Heidi & Artem
+| 9
+|-
+! scope="row" |Shangela & Gleb
+| 10
+|-
+! scope="row" |Jessie & Alan
+|11
+|}
+;Judges' votes to save
+*Derek: Heidi & Artem
+*Carrie Ann: Joseph & Daniella
+*Bruno: Heidi & Artem
+*Len: Heidi & Artem ''(Since the other judges were not unanimous, Len, as head judge, made the final decision to save Heidi & Artem.)''
+
+===Week 6: Michael Bublé Night===
+''Individual judges' scores are given in this order from left to right: Carrie Ann Inaba, Len Goodman, Michael Bublé, Derek Hough, Bruno Tonioli.''
+
+Each couple performed one dance to a song by [[Michael Bublé]], who was also a guest judge.<ref name="Bublé guest judge" /> Couples are listed in the order they performed.
+
+Bublé also performed "[[¿Quién será?#Michael Bublé cover version|Sway]]" for the dance troupe, and "[[Higher (Michael Bublé album)|Higher]]" for [[Derek Hough]] and his fiancée, [[Hayley Erbert]], who performed a dance.<ref>{{cite web|url=https://www.tvinsider.com/1066814/dancing-with-the-stars-season-31-episode-7-recap-jessie-james-decker-eliminated-michael-buble/|title=''DWTS'': Charli D'Amelio Snags Her First Perfect Score in Michael Bublé Night (RECAP)|work=[[TV Insider]]|author=Kelli Boyle|date=October 24, 2022|access-date=October 25, 2022}}</ref>
+
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 6
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-michael-buble-night-recap-live-blog/|title=''Dancing with the Stars'' Michael Buble Night recap: The crooner also sat in as guest judge for the night's festivities [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=October 24, 2022|access-date=October 25, 2022|archive-date=October 25, 2022|archive-url=https://web.archive.org/web/20221025064451/https://www.goldderby.com/article/2022/dancing-with-the-stars-michael-buble-night-recap-live-blog/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 6 songs">{{cite magazine|url=https://ew.com/tv/dancing-with-the-stars-season-31-week-6-songs-dances/|title=Here's every song and dance on ''Dancing With the Stars''{{'}} Michael Bublé night|magazine=[[Entertainment Weekly]]|author=Calie Schepp|date=October 24, 2022|access-date=October 25, 2022|archive-date=October 25, 2022|archive-url=https://web.archive.org/web/20221025003734/https://ew.com/tv/dancing-with-the-stars-season-31-week-6-songs-dances/|url-status=live}}</ref>
+! scope="col" class="unsortable" | [[Michael Bublé discography|Michael Bublé music]]<ref name="Week 6 songs" />
+! scope="col" class="unsortable" | Result
+|-
+! scope="row" | Shangela & Gleb
+| 45 (9, 9, 9, 9, 9)
+| Tango
+| "[[Hollywood (Michael Bublé song)|Hollywood]]"
+| Safe
+|-
+! scope="row" | Trevor & Emma
+| 42 (9, 8, 8, 8, 9)
+| Foxtrot
+| "[[Come Fly with Me (1958 song)|Come Fly with Me]]"
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Gabby & Val
+| 46 (9, 9, 9, 9, 10)
+| Rumba
+| "[[Home (Michael Bublé song)|Home]]"
+| Safe
+|-
+! scope="row" | Vinny & Koko
+| 36 (7, 7, 8, 7, 7)
+| Cha-cha-cha
+| "[[Save the Last Dance for Me]]"
+| Safe
+|-
+! scope="row" | {{nowrap|Jordin & Brandon}}
+| 43 (9, 8, 9, 8, 9)
+| Foxtrot
+| "[[You Make Me Feel So Young]]"
+| Safe
+|-
+! scope="row" | Charli & Mark
+| 50 (10, 10, 10, 10, 10)
+| Foxtrot
+| "[[Fever (Little Willie John song)|Fever]]"
+| Safe
+|-
+! scope="row" | Heidi & Artem
+| 46 (9, 9, 10, 9, 9)
+| Samba
+| "[[It Had Better Be Tonight (Meglio stasera)]]"
+| Safe
+|-
+! scope="row" | Wayne & Witney
+| 44 (8, 9, 10, 8, 9)
+| Quickstep
+| "[[I Get a Kick Out of You]]"
+| Safe
+|-
+! scope="row" | Jessie & Alan
+| 41 (8, 8, 9, 8, 8)
+| Salsa
+| "[[Come Dance with Me (song)|Come Dance with Me]]"
+| bgcolor= f4c7b8 | Eliminated
+|-
+! scope="row" | Daniel & Britt
+| 43 (9, 8, 9, 8, 9)
+| Foxtrot
+| "[[Feeling Good]]"
+| Safe
+|}
+;Judges' votes to save
+*Bruno: Trevor & Emma
+*Derek: Jessie & Alan
+*Carrie Ann: Trevor & Emma
+*Len: Trevor & Emma ''(Since the other judges were not unanimous, Len, as head judge, made the final decision to save Trevor & Emma.)''
+
+===Week 7: Halloween Night===
+Each couple performed one unlearned dance and participated in a team dance to Halloween themes. Couples are listed in the order they performed.
+
+[[Val Chmerkovskiy]] tested positive for COVID-19, so [[Gabby Windey]] performed instead with [[Alan Bersten]].<ref name="Val COVID" />
+
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 7
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-halloween-night-recap-live-blog/|title=''Dancing with the Stars'' Halloween Night recap: After individual and team dances, who was slashed from the competition? [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=October 31, 2022|access-date=November 1, 2022|archive-date=October 31, 2022|archive-url=https://web.archive.org/web/20221031233625/https://www.goldderby.com/article/2022/dancing-with-the-stars-halloween-night-recap-live-blog/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 7 songs">{{cite magazine|url=https://ew.com/tv/dancing-with-the-stars-season-31-week-7-songs-dances/|title=Here's every song and dance on ''Dancing With the Stars''{{'}} Halloween night|magazine=[[Entertainment Weekly]]|author=Calie Schepp|date=October 31, 2022|access-date=November 1, 2022}}</ref>
+! scope="col" class="unsortable" | Music<ref name="Week 7 songs" />
+! scope="col" class="unsortable" | Result
+|-
+! scope="row" | {{nowrap|Jordin & Brandon}}
+| 36 (9, 9, 9, 9)
+| Tango
+| "[[The Nightmare Before Christmas (soundtrack)|Oogie Boogie's Song]]" — [[Ed Ivory]] & [[Ken Page]]
+| bgcolor= f4c7b8 | Eliminated
+|-
+! scope="row" | Charli & Mark
+| 39 (9, 10, 10, 10)
+| Argentine tango
+| "Tanguera" — Fabio Hager Sexteto
+| Safe
+|-
+! scope="row" | Daniel & Britt
+| 34 (8, 8, 9, 9)
+| Paso doble
+| "[[Bury a Friend]]" — [[Billie Eilish]]
+| Safe
+|-
+! scope="row" | Shangela & Gleb
+| {{nowrap|40 (10, 10, 10, 10)}}
+| Jazz
+| "[[Look What You Made Me Do]]" — [[Taylor Swift]]
+| Safe
+|-
+! scope="row" | Vinny & Koko
+| 30 (7, 7, 8, 8)
+| Paso doble
+| "Get Ghost" — [[Mark Ronson]], [[Passion Pit]] & [[ASAP Ferg]]
+| Safe
+|-
+! scope="row" | Heidi & Artem
+| 37 (9, 9, 10, 9)
+| Tango
+| "[[I Wanna Be Your Slave]]" — [[Måneskin]]
+| bgcolor= lightblue |Bottom two
+|-
+! scope="row" | Gabby & Alan
+| 38 (10, 9, 9, 10)
+| Argentine tango
+| "[[Shivers (Ed Sheeran song)|Shivers]]" — District 78, feat. Mikayla Lynn
+| Safe
+|-
+! scope="row" | Wayne & Witney
+| 37 (9, 9, 9, 10)
+| Contemporary
+| "[[Halloween (1978 film)|Halloween]] Theme" — District 78
+| Safe
+|-
+! scope="row" | Trevor & Emma
+| 39 (10, 9, 10, 10)
+| Contemporary
+| "[[Ghost (Justin Bieber song)|Ghost]] (Acoustic)" — [[Justin Bieber]]
+| Safe
+|-
+! scope="row" | Gabby & Alan<br />Heidi & Artem<br />Jordin & Brandon<br />Shangela & Gleb<br />Vinny & Koko
+| 33 (8, 8, 9, 8)
+| Freestyle<br />(Team Wicked)
+| colspan="2" |"[[The Bitch Is Back|The Witches Are Back]]" — [[Bette Midler]], [[Sarah Jessica Parker]] & [[Kathy Najimy]]
+|-
+! scope="row" | Charli & Mark<br />Daniel & Britt<br />Trevor & Emma<br />Wayne & Witney
+| 39 (10, 9, 10, 10)
+| Freestyle<br />{{nowrap|(Team Scream)}}
+| colspan="2" |"[[Heads Will Roll (song)|Heads Will Roll]]" — [[Yeah Yeah Yeahs]]
+|}
+;Judges' votes to save
+*Carrie Ann: Heidi & Artem
+*Derek: Jordin & Brandon
+*Bruno: Jordin & Brandon
+*Len: Heidi & Artem ''(Since the other judges were not unanimous, Len, as head judge, made the final decision to save Heidi & Artem.)''
+
+===Week 8: '90s Night===
+Each couple performed one unlearned dance and a dance relay to songs from the 1990s. Couples are listed in the order they performed. Two couples were sent home at the end of the night in a double elimination.
+
+[[Vanilla Ice]], [[En Vogue]], [[Salt-N-Pepa]], and [[Kid 'n Play]] performed their respective songs during the dance relays.<ref name="Week 8 songs">{{cite web |author=Roger Palmer |date=November 2, 2022 |title="Dancing With The Stars" – 90s Night Details Announced |url=https://whatsondisneyplus.com/dancing-with-the-stars-90s-night-details-announced/ |access-date=November 2, 2022 |work=What's on Disney Plus |archive-date=November 2, 2022 |archive-url=https://web.archive.org/web/20221102213343/https://whatsondisneyplus.com/dancing-with-the-stars-90s-night-details-announced/ |url-status=live }}</ref>
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 8
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-90s-night-recap-live-blog/|title=''Dancing with the Stars'' 90s Night recap: Special guest stars and a double elimination marked nostalgic theme night [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=November 7, 2022|access-date=November 8, 2022|archive-date=November 8, 2022|archive-url=https://web.archive.org/web/20221108022908/https://www.goldderby.com/article/2022/dancing-with-the-stars-90s-night-recap-live-blog/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 8 songs" />
+! scope="col" class="unsortable" | Music<ref name="Week 8 songs" />
+! scope="col" class="unsortable" | Result
+|-
+! scope="row" | Trevor & Emma
+| 34 (8, 9, 8, 9)
+| Salsa
+| "[[Barbie Girl]]" — [[Aqua (band)|Aqua]]
+| bgcolor=lightblue | Bottom three
+|-
+! scope="row" | Shangela & Gleb
+| 37 (10, 9, 9, 9)
+| Samba
+| "[[Spice Up Your Life]]" — [[Spice Girls]]
+| Safe
+|-
+! scope="row" | Wayne & Witney
+| {{nowrap|40 (10, 10, 10, 10)}}
+| Salsa
+| "[[Motownphilly]]" — [[Boyz II Men]]
+| Safe
+|-
+! scope="row" | Daniel & Britt
+| 39 (10, 9, 10, 10)
+| Jazz
+| "[[Enjoy the Silence]]" — [[Depeche Mode]]
+| Safe
+|-
+! scope="row" | Heidi & Artem
+| 35 (9, 8, 9, 9)
+| Contemporary
+| "[[Ironic (song)|Ironic]]" — [[Alanis Morissette]]
+| bgcolor= f4c7b8 | Eliminated<br />immediately
+|-
+! scope="row" | Gabby & Val
+| 40 (10, 10, 10, 10)
+| Samba
+| "[[Livin' La Vida Loca]]" — [[Ricky Martin]]
+| Safe
+|-
+! scope="row" | Vinny & Koko
+| 29 (8, 7, 7, 7)
+| Tango
+| "[[What Is Love]]" — [[Haddaway]]
+| bgcolor= f4c7b8 | Eliminated<br />by judges' votes
+|-
+! scope="row" | Charli & Mark
+| 40 (10, 10, 10, 10)
+| Tango
+| "[[Song 2]]" — [[Blur (band)|Blur]]
+| Safe
+|-
+! scope="row" | Shangela & Gleb
+| 5{{efn|Shangela & Gleb received five points from Len.}}
+| rowspan="2" | Cha-cha-cha<br />Relay
+| colspan="2" rowspan="2" |"[[Ice Ice Baby]]" — [[Vanilla Ice]]
+|-
+! scope="row" | Daniel & Britt
+| 0
+|-
+! scope="row" | Vinny & Koko
+| 0
+| rowspan="2" |Samba<br />Relay
+| colspan="2" rowspan="2" |"[[My Lovin' (You're Never Gonna Get It)]]" — [[En Vogue]]
+|-
+! scope="row" | Trevor & Emma
+| 5{{efn|Trevor & Emma received five points from Carrie Ann.}}
+|-
+! scope="row" | Heidi & Artem
+| 0
+| rowspan="2" |Samba<br />Relay
+| colspan="2" rowspan="2" |"[[Shoop (song)|Shoop]]" — [[Salt-N-Pepa]]
+|-
+! scope="row" | Wayne & Witney
+| 5{{efn|Wayne & Witney received five points from Bruno.}}
+|-
+! scope="row" | Charli & Mark
+| 5{{efn|Charli & Mark received five points from Derek.}}
+| rowspan="2" |Salsa<br />Relay
+| colspan="2" rowspan="2" |"[[Ain't Gonna Hurt Nobody]]" — [[Kid 'n Play]]
+|-
+! scope="row" | Gabby & Val
+| 0
+|}
+;Notes
+{{notelist}}
+;Judges' votes to save
+*Derek: Trevor & Emma
+*Bruno: Trevor & Emma
+*Carrie Ann: Trevor & Emma
+*Len: ''Did not vote, but would have voted to save Trevor & Emma''
+
+===Week 9: Semifinals===
+Each couple performed one unlearned ballroom dance and one unlearned Latin dance. Couples are listed in the order they performed. Two couples were eliminated at the end of the night in a double elimination.
+
+[[Len Goodman]] announced that he would be retiring from the series at the end of this season.<ref name="Goodman retirement" />
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 9
+|-
+! scope="col" |Couple
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-semifinals-recap-live-blog/|title=''Dancing with the Stars'' Semi-Finals recap: One last double elimination before the finale [Updating Live Blog]|work=[[Gold Derby]]|author=Daniel Montgomery|date=November 14, 2022|access-date=November 15, 2022}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 9 songs">{{cite magazine|url=https://ew.com/tv/dancing-with-the-stars-season-31-week-9-songs-dances/|title=See every song and dance on ''Dancing With the Stars'' semifinals|magazine=[[Entertainment Weekly]]|author=Jillian Sederholm|date=November 14, 2022|access-date=November 15, 2022}}</ref>
+! scope="col" class="unsortable" | Music<ref name="Week 9 songs" />
+! scope="col" class="unsortable" | Result
+|-
+! rowspan="2" scope="row" | Wayne & Witney
+| 36 (9, 9, 9, 9)
+| Paso doble
+| "[[Beggin' (Måneskin song)|Beggin']]" — [[Måneskin]]
+| rowspan="2" | Safe
+|-
+| 37 (10, 9, 9, 9)
+| Viennese waltz
+| "[[It's a Man's Man's Man's World]]" — [[James Brown]]
+|-
+! rowspan="2" scope="row" | Daniel & Britt
+| 35 (9, 8, 9, 9)
+| Viennese waltz
+| "[[Me Before You (soundtrack)|Surprise Yourself]]" — [[Jack Garratt]]
+| rowspan="2" bgcolor= f4c7b8 | Eliminated<br />by judges' votes
+|-
+| 34 (9, 8, 9, 8)
+| Samba
+| "[[Light It Up (Major Lazer song)|Light It Up (Remix)]]" — [[Major Lazer]], feat. [[Nyla]] & [[Fuse ODG]]
+|-
+! rowspan="2" scope="row" | Shangela & Gleb
+| 36 (9, 9, 9, 9)
+| Paso doble
+| "[[The Edge of Glory]]" — [[Lady Gaga]]
+| rowspan="2" bgcolor=lightblue | Bottom three
+|-
+| 37 (10, 9, 9, 9)
+| Viennese waltz
+| "[[I Have Nothing]]" — [[Whitney Houston]]
+|-
+! rowspan="2" scope="row" | Charli & Mark
+| {{nowrap|40 (10, 10, 10, 10)}}
+| Viennese waltz
+| "[[Glimpse of Us]]"  —[[Joji (musician)|Joji]]
+| rowspan="2" | Safe
+|-
+| {{nowrap|40 (10, 10, 10, 10)}}
+| Paso doble
+| "[[España cañí]]" — [[Pascual Marquina Narro|Pascual Marquina]]
+|-
+! rowspan="2" scope="row" | Trevor & Emma
+| 32 (8, 8, 8, 8)
+| Cha-cha-cha
+| "Satisfied" — [[Galantis]], feat. [[Max Schneider|MAX]]
+| rowspan="2" bgcolor= f4c7b8 | Eliminated<br />immediately
+|-
+| 33 (9, 8, 8, 8)
+| Viennese waltz
+| "[[Count On Me (Judah Kelly song)|Count On Me]]" — [[Judah Kelly]]
+|-
+! rowspan="2" scope="row" | Gabby & Val
+| 40 (10, 10, 10, 10)
+| Waltz
+| "[[Kissing You (Des'ree song)|I'm Kissing You]]" — [[Des'ree]]
+| rowspan="2" | Safe
+|-
+| 40 (10, 10, 10, 10)
+| Paso doble
+| "[[Malagueña (song)|Malagueña]]" — [[Brian Setzer]]
+|}
+;Judges' votes to save
+*Carrie Ann: Shangela & Gleb
+*Derek: Shangela & Gleb
+*Bruno: Shangela & Gleb
+*Len: ''Did not vote, but would have voted to save Shangela & Gleb''
+
+===Week 10: Finale===
+Each couple performed one redemption dance coached by one of the judges, and their [[Street dance|freestyle]] routine. Couples are listed in the order they performed. 
+{| class="wikitable sortable" style="text-align:center; width: 90%"
+|+''Dancing with the Stars'' (season 31) - Week 10
+|-
+! scope="col" |Couple
+! scope="col" class="unsortable" |Judge
+! scope="col" |Scores<ref>{{cite web|url=https://www.goldderby.com/article/2022/dancing-with-the-stars-finale-recap-live-blog-season-31/|title=''Dancing with the Stars'' finale recap: Who won the Mirror Ball Trophy? [UPDATING LIVE BLOG]|work=[[Gold Derby]]|author=Daniel Montgomery|date=November 21, 2022|access-date=November 22, 2022|archive-date=November 22, 2022|archive-url=https://web.archive.org/web/20221122003119/https://www.goldderby.com/article/2022/dancing-with-the-stars-finale-recap-live-blog-season-31/|url-status=live}}</ref>
+! scope="col" class="unsortable"|Dance<ref name="Week 10 songs">{{cite magazine|url=https://ew.com/tv/dancing-with-the-stars-season-31-week-10-songs-dances/|title=Here's every song and dance on ''Dancing With the Stars{{'}}s'' finale night|magazine=[[Entertainment Weekly]]|author=Calie Schepp|date=November 21, 2022|access-date=November 22, 2022|archive-date=November 21, 2022|archive-url=https://web.archive.org/web/20221121220633/https://ew.com/tv/dancing-with-the-stars-season-31-week-10-songs-dances/|url-status=live}}</ref>
+! scope="col" class="unsortable" | Music<ref name="Week 10 songs"/>
+! scope="col" class="unsortable" | Result
+|-
+! rowspan="2" scope="row" | Shangela & Gleb
+| rowspan="2" |Bruno Tonioli
+| 36 (9, 9, 9, 9)
+| Quickstep
+| "Queen Bee" — Rochelle Diamante
+| rowspan="2" bgcolor=D1C571 |Fourth place
+|-
+| 40 (10, 10, 10, 10)
+| Freestyle
+| "[[Survivor (Destiny's Child song)|Survivor]]" — [[Destiny's Child]]<br />& "[[RuPaul discography|Call Me Mother]]" — [[RuPaul]]
+|-
+! rowspan="2" scope="row" | Wayne & Witney
+| rowspan="2" |Len Goodman
+| 36 (9, 9, 9, 9)
+| Quickstep
+| "[[(Your Love Keeps Lifting Me) Higher and Higher]]" — [[Jackie Wilson]]
+| rowspan="2" bgcolor=tan |Third place
+|-
+| {{nowrap|40 (10, 10, 10, 10)}}
+| Freestyle
+| "[[Get Up (Ciara song)|Get Up]]" — [[Ciara]], feat. [[Chamillionaire]]<br />& "[[24K Magic (song)|24K Magic]]" —[[Bruno Mars]]
+|-
+! rowspan="2" scope="row" | Charli & Mark
+| rowspan="2" |Carrie Ann Inaba
+| {{nowrap|40 (10, 10, 10, 10)}}
+| Jive
+| "[[Get Weird|Grown]]" — [[Little Mix]]
+| rowspan="2" bgcolor=gold |'''Winners'''
+|-
+| 40 (10, 10, 10, 10)
+| Freestyle
+| "[[Us Again (film)|Us Again]]" — [[Pinar Toprak]]
+|-
+! rowspan="2" scope="row" | Gabby & Val
+| rowspan="2" |Derek Hough
+| 40 (10, 10, 10, 10)
+| {{nowrap|Cha-cha-cha}}
+| "[[I Like It Like That (Pete Rodriguez song)|I Like It (Like That)]]" — [[Pete Rodriguez (jazz musician)|Pete Rodriguez]]
+| rowspan="2" bgcolor=silver |Runners-up
+|-
+| 40 (10, 10, 10, 10)
+| Freestyle
+| "[[Cell Block Tango]]" — ''from [[Chicago (musical)|Chicago]]''
+|}
+
+== Dance chart ==
+The couples performed the following each week:
+* Weeks 1—4: One unlearned dance
+* Week 5 (Night 1): One unlearned dance
+* Week 5 (Night 2): One unlearned dance & dance marathon
+* Week 6: One unlearned dance
+* Week 7: One unlearned dance & team dance
+* Week 8: One unlearned dance & dance relay
+* Week 9 (Semifinals): One unlearned ballroom dance & one unlearned Latin dance
+* Week 10 (Finale): Redemption dance & freestyle
+'''Color key:'''
+{{columns-list|colwidth=20em|
+{{legend|lightblue|Performed in exhibition}}
+}}
+{| class="wikitable unsortable" style="text-align:center; font-size:85%; line-height:20px"
+|+''Dancing with the Stars'' (season 31) - Dance chart
+! scope="col" rowspan="3" |Couple
+! colspan="16" |Week
+|-
+! rowspan="2" scope="col" | 1 
+! rowspan="2" scope="col" | 2
+! rowspan="2" scope="col" | 3
+! rowspan="2" scope="col" | 4
+! colspan="3" scope="col" | 5
+! rowspan="2" scope="col" | 6
+! colspan="2" rowspan="2" scope="col" | 7
+! colspan="2" rowspan="2" | 8
+! colspan="2" rowspan="2" | 9
+! colspan="2" rowspan="2" | 10
+|-
+! Night 1
+! colspan="2" | Night 2
+|-
+! scope="row" height="40px" | Charli & Mark
+| Cha-cha-cha
+| Quickstep
+| Rumba
+| Jazz
+| {{Abbr|Contemp.|Contemporary}}
+| Jive
+| rowspan="11" | Hustle &<br />{{nowrap|Lindy Hop}}<br />Marathon
+| Foxtrot
+| Argentine tango
+| Team Freestyle
+| Tango
+| Salsa
+| Viennese waltz
+| Paso doble
+| Jive
+| Freestyle
+|-
+! scope="row" height="40px" | Gabby & Val
+| Jive
+| Viennese waltz
+| Cha-cha-cha
+| Quickstep
+| Foxtrot
+| Tango
+| Rumba
+| Argentine tango
+| Team Freestyle
+| Samba
+| Salsa
+| Waltz
+| Paso doble
+| Cha-cha-cha
+| Freestyle
+|-
+! scope="row" height="40px" | Wayne & Witney
+| Cha-cha-cha
+| Jive
+| Tango
+| Jazz
+| Foxtrot
+| Samba
+| Quickstep
+| {{Abbr|Contemp.|Contemporary}}
+| Team Freestyle
+| Salsa
+| Samba
+| Paso doble
+| Viennese waltz
+| Quickstep
+| Freestyle
+|-
+! scope="row" height="40px" | Shangela & Gleb
+| Salsa
+| Quickstep
+| Rumba
+| Charleston
+| Foxtrot
+| Cha-cha-cha
+| Tango
+| Jazz
+| Team Freestyle
+| Samba
+| Cha-cha-cha
+| Paso doble
+| Viennese waltz
+| Quickstep
+| Freestyle
+|-
+! scope="row" height="40px" | Daniel & Britt
+| Tango
+| Jive
+| Rumba
+| Quickstep
+| {{Abbr|Contemp.|Contemporary}}
+| Cha-cha-cha
+| Foxtrot
+| Paso doble
+| Team Freestyle
+| Jazz
+| {{nowrap|Cha-cha}}-cha
+| Viennese waltz
+| Samba
+| colspan="2" rowspan="7" bgcolor="darkgray" |
+|-
+! scope="row" height="40px" | Trevor & Emma
+| Quickstep
+| Rumba
+| Tango
+| Samba
+| Jazz
+| Jive
+| Foxtrot
+| {{Abbr|Contemp.|Contemporary}}
+| Team Freestyle
+| Salsa
+| Samba
+| Cha-cha-cha
+| Viennese waltz
+|-
+! scope="row" height="40px" | Vinny & Koko
+| Salsa
+| Quickstep
+| Rumba
+| Samba
+| Jazz
+| Viennese waltz
+| Cha-cha-cha
+| Paso doble
+| Team Freestyle
+| Tango
+| Samba
+| colspan="2" rowspan="10" bgcolor=darkgray |
+|-
+! scope="row" height="40px" | Heidi & Artem
+| Cha-cha-cha
+| Foxtrot
+| Argentine tango
+| Viennese waltz
+| Rumba
+| Jazz
+| Samba
+| Tango
+| Team<br />Freestyle
+| {{Abbr|Contemp.|Contemporary}}
+| Samba
+|-
+! scope="row" height="40px" | Jordin & Brandon
+| Cha-cha-cha
+| Quickstep
+| Rumba
+| Jazz
+| Salsa
+| {{Abbr|Contemp.|Contemporary}}
+| Foxtrot
+| Tango
+| Team Freestyle
+| colspan="2" rowspan="8" bgcolor=darkgray |
+|-
+! scope="row" height="40px" | Jessie & Alan
+| Cha-cha-cha
+| Foxtrot
+| Rumba
+| Jive
+| Tango
+| Viennese waltz
+| Salsa
+| colspan="2" rowspan="7" bgcolor=darkgray |
+|-
+! scope="row" height="40px" | {{nowrap|Joseph &}} Daniella
+| Jive
+| Viennese waltz
+| Argentine tango
+| Charleston
+| Rumba
+| Cha-cha-cha
+| rowspan="6" bgcolor="darkgray" |
+|-
+! scope="row" height="40px" | Selma & Sasha
+| Viennese waltz
+| Jive
+| Rumba
+| Quickstep
+| Waltz
+| colspan="2" rowspan="5" bgcolor="darkgray" |
+| colspan="2" bgcolor="lightblue"| ''Contemporary''
+|-
+! scope="row" height="40px" | Sam & Cheryl
+| Foxtrot
+| Viennese waltz
+| Samba 
+| Paso doble
+| rowspan="4" bgcolor="darkgray" |
+| colspan="2" rowspan="4" bgcolor="darkgray"|
+|-
+! scope="row" height="40px" | Cheryl & Louis
+| Cha-cha-cha
+| Tango
+| Rumba
+| rowspan="5" bgcolor="darkgray" |
+|-
+! scope="row" height="40px" | Teresa & Pasha
+| Tango
+| Jive
+| rowspan="6" bgcolor="darkgray" |
+|-
+! scope="row" height="40px" | Jason & Peta
+| Cha-cha-cha
+| rowspan="7" bgcolor="darkgray" |
+|}
+;Notes
+{{notelist}}
+
+==References==
+{{Reflist}}
+
+{{Dancing with the Stars (United States)}}
+{{italic title|string=Dancing with the Stars}}
+
+[[Category:2022 American television seasons]]
+[[Category:Dancing with the Stars (American TV series)]]
