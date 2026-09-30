@@ -2,7 +2,14 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { INTRO_MS, Intro } from "@/components/intro";
-import { INTRO_KEY, introSkipScript } from "@/lib/intro";
+
+const sceneRendered = vi.fn();
+vi.mock("@/components/intro-3d/scene", () => ({
+  IntroScene: () => {
+    sceneRendered();
+    return null;
+  },
+}));
 
 const stage = () => screen.queryByRole("region", { name: "Armchair Judge intro" });
 
@@ -31,7 +38,6 @@ function renderPage() {
 describe("Intro", () => {
   beforeEach(() => {
     vi.useFakeTimers();
-    sessionStorage.clear();
     setReducedMotion(false);
   });
 
@@ -41,7 +47,7 @@ describe("Intro", () => {
     setReducedMotion(false);
   });
 
-  it("plays on the first visit, then hands off to the landing", () => {
+  it("plays, then hands off to the landing", () => {
     renderPage();
     expect(stage()).not.toBeNull();
     expect(document.getElementById("page")?.hasAttribute("inert")).toBe(true);
@@ -52,14 +58,15 @@ describe("Intro", () => {
     expect(stage()).toBeNull();
     expect(document.getElementById("page")?.hasAttribute("inert")).toBe(false);
     expect(document.documentElement.style.overflow).toBe("");
-    expect(sessionStorage.getItem(INTRO_KEY)).toBe("1");
   });
 
-  it("plays once per session", () => {
-    sessionStorage.setItem(INTRO_KEY, "1");
+  it("plays again on the next load", () => {
+    const first = renderPage();
+    act(() => vi.advanceTimersByTime(INTRO_MS));
+    first.unmount();
+
     renderPage();
-    expect(stage()).toBeNull();
-    expect(document.getElementById("page")?.hasAttribute("inert")).toBe(false);
+    expect(stage()).not.toBeNull();
   });
 
   it("skips straight to the landing and moves keyboard focus onto it", () => {
@@ -70,34 +77,23 @@ describe("Intro", () => {
 
     expect(stage()).toBeNull();
     expect(document.activeElement).toBe(document.getElementById("main"));
-    expect(sessionStorage.getItem(INTRO_KEY)).toBe("1");
-  });
-
-  it("hides the server-rendered stage before paint on a returning visit", () => {
-    sessionStorage.setItem(INTRO_KEY, "1");
-    new Function(introSkipScript)();
-    expect(document.documentElement.dataset.intro).toBe("skip");
-    delete document.documentElement.dataset.intro;
+    expect(document.getElementById("page")?.hasAttribute("inert")).toBe(false);
   });
 
   it("does not play under prefers-reduced-motion", () => {
     setReducedMotion(true);
     renderPage();
     expect(stage()).toBeNull();
+    expect(document.getElementById("page")?.hasAttribute("inert")).toBe(false);
   });
 
-  it("still plays and ends when sessionStorage is blocked", () => {
-    const blocked = () => {
-      throw new DOMException("denied", "SecurityError");
-    };
-    vi.spyOn(Storage.prototype, "getItem").mockImplementation(blocked);
-    vi.spyOn(Storage.prototype, "setItem").mockImplementation(blocked);
-
+  it("keeps the static mark and never loads the 3D stage without WebGL", async () => {
     renderPage();
-    expect(stage()).not.toBeNull();
-    act(() => vi.advanceTimersByTime(INTRO_MS));
-    expect(stage()).toBeNull();
+    await act(() => vi.advanceTimersByTimeAsync(0));
 
-    vi.restoreAllMocks();
+    expect(stage()?.querySelector("svg.intro-poster")).not.toBeNull();
+    expect(stage()?.querySelector("canvas")).toBeNull();
+    expect(stage()?.dataset.scene).toBeUndefined();
+    expect(sceneRendered).not.toHaveBeenCalled();
   });
 });
