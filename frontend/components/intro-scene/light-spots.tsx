@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import { AdditiveBlending, Color, type InstancedMesh, Matrix4, Quaternion, Vector3 } from "three";
 
-import { BALL, CEILING, ROOM_RADIUS, SPIN, houseLights } from "./timeline";
+import { BALL, CEILING, ROOM_RADIUS, SPIN } from "./timeline";
 
 const COUNT = 320;
 const Z = new Vector3(0, 0, 1);
@@ -96,7 +96,6 @@ export function LightSpots({ random, now }: LightSpotsProps) {
     if (!m) return;
     const t = now();
     const angle = t * SPIN;
-    const lights = houseLights(t);
     spots.forEach((spot, i) => {
       tmp.dir.copy(spot.dir).applyAxisAngle(Y, angle);
       const dist = hit(tmp.dir, tmp.p, tmp.n);
@@ -104,7 +103,7 @@ export function LightSpots({ random, now }: LightSpotsProps) {
       tmp.s.setScalar(dist * 0.022 * spot.size);
       m.setMatrixAt(i, tmp.m.compose(tmp.p, tmp.q, tmp.s));
       const twinkle = 0.55 + 0.45 * Math.sin(t * spot.rate + spot.phase);
-      m.setColorAt(i, tmp.c.copy(spot.color).multiplyScalar(1.6 * twinkle * lights));
+      m.setColorAt(i, tmp.c.copy(spot.color).multiplyScalar(1.6 * twinkle));
     });
     m.instanceMatrix.needsUpdate = true;
     if (m.instanceColor) m.instanceColor.needsUpdate = true;

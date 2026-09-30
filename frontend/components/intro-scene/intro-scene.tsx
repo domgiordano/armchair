@@ -5,13 +5,13 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Bloom, ChromaticAberration, EffectComposer, Noise, ToneMapping, Vignette } from "@react-three/postprocessing";
 import { BlendFunction, ToneMappingMode } from "postprocessing";
 import { useMemo, useRef, useState } from "react";
-import { type PerspectiveCamera, type SpotLight as SpotLightImpl, Vector2, Vector3 } from "three";
+import { Color, DoubleSide, type Group, type PerspectiveCamera, type SpotLight as SpotLightImpl, Vector2, Vector3 } from "three";
 
 import { LightSpots } from "./light-spots";
 import { MirrorBall } from "./mirror-ball";
 import { Paddles } from "./paddles";
 import { Room } from "./room";
-import { BALL, PADDLES_UP, PADDLE_Y, PADDLE_Z, camera as cameraAt, houseLights, phase } from "./timeline";
+import { BALL, PADDLES_UP, PADDLE_Y, PADDLE_Z, camera as cameraAt, phase } from "./timeline";
 
 // Seeded so every visit throws the same room of light.
 function seeded(seed: number) {
@@ -58,9 +58,17 @@ interface BeamProps extends Clocked {
   volumetric?: boolean;
 }
 
-// A follow-spot: a real light for the pool it throws, plus drei's volumetric cone for the haze.
-function Beam({ now, from, color, aim, intensity, angle, distance, opacity, on = houseLights, volumetric = true }: BeamProps) {
+const ALWAYS = () => 1;
+
+// A follow-spot: a real light for the pool it throws, drei's volumetric cone for
+// the haze, and the lamp's glowing lens, which the mirror tiles pick up.
+function Beam({ now, from, color, aim, intensity, angle, distance, opacity, on = ALWAYS, volumetric = true }: BeamProps) {
   const light = useRef<SpotLightImpl>(null);
+  const head = useRef<Group>(null);
+  const lens = useMemo(() => {
+    const c = new Color(color).multiplyScalar(9);
+    return [c.r, c.g, c.b] as const;
+  }, [color]);
   useFrame(() => {
     const l = light.current;
     if (!l) return;
@@ -68,9 +76,23 @@ function Beam({ now, from, color, aim, intensity, angle, distance, opacity, on =
     aim(t, l.target.position);
     l.target.updateMatrixWorld();
     l.intensity = intensity * on(t);
+    head.current?.lookAt(l.target.position);
   });
   return (
-    <SpotLight
+    <>
+      {volumetric && (
+        <group ref={head} position={from}>
+          <mesh position={[0, 0, -0.18]} rotation={[Math.PI / 2, 0, 0]}>
+            <cylinderGeometry args={[0.2, 0.24, 0.36, 16, 1, true]} />
+            <meshStandardMaterial color="#0c0f1c" metalness={0.8} roughness={0.4} side={DoubleSide} />
+          </mesh>
+          <mesh>
+            <circleGeometry args={[0.19, 24]} />
+            <meshBasicMaterial color={lens} toneMapped={false} />
+          </mesh>
+        </group>
+      )}
+      <SpotLight
       ref={light}
       position={from}
       color={color}
@@ -85,6 +107,7 @@ function Beam({ now, from, color, aim, intensity, angle, distance, opacity, on =
       volumetric={volumetric}
       castShadow={false}
     />
+    </>
   );
 }
 

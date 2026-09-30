@@ -1,14 +1,14 @@
 "use client";
 
 import { getImageProps } from "next/image";
-import { lazy, Suspense, useEffect, useState, type CSSProperties } from "react";
+import { lazy, Suspense, useEffect, useState, useSyncExternalStore, type CSSProperties } from "react";
 
 import styles from "./intro.module.css";
 
 // Scene length in ms; intro.module.css and the 3D timeline are both timed against it.
 const LENGTH = 5200;
 
-function hasWebGL() {
+function probeWebGL() {
   if (typeof window.WebGLRenderingContext === "undefined") return false;
   const canvas = document.createElement("canvas");
   const gl = canvas.getContext("webgl2") ?? canvas.getContext("webgl");
@@ -16,6 +16,10 @@ function hasWebGL() {
   gl?.getExtension("WEBGL_lose_context")?.loseContext();
   return gl !== null;
 }
+
+let webglCache: boolean | undefined;
+const hasWebGL = () => (webglCache ??= probeWebGL());
+const noSubscribe = () => () => {};
 
 // three.js and friends stay out of the landing bundle. A chunk that fails to
 // download falls back to the 2D ballroom instead of an empty stage.
@@ -76,7 +80,8 @@ const LONGITUDES = [1, 2, 3].map((k) => 48 * Math.sin((k * Math.PI) / 8));
 /** The ballroom intro: a real-time mirror ball scene where WebGL allows, the 2D ballroom where not. */
 export function Intro({ onDone }: IntroProps) {
   const [start] = useState(() => performance.now());
-  const [webgl] = useState(hasWebGL);
+  // Undecided on the server and through hydration, so neither backdrop is baked into the HTML.
+  const webgl = useSyncExternalStore(noSubscribe, hasWebGL, () => null);
 
   useEffect(() => {
     const id = setTimeout(onDone, LENGTH);
@@ -84,8 +89,8 @@ export function Intro({ onDone }: IntroProps) {
   }, [onDone]);
 
   return (
-    <section aria-label="Intro" data-stage={webgl ? "3d" : "2d"} className={styles.scene}>
-      {webgl ? (
+    <section aria-label="Intro" data-stage={webgl === null ? undefined : webgl ? "3d" : "2d"} className={styles.scene}>
+      {webgl === null ? null : webgl ? (
         <>
           <Poster />
           <Suspense>

@@ -35,10 +35,11 @@ export function camera(t: number, eye: Vector3, look: Vector3) {
   eye.lerpVectors(EYE_START, EYE_PUSH, phase(t, 0, 2.4));
   eye.lerp(EYE_END, phase(t, 2.1, 3.7));
   look.lerpVectors(BALL, LOOK_END, phase(t, 1.9, 3.7));
+  // A little operator sway, so it reads as a camera and not a render.
+  eye.x += Math.sin(t * 0.8) * 0.035;
+  eye.y += Math.sin(t * 1.1 + 1.3) * 0.025;
+  look.x += Math.sin(t * 0.6 + 2.1) * 0.05;
 }
-
-/** House lights come up over the first half second. */
-export const houseLights = (t: number) => phase(t, 0, 0.6);
 
 export const PADDLES_UP = 3.05;
 export const PADDLE_Z = 5.4;

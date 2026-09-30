@@ -1,21 +1,27 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   AdditiveBlending,
   CanvasTexture,
   Color,
+  CubeCamera,
   Euler,
   type Group,
+  HalfFloatType,
   type InstancedMesh,
   Matrix4,
+  type MeshStandardMaterial,
+  PMREMGenerator,
   Quaternion,
   type Sprite,
+  type Texture,
   Vector3,
+  WebGLCubeRenderTarget,
 } from "three";
 
-import { BALL, BALL_RADIUS, SPIN, houseLights } from "./timeline";
+import { BALL, BALL_RADIUS, SPIN } from "./timeline";
 
 const TILE = 0.094;
 const GAP = 0.014;
@@ -69,9 +75,9 @@ function starTexture() {
       const u = (x / (size - 1)) * 2 - 1;
       const v = (y / (size - 1)) * 2 - 1;
       const r = Math.hypot(u, v);
-      const core = Math.exp(-r * r * 60) + 0.35 * Math.exp(-r * r * 9);
+      const core = Math.exp(-r * r * 60) + 0.2 * Math.exp(-r * r * 16);
       const streak = Math.exp(-Math.abs(u) * 34) * Math.exp(-Math.abs(v) * 2.4) + Math.exp(-Math.abs(v) * 34) * Math.exp(-Math.abs(u) * 2.4);
-      const a = Math.min(1, core + 0.9 * streak) * Math.max(0, 1 - r * 0.9);
+      const a = Math.min(1, core + 0.9 * streak) * Math.max(0, 1 - r) ** 2;
       const i = (y * size + x) * 4;
       img.data[i] = 255;
       img.data[i + 1] = 250;
@@ -96,6 +102,13 @@ export function MirrorBall({ random, now }: MirrorBallProps) {
   const star = useMemo(() => starTexture(), []);
   const picks = useMemo(() => Array.from({ length: GLINTS }, () => ({ tile: 0, cycle: -1 })), []);
   const world = useMemo(() => ({ n: new Vector3(), p: new Vector3(), toEye: new Vector3() }), []);
+  const glass = useRef<MeshStandardMaterial>(null);
+  const frames = useRef(0);
+  const [cube] = useState(() => new WebGLCubeRenderTarget(256, { type: HalfFloatType }));
+  const [room, setRoom] = useState<Texture | null>(null);
+
+  useEffect(() => () => cube.dispose(), [cube]);
+  useEffect(() => () => room?.dispose(), [room]);
 
   useLayoutEffect(() => {
     const m = mesh.current;
@@ -114,7 +127,26 @@ export function MirrorBall({ random, now }: MirrorBallProps) {
   useFrame((state) => {
     const t = now();
     const angle = t * SPIN;
-    if (spin.current) spin.current.rotation.y = angle;
+    const ball = spin.current;
+    if (ball) ball.rotation.y = angle;
+
+    // The mirrors reflect the room itself: once everything has drawn a frame,
+    // photograph it from the ball's centre and hand that to the tiles. Once is
+    // enough, since the ball's turning already sweeps each tile across it.
+    frames.current += 1;
+    if (frames.current === 2 && ball && glass.current) {
+      ball.visible = false;
+      const cam = new CubeCamera(0.2, 40, cube);
+      cam.position.copy(BALL);
+      cam.update(state.gl, state.scene);
+      ball.visible = true;
+      const pmrem = new PMREMGenerator(state.gl);
+      const env = pmrem.fromCubemap(cube.texture).texture;
+      pmrem.dispose();
+      glass.current.envMap = env;
+      glass.current.needsUpdate = true;
+      setRoom(env);
+    }
 
     // Each glint lives ~0.8 s on one tile facing the lens, then hops to another.
     picks.forEach((pick, i) => {
@@ -138,7 +170,7 @@ export function MirrorBall({ random, now }: MirrorBallProps) {
       const life = (local % period) / period;
       const pulse = Math.sin(life * Math.PI) ** 3;
       sprite.scale.setScalar(0.15 + 1.25 * pulse);
-      sprite.material.opacity = pulse * houseLights(t);
+      sprite.material.opacity = pulse;
     });
   });
 
@@ -155,7 +187,7 @@ export function MirrorBall({ random, now }: MirrorBallProps) {
         </mesh>
         <instancedMesh ref={mesh} args={[undefined, undefined, all.length]} frustumCulled={false}>
           <planeGeometry args={[1, 1]} />
-          <meshStandardMaterial color="#ffffff" metalness={1} roughness={0.05} envMapIntensity={1.5} />
+          <meshStandardMaterial ref={glass} color="#ffffff" metalness={1} roughness={0.05} envMapIntensity={3.6} />
         </instancedMesh>
       </group>
       {picks.map((_, i) => (
