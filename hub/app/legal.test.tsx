@@ -15,6 +15,33 @@ describe("legal pages", () => {
     );
   });
 
+  it("privacy covers every section Google's OAuth review looks for", () => {
+    render(<PrivacyPage />);
+    const headings = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+    expect(headings).toEqual(
+      expect.arrayContaining([
+        "Who we are",
+        "Information we collect",
+        "How we use it",
+        "How we share it",
+        "Google API Services User Data Policy",
+        "Storage and security",
+        "Retention",
+        "Your choices and deletion",
+        "Children",
+        "Changes to this policy",
+        "Contact",
+      ]),
+    );
+    expect(screen.getByText(/including the Limited Use requirements/)).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Google API Services User Data Policy" }).getAttribute("href")).toBe(
+      "https://developers.google.com/terms/api-services-user-data-policy",
+    );
+    expect(screen.getByRole("link", { name: "myaccount.google.com/permissions" }).getAttribute("href")).toBe(
+      "https://myaccount.google.com/permissions",
+    );
+  });
+
   it("terms link back to privacy from the footer", () => {
     render(<TermsPage />);
     expect(screen.getByRole("heading", { level: 1, name: "Terms of use" })).toBeTruthy();
