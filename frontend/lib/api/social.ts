@@ -1,4 +1,12 @@
+import { fetchAuthSession } from "aws-amplify/auth";
+
 import { request, requestWithMeta } from "./client";
+
+/** The caller's own sub, off the cached ID token. */
+export async function mySub(): Promise<string | null> {
+  const sub = (await fetchAuthSession()).tokens?.idToken?.payload.sub;
+  return typeof sub === "string" ? sub : null;
+}
 
 /** What anyone may see of another user: never their email. */
 export interface Person {
