@@ -14,6 +14,11 @@ locals {
       invoke_arn = aws_lambda_function.api["episodes_${l.name}"].invoke_arn
     })
   ]
+  seasons_endpoints = [
+    for l in local.seasons_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["seasons_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -40,5 +45,6 @@ module "api" {
     users    = { path_prefix = "users", endpoints = local.users_endpoints }
     scores   = { path_prefix = "scores", endpoints = local.scores_endpoints }
     episodes = { path_prefix = "episodes", endpoints = local.episodes_endpoints }
+    seasons  = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
   }
 }

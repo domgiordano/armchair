@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
@@ -127,7 +128,12 @@ function SignedInHome({ onSignOut }: SignedInHomeProps) {
             <h1 className="text-2xl font-semibold tracking-tight">
               Hi, {state.me.name ?? state.me.email}
             </h1>
-            <p className="text-neutral-400">The episode scorecard shows up here once the next show is loaded.</p>
+            <Link
+              href="/episode/"
+              className={`${BUTTON} self-start bg-amber-300 text-amber-950 hover:bg-amber-200 active:bg-amber-400`}
+            >
+              Score the show
+            </Link>
           </>
         )}
       </main>

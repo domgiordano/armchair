@@ -11,11 +11,15 @@ locals {
   episodes_lambdas = [
     { name = "state", description = "One episode as the caller may see it, through the gate", path_part = "state", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  seasons_lambdas = [
+    { name = "get", description = "Schedule, roster, judges and headshot credits for one season", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
     { for l in local.scores_lambdas : "scores_${l.name}" => l },
     { for l in local.episodes_lambdas : "episodes_${l.name}" => l },
+    { for l in local.seasons_lambdas : "seasons_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -31,6 +35,7 @@ locals {
     users_me       = ["users:UpdateItem"]
     scores_submit  = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
     episodes_state = ["catalog:Query", "performances:Query", "scores:Query"]
+    seasons_get    = ["catalog:Query"]
   }
 }
 
