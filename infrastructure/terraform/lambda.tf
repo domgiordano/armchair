@@ -26,6 +26,9 @@ locals {
   stats_lambdas = [
     { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  overview_lambdas = [
+    { name = "get", description = "The signed-in home: season progress, the caller's numbers, next episode, reveals, standings", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -35,6 +38,7 @@ locals {
     { for l in local.admin_lambdas : "admin_${l.name}" => l },
     { for l in local.stats_lambdas : "stats_${l.name}" => l },
     { for l in local.groups_lambdas : "groups_${l.name}" => l },
+    { for l in local.overview_lambdas : "overview_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -59,6 +63,7 @@ locals {
     groups_create     = ["groups:PutItem"]
     groups_join       = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine       = ["groups:Query", "users:BatchGetItem"]
+    overview_get      = ["catalog:Query", "performances:Query", "scores:Query"]
   }
 }
 
