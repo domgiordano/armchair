@@ -30,7 +30,13 @@ const SEASON: Season = {
     { id: "carrie-ann-inaba", name: "Carrie Ann Inaba", headshot: null },
     { id: "derek-hough", name: "Derek Hough", headshot: null },
   ],
-  contestants: [],
+  contestants: [
+    {
+      id: "tyler-cameron",
+      keyword: "TYLER",
+      members: [{ name: "Tyler Cameron", role: "celebrity", headshot: null }],
+    },
+  ],
 };
 
 const STATS: Stats = {
@@ -49,9 +55,9 @@ const STATS: Stats = {
     { ep: 4, count: 2, mae: 1, judges: {} },
   ],
   dances: [
-    { ep: 3, key: "tyler-cameron#1", paddle: 6, panelMean: 8, error: 2 },
-    { ep: 4, key: "amber-glenn#1", paddle: 7, panelMean: 8, error: 1 },
-    { ep: 4, key: "tyler-cameron#1", paddle: 9, panelMean: 8, error: 1 },
+    { ep: 3, key: "tyler-cameron#1", paddle: 6, panelMean: 8, error: 2, style: "Tango", judges: { "carrie-ann-inaba": 8, "derek-hough": 8 } },
+    { ep: 4, key: "amber-glenn#1", paddle: 7, panelMean: 8, error: 1, style: "Jive", judges: { "carrie-ann-inaba": 9, "derek-hough": 7 } },
+    { ep: 4, key: "tyler-cameron#1", paddle: 9, panelMean: 8, error: 1, style: "Tango", judges: { "carrie-ann-inaba": 8, "derek-hough": 8 } },
   ],
   others: [
     { sub: "b", count: 3, mae: 0.8 },
@@ -89,20 +95,41 @@ describe("StatsScreen", () => {
     await vi.waitFor(() => expect(getStats).toHaveBeenLastCalledWith("dwts-35", null));
   });
 
-  it("names the closest judge and lists every judge by gap", async () => {
+  it("names the closest judge and bars every judge by gap", async () => {
     render(<StatsScreen />);
     expect(await screen.findByRole("heading", { name: "Closest to Derek Hough" })).toBeTruthy();
-    const terms = screen.getAllByRole("term").map((t) => t.textContent);
-    expect(terms).toEqual(["Derek Hough", "Carrie Ann Inaba"]);
+    const bars = within(screen.getByRole("list", { name: "By judge" })).getAllByRole("listitem");
+    expect(bars.map((b) => b.textContent)).toEqual(["Derek Hough0.50 off · 3", "Carrie Ann Inaba1.50 off · 3"]);
   });
 
-  it("lists each episode", async () => {
+  it("bars each dance style, closest first", async () => {
     render(<StatsScreen />);
-    const list = (await screen.findByRole("heading", { name: "By episode" })).nextElementSibling as HTMLElement;
-    expect(within(list).getAllByRole("listitem").map((li) => li.textContent)).toEqual([
-      "Week 21 dance · 2 off",
-      "Week 32 dances · 1 off",
+    const list = await screen.findByRole("list", { name: "By dance style" });
+    expect(within(list).getAllByRole("listitem").map((b) => b.textContent)).toEqual([
+      "Jive1.00 off · 1",
+      "Tango1.50 off · 2",
     ]);
+  });
+
+  it("draws the season trend with one point per episode", async () => {
+    render(<StatsScreen />);
+    const chart = await screen.findByRole("img", { name: /Points off per episode: W2 2.00, W3 1.00/ });
+    expect(chart.querySelectorAll("circle")).toHaveLength(2);
+  });
+
+  it("compares your paddles with the judges' scores", async () => {
+    render(<StatsScreen />);
+    expect(
+      await screen.findByRole("img", { name: /at each value, you then judges: 6: 33% and 0%, 7: 33% and 17%/ }),
+    ).toBeTruthy();
+  });
+
+  it("lists best calls and biggest misses with the celebrity's name", async () => {
+    render(<StatsScreen />);
+    const misses = await screen.findByRole("list", { name: "Biggest misses" });
+    expect(within(misses).getAllByRole("listitem")[0].textContent).toBe("Tyler CameronW2 · TangoYou 6 · judges 82 off");
+    const best = screen.getByRole("list", { name: "Best calls" });
+    expect(within(best).getAllByRole("listitem")).toHaveLength(2);
   });
 
   it("plots one point per dance on both lines", async () => {
