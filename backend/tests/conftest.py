@@ -46,3 +46,19 @@ def aws(monkeypatch):
         for name in (CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE):
             client.create_table(TableName=name, BillingMode="PAY_PER_REQUEST", **PK_SK)
         yield boto3.resource("dynamodb")
+
+
+ADMIN_EMAILS_PARAM = "/armchair/admin-emails"
+
+
+@pytest.fixture
+def admins(aws, monkeypatch):
+    """The admin list at a placeholder nobody matches, as before the secret is set."""
+    monkeypatch.setenv("ADMIN_EMAILS_PARAM", ADMIN_EMAILS_PARAM)
+    boto3.client("ssm").put_parameter(Name=ADMIN_EMAILS_PARAM, Type="StringList", Value="unset")
+
+
+def set_admins(value: str) -> None:
+    boto3.client("ssm").put_parameter(
+        Name=ADMIN_EMAILS_PARAM, Type="StringList", Value=value, Overwrite=True
+    )

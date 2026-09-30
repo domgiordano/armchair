@@ -15,12 +15,16 @@ locals {
   seasons_lambdas = [
     { name = "get", description = "Schedule, roster, judges and headshot credits for one season", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  admin_lambdas = [
+    { name = "keyword", description = "Set a couple's SMS keyword override", path_part = "keyword", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
     { for l in local.scores_lambdas : "scores_${l.name}" => l },
     { for l in local.episodes_lambdas : "episodes_${l.name}" => l },
     { for l in local.seasons_lambdas : "seasons_${l.name}" => l },
+    { for l in local.admin_lambdas : "admin_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -38,6 +42,7 @@ locals {
     scores_reveal_all = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
     episodes_state    = ["catalog:Query", "performances:Query", "scores:Query"]
     seasons_get       = ["catalog:Query"]
+    admin_keyword     = ["catalog:UpdateItem"]
   }
 }
 
@@ -67,6 +72,16 @@ data "aws_iam_policy_document" "api" {
     content {
       actions   = ["dynamodb:${split(":", statement.value)[1]}"]
       resources = [local.api_tables[split(":", statement.value)[0]]]
+    }
+  }
+
+  # Admin handlers read the admin list on every call (common/admins.py).
+  dynamic "statement" {
+    for_each = startswith(each.key, "admin_") ? [1] : []
+    content {
+      sid       = "ReadAdmins"
+      actions   = ["ssm:GetParameter"]
+      resources = [aws_ssm_parameter.admin_emails.arn]
     }
   }
 

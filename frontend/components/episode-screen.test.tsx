@@ -109,6 +109,26 @@ afterEach(() => {
 });
 
 describe("EpisodeScreen", () => {
+  it("lists only that night's couples in the vote panel while voting is open", async () => {
+    vi.setSystemTime(Date.parse("2026-09-29T20:30:00-04:00"));
+    const out = {
+      id: "conner-leavitt",
+      keyword: "Conner",
+      members: [
+        { ...person("Conner Leavitt"), role: "celebrity" as const },
+        { ...person("Adele Zaikman"), role: "pro" as const },
+      ],
+    };
+    vi.mocked(getSeason).mockResolvedValue({ ...SEASON, contestants: [...SEASON.contestants, out] });
+    render(<EpisodeScreen />);
+
+    const vote = await screen.findByRole("region", { name: "Vote" });
+    expect(within(vote).getAllByRole("link", { name: /^Text/ }).map((a) => a.textContent)).toEqual([
+      "Text Amber to 21523",
+      "Text Tyler to 21523",
+    ]);
+  });
+
   it("opens the latest aired episode and lists its cards", async () => {
     render(<EpisodeScreen />);
     expect(await screen.findByRole("heading", { name: "Yacht Rock" })).toBeTruthy();

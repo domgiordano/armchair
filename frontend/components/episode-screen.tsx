@@ -9,6 +9,7 @@ import { LoadError } from "@/components/load-error";
 import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
 import { SignedIn } from "@/components/signed-in";
+import { VotePanel } from "@/components/vote-panel";
 import { revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
 import { useEpisodeState } from "@/lib/show/use-episode-state";
@@ -111,6 +112,11 @@ function EpisodeView({ season, episode, now }: EpisodeViewProps) {
       reload();
     }
   };
+  // The cards cover exactly the couples still in that night, so the vote list
+  // leaks nothing the scorecard doesn't already show.
+  const couples = [...new Set(data.performances.flatMap((card) => card.contestants))].flatMap(
+    (id) => contestants.get(id) ?? [],
+  );
   const out = (data.eliminated ?? []).map(
     (id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id,
   );
@@ -155,6 +161,7 @@ function EpisodeView({ season, episode, now }: EpisodeViewProps) {
           ))}
         </ul>
       )}
+      <VotePanel episode={episode} tz={season.timezone} couples={couples} now={now} />
     </section>
   );
 }
