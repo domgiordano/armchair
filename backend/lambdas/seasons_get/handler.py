@@ -36,9 +36,7 @@ def handler(event, context):
                 {"ep": int(ep), **_pick(e, "week", "airDate", "start", "end", "theme")}
                 for ep, e in kind("EP#")
             ],
-            "judges": [
-                {"id": jid, **_pick(j, "name", "headshot")} for jid, j in kind("JUDGE#")
-            ],
+            "judges": [{"id": jid, **_pick(j, "name", "headshot")} for jid, j in kind("JUDGE#")],
             "contestants": [
                 {
                     "id": cid,
