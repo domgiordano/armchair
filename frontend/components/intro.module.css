@@ -130,11 +130,10 @@
 }
 
 .wordmark {
-  font-size: clamp(28px, 4.4vmin, 40px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  color: #f1f3fa;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 6.4vmin, 56px);
+  letter-spacing: -0.05em;
+  line-height: 1;
   animation: rise 600ms 3900ms ease-out both;
 }
 

@@ -25,7 +25,7 @@ import { getCurrentUser } from "aws-amplify/auth";
 import { ApiError, getMe } from "@/lib/api/client";
 import { Home } from "./home";
 
-const HEADLINE = { name: "Score every dance. Before the judges do." };
+const HEADLINE = { name: "score every dance. before the judges do." };
 
 function reduceMotion(reduce: boolean) {
   Object.defineProperty(window, "matchMedia", {

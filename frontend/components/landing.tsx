@@ -33,6 +33,8 @@ const noSubscribe = () => () => {};
 const BUTTON =
   "flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light disabled:cursor-not-allowed disabled:opacity-50";
 const GOLD = `${BUTTON} bg-gold text-ink hover:bg-gold-light active:bg-gold-deep`;
+// Archivo Black ships one weight; font-bold here would get a synthesized, smeared bold.
+const DISPLAY = "font-display font-normal tracking-[-0.045em] text-pearl";
 const OUTLINE = `${BUTTON} border border-silver/35 text-silver hover:bg-silver/10 active:bg-silver/15`;
 
 interface LandingProps {
@@ -98,9 +100,13 @@ export function Landing({ status, onSignIn }: LandingProps) {
               <Sparkle className="size-3.5" />
               DANCING WITH THE STARS · SEASON 35
             </p>
-            <h1 className="font-display text-4xl leading-[1.08] font-bold tracking-tight text-pearl sm:text-6xl">
-              Score every dance.{" "}
-              <span className="block text-gold-gradient italic">Before the judges do.</span>
+            <h1 className={`${DISPLAY} text-[2.75rem] leading-[0.95] sm:text-7xl`}>
+              <span className="block">
+                <span className="text-chrome">score every dance.</span>
+              </span>{" "}
+              <span className="block">
+                <span className="text-chrome">before the judges do.</span>
+              </span>
             </h1>
             <p className="max-w-xl text-base leading-relaxed text-silver-dim sm:text-lg">
               Hold up your paddle for each couple as they dance. Scores stay hidden until you submit yours. Then
@@ -124,8 +130,8 @@ export function Landing({ status, onSignIn }: LandingProps) {
           <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 sm:px-6">
             <div className="flex max-w-2xl flex-col gap-3">
               <p className="text-xs font-semibold tracking-[0.2em] text-gold">HOW IT WORKS</p>
-              <h2 className="font-display text-3xl leading-tight font-bold text-pearl sm:text-4xl">
-                Four steps, every dance.
+              <h2 className={`${DISPLAY} text-3xl leading-none sm:text-5xl`}>
+                <span className="text-chrome">four steps, every dance.</span>
               </h2>
               <p className="leading-relaxed text-silver-dim">
                 It runs alongside the live broadcast. Your phone is the paddle; the show is on the big screen.
@@ -137,7 +143,7 @@ export function Landing({ status, onSignIn }: LandingProps) {
 
         <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:pb-24">
           <aside className="flex flex-col gap-2 rounded-xl border border-gold/30 bg-gold/5 p-5 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
-            <h2 className="shrink-0 font-display text-xl font-semibold text-gold-light">Vote for real</h2>
+            <h2 className={`${DISPLAY} shrink-0 text-xl text-gold-light`}>vote for real.</h2>
             <p className="text-sm leading-relaxed text-silver-dim">
               Paddles here are for bragging rights. To vote for your couple on the show, text{" "}
               <span className="font-semibold text-silver tabular-nums">21523</span> during the live Eastern
