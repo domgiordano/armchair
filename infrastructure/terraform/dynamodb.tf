@@ -13,7 +13,7 @@ resource "aws_dynamodb_table" "catalog" {
     type = "S"
   }
   attribute {
-    name = "sk" # META, EP#{nn}, CONTESTANT#{cid}, JUDGE#{jid}, POLLER
+    name = "sk" # META, EP#{nn}, CONTESTANT#{cid}, JUDGE#{jid}
     type = "S"
   }
 
