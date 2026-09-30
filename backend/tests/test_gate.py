@@ -9,10 +9,12 @@ from decimal import Decimal
 import pytest
 
 from lambdas.common.gate import episode_view, visible_scores
+from lambdas.common.groups_dynamo import create as create_group
+from lambdas.common.groups_dynamo import join as join_group
 from lambdas.episodes_state.handler import handler as state_handler
 from lambdas.scores_submit.handler import handler as submit_handler
 from scripts.seed_season import SEASONS, items, write
-from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
+from tests.conftest import CATALOG_TABLE, GROUPS_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
 
@@ -52,11 +54,16 @@ def call(handler, event) -> tuple[int, dict]:
     return res["statusCode"], json.loads(res["body"])
 
 
-def state(sub=A, ep="05", email="viewer@example.com") -> dict:
-    event = authorized_event(
-        path="/episodes/state", sub=sub, email=email, query={"season": "dwts-35", "ep": ep}
-    )
-    status, body = call(state_handler, event)
+def state_call(sub=A, ep="05", email="viewer@example.com", group=None) -> tuple[int, dict]:
+    query = {"season": "dwts-35", "ep": ep}
+    if group:
+        query["group"] = group
+    event = authorized_event(path="/episodes/state", sub=sub, email=email, query=query)
+    return call(state_handler, event)
+
+
+def state(sub=A, ep="05", email="viewer@example.com", group=None) -> dict:
+    status, body = state_call(sub, ep, email, group)
     assert status == 200, body
     return body["data"]
 
@@ -226,7 +233,40 @@ def test_missing_sub_is_401(show):
     assert call(state_handler, event)[0] == 401
 
 
-# The group filter arrives as a user-id set; PR 12 wires it to groups.
+def test_group_filter_through_the_handler(show):
+    gid = create_group(A, "Family")["id"]
+    join_group(B, create_group(C, "Other")["inviteCode"])
+    join_group(B, invite_code(show, gid))
+    score(B, JUDGED, value=8)
+    score(C, JUDGED, value=2)
+
+    locked = state(group=gid)
+    assert set(cards(locked)[JUDGED]) == LOCKED
+    assert B not in json.dumps(locked)
+
+    score(A, JUDGED, value=6)
+    card = cards(state(group=gid))[JUDGED]
+    assert card["others"] == [{"sub": B, "value": 8}]
+    assert card["aggregate"] == {"count": 2, "mean": 7.0}
+    assert cards(state())[JUDGED]["aggregate"]["count"] == 3
+
+
+def test_group_filter_is_403_for_a_non_member(show):
+    gid = create_group(B, "Family")["id"]
+    score(B, JUDGED, value=8)
+    score(A, JUDGED, value=6)
+    status, body = state_call(group=gid)
+    assert status == 403
+    assert body["data"] is None and B not in json.dumps(body)
+
+
+def test_group_that_does_not_exist_is_403(show):
+    assert state_call(group="no-such-group")[0] == 403
+
+
+def invite_code(show, gid) -> str:
+    meta = show.Table(GROUPS_TABLE).get_item(Key={"pk": f"GROUP#{gid}", "sk": "META"})
+    return meta["Item"]["inviteCode"]
 
 
 def _ep5_inputs(show):

@@ -19,6 +19,11 @@ locals {
       invoke_arn = aws_lambda_function.api["seasons_${l.name}"].invoke_arn
     })
   ]
+  groups_endpoints = [
+    for l in local.groups_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["groups_${l.name}"].invoke_arn
+    })
+  ]
   admin_endpoints = [
     for l in local.admin_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["admin_${l.name}"].invoke_arn
@@ -58,5 +63,6 @@ module "api" {
     seasons  = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
     admin    = { path_prefix = "admin", endpoints = local.admin_endpoints }
     stats    = { path_prefix = "stats", endpoints = local.stats_endpoints }
+    groups   = { path_prefix = "groups", endpoints = local.groups_endpoints }
   }
 }

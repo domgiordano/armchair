@@ -10,6 +10,10 @@ vi.mock("next/navigation", () => ({
 vi.mock("@/lib/auth/use-auth", () => ({
   useAuth: () => ({ status: "signedIn", signInWithGoogle: vi.fn(), signOut: vi.fn() }),
 }));
+vi.mock("@/lib/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+  getMyGroups: vi.fn(),
+}));
 vi.mock("@/lib/api/show", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/show")>()),
   getSeason: vi.fn(),
@@ -18,6 +22,7 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
   revealAll: vi.fn(),
 }));
 
+import { getMyGroups } from "@/lib/api/groups";
 import {
   getEpisodeState,
   getSeason,
@@ -101,6 +106,7 @@ beforeEach(() => {
   search = new URLSearchParams();
   vi.mocked(getSeason).mockResolvedValue(SEASON);
   vi.mocked(getEpisodeState).mockResolvedValue(STATE);
+  vi.mocked(getMyGroups).mockResolvedValue([]);
 });
 
 afterEach(() => {
@@ -132,7 +138,7 @@ describe("EpisodeScreen", () => {
   it("opens the latest aired episode and lists its cards", async () => {
     render(<EpisodeScreen />);
     expect(await screen.findByRole("heading", { name: "Yacht Rock" })).toBeTruthy();
-    expect(getEpisodeState).toHaveBeenCalledWith("dwts-35", 4);
+    expect(getEpisodeState).toHaveBeenCalledWith("dwts-35", 4, null);
     expect(screen.getByText("1 of 2 answered")).toBeTruthy();
     expect(screen.getAllByRole("article").map((a) => a.getAttribute("aria-labelledby"))).toEqual([
       "perf-amber-glenn#1",
@@ -191,6 +197,13 @@ describe("EpisodeScreen", () => {
     await vi.waitFor(() => expect(getEpisodeState).toHaveBeenCalledTimes(2));
   });
 
+  it("reloads the episode for the picked group", async () => {
+    vi.mocked(getMyGroups).mockResolvedValue([{ id: "fam", name: "Family", inviteCode: "c".repeat(16), members: [] }]);
+    render(<EpisodeScreen />);
+    fireEvent.change(await screen.findByRole("combobox", { name: "Compare with" }), { target: { value: "fam" } });
+    await vi.waitFor(() => expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 4, "fam"));
+  });
+
   it("hides Reveal all once everything is answered", async () => {
     episodes({ 4: { answered: 2 } });
     render(<EpisodeScreen />);
@@ -223,7 +236,7 @@ describe("catching up", () => {
     fireEvent.click(await screen.findByRole("button", { name: "Go to week 4" }));
 
     expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
-    expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 5);
+    expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 5, null);
   });
 
   it("skips the question when week 3 is finished", async () => {
