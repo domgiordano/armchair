@@ -55,7 +55,7 @@ locals {
     episodes_state    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     seasons_get       = ["catalog:Query"]
     admin_keyword     = ["catalog:UpdateItem"]
-    stats_get         = ["catalog:Query", "performances:Query", "scores:Query"]
+    stats_get         = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     groups_create     = ["groups:PutItem"]
     groups_join       = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine       = ["groups:Query", "users:BatchGetItem"]
