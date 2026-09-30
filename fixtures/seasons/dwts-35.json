@@ -1,0 +1,569 @@
+{
+  "show": "dwts",
+  "season": 35,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 35",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "derek-hough",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "derek-hough",
+      "name": "Derek Hough",
+      "aliases": [
+        "Derek Hough"
+      ],
+      "headshot": {
+        "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+        "author": "Kevin Paul",
+        "license": "CC BY 4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+      }
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "airDate": "2026-09-15",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Premiere",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1
+    },
+    {
+      "ep": 2,
+      "week": 1,
+      "airDate": "2026-09-16",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Premiere",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1
+    },
+    {
+      "ep": 3,
+      "week": 2,
+      "airDate": "2026-09-22",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Viral Hits",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1
+    },
+    {
+      "ep": 4,
+      "week": 3,
+      "airDate": "2026-09-29",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Yacht Rock",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1
+    },
+    {
+      "ep": 5,
+      "week": 4,
+      "airDate": "2026-10-06",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Mariah Carey",
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1
+    },
+    {
+      "ep": 6,
+      "week": 5,
+      "airDate": "2026-10-13",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Super Bowl",
+      "panel": null,
+      "dancesPerCouple": null
+    },
+    {
+      "ep": 7,
+      "week": 6,
+      "airDate": "2026-10-20",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Dedication",
+      "panel": null,
+      "dancesPerCouple": null
+    },
+    {
+      "ep": 8,
+      "week": 7,
+      "airDate": "2026-10-27",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Horror Movie",
+      "panel": null,
+      "dancesPerCouple": null
+    },
+    {
+      "ep": 9,
+      "week": 8,
+      "airDate": "2026-11-02",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Disney",
+      "panel": null,
+      "dancesPerCouple": null
+    },
+    {
+      "ep": 10,
+      "week": 9,
+      "airDate": "2026-11-10",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Grammy",
+      "panel": null,
+      "dancesPerCouple": null
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "airDate": "2026-11-17",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Semi-Finals",
+      "panel": null,
+      "dancesPerCouple": null
+    },
+    {
+      "ep": 12,
+      "week": 11,
+      "airDate": "2026-11-24",
+      "start": "20:00",
+      "end": "22:00",
+      "theme": "Finale",
+      "panel": null,
+      "dancesPerCouple": null
+    }
+  ],
+  "contestants": [
+    {
+      "id": "conner-leavitt",
+      "aliases": [
+        "Conner L."
+      ],
+      "members": [
+        {
+          "name": "Conner Leavitt",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Adele Zaikman",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "sarah-jane-nader",
+      "aliases": [
+        "Sarah Jane"
+      ],
+      "members": [
+        {
+          "name": "Sarah Jane Nader",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Hailey Bills",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "giada-de-laurentiis",
+      "aliases": [
+        "Giada"
+      ],
+      "members": [
+        {
+          "name": "Giada De Laurentiis",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Giada_De_Laurentiis_2010.jpg",
+            "author": "kennejima",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Giada_De_Laurentiis_2010.jpg"
+          }
+        },
+        {
+          "name": "Alan Bersten",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "taylor-hanson",
+      "aliases": [
+        "Taylor"
+      ],
+      "members": [
+        {
+          "name": "Taylor Hanson",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Hanson_(33424899242).jpg",
+            "author": "friedoxygen",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hanson_(33424899242).jpg"
+          }
+        },
+        {
+          "name": "Britt Stewart",
+          "role": "pro",
+          "headshot": {
+            "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "author": "CaseyJNewell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
+          }
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "tatyana-ali",
+      "aliases": [
+        "Tatyana"
+      ],
+      "members": [
+        {
+          "name": "Tatyana Ali",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Streamy_Awards_Photo_1302_(4513297565).jpg",
+            "author": "The Bui Brothers",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Streamy_Awards_Photo_1302_(4513297565).jpg"
+          }
+        },
+        {
+          "name": "Jan Ravnik",
+          "role": "pro",
+          "headshot": {
+            "file": "Jan_Ravnik_at_Tribeca_Film_Festival_2026-1.jpg",
+            "author": "CaseyJNewell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jan_Ravnik_at_Tribeca_Film_Festival_2026-1.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tyler-cameron",
+      "aliases": [
+        "Tyler"
+      ],
+      "members": [
+        {
+          "name": "Tyler Cameron",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sharna Burgess",
+          "role": "pro",
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "jenna-dewan",
+      "aliases": [
+        "Jenna"
+      ],
+      "members": [
+        {
+          "name": "Jenna Dewan",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Jenna_Dewan_at_San_Diego_Comic_Con_2026-2.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jenna_Dewan_at_San_Diego_Comic_Con_2026-2.jpg"
+          }
+        },
+        {
+          "name": "Val Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ]
+    },
+    {
+      "id": "ezra-frech",
+      "aliases": [
+        "Ezra"
+      ],
+      "members": [
+        {
+          "name": "Ezra Frech",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Ezra_Frech_Milan_2026.jpg",
+            "author": "US Embassy Italy",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ezra_Frech_Milan_2026.jpg"
+          }
+        },
+        {
+          "name": "Daniella Karagach",
+          "role": "pro",
+          "headshot": null
+        }
+      ]
+    },
+    {
+      "id": "amber-glenn",
+      "aliases": [
+        "Amber"
+      ],
+      "members": [
+        {
+          "name": "Amber Glenn",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Amber_Glenn_in_2026.jpg",
+            "author": "SpiritedMichelle",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Amber_Glenn_in_2026.jpg"
+          }
+        },
+        {
+          "name": "Pasha Pashkov",
+          "role": "pro",
+          "headshot": {
+            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "author": "Panache Star Dancesport",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "maura-higgins",
+      "aliases": [
+        "Maura"
+      ],
+      "members": [
+        {
+          "name": "Maura Higgins",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Maura_Higgins_attending_the_World_premier_of_\"Argylle\"_in_London_,_January_2024_(cropped).jpg",
+            "author": "Daltoncitys",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maura_Higgins_attending_the_World_premier_of_%22Argylle%22_in_London_,_January_2024_(cropped).jpg"
+          }
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ciara-miller",
+      "aliases": [
+        "Ciara"
+      ],
+      "members": [
+        {
+          "name": "Ciara Miller",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Brandon Armstrong",
+          "role": "pro",
+          "headshot": null
+        }
+      ]
+    },
+    {
+      "id": "jackson-olson",
+      "aliases": [
+        "Jackson"
+      ],
+      "members": [
+        {
+          "name": "Jackson Olson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "guillermo-rodriguez",
+      "aliases": [
+        "Guillermo"
+      ],
+      "members": [
+        {
+          "name": "Guillermo Rodriguez",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "harry-shum-jr",
+      "aliases": [
+        "Harry"
+      ],
+      "members": [
+        {
+          "name": "Harry Shum Jr.",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Harry_Shum_Jr._podczas_San_Diego_ComicCon_2017.jpg",
+            "author": "Xbradscookiex",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Harry_Shum_Jr._podczas_San_Diego_ComicCon_2017.jpg"
+          }
+        },
+        {
+          "name": "Jenna Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ]
+    },
+    {
+      "id": "julia-stiles",
+      "aliases": [
+        "Julia"
+      ],
+      "members": [
+        {
+          "name": "Julia Stiles",
+          "role": "celebrity",
+          "headshot": {
+            "file": "Julia_Stiles_by_David_Shankbone_cropped.jpg",
+            "author": "David Shankbone",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julia_Stiles_by_David_Shankbone_cropped.jpg"
+          }
+        },
+        {
+          "name": "Ezra Sosa",
+          "role": "pro",
+          "headshot": null
+        }
+      ]
+    },
+    {
+      "id": "connor-wood",
+      "aliases": [
+        "Connor",
+        "Connor W."
+      ],
+      "members": [
+        {
+          "name": "Connor Wood",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Rylee Arnold",
+          "role": "pro",
+          "headshot": null
+        }
+      ]
+    }
+  ]
+}
