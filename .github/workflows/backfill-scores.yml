@@ -1,0 +1,32 @@
+name: Backfill Scores
+
+# Invokes the poller with {"backfill": true}: every episode that aired before
+# today (ET) is published with its judges' values confirmed at once, plus its
+# results. Idempotent, so re-running is safe.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # mint the OIDC token traded for the deploy role
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Invoke
+        run: |
+          aws lambda invoke --function-name armchair-cron-poll-wiki \
+            --cli-binary-format raw-in-base64-out --payload '{"backfill": true}' \
+            --log-type Tail --query LogResult --output text out.json | base64 -d | tail -c 2000
+          cat out.json
+          # A handler exception still returns 200 from Invoke; the error is in the body.
+          ! grep -q '"errorMessage"' out.json

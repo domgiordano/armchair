@@ -1,5 +1,5 @@
-# Wikipedia poller. Log-only until PR 10, so its role can write logs and
-# nothing else. EventBridge Scheduler rather than the estate's usual
+# Wikipedia poller: publishes judges' scores to performances and results to
+# catalog. EventBridge Scheduler rather than the estate's usual
 # aws_cloudwatch_event_rule because rules have no timezone: this one follows
 # America/New_York through DST on 11/1 with no edit.
 
@@ -33,10 +33,24 @@ data "aws_iam_policy_document" "poll_wiki" {
     actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
     resources = ["${aws_cloudwatch_log_group.poll_wiki.arn}:*"]
   }
+
+  # Reads the season and each episode's stored values; writes only through
+  # conditional UpdateItem. No Put, no Delete.
+  statement {
+    sid       = "Tables"
+    actions   = ["dynamodb:Query", "dynamodb:UpdateItem"]
+    resources = [aws_dynamodb_table.catalog.arn, aws_dynamodb_table.performances.arn]
+  }
+
+  statement {
+    sid       = "UseKey"
+    actions   = ["kms:Decrypt", "kms:Encrypt", "kms:GenerateDataKey"]
+    resources = [aws_kms_key.app.arn]
+  }
 }
 
 resource "aws_iam_role_policy" "poll_wiki" {
-  name   = "logs"
+  name   = "poll-wiki"
   role   = aws_iam_role.poll_wiki.id
   policy = data.aws_iam_policy_document.poll_wiki.json
 }
@@ -44,7 +58,7 @@ resource "aws_iam_role_policy" "poll_wiki" {
 resource "aws_lambda_function" "poll_wiki" {
   # Folder lambdas/cron_poll_wiki: deploy-backend.yml maps underscores to dashes.
   function_name = local.poll_wiki_name
-  description   = "Dry run: fetch the S35 Wikipedia page, parse the current week, log it"
+  description   = "Publish judges' scores and results from the S35 Wikipedia page"
   role          = aws_iam_role.poll_wiki.arn
   handler       = "handler.handler"
   runtime       = var.lambda_runtime
@@ -54,6 +68,13 @@ resource "aws_lambda_function" "poll_wiki" {
 
   filename         = "./templates/lambda_stub.zip"
   source_code_hash = filebase64sha256("./templates/lambda_stub.zip")
+
+  environment {
+    variables = {
+      CATALOG_TABLE      = aws_dynamodb_table.catalog.id
+      PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
+    }
+  }
 
   depends_on = [aws_cloudwatch_log_group.poll_wiki]
 
@@ -99,8 +120,8 @@ resource "aws_iam_role_policy" "scheduler" {
 
 resource "aws_scheduler_schedule" "poll_wiki" {
   name                         = local.poll_wiki_name
-  description                  = "Every minute 8:00-10:59 pm ET on show nights"
-  schedule_expression          = "cron(* 20-22 ? * MON,TUE *)"
+  description                  = "Every minute 8:00-11:59 pm ET on show nights"
+  schedule_expression          = "cron(* 20-23 ? * MON,TUE *)"
   schedule_expression_timezone = "America/New_York"
 
   flexible_time_window {

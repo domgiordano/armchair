@@ -55,13 +55,12 @@ Five tables, all `{app}-*`, PAY_PER_REQUEST, KMS, PITR, deletion protection, no 
 
 | Table | pk | sk | Items |
 |---|---|---|---|
-| `catalog` | `SEASON#dwts#35` | `META` | wiki page title, default judge order, air timezone `America/New_York` |
+| `catalog` | `SEASON#dwts#35` | `META` | wiki page title, default judge order, air timezone `America/New_York`; the poller's `lastRevid`, `lastRunAt`, `pending` (PR 10) |
 | | | `EP#05` | `week`, `airDate`, `start`/`end` local times, `theme`, `panel` (ordered judge ids, which sets the seat count), `dancesPerCouple` (default 1), `results` (eliminated ids, per-couple totals and bonus; read only through the gate) |
 | | | `CONTESTANT#{cid}` | `members[]` (`{name, role: celebrity|pro, headshot: {file, author, license, sourceUrl} or null}`), `aliases[]` (`Connor W.`, `Conner L.`), `keyword` (derived), `keywordOverride`, `eliminatedEp` (read only through the gate) |
 | | | `JUDGE#{jid}` | name, aliases, headshot. Guest judges get auto-created by the poller from the judge-order line |
-| | | `POLLER` | `lastRevid`, `lastRunAt` (added in PR 10) |
 | `performances` | `EP#dwts#35#05` | `PERF#{cid}#{n}` | `contestants[]` (more than one means a team dance), `rateable`, `style`, `song`, `judges: {jid: {value: Decimal, state: provisional|confirmed, firstSeenAt, rev}}`, `bonus` |
-| `scores` | `EP#dwts#35#05` | `PERF#{cid}#{n}#USER#{sub}` | `value` (int 1-10) or `skipped: true`, `submittedAt`. Written with `attribute_not_exists(sk)` |
+| `scores` | `EP#dwts#35#05` | `PERF#{cid}#{n}#USER#{sub}` | `value` (int 1-10) or `forfeit: true` ("Reveal without scoring"), `submittedAt`. Written with `attribute_not_exists(sk)` |
 | `users` | `sub` | — | `name`, `picture`, `avatarKind` (`google` or `initials` in the MVP), `createdAt`, `lastSeenAt` |
 | `groups` | `GROUP#{gid}` | `META` / `MEMBER#{sub}` | name, `createdBy`, `inviteCode` / `joinedAt` |
 | | `USER#{sub}` | `GROUP#{gid}` | reverse index for "my groups". Written in the same `TransactWriteItems` as `MEMBER#` |
@@ -73,7 +72,7 @@ Five tables, all `{app}-*`, PAY_PER_REQUEST, KMS, PITR, deletion protection, no 
 |---|---|
 | Season roster, schedule, panel, keywords | one Query on `catalog` pk `SEASON#dwts#35` (about 200 items, well under 1 MB) |
 | Episode state for the caller | Query `performances` and `scores` on pk `EP#...`, then filter in memory through the gate |
-| Submit a score | conditional Put on `scores`, plus an upsert of the `PERF#` key-only item if the poller hasn't created it yet |
+| Submit a score | Query `catalog` and `performances` to check the key is rateable, then a conditional Put on `scores` |
 | Caller's groups, a group's members | Query `groups` pk `USER#{sub}` or `GROUP#{gid}` |
 | Join by link | GetItem `INVITE#{code}`, then a transaction writing `MEMBER#` and `USER#...GROUP#` |
 | Season stats for a user | about 11 episode Queries on `scores` + `performances`. Add a `sub` GSI only once global users make this slow |
@@ -157,7 +156,7 @@ Sizes count hand-written logic only; HCL copied from smirnoff with renames count
 | 1 | xomware-infrastructure | OIDC plan/apply roles for `domgiordano/armchair` | ~0 (copy of `oidc_smirnoff_terraform.tf`, ~140 HCL) | M1 | **CP-10/6** |
 | 2 | armchair | Scaffold: workflows, Terraform base (state, variables, web hosting, KMS, layer, deploy role), common layer (`api`, `logger`), blank mobile shell page, `CLAUDE.md` | ~50 | 1, M3 | **CP-10/6** |
 | 3 | armchair | Wikipedia week parser + golden fixtures (pure functions: `parse_week`, alias resolution, sanity check) | ~200 | repo exists (can merge before 2; CI is `pytest` only) | **CP-10/6** |
-| 4 | armchair | Poller dry run: `cron_poll_wiki` + `aws_scheduler_schedule` (`cron(* 20-22 ? * MON,TUE *)`, `America/New_York`) + scheduler role. Fetches, parses, logs structured JSON per tick. No writes | ~100 | 2, 3 | **CP-10/6** (merged and applied by Mon 10/5) |
+| 4 | armchair | Poller dry run: `cron_poll_wiki` + `aws_scheduler_schedule` (`cron(* 20-23 ? * MON,TUE *)`, `America/New_York`) + scheduler role. Fetches, parses, logs structured JSON per tick. No writes | ~100 | 2, 3 | **CP-10/6** (merged and applied by Mon 10/5) |
 | 5 | xomware-infrastructure | `armchair-users` pool + Google IdP + `armchair-dwts-client` + prefix domain + SSM exports | ~0 (~150 HCL) | M2 | **CP-10/13** (start in parallel with 1-4) |
 | 6 | armchair | Catalog: `catalog` table, `common/keywords.py` + tests, `seed_season.py` (S35 roster, aliases, judges, episodes 1-11 with week, date, theme and panel; Commons headshot metadata; uploads headshots to `s3://<site-bucket>/headshots/`) | ~180 | 2, 3 | **CP-10/13** |
 | 7 | armchair | Sign in and see yourself: `data_cognito.tf`, API module + ACM + `api.` record + WAF association + `/armchair/api-url` SSM, `users` table, `users_me` (upserts name and picture from claims), Amplify config, `/auth/callback`, avatar with initials fallback, deploy-frontend SSM reads | ~150 | 2, 5 | **CP-10/13** |

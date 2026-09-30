@@ -18,6 +18,8 @@ locals {
     CORS_ALLOW_ORIGIN  = local.cors_allowed_origins
     USERS_TABLE        = aws_dynamodb_table.users.id
     CATALOG_TABLE      = aws_dynamodb_table.catalog.id
+    PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
+    SCORES_TABLE       = aws_dynamodb_table.scores.id
     ADMIN_EMAILS_PARAM = aws_ssm_parameter.admin_emails.name
   }
 }

@@ -1,50 +1,46 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
-vi.mock("@/lib/api/client", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/client")>()),
-  getVoting: vi.fn(),
-}));
-
-import { ApiError, getVoting, type Voting } from "@/lib/api/client";
+import type { Contestant, Episode } from "@/lib/api/show";
 import { VotePanel } from "./vote-panel";
 
-const VOTING: Voting = {
-  timezone: "America/New_York",
-  episodes: [
-    { ep: 5, airDate: "2026-10-06", start: "20:00", end: "22:00" },
-    { ep: 6, airDate: "2026-10-13", start: "20:00", end: "22:00" },
+const EPISODE: Episode = { ep: 6, week: 5, airDate: "2026-10-13", start: "20:00", end: "22:00", theme: null };
+const couple = (id: string, keyword: string, celebrity: string, pro: string): Contestant => ({
+  id,
+  keyword,
+  members: [
+    { name: celebrity, role: "celebrity", headshot: null },
+    { name: pro, role: "pro", headshot: null },
   ],
-  couples: [
-    { cid: "amber-glenn", celebrity: "Amber Glenn", pro: "Pasha Pashkov", keyword: "Amber" },
-    { cid: "connor-wood", celebrity: "Connor Wood", pro: "Rylee Arnold", keyword: "Connor W" },
-  ],
-};
+});
+const COUPLES = [
+  couple("amber-glenn", "Amber", "Amber Glenn", "Pasha Pashkov"),
+  couple("connor-wood", "Connor W", "Connor Wood", "Rylee Arnold"),
+];
+
+const renderAt = (iso: string) =>
+  render(<VotePanel episode={EPISODE} tz="America/New_York" couples={COUPLES} now={Date.parse(iso)} />);
+const LIVE = "2026-10-13T20:30:00-04:00";
 
 // jsdom can't follow an sms: link and logs about it; the React handler still runs.
 const stopNavigation = (e: MouseEvent) => e.preventDefault();
 
 beforeEach(() => {
-  vi.useFakeTimers({ toFake: ["Date"] });
-  vi.mocked(getVoting).mockResolvedValue(VOTING);
   document.addEventListener("click", stopNavigation, true);
 });
 
 afterEach(() => {
-  vi.useRealTimers();
-  vi.clearAllMocks();
   localStorage.clear();
   document.removeEventListener("click", stopNavigation, true);
 });
 
-const row = (name: string) => screen.getByText(new RegExp(`^${name} and`)).closest("li") as HTMLElement;
+const row = (name: string) => screen.getByText(new RegExp(`^${name} &`)).closest("li") as HTMLElement;
 
 describe("VotePanel", () => {
-  it("offers an SMS link per couple while the live window is open, and tallies taps", async () => {
-    vi.setSystemTime(new Date("2026-10-13T20:30:00-04:00"));
-    render(<VotePanel />);
+  it("offers an SMS link per couple while voting is open, and tallies taps", () => {
+    renderAt(LIVE);
 
-    const link = await screen.findByRole("link", { name: "Text Connor W to 21523" });
+    const link = screen.getByRole("link", { name: "Text Connor W to 21523" });
     expect(link.getAttribute("href")).toBe("sms:21523?body=Connor%20W");
     expect(screen.getByRole("link", { name: "dwtsvote.abc.com" }).getAttribute("href")).toBe(
       "https://dwtsvote.abc.com",
@@ -60,53 +56,39 @@ describe("VotePanel", () => {
     expect(within(row("Connor Wood")).getByText("1 of 10 sent")).toBeTruthy();
   });
 
-  it("stops offering the link at 10 texts", async () => {
-    vi.setSystemTime(new Date("2026-10-13T20:30:00-04:00"));
+  it("stops offering the link at 10 texts", () => {
     localStorage.setItem("armchair:votes:6", JSON.stringify({ "amber-glenn": 9 }));
-    render(<VotePanel />);
+    renderAt(LIVE);
 
-    fireEvent.click(await screen.findByRole("link", { name: "Text Amber to 21523" }));
+    fireEvent.click(screen.getByRole("link", { name: "Text Amber to 21523" }));
     expect(within(row("Amber Glenn")).getByText("10 of 10 sent")).toBeTruthy();
     expect(within(row("Amber Glenn")).getByText("Done")).toBeTruthy();
     expect(screen.queryByRole("link", { name: "Text Amber to 21523" })).toBeNull();
   });
 
-  it("starts a new episode's tally at 0", async () => {
-    vi.setSystemTime(new Date("2026-10-13T20:30:00-04:00"));
+  it("starts a new episode's tally at 0", () => {
     localStorage.setItem("armchair:votes:5", JSON.stringify({ "amber-glenn": 10 }));
-    render(<VotePanel />);
+    renderAt(LIVE);
 
-    await screen.findByRole("link", { name: "Text Amber to 21523" });
     expect(within(row("Amber Glenn")).getByText("0 of 10 sent")).toBeTruthy();
   });
 
-  it("shows the closed state and the next live window outside it", async () => {
-    vi.setSystemTime(new Date("2026-10-13T22:30:00-04:00"));
-    vi.mocked(getVoting).mockResolvedValue({
-      ...VOTING,
-      episodes: [...VOTING.episodes, { ep: 7, airDate: "2026-10-20", start: "20:00", end: "22:00" }],
-    });
-    render(<VotePanel />);
+  it("says when voting opens earlier on the air date", () => {
+    renderAt("2026-10-13T18:00:00-04:00");
 
-    expect(await screen.findByText("Voting is closed.")).toBeTruthy();
-    expect(screen.getByText(/The next one starts Tue, Oct 20 at 8:00 pm Eastern\./)).toBeTruthy();
+    expect(screen.getByText(/Voting opens at 8:00 pm Eastern/)).toBeTruthy();
     expect(screen.queryByRole("link", { name: /^Text/ })).toBeNull();
   });
 
-  it("says the season is over after the last episode", async () => {
-    vi.setSystemTime(new Date("2026-10-14T12:00:00-04:00"));
-    render(<VotePanel />);
+  it("is closed for a delayed or West Coast viewer after the live window", () => {
+    renderAt("2026-10-13T20:30:00-07:00");
 
-    expect(await screen.findByText("Voting is over for this season.")).toBeTruthy();
+    expect(screen.getByText("Voting is closed.")).toBeTruthy();
+    expect(screen.queryByRole("link", { name: /^Text/ })).toBeNull();
   });
 
-  it("offers a retry when the request fails", async () => {
-    vi.setSystemTime(new Date("2026-10-13T20:30:00-04:00"));
-    vi.mocked(getVoting).mockRejectedValueOnce(new ApiError(500, "Internal error"));
-    render(<VotePanel />);
-
-    expect(await screen.findByText("Could not load voting: Internal error")).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
-    expect(await screen.findByRole("link", { name: "Text Amber to 21523" })).toBeTruthy();
+  it("renders nothing on another day", () => {
+    const { container } = renderAt("2026-10-14T20:30:00-04:00");
+    expect(container.innerHTML).toBe("");
   });
 });

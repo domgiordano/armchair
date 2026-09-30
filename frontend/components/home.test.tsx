@@ -19,7 +19,6 @@ vi.mock("aws-amplify/utils", () => ({ Hub: { listen: vi.fn(() => () => {}) } }))
 vi.mock("@/lib/api/client", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/client")>()),
   getMe: vi.fn(),
-  getVoting: vi.fn(() => new Promise(() => {})),
 }));
 
 import { getCurrentUser, signInWithRedirect, signOut } from "aws-amplify/auth";

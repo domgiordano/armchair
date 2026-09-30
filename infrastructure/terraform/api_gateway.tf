@@ -4,13 +4,21 @@ locals {
       invoke_arn = aws_lambda_function.api["users_${l.name}"].invoke_arn
     })
   ]
-
+  scores_endpoints = [
+    for l in local.scores_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["scores_${l.name}"].invoke_arn
+    })
+  ]
+  episodes_endpoints = [
+    for l in local.episodes_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["episodes_${l.name}"].invoke_arn
+    })
+  ]
   seasons_endpoints = [
     for l in local.seasons_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["seasons_${l.name}"].invoke_arn
     })
   ]
-
   admin_endpoints = [
     for l in local.admin_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["admin_${l.name}"].invoke_arn
@@ -39,8 +47,10 @@ module "api" {
   data_trace_enabled = false
 
   services = {
-    users   = { path_prefix = "users", endpoints = local.users_endpoints }
-    seasons = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
-    admin   = { path_prefix = "admin", endpoints = local.admin_endpoints }
+    users    = { path_prefix = "users", endpoints = local.users_endpoints }
+    scores   = { path_prefix = "scores", endpoints = local.scores_endpoints }
+    episodes = { path_prefix = "episodes", endpoints = local.episodes_endpoints }
+    seasons  = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
+    admin    = { path_prefix = "admin", endpoints = local.admin_endpoints }
   }
 }

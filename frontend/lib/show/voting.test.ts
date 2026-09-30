@@ -1,31 +1,43 @@
 import { afterEach, describe, expect, it } from "vitest";
 
-import { airTime, readVotes, smsHref, voteWindow, writeVotes, type AirEpisode } from "./voting";
+import type { Episode } from "@/lib/api/show";
+import { clockTime, readVotes, smsHref, votePhase, writeVotes } from "./voting";
 
 const ET = "America/New_York";
-const ep = (n: number, airDate: string): AirEpisode => ({ ep: n, airDate, start: "20:00", end: "22:00" });
-const EPISODES = [ep(5, "2026-10-06"), ep(6, "2026-10-13"), ep(9, "2026-11-02"), ep(12, "2026-11-24")];
+const ep = (n: number, airDate: string): Episode => ({
+  ep: n,
+  week: n,
+  airDate,
+  start: "20:00",
+  end: "22:00",
+  theme: null,
+});
+const TUE = ep(6, "2026-10-13");
+const MON = ep(9, "2026-11-02");
 
-const at = (iso: string) => voteWindow(EPISODES, ET, new Date(iso));
+const at = (e: Episode, iso: string) => votePhase(e, ET, new Date(iso).getTime());
 
-describe("voteWindow", () => {
+describe("votePhase", () => {
   it("opens at 8:00 pm ET on Tue 10/13 (EDT) and closes at the catalog's end time", () => {
-    expect(at("2026-10-13T19:59:00-04:00")).toEqual({ open: false, next: EPISODES[1] });
-    expect(at("2026-10-13T20:00:00-04:00")).toEqual({ open: true, episode: EPISODES[1] });
-    expect(at("2026-10-13T21:59:00-04:00")).toEqual({ open: true, episode: EPISODES[1] });
-    expect(at("2026-10-13T22:00:00-04:00")).toEqual({ open: false, next: EPISODES[2] });
+    expect(at(TUE, "2026-10-13T00:00:00-04:00")).toBe("before");
+    expect(at(TUE, "2026-10-13T19:59:00-04:00")).toBe("before");
+    expect(at(TUE, "2026-10-13T20:00:00-04:00")).toBe("open");
+    expect(at(TUE, "2026-10-13T21:59:00-04:00")).toBe("open");
+    expect(at(TUE, "2026-10-13T22:00:00-04:00")).toBe("closed");
+    expect(at(TUE, "2026-10-13T23:59:00-04:00")).toBe("closed");
+  });
+
+  it("is null on any other day", () => {
+    expect(at(TUE, "2026-10-12T23:59:00-04:00")).toBeNull();
+    expect(at(TUE, "2026-10-14T00:00:00-04:00")).toBeNull();
+    expect(at(TUE, "2026-10-14T20:30:00-04:00")).toBeNull();
   });
 
   it("follows the clock change for Mon 11/2 (EST)", () => {
     // 8:30 pm EDT would be 00:30Z; after the 11/1 change 8:30 pm ET is 01:30Z.
-    expect(at("2026-11-03T00:30:00Z")).toEqual({ open: false, next: EPISODES[2] });
-    expect(at("2026-11-03T01:30:00Z")).toEqual({ open: true, episode: EPISODES[2] });
-    expect(at("2026-11-03T03:00:00Z")).toEqual({ open: false, next: EPISODES[3] });
-  });
-
-  it("is closed on a non-air day and after the finale", () => {
-    expect(at("2026-10-14T20:30:00-04:00")).toEqual({ open: false, next: EPISODES[2] });
-    expect(at("2026-11-24T22:05:00-05:00")).toEqual({ open: false, next: null });
+    expect(at(MON, "2026-11-03T00:30:00Z")).toBe("before");
+    expect(at(MON, "2026-11-03T01:30:00Z")).toBe("open");
+    expect(at(MON, "2026-11-03T03:00:00Z")).toBe("closed");
   });
 
   describe("on a Pacific-time device", () => {
@@ -38,16 +50,18 @@ describe("voteWindow", () => {
       process.env.TZ = "America/Los_Angeles";
       expect(new Date(2026, 9, 13, 17, 30).getTimezoneOffset()).toBe(420);
 
-      expect(voteWindow(EPISODES, ET, new Date(2026, 9, 13, 17, 30))).toEqual({ open: true, episode: EPISODES[1] });
-      expect(voteWindow(EPISODES, ET, new Date(2026, 9, 13, 20, 30))).toEqual({ open: false, next: EPISODES[2] });
+      expect(votePhase(TUE, ET, new Date(2026, 9, 13, 17, 30).getTime())).toBe("open");
+      expect(votePhase(TUE, ET, new Date(2026, 9, 13, 20, 30).getTime())).toBe("closed");
+      expect(votePhase(TUE, ET, new Date(2026, 9, 13, 21, 30).getTime())).toBeNull();
     });
   });
 });
 
-describe("airTime", () => {
-  it("formats the catalog's air-zone date and start", () => {
-    expect(airTime(EPISODES[1])).toBe("Tue, Oct 13 at 8:00 pm");
-    expect(airTime(EPISODES[2])).toBe("Mon, Nov 2 at 8:00 pm");
+describe("clockTime", () => {
+  it("formats the catalog's 24-hour times", () => {
+    expect(clockTime("20:00")).toBe("8:00 pm");
+    expect(clockTime("00:05")).toBe("12:05 am");
+    expect(clockTime("12:30")).toBe("12:30 pm");
   });
 });
 

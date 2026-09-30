@@ -1,7 +1,5 @@
 import { fetchAuthSession } from "aws-amplify/auth";
 
-import type { AirEpisode } from "@/lib/voting";
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 interface Envelope<T> {
@@ -56,18 +54,3 @@ export interface Me {
 }
 
 export const getMe = () => request<Me>("/users/me");
-
-export interface Couple {
-  cid: string;
-  celebrity: string;
-  pro: string;
-  keyword: string;
-}
-
-export interface Voting {
-  timezone: string;
-  episodes: AirEpisode[];
-  couples: Couple[];
-}
-
-export const getVoting = () => request<Voting>("/seasons/vote");
