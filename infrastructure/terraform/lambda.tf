@@ -19,6 +19,11 @@ locals {
     { name = "create", description = "Start a group with the caller as its first member", path_part = "create", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "join", description = "Join a group by invite code", path_part = "join", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "mine", description = "The caller's groups with member names and avatars", path_part = "mine", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "invite", description = "Invite a friend into a group", path_part = "invite", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "respond", description = "Accept or decline a group invite", path_part = "respond", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "manage", description = "Owner: rename, remove a member, approval, answer join requests", path_part = "manage", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "delete", description = "Owner: delete a group for everyone", path_part = "delete", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "leave", description = "Leave a group", path_part = "leave", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
   seasons_lambdas = [
     { name = "get", description = "Schedule, roster, judges and headshot credits for one season", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
@@ -79,6 +84,7 @@ locals {
     admin_keyword      = ["catalog:UpdateItem"]
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     groups_create      = ["groups:PutItem"]
+    groups_join        = ["groups:GetItem", "groups:UpdateItem", "groups:PutItem", "social:PutItem"]
     groups_join        = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine        = ["groups:Query", "users:BatchGetItem"]
     overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
@@ -90,6 +96,11 @@ locals {
     friends_search     = ["social:Query"]
     notifications_list = ["social:Query", "users:BatchGetItem"]
     notifications_read = ["social:Query", "social:UpdateItem"]
+    groups_invite      = ["groups:GetItem", "groups:PutItem", "social:GetItem", "social:PutItem"]
+    groups_respond     = ["groups:GetItem", "groups:DeleteItem", "groups:UpdateItem", "social:UpdateItem"]
+    groups_manage      = ["groups:GetItem", "groups:UpdateItem", "groups:DeleteItem", "social:PutItem", "social:UpdateItem"]
+    groups_delete      = ["groups:GetItem", "groups:Query", "groups:BatchWriteItem", "groups:DeleteItem", "social:DeleteItem"]
+    groups_leave       = ["groups:GetItem", "groups:DeleteItem"]
     users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     scores_submit      = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
     scores_reveal_all  = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]

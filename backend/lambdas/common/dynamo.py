@@ -64,3 +64,21 @@ def update(env_var: str, key: dict, values: dict, condition: str | None = None) 
             raise
         return False
     return True
+
+
+def transact(items: list[tuple[str, dict]], env_var: str) -> bool:
+    """
+    One TransactWriteItems of (op, args) pairs. Args without a TableName go to
+    `env_var`'s table. False when a condition failed, so the caller can re-read
+    and report.
+    """
+    name = table(env_var).name
+    try:
+        resource().meta.client.transact_write_items(
+            TransactItems=[{op: {"TableName": name, **args}} for op, args in items]
+        )
+    except ClientError as e:
+        if e.response["Error"]["Code"] != "TransactionCanceledException":
+            raise
+        return False
+    return True

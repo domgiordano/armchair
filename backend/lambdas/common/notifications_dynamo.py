@@ -44,7 +44,8 @@ def put(to: str, kind: str, frm: str, **group: str) -> tuple[str, tuple[str, dic
     }
     if kind in ACTIONABLE:
         item["state"] = "pending"
-    return sk, ("Put", {"Item": item})
+    # Named here so a groups transaction can carry it too.
+    return sk, ("Put", {"TableName": table("SOCIAL_TABLE").name, "Item": item})
 
 
 def resolve(sub: str, sk: str | None, state: str) -> None:

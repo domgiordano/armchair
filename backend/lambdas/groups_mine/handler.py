@@ -1,8 +1,9 @@
 """
 GET /groups/mine - the caller's groups with each member's name and avatar.
 
-Returns [{id, name, inviteCode, members: [{sub, name, picture, avatarKind}]}].
-No emails. Identity is the Cognito sub.
+Returns [{id, name, inviteCode, owner, approval, members, invited, requests}],
+where the three lists hold {sub, name, picture, avatarKind} and `requests` is
+filled for the owner only. No emails. Identity is the Cognito sub.
 """
 
 from __future__ import annotations
