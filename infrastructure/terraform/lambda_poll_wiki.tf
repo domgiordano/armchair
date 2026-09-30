@@ -120,8 +120,8 @@ resource "aws_iam_role_policy" "scheduler" {
 
 resource "aws_scheduler_schedule" "poll_wiki" {
   name                         = local.poll_wiki_name
-  description                  = "Every minute 8:00-10:59 pm ET on show nights"
-  schedule_expression          = "cron(* 20-22 ? * MON,TUE *)"
+  description                  = "Every minute 8:00-11:59 pm ET on show nights"
+  schedule_expression          = "cron(* 20-23 ? * MON,TUE *)"
   schedule_expression_timezone = "America/New_York"
 
   flexible_time_window {
