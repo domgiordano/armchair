@@ -24,6 +24,16 @@ locals {
       invoke_arn = aws_lambda_function.api["groups_${l.name}"].invoke_arn
     })
   ]
+  admin_endpoints = [
+    for l in local.admin_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["admin_${l.name}"].invoke_arn
+    })
+  ]
+  stats_endpoints = [
+    for l in local.stats_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["stats_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -51,6 +61,8 @@ module "api" {
     scores   = { path_prefix = "scores", endpoints = local.scores_endpoints }
     episodes = { path_prefix = "episodes", endpoints = local.episodes_endpoints }
     seasons  = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
+    admin    = { path_prefix = "admin", endpoints = local.admin_endpoints }
+    stats    = { path_prefix = "stats", endpoints = local.stats_endpoints }
     groups   = { path_prefix = "groups", endpoints = local.groups_endpoints }
   }
 }

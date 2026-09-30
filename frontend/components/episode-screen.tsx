@@ -10,6 +10,7 @@ import { LoadError } from "@/components/load-error";
 import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
 import { SignedIn } from "@/components/signed-in";
+import { VotePanel } from "@/components/vote-panel";
 import { revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
@@ -74,6 +75,12 @@ function EpisodePicker({ season }: EpisodePickerProps) {
         <EpisodeView season={season} episode={episode} now={now} group={filter.group} />
       </CatchUp>
       <Link
+        href="/stats/"
+        className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+      >
+        Your accuracy
+      </Link>
+      <Link
         href="/credits/"
         className="self-start rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
       >
@@ -116,6 +123,11 @@ function EpisodeView({ season, episode, now, group }: EpisodeViewProps) {
       reload();
     }
   };
+  // The cards cover exactly the couples still in that night, so the vote list
+  // leaks nothing the scorecard doesn't already show.
+  const couples = [...new Set(data.performances.flatMap((card) => card.contestants))].flatMap(
+    (id) => contestants.get(id) ?? [],
+  );
   const out = (data.eliminated ?? []).map(
     (id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id,
   );
@@ -160,6 +172,7 @@ function EpisodeView({ season, episode, now, group }: EpisodeViewProps) {
           ))}
         </ul>
       )}
+      <VotePanel episode={episode} tz={season.timezone} couples={couples} now={now} />
     </section>
   );
 }

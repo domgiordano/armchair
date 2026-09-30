@@ -33,3 +33,9 @@ variable "lambda_runtime" {
   type        = string
   default     = "python3.12"
 }
+
+variable "admin_emails" {
+  description = "Comma-separated admin emails, from the ADMIN_EMAILS repo secret."
+  type        = string
+  sensitive   = true
+}

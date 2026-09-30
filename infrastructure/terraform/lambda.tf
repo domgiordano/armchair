@@ -20,12 +20,20 @@ locals {
   seasons_lambdas = [
     { name = "get", description = "Schedule, roster, judges and headshot credits for one season", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  admin_lambdas = [
+    { name = "keyword", description = "Set a couple's SMS keyword override", path_part = "keyword", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+  ]
+  stats_lambdas = [
+    { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
     { for l in local.scores_lambdas : "scores_${l.name}" => l },
     { for l in local.episodes_lambdas : "episodes_${l.name}" => l },
     { for l in local.seasons_lambdas : "seasons_${l.name}" => l },
+    { for l in local.admin_lambdas : "admin_${l.name}" => l },
+    { for l in local.stats_lambdas : "stats_${l.name}" => l },
     { for l in local.groups_lambdas : "groups_${l.name}" => l },
   )
 
@@ -46,6 +54,8 @@ locals {
     scores_reveal_all = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
     episodes_state    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     seasons_get       = ["catalog:Query"]
+    admin_keyword     = ["catalog:UpdateItem"]
+    stats_get         = ["catalog:Query", "performances:Query", "scores:Query"]
     groups_create     = ["groups:PutItem"]
     groups_join       = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine       = ["groups:Query", "users:BatchGetItem"]
@@ -78,6 +88,16 @@ data "aws_iam_policy_document" "api" {
     content {
       actions   = ["dynamodb:${split(":", statement.value)[1]}"]
       resources = [local.api_tables[split(":", statement.value)[0]]]
+    }
+  }
+
+  # Admin handlers read the admin list on every call (common/admins.py).
+  dynamic "statement" {
+    for_each = startswith(each.key, "admin_") ? [1] : []
+    content {
+      sid       = "ReadAdmins"
+      actions   = ["ssm:GetParameter"]
+      resources = [aws_ssm_parameter.admin_emails.arn]
     }
   }
 
