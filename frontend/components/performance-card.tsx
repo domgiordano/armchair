@@ -1,7 +1,8 @@
 "use client";
 
-import { Desk } from "@/components/desk";
+import { Desk, type DeskMember } from "@/components/desk";
 import { Headshot } from "@/components/headshot";
+import type { GroupMember } from "@/lib/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { PaddlePicker } from "@/components/paddle-picker";
 
@@ -10,6 +11,8 @@ interface PerformanceCardProps {
   contestants: Map<string, Contestant>;
   judges: Map<string, Judge>;
   airsOn: string | null;
+  /** The filtering group's members, or null for everyone. */
+  members: GroupMember[] | null;
   onSubmit: (card: LockedCard, answer: Answer) => Promise<void>;
 }
 
@@ -19,7 +22,17 @@ const celebrity = (c: Contestant | undefined): Member | undefined =>
 /** 8, 7.5, 7.3: judges score in halves and averages need one decimal. */
 export const formatScore = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 
-export function PerformanceCard({ card, contestants, judges, airsOn, onSubmit }: PerformanceCardProps) {
+// `others` never holds the caller, who has their own seat. A member who hasn't
+// scored this dance, or revealed it without scoring, gets no seat.
+function memberSeats(card: RevealedCard, members: GroupMember[]): DeskMember[] {
+  const values = new Map(card.others.map((o) => [o.sub, o.value]));
+  return members.flatMap((m) => {
+    const value = values.get(m.sub);
+    return value === undefined ? [] : [{ name: m.name ?? "Member", picture: m.picture, value }];
+  });
+}
+
+export function PerformanceCard({ card, contestants, judges, airsOn, members, onSubmit }: PerformanceCardProps) {
   const team = card.contestants.length > 1;
   const couple = contestants.get(card.contestants[0]);
   const faces = team
@@ -54,7 +67,9 @@ export function PerformanceCard({ card, contestants, judges, airsOn, onSubmit }:
         </div>
       </div>
       {!card.locked ? (
-        <Desk card={card} judges={judges}><Scores card={card} judges={judges} /></Desk>
+        <Desk card={card} judges={judges} members={members ? memberSeats(card, members) : undefined}>
+          <Scores card={card} judges={judges} />
+        </Desk>
       ) : team ? (
         <p className="text-sm text-neutral-400">Not scored. Opens when you finish the episode.</p>
       ) : (

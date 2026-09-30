@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 
 import { Brand } from "@/components/brand";
+import { rememberReturn } from "@/lib/auth/return-to";
 import { useAuth } from "@/lib/auth/use-auth";
 import { PRIMARY } from "@/lib/ui";
 
@@ -29,7 +30,14 @@ export function SignedIn({ title, children }: SignedInProps) {
         {status === "signedOut" && (
           <>
             <p>Sign in to see this page.</p>
-            <button type="button" onClick={() => void signInWithGoogle()} className={`${PRIMARY} self-start`}>
+            <button
+              type="button"
+              onClick={() => {
+                rememberReturn();
+                void signInWithGoogle();
+              }}
+              className={`${PRIMARY} self-start`}
+            >
               Sign in with Google
             </button>
           </>

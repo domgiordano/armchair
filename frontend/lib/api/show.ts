@@ -89,8 +89,11 @@ export const epParam = (ep: number) => String(ep).padStart(2, "0");
 export const getSeason = (season: string) =>
   request<Season>(`/seasons/get?season=${encodeURIComponent(season)}`);
 
-export const getEpisodeState = (season: string, ep: number) =>
-  request<EpisodeState>(`/episodes/state?season=${encodeURIComponent(season)}&ep=${epParam(ep)}`);
+export const getEpisodeState = (season: string, ep: number, group: string | null = null) => {
+  const query = new URLSearchParams({ season, ep: epParam(ep) });
+  if (group) query.set("group", group);
+  return request<EpisodeState>(`/episodes/state?${query}`);
+};
 
 export const submitScore = (season: string, ep: number, card: LockedCard, answer: Answer) =>
   request<unknown>("/scores/submit", {
