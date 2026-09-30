@@ -32,14 +32,14 @@ export function ProfileSeason({ season, profile, own }: ProfileSeasonProps) {
         <span className="text-xs font-medium tracking-[0.14em] text-gold uppercase">Accuracy</span>
       </h2>
 
-      <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-neutral-800 bg-neutral-800">
+      <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-neutral-800 bg-neutral-800 md:grid-cols-3">
         <Stat label="Dances scored" value={String(count)} />
         <Stat
           label="Gap to the judges"
           value={mae === null ? "None yet" : off(mae)}
           note={mae === null ? undefined : "average per dance"}
         />
-        <div className="col-span-2">
+        <div className="col-span-2 md:col-span-1">
           <Stat
             label="Closest judge"
             value={judgeName ?? "None yet"}
@@ -98,7 +98,7 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
   };
 
   return (
-    <>
+    <div className="grid gap-5 md:grid-cols-2 md:gap-x-8 md:gap-y-6">
       {styles.length > 0 && (
         <section aria-labelledby="by-style" className="flex flex-col gap-3">
           <div>
@@ -119,11 +119,11 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
       </section>
 
       {pair && (
-        <section aria-labelledby="calls" className="flex flex-col gap-3">
+        <section aria-labelledby="calls" className="flex flex-col gap-3 md:col-span-2">
           <h3 id="calls" className="font-semibold">
             Best and worst calls
           </h3>
-          <ul className="grid gap-3">
+          <ul className="grid gap-3 md:grid-cols-2">
             <Call
               title="Best call"
               tone="best"
@@ -143,7 +143,7 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
           </ul>
         </section>
       )}
-    </>
+    </div>
   );
 }
 
