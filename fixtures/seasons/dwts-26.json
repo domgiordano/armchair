@@ -1,0 +1,936 @@
+{
+  "show": "dwts",
+  "season": 26,
+  "year": 2018,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 26",
+  "revid": 1367698078,
+  "revTimestamp": "2026-08-04T16:55:21Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "rashad-jennings",
+      "name": "Rashad Jennings",
+      "aliases": [
+        "Rashad Jennings"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "david-ross",
+      "name": "David Ross",
+      "aliases": [
+        "David Ross"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2018-04-30",
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "chris-mazdzer#1",
+        "kareem-abdul-jabbar#1",
+        "jennie-finch-daigle#1",
+        "jamie-anderson#1",
+        "mirai-nagasu#1",
+        "arike-ogunbowale#1",
+        "adam-rippon#1",
+        "johnny-damon#1",
+        "tonya-harding#1",
+        "josh-norman#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chris-mazdzer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Mr. Put It Down\" — Ricky Martin, feat. Pitbull",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kareem-abdul-jabbar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Signed, Sealed, Delivered I'm Yours\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-finch-daigle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"All-American Girl\" — Carrie Underwood",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jamie-anderson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Feeling Good\" — Avicii, feat. Audra Mae",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "mirai-nagasu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"No Excuses\" — Meghan Trainor",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "arike-ogunbowale"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Them Girls\" — Whitney Myer",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "adam-rippon"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Sissy That Walk\" — RuPaul",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "johnny-damon"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Centerfield\" — John Fogerty",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "tonya-harding"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"When You Believe\" — Whitney Houston & Mariah Carey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "josh-norman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Finesse\" — Bruno Mars",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2018-05-07",
+      "start": null,
+      "end": null,
+      "theme": "Team Dance Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "rashad-jennings",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "josh-norman#1",
+        "jennie-finch-daigle#1",
+        "kareem-abdul-jabbar#1",
+        "chris-mazdzer#1",
+        "tonya-harding#1",
+        "mirai-nagasu#1",
+        "arike-ogunbowale#1",
+        "adam-rippon#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "josh-norman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Plaza of Execution\" — James Horner",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jennie-finch-daigle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            6,
+            7,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Do It Like This\" — Daphne Willis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kareem-abdul-jabbar"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"La malanga\" — Eddie Palmieri",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "chris-mazdzer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            9,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Next to Me\" — Imagine Dragons",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tonya-harding"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Redneck Woman\" — Gretchen Wilson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mirai-nagasu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"It's a Small World\" — The O'Neill Brothers",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "arike-ogunbowale"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"What About Us\" — Pink",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "adam-rippon"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Make Way\" — Aloe Blacc",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chris-mazdzer",
+            "josh-norman",
+            "kareem-abdul-jabbar",
+            "tonya-harding"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team 1950s Tennis)",
+          "song": "\"...Baby One More Time\" — The Baseballs",
+          "result": "\"...Baby One More Time\" — The Baseballs"
+        },
+        {
+          "contestants": [
+            "adam-rippon",
+            "arike-ogunbowale",
+            "jennie-finch-daigle",
+            "mirai-nagasu"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 37,
+          "judges": [
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team 1970s Football)",
+          "song": "\"Instant Replay\" — Dan Hartman",
+          "result": "\"Instant Replay\" — Dan Hartman"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2018-05-14",
+      "start": null,
+      "end": null,
+      "theme": "MVP Night (Semifinals)",
+      "panel": [
+        "carrie-ann-inaba",
+        "david-ross",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "mirai-nagasu#1",
+        "jennie-finch-daigle#1",
+        "chris-mazdzer#1",
+        "tonya-harding#1",
+        "adam-rippon#1",
+        "josh-norman#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "mirai-nagasu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"BO$$\" — Fifth Harmony",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jennie-finch-daigle"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"The Rest of Our Life\" — Tim McGraw & Faith Hill",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "chris-mazdzer"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I Got Rhythm\" — Ray Chew",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "tonya-harding"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"See You Again\" — Tyler Ward",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "adam-rippon"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"O\" — Coldplay",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "josh-norman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Stand by Me\" — Bootstraps",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2018-05-21",
+      "start": null,
+      "end": null,
+      "theme": "Finale",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "tonya-harding#1",
+        "tonya-harding#2",
+        "josh-norman#1",
+        "josh-norman#2",
+        "adam-rippon#1",
+        "adam-rippon#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "tonya-harding"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"The Time of My Life\" — David Cook",
+          "result": "Third Place"
+        },
+        {
+          "contestants": [
+            "tonya-harding"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"I Will Survive\" — The Pussycat Dolls",
+          "result": "Third Place"
+        },
+        {
+          "contestants": [
+            "josh-norman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Conqueror\" — from Empire, feat. Estelle & Jussie Smollett",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "josh-norman"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Walk on Water\" — Thirty Seconds to Mars",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "adam-rippon"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Anything You Can Do\" — Bernadette Peters & Tom Wopat",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "adam-rippon"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Scooby Doo Pa Pa\" — DJ Kass",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "jamie-anderson",
+      "aliases": [
+        "Jamie"
+      ],
+      "members": [
+        {
+          "name": "Jamie Anderson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Artem Chigvintsev",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "johnny-damon",
+      "aliases": [
+        "Johnny"
+      ],
+      "members": [
+        {
+          "name": "Johnny Damon",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "kareem-abdul-jabbar",
+      "aliases": [
+        "Kareem"
+      ],
+      "members": [
+        {
+          "name": "Kareem Abdul-Jabbar",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Lindsay Arnold",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "arike-ogunbowale",
+      "aliases": [
+        "Arike"
+      ],
+      "members": [
+        {
+          "name": "Arike Ogunbowale",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Gleb Savchenko",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "jennie-finch-daigle",
+      "aliases": [
+        "Jennie"
+      ],
+      "members": [
+        {
+          "name": "Jennie Finch Daigle",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Keo Motsepe",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "chris-mazdzer",
+      "aliases": [
+        "Chris"
+      ],
+      "members": [
+        {
+          "name": "Chris Mazdzer",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "mirai-nagasu",
+      "aliases": [
+        "Mirai"
+      ],
+      "members": [
+        {
+          "name": "Mirai Nagasu",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Alan Bersten",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "tonya-harding",
+      "aliases": [
+        "Tonya"
+      ],
+      "members": [
+        {
+          "name": "Tonya Harding",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sasha Farber",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "josh-norman",
+      "aliases": [
+        "Josh"
+      ],
+      "members": [
+        {
+          "name": "Josh Norman",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sharna Burgess",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "adam-rippon",
+      "aliases": [
+        "Adam"
+      ],
+      "members": [
+        {
+          "name": "Adam Rippon",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jenna Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

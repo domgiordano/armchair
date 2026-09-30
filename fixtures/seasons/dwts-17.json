@@ -1,0 +1,2567 @@
+{
+  "show": "dwts",
+  "season": 17,
+  "year": 2013,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 17",
+  "revid": 1372837413,
+  "revTimestamp": "2026-09-02T14:40:37Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "julianne-hough",
+      "name": "Julianne Hough",
+      "aliases": [
+        "Julianne Hough"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "cher",
+      "name": "Cher",
+      "aliases": [
+        "Cher"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "maksim-chmerkovskiy",
+      "name": "Maksim Chmerkovskiy",
+      "aliases": [
+        "Maksim Chmerkovskiy"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2013-09-16",
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "brant-daugherty#1",
+        "leah-remini#1",
+        "corbin-bleu#1",
+        "jack-osbourne#1",
+        "amber-riley#1",
+        "elizabeth-berkley-lauren#1",
+        "bill-nye#1",
+        "keyshawn-johnson#1",
+        "christina-milian#1",
+        "bill-engvall#1",
+        "valerie-harper#1",
+        "nicole-snooki-polizzi#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "brant-daugherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Blurred Lines\" — Robin Thicke, feat. T.I. & Pharrell Williams",
+          "result": null
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Tears Dry on Their Own\" — Amy Winehouse",
+          "result": null
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"If I Lose Myself\" — OneRepublic",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Pack Up\" — Eliza Doolittle",
+          "result": null
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Wings\" — Little Mix",
+          "result": null
+        },
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Imagine\" — John Lennon",
+          "result": null
+        },
+        {
+          "contestants": [
+            "bill-nye"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            5,
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Weird Science\" — Oingo Boingo",
+          "result": null
+        },
+        {
+          "contestants": [
+            "keyshawn-johnson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Treasure\" — Bruno Mars",
+          "result": null
+        },
+        {
+          "contestants": [
+            "christina-milian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Clarity\" — Zedd, feat. Foxes",
+          "result": null
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Hot Stuff\" — Donna Summer",
+          "result": null
+        },
+        {
+          "contestants": [
+            "valerie-harper"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Some Kind of Wonderful\" — The Drifters",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nicole-snooki-polizzi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Wild Ones\" — Flo Rida, feat. Sia",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2013-09-23",
+      "start": null,
+      "end": null,
+      "theme": "Latin Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "elizabeth-berkley-lauren#1",
+        "christina-milian#1",
+        "bill-engvall#1",
+        "jack-osbourne#1",
+        "keyshawn-johnson#1",
+        "nicole-snooki-polizzi#1",
+        "leah-remini#1",
+        "bill-nye#1",
+        "corbin-bleu#1",
+        "valerie-harper#1",
+        "brant-daugherty#1",
+        "amber-riley#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Straight to Memphis\" — Club des Belugas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "christina-milian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Applause\" — Lady Gaga",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Crocodile Rock\" — Elton John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Mad World\" — Tears for Fears",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "keyshawn-johnson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Get Up Offa That Thing\" — James Brown",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nicole-snooki-polizzi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Just Give Me a Reason\" — P!nk, feat. Nate Ruess",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"María\" — Ricky Martin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-nye"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Symphony No. 5\" — Ludwig van Beethoven",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Kiss You\" — One Direction",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "valerie-harper"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Don't Let Me Be Misunderstood\" — Santa Esmeralda",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brant-daugherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Underneath Your Clothes\" — Shakira",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Reet Petite\" — Jackie Wilson",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2013-09-30",
+      "start": null,
+      "end": null,
+      "theme": "Hollywood Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "leah-remini#1",
+        "corbin-bleu#1",
+        "elizabeth-berkley-lauren#1",
+        "brant-daugherty#1",
+        "valerie-harper#1",
+        "bill-engvall#1",
+        "amber-riley#1",
+        "jack-osbourne#1",
+        "christina-milian#1",
+        "nicole-snooki-polizzi#1",
+        "bill-nye#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Skyfall\" — Adele",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Diga Diga Doo\" — Duke Ellington",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Come Fly with Me\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brant-daugherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Crazy in Love\" — Emeli Sandé & The Bryan Ferry Orchestra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "valerie-harper"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Grace Kelly\" — Mika",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"William Tell Overture\" — Gioachino Rossini",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Bang Bang\" — will.i.am",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Hollywood Swinging\" — Kool & the Gang",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "christina-milian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Let Me Drown\" — from The Wild Party",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-snooki-polizzi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Sparkling Diamonds\" — Nicole Kidman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-nye"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Get Lucky\" — Daft Punk, feat. Pharrell Williams",
+          "result": "Eliminated"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2013-10-07",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "julianne-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jack-osbourne#1",
+        "elizabeth-berkley-lauren#1",
+        "brant-daugherty#1",
+        "valerie-harper#1",
+        "leah-remini#1",
+        "corbin-bleu#1",
+        "nicole-snooki-polizzi#1",
+        "christina-milian#1",
+        "amber-riley#1",
+        "bill-engvall#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Man Like That\" — Gin Wigmore",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Symphony 6: Fair Thee Well & the Requiem Mix\" — Emily Wells",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brant-daugherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Shake Señora\" — Pitbull",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "valerie-harper"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Carry On\" — Fun.",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Papi\" — Jennifer Lopez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Zorongo\" 一 Paco Peña",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-snooki-polizzi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Mickey\" 一 Toni Basil",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "christina-milian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Sexy Silk\" — Jessie J",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Love Lockdown\" — Kanye West",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Cuban Pete\" — José Norman",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2013-10-14",
+      "start": null,
+      "end": null,
+      "theme": "Most Memorable Year Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "christina-milian#1",
+        "jack-osbourne#1",
+        "leah-remini#1",
+        "corbin-bleu#1",
+        "bill-engvall#1",
+        "nicole-snooki-polizzi#1",
+        "brant-daugherty#1",
+        "amber-riley#1",
+        "elizabeth-berkley-lauren#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "christina-milian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Forget You\" — Cee Lo Green",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Kissing You\" — Des'ree",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Roar\" — Katy Perry",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"My Wish\" — Rascal Flatts",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"She's Always a Woman\" — Billy Joel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-snooki-polizzi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Work Bitch\" — Britney Spears",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brant-daugherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Your Song\" — Elton John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            7,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Try a Little Tenderness\" — from Glee",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I'm So Excited\" — The Pointer Sisters",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2013-10-21",
+      "start": null,
+      "end": null,
+      "theme": "Switch-Up Challenge",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "bill-engvall#1",
+        "elizabeth-berkley-lauren#1",
+        "leah-remini#1",
+        "brant-daugherty#1",
+        "amber-riley#1",
+        "jack-osbourne#1",
+        "nicole-snooki-polizzi#1",
+        "corbin-bleu#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            8,
+            7
+          ],
+          "bonus": 1,
+          "style": "Tango",
+          "song": "\"Cheeseburger in Paradise\" — Jimmy Buffett",
+          "result": null
+        },
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": 2,
+          "style": "Cha-cha-cha",
+          "song": "\"Put Your Hands on Me\" — Joss Stone",
+          "result": null
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": 1,
+          "style": "Quickstep",
+          "song": "\"Man Wanted\" — from Copacabana",
+          "result": null
+        },
+        {
+          "contestants": [
+            "brant-daugherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": 3,
+          "style": "Tango",
+          "song": "\"The Night Out\" — Martin Solveig",
+          "result": null
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            8,
+            10
+          ],
+          "bonus": 4,
+          "style": "Samba",
+          "song": "\"Get It Right\" — Fantasia",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": 2,
+          "style": "Paso doble",
+          "song": "\"Conquest\" — The White Stripes",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nicole-snooki-polizzi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": 3,
+          "style": "Foxtrot",
+          "song": "\"Build Me Up Buttercup\" — The Foundations",
+          "result": null
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": 4,
+          "style": "Viennese waltz",
+          "song": "\"Game of Thrones Theme\" — Ramin Djawadi",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2013-10-28",
+      "start": null,
+      "end": null,
+      "theme": "Team Dance Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "elizabeth-berkley-lauren#1",
+        "brant-daugherty#1",
+        "leah-remini#1",
+        "jack-osbourne#1",
+        "amber-riley#1",
+        "bill-engvall#1",
+        "nicole-snooki-polizzi#1",
+        "corbin-bleu#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Dance Apocalyptic\" — Janelle Monáe",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brant-daugherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Tutti Frutti\" — Little Richard",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"I Know You Want Me (Calle Ocho)\" — Pitbull",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            10,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Going Up the Country\" — Canned Heat",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Diablo Rojo\" — Rodrigo y Gabriela",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Viva Las Vegas\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-snooki-polizzi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Hey Mama\" — Black Eyed Peas",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Pumpin Blood\" — NONONO",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall",
+            "elizabeth-berkley-lauren",
+            "leah-remini",
+            "nicole-snooki-polizzi"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team \"Spooky BomBom\")",
+          "song": "\"Bom Bom\" — Sam and the Womp",
+          "result": "\"Bom Bom\" — Sam and the Womp"
+        },
+        {
+          "contestants": [
+            "amber-riley",
+            "brant-daugherty",
+            "corbin-bleu",
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team \"Foxing Awesome\")",
+          "song": "\"The Fox (What Does the Fox Say?)\" — Ylvis",
+          "result": "\"The Fox (What Does the Fox Say?)\" — Ylvis"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2013-11-04",
+      "start": null,
+      "end": null,
+      "theme": "Cher Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "cher",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "corbin-bleu#1",
+        "leah-remini#1",
+        "brant-daugherty#1",
+        "elizabeth-berkley-lauren#1",
+        "bill-engvall#1",
+        "jack-osbourne#1",
+        "amber-riley#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Welcome to Burlesque\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Got You Babe\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brant-daugherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The Shoop Shoop Song (It's in His Kiss)\"",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Bang Bang (My Baby Shot Me Down)\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Disco",
+          "song": "\"Strong Enough\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Beat Goes On\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"If I Could Turn Back Time\"",
+          "result": "Immunity"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2013-11-11",
+      "start": null,
+      "end": null,
+      "theme": "Trio Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "amber-riley#1",
+        "amber-riley#2",
+        "leah-remini#1",
+        "leah-remini#2",
+        "corbin-bleu#1",
+        "corbin-bleu#2",
+        "jack-osbourne#1",
+        "jack-osbourne#2",
+        "bill-engvall#1",
+        "bill-engvall#2",
+        "elizabeth-berkley-lauren#1",
+        "elizabeth-berkley-lauren#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"That's It!\" — Preservation Hall Jazz Band",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Que Viva La Vida\" — Wisin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Love Me Again\" — John Newman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"We're Not Gonna Take It\" — Twisted Sister",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Apologize\" — OneRepublic",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Yeah!\" — Usher, feat. Lil' Jon & Ludacris",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Let Me Go\" — Avril Lavigne, featuring Chad Kroeger",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Wan'na Be Like You\" — Big Bad Voodoo Daddy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Yakety Yak\" — The Coasters",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Candy\" — Robbie Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Young and Beautiful\" — Lana Del Rey",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "elizabeth-berkley-lauren"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Pucko\" — Bonde do Rolê",
+          "result": "Eliminated"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2013-11-18",
+      "start": null,
+      "end": null,
+      "theme": "Plugged/Unplugged Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "maksim-chmerkovskiy",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "leah-remini#1",
+        "leah-remini#2",
+        "corbin-bleu#1",
+        "corbin-bleu#2",
+        "jack-osbourne#1",
+        "jack-osbourne#2",
+        "bill-engvall#1",
+        "bill-engvall#2",
+        "amber-riley#1",
+        "amber-riley#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Bad Romance\" — Lady Gaga",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "leah-remini"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Bad Romance\" — Lady Gaga",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"My Songs Know What You Did in the Dark (Light Em Up)\" — Fall Out Boy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"My Songs Know What You Did in the Dark (Light Em Up)\" — Fall Out Boy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Roxanne\" — The Police",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Roxanne\" — The Police",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Sexy and I Know It\" — LMFAO",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Sexy and I Know It\" — LMFAO",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Locked Out of Heaven\" — Bruno Mars",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Locked Out of Heaven\" — Bruno Mars",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 11,
+      "night": 1,
+      "airDate": "2013-11-25",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "bill-engvall#1",
+        "bill-engvall#2",
+        "corbin-bleu#1",
+        "corbin-bleu#2",
+        "jack-osbourne#1",
+        "jack-osbourne#2",
+        "amber-riley#1",
+        "amber-riley#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"She's Always a Woman\" — Billy Joel",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "bill-engvall"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": 2,
+          "style": "Freestyle",
+          "song": "\"The Raiders March\" — John Williams",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Diga Diga Doo\" — Duke Ellington",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": 5,
+          "style": "Freestyle",
+          "song": "\"Smooth Criminal\" — Michael Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Going Up the Country\" — Canned Heat",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": 3,
+          "style": "Freestyle",
+          "song": "\"Top Hat, White Tie and Tails\" — Fred Astaire",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Bang Bang\" — will.i.am",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": 4,
+          "style": "Freestyle",
+          "song": "\"Can You Do This\" — Aloe Blacc",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 12,
+      "week": 11,
+      "night": 2,
+      "airDate": "2013-11-26",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "corbin-bleu#3",
+        "jack-osbourne#3",
+        "amber-riley#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "corbin-bleu"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha\n& Foxtrot",
+          "song": "\"All Night\" — Icona Pop",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "jack-osbourne"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble\n& Salsa",
+          "song": "\"Sexy People (The Fiat Song)\" — Arianna, feat. Pitbull",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "amber-riley"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep\n& Samba",
+          "song": "\"(Your Love Keeps Lifting Me) Higher and Higher\" — Jackie Wilson",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "keyshawn-johnson",
+      "aliases": [
+        "Keyshawn"
+      ],
+      "members": [
+        {
+          "name": "Keyshawn Johnson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sharna Burgess",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "bill-nye",
+      "aliases": [
+        "Bill N."
+      ],
+      "members": [
+        {
+          "name": "Bill Nye",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tyne Stecklein",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "valerie-harper",
+      "aliases": [
+        "Valerie"
+      ],
+      "members": [
+        {
+          "name": "Valerie Harper",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tristan MacManus",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "christina-milian",
+      "aliases": [
+        "Christina"
+      ],
+      "members": [
+        {
+          "name": "Christina Milian",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "nicole-snooki-polizzi",
+      "aliases": [
+        "Nicole"
+      ],
+      "members": [
+        {
+          "name": "Nicole \"Snooki\" Polizzi",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sasha Farber",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "brant-daugherty",
+      "aliases": [
+        "Brant"
+      ],
+      "members": [
+        {
+          "name": "Brant Daugherty",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Peta Murgatroyd",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "elizabeth-berkley-lauren",
+      "aliases": [
+        "Elizabeth"
+      ],
+      "members": [
+        {
+          "name": "Elizabeth Berkley Lauren",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Valentin Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "leah-remini",
+      "aliases": [
+        "Leah"
+      ],
+      "members": [
+        {
+          "name": "Leah Remini",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "bill-engvall",
+      "aliases": [
+        "Bill E."
+      ],
+      "members": [
+        {
+          "name": "Bill Engvall",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 11
+    },
+    {
+      "id": "jack-osbourne",
+      "aliases": [
+        "Jack"
+      ],
+      "members": [
+        {
+          "name": "Jack Osbourne",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "corbin-bleu",
+      "aliases": [
+        "Corbin"
+      ],
+      "members": [
+        {
+          "name": "Corbin Bleu",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "amber-riley",
+      "aliases": [
+        "Amber"
+      ],
+      "members": [
+        {
+          "name": "Amber Riley",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

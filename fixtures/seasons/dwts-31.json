@@ -1,0 +1,3088 @@
+{
+  "show": "dwts",
+  "season": 31,
+  "year": 2022,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 31",
+  "revid": 1372832846,
+  "revTimestamp": "2026-09-02T14:11:18Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "derek-hough",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "derek-hough",
+      "name": "Derek Hough",
+      "aliases": [
+        "Derek Hough"
+      ],
+      "headshot": {
+        "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+        "author": "Kevin Paul",
+        "license": "CC BY 4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+      }
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "michael-buble",
+      "name": "Michael Bublé",
+      "aliases": [
+        "Michael Bublé"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2022-09-19",
+      "start": null,
+      "end": null,
+      "theme": "Premiere Night Party",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jordin-sparks#1",
+        "sam-champion#1",
+        "heidi-damelio#1",
+        "daniel-durant#1",
+        "jessie-james-decker#1",
+        "teresa-giudice#1",
+        "wayne-brady#1",
+        "cheryl-ladd#1",
+        "vinny-guadagnino#1",
+        "shangela#1",
+        "trevor-donovan#1",
+        "gabby-windey#1",
+        "joseph-baena#1",
+        "jason-lewis#1",
+        "selma-blair#1",
+        "charli-damelio#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jordin-sparks"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            7,
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Wanna Dance with Somebody (Who Loves Me)\" — Whitney Houston",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sam-champion"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Hold Me Closer\" — Elton John & Britney Spears",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Lady Marmalade\" — Christina Aguilera, Lil' Kim, Mýa & Pink",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Barbra Streisand\" — Duck Sauce",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jessie-james-decker"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Sweet Home Alabama\" — Lynyrd Skynyrd",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "teresa-giudice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            5,
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"We Found Love\" — Rihanna & Calvin Harris",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"She's a Bad Mama Jama (She's Built, She's Stacked)\" — Carl Carlton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cheryl-ladd"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            6,
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Got to Give It Up\" — Marvin Gaye",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            4,
+            4,
+            5,
+            4
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Tití Me Preguntó\" — Bad Bunny",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"When I Grow Up\" — The Pussycat Dolls",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            5,
+            5,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Dancing with Myself\" — Billy Idol",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"As It Was\" — Harry Styles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joseph-baena"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            6,
+            5,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Pump It\" — Black Eyed Peas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-lewis"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            5,
+            4,
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Get Lucky\" — Daft Punk, Pharrell Williams & Nile Rodgers",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "selma-blair"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"The Time of My Life\" — David Cook",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Savage (Major Lazer Remix)\" — Megan Thee Stallion",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2022-09-26",
+      "start": null,
+      "end": null,
+      "theme": "Elvis Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jessie-james-decker#1",
+        "jordin-sparks#1",
+        "sam-champion#1",
+        "shangela#1",
+        "teresa-giudice#1",
+        "daniel-durant#1",
+        "gabby-windey#1",
+        "vinny-guadagnino#1",
+        "charli-damelio#1",
+        "selma-blair#1",
+        "cheryl-ladd#1",
+        "joseph-baena#1",
+        "heidi-damelio#1",
+        "trevor-donovan#1",
+        "wayne-brady#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jessie-james-decker"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Trouble\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordin-sparks"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hound Dog\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sam-champion"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            6,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Heartbreak Hotel\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Shake, Rattle and Roll\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "teresa-giudice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            6,
+            5,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"All Shook Up\"",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"King Creole\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Can't Help Falling in Love\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Viva Las Vegas\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Bossa Nova Baby\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "selma-blair"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Jailhouse Rock\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cheryl-ladd"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            5,
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"A Little Less Conversation\"",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "joseph-baena"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"If I Can Dream\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Suspicious Minds\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Always On My Mind\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Burning Love\"",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2022-10-03",
+      "start": null,
+      "end": null,
+      "theme": "Bond Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "charli-damelio#1",
+        "cheryl-ladd#1",
+        "trevor-donovan#1",
+        "daniel-durant#1",
+        "jordin-sparks#1",
+        "sam-champion#1",
+        "selma-blair#1",
+        "wayne-brady#1",
+        "vinny-guadagnino#1",
+        "heidi-damelio#1",
+        "shangela#1",
+        "jessie-james-decker#1",
+        "joseph-baena#1",
+        "gabby-windey#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"No Time to Die\" — Billie Eilish",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cheryl-ladd"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Diamonds Are Forever\" — Shirley Bassey",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            7,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"You Know My Name\" — Chris Cornell",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"The World Is Not Enough\" — Garbage",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordin-sparks"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Licence to Kill\" — Gladys Knight",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sam-champion"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            6,
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Los Muertos Vivos Están\" — Thomas Newman, feat. Tambuco",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "selma-blair"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"For Your Eyes Only\" — Sheena Easton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Name's Bond... James Bond\" — David Arnold & Nicholas Dodd",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            6,
+            5,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Thunderball\" — Tom Jones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Another Way to Die\" — Jack White & Alicia Keys",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            8,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"GoldenEye\" — Tina Turner",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jessie-james-decker"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            6,
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Goldfinger\" — Shirley Bassey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joseph-baena"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            8,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Writing's on the Wall\" — Sam Smith",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Die Another Day\" — Madonna",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2022-10-10",
+      "start": null,
+      "end": null,
+      "theme": "Disney+ Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "joseph-baena#1",
+        "sam-champion#1",
+        "jordin-sparks#1",
+        "wayne-brady#1",
+        "daniel-durant#1",
+        "shangela#1",
+        "heidi-damelio#1",
+        "gabby-windey#1",
+        "trevor-donovan#1",
+        "vinny-guadagnino#1",
+        "selma-blair#1",
+        "jessie-james-decker#1",
+        "charli-damelio#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "joseph-baena"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"A Star Is Born\" — Lillias White, LaChanze, Roz Ryan, Cheryl Freeman & Vanéese Y. Thomas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "sam-champion"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Greatest Show\" — Hugh Jackman, Keala Settle, Zac Efron & Zendaya",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jordin-sparks"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Remember Me\" — Benjamin Bratt",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Wait for It\" — Leslie Odom Jr.",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Finally Free\" — Joshua Bassett",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Charleston",
+          "song": "\"Dig a Little Deeper\" — Jenifer Lewis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Chim Chim Cher-ee\" — Dick Van Dyke & Julie Andrews",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Mr. Blue Sky\" — Electric Light Orchestra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Life Is a Highway\" — Rascal Flatts",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            8,
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Il gatto e la volpe\" — Edoardo Bennato",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "selma-blair"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Muppet Show Theme\" — Jim Henson & Sam Pottle",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jessie-james-decker"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 31,
+          "judges": [
+            8,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"One Way Or Another\" — Bette Midler, Sarah Jessica Parker & Kathy Najimy",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"The Simpsons Theme\" — Danny Elfman",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2022-10-17",
+      "start": null,
+      "end": null,
+      "theme": "Stars' Stories Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "trevor-donovan#1",
+        "shangela#1",
+        "jessie-james-decker#1",
+        "gabby-windey#1",
+        "joseph-baena#1",
+        "daniel-durant#1",
+        "jordin-sparks#1",
+        "charli-damelio#1",
+        "vinny-guadagnino#1",
+        "heidi-damelio#1",
+        "wayne-brady#1",
+        "selma-blair#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Viva la Vida\" — Coldplay",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Roar (Acoustic)\" — Katy Perry",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jessie-james-decker"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            7,
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Blue Jeans\" — Jessie James Decker",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"If the World Should Ever Stop\" — JP Cooper",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joseph-baena"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"My Way\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Both Sides, Now\" — Joni Mitchell",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordin-sparks"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Let's Get Married (ReMarquable Remix)\" — Jagged Edge, feat. RUN",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"When the Party's Over\" — Lewis Capaldi",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Levels\" — Avicii",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Can't Take My Eyes Off of You (I Love You Baby)\" — Lauryn Hill",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Beautiful\" — Jim Brickman & Wayne Brady",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "selma-blair"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"What the World Needs Now Is Love\" — Andra Day",
+          "result": "Withdrew"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 5,
+      "night": 2,
+      "airDate": "2022-10-18",
+      "start": null,
+      "end": null,
+      "theme": "Stars' Stories Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "daniel-durant#2",
+        "heidi-damelio#2",
+        "vinny-guadagnino#2",
+        "shangela#2",
+        "charli-damelio#2",
+        "jessie-james-decker#2",
+        "gabby-windey#2",
+        "trevor-donovan#2",
+        "joseph-baena#2",
+        "jordin-sparks#2",
+        "wayne-brady#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": 1,
+          "style": "Cha-cha-cha",
+          "song": "\"SexyBack\" — Justin Timberlake, feat. Timbaland",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": 9,
+          "style": "Jazz",
+          "song": "\"Girls Just Want to Have Fun\" — Cyndi Lauper",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "bonus": 2,
+          "style": "Viennese waltz",
+          "song": "\"You and Me\" — Lifehouse",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": 10,
+          "style": "Cha-cha-cha",
+          "song": "\"Waiting for Tonight\" — Jennifer Lopez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            9,
+            10,
+            9,
+            10
+          ],
+          "bonus": 7,
+          "style": "Jive",
+          "song": "\"You Make My Dreams\" — Hall & Oates",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jessie-james-decker"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": 11,
+          "style": "Viennese waltz",
+          "song": "\"Breakaway\" — Kelly Clarkson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": 6,
+          "style": "Tango",
+          "song": "\"Good Girls Go Bad\" — Cobra Starship, feat. Leighton Meester",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": 8,
+          "style": "Jive",
+          "song": "\"Basket Case\" — Green Day",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "joseph-baena"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": 4,
+          "style": "Cha-cha-cha",
+          "song": "\"Shut Up and Dance\" — Walk the Moon",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jordin-sparks"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": 3,
+          "style": "Contemporary",
+          "song": "\"No Air\" — Jordin Sparks & Chris Brown",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": 5,
+          "style": "Samba",
+          "song": "\"It Takes Two\" — Rob Base & DJ E-Z Rock",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 6,
+      "night": 1,
+      "airDate": "2022-10-24",
+      "start": null,
+      "end": null,
+      "theme": "Michael Bublé Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "michael-buble",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "shangela#1",
+        "trevor-donovan#1",
+        "gabby-windey#1",
+        "vinny-guadagnino#1",
+        "jordin-sparks#1",
+        "charli-damelio#1",
+        "heidi-damelio#1",
+        "wayne-brady#1",
+        "jessie-james-decker#1",
+        "daniel-durant#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 45,
+          "judges": [
+            9,
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Hollywood\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 42,
+          "judges": [
+            9,
+            8,
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Come Fly with Me\"",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 46,
+          "judges": [
+            9,
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Home\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            7,
+            7,
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Save the Last Dance for Me\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jordin-sparks"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 43,
+          "judges": [
+            9,
+            8,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"You Make Me Feel So Young\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 50,
+          "judges": [
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Fever\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 46,
+          "judges": [
+            9,
+            9,
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"It Had Better Be Tonight (Meglio stasera)\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 44,
+          "judges": [
+            8,
+            9,
+            10,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"I Get a Kick Out of You\"",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jessie-james-decker"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 41,
+          "judges": [
+            8,
+            8,
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Come Dance with Me\"",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 43,
+          "judges": [
+            9,
+            8,
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Feeling Good\"",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 7,
+      "night": 1,
+      "airDate": "2022-10-31",
+      "start": null,
+      "end": null,
+      "theme": "Halloween Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jordin-sparks#1",
+        "charli-damelio#1",
+        "daniel-durant#1",
+        "shangela#1",
+        "vinny-guadagnino#1",
+        "heidi-damelio#1",
+        "gabby-windey#1",
+        "wayne-brady#1",
+        "trevor-donovan#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jordin-sparks"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Oogie Boogie's Song\" — Ed Ivory & Ken Page",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            9,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Tanguera\" — Fabio Hager Sexteto",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Bury a Friend\" — Billie Eilish",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jazz",
+          "song": "\"Look What You Made Me Do\" — Taylor Swift",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            7,
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Get Ghost\" — Mark Ronson, Passion Pit & ASAP Ferg",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"I Wanna Be Your Slave\" — Måneskin",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 38,
+          "judges": [
+            10,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Shivers\" — District 78, feat. Mikayla Lynn",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            9,
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Halloween Theme\" — District 78",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Contemporary",
+          "song": "\"Ghost (Acoustic)\" — Justin Bieber",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "gabby-windey",
+            "heidi-damelio",
+            "jordin-sparks",
+            "shangela",
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 33,
+          "judges": [
+            8,
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Wicked)",
+          "song": "\"The Witches Are Back\" — Bette Midler, Sarah Jessica Parker & Kathy Najimy",
+          "result": "\"The Witches Are Back\" — Bette Midler, Sarah Jessica Parker & Kathy Najimy"
+        },
+        {
+          "contestants": [
+            "charli-damelio",
+            "daniel-durant",
+            "trevor-donovan",
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle\n(Team Scream)",
+          "song": "\"Heads Will Roll\" — Yeah Yeah Yeahs",
+          "result": "\"Heads Will Roll\" — Yeah Yeah Yeahs"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 8,
+      "night": 1,
+      "airDate": "2022-11-07",
+      "start": null,
+      "end": null,
+      "theme": "'90s Night",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "trevor-donovan#1",
+        "shangela#1",
+        "wayne-brady#1",
+        "daniel-durant#1",
+        "heidi-damelio#1",
+        "gabby-windey#1",
+        "vinny-guadagnino#1",
+        "charli-damelio#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            8,
+            9,
+            8,
+            9
+          ],
+          "bonus": 5,
+          "style": "Salsa",
+          "song": "\"Barbie Girl\" — Aqua",
+          "result": "Bottom three"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            10,
+            9,
+            9,
+            9
+          ],
+          "bonus": 5,
+          "style": "Samba",
+          "song": "\"Spice Up Your Life\" — Spice Girls",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": 5,
+          "style": "Salsa",
+          "song": "\"Motownphilly\" — Boyz II Men",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 39,
+          "judges": [
+            10,
+            9,
+            10,
+            10
+          ],
+          "bonus": 0,
+          "style": "Jazz",
+          "song": "\"Enjoy the Silence\" — Depeche Mode",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "heidi-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": 0,
+          "style": "Contemporary",
+          "song": "\"Ironic\" — Alanis Morissette",
+          "result": "Eliminated\nimmediately"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": 0,
+          "style": "Samba",
+          "song": "\"Livin' La Vida Loca\" — Ricky Martin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "vinny-guadagnino"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            8,
+            7,
+            7,
+            7
+          ],
+          "bonus": 0,
+          "style": "Tango",
+          "song": "\"What Is Love\" — Haddaway",
+          "result": "Eliminated\nby judges' votes"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": 5,
+          "style": "Tango",
+          "song": "\"Song 2\" — Blur",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 9,
+      "night": 1,
+      "airDate": "2022-11-14",
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "wayne-brady#1",
+        "wayne-brady#2",
+        "daniel-durant#1",
+        "daniel-durant#2",
+        "shangela#1",
+        "shangela#2",
+        "charli-damelio#1",
+        "charli-damelio#2",
+        "trevor-donovan#1",
+        "trevor-donovan#2",
+        "gabby-windey#1",
+        "gabby-windey#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Beggin'\" — Måneskin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            10,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"It's a Man's Man's Man's World\" — James Brown",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 35,
+          "judges": [
+            9,
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Surprise Yourself\" — Jack Garratt",
+          "result": "Eliminated\nby judges' votes"
+        },
+        {
+          "contestants": [
+            "daniel-durant"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 34,
+          "judges": [
+            9,
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Light It Up (Remix)\" — Major Lazer, feat. Nyla & Fuse ODG",
+          "result": "Eliminated\nby judges' votes"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Edge of Glory\" — Lady Gaga",
+          "result": "Bottom three"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 37,
+          "judges": [
+            10,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Have Nothing\" — Whitney Houston",
+          "result": "Bottom three"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Glimpse of Us\"  —Joji",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"España cañí\" — Pascual Marquina",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 32,
+          "judges": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Satisfied\" — Galantis, feat. MAX",
+          "result": "Eliminated\nimmediately"
+        },
+        {
+          "contestants": [
+            "trevor-donovan"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 33,
+          "judges": [
+            9,
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Count On Me\" — Judah Kelly",
+          "result": "Eliminated\nimmediately"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"I'm Kissing You\" — Des'ree",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Malagueña\" — Brian Setzer",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 1,
+      "airDate": "2022-11-21",
+      "start": null,
+      "end": null,
+      "theme": "Finale",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "derek-hough",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "shangela#1",
+        "shangela#2",
+        "wayne-brady#1",
+        "wayne-brady#2",
+        "charli-damelio#1",
+        "charli-damelio#2",
+        "gabby-windey#1",
+        "gabby-windey#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Queen Bee\" — Rochelle Diamante",
+          "result": "Fourth place"
+        },
+        {
+          "contestants": [
+            "shangela"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Survivor\" — Destiny's Child\n& \"Call Me Mother\" — RuPaul",
+          "result": "Fourth place"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 36,
+          "judges": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"(Your Love Keeps Lifting Me) Higher and Higher\" — Jackie Wilson",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "wayne-brady"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Get Up\" — Ciara, feat. Chamillionaire\n& \"24K Magic\" —Bruno Mars",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Grown\" — Little Mix",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "charli-damelio"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Us Again\" — Pinar Toprak",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Like It (Like That)\" — Pete Rodriguez",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "gabby-windey"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 40,
+          "judges": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Cell Block Tango\" — from Chicago",
+          "result": "Runners-up"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "jason-lewis",
+      "aliases": [
+        "Jason"
+      ],
+      "members": [
+        {
+          "name": "Jason Lewis",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Peta Murgatroyd",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "teresa-giudice",
+      "aliases": [
+        "Teresa"
+      ],
+      "members": [
+        {
+          "name": "Teresa Giudice",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Pasha Pashkov",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "cheryl-ladd",
+      "aliases": [
+        "Cheryl"
+      ],
+      "members": [
+        {
+          "name": "Cheryl Ladd",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Louis van Amstel",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "sam-champion",
+      "aliases": [
+        "Sam"
+      ],
+      "members": [
+        {
+          "name": "Sam Champion",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "selma-blair",
+      "aliases": [
+        "Selma"
+      ],
+      "members": [
+        {
+          "name": "Selma Blair",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Sasha Farber",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "joseph-baena",
+      "aliases": [
+        "Joseph"
+      ],
+      "members": [
+        {
+          "name": "Joseph Baena",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Daniella Karagach",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "jessie-james-decker",
+      "aliases": [
+        "Jessie"
+      ],
+      "members": [
+        {
+          "name": "Jessie James Decker",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Alan Bersten",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "jordin-sparks",
+      "aliases": [
+        "Jordin"
+      ],
+      "members": [
+        {
+          "name": "Jordin Sparks",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Brandon Armstrong",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "heidi-damelio",
+      "aliases": [
+        "Heidi"
+      ],
+      "members": [
+        {
+          "name": "Heidi D'Amelio",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Artem Chigvintsev",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "vinny-guadagnino",
+      "aliases": [
+        "Vinny"
+      ],
+      "members": [
+        {
+          "name": "Vinny Guadagnino",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Koko Iwasaki",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "trevor-donovan",
+      "aliases": [
+        "Trevor"
+      ],
+      "members": [
+        {
+          "name": "Trevor Donovan",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Emma Slater",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "daniel-durant",
+      "aliases": [
+        "Daniel"
+      ],
+      "members": [
+        {
+          "name": "Daniel Durant",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Britt Stewart",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "shangela",
+      "aliases": [
+        "Shangela"
+      ],
+      "members": [
+        {
+          "name": "Shangela",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Gleb Savchenko",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "wayne-brady",
+      "aliases": [
+        "Wayne"
+      ],
+      "members": [
+        {
+          "name": "Wayne Brady",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Witney Carson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "gabby-windey",
+      "aliases": [
+        "Gabby"
+      ],
+      "members": [
+        {
+          "name": "Gabby Windey",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Val Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "charli-damelio",
+      "aliases": [
+        "Charli"
+      ],
+      "members": [
+        {
+          "name": "Charli D'Amelio",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

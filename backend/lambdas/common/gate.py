@@ -33,10 +33,13 @@ def rateable(
     Keys the caller must answer before the episode's results open: every couple
     still in the competition that night times dancesPerCouple. Known before the
     poller writes anything; a performance the poller marks unrateable (a team
-    dance) drops out.
+    dance) drops out. A past-season episode lists its keys (`rateableKeys`): a
+    two-night week, a dance-off or a withdrawal makes the roster count wrong.
     """
-    dances = int(episode.get("dancesPerCouple") or 1)
     off = {perf_key(p["sk"]) for p in performances if p.get("rateable") is False}
+    if episode.get("rateableKeys") is not None:
+        return [k for k in episode["rateableKeys"] if k not in off]
+    dances = int(episode.get("dancesPerCouple") or 1)
     keys = [
         f"{cid(c)}#{n}"
         for c in contestants

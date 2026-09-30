@@ -57,6 +57,11 @@ def season_rows(show: str, season: int) -> list[dict]:
     return query_all(table("CATALOG_TABLE"), f"SEASON#{show}#{season}")
 
 
+def season_index(show: str) -> list[dict]:
+    """One item per season of the show, written by seed_season.py."""
+    return query_all(table("CATALOG_TABLE"), f"SEASONS#{show}")
+
+
 def performances(pk: str) -> list[dict]:
     return query_all(table("PERFORMANCES_TABLE"), pk)
 

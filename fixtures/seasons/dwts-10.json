@@ -1,0 +1,2258 @@
+{
+  "show": "dwts",
+  "season": 10,
+  "year": 2010,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 10",
+  "revid": 1375293581,
+  "revTimestamp": "2026-09-16T23:52:07Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2010-03-22",
+      "start": null,
+      "end": null,
+      "theme": "First Dances",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "chad-ochocinco#1",
+        "shannen-doherty#1",
+        "erin-andrews#1",
+        "jake-pavelka#1",
+        "niecy-nash#1",
+        "evan-lysacek#1",
+        "buzz-aldrin#1",
+        "nicole-scherzinger#1",
+        "aiden-turner#1",
+        "kate-gosselin#1",
+        "pamela-anderson#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"It's Just Begun\" — The Jimmy Castor Bunch",
+          "result": null
+        },
+        {
+          "contestants": [
+            "shannen-doherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"The Killing Moon\" — Nouvelle Vague",
+          "result": null
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"TiK ToK\" — Ke$ha",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jake-pavelka"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Kiss from a Rose\" — Seal",
+          "result": null
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            7,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Rescue Me\" — Fontella Bass",
+          "result": null
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I'll Be\" — Edwin McCain",
+          "result": null
+        },
+        {
+          "contestants": [
+            "buzz-aldrin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            5,
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Cupid\" — Sam Cooke",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Hold You In My Arms\" ― Ray LaMontagne",
+          "result": null
+        },
+        {
+          "contestants": [
+            "aiden-turner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Hungry Like the Wolf\" — Duran Duran",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kate-gosselin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"She's Always a Woman\" — Billy Joel",
+          "result": null
+        },
+        {
+          "contestants": [
+            "pamela-anderson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Gimme All Your Lovin'\" — ZZ Top",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2010-03-29",
+      "start": null,
+      "end": null,
+      "theme": "First Elimination",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "shannen-doherty#1",
+        "aiden-turner#1",
+        "evan-lysacek#1",
+        "niecy-nash#1",
+        "jake-pavelka#1",
+        "buzz-aldrin#1",
+        "nicole-scherzinger#1",
+        "erin-andrews#1",
+        "pamela-anderson#1",
+        "chad-ochocinco#1",
+        "kate-gosselin#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "shannen-doherty"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Shake a Tail Feather\" — Ray Charles",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "aiden-turner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I've Got You Under My Skin\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Best Damn Thing\" — Avril Lavigne",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Love You I Do\" — Jennifer Hudson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jake-pavelka"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hip to be Square\" — Huey Lewis and the News",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "buzz-aldrin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            4,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Fly Me to the Moon\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            8,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"SOS\" — Rihanna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Love Story\" — Taylor Swift",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "pamela-anderson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I Wanna Be Loved By You\" — Marilyn Monroe",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"100 Years\" — Five for Fighting",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-gosselin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I'm Still Standing\" — Elton John",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2010-04-05",
+      "start": null,
+      "end": null,
+      "theme": "Storytelling Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "evan-lysacek#1",
+        "buzz-aldrin#1",
+        "jake-pavelka#1",
+        "niecy-nash#1",
+        "chad-ochocinco#1",
+        "pamela-anderson#1",
+        "aiden-turner#1",
+        "erin-andrews#1",
+        "kate-gosselin#1",
+        "nicole-scherzinger#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hot Honey Rag\" — from Chicago",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "buzz-aldrin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            5,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"What a Wonderful World\" — Louis Armstrong",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jake-pavelka"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Walk Like an Egyptian\" — The Bangles",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"With You I'm Born Again\" — Billy Preston, feat. Syreeta Wright",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Canción del Mariachi\" — Los Lobos & Antonio Banderas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "pamela-anderson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Don't Let Me Be Misunderstood\" — The Animals",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "aiden-turner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Hey, Soul Sister\" — Train",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"See the Day\" — Dee C. Lee",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-gosselin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Paparazzi\" — Lady Gaga",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            6,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Anything Goes\" — Cole Porter, feat. Stacey Kent",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2010-04-12",
+      "start": null,
+      "end": null,
+      "theme": "Double-score Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "erin-andrews#1",
+        "erin-andrews#2",
+        "evan-lysacek#1",
+        "evan-lysacek#2",
+        "niecy-nash#1",
+        "niecy-nash#2",
+        "aiden-turner#1",
+        "aiden-turner#2",
+        "nicole-scherzinger#1",
+        "nicole-scherzinger#2",
+        "jake-pavelka#1",
+        "jake-pavelka#2",
+        "kate-gosselin#1",
+        "kate-gosselin#2",
+        "chad-ochocinco#1",
+        "chad-ochocinco#2",
+        "pamela-anderson#1",
+        "pamela-anderson#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Sweet Dreams (Are Made of This)\" — Eurythmics",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Sweet Dreams (Are Made of This)\" — Eurythmics",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Wait a Minute\" — The Pussycat Dolls, feat. Timbaland",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Wait a Minute\" — The Pussycat Dolls, feat. Timbaland",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Taking Chances\" — Celine Dion",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Taking Chances\" — Celine Dion",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "aiden-turner"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Live Like We're Dying\" — Kris Allen",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "aiden-turner"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Live Like We're Dying\" — Kris Allen",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"The First Time Ever I Saw Your Face\" — Roberta Flack",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"The First Time Ever I Saw Your Face\" — Roberta Flack",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jake-pavelka"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"A Girl Like You\" — Edwyn Collins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jake-pavelka"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"A Girl Like You\" — Edwyn Collins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-gosselin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            4,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"For Your Entertainment\" — Adam Lambert",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kate-gosselin"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"For Your Entertainment\" — Adam Lambert",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Try Sleeping with a Broken Heart\" — Alicia Keys",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Try Sleeping with a Broken Heart\" — Alicia Keys",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "pamela-anderson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I Can't Make You Love Me\" — Bonnie Raitt",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "pamela-anderson"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I Can't Make You Love Me\" — Bonnie Raitt",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2010-04-19",
+      "start": null,
+      "end": null,
+      "theme": "Movie Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "niecy-nash#1",
+        "chad-ochocinco#1",
+        "erin-andrews#1",
+        "jake-pavelka#1",
+        "pamela-anderson#1",
+        "kate-gosselin#1",
+        "nicole-scherzinger#1",
+        "evan-lysacek#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"La Bamba\" — Ritchie Valens",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Bare Necessities\" — Phil Harris",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"You Never Can Tell\" — Chuck Berry",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jake-pavelka"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Old Time Rock and Roll\" — Bob Seger",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "pamela-anderson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"9 to 5\" — Dolly Parton",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "kate-gosselin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Don't You (Forget About Me)\" — Simple Minds",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Oh, Pretty Woman\" — Roy Orbison",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I Don't Want to Miss a Thing\" — Aerosmith",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2010-04-26",
+      "start": null,
+      "end": null,
+      "theme": "Marathon Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jake-pavelka#1",
+        "evan-lysacek#1",
+        "niecy-nash#1",
+        "erin-andrews#1",
+        "chad-ochocinco#1",
+        "nicole-scherzinger#1",
+        "pamela-anderson#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jake-pavelka"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": 4,
+          "style": "Samba",
+          "song": "\"Comanche\" — The Revels",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": 6,
+          "style": "Samba",
+          "song": "\"Hey Mama\" — The Black Eyed Peas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": 5,
+          "style": "Argentine tango",
+          "song": "\"El Sonido de la Milonga\" — Campo",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            7,
+            9
+          ],
+          "bonus": 9,
+          "style": "Samba",
+          "song": "\"When I Get You Alone\" — Robin Thicke",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": 7,
+          "style": "Argentine tango",
+          "song": "\"Mas de lo Mismo\" — Tanghetto",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            7,
+            10
+          ],
+          "bonus": 10,
+          "style": "Samba",
+          "song": "\"María\" — Ricky Martin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "pamela-anderson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": 8,
+          "style": "Argentine tango",
+          "song": "\"Enjoy the Silence\" — Depeche Mode",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2010-05-03",
+      "start": null,
+      "end": null,
+      "theme": "Team Dance Week",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "erin-andrews#1",
+        "chad-ochocinco#1",
+        "nicole-scherzinger#1",
+        "pamela-anderson#1",
+        "niecy-nash#1",
+        "evan-lysacek#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Dancin' Fool\" — Barry Manilow",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Sparks\" — Coldplay",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"You Light Up My Life\" — Debby Boone",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "pamela-anderson"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"At This Moment\" — Billy & the Beaters",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You're the Top\" — Cole Porter",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Bust Your Windows\" — Jazmine Sullivan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco",
+            "nicole-scherzinger",
+            "pamela-anderson"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha\n(Team Gaga)",
+          "song": "\"Telephone\" — Lady Gaga, feat. Beyoncé",
+          "result": "\"Telephone\" — Lady Gaga, feat. Beyoncé"
+        },
+        {
+          "contestants": [
+            "erin-andrews",
+            "evan-lysacek",
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha\n(Team Madonna)",
+          "song": "\"Holiday\" — Madonna",
+          "result": "\"Holiday\" — Madonna"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2010-05-10",
+      "start": null,
+      "end": null,
+      "theme": "Race to the Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "chad-ochocinco#1",
+        "chad-ochocinco#2",
+        "niecy-nash#1",
+        "niecy-nash#2",
+        "erin-andrews#1",
+        "erin-andrews#2",
+        "evan-lysacek#1",
+        "evan-lysacek#2",
+        "nicole-scherzinger#1",
+        "nicole-scherzinger#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Sweet Dreams\" — Beyoncé",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Love Man\" — Otis Redding",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I Got You Babe\" — Sonny & Cher",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "niecy-nash"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Rhythm is a Dancer\" — Snap!",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"Una Música Brutal\" — Gotan Project",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Missing You\" — John Waite",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"Open Arms\" — Journey",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Bulletproof\" — La Roux",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Haven't Met You Yet\" — Michael Bublé",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Spanish Guitar\" — Bo Diddley",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 9,
+      "night": 1,
+      "airDate": "2010-05-17",
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "erin-andrews#1",
+        "erin-andrews#2",
+        "nicole-scherzinger#1",
+        "nicole-scherzinger#2",
+        "chad-ochocinco#1",
+        "chad-ochocinco#2",
+        "evan-lysacek#1",
+        "evan-lysacek#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"February Song\" — Josh Groban",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"U Got the Look\" — Prince",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Argentine tango",
+          "song": "\"El Capitalismo Foráneo\" — Gotan Project",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Kiss\" — Prince",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"If You Don't Know Me by Now\" — Simply Red",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "chad-ochocinco"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Alejandro\" — Lady Gaga",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I've Got the World on a String\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Bring Me to Life\" — Evanescence",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 10,
+      "night": 1,
+      "airDate": "2010-05-24",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "erin-andrews#1",
+        "erin-andrews#2",
+        "evan-lysacek#1",
+        "evan-lysacek#2",
+        "nicole-scherzinger#1",
+        "nicole-scherzinger#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Mi swing es tropical\" — Quantic & Nikodemus",
+          "result": null
+        },
+        {
+          "contestants": [
+            "erin-andrews"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": 26,
+          "style": "Freestyle",
+          "song": "\"Alone\" — Heart",
+          "result": null
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Piano Man\" — Billy Joel",
+          "result": null
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": 28,
+          "style": "Freestyle",
+          "song": "\"Footloose\" — Kenny Loggins",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"The Lady in Red\" — Chris De Burgh",
+          "result": null
+        },
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": 30,
+          "style": "Freestyle",
+          "song": "\"A Little Less Conversation\" — Elvis Presley",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 2,
+      "airDate": "2010-05-25",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "nicole-scherzinger#3",
+        "evan-lysacek#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "nicole-scherzinger"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Proud Mary\" — Ike & Tina Turner",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "evan-lysacek"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"I Want You to Want Me\" — Letters To Cleo",
+          "result": "Runners-up"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "shannen-doherty",
+      "aliases": [
+        "Shannen"
+      ],
+      "members": [
+        {
+          "name": "Shannen Doherty",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "buzz-aldrin",
+      "aliases": [
+        "Buzz"
+      ],
+      "members": [
+        {
+          "name": "Buzz Aldrin",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Ashly Costa",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "aiden-turner",
+      "aliases": [
+        "Aiden"
+      ],
+      "members": [
+        {
+          "name": "Aiden Turner",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "kate-gosselin",
+      "aliases": [
+        "Kate"
+      ],
+      "members": [
+        {
+          "name": "Kate Gosselin",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "jake-pavelka",
+      "aliases": [
+        "Jake"
+      ],
+      "members": [
+        {
+          "name": "Jake Pavelka",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Chelsie Hightower",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "pamela-anderson",
+      "aliases": [
+        "Pamela"
+      ],
+      "members": [
+        {
+          "name": "Pamela Anderson",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Damian Whitewood",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "niecy-nash",
+      "aliases": [
+        "Niecy"
+      ],
+      "members": [
+        {
+          "name": "Niecy Nash",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Louis van Amstel",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "chad-ochocinco",
+      "aliases": [
+        "Chad"
+      ],
+      "members": [
+        {
+          "name": "Chad Ochocinco",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "erin-andrews",
+      "aliases": [
+        "Erin"
+      ],
+      "members": [
+        {
+          "name": "Erin Andrews",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "evan-lysacek",
+      "aliases": [
+        "Evan"
+      ],
+      "members": [
+        {
+          "name": "Evan Lysacek",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Anna Trebunskaya",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "nicole-scherzinger",
+      "aliases": [
+        "Nicole"
+      ],
+      "members": [
+        {
+          "name": "Nicole Scherzinger",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": []
+}

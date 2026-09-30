@@ -99,17 +99,29 @@ def judge_ids(names: list[str], judges: list[dict]) -> list[str]:
 
 
 def publish(
-    episode: dict, panel: list[str], perfs: list[dict], rev: int, t: int, window: int
+    episode: dict,
+    panel: list[str],
+    perfs: list[dict],
+    rev: int,
+    t: int,
+    window: int,
+    season: tuple[str, int] = (SHOW, SEASON),
+    settled: list[str] | None = None,
 ) -> bool:
     """
     Writes one episode's performances, then its results once every value is
     confirmed and every Result cell is filled. True if anything is still provisional.
     Each performance's `panel` is JUDGE# ids; `panel` is the episode's.
+
+    `settled` is a finished season's eliminations for this episode, from the Cast
+    table: results are then written without waiting on Result cells, which early
+    seasons leave out on nights with no elimination.
     """
     ep = int(episode["sk"].removeprefix("EP#"))
-    pk = episode_pk(SHOW, SEASON, ep)
+    pk = episode_pk(*season, ep)
+    season_pk = f"SEASON#{season[0]}#{season[1]}"
     if episode.get("panel") != panel:
-        update("CATALOG_TABLE", {"pk": SEASON_PK, "sk": episode["sk"]}, {"panel": panel})
+        update("CATALOG_TABLE", {"pk": season_pk, "sk": episode["sk"]}, {"panel": panel})
 
     stored = {p["sk"]: p for p in performances(pk)}
     pending = False
@@ -139,12 +151,16 @@ def publish(
         states = [j["state"] for j in item["judges"].values()]
         pending |= "provisional" in states
         final &= p["judges"] is not None and "provisional" not in states
-        final &= not p["rateable"] or p["result"] is not None
+        final &= settled is not None or not p["rateable"] or p["result"] is not None
 
     if final and episode.get("results") is None:
         solo = [p for p in perfs if p["rateable"]]
         out = sorted(
-            {p["contestants"][0] for p in solo if p["result"].casefold().startswith("eliminated")}
+            settled
+            if settled is not None
+            else {
+                p["contestants"][0] for p in solo if p["result"].casefold().startswith("eliminated")
+            }
         )
         totals: dict = {}
         bonus: dict = {}
@@ -156,7 +172,7 @@ def publish(
         for cid in out:
             if not update(
                 "CATALOG_TABLE",
-                {"pk": SEASON_PK, "sk": f"CONTESTANT#{cid}"},
+                {"pk": season_pk, "sk": f"CONTESTANT#{cid}"},
                 {"eliminatedEp": ep},
                 "attribute_not_exists(#eliminatedEp) OR #eliminatedEp = :eliminatedEp",
             ):
@@ -164,7 +180,7 @@ def publish(
         # Written last: results are what marks the episode done.
         update(
             "CATALOG_TABLE",
-            {"pk": SEASON_PK, "sk": episode["sk"]},
+            {"pk": season_pk, "sk": episode["sk"]},
             {"results": {"eliminated": out, "totals": totals, "bonus": bonus}},
             "attribute_not_exists(#results)",
         )

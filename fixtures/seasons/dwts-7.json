@@ -1,0 +1,2426 @@
+{
+  "show": "dwts",
+  "season": 7,
+  "year": 2008,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 7",
+  "revid": 1372835065,
+  "revTimestamp": "2026-09-02T14:24:56Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    },
+    {
+      "id": "michael-flatley",
+      "name": "Michael Flatley",
+      "aliases": [
+        "Michael Flatley"
+      ],
+      "headshot": null
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2008-09-22",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "cody-linley#1",
+        "rocco-dispirito#1",
+        "toni-braxton#1",
+        "maurice-greene#1",
+        "brooke-burke#1",
+        "ted-mcginley#1",
+        "lance-bass#1",
+        "cloris-leachman#1",
+        "jeffrey-ross#1",
+        "kim-kardashian#1",
+        "susan-lucci#1",
+        "misty-may-treanor#1",
+        "warren-sapp#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Tilt Ya Head Back\" — Nelly & Christina Aguilera",
+          "result": null
+        },
+        {
+          "contestants": [
+            "rocco-dispirito"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            5,
+            4,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Stray Cat Strut\" — Stray Cats",
+          "result": null
+        },
+        {
+          "contestants": [
+            "toni-braxton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Smooth\" — Carlos Santana, feat. Rob Thomas",
+          "result": null
+        },
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Doing It to Death\" — Fred Wesley & The J.B.'s",
+          "result": null
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Are You My Woman? (Tell Me So)\" — The Chi-Lites",
+          "result": null
+        },
+        {
+          "contestants": [
+            "ted-mcginley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"God Only Knows\" — The Beach Boys",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Jumpin' Jack Flash\" — The Rolling Stones",
+          "result": null
+        },
+        {
+          "contestants": [
+            "cloris-leachman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I Wish I Were in Love Again\" — Frank Sinatra",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jeffrey-ross"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            4,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Play That Funky Music\" — Wild Cherry",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kim-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The Pink Panther Theme\" — Henry Mancini",
+          "result": null
+        },
+        {
+          "contestants": [
+            "susan-lucci"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Heard It Through the Grapevine\" — Marvin Gaye",
+          "result": null
+        },
+        {
+          "contestants": [
+            "misty-may-treanor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            6,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"This Will Be (An Everlasting Love)\" — Natalie Cole",
+          "result": null
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Do I Do\" — Stevie Wonder",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 1,
+      "night": 2,
+      "airDate": "2008-09-23",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "lance-bass#2",
+        "misty-may-treanor#2",
+        "maurice-greene#2",
+        "brooke-burke#2",
+        "cloris-leachman#2",
+        "toni-braxton#2",
+        "warren-sapp#2",
+        "ted-mcginley#2",
+        "cody-linley#2",
+        "rocco-dispirito#2",
+        "susan-lucci#2",
+        "kim-kardashian#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Close to Me\" — The Cure",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "misty-may-treanor"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Black Mambo\"—Angel & the Mambokats",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"I Do the Jerk\" — Ryan Shaw",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Lover, Come Back to Me\" — Barbra Streisand",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cloris-leachman"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Coconut Woman\" — Harry Belafonte",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "toni-braxton"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Blue Skies\" — Della Reese",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Ding-Dong Daddy of the D-Car Line\" — Cherry Poppin' Daddies",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "ted-mcginley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo Gozon\" — Tito Puente",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"I Want You To Want Me\" — Letters to Cleo",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rocco-dispirito"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"La Comay\" — Sonora Carruseles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "susan-lucci"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Bei mir bist du schön\" — The Arthur Murray Orchestra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kim-kardashian"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Baby Got Back\" — Sir Mix-a-Lot",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 2,
+      "night": 1,
+      "airDate": "2008-09-29",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "toni-braxton#1",
+        "brooke-burke#1",
+        "rocco-dispirito#1",
+        "lance-bass#1",
+        "kim-kardashian#1",
+        "misty-may-treanor#1",
+        "maurice-greene#1",
+        "cloris-leachman#1",
+        "susan-lucci#1",
+        "warren-sapp#1",
+        "cody-linley#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "toni-braxton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I Can't Make You Love Me\" — Bonnie Raitt",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Palladio\" — Karl Jenkins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "rocco-dispirito"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            5,
+            6,
+            5
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"You'll Never Find Another Love Like Mine\" — Lou Rawls",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"I Kissed a Girl\" — Katy Perry",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kim-kardashian"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            6,
+            5
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"You Give Me Something\" — James Morrison",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "misty-may-treanor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Take Me Out\" — Franz Ferdinand",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Mercy Mercy Me\" — Marvin Gaye",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cloris-leachman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Boléro\" — Maurice Ravel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "susan-lucci"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Waiting on the World to Change\" — John Mayer",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Malagueña\" — The Brian Setzer Orchestra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Bleeding Love\" — Leona Lewis",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 3,
+      "night": 1,
+      "airDate": "2008-10-06",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "susan-lucci#1",
+        "lance-bass#1",
+        "maurice-greene#1",
+        "rocco-dispirito#1",
+        "warren-sapp#1",
+        "cody-linley#1",
+        "toni-braxton#1",
+        "cloris-leachman#1",
+        "brooke-burke#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "susan-lucci"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Why Do Fools Fall in Love\" — Diana Ross",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Let Me Leave\" — Marc Broussard",
+          "result": null
+        },
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Rock Around the Clock\" — Bill Haley & His Comets",
+          "result": null
+        },
+        {
+          "contestants": [
+            "rocco-dispirito"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"What's New Pussycat?\" — Tom Jones",
+          "result": null
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Lovin' U\" — Alicia Keys",
+          "result": null
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Call Me the Breeze\" — Lynyrd Skynyrd",
+          "result": null
+        },
+        {
+          "contestants": [
+            "toni-braxton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Für Elise\" — Ludwig van Beethoven",
+          "result": null
+        },
+        {
+          "contestants": [
+            "cloris-leachman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The Girl Can't Help It\" — Little Richard",
+          "result": null
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Daughters\" — John Mayer",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 4,
+      "night": 1,
+      "airDate": "2008-10-13",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "maurice-greene#1",
+        "cody-linley#1",
+        "toni-braxton#1",
+        "cloris-leachman#1",
+        "rocco-dispirito#1",
+        "susan-lucci#1",
+        "brooke-burke#1",
+        "lance-bass#1",
+        "warren-sapp#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"That's the Way (I Like It)\" — KC and the Sunshine Band",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Bohemian Like You\" — The Dandy Warhols",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "toni-braxton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"De dónde soy\" — Thalía",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cloris-leachman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"The Big Date\" — Marc Shaiman",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "rocco-dispirito"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"I Go to Rio\" — Peter Allen",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "susan-lucci"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"La Bohemia\" — Electric Club Tango",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Hip Hip Chin Chin\" — Club des Belugas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Disturbia\" — Rihanna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Bounce With Me\" — Kreesha Turner",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 5,
+      "night": 1,
+      "airDate": "2008-10-20",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "lance-bass#1",
+        "toni-braxton#1",
+        "susan-lucci#1",
+        "warren-sapp#1",
+        "cloris-leachman#1",
+        "maurice-greene#1",
+        "brooke-burke#1",
+        "cody-linley#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "West Coast Swing",
+          "song": "\"Breakin' Dishes\" — Rihanna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "toni-braxton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "West Coast Swing",
+          "song": "\"The Way You Make Me Feel\" — Michael Jackson",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "susan-lucci"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Hustle",
+          "song": "\"Upside Down\" — Diana Ross",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Hustle",
+          "song": "\"Funkytown\" — Lipps Inc.",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cloris-leachman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Tres Deseos\" — Gloria Estefan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Everything I Can't Have\" — Robin Thicke",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Jitterbug",
+          "song": "\"Don't Be Cruel\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jitterbug",
+          "song": "\"Big Time Operator\" — Big Bad Voodoo Daddy",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 6,
+      "night": 1,
+      "airDate": "2008-10-27",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "michael-flatley",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "maurice-greene#1",
+        "lance-bass#1",
+        "susan-lucci#1",
+        "brooke-burke#1",
+        "cloris-leachman#1",
+        "cody-linley#1",
+        "warren-sapp#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Gravity\" — John Mayer",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Tutti Frutti\" — Little Richard",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "susan-lucci"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Si Señor!...\" — Gloria Estefan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            10,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"No Air\" — Jordin Sparks & Chris Brown",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cloris-leachman"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Come See About Me\" — The Supremes",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Whine Up\" — Kat DeLuna, feat. Elephant Man",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Irreplaceable\" — Beyoncé",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 7,
+      "night": 1,
+      "airDate": "2008-11-03",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "warren-sapp#1",
+        "susan-lucci#1",
+        "maurice-greene#1",
+        "cody-linley#1",
+        "lance-bass#1",
+        "brooke-burke#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Is You Is or Is You Ain't My Baby\" — Diana Krall",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "susan-lucci"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Ride\" — James Horner",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Cupid Shuffle\" — Cupid",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Have You Ever Really Loved a Woman?\" — Bryan Adams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Your Body Is a Wonderland\" — John Mayer",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Lullaby of Birdland\" — Sarah Vaughan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cody-linley",
+            "lance-bass",
+            "susan-lucci"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Team\nCha-cha-cha",
+          "song": "\"Mercy\" — Duffy",
+          "result": "\"Mercy\" — Duffy"
+        },
+        {
+          "contestants": [
+            "brooke-burke",
+            "maurice-greene",
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": false,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Team\nPaso doble",
+          "song": "\"Rocks\" — Primal Scream",
+          "result": "\"Rocks\" — Primal Scream"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 8,
+      "night": 1,
+      "airDate": "2008-11-10",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "cody-linley#1",
+        "cody-linley#2",
+        "brooke-burke#1",
+        "brooke-burke#2",
+        "maurice-greene#1",
+        "maurice-greene#2",
+        "lance-bass#1",
+        "lance-bass#2",
+        "warren-sapp#1",
+        "warren-sapp#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Call Me Irresponsible\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"My Way\" — Los Lonely Boys",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            8,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Tango Diabolo\" — Christa Behnke",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Cuban Mambo\" — Xavier Cugat",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Puttin' on the Ritz\" — Fred Astaire",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "maurice-greene"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Let It Rock\" — Kevin Rudolf & Lil Wayne",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Sweet Pea\" — Amos Lee",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"1 Thing\" — Amerie",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Peter Gunn Theme\" — Henry Mancini",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hallelujah I Love Her So\" — Ray Charles",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 9,
+      "night": 1,
+      "airDate": "2008-11-17",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "brooke-burke#1",
+        "brooke-burke#2",
+        "cody-linley#1",
+        "cody-linley#2",
+        "warren-sapp#1",
+        "warren-sapp#2",
+        "lance-bass#1",
+        "lance-bass#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"The House Is Rockin'\" — Stevie Ray Vaughan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Babarabatiri\" — Tito Puente",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Le Disko\" — Shiny Toy Guns",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "cody-linley"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Salsa",
+          "song": "\"Juventud de Presente\" — Tito Puente",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Tequila\" — The Champs",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jitterbug",
+          "song": "\"That Old Black Magic\" — Sammy Davis Jr.",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Straight To Number One\" — Touch and Go",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Jitterbug",
+          "song": "\"Jim Dandy\" — Black Oak Arkansas",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 1,
+      "airDate": "2008-11-24",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "brooke-burke#1",
+        "lance-bass#1",
+        "warren-sapp#1",
+        "brooke-burke#2",
+        "lance-bass#2",
+        "warren-sapp#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Group\nSamba",
+          "song": "\"Blame It on the Boogie\" — The Jacksons",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Group\nSamba",
+          "song": "\"Blame It on the Boogie\" — The Jacksons",
+          "result": null
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Group\nSamba",
+          "song": "\"Blame It on the Boogie\" — The Jacksons",
+          "result": null
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"You're the One That I Want\" — John Travolta & Olivia Newton-John",
+          "result": null
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"It's Tricky\" — Run-D.M.C.",
+          "result": null
+        },
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Proud Mary\" — Ike & Tina Turner",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 12,
+      "week": 10,
+      "night": 2,
+      "airDate": "2008-11-25",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "warren-sapp#3",
+        "lance-bass#3",
+        "brooke-burke#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "warren-sapp"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Hustle",
+          "song": "\"Funkytown\" — Lipps Inc.",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "lance-bass"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Jitterbug",
+          "song": "\"Jim Dandy\" — Black Oak Arkansas",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "brooke-burke"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Daughters\" — John Mayer",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "jeffrey-ross",
+      "aliases": [
+        "Jeffrey"
+      ],
+      "members": [
+        {
+          "name": "Jeffrey Ross",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "ted-mcginley",
+      "aliases": [
+        "Ted"
+      ],
+      "members": [
+        {
+          "name": "Ted McGinley",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Inna Brayer",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "kim-kardashian",
+      "aliases": [
+        "Kim"
+      ],
+      "members": [
+        {
+          "name": "Kim Kardashian",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "misty-may-treanor",
+      "aliases": [
+        "Misty"
+      ],
+      "members": [
+        {
+          "name": "Misty May-Treanor",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "rocco-dispirito",
+      "aliases": [
+        "Rocco"
+      ],
+      "members": [
+        {
+          "name": "Rocco DiSpirito",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "toni-braxton",
+      "aliases": [
+        "Toni"
+      ],
+      "members": [
+        {
+          "name": "Toni Braxton",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Alec Mazo",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "cloris-leachman",
+      "aliases": [
+        "Cloris"
+      ],
+      "members": [
+        {
+          "name": "Cloris Leachman",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Corky Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "susan-lucci",
+      "aliases": [
+        "Susan"
+      ],
+      "members": [
+        {
+          "name": "Susan Lucci",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "maurice-greene",
+      "aliases": [
+        "Maurice"
+      ],
+      "members": [
+        {
+          "name": "Maurice Greene",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "cody-linley",
+      "aliases": [
+        "Cody"
+      ],
+      "members": [
+        {
+          "name": "Cody Linley",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Julianne Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "lance-bass",
+      "aliases": [
+        "Lance"
+      ],
+      "members": [
+        {
+          "name": "Lance Bass",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Lacey Schwimmer",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "warren-sapp",
+      "aliases": [
+        "Warren"
+      ],
+      "members": [
+        {
+          "name": "Warren Sapp",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Kym Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "brooke-burke",
+      "aliases": [
+        "Brooke"
+      ],
+      "members": [
+        {
+          "name": "Brooke Burke",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 1,
+      "night": 2,
+      "row": "Jeffrey & Edyta",
+      "reason": "no scores received"
+    },
+    {
+      "week": 6,
+      "night": 1,
+      "row": "Brooke & Derek\nCloris & Corky\nCody & Julianne\nLance & Lacey\nMaurice & Cheryl\nSusan & Tony\nWarren & Kym",
+      "reason": "no scores received"
+    }
+  ]
+}

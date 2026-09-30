@@ -1,0 +1,2248 @@
+{
+  "show": "dwts",
+  "season": 6,
+  "year": 2008,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 6",
+  "revid": 1372834966,
+  "revTimestamp": "2026-09-02T14:24:20Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2008-03-17",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "penn-jillette#1",
+        "jason-taylor#1",
+        "cristian-de-la-fuente#1",
+        "adam-carolla#1",
+        "mario#1",
+        "steve-guttenberg#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "penn-jillette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            5,
+            6,
+            5
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Fool in Love\" — Tina Turner",
+          "result": null
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Pride and Joy\" — Marvin Gaye",
+          "result": null
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Bang Bang\" — David Sanborn",
+          "result": null
+        },
+        {
+          "contestants": [
+            "adam-carolla"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Mellow Yellow\" — Donovan",
+          "result": null
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Request Line\" — The Black Eyed Peas",
+          "result": null
+        },
+        {
+          "contestants": [
+            "steve-guttenberg"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Lazy River\" — Bobby Darin",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 1,
+      "night": 2,
+      "airDate": "2008-03-18",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "shannon-elizabeth#1",
+        "monica-seles#1",
+        "marissa-jaret-winokur#1",
+        "priscilla-presley#1",
+        "kristi-yamaguchi#1",
+        "marlee-matlin#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "shannon-elizabeth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Shut Up and Drive\" — Rihanna",
+          "result": null
+        },
+        {
+          "contestants": [
+            "monica-seles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Bubbly\" — Colbie Caillat",
+          "result": null
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            6,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Low\" — Flo Rida, feat. T-Pain",
+          "result": null
+        },
+        {
+          "contestants": [
+            "priscilla-presley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Feeling Good\" — Nina Simone",
+          "result": null
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"The More I See You\" — Michael Bublé",
+          "result": null
+        },
+        {
+          "contestants": [
+            "marlee-matlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Get on Your Feet\" — Gloria Estefan",
+          "result": null
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 2,
+      "night": 1,
+      "airDate": "2008-03-24",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "steve-guttenberg#1",
+        "cristian-de-la-fuente#1",
+        "monica-seles#1",
+        "penn-jillette#1",
+        "priscilla-presley#1",
+        "shannon-elizabeth#1",
+        "jason-taylor#1",
+        "marissa-jaret-winokur#1",
+        "adam-carolla#1",
+        "marlee-matlin#1",
+        "kristi-yamaguchi#1",
+        "mario#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "steve-guttenberg"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"I Got a Girl\" — Lou Bega",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            6,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Americano\" — The Brian Setzer Orchestra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "monica-seles"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 15,
+          "judges": [
+            5,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"My Lovin' (You're Never Gonna Get It)\" — En Vogue",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "penn-jillette"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            6,
+            6,
+            5
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Man with the Hex\" — Atomic Fireballs",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "priscilla-presley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Bossa Nova Hand Dance (Deixa isso prà là)\" — Connie Francis",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shannon-elizabeth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Swing with Me\" — Jessica Simpson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Lupita\" — Perez Prado",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Flip, Flop and Fly\" — The Blues Brothers",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "adam-carolla"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"House of Bamboo\" — Andy Williams",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marlee-matlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Mack the Knife\" — Ella Fitzgerald",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Hey Baby\" — No Doubt, featuring Bounty Killer",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Valerie\" — Amy Winehouse",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 3,
+      "night": 1,
+      "airDate": "2008-03-31",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "marlee-matlin#1",
+        "steve-guttenberg#1",
+        "cristian-de-la-fuente#1",
+        "mario#1",
+        "shannon-elizabeth#1",
+        "adam-carolla#1",
+        "marissa-jaret-winokur#1",
+        "priscilla-presley#1",
+        "jason-taylor#1",
+        "kristi-yamaguchi#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "marlee-matlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"You May Be Right\" — Billy Joel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "steve-guttenberg"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Jalousie\" — Alfred Hause's Tango Orchestra",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Don't Stop Me Now\" — Queen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"El Tango de Roxanne\" — José Feliciano, Ewan McGregor & Jacek Koman",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shannon-elizabeth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Goody Two Shoes\" — Adam Ant",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "adam-carolla"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"I Can't Tell A Waltz From A Tango\" — Alma Cogan",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Girlfriend\" — Avril Lavigne",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "priscilla-presley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"El Choclo\" — Lalo Schifrin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"I Got a Woman\" — Ray Charles",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Rio\" — Duran Duran",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 4,
+      "night": 1,
+      "airDate": "2008-04-07",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "kristi-yamaguchi#1",
+        "priscilla-presley#1",
+        "adam-carolla#1",
+        "marlee-matlin#1",
+        "mario#1",
+        "jason-taylor#1",
+        "cristian-de-la-fuente#1",
+        "shannon-elizabeth#1",
+        "marissa-jaret-winokur#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Blue Monday\" — New Order",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "priscilla-presley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Do Right Woman, Do Right Man\" — Etta James",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "adam-carolla"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            6,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Plaza of Execution\" — James Horner",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "marlee-matlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"She's Always a Woman\" — Billy Joel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            7,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Higher Ground\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"It's a Man's, Man's, Man's World\" — James Brown",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"La Virgen de la Macarena\" — Canadian Brass",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shannon-elizabeth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Keep Holding On\" — Avril Lavigne",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"My Family Is My Life\" — James Horner",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 5,
+      "night": 1,
+      "airDate": "2008-04-14",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "mario#1",
+        "priscilla-presley#1",
+        "marissa-jaret-winokur#1",
+        "cristian-de-la-fuente#1",
+        "marlee-matlin#1",
+        "kristi-yamaguchi#1",
+        "shannon-elizabeth#1",
+        "jason-taylor#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"A-Tisket, A-Tasket\" — Ella Fitzgerald & Chick Webb",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "priscilla-presley"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"The First Time Ever I Saw Your Face\" — Roberta Flack",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Tambourine\" — Eve",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"If You're Not the One\" — Daniel Bedingfield",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "marlee-matlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Samba Hey\" — El General",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Say\" — John Mayer",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shannon-elizabeth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Pon de Replay\" — Rihanna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"You're All I Need to Get By\" — Marvin Gaye & Tammi Terrell",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 6,
+      "night": 1,
+      "airDate": "2008-04-21",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jason-taylor#1",
+        "shannon-elizabeth#1",
+        "marlee-matlin#1",
+        "cristian-de-la-fuente#1",
+        "marissa-jaret-winokur#1",
+        "kristi-yamaguchi#1",
+        "mario#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Best of My Love\" — The Emotions",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shannon-elizabeth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"True Colors\" — Cyndi Lauper",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marlee-matlin"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mi Tierra\" — Gloria Estefan",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Come Fly with Me\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Delilah\" — Tom Jones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Rip it Up\" — Little Richard",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Let's Get it On\" — Marvin Gaye",
+          "result": "Bottom two"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 7,
+      "night": 1,
+      "airDate": "2008-04-28",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "marissa-jaret-winokur#1",
+        "marissa-jaret-winokur#2",
+        "cristian-de-la-fuente#1",
+        "cristian-de-la-fuente#2",
+        "kristi-yamaguchi#1",
+        "kristi-yamaguchi#2",
+        "mario#1",
+        "mario#2",
+        "shannon-elizabeth#1",
+        "shannon-elizabeth#2",
+        "jason-taylor#1",
+        "jason-taylor#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Champagne Tango\" — Carlos Di Sarli",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Quando, Quando, Quando\" — Engelbert Humperdinck",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I'll Make Love to You\" — Boyz II Men",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Sobe Son\" — Miami Sound Machine",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"I'm with You\" — Avril Lavigne",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            8,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Don't Stop the Music\" — Rihanna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"I'm Your Man\" — Leonard Cohen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Mambo a la Sandoval\" — Angel Melendez",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "shannon-elizabeth"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Tanguedia II\" — Ástor Piazzolla",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "shannon-elizabeth"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Ain't Nothing Wrong with That\" — Robert Randolph and the Family Band",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Dirty Boogie\" — The Brian Setzer Orchestra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Heavy Action\" — Johnny Pearson",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 9,
+      "week": 8,
+      "night": 1,
+      "airDate": "2008-05-05",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "kristi-yamaguchi#1",
+        "kristi-yamaguchi#2",
+        "mario#1",
+        "mario#2",
+        "marissa-jaret-winokur#1",
+        "marissa-jaret-winokur#2",
+        "jason-taylor#1",
+        "jason-taylor#2",
+        "cristian-de-la-fuente#1",
+        "cristian-de-la-fuente#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Billy a Dick\" — Klaus Hallen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Volare\" — Gipsy Kings",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"If I Ain't Got You\" — Alicia Keys",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "mario"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Little Bitty Pretty One\" — Frankie Lymon and the Teenagers",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"New York, New York\" — Frank Sinatra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Ritmo de Chunga\" — Perez Prado",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Tango Barbaro\" — Lalo Schifrin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"It Had Better Be Tonight\" — Michael Bublé",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            10,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Beat It\" — Michael Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Mambo",
+          "song": "\"Saca Tu Mujer\" — Tito Puente Jr.",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 10,
+      "week": 9,
+      "night": 1,
+      "airDate": "2008-05-12",
+      "start": null,
+      "end": null,
+      "theme": "Semifinals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "jason-taylor#1",
+        "jason-taylor#2",
+        "marissa-jaret-winokur#1",
+        "marissa-jaret-winokur#2",
+        "cristian-de-la-fuente#1",
+        "cristian-de-la-fuente#2",
+        "kristi-yamaguchi#1",
+        "kristi-yamaguchi#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            10,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Let's Call the Whole Thing Off\" — Louis Armstrong & Ella Fitzgerald",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"El gato montés\" — Manuel Penella",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Around the World\" — Buddy Greco",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "marissa-jaret-winokur"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Just the Two of Us\" — Grover Washington Jr. & Bill Withers",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Viennese waltz",
+          "song": "\"Satellite\" — Dave Matthews Band",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Sweetheart from Venezuela\" — Harry Belafonte",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Midnight Tango\" — Arthur Murray Orchestra",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Nutbush City Limits\" — Tina Turner",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 11,
+      "week": 10,
+      "night": 1,
+      "airDate": "2008-05-19",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "cristian-de-la-fuente#1",
+        "jason-taylor#1",
+        "kristi-yamaguchi#1",
+        "kristi-yamaguchi#2",
+        "jason-taylor#2",
+        "cristian-de-la-fuente#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Group\nCha-cha-cha",
+          "song": "\"Dancing on the Ceiling\" — Lionel Richie",
+          "result": "\"Dancing on the Ceiling\" — Lionel Richie"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Group\nCha-cha-cha",
+          "song": "\"Dancing on the Ceiling\" — Lionel Richie",
+          "result": "\"Dancing on the Ceiling\" — Lionel Richie"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Group\nCha-cha-cha",
+          "song": "\"Dancing on the Ceiling\" — Lionel Richie",
+          "result": "\"Dancing on the Ceiling\" — Lionel Richie"
+        },
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Working Day and Night\" — Michael Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Miami\" — Will Smith",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "cristian-de-la-fuente"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Suavemente\" — Elvis Crespo",
+          "result": "Eliminated\n(Third place)"
+        }
+      ]
+    },
+    {
+      "ep": 12,
+      "week": 10,
+      "night": 2,
+      "airDate": "2008-05-20",
+      "start": null,
+      "end": null,
+      "theme": "Finals",
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "kristi-yamaguchi#3",
+        "jason-taylor#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "kristi-yamaguchi"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Rip It Up\" — Little Richard",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "jason-taylor"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"The Dirty Boogie\" — The Brian Setzer Orchestra",
+          "result": "Runners-up"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "penn-jillette",
+      "aliases": [
+        "Penn"
+      ],
+      "members": [
+        {
+          "name": "Penn Jillette",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Kym Johnson",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "monica-seles",
+      "aliases": [
+        "Monica"
+      ],
+      "members": [
+        {
+          "name": "Monica Seles",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jonathan Roberts",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "steve-guttenberg",
+      "aliases": [
+        "Steve"
+      ],
+      "members": [
+        {
+          "name": "Steve Guttenberg",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Anna Trebunskaya",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "adam-carolla",
+      "aliases": [
+        "Adam"
+      ],
+      "members": [
+        {
+          "name": "Adam Carolla",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Julianne Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "priscilla-presley",
+      "aliases": [
+        "Priscilla"
+      ],
+      "members": [
+        {
+          "name": "Priscilla Presley",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Louis van Amstel",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "marlee-matlin",
+      "aliases": [
+        "Marlee"
+      ],
+      "members": [
+        {
+          "name": "Marlee Matlin",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Fabian Sanchez",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "shannon-elizabeth",
+      "aliases": [
+        "Shannon"
+      ],
+      "members": [
+        {
+          "name": "Shannon Elizabeth",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Derek Hough",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 8
+    },
+    {
+      "id": "mario",
+      "aliases": [
+        "Mario"
+      ],
+      "members": [
+        {
+          "name": "Mario",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Karina Smirnoff",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 9
+    },
+    {
+      "id": "marissa-jaret-winokur",
+      "aliases": [
+        "Marissa"
+      ],
+      "members": [
+        {
+          "name": "Marissa Jaret Winokur",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 10
+    },
+    {
+      "id": "cristian-de-la-fuente",
+      "aliases": [
+        "Cristian",
+        "Cristián"
+      ],
+      "members": [
+        {
+          "name": "Cristián de la Fuente",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "jason-taylor",
+      "aliases": [
+        "Jason"
+      ],
+      "members": [
+        {
+          "name": "Jason Taylor",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "kristi-yamaguchi",
+      "aliases": [
+        "Kristi"
+      ],
+      "members": [
+        {
+          "name": "Kristi Yamaguchi",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Mark Ballas",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 6,
+      "night": 1,
+      "row": "Cristian & Cheryl\nJason & Edyta\nKristi & Mark\nMario & Karina\nMarissa & Tony\nMarlee & Fabian\nShannon & Derek",
+      "reason": "no scores received"
+    }
+  ]
+}

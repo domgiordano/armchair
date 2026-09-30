@@ -1,0 +1,1527 @@
+{
+  "show": "dwts",
+  "season": 2,
+  "year": 2006,
+  "current": false,
+  "wikiTitle": "Dancing with the Stars (American TV series) season 2",
+  "revid": 1375860645,
+  "revTimestamp": "2026-09-20T14:53:28Z",
+  "timezone": "America/New_York",
+  "defaultPanel": [
+    "carrie-ann-inaba",
+    "len-goodman",
+    "bruno-tonioli"
+  ],
+  "judges": [
+    {
+      "id": "carrie-ann-inaba",
+      "name": "Carrie Ann Inaba",
+      "aliases": [
+        "Carrie Ann Inaba"
+      ],
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
+      }
+    },
+    {
+      "id": "len-goodman",
+      "name": "Len Goodman",
+      "aliases": [
+        "Len Goodman"
+      ],
+      "headshot": null
+    },
+    {
+      "id": "bruno-tonioli",
+      "name": "Bruno Tonioli",
+      "aliases": [
+        "Bruno Tonioli"
+      ],
+      "headshot": {
+        "file": "Bruno_Tonioli_in_2015.jpg",
+        "author": "Beautiful: The Carole King Musical Opening Night Video",
+        "license": "CC BY 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "ep": 1,
+      "week": 1,
+      "night": 1,
+      "airDate": "2006-01-05",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "george-hamilton#1",
+        "lisa-rinna#1",
+        "kenny-mayne#1",
+        "stacy-keibler#1",
+        "drew-lachey#1",
+        "tia-carrere#1",
+        "master-p#1",
+        "giselle-fernandez#1",
+        "jerry-rice#1",
+        "tatum-oneal#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "george-hamilton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 18,
+          "judges": [
+            7,
+            5,
+            6
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Oye Como Va\" — Santana",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lisa-rinna"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            5,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"(You Make Me Feel Like) A Natural Woman\" — Aretha Franklin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "kenny-mayne"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 13,
+          "judges": [
+            4,
+            5,
+            4
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Hot Stuff\" — Donna Summer",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            6,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"I Wonder Why\" — Curtis Stigers",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"She Bangs\" — Ricky Martin",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tia-carrere"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"What a Wonderful World\" — Louis Armstrong",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "master-p"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 12,
+          "judges": [
+            4,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Want You Back\" — The Jackson 5",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "giselle-fernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"I Never Loved a Man (The Way I Love You)\" — Roxette",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"I Like It\" — The Blackout All-Stars",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tatum-oneal"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Waltz",
+          "song": "\"What the World Needs Now Is Love\" — Jackie DeShannon",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 2,
+      "week": 2,
+      "night": 1,
+      "airDate": "2006-01-12",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "lisa-rinna#1",
+        "drew-lachey#1",
+        "tia-carrere#1",
+        "george-hamilton#1",
+        "tatum-oneal#1",
+        "jerry-rice#1",
+        "stacy-keibler#1",
+        "master-p#1",
+        "giselle-fernandez#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "lisa-rinna"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            6,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Your Song\" — Elton John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Neutron Dance\" — The Pointer Sisters",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tia-carrere"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Emotion\" — Destiny's Child",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "george-hamilton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            8,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Top Hat, White Tie and Tails\" — Fred Astaire",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tatum-oneal"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 17,
+          "judges": [
+            5,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Careless Whisper\" — Wham!",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"If My Friends Could See Me Now\" — Sweet Charity",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            9,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"I'm Like a Bird\" — Nelly Furtado",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "master-p"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 16,
+          "judges": [
+            6,
+            5,
+            5
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"Zoot Suit Riot\" — Cherry Poppin' Daddies",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "giselle-fernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Take My Breath Away\" — Berlin",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 3,
+      "week": 3,
+      "night": 1,
+      "airDate": "2006-01-19",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jerry-rice#1",
+        "giselle-fernandez#1",
+        "drew-lachey#1",
+        "george-hamilton#1",
+        "lisa-rinna#1",
+        "stacy-keibler#1",
+        "master-p#1",
+        "tia-carrere#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 19,
+          "judges": [
+            7,
+            6,
+            6
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Do You Love Me\" — The Contours",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "giselle-fernandez"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            8,
+            7
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Hernando's Hideaway\" — Victor Silvester",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Crazy Little Thing Called Love\" — Queen",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "george-hamilton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"La Cumparsita\" — Danny Malando",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "lisa-rinna"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            8,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Jailhouse Rock\" — Elvis Presley",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Cell Block Tango\" — from Chicago",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "master-p"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 14,
+          "judges": [
+            6,
+            4,
+            4
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Saturday Night's Alright for Fighting\" — Elton John",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tia-carrere"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            8,
+            9
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Por una Cabeza\" — The Tango Project",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 4,
+      "week": 4,
+      "night": 1,
+      "airDate": "2006-01-26",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "george-hamilton#1",
+        "tia-carrere#1",
+        "master-p#1",
+        "stacy-keibler#1",
+        "drew-lachey#1",
+        "jerry-rice#1",
+        "lisa-rinna#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "george-hamilton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Matador Paso\" — Andy Fortuna",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tia-carrere"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            9,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Dream a Little Dream of Me\" — Mama Cass",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "master-p"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 8,
+          "judges": [
+            4,
+            2,
+            2
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Don't Let Me Be Misunderstood\" — The Animals",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Cold, Cold Heart\" — Norah Jones",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Thriller\" — Michael Jackson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Why Don't You Do Right\" — Julie London",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lisa-rinna"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"The Final Countdown\" — Europe",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 5,
+      "week": 5,
+      "night": 1,
+      "airDate": "2006-02-02",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "stacy-keibler#1",
+        "george-hamilton#1",
+        "lisa-rinna#1",
+        "tia-carrere#1",
+        "jerry-rice#1",
+        "drew-lachey#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Bootylicious\" — Destiny's Child",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "george-hamilton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 24,
+          "judges": [
+            8,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Conga\" — Miami Sound Machine",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "lisa-rinna"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 25,
+          "judges": [
+            7,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Le Freak\" — Chic",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "tia-carrere"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 22,
+          "judges": [
+            7,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"No More Tears (Enough Is Enough)\" — Barbra Streisand & Donna Summer",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            7,
+            8,
+            8
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"For Once in My Life\" — Stevie Wonder",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Dirrty\" — Christina Aguilera",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 6,
+      "week": 6,
+      "night": 1,
+      "airDate": "2006-02-09",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 1,
+      "rateableKeys": [
+        "jerry-rice#1",
+        "drew-lachey#1",
+        "george-hamilton#1",
+        "lisa-rinna#1",
+        "stacy-keibler#1"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"España cañí\" — Erich Kunzel",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"Shut Up\" — The Black Eyed Peas",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "george-hamilton"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 23,
+          "judges": [
+            8,
+            7,
+            8
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Perhaps, Perhaps, Perhaps\" — Doris Day",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "lisa-rinna"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"9 to 5\" — Dolly Parton",
+          "result": "Bottom two"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Wake Me Up Before You Go-Go\" — Wham!",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 7,
+      "week": 7,
+      "night": 1,
+      "airDate": "2006-02-16",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 2,
+      "rateableKeys": [
+        "stacy-keibler#1",
+        "stacy-keibler#2",
+        "jerry-rice#1",
+        "jerry-rice#2",
+        "lisa-rinna#1",
+        "lisa-rinna#2",
+        "drew-lachey#1",
+        "drew-lachey#2"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Quickstep",
+          "song": "\"You Can't Hurry Love\" — Phil Collins",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 28,
+          "judges": [
+            9,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Since U Been Gone\" — Kelly Clarkson",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 20,
+          "judges": [
+            7,
+            7,
+            6
+          ],
+          "bonus": null,
+          "style": "Tango",
+          "song": "\"One Way or Another\" — Blondie",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 21,
+          "judges": [
+            7,
+            7,
+            7
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Un-Break My Heart\" — Toni Braxton",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "lisa-rinna"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Fever\" — Peggy Lee",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "lisa-rinna"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Material Girl\" — Madonna",
+          "result": "Eliminated"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"It Had to Be You\" — Harry Connick Jr.",
+          "result": "Safe"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 29,
+          "judges": [
+            10,
+            9,
+            10
+          ],
+          "bonus": null,
+          "style": "Rumba",
+          "song": "\"Total Eclipse of the Heart\" — Bonnie Tyler",
+          "result": "Safe"
+        }
+      ]
+    },
+    {
+      "ep": 8,
+      "week": 8,
+      "night": 1,
+      "airDate": "2006-02-23",
+      "start": null,
+      "end": null,
+      "theme": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "len-goodman",
+        "bruno-tonioli"
+      ],
+      "dancesPerCouple": 3,
+      "rateableKeys": [
+        "jerry-rice#1",
+        "jerry-rice#2",
+        "jerry-rice#3",
+        "stacy-keibler#1",
+        "stacy-keibler#2",
+        "stacy-keibler#3",
+        "drew-lachey#1",
+        "drew-lachey#2",
+        "drew-lachey#3"
+      ],
+      "performances": [
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            9,
+            9,
+            8
+          ],
+          "bonus": null,
+          "style": "Foxtrot",
+          "song": "\"Why Don't You Do Right\" — Julie London",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Celebration\" — Kool & The Gang",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "jerry-rice"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Cha-cha-cha",
+          "song": "\"Think\" — Aretha Franklin",
+          "result": "Runners-up"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Wake Me Up Before You Go-Go\" — Wham!",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 26,
+          "judges": [
+            8,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Stayin' Alive\" — Bee Gees",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "stacy-keibler"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Samba",
+          "song": "\"Livin' la Vida Loca\" — Ricky Martin",
+          "result": "Third place"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 1,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Paso doble",
+          "song": "\"Thriller\" — Michael Jackson",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 2,
+          "rateable": true,
+          "total": 30,
+          "judges": [
+            10,
+            10,
+            10
+          ],
+          "bonus": null,
+          "style": "Freestyle",
+          "song": "\"Save a Horse (Ride a Cowboy)\" — Big & Rich",
+          "result": "Winners"
+        },
+        {
+          "contestants": [
+            "drew-lachey"
+          ],
+          "n": 3,
+          "rateable": true,
+          "total": 27,
+          "judges": [
+            9,
+            9,
+            9
+          ],
+          "bonus": null,
+          "style": "Jive",
+          "song": "\"Hound Dog\" — Elvis Presley",
+          "result": "Winners"
+        }
+      ]
+    }
+  ],
+  "contestants": [
+    {
+      "id": "kenny-mayne",
+      "aliases": [
+        "Kenny"
+      ],
+      "members": [
+        {
+          "name": "Kenny Mayne",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Andrea Hale",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 1
+    },
+    {
+      "id": "tatum-oneal",
+      "aliases": [
+        "Tatum"
+      ],
+      "members": [
+        {
+          "name": "Tatum O'Neal",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Nick Kosovich",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 2
+    },
+    {
+      "id": "giselle-fernandez",
+      "aliases": [
+        "Giselle"
+      ],
+      "members": [
+        {
+          "name": "Giselle Fernandez",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Jonathan Roberts",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 3
+    },
+    {
+      "id": "master-p",
+      "aliases": [
+        "Master P"
+      ],
+      "members": [
+        {
+          "name": "Master P",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Ashly DelGrosso",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 4
+    },
+    {
+      "id": "tia-carrere",
+      "aliases": [
+        "Tia"
+      ],
+      "members": [
+        {
+          "name": "Tia Carrere",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Maksim Chmerkovskiy",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 5
+    },
+    {
+      "id": "george-hamilton",
+      "aliases": [
+        "George"
+      ],
+      "members": [
+        {
+          "name": "George Hamilton",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Edyta Śliwińska",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 6
+    },
+    {
+      "id": "lisa-rinna",
+      "aliases": [
+        "Lisa"
+      ],
+      "members": [
+        {
+          "name": "Lisa Rinna",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Louis van Amstel",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": 7
+    },
+    {
+      "id": "stacy-keibler",
+      "aliases": [
+        "Stacy"
+      ],
+      "members": [
+        {
+          "name": "Stacy Keibler",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Tony Dovolani",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "jerry-rice",
+      "aliases": [
+        "Jerry"
+      ],
+      "members": [
+        {
+          "name": "Jerry Rice",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Anna Trebunskaya",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    },
+    {
+      "id": "drew-lachey",
+      "aliases": [
+        "Drew"
+      ],
+      "members": [
+        {
+          "name": "Drew Lachey",
+          "role": "celebrity",
+          "headshot": null
+        },
+        {
+          "name": "Cheryl Burke",
+          "role": "pro",
+          "headshot": null
+        }
+      ],
+      "eliminatedEp": null
+    }
+  ],
+  "skipped": [
+    {
+      "week": 5,
+      "night": 1,
+      "row": "Drew & Cheryl\nGeorge & Edyta\nJerry & Anna\nLisa & Louis\nStacy & Tony\nTia & Maksim",
+      "reason": "no scores received"
+    },
+    {
+      "week": 6,
+      "night": 1,
+      "row": "Drew & Cheryl\nGeorge & Edyta\nJerry & Anna\nLisa & Louis\nStacy & Tony",
+      "reason": "no scores received"
+    }
+  ]
+}
