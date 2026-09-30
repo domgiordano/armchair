@@ -18,16 +18,16 @@ export function FinalCta() {
           <div className="flex flex-wrap gap-3">
             <a
               href={DWTS_URL}
-              className="inline-flex min-h-12 items-center gap-2 rounded-full bg-text px-6 font-semibold text-night shadow-lg shadow-violet/20 hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold active:scale-[0.98]"
+              className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-text px-6 font-semibold text-night shadow-lg shadow-violet/20 hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold transition active:scale-[0.98] motion-reduce:transition-none"
             >
               Start judging
-              <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true">
+              <svg viewBox="0 0 16 16" className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
             <a
               href="#faq"
-              className="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-semibold hover:border-muted hover:bg-night focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold active:scale-[0.98]"
+              className="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-semibold hover:border-muted hover:bg-night focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold transition active:scale-[0.98] motion-reduce:transition-none"
             >
               Read the FAQ
             </a>

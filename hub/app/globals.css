@@ -179,6 +179,23 @@ body {
   list-style: disc;
 }
 
+.legal strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.legal code {
+  padding: 0.1em 0.4em;
+  border-radius: 0.375rem;
+  background: rgb(26 35 80 / 0.7);
+  color: var(--color-text);
+  font-size: 0.85em;
+}
+
+.legal li::marker {
+  color: var(--color-gold);
+}
+
 .legal li + li {
   margin-top: 0.375rem;
 }
@@ -186,11 +203,14 @@ body {
 .legal a {
   color: var(--color-text);
   text-decoration: underline;
+  text-decoration-color: rgb(163 170 208 / 0.6);
   text-underline-offset: 3px;
+  transition: color 150ms, text-decoration-color 150ms;
 }
 
 .legal a:hover {
   color: var(--color-gold);
+  text-decoration-color: var(--color-gold);
 }
 
 .legal a:focus-visible {
@@ -298,6 +318,123 @@ body {
   .art-draw,
   .apps-panel,
   .apps-backdrop {
+    animation: none;
+  }
+}
+
+/* ChairLoader (components/chair-loader.tsx): the crown bobs, the "10" paddle flips. */
+.chair-loader {
+  overflow: visible;
+}
+
+.chair-loader .chair-crown {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: loader-crown 1200ms ease-in-out infinite;
+}
+
+.chair-loader .chair-paddle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: loader-flip 2400ms cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+
+@keyframes loader-crown {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  35% {
+    transform: translateY(-22%) rotate(-7deg);
+  }
+  65% {
+    transform: translateY(0) rotate(0deg);
+  }
+  80% {
+    transform: translateY(-6%) rotate(3deg);
+  }
+}
+
+@keyframes loader-flip {
+  0%,
+  55%,
+  85%,
+  100% {
+    transform: scaleX(1);
+  }
+  70% {
+    transform: scaleX(0.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chair-loader .chair-crown,
+  .chair-loader .chair-paddle {
+    animation: none;
+  }
+}
+
+/* 404 (app/not-found.tsx): three paddles come up, then sway. */
+.lost-paddle {
+  animation:
+    demo-raise 700ms cubic-bezier(0.2, 0.8, 0.3, 1.25) var(--delay) both,
+    lost-sway 2800ms ease-in-out calc(var(--delay) + 900ms) infinite alternate;
+}
+
+@keyframes lost-sway {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(-4px) rotate(2.5deg);
+  }
+}
+
+.lost-paddle:nth-child(2) {
+  animation-direction: normal, alternate-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lost-paddle {
+    animation: none;
+  }
+}
+
+/* FAQ accordion (components/faq.tsx). Browsers without ::details-content or
+   interpolate-size open instantly, which is the reduced-motion behaviour anyway. */
+.faq-item {
+  interpolate-size: allow-keywords;
+}
+
+.faq-item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    content-visibility 320ms allow-discrete;
+}
+
+.faq-item[open]::details-content {
+  block-size: auto;
+}
+
+.faq-item[open] .faq-answer {
+  animation: faq-in 360ms ease-out both;
+}
+
+@keyframes faq-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item::details-content {
+    transition: none;
+  }
+
+  .faq-item[open] .faq-answer {
     animation: none;
   }
 }

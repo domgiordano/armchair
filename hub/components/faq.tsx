@@ -54,18 +54,18 @@ export function Faq() {
         </div>
         <div className="divide-y divide-line border-y border-line">
           {QUESTIONS.map(({ q, a }) => (
-            <details key={q} className="group">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 font-semibold hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold [&::-webkit-details-marker]:hidden">
+            <details key={q} className="faq-item group">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 font-semibold transition-colors group-open:text-gold hover:text-gold motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold [&::-webkit-details-marker]:hidden">
                 {q}
                 <svg
                   viewBox="0 0 16 16"
-                  className="size-4 shrink-0 text-muted transition-transform group-open:rotate-45 motion-reduce:transition-none"
+                  className="size-4 shrink-0 text-muted transition-transform duration-300 group-open:rotate-45 group-open:text-gold motion-reduce:transition-none"
                   aria-hidden="true"
                 >
                   <path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </summary>
-              <p className="pb-5 text-sm leading-relaxed text-muted">{a}</p>
+              <p className="faq-answer pb-5 text-sm leading-relaxed text-muted">{a}</p>
             </details>
           ))}
         </div>

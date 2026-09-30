@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { Component, useEffect, useEffectEvent, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 
-import { ChairMark } from "@/components/chair-mark";
+import { ChairLoader } from "@/components/chair-loader";
 
 // When the exit fade in app/intro.css finishes.
 export const INTRO_MS = 5200;
@@ -88,7 +88,7 @@ export function Intro() {
           <IntroScene origin={origin} onReady={() => setSceneReady(true)} />
         </SceneBoundary>
       )}
-      <ChairMark className="intro-poster" />
+      <ChairLoader className="intro-poster" />
       <div className="intro-copy">
         <p className="intro-wordmark">
           <span className="sr-only">Armchair Judge</span>
