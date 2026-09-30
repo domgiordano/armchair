@@ -26,6 +26,9 @@ locals {
   stats_lambdas = [
     { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  overview_lambdas = [
+    { name = "get", description = "The signed-in home: season progress, the caller's numbers, next episode, reveals, standings", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
   friends_lambdas = [
     { name = "request", description = "Ask someone to be friends, by sub or invite code", path_part = "request", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "accept", description = "Accept a friend request", path_part = "accept", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -47,6 +50,7 @@ locals {
     { for l in local.admin_lambdas : "admin_${l.name}" => l },
     { for l in local.stats_lambdas : "stats_${l.name}" => l },
     { for l in local.groups_lambdas : "groups_${l.name}" => l },
+    { for l in local.overview_lambdas : "overview_${l.name}" => l },
     { for l in local.friends_lambdas : "friends_${l.name}" => l },
     { for l in local.notifications_lambdas : "notifications_${l.name}" => l },
   )
@@ -74,6 +78,7 @@ locals {
     groups_create      = ["groups:PutItem"]
     groups_join        = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine        = ["groups:Query", "users:BatchGetItem"]
+    overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
     friends_request    = ["social:GetItem", "social:UpdateItem", "social:PutItem", "users:GetItem"]
     friends_accept     = ["social:GetItem", "social:UpdateItem", "social:PutItem"]
     friends_remove     = ["social:GetItem", "social:UpdateItem", "social:DeleteItem"]

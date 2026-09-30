@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { getSeason, type Season } from "@/lib/api/show";
-
-export const SEASON = "dwts-35";
+import { useSeasonId } from "@/lib/show/seasons";
 
 export type SeasonLoad =
   | { kind: "loading" }
@@ -12,12 +11,13 @@ export type SeasonLoad =
   | { kind: "error"; message: string; retry: () => void };
 
 export function useSeason(): SeasonLoad {
+  const id = useSeasonId();
   const [load, setLoad] = useState<SeasonLoad>({ kind: "loading" });
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
-    getSeason(SEASON).then(
+    getSeason(id).then(
       (season) => !cancelled && setLoad({ kind: "ready", season }),
       (e: unknown) =>
         !cancelled &&
@@ -33,7 +33,7 @@ export function useSeason(): SeasonLoad {
     return () => {
       cancelled = true;
     };
-  }, [attempt]);
+  }, [id, attempt]);
 
   return load;
 }

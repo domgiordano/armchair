@@ -12,6 +12,10 @@ vi.stubGlobal("matchMedia", (media: string) => ({
   removeEventListener: () => {},
 }));
 
+// jsdom has no canvas contexts, so no WebGL; say so quietly instead of logging
+// "not implemented" from every render of the intro.
+HTMLCanvasElement.prototype.getContext = () => null;
+
 // Testing Library only auto-cleans when the runner exposes a global afterEach;
 // vitest does not unless `globals: true`.
 afterEach(cleanup);
