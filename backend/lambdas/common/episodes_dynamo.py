@@ -12,7 +12,7 @@ import re
 from botocore.exceptions import ClientError
 
 from lambdas.common.api import NotFoundError, ValidationError, require
-from lambdas.common.dynamo import query_all, table
+from lambdas.common.dynamo import query_all, resource, table
 
 SEASON = re.compile(r"([a-z]+)-(\d{1,3})")
 EP = re.compile(r"\d{1,2}")
@@ -65,17 +65,29 @@ def scores(pk: str) -> list[dict]:
     return query_all(table("SCORES_TABLE"), pk)
 
 
-def create_score(item: dict) -> dict:
+def create_score(item: dict, also: list[dict] | None = None) -> dict:
     """
     Writes the row unless one already exists, and returns whichever row is now
     stored. The caller compares it with what they sent; there is no overwrite.
+    `also` are TransactWriteItems that land with the row or not at all.
     """
     tbl = table("SCORES_TABLE")
+    put = {
+        "Put": {
+            "TableName": tbl.name,
+            "Item": item,
+            "ConditionExpression": "attribute_not_exists(sk)",
+        }
+    }
     try:
-        tbl.put_item(Item=item, ConditionExpression="attribute_not_exists(sk)")
+        resource().meta.client.transact_write_items(TransactItems=[put, *(also or [])])
         return item
     except ClientError as e:
-        if e.response["Error"]["Code"] != "ConditionalCheckFailedException":
+        if e.response["Error"]["Code"] != "TransactionCanceledException":
             raise
     key = {"pk": item["pk"], "sk": item["sk"]}
-    return tbl.get_item(Key=key, ConsistentRead=True)["Item"]
+    stored = tbl.get_item(Key=key, ConsistentRead=True).get("Item")
+    if stored is None:
+        # The row is absent, so something in `also` failed its condition.
+        raise RuntimeError(f"score write for {item['sk']} cancelled with no row stored")
+    return stored

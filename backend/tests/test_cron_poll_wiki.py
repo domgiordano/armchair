@@ -10,7 +10,7 @@ import pytest
 
 from lambdas.cron_poll_wiki import handler as poller
 from scripts.seed_season import SEASONS, items, write
-from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
+from tests.conftest import BOARD_TABLE, CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
 
 FIXTURES = Path(__file__).parents[2] / "fixtures"
 GOLDEN = {
@@ -282,3 +282,18 @@ def test_a_failed_request_fails_the_tick(db, monkeypatch, capsys):
         poller.handler({}, None)
     assert capsys.readouterr().out == ""
     assert "lastRevid" not in catalog(db, "META")
+
+
+def test_backfill_counts_dances_scored_before_the_judges_confirmed(wiki, db):
+    sub = "3f1c2b9a-0000-4000-8000-00000000000a"
+    db.Table(SCORES_TABLE).put_item(
+        Item={"pk": EP4, "sk": f"PERF#harry-shum-jr#1#USER#{sub}", "value": 8}
+    )
+    t = epoch(FINAL[2])
+    wiki.tick(FINAL, t, event={"backfill": True})
+    wiki.tick(FINAL, t + 3600, event={"backfill": True})
+
+    board = db.Table(BOARD_TABLE)
+    row = board.get_item(Key={"pk": "BOARD#dwts#35", "sk": f"USER#{sub}"})["Item"]
+    assert row["n"] == 1 and row["J#bruno-tonioli#err"] == 0
+    assert board.get_item(Key={"pk": "BOARD#dwts#all", "sk": f"USER#{sub}"})["Item"]["n"] == 1

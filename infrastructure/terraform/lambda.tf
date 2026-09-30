@@ -34,6 +34,9 @@ locals {
   stats_lambdas = [
     { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  leaderboard_lambdas = [
+    { name = "get", description = "Users ranked by accuracy against the judges, from per-user sums", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
   overview_lambdas = [
     { name = "get", description = "The signed-in home: season progress, the caller's numbers, next episode, reveals, standings", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
@@ -58,6 +61,7 @@ locals {
     { for l in local.admin_lambdas : "admin_${l.name}" => l },
     { for l in local.stats_lambdas : "stats_${l.name}" => l },
     { for l in local.groups_lambdas : "groups_${l.name}" => l },
+    { for l in local.leaderboard_lambdas : "leaderboard_${l.name}" => l },
     { for l in local.overview_lambdas : "overview_${l.name}" => l },
     { for l in local.friends_lambdas : "friends_${l.name}" => l },
     { for l in local.notifications_lambdas : "notifications_${l.name}" => l },
@@ -73,9 +77,30 @@ locals {
     scores       = aws_dynamodb_table.scores.arn
     users        = aws_dynamodb_table.users.arn
     groups       = aws_dynamodb_table.groups.arn
+    board        = aws_dynamodb_table.board.arn
     social       = aws_dynamodb_table.social.arn
   }
   api_grants = {
+    users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
+    scores_submit      = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem", "board:PutItem", "board:UpdateItem"]
+    scores_reveal_all  = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
+    episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
+    seasons_get        = ["catalog:Query"]
+    admin_keyword      = ["catalog:UpdateItem"]
+    stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
+    groups_create      = ["groups:PutItem"]
+    groups_join        = ["groups:GetItem", "groups:UpdateItem"]
+    groups_mine        = ["groups:Query", "users:BatchGetItem"]
+    leaderboard_get    = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
+    overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
+    friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem"]
+    friends_accept     = ["social:UpdateItem"]
+    friends_remove     = ["social:GetItem", "social:UpdateItem"]
+    friends_block      = ["social:GetItem", "social:UpdateItem"]
+    friends_list       = ["social:Query", "social:GetItem", "social:PutItem", "users:BatchGetItem"]
+    friends_search     = ["social:Query"]
+    users_update       = ["users:GetItem", "users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
+    users_get          = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem"]
     users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     scores_submit      = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
     scores_reveal_all  = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
