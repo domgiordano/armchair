@@ -93,7 +93,7 @@ function episodes(byEp: Record<number, Partial<EpisodeState>>) {
 }
 
 const value = (article: HTMLElement, label: string) =>
-  within(article).getByText(label).nextElementSibling?.textContent;
+  within(article).getByText(label, { selector: "dt" }).nextElementSibling?.textContent;
 
 beforeEach(() => {
   vi.useFakeTimers({ toFake: ["Date"] });
