@@ -11,6 +11,7 @@ import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
 import { SignedIn } from "@/components/signed-in";
 import { VotePanel } from "@/components/vote-panel";
+import type { GroupMember } from "@/lib/api/groups";
 import { revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
@@ -72,7 +73,13 @@ function EpisodePicker({ season }: EpisodePickerProps) {
         now={now}
         onFinishPrevious={(previous) => router.replace(`/episode/?ep=${previous.ep}`)}
       >
-        <EpisodeView season={season} episode={episode} now={now} group={filter.group} />
+        <EpisodeView
+          season={season}
+          episode={episode}
+          now={now}
+          group={filter.group}
+          members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
+        />
       </CatchUp>
       <Link
         href="/stats/"
@@ -95,9 +102,10 @@ interface EpisodeViewProps {
   episode: Episode;
   now: number;
   group: string | null;
+  members: GroupMember[] | null;
 }
 
-function EpisodeView({ season, episode, now, group }: EpisodeViewProps) {
+function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps) {
   const { data, error, reload } = useEpisodeState(season.season, season.timezone, episode, group);
   const contestants = useMemo(() => new Map(season.contestants.map((c) => [c.id, c])), [season]);
   const judges = useMemo(() => new Map(season.judges.map((j) => [j.id, j])), [season]);
@@ -166,6 +174,7 @@ function EpisodeView({ season, episode, now, group }: EpisodeViewProps) {
                 contestants={contestants}
                 judges={judges}
                 airsOn={airsOn}
+                members={members}
                 onSubmit={submit}
               />
             </li>

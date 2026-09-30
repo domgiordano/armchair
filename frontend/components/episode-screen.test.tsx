@@ -204,6 +204,30 @@ describe("EpisodeScreen", () => {
     await vi.waitFor(() => expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 4, "fam"));
   });
 
+  it("seats the picked group's members who scored, and everyone's average without a group", async () => {
+    const member = (sub: string, name: string) => ({ sub, name, picture: null, avatarKind: "initials" as const });
+    vi.mocked(getMyGroups).mockResolvedValue([
+      {
+        id: "fam",
+        name: "Family",
+        inviteCode: "c".repeat(16),
+        members: [member("me", "Pat Viewer"), member("c", "Lee Friend"), member("b", "Sam Friend")],
+      },
+    ]);
+    window.localStorage.clear();
+    const { container } = render(<EpisodeScreen />);
+    const seats = () => [...container.querySelectorAll<HTMLElement>("[data-seat]")];
+
+    await screen.findByRole("heading", { name: "Yacht Rock" });
+    expect(seats().map((s) => s.dataset.seat)).toEqual(["judge", "judge", "you", "crowd"]);
+
+    fireEvent.change(screen.getByRole("combobox", { name: "Compare with" }), { target: { value: "fam" } });
+    await vi.waitFor(() => expect(seats().map((s) => s.dataset.seat)).toEqual(["judge", "judge", "you", "member"]));
+    const sam = seats()[3];
+    expect(within(sam).getByText("Sam")).toBeTruthy();
+    expect(sam.querySelector("[data-paddle]")?.textContent).toBe("9");
+  });
+
   it("hides Reveal all once everything is answered", async () => {
     episodes({ 4: { answered: 2 } });
     render(<EpisodeScreen />);
