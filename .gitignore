@@ -1,0 +1,33 @@
+node_modules/
+.next/
+out/
+.env*
+__pycache__/
+.pytest_cache/
+.venv/
+.terraform/
+*.tfstate*
+.DS_Store
+
+# Claude Code session memory (personal, not shared)
+.claude/memory/
+# Claude setup backups
+.claude/.backups/
+*.tsbuildinfo
+next-env.d.ts
+
+# Generated at build time from Sleeper
+frontend/public/data/
+
+# Media and write-ups live in S3, never in this public repo
+*.pdf
+*.mp4
+*.mov
+
+# Agent worktrees and Next-generated agent docs
+.claude/worktrees/
+frontend/AGENTS.md
+frontend/CLAUDE.md
+
+# Raw brand images before processing
+assets-incoming/
