@@ -1,9 +1,11 @@
 """
-GET /users/me - upsert the caller's profile from their ID token claims and return it.
+GET /users/me - refresh the caller's Google name and photo from their ID token
+claims and return their profile.
 
 Identity is sub + email from the Cognito authorizer; name and picture come from
-the Google attribute mapping when present. With no picture, avatarKind is
-"initials" and the client draws them from name.
+the Google attribute mapping when present. A display name or photo the caller
+chose through /users/update wins over them (common/users_dynamo.py). With no
+picture, avatarKind is "initials" and the client draws them from name.
 """
 
 from __future__ import annotations
