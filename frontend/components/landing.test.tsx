@@ -106,7 +106,7 @@ describe("Landing", () => {
     });
     render(<Home />);
 
-    expect(await screen.findByRole("heading", { name: "Hi, Ada Lovelace" })).toBeTruthy();
+    expect(await screen.findByRole("main", { name: "Overview" })).toBeTruthy();
     expect(screen.queryByRole("button", { name: "Skip intro" })).toBeNull();
     expect(screen.queryByRole("heading", HEADLINE)).toBeNull();
   });

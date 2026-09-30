@@ -4,6 +4,9 @@
 locals {
   users_lambdas = [
     { name = "me", description = "Upsert and return the caller's profile", path_part = "me", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "update", description = "Set the caller's display name and photo choice", path_part = "update", http_method = "PATCH", authorization = "COGNITO_USER_POOLS" },
+    { name = "avatar_upload", description = "Presign an S3 POST for one profile photo", path_part = "avatar-upload", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "get", description = "A profile with its season summary, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
   scores_lambdas = [
     { name = "submit", description = "Record the caller's final answer on one performance", path_part = "submit", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -26,6 +29,17 @@ locals {
   stats_lambdas = [
     { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  overview_lambdas = [
+    { name = "get", description = "The signed-in home: season progress, the caller's numbers, next episode, reveals, standings", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
+  friends_lambdas = [
+    { name = "request", description = "Ask someone to be friends, by sub or invite code", path_part = "request", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "accept", description = "Accept a friend request", path_part = "accept", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "remove", description = "Unfriend, cancel a request, or decline one", path_part = "remove", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "block", description = "Block or unblock someone", path_part = "block", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "list", description = "The caller's friends, requests, blocks and invite code", path_part = "list", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "search", description = "Find people by display name prefix", path_part = "search", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -35,6 +49,8 @@ locals {
     { for l in local.admin_lambdas : "admin_${l.name}" => l },
     { for l in local.stats_lambdas : "stats_${l.name}" => l },
     { for l in local.groups_lambdas : "groups_${l.name}" => l },
+    { for l in local.overview_lambdas : "overview_${l.name}" => l },
+    { for l in local.friends_lambdas : "friends_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -47,9 +63,10 @@ locals {
     scores       = aws_dynamodb_table.scores.arn
     users        = aws_dynamodb_table.users.arn
     groups       = aws_dynamodb_table.groups.arn
+    social       = aws_dynamodb_table.social.arn
   }
   api_grants = {
-    users_me          = ["users:UpdateItem"]
+    users_me          = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     scores_submit     = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
     scores_reveal_all = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
     episodes_state    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
@@ -59,6 +76,23 @@ locals {
     groups_create     = ["groups:PutItem"]
     groups_join       = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine       = ["groups:Query", "users:BatchGetItem"]
+    overview_get      = ["catalog:Query", "performances:Query", "scores:Query"]
+    friends_request   = ["social:GetItem", "social:UpdateItem", "users:GetItem"]
+    friends_accept    = ["social:UpdateItem"]
+    friends_remove    = ["social:GetItem", "social:UpdateItem"]
+    friends_block     = ["social:GetItem", "social:UpdateItem"]
+    friends_list      = ["social:Query", "social:GetItem", "social:PutItem", "users:BatchGetItem"]
+    friends_search    = ["social:Query"]
+    users_update      = ["users:GetItem", "users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
+    users_get         = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem"]
+  }
+
+  # Object actions on the avatars bucket (avatars.tf). The presigned POST is
+  # signed with the upload function's own credentials, so its PutObject is
+  # what S3 checks the browser's upload against.
+  avatar_grants = {
+    users_avatar_upload = ["s3:PutObject"]
+    users_update        = ["s3:DeleteObject"]
   }
 }
 
@@ -84,10 +118,19 @@ data "aws_iam_policy_document" "api" {
   }
 
   dynamic "statement" {
-    for_each = local.api_grants[each.key]
+    for_each = lookup(local.api_grants, each.key, [])
     content {
       actions   = ["dynamodb:${split(":", statement.value)[1]}"]
       resources = [local.api_tables[split(":", statement.value)[0]]]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = contains(keys(local.avatar_grants), each.key) ? [1] : []
+    content {
+      sid       = "Avatars"
+      actions   = local.avatar_grants[each.key]
+      resources = ["${aws_s3_bucket.avatars.arn}/avatars/*"]
     }
   }
 

@@ -16,6 +16,7 @@ vi.mock("aws-amplify/auth", () => ({
   signOut: vi.fn(),
 }));
 vi.mock("aws-amplify/utils", () => ({ Hub: { listen: vi.fn(() => () => {}) } }));
+vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn(), getLeaderboard: vi.fn(() => new Promise(() => {})) }));
 vi.mock("@/lib/api/client", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/client")>()),
   getMe: vi.fn(),
@@ -24,6 +25,7 @@ vi.mock("@/lib/api/client", async (importOriginal) => ({
 import { getCurrentUser, signInWithRedirect, signOut } from "aws-amplify/auth";
 
 import { ApiError, getMe } from "@/lib/api/client";
+import { getOverview } from "@/lib/api/overview";
 import { Home } from "./home";
 
 const ME = {
@@ -56,25 +58,18 @@ describe("Home", () => {
     expect(await screen.findByRole("button", { name: "Opening Google..." })).toHaveProperty("disabled", true);
   });
 
-  it("shows the signed-in user's avatar and name from /users/me", async () => {
+  it("opens a signed-in user on the Overview inside the app shell", async () => {
     vi.mocked(getCurrentUser).mockResolvedValue({ username: "u", userId: "u" });
     vi.mocked(getMe).mockResolvedValue(ME);
+    vi.mocked(getOverview).mockRejectedValue(new ApiError(500, "Internal error"));
     render(<Home />);
 
-    expect(await screen.findByRole("heading", { name: "Hi, Ada Lovelace" })).toBeTruthy();
-    expect(screen.getByRole("img", { name: "Ada Lovelace" }).textContent).toBe("AL");
+    expect(await screen.findByRole("main", { name: "Overview" })).toBeTruthy();
+    expect(await screen.findByText("Could not load your overview: Internal error")).toBeTruthy();
+    expect((await screen.findByRole("img", { name: "Ada Lovelace" })).textContent).toBe("AL");
 
+    fireEvent.click(screen.getByRole("button", { name: "Account" }));
     fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
     expect(signOut).toHaveBeenCalled();
-  });
-
-  it("offers a retry when /users/me fails", async () => {
-    vi.mocked(getCurrentUser).mockResolvedValue({ username: "u", userId: "u" });
-    vi.mocked(getMe).mockRejectedValueOnce(new ApiError(500, "Internal error")).mockResolvedValue(ME);
-    render(<Home />);
-
-    expect(await screen.findByText("Could not load your profile: Internal error")).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
-    expect(await screen.findByRole("heading", { name: "Hi, Ada Lovelace" })).toBeTruthy();
   });
 });

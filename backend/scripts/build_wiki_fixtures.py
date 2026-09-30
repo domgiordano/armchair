@@ -50,10 +50,54 @@ S34_ALIASES = {
     ]
 }
 
+S1_ALIASES = {
+    name: name.lower() for name in ["Evander", "Joey", "John", "Kelly", "Rachel", "Trista"]
+}
+S8_ALIASES = {
+    name: name.lower().replace("'", "").replace(" ", "-")
+    for name in [
+        "Belinda",
+        "Chuck",
+        "David",
+        "Denise",
+        "Gilles",
+        "Holly",
+        "Lawrence",
+        "Lil' Kim",
+        "Melissa",
+        "Shawn",
+        "Steve",
+        "Steve-O",
+        "Ty",
+    ]
+}
+S15_ALIASES = {
+    name: name.lower()
+    for name in ["Apolo", "Emmitt", "Gilles", "Kelly", "Kirstie", "Melissa", "Shawn"]
+}
+S20_ALIASES = {name: name.lower() for name in ["Nastia", "Noah", "Riker", "Rumer"]}
+S31_ALIASES = {
+    name: name.lower()
+    for name in [
+        "Charli",
+        "Daniel",
+        "Gabby",
+        "Heidi",
+        "Jessie",
+        "Jordin",
+        "Shangela",
+        "Trevor",
+        "Vinny",
+        "Wayne",
+    ]
+}
+
 MAIN = ["Carrie Ann Inaba", "Derek Hough", "Bruno Tonioli"]
+CLASSIC = ["Carrie Ann Inaba", "Len Goodman", "Bruno Tonioli"]
 
 
 def perf(cid, total, judges, n=1, night=1, bonus=None):
+    judges = [None if v == "X" else v for v in judges]
     return {
         "night": night,
         "contestants": [cid],
@@ -89,8 +133,17 @@ def empty(cid):
     }
 
 
-def week(n, panel, performances):
-    return {"week": n, "panel": panel, "performances": performances, "rejected": []}
+def week(n, panel, performances, unscored=(), panels=None):
+    """Every table in these weeks is scored by the week's panel unless `panels` says per night."""
+    for p in performances:
+        p["panel"] = (panels or {}).get(p["night"], panel)
+    return {
+        "week": n,
+        "panel": panel,
+        "performances": performances,
+        "rejected": [],
+        "unscored": list(unscored),
+    }
 
 
 # The first nine S35 week 3 dances are identical in the final, vandal and revert revisions.
@@ -364,6 +417,110 @@ CASES = [
             ],
         ),
     },
+    {
+        "name": "S1 week 4: group dance marked No scores received",
+        "fixture": "s1-1375742773.wikitext",
+        "aliases": "s1",
+        "expected": week(
+            4,
+            CLASSIC,
+            [
+                perf("joey", 20, (7, 6, 7)),
+                perf("rachel", 25, (7, 9, 9)),
+                perf("john", 21, (7, 8, 6)),
+                perf("kelly", 26, (9, 9, 8)),
+            ],
+            unscored=[
+                {
+                    "night": 1,
+                    "row": "Joey & Ashly\nJohn & Charlotte\nKelly & Alec\nRachel & Jonathan",
+                }
+            ],
+        ),
+    },
+    {
+        "name": "S8 week 3: scored dance-off on the results show is night 2",
+        "fixture": "s8-1372835313.wikitext",
+        "aliases": "s8",
+        "expected": week(
+            3,
+            CLASSIC,
+            [
+                perf("denise", 16, (5, 6, 5)),
+                perf("chuck", 23, (8, 7, 8)),
+                perf("holly", 17, (5, 6, 6)),
+                perf("steve-o", 15, (5, 5, 5)),
+                perf("lawrence", 20, (7, 6, 7)),
+                perf("shawn", 27, (9, 9, 9)),
+                perf("gilles", 27, (9, 9, 9)),
+                perf("david", 24, (8, 8, 8)),
+                perf("steve", 10, (4, 3, 3)),
+                perf("melissa", 27, (9, 9, 9)),
+                perf("lil-kim", 25, (8, 8, 9)),
+                perf("ty", 23, (8, 8, 7)),
+                perf("holly", 18, (6, 6, 6), n=2, night=2),
+                perf("denise", 20, (6, 7, 7), n=2, night=2),
+            ],
+        ),
+    },
+    {
+        "name": "S15 week 7: a column per judge, half points, swing marathon bonus",
+        "fixture": "s15-1372836123.wikitext",
+        "aliases": "s15",
+        "expected": week(
+            7,
+            ["Inaba", "Goodman", "Tonioli"],
+            [
+                perf("apolo", 27, (9, 9, 9), bonus=6),
+                perf("emmitt", 27.5, (8.5, 9.5, 9.5), bonus=7),
+                perf("kirstie", 24, (8, 8, 8), bonus=4),
+                perf("kelly", 27, (9, 9, 9), bonus=9),
+                perf("melissa", 29, (10, 9.5, 9.5), bonus=10),
+                perf("shawn", 30, (10, 10, 10), bonus=8),
+                perf("gilles", 28.5, (9.5, 9.5, 9.5), bonus=5),
+            ],
+        ),
+    },
+    {
+        "name": "S20 week 9: X where a judge sat out the couple they coached",
+        "fixture": "s20-1375764332.wikitext",
+        "aliases": "s20",
+        "expected": week(
+            9,
+            ["Carrie Ann Inaba", "Len Goodman", "Julianne Hough", "Bruno Tonioli"],
+            [
+                perf("rumer", 38, (10, 9, 9, 10)),
+                perf("rumer", 30, (10, 10, 10, "X"), n=2),
+                perf("noah", 36, (9, 9, 9, 9)),
+                perf("noah", 30, ("X", 10, 10, 10), n=2),
+                perf("riker", 40, (10, 10, 10, 10)),
+                perf("riker", 30, (10, 10, "X", 10), n=2),
+                perf("nastia", 40, (10, 10, 10, 10)),
+                perf("nastia", 30, (10, "X", 10, 10), n=2),
+            ],
+        ),
+    },
+    {
+        "name": "S31 week 6: five judges, order line reads given in this order",
+        "fixture": "s31-1372832846.wikitext",
+        "aliases": "s31",
+        "expected": week(
+            6,
+            ["Carrie Ann Inaba", "Len Goodman", "Michael Bublé", "Derek Hough", "Bruno Tonioli"],
+            [
+                perf("shangela", 45, (9, 9, 9, 9, 9)),
+                perf("trevor", 42, (9, 8, 8, 8, 9)),
+                perf("gabby", 46, (9, 9, 9, 9, 10)),
+                perf("vinny", 36, (7, 7, 8, 7, 7)),
+                perf("jordin", 43, (9, 8, 9, 8, 9)),
+                perf("charli", 50, (10, 10, 10, 10, 10)),
+                perf("heidi", 46, (9, 9, 10, 9, 9)),
+                perf("wayne", 44, (8, 9, 10, 8, 9)),
+                perf("jessie", 41, (8, 8, 9, 8, 8)),
+                perf("daniel", 43, (9, 8, 9, 8, 9)),
+            ],
+        ),
+    },
 ]
 
 
@@ -374,7 +531,15 @@ def main():
             "Built by backend/scripts/build_wiki_fixtures.py from hand-transcribed values, never from the parser.",
             "Wikitext sources and CC BY-SA 4.0 attribution: fixtures/wiki/README.md.",
         ],
-        "aliases": {"s35": S35_ALIASES, "s34": S34_ALIASES},
+        "aliases": {
+            "s35": S35_ALIASES,
+            "s34": S34_ALIASES,
+            "s1": S1_ALIASES,
+            "s8": S8_ALIASES,
+            "s15": S15_ALIASES,
+            "s20": S20_ALIASES,
+            "s31": S31_ALIASES,
+        },
         "cases": CASES,
     }
     OUT.write_text(json.dumps(fixture, indent=2) + "\n")

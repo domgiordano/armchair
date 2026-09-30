@@ -39,6 +39,56 @@
       "Robert": "robert",
       "Scott": "scott",
       "Whitney": "whitney"
+    },
+    "s1": {
+      "Evander": "evander",
+      "Joey": "joey",
+      "John": "john",
+      "Kelly": "kelly",
+      "Rachel": "rachel",
+      "Trista": "trista"
+    },
+    "s8": {
+      "Belinda": "belinda",
+      "Chuck": "chuck",
+      "David": "david",
+      "Denise": "denise",
+      "Gilles": "gilles",
+      "Holly": "holly",
+      "Lawrence": "lawrence",
+      "Lil' Kim": "lil-kim",
+      "Melissa": "melissa",
+      "Shawn": "shawn",
+      "Steve": "steve",
+      "Steve-O": "steve-o",
+      "Ty": "ty"
+    },
+    "s15": {
+      "Apolo": "apolo",
+      "Emmitt": "emmitt",
+      "Gilles": "gilles",
+      "Kelly": "kelly",
+      "Kirstie": "kirstie",
+      "Melissa": "melissa",
+      "Shawn": "shawn"
+    },
+    "s20": {
+      "Nastia": "nastia",
+      "Noah": "noah",
+      "Riker": "riker",
+      "Rumer": "rumer"
+    },
+    "s31": {
+      "Charli": "charli",
+      "Daniel": "daniel",
+      "Gabby": "gabby",
+      "Heidi": "heidi",
+      "Jessie": "jessie",
+      "Jordin": "jordin",
+      "Shangela": "shangela",
+      "Trevor": "trevor",
+      "Vinny": "vinny",
+      "Wayne": "wayne"
     }
   },
   "cases": [
@@ -67,7 +117,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -82,7 +137,12 @@
               5,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -97,7 +157,12 @@
               4,
               4
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -112,7 +177,12 @@
               3,
               3
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -127,7 +197,12 @@
               6,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -142,7 +217,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -157,7 +237,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -172,7 +257,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 2,
@@ -187,7 +277,12 @@
               4,
               4
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 2,
@@ -202,7 +297,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 2,
@@ -217,7 +317,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 2,
@@ -232,7 +337,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 2,
@@ -247,7 +357,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 2,
@@ -262,7 +377,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 2,
@@ -277,7 +397,12 @@
               4,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 2,
@@ -292,10 +417,16 @@
               6,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -323,7 +454,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -338,7 +474,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -353,7 +494,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -368,7 +514,12 @@
               6,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -383,7 +534,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -398,7 +554,12 @@
               4,
               4
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -413,7 +574,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -428,7 +594,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -443,7 +614,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -458,7 +634,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -473,7 +654,12 @@
               4,
               4
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -488,7 +674,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -503,7 +694,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -518,10 +714,16 @@
               6,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -549,7 +751,12 @@
               8,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -564,7 +771,12 @@
               7,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -579,7 +791,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -594,7 +811,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -609,7 +831,12 @@
               8,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -624,7 +851,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -639,7 +871,12 @@
               7,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -654,7 +891,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -669,7 +911,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -684,7 +931,12 @@
               6,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -699,7 +951,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -714,7 +971,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -729,10 +991,16 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -760,7 +1028,12 @@
               8,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -775,7 +1048,12 @@
               7,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -790,7 +1068,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -805,7 +1088,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -820,7 +1108,12 @@
               8,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -835,7 +1128,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -850,7 +1148,12 @@
               7,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -865,7 +1168,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -880,7 +1188,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -895,7 +1208,12 @@
               7,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -910,7 +1228,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -921,7 +1244,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -932,10 +1260,16 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -963,7 +1297,12 @@
               8,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -978,7 +1317,12 @@
               7,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -993,7 +1337,12 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1008,7 +1357,12 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1023,7 +1377,12 @@
               8,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1038,7 +1397,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1053,7 +1417,12 @@
               7,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1068,7 +1437,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1083,7 +1457,12 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1094,7 +1473,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1105,7 +1489,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1116,7 +1505,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1127,10 +1521,16 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -1154,7 +1554,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1165,7 +1570,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1176,7 +1586,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1187,7 +1602,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1198,7 +1618,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1209,7 +1634,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1220,7 +1650,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1231,7 +1666,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1242,7 +1682,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1253,7 +1698,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1264,7 +1714,12 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1275,10 +1730,16 @@
             "rateable": true,
             "total": null,
             "judges": null,
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -1304,7 +1765,11 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1318,7 +1783,11 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1332,7 +1801,11 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1346,7 +1819,11 @@
               7,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1360,7 +1837,11 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1374,7 +1855,11 @@
               7,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1388,7 +1873,11 @@
               5,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1402,7 +1891,11 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1416,7 +1909,11 @@
               6,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1430,7 +1927,11 @@
               4,
               5
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1444,7 +1945,11 @@
               7,
               6
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1458,7 +1963,11 @@
               5,
               4
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1472,7 +1981,11 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1486,10 +1999,15 @@
               8,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -1519,7 +2037,13 @@
               9,
               10
             ],
-            "bonus": 5
+            "bonus": 5,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1535,7 +2059,13 @@
               8,
               9
             ],
-            "bonus": 4
+            "bonus": 4,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1551,7 +2081,13 @@
               7,
               7
             ],
-            "bonus": 1
+            "bonus": 1,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1567,7 +2103,13 @@
               8,
               8
             ],
-            "bonus": 0
+            "bonus": 0,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1583,7 +2125,13 @@
               8,
               9
             ],
-            "bonus": 2
+            "bonus": 2,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1599,7 +2147,13 @@
               9,
               10
             ],
-            "bonus": 3
+            "bonus": 3,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1615,7 +2169,13 @@
               8,
               8
             ],
-            "bonus": 2
+            "bonus": 2,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1631,7 +2191,13 @@
               9,
               10
             ],
-            "bonus": 4
+            "bonus": 4,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1647,10 +2213,17 @@
               8,
               9
             ],
-            "bonus": 3
+            "bonus": 3,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Cheryl Burke",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -1680,7 +2253,13 @@
               10,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1696,7 +2275,13 @@
               9,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1712,7 +2297,13 @@
               9,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1728,7 +2319,13 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1744,7 +2341,13 @@
               9,
               8
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1760,7 +2363,13 @@
               10,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1776,7 +2385,13 @@
               10,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1792,7 +2407,13 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1811,7 +2432,13 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1830,10 +2457,17 @@
               10,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Flavor Flav",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -1863,7 +2497,13 @@
               9,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Tom Bergeron",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1879,7 +2519,13 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Tom Bergeron",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1895,7 +2541,13 @@
               7,
               7
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Tom Bergeron",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1911,7 +2563,13 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Tom Bergeron",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1927,7 +2585,13 @@
               9,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Tom Bergeron",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1943,7 +2607,13 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Tom Bergeron",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -1959,10 +2629,17 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Tom Bergeron",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -1990,7 +2667,12 @@
               9,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2005,7 +2687,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2020,7 +2707,12 @@
               10,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2035,7 +2727,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2050,7 +2747,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2065,7 +2767,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2080,7 +2787,12 @@
               9,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2095,7 +2807,12 @@
               9,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2110,7 +2827,12 @@
               9,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2125,7 +2847,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2140,7 +2867,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2155,10 +2887,16 @@
               9,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
       }
     },
     {
@@ -2186,7 +2924,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2201,7 +2944,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2216,7 +2964,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2231,7 +2984,12 @@
               9,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2246,7 +3004,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2261,7 +3024,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2276,7 +3044,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2291,7 +3064,12 @@
               9,
               9
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2306,7 +3084,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2321,7 +3104,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2336,7 +3124,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2351,7 +3144,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2366,7 +3164,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2381,7 +3184,12 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           },
           {
             "night": 1,
@@ -2396,10 +3204,1025 @@
               10,
               10
             ],
-            "bonus": null
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
           }
         ],
-        "rejected": []
+        "rejected": [],
+        "unscored": []
+      }
+    },
+    {
+      "name": "S1 week 4: group dance marked No scores received",
+      "fixture": "s1-1375742773.wikitext",
+      "aliases": "s1",
+      "expected": {
+        "week": 4,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Len Goodman",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "joey"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 20,
+            "judges": [
+              7,
+              6,
+              7
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "rachel"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 25,
+            "judges": [
+              7,
+              9,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "john"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              8,
+              6
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "kelly"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 26,
+            "judges": [
+              9,
+              9,
+              8
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          }
+        ],
+        "rejected": [],
+        "unscored": [
+          {
+            "night": 1,
+            "row": "Joey & Ashly\nJohn & Charlotte\nKelly & Alec\nRachel & Jonathan"
+          }
+        ]
+      }
+    },
+    {
+      "name": "S8 week 3: scored dance-off on the results show is night 2",
+      "fixture": "s8-1372835313.wikitext",
+      "aliases": "s8",
+      "expected": {
+        "week": 3,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Len Goodman",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "denise"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 16,
+            "judges": [
+              5,
+              6,
+              5
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "chuck"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 23,
+            "judges": [
+              8,
+              7,
+              8
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "holly"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 17,
+            "judges": [
+              5,
+              6,
+              6
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "steve-o"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              5,
+              5,
+              5
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "lawrence"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 20,
+            "judges": [
+              7,
+              6,
+              7
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "shawn"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "gilles"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "david"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 24,
+            "judges": [
+              8,
+              8,
+              8
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "steve"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 10,
+            "judges": [
+              4,
+              3,
+              3
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "melissa"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "lil-kim"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 25,
+            "judges": [
+              8,
+              8,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ty"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 23,
+            "judges": [
+              8,
+              8,
+              7
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "holly"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "denise"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 20,
+            "judges": [
+              6,
+              7,
+              7
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Bruno Tonioli"
+            ]
+          }
+        ],
+        "rejected": [],
+        "unscored": []
+      }
+    },
+    {
+      "name": "S15 week 7: a column per judge, half points, swing marathon bonus",
+      "fixture": "s15-1372836123.wikitext",
+      "aliases": "s15",
+      "expected": {
+        "week": 7,
+        "panel": [
+          "Inaba",
+          "Goodman",
+          "Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "apolo"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": 6,
+            "panel": [
+              "Inaba",
+              "Goodman",
+              "Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "emmitt"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27.5,
+            "judges": [
+              8.5,
+              9.5,
+              9.5
+            ],
+            "bonus": 7,
+            "panel": [
+              "Inaba",
+              "Goodman",
+              "Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "kirstie"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 24,
+            "judges": [
+              8,
+              8,
+              8
+            ],
+            "bonus": 4,
+            "panel": [
+              "Inaba",
+              "Goodman",
+              "Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "kelly"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": 9,
+            "panel": [
+              "Inaba",
+              "Goodman",
+              "Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "melissa"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 29,
+            "judges": [
+              10,
+              9.5,
+              9.5
+            ],
+            "bonus": 10,
+            "panel": [
+              "Inaba",
+              "Goodman",
+              "Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "shawn"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": 8,
+            "panel": [
+              "Inaba",
+              "Goodman",
+              "Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "gilles"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 28.5,
+            "judges": [
+              9.5,
+              9.5,
+              9.5
+            ],
+            "bonus": 5,
+            "panel": [
+              "Inaba",
+              "Goodman",
+              "Tonioli"
+            ]
+          }
+        ],
+        "rejected": [],
+        "unscored": []
+      }
+    },
+    {
+      "name": "S20 week 9: X where a judge sat out the couple they coached",
+      "fixture": "s20-1375764332.wikitext",
+      "aliases": "s20",
+      "expected": {
+        "week": 9,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Len Goodman",
+          "Julianne Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "rumer"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 38,
+            "judges": [
+              10,
+              9,
+              9,
+              10
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Julianne Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "rumer"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10,
+              null
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Julianne Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "noah"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 36,
+            "judges": [
+              9,
+              9,
+              9,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Julianne Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "noah"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              null,
+              10,
+              10,
+              10
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Julianne Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "riker"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 40,
+            "judges": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Julianne Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "riker"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              null,
+              10
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Julianne Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "nastia"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 40,
+            "judges": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Julianne Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "nastia"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              null,
+              10,
+              10
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Julianne Hough",
+              "Bruno Tonioli"
+            ]
+          }
+        ],
+        "rejected": [],
+        "unscored": []
+      }
+    },
+    {
+      "name": "S31 week 6: five judges, order line reads given in this order",
+      "fixture": "s31-1372832846.wikitext",
+      "aliases": "s31",
+      "expected": {
+        "week": 6,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Len Goodman",
+          "Michael Bubl\u00e9",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "shangela"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 45,
+            "judges": [
+              9,
+              9,
+              9,
+              9,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "trevor"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 42,
+            "judges": [
+              9,
+              8,
+              8,
+              8,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "gabby"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 46,
+            "judges": [
+              9,
+              9,
+              9,
+              9,
+              10
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "vinny"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 36,
+            "judges": [
+              7,
+              7,
+              8,
+              7,
+              7
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordin"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 43,
+            "judges": [
+              9,
+              8,
+              9,
+              8,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "charli"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 50,
+            "judges": [
+              10,
+              10,
+              10,
+              10,
+              10
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "heidi"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 46,
+            "judges": [
+              9,
+              9,
+              10,
+              9,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "wayne"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 44,
+            "judges": [
+              8,
+              9,
+              10,
+              8,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jessie"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 41,
+            "judges": [
+              8,
+              8,
+              9,
+              8,
+              8
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "daniel"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 43,
+            "judges": [
+              9,
+              8,
+              9,
+              8,
+              9
+            ],
+            "bonus": null,
+            "panel": [
+              "Carrie Ann Inaba",
+              "Len Goodman",
+              "Michael Bubl\u00e9",
+              "Derek Hough",
+              "Bruno Tonioli"
+            ]
+          }
+        ],
+        "rejected": [],
+        "unscored": []
       }
     }
   ]
