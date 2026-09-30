@@ -43,12 +43,14 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
   return body.data as T;
 }
 
+export type AvatarKind = "google" | "upload" | "initials";
+
 export interface Me {
   sub: string;
   email: string;
   name: string | null;
   picture: string | null;
-  avatarKind: "google" | "initials";
+  avatarKind: AvatarKind;
   createdAt: string;
   lastSeenAt: string;
 }
