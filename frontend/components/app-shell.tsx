@@ -45,20 +45,24 @@ const PANEL_ITEM = `flex min-h-11 w-full items-center rounded-md px-3 text-left 
 interface AppShellProps {
   // Names the main landmark; the active tab already says where you are.
   title: string;
+  // Dashboard pages take the header's full width; forms and scorecards stay phone-width.
+  wide?: boolean;
   children: ReactNode;
 }
 
 /** Header, tabs and phone menu around every signed-in page. Callers handle the sign-in wall. */
-export function AppShell({ title, children }: AppShellProps) {
+export function AppShell({ title, wide = false, children }: AppShellProps) {
   // The season lives in the query string, which a static export only has on the client.
   return (
     <Suspense>
-      <Shell title={title}>{children}</Shell>
+      <Shell title={title} wide={wide}>
+        {children}
+      </Shell>
     </Suspense>
   );
 }
 
-function Shell({ title, children }: AppShellProps) {
+function Shell({ title, wide, children }: AppShellProps) {
   const pathname = usePathname();
   const season = useSeasonId();
   const current = activeTab(pathname);
@@ -149,7 +153,12 @@ function Shell({ title, children }: AppShellProps) {
           <ArrowIcon />
         </a>
       </NavSheet>
-      <main id="main" aria-label={title} aria-live="polite" className="mx-auto flex w-full max-w-md flex-1 flex-col gap-4 px-4 py-6">
+      <main
+        id="main"
+        aria-label={title}
+        aria-live="polite"
+        className={`mx-auto flex w-full flex-1 flex-col gap-4 px-4 py-6 ${wide ? "max-w-6xl sm:px-6" : "max-w-md"}`}
+      >
         {children}
       </main>
     </div>

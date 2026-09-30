@@ -25,7 +25,7 @@ def step(prev: dict | None, value: Decimal, now: int, rev: int, window: int = WI
 def judges(
     stored: dict,
     panel: list[str],
-    values: list[Decimal] | None,
+    values: list[Decimal | None] | None,
     now: int,
     rev: int,
     window: int = WINDOW,
@@ -33,8 +33,11 @@ def judges(
     """
     The performance's judges map after seeing `values` (one per panel seat, or
     None for an empty cell). An emptied cell drops provisional values, so a
-    reverted vandal edit disappears; confirmed ones stay.
+    reverted vandal edit disappears; confirmed ones stay. A None seat is a judge
+    who sat the dance out and gets no entry.
     """
     if values is None:
         return {j: e for j, e in stored.items() if e["state"] == "confirmed"}
-    return {j: step(stored.get(j), v, now, rev, window) for j, v in zip(panel, values)}
+    return {
+        j: step(stored.get(j), v, now, rev, window) for j, v in zip(panel, values) if v is not None
+    }

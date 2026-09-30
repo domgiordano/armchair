@@ -51,12 +51,14 @@ export async function requestWithMeta<T>(
   return { data: body.data as T, meta: body.meta ?? null };
 }
 
+export type AvatarKind = "google" | "upload" | "initials";
+
 export interface Me {
   sub: string;
   email: string;
   name: string | null;
   picture: string | null;
-  avatarKind: "google" | "initials";
+  avatarKind: AvatarKind;
   createdAt: string;
   lastSeenAt: string;
 }

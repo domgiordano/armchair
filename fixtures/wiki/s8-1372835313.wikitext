@@ -1,0 +1,1452 @@
+{{Use American English|date=March 2026}}
+{{Use mdy dates|date=September 2023}}
+{{Infobox television season
+| bgcolor      = #4B0609
+| image        = dwts8poster.jpg
+| caption      = Promotional poster, featuring former pro dancer [[Edyta Śliwińska]]
+| module1      = {{Infobox reality competition season
+| host                 = {{Plainlist|
+* [[Tom Bergeron]]
+* [[Samantha Harris]]
+}}
+| judges               = {{Plainlist|
+* [[Carrie Ann Inaba]]
+* [[Len Goodman]]
+* [[Bruno Tonioli]]
+}}
+| celebrity_winner     = [[Shawn Johnson]]
+| professional_winner  = [[Mark Ballas]]
+}}
+| num_episodes = 21
+| network      = [[American Broadcasting Company|ABC]]
+| first_aired  = {{start date|2009|3|9}}
+| last_aired   = {{end date|2009|5|19}}
+}}
+'''Season eight''' of ''[[Dancing with the Stars (American TV series)|Dancing with the Stars]]'' premiered on Monday, March 9, 2009, on the [[American Broadcasting Company|ABC]] network.
+
+The show generally followed the format of previous seasons, with thirteen couples, although there were some changes, including two new dances, the [[Argentine tango]] and [[Lindy Hop]], and an occasional dance-off between the bottom two couples, in order to determine who would be eliminated.
+
+Olympic gymnast [[Shawn Johnson]] and [[Mark Ballas]] were crowned the champions, while [[Gilles Marini]] and [[Cheryl Burke]] finished in second place, and [[Melissa Rycroft]] and [[Tony Dovolani]] finished third.<ref>{{Cite web |last=Barrett |first=Annie |title=Dancing with the Stars season finale recap: Shawn and Mark Flip Out |url=https://ew.com/recap/dancing-with-the-stars-recap-season-8-episode-21/ |access-date=2022-09-14 |website=EW.com |language=en |archive-date=September 14, 2022 |archive-url=https://web.archive.org/web/20220914232356/https://ew.com/recap/dancing-with-the-stars-recap-season-8-episode-21/ |url-status=live }}</ref>
+
+==Cast==
+===Couples===
+This season featured thirteen celebrity contestants. This season was originally advertised as the first American season where a husband and wife would compete against each other: rodeo champion [[Ty Murray]] and singer-songwriter [[Jewel Kilcher|Jewel]]. However, Jewel fractured both of her [[tibia]]e and was unable to compete.<ref name="Jewel">{{Cite web |last=theseat42f |date=2009-03-06 |title=Jewel And Nancy O'Dell Withdraw From Season 8 Of Dancing With The Stars {{!}} Seat42F |url=https://seat42f.com/jewel-and-nancy-odell-withdraw-from-season-8-of-dancing-with-the-stars/ |access-date=2022-09-14 |website=seat42f.com |language=en-US |archive-date=September 14, 2022 |archive-url=https://web.archive.org/web/20220914214542/https://seat42f.com/jewel-and-nancy-odell-withdraw-from-season-8-of-dancing-with-the-stars/ |url-status=live }}</ref> She was replaced by [[Holly Madison]]. Murray chose to continue on the show, while Jewel appeared during the season as a special musical guest. [[Nancy O'Dell]], then co-host of ''[[Access Hollywood]]'', was also originally announced to be on the show, but was forced to withdraw from the competition due to a torn [[meniscus (anatomy)|meniscus]], which required surgery.<ref name="Jewel" /> She was replaced by [[Melissa Rycroft]], who had won season 13 of ''[[The Bachelor (American TV series)|The Bachelor]]''.
+
+{| class="wikitable sortable" style="text-align:center;"
+|-
+! scope="col" | Celebrity
+! scope="col" class="unsortable"| Notability
+! scope="col" | Professional partner
+! scope="col" | Status
+|-
+! scope="row" | {{sortname|Belinda|Carlisle}}
+| Singer-songwriter
+| {{sortname|Jonathan|Roberts|Jonathan Roberts (dancer)}}
+| style="background:#f4c7b8;"|Eliminated 1st<br /><small>on March 17, 2009</small>
+|-
+! scope="row" | {{sortname|Denise|Richards}}
+| Actress
+| {{sortname|Maksim|Chmerkovskiy}}
+| style="background:#f4c7b8;"|Eliminated 2nd<br /><small>on March 24, 2009</small>
+|-
+! scope="row" | {{sortname|Holly|Madison}}
+| ''[[Playboy]]'' model & reality television personality
+| {{sortname|Dmitry|Chaplin}}
+| style="background:#f4c7b8;"|Eliminated 3rd<br /><small>on March 31, 2009</small>
+|-
+! scope="row" | {{sortname|Steve|Wozniak}}
+| [[Apple Inc.|Apple]] co-founder
+| {{sortname|Karina|Smirnoff}}
+| style="background:#f4c7b8;"|Eliminated 4th<br /><small>on March 31, 2009</small>
+|-
+! scope="row" | {{sortname|David Alan|Grier}}
+| Actor & comedian
+| {{sortname|Kym|Johnson}}
+| style="background:#f4c7b8;"|Eliminated 5th<br /><small>on April 7, 2009</small>
+|-
+! scope="row" | {{sortname|Steve-O||}}
+| ''[[Jackass (TV series)|Jackass]]'' star
+| {{sortname|Lacey|Schwimmer}}
+| style="background:#f4c7b8;"|Eliminated 6th<br /><small>on April 14, 2009</small>
+|-
+! scope="row" | {{sortname|Lawrence|Taylor}}
+| [[National Football League|NFL]] linebacker
+| {{sortname|Edyta|Śliwińska}}
+| style="background:#f4c7b8;"|Eliminated 7th<br /><small>on April 21, 2009</small>
+|-
+! scope="row" | {{sortname|Chuck|Wicks}}
+| [[Country music|Country]] singer
+| {{sortname|Julianne|Hough}}
+| style="background:#f4c7b8;"|Eliminated 8th<br /><small>on April 28, 2009</small>
+|-
+! scope="row" | {{sortname|Lil' Kim||}}
+| Rapper
+| {{sortname|Derek|Hough}}
+| style="background:#f4c7b8;"|Eliminated 9th<br /><small>on May 5, 2009</small>
+|-
+! scope="row" | {{sortname|Ty|Murray}}
+| Rodeo cowboy
+| {{sortname|Chelsie|Hightower}}
+| style="background:#f4c7b8;"|Eliminated 10th<br /><small>on May 12, 2009</small>
+|-
+! scope="row" | {{sortname|Melissa|Rycroft}}
+| ''[[The Bachelor (American TV series)|The Bachelor]]'' contestant
+| {{sortname|Tony|Dovolani}}
+| style="background:tan;"|Third place<br /><small>on May 19, 2009</small>
+|-
+! scope="row" | {{sortname|Gilles|Marini}}
+| Actor
+| {{sortname|Cheryl|Burke}}
+| style="background:silver;"|Runners-up<br /><small>on May 19, 2009</small>
+|-
+! scope="row" | {{sortname|Shawn|Johnson}}
+| [[Artistic gymnastics at the Summer Olympics|Olympic artistic gymnast]]
+| {{sortname|Mark|Ballas}}
+| style="background:gold;"|'''Winners'''<br /><small>on May 19, 2009</small>
+|}
+
+;Future appearances
+Shawn Johnson, Gilles Marini, and Melissa Rycroft later competed in the [[Dancing with the Stars (American season 15)|All-Stars]] season, where Johnson was paired with Derek Hough, Marini was paired with [[Peta Murgatroyd]], and Rycroft remained with Tony Dovolani.
+
+===Host and judges===
+The show was again co-hosted by [[Tom Bergeron]] and [[Samantha Harris]]. [[Len Goodman]], [[Bruno Tonioli]] and [[Carrie Ann Inaba]] returned as judges.
+
+==Scoring chart==
+The highest score each week is indicated in {{fontcolor|#004600|'''bold green'''}} with a dagger ({{dagger}}), while the lowest score each week is indicated in {{fontcolor|#800000|''italicized red''}} with a double-dagger ({{double-dagger}}).
+
+'''Color key:'''
+{{columns-list|colwidth=20em|
+{{legend|gold|Winners}}
+{{legend|silver|Runners-up}}
+{{legend|tan|Third place}}
+{{legend|lightblue|Bottom two}}
+{{legend|#f4c7b8|Eliminated}}
+}}
+{| class="wikitable sortable" style="text-align:center; font-size:90%"
+|+''Dancing with the Stars'' (season 8) - Weekly scores
+! scope="col" rowspan="3" style="text-align:center; | Couple
+! scope="col" rowspan="3" style="text-align:center; | {{Abbr|Pl.|Place}}
+! colspan="13" style="text-align:center; | Week
+|-
+! rowspan="2" scope="col" | 1
+! rowspan="2" scope="col" | 2
+! rowspan="2" scope="col" | 1+2
+! rowspan="2" scope="col" | 3
+! rowspan="2" scope="col" | 4
+! rowspan="2" scope="col" | 5
+! rowspan="2" scope="col" | 6
+! rowspan="2" scope="col" | 7
+! rowspan="2" scope="col" | 8
+! rowspan="2" scope="col" | 9
+! rowspan="2" scope="col" | 10
+! colspan="2" scope="col" | 11
+|-
+! Night 1
+! Night 2
+|-
+! scope="row" | Shawn & Mark
+| 1st
+| 23
+| 24
+| 47
+| {{fontcolor|#004600|'''27'''}}{{dagger|alt=This was the highest score of the night.}}
+| 25
+| 26
+| 26
+| 28
+| {{sort|52|}} | 27+25=52
+| {{sort|56|}} | 27+29=56
+| {{sort|56|}} | 30+26=56
+| {{sort|58|}} | 28+30={{fontcolor|#004600|'''58'''}}{{dagger|alt=This was the highest score of the night.}}
+| bgcolor="gold" {{sort|88|}} | +30={{fontcolor|#004600|'''88'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple finished in first place.}}
+|-
+! scope="row" | Gilles & Cheryl
+| 2nd
+| {{fontcolor|#004600|'''24'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''27'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''51'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''27'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''30'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''29'''}}{{dagger|alt=This was the highest score of the night.}}
+| 26
+| 27
+| {{sort|55|}} | 27+28=55
+| {{sort|56|}} | 29+27=56
+| {{sort|60|}} | 30+30={{fontcolor|#004600|'''60'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|58|}} | 30+28={{fontcolor|#004600|'''58'''}}{{dagger|alt=This was the highest score of the night.}}
+| bgcolor="silver" {{sort|88|}} | +30={{fontcolor|#004600|'''88'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple finished in second place.}}
+|-
+! scope="row" | Melissa & Tony
+| 3rd
+| 23
+| 26
+| 49
+| {{fontcolor|#004600|'''27'''}}{{dagger|alt=This was the highest score of the night.}}
+| 29
+| 25
+| 27
+| {{fontcolor|#004600|'''29'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|46|}} | 21+25={{fontcolor|#800000|''46''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| {{sort|57|}} | 27+30={{fontcolor|#004600|'''57'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{sort|55|}} | 28+27=55
+| {{sort|56|}} | 29+27={{fontcolor|#800000|''56''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| bgcolor="tan" {{sort|86|}} | +30={{fontcolor|#800000|''86''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|This couple finished in third place.}}
+|-
+! scope="row" | Ty & Chelsie
+| 4th
+| 14
+| 20
+| 34
+| 23
+| 25
+| 21
+| 18
+| 24
+| {{sort|52|}} | 24+28=52
+| bgcolor="lightblue" {{sort|46|}} | 25+21={{fontcolor|#800000|''46''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Bottom2}}
+| bgcolor="f4c7b8" {{sort|48|}} | 25+23={{fontcolor|#800000|''48''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| colspan="2" rowspan="10" style="background:darkgrey;" |
+|-
+! scope="row" | Lil' Kim & Derek
+| 5th
+| 21
+| 23
+| 44
+| 25
+| 27
+| 26
+| {{fontcolor|#004600|'''28'''}}{{dagger|alt=This was the highest score of the night.}}
+| 26
+| {{sort|56|}} | 28+28={{fontcolor|#004600|'''56'''}}{{dagger|alt=This was the highest score of the night.}}
+| bgcolor="f4c7b8" {{sort|52|}} | 25+27=52{{efn|name=Elim}}
+| rowspan="9" style="background:darkgrey;" |
+|-
+! scope="row" | Chuck & Julianne
+| 6th
+| 20
+| 20
+| 40
+| 23
+| 22
+| 23
+| 23
+| 27
+| bgcolor="f4c7b8" {{sort|51|}} | 26+25=51{{efn|name=Elim}}
+| rowspan="8" style="background:darkgrey;" |
+|-
+! scope="row" | Lawrence & Edyta
+| 7th
+| 16
+| 20
+| 36
+| 20
+| 19
+| bgcolor="lightblue" | 20{{efn|name=Bottom2}}
+| 22
+| bgcolor="f4c7b8" | {{fontcolor|#800000|''21''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| rowspan="7" style="background:darkgrey;" |
+|-
+! scope="row" | Steve-O & Lacey
+| 8th
+| 17
+| {{fontcolor|#800000|''14''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| 31
+| 15
+| bgcolor="lightblue" | 15{{efn|name=Bottom2}}
+| {{fontcolor|#800000|''18''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| bgcolor="f4c7b8" | {{fontcolor|#800000|''16''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| rowspan="6" style="background:darkgrey;" |
+|-
+! scope="row" | David & Kym
+| 9th
+| 19
+| 17
+| 36
+| 24
+| 22
+| bgcolor="f4c7b8" | 22{{efn|name=Elim}}
+| rowspan="5" style="background:darkgrey;" |
+|-
+! scope="row" | Steve & Karina
+| 10th
+| {{fontcolor|#800000|''13''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| 17
+| bgcolor="lightblue" | {{fontcolor|#800000|''30''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Bottom2}}
+| {{fontcolor|#800000|''10''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| bgcolor="f4c7b8" | {{fontcolor|#800000|''12''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| style="background:darkgrey;" |
+|-
+! scope="row" | Holly & Dmitry
+| 11th
+| 18
+| 18
+| 36
+| bgcolor="lightblue" | 17{{efn|name=Bottom2|This couple was in the bottom two, but was not eliminated.}}
+| bgcolor="f4c7b8" | 16{{efn|name=Elim}}
+| rowspan="3" style="background:darkgrey;" |
+|-
+! scope="row" | Denise & Maks
+| style="text-align:center;" |12th
+| 18
+| 21
+| 39
+| bgcolor="f4c7b8" | 16{{efn|name=Elim}}
+| rowspan="2" style="background:darkgrey;" |
+|-
+! scope="row" nowrap | Belinda & Jonathan
+| style="text-align:center;" |13th
+| 17
+| 18
+| bgcolor="f4c7b8" | 35{{efn|name=Elim|This couple was eliminated.}}
+| style="background:darkgrey;" |
+|}
+;Notes
+{{notelist}}
+
+==Weekly scores==
+''Individual judges scores in charts below (given in parentheses) are listed in this order from left to right: [[Carrie Ann Inaba]], [[Len Goodman]], [[Bruno Tonioli]].''
+
+===Week 1===
+Each couple performed either the [[Cha-cha-cha (dance)|cha-cha-cha]] or [[waltz]]. Couples are listed in the order they performed.
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+|-
+! scope="row" | Lil' Kim & Derek
+| 21 (7, 7, 7)
+| Cha-cha-cha
+| "[[Nasty (Janet Jackson song)|Nasty]]" — [[Janet Jackson]]
+|-
+! scope="row" | Belinda & Jonathan
+| 17 (6, 6, 5)
+| Waltz
+| "[[What the World Needs Now Is Love]]" — [[Jackie DeShannon]]
+|-
+! scope="row" | Lawrence & Edyta
+| 16 (6, 5, 5)
+| Cha-cha-cha
+| "[[Twenty-Five Miles]]" — [[Edwin Starr]]
+|-
+! scope="row" | Steve-O & Lacey
+| 17 (6, 5, 6)
+| Waltz
+| "Vito's Waltz" — [[101 Strings Orchestra]]
+|-
+! scope="row" | Gilles & Cheryl
+| 24 (8, 8, 8)
+| Cha-cha-cha
+| "[[Addicted to Love (song)|Addicted to Love]]" — [[Robert Palmer (singer)|Robert Palmer]]
+|-
+! scope="row" | Chuck & Julianne
+| 20 (6, 7, 7)
+| Waltz
+| "[[Are You Lonesome Tonight? (song)|Are You Lonesome Tonight?]]" — [[Elvis Presley]]
+|-
+! scope="row" | Holly & Dmitry
+| 18 (6, 6, 6)
+| Cha-cha-cha
+| "[[Just Dance (song)|Just Dance]]" — [[Lady Gaga]], feat. [[Colby O'Donis]]
+|-
+! scope="row" | Ty & Chelsie
+| 14 (5, 4, 5)
+| Cha-cha-cha
+| "[[Train in Vain]]" — [[The Clash]]
+|-
+! scope="row" | Shawn & Mark
+| 23 (8, 8, 7)
+| Waltz
+| "[[List of songs featured in Shrek#Shrek (2001)|It is You (I Have Loved)]]" — [[Dana Glover (singer)|Dana Glover]]
+|-
+! scope="row" | Steve & Karina
+| 13 (5, 4, 4)
+| Cha-cha-cha
+| "[[You Ain't Seen Nothing Yet (Bachman-Turner Overdrive song)|You Ain't Seen Nothing Yet]]" — [[Bachman-Turner Overdrive]]
+|-
+! scope="row" | David & Kym
+| 19 (6, 7, 6)
+| Waltz
+| "[[You Light Up My Life (song)|You Light Up My Life]]" — [[Debby Boone]]
+|-
+! scope="row" | Denise & Maks
+| 18 (6, 6, 6)
+| Cha-cha-cha
+| "[[Nothin' but a Good Time]]" — [[Poison (band)|Poison]]
+|-
+! scope="row" | Melissa & Tony
+| 23 (8, 7, 8)
+| Waltz
+| "[[Moon River]]" — [[Andy Williams]]
+|}
+
+===Week 2===
+Each couple performed either the [[quickstep]] or [[Salsa (dance)|salsa]]. The two couples in the bottom two competed against each other in a dance-off to determine which would also be eliminated. Couples are listed in the order they performed.
+
+Due to an injury, [[Steve-O]] was unable to dance on the live show, so his rehearsal footage was shown and scored instead.<ref>{{Cite web |date=2009-03-17 |title=Steve-O misses 'Dancing' due to injury |url=http://www.digitalspy.com/tv/ustv/a149807/steve-o-misses-dancing-due-to-injury/ |access-date=2022-09-14 |website=Digital Spy |language=en-GB}}</ref>
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Holly & Dmitry
+| 18 (6, 6, 6)
+| Quickstep
+| "[[We Are in Love]]" — [[Harry Connick Jr.]]
+| Safe
+|-
+! scope="row" | David & Kym
+| 17 (6, 5, 6)
+| Salsa
+| "[[Rafael Hernández Marín|El Cumbanchero]]" — [[Angel Meléndez and the 911 Mambo Orchestra]]
+| Safe
+|-
+! scope="row" | Denise & Maks
+| 21 (7, 7, 7)
+| Quickstep
+| "[[Grease (musical)|We Go Together]]" — ''from [[Grease (film)|Grease]]''
+| Safe
+|-
+! scope="row" | Belinda & Jonathan
+| 18 (6, 6, 6)
+| Salsa
+| "[[Higher (Gloria Estefan song)|Higher]]" — [[Gloria Estefan]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Ty & Chelsie
+| 20 (7, 6, 7)
+| Quickstep
+| "[[Life Is a Highway]]" — [[Rascal Flatts]]
+| Safe
+|-
+! scope="row" | Shawn & Mark
+| 24 (8, 8, 8)
+| Salsa
+| "Las Muchachas" — [[Johnny Pacheco]]
+| Safe
+|-
+! scope="row" | Steve & Karina
+| 17 (6, 5, 6)
+| Quickstep
+| "[[Oh, Boy! (The Crickets song)|Oh, Boy!]]" — [[Buddy Holly]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Chuck & Julianne
+| 20 (6, 7, 7)
+| Salsa
+| "[[Say Hey (I Love You)]]" — [[Michael Franti|Michael Franti & Spearhead]]
+| Safe
+|-
+! scope="row" | Lawrence & Edyta
+| 20 (7, 6, 7)
+| Quickstep
+| "As Long as I'm Singing" — [[The Brian Setzer Orchestra]]
+| Safe
+|-
+! scope="row" | Steve-O & Lacey
+| 14 (5, 4, 5)
+| Salsa
+| "[[Cobrastyle]]" — [[Teddybears (band)|Teddybears]]
+| Safe
+|-
+! scope="row" | Lil' Kim & Derek
+| 23 (8, 7, 8)
+| Quickstep
+| "[[Diamonds Are a Girl's Best Friend]]" — [[Marilyn Monroe]]
+| Safe
+|-
+! scope="row" | Melissa & Tony
+| 26 (9, 8, 9)
+| Salsa
+| "[[The Cup of Life]]" — [[Ricky Martin]]
+| Safe
+|-
+! scope="row" | Gilles & Cheryl
+| 27 (9, 9, 9)
+| Quickstep
+| "[[Kryptonite (3 Doors Down song)|Kryptonite]]" — [[3 Doors Down]]
+| Safe
+|}
+{| class="wikitable unsortable" style="text-align:center; width:90%"
+|+Dance-off
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" |Dance
+! scope="col" |Music
+! scope="col" |Result
+|-
+! scope="row" | Belinda & Jonathan
+| 17 (5, 6, 6)
+| Salsa
+| "[[Higher (Gloria Estefan song)|Higher]]" — [[Gloria Estefan]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Steve & Karina
+| 17 (6, 5, 6)
+| Quickstep
+| "[[Oh, Boy! (The Crickets song)|Oh, Boy!]]" — [[Buddy Holly]]
+| Safe
+|}
+
+===Week 3===
+Each couple performed either the [[foxtrot]] or [[Samba (ballroom dance)|samba]]. The two couples in the bottom two competed against each other in a dance-off to determine which would also be eliminated. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Denise & Maks
+| 16 (5, 6, 5)
+| Samba
+| "[[Take a Picture (Filter song)|Take a Picture]]" — [[Filter (band)|Filter]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Chuck & Julianne
+| 23 (8, 7, 8)
+| Foxtrot
+| "[[All I Want to Do (Sugarland song)|All I Want To Do]]" — [[Sugarland]]
+| Safe
+|-
+! scope="row" | Holly & Dmitry
+| 17 (5, 6, 6)
+| Samba
+| "[[Bananza (Belly Dancer)]]" — [[Akon]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Steve-O & Lacey
+| 15 (5, 5, 5)
+| Foxtrot
+| "[[I'm Yours (Jason Mraz song)|I'm Yours]]" — [[Jason Mraz]]
+| Safe
+|-
+! scope="row" | Lawrence & Edyta
+| 20 (7, 6, 7)
+| Samba
+| "[[I Can't Get Next To You]]" — [[The Temptations]]
+| Safe
+|-
+! scope="row" | Shawn & Mark
+| 27 (9, 9, 9)
+| Foxtrot
+| "[[More Than This (Roxy Music song)|More Than This]]" — [[Norah Jones]]
+| Safe
+|-
+! scope="row" | Gilles & Cheryl
+| 27 (9, 9, 9)
+| Samba
+| "[[Matador (Los Fabulosos Cadillacs song)|El Matador]]" — [[Los Fabulosos Cadillacs]]
+| Safe
+|-
+! scope="row" | David & Kym
+| 24 (8, 8, 8)
+| Foxtrot
+| "[[Come Rain or Come Shine]]" — [[Natalie Cole]]
+| Safe
+|-
+! scope="row" | Steve & Karina
+| 10 (4, 3, 3)
+| Samba
+| "[[Jump in the Line (Shake, Senora)]]" — [[Harry Belafonte]]
+| Safe
+|-
+! scope="row" | Melissa & Tony
+| 27 (9, 9, 9)
+| Foxtrot
+| "Recipe for Love" — [[Harry Connick Jr.]]
+| Safe
+|-
+! scope="row" | Lil' Kim & Derek
+| 25 (8, 8, 9)
+| Samba
+| "Remedio P'al Corazon" — Alberto Plaza
+| Safe
+|-
+! scope="row" | Ty & Chelsie
+| 23 (8, 8, 7)
+| Foxtrot
+| "[[Come Dance with Me (song)|Come Dance with Me]]" — [[Frank Sinatra]]
+| Safe
+|}
+{| class="wikitable unsortable" style="text-align:center; width:90%"
+|+Dance-off
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" |Dance
+! scope="col" |Music
+! scope="col" |Result
+|-
+! scope="row" | Holly & Dmitry
+| 18 (6, 6, 6)
+| Samba
+| "[[Bananza (Belly Dancer)]]" — [[Akon]]
+| Safe
+|-
+! scope="row" | Denise & Maks
+| 20 (6, 7, 7)
+| Samba
+| "[[Take a Picture (Filter song)|Take a Picture]]" — [[Filter (band)|Filter]]
+| bgcolor=f4c7b8 | Eliminated
+|}
+
+===Week 4===
+Each couple performed either the [[Argentine tango]] or [[Lindy Hop]]<!--Both LINDY and HOP should be capitalized.-->. Two couples were eliminated at the end of the night. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | David & Kym
+| 22 (8, 7, 7)
+| Lindy Hop
+| "Bandstand Boogie" — [[Barry Manilow]]
+| Safe
+|-
+! scope="row" | Lil' Kim & Derek
+| 27 (9, 8, 10)
+| Argentine tango
+| "Taquito Militar" — Conjunto Tipico Del Tango
+| Safe
+|-
+! scope="row" | Chuck & Julianne
+| 22 (8, 7, 7)
+| Lindy Hop
+| "[[Summertime Blues]]" — [[Brian Setzer]]
+| Safe
+|-
+! scope="row" | Lawrence & Edyta
+| 19 (7, 5, 7)
+| Argentine tango
+| "[[Suite Punta Del Este]]" — [[Ástor Piazzolla]]
+| Safe
+|-
+! scope="row" | Ty & Chelsie
+| 25 (9, 8, 8)
+| Lindy Hop
+| "[[Americana Deluxe|You and Me and the Bottle Makes 3 Tonight (Baby)]]" — [[Big Bad Voodoo Daddy]]
+| Safe
+|-
+! scope="row" | Steve & Karina
+| 12 (4, 4, 4)
+| Argentine tango
+| "Cité Tango" — [[Gotan Project]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Melissa & Tony
+| 29 (10, 9, 10)
+| Lindy Hop
+| "[[Zoot Suit Riot (album)|Brown Derby Jump]]" — [[Cherry Poppin' Daddies]]
+| Safe
+|-
+! scope="row" | Holly & Dmitry
+| 16 (5, 6, 5)
+| Argentine tango
+| "[[Libertango]]" — [[Bond (band)|Bond]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Steve-O & Lacey
+| 15 (5, 5, 5)
+| Lindy Hop
+| "[[Dance Little Sister (Rolling Stones song)|Dance Little Sister]]" — [[The Rolling Stones]]
+| bgcolor=lightblue | Bottom three
+|-
+! scope="row" | Gilles & Cheryl
+| {{nowrap|30 (10, 10, 10)}}
+| Argentine tango
+| "Assassin's Tango" — [[John Powell (composer)|John Powell]]
+| Safe
+|-
+! scope="row" | Shawn & Mark
+| 25 (8, 8, 9)
+| Lindy Hop
+| "[[Ready Teddy]]" — [[Little Richard]]
+| Safe
+|}
+
+===Week 5===
+Each couple performed either the [[Pasodoble|paso doble]] or [[Viennese waltz]]. The two couples in the bottom two competed against each other in a dance-off to determine which would also be eliminated. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Chuck & Julianne
+| 23 (7, 8, 8)
+| Viennese waltz
+| "[[Feels Like Today (song)|Feels Like Today]]" — [[Rascal Flatts]]
+| Safe
+|-
+! scope="row" | Lawrence & Edyta
+| 20 (6, 7, 7)
+| Paso doble
+| "[[Granada (song)|Granada]]" — [[Agustín Lara]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Shawn & Mark
+| 26 (9, 8, 9)
+| Viennese waltz
+| "[[Ordinary Day (Vanessa Carlton song)|Ordinary Day]]" — [[Vanessa Carlton]]
+| Safe
+|-
+! scope="row" | Melissa & Tony
+| 25 (8, 8, 9)
+| Paso doble
+| "[[Poker Face (Lady GaGa song)|Poker Face]]" — [[Lady Gaga]]
+| Safe
+|-
+! scope="row" | David & Kym
+| 22 (7, 8, 7)
+| Viennese waltz
+| "[[I Put a Spell on You]]" — [[Screamin' Jay Hawkins]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Gilles & Cheryl
+| 29 (10, 9, 10)
+| Paso doble
+| "[[Habanera (aria)|Habanera]]" — [[Charlotte Church]]
+| Safe
+|-
+! scope="row" | Steve-O & Lacey
+| 18 (6, 6, 6)
+| Viennese waltz
+| "[[Moulin Rouge!#Soundtrack|Complainte de la Butte]]" — [[Rufus Wainwright]]
+| Safe
+|-
+! scope="row" | Ty & Chelsie
+| 21 (7, 7, 7)
+| Paso doble
+| "[[Barracuda (song)|Barracuda]]" — [[Heart (band)|Heart]]
+| Safe
+|-
+! scope="row" | Lil' Kim & Derek
+| 26 (9, 8, 9)
+| Viennese waltz
+| "[[I'll Be (Edwin McCain song)|I'll Be]]" — [[Edwin McCain]]
+| Safe
+|}
+{| class="wikitable unsortable" style="text-align:center; width:90%"
+|+Dance-off
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" |Dance
+! scope="col" |Music
+! scope="col" |Result
+|-
+! scope="row" | David & Kym
+| 24 (8, 8, 8)
+| Viennese waltz
+| "[[I Put a Spell on You]]" — [[Screamin' Jay Hawkins]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Lawrence & Edyta
+| 20 (6, 7, 7)
+| Paso doble
+| "[[Granada (song)|Granada]]" — [[Agustín Lara]]
+| Safe
+|}
+
+===Week 6===
+Each couple performed either the [[Jive (dance)|jive]] or [[Rhumba|rumba]]. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Ty & Chelsie
+| 18 (6, 6, 6)
+| Jive
+| "[[The Girl's Gone Wild]]" — [[Travis Tritt]]
+| Safe
+|-
+! scope="row" | Shawn & Mark
+| 26 (8, 9, 9)
+| Rumba
+| "[[Slow Dancing in a Burning Room]]" — [[John Mayer]]
+| Safe
+|-
+! scope="row" | Lawrence & Edyta
+| 22 (7, 7, 8)
+| Jive
+| "[[Ain't That Peculiar]]" — [[Marvin Gaye]]
+| Safe
+|-
+! scope="row" | Melissa & Tony
+| 27 (9, 9, 9)
+| Rumba
+| "[[If I Were a Boy]]" — [[Beyoncé]]
+| Safe
+|-
+! scope="row" | Lil' Kim & Derek
+| 28 (10, 8, 10)
+| Jive
+| "[[Jailhouse Rock (song)|Jailhouse Rock]]" — [[Elvis Presley]]
+| Safe
+|-
+! scope="row" | Steve-O & Lacey
+| 16 (7, 4, 5)
+| Rumba
+| "[[Fall for You (Secondhand Serenade song)|Fall for You]]" — [[Secondhand Serenade]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Gilles & Cheryl
+| 26 (9, 8, 9)
+| Jive
+| "[[Dance, Dance (Fall Out Boy song)|Dance, Dance]]" — [[Fall Out Boy]]
+| Safe
+|-
+! scope="row" | Chuck & Julianne
+| 23 (8, 7, 8)
+| Rumba
+| "[[She Will Be Loved]]" — [[Maroon 5]]
+| Safe
+|}
+
+===Week 7===
+Each couple performed one unlearned dance, and they all participated in a group [[Swing (dance)|swing dance]]. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Melissa & Tony
+| 29 (10, 9, 10)
+| Argentine tango
+| "[[Gotan Project discography|Mi Confesión]]" — [[Gotan Project]]
+| Safe
+|-
+! scope="row" | Lawrence & Edyta
+| 21 (7, 7, 7)
+| Waltz
+| "[[Open Arms (Journey song)|Open Arms]]" — [[Journey (band)|Journey]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Lil' Kim & Derek
+| 26 (9, 8, 9)
+| Rumba
+| "[[Lost Without U]]" — [[Robin Thicke]]
+| Safe
+|-
+! scope="row" | Chuck & Julianne
+| 27 (9, 9, 9)
+| Samba
+| "Bailá, Bailá" — [[Angela Via]], feat. [[Joe Budden]]
+| Safe
+|-
+! scope="row" | Ty & Chelsie
+| 24 (8, 8, 8)
+| Waltz
+| "[[Strawberry Wine (Deana Carter song)|Strawberry Wine]]" — [[Deana Carter]]
+| Safe
+|-
+! scope="row" | Shawn & Mark
+| 28 (9, 9, 10)
+| Cha-cha-cha
+| "[[P.Y.T. (Pretty Young Thing)]]" — [[Michael Jackson]]
+| Safe
+|-
+! scope="row" | Gilles & Cheryl
+| 27 (9, 9, 9)
+| Viennese waltz
+| "[[I Go to Sleep]]" — [[The Pretenders]]
+| Safe
+|-
+! scope="row" | Chuck & Julianne<br />Gilles & Cheryl<br />Lawrence & Edyta<br />Lil' Kim & Derek<br />Melissa & Tony<br>Shawn & Mark<br />Ty & Chelsie
+| bgcolor="lightgray" | ''No scores<br>received''
+| Group<br>Swing
+| colspan="2" | "[[The Clapping Song]]" — [[Shirley Ellis]]
+|}
+
+===Week 8===
+Each couple performed one unlearned dance, plus participated in a group dance. Couples are listed in the order they performed.
+
+Due to an injury, [[Melissa Rycroft]] was unable to perform her jive or participate in the team dance on the live show. [[Lacey Schwimmer]] filled in for her on the team dance, while Rycroft's rehearsal footage for her jive was shown and scored instead.<ref>{{Cite web |title=Dancing with the Stars: Melissa Rycroft Injured - Rehearsal Footage |url=https://people.com/tv/dancing-with-the-stars-melissa-rycroft-injured-rehearsal-footage/ |access-date=2022-09-14 |website=Peoplemag |language=en}}</ref><ref>{{Cite web |title=Melissa Injured, Misses 'Dancing' |url=https://extratv.com/2009/04/28/melissa-injured-misses-dancing/ |access-date=2022-09-14 |website=Extra |language=en}}</ref>
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Gilles & Cheryl
+| 27 (9, 9, 9)
+| Lindy Hop
+| "[[Americana Deluxe|Go Daddy-O]]" — [[Big Bad Voodoo Daddy]]
+| Safe
+|-
+! scope="row" | Lil' Kim & Derek
+| 28 (9, 9, 10)
+| Paso doble
+| "[[El gato montés]]" — [[Manuel Penella]]
+| Safe
+|-
+! scope="row" | Chuck & Julianne
+| 26 (9, 9, 8)
+| Cha-cha-cha
+| "[[I'm Outta Love]]" — [[Anastacia]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Shawn & Mark
+| 27 (10, 8, 9)
+| Samba
+| "[[Get Down on It]]" — [[Kool and the Gang]]
+| Safe
+|-
+! scope="row" | Melissa & Tony
+| 21 (7, 7, 7)
+| Jive
+| "[[We Got the Beat]]" — [[The Go-Go's]]
+| Safe
+|-
+! scope="row" | Ty & Chelsie
+| 24 (9, 7, 8)
+| Salsa
+| "[[Vehicle (song)|Vehicle]]" — [[The Ides of March (band)|The Ides of March]]
+| Safe
+|-
+! scope="row" | Chuck & Julianne<br />Lacey & Tony<br />Shawn & Mark
+| 25 (8, 8, 9)
+| Team Mambo
+| colspan="2" |"[[Single Ladies (Put a Ring on It)]]" — [[Beyoncé]]
+|-
+! scope="row" | Gilles & Cheryl<br />Lil' Kim & Derek<br>Ty & Chelsie
+| 28 (9, 9, 10)
+| Team Tango
+| colspan="2" |"[[Womanizer (song)|Womanizer]]" — [[Britney Spears]]
+|}
+
+===Week 9===
+Each couple performed two unlearned dances. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" rowspan=2|Shawn & Mark
+| 27 (9, 9, 9)
+| Quickstep
+| "[[Friend Like Me]]" — [[Robin Williams]]
+| rowspan=2|Safe
+|-
+| 29 (10, 9, 10)
+| Paso doble
+| "[[Gotta Get thru This (song)|Gotta Get thru This]]" — [[Daniel Bedingfield]]
+|-
+! scope="row" rowspan=2|Ty & Chelsie
+| 25 (8, 9, 8)
+| Argentine tango
+| "Amor que se baila" — [[Otros Aires]]
+| rowspan=2 bgcolor=lightblue |Bottom two
+|-
+| 21 (7, 7, 7)
+| Rumba
+| "[[Free Fallin']]" — [[Tom Petty]]
+|-
+! scope="row" rowspan=2|Lil' Kim & Derek
+| 25 (8, 9, 8)
+| Waltz
+| "[[When I Need You]]" — [[Leo Sayer]]
+| rowspan=2 bgcolor=f4c7b8 |Eliminated
+|-
+| 27 (9, 9, 9)
+| Salsa
+| "[[Por Arriba, Por Abajo]]" — [[Ricky Martin]]
+|-
+! scope="row" rowspan=2|Gilles & Cheryl
+| 29 (10, 9, 10)
+| Foxtrot
+| "[[Fever (1956 song)|Fever]]" — [[Peggy Lee]]
+| rowspan=2|Safe
+|-
+| 27 (9, 9, 9)
+| Rumba
+| "[[Sexual Healing]]" — [[Marvin Gaye]]
+|-
+! scope="row" rowspan=2|Melissa & Tony
+| 27 (9, 9, 9)
+| Viennese waltz
+| "[[Angel (Sarah McLachlan song)|Angel]]" — [[Sarah McLachlan]]
+| rowspan=2|Safe
+|-
+| {{nowrap|30 (10, 10, 10)}}
+| Samba
+| "[[Jaleo (Ricky Martin song)|Jaleo]]" — [[Ricky Martin]]
+|}
+
+===Week 10===
+Each couple performed two unlearned dances. Couples are listed in the order they performed.
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" rowspan="2" |Melissa & Tony
+| 28 (9, 10, 9)
+| Quickstep
+| "[[I Got Rhythm]]" — [[Ella Fitzgerald]]
+| rowspan="2" |Safe
+|-
+| 27 (9, 9, 9)
+| Cha-cha-cha
+| "[[Save the Last Dance for Me]]" — [[Ben E. King]]
+|-
+! scope="row" rowspan="2" |Gilles & Cheryl
+| 30 (10, 10, 10)
+| Waltz
+| "[[Come Away with Me (song)|Come Away with Me]]" — [[Norah Jones]]
+| rowspan="2" |Safe
+|-
+| 30 (10, 10, 10)
+| Salsa
+| "[[I Know You Want Me (Calle Ocho)]]" — [[Pitbull (rapper)|Pitbull]]
+|-
+! scope="row" rowspan="2" |Shawn & Mark
+| 30 (10, 10, 10)
+| Argentine tango
+| "Asi se Baila el Tango" — Bailongo
+| rowspan="2" |Safe
+|-
+| 26 (9, 8, 9)
+| Jive
+| "[[Reet Petite]]" — [[Jackie Wilson]]
+|-
+! scope="row" rowspan="2" |Ty & Chelsie
+| 25 (8, 9, 8)
+| Viennese waltz
+| "[[Tuesday's Gone]]" — [[Lynyrd Skynyrd]]
+| rowspan="2" bgcolor=f4c7b8 |Eliminated
+|-
+| 23 (8, 7, 8)
+| Samba
+| "[[Concrete and Clay]]" — [[Unit 4 + 2]]
+|}
+
+===Week 11: Finals===
+On the first night, each couple competed in a group paso doble, where they each received their own set of scores, and then performed their [[Street dance|freestyle]] routines. On the second night, each couple performed their favorite dance of the season. Couples are listed in the order they performed.
+
+;Night 1
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+|-
+! scope="row" | Shawn & Mark
+| 28 (9, 9, 10)
+| rowspan=3| Group<br>Paso doble
+| rowspan=3|"[[So What (Pink song)|So What]]" — [[Pink (singer)|Pink]]
+|-
+! scope="row" | Melissa & Tony
+| 29 (10, 9, 10)
+|-
+! scope="row" | Gilles & Cheryl
+| 30 (10, 10, 10)
+|-
+! scope="row" | Shawn & Mark
+| 30 (10, 10, 10)
+| Freestyle
+| "[[Do Your Thing (Basement Jaxx song)|Do Your Thing]]" — [[Basement Jaxx]]
+|-
+! scope="row" | Melissa & Tony
+| 27 (9, 9, 9)
+| Freestyle
+| "[[Gonna Make You Sweat (Everybody Dance Now)]]" — [[C+C Music Factory]]
+|-
+! scope="row" | Gilles & Cheryl
+| 28 (9, 10, 9)
+| Freestyle
+| "[[Flashdance (What a Feeling)]]" — [[Irene Cara]]
+|}
+; Night 2
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Shawn & Mark
+| 30 (10, 10, 10)
+| Cha-cha-cha
+| "[[P.Y.T. (Pretty Young Thing)]]" — [[Michael Jackson]]
+| bgcolor=gold | '''Winners'''
+|-
+! scope="row" | Melissa & Tony
+| 30 (10, 10, 10)
+| Samba
+| "[[Jaleo (Ricky Martin song)|Jaleo]]" — [[Ricky Martin]]
+| bgcolor=tan | Third place
+|-
+! scope="row" | Gilles & Cheryl
+| 30 (10, 10, 10)
+| Argentine tango
+| "Assassin's Tango" — [[John Powell (composer)|John Powell]]
+| bgcolor=silver | Runners-up
+|}
+
+==Dance chart==
+The couples performed the following each week:
+*Week 1: One unlearned dance (cha-cha-cha or waltz)
+*Week 2: One unlearned dance (quickstep or salsa)
+*Week 3: One unlearned dance (foxtrot or samba)
+*Week 4: One unlearned dance (Argentine tango or Lindy Hop)
+*Week 5: One unlearned dance (paso doble or Viennese waltz)
+*Week 6: One unlearned dance (jive or rumba)
+*Week 7: One unlearned dance & swing group dance
+*Week 8: One unlearned dance & team dance
+*Week 9: Two unlearned dances
+*Week 10: Two unlearned dances
+*Week 11 (Night 1): Group paso doble & freestyle
+*Week 11 (Night 2): Favorite dance of the season
+
+'''Color key:'''
+{{columns-list|colwidth=20em|
+{{legend|lightblue|No scores received.}}
+}}
+{| class="wikitable unsortable" style="text-align:center; font-size:85%; line-height:20px"
+|+''Dancing with the Stars'' (season 8) - Dance chart
+! rowspan="3" |Couple
+! scope="col" colspan="17" |Week
+|-
+! rowspan="2" scope="col" | 1 
+! rowspan="2" scope="col" | 2 
+! rowspan="2" scope="col" | 3 
+! rowspan="2" scope="col" | 4 
+! rowspan="2" scope="col" | 5 
+! rowspan="2" scope="col" | 6 
+! colspan="2" rowspan="2" scope="col" |7 
+! colspan="2" rowspan="2" scope="col" |8 
+! colspan="2" rowspan="2" scope="col" |9 
+! colspan="2" rowspan="2" scope="col" |10 
+! colspan="3" scope="col" |11
+|-
+! colspan="2" | {{nowrap|Night 1}}
+! {{nowrap|Night 2}}
+|-
+! scope="row" | Shawn & Mark
+| Waltz
+| Salsa
+| Foxtrot
+| Lindy Hop
+| Viennese waltz
+| Rumba
+| Cha-cha-cha
+| rowspan="7" style="background:lightblue" |Group Swing{{efn|No scores were received for this dance.}}
+| Samba
+| Team<br>Mambo
+| Quickstep
+| Paso doble
+| Argentine tango
+| Jive
+| rowspan="3" | Group<br>Paso doble
+| Freestyle
+| Cha-cha-cha
+|-
+! scope="row" | Gilles & Cheryl
+| {{nowrap|Cha-cha}}-cha
+| Quickstep
+| Samba
+| Argentine tango
+| Paso doble
+| Jive
+| Viennese waltz
+| Lindy Hop
+| Team<br>Tango
+| Foxtrot
+| Rumba
+| Waltz
+| Salsa
+| Freestyle
+| Argentine tango
+|-
+! scope="row" | Melissa & Tony
+| Waltz
+| Salsa
+| Foxtrot
+| Lindy Hop
+| Paso doble
+| Rumba
+| Argentine tango
+| Jive
+| Team<br>Mambo
+| Viennese waltz
+| Samba
+| Quickstep
+| Cha-cha-cha
+| Freestyle
+| Samba
+|-
+! scope="row" | Ty & Chelsie
+| Cha-cha-cha
+| Quickstep
+| Foxtrot
+| Lindy Hop
+| Paso doble
+| Jive
+| Waltz
+| Salsa
+| Team<br>Tango
+| Argentine tango
+| Rumba
+| Viennese waltz
+| Samba
+| colspan="3" rowspan="10" style="background:darkgrey" |
+|-
+! scope="row" | Lil' Kim & Derek
+| Cha-cha-cha
+| Quickstep
+| Samba
+| Argentine tango
+| Viennese waltz
+| Jive
+| Rumba
+| Paso doble
+| Team<br>Tango
+| Waltz
+| Salsa
+| colspan="2" rowspan="9" style="background:darkgrey" |
+|-
+! scope="row" | Chuck & Julianne
+| Waltz
+| Salsa
+| Foxtrot
+| Lindy Hop
+| Viennese waltz
+| Rumba
+| Samba
+| {{nowrap|Cha-cha}}-cha
+| Team<br>Mambo
+| colspan="2" rowspan="8" style="background:darkgrey" |
+|-
+! scope="row" | Lawrence & Edyta
+| Cha-cha-cha
+| Quickstep
+| Samba
+| Argentine tango
+| Paso doble
+| Jive
+| Waltz
+| colspan="2" rowspan="7" style="background:darkgrey" |
+|-
+! scope="row" | Steve-O & Lacey
+| Waltz
+| Salsa
+| Foxtrot
+| Lindy Hop
+| Viennese waltz
+| Rumba
+| colspan="2" rowspan="6" style="background:darkgrey" |
+|-
+! scope="row" | David & Kym
+| Waltz
+| Salsa
+| Foxtrot
+| Lindy Hop
+| Viennese waltz
+| rowspan="5" style="background:darkgrey" |
+|-
+! scope="row" | Steve & Karina
+| Cha-cha-cha
+| Quickstep
+| Samba
+| Argentine tango
+| rowspan="4" style="background:darkgrey" |
+|-
+! scope="row" | Holly & Dmitry
+| Cha-cha-cha
+| Quickstep
+| Samba
+| Argentine tango
+|-
+! scope="row" | Denise & Maksim
+| Cha-cha-cha
+| Quickstep
+| Samba
+| rowspan="2" style="background:darkgrey" |
+|-
+! scope="row" | Belinda & Jonathan
+| Waltz
+| Salsa
+| style="background:darkgrey" |
+|}
+;Notes
+{{notelist}}
+
+==Ratings==
+{{Television episode ratings
+| show_timeslot     = y
+| hide_dvr          = y
+| hide_dvrv         = y
+| hide_total        = y
+| hide_totalv       = y
+
+| title1            = Episode 801
+| date1             = March 9, 2009
+| timeslot1         = Monday 8:00 p.m.
+| timeslot_length1  = 2
+| rs1               = 6.1/15<ref name="8.01R">{{cite magazine|date=March 18, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=10–11|id={{ProQuest|2297984637}}}}</ref>
+| viewers1          = 22.83<ref name="8.01V">{{cite news|date=March 18, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=D9|url=https://www.newspapers.com/article/the-los-angeles-times/80060530/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title2            = Episode 802
+| date2             = March 16, 2009
+| rs2               = 5.3/14<ref name="8.02R">{{cite magazine|date=March 25, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=28–29|id={{ProQuest|2297997058}}}}</ref>
+| viewers2          = 21.22<ref name="8.02V">{{cite news|date=March 25, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=D10|url=https://www.newspapers.com/article/the-los-angeles-times/181092691/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title3            = Episode 802A
+| date3             = March 17, 2009
+| timeslot3         = Tuesday 9:00 p.m.
+| rs3               = 2.8/7<ref name="8.02R"/>
+| viewers3          = 12.74<ref name="8.02V"/>
+
+| title4            = Episode 803
+| date4             = March 23, 2009
+| timeslot4         = Monday 8:00 p.m.
+| rs4               = 5.0/13<ref name="8.03R">{{cite magazine|date=April 1, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=18–19|id={{ProQuest|2298005606}}}}</ref>
+| viewers4          = 20.34<ref name="8.03V">{{cite news|date=April 1, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=E10|url=https://www.newspapers.com/article/the-los-angeles-times/80060640/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title5            = Episode 803A
+| date5             = March 24, 2009
+| timeslot5         = Tuesday 9:00 p.m.
+| rs5               = 3.9/10<ref name="8.03R"/>
+| viewers5          = 16.12<ref name="8.03V"/>
+
+| title6            = Episode 804
+| date6             = March 30, 2009
+| timeslot6         = Monday 8:00 p.m.
+| rs6               = 4.9/12<ref name="8.04R">{{cite magazine|date=April 8, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=10–11|id={{ProQuest|2298012954}}}}</ref>
+| viewers6          = 20.48<ref name="8.04V">{{cite news|date=April 10, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=E11|url=https://www.newspapers.com/article/the-los-angeles-times/181092790/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title7            = Episode 804A
+| date7             = March 31, 2009
+| timeslot7         = Tuesday 9:00 p.m.
+| rs7               = 3.1/8<ref name="8.04R"/>
+| viewers7          = 13.51<ref name="8.04V"/>
+
+| title8            = Episode 805
+| date8             = April 6, 2009
+| timeslot8         = Monday 8:00 p.m.
+| rs8               = 4.6/12<ref name="8.05R">{{cite magazine|date=April 15, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=10–11|id={{ProQuest|2297995433}}}}</ref>
+| viewers8          = 19.88<ref name="8.05V">{{cite news|date=April 15, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=E14|url=https://www.newspapers.com/article/the-los-angeles-times/181092867/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title9            = Episode 805A
+| date9             = April 7, 2009
+| timeslot9         = Tuesday 9:00 p.m.
+| rs9               = 3.3/8<ref name="8.05R"/>
+| viewers9          = 14.56<ref name="8.05V"/>
+
+| title10           = Episode 806
+| date10            = April 13, 2009
+| timeslot10        = Monday 8:00 p.m.
+| rs10              = n/a
+| viewers10         = 19.46<ref name="8.06V">{{cite news|date=April 22, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=D11|url=https://www.newspapers.com/article/the-los-angeles-times/181092984/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title11           = Episode 806A
+| date11            = April 14, 2009
+| timeslot11        = Tuesday 9:00 p.m.
+| rs11              = n/a
+| viewers11         = 15.24<ref name="8.06V"/>
+
+| title12           = Episode 807
+| date12            = April 20, 2009
+| timeslot12        = Monday 8:00 p.m.
+| rs12              = 4.7/12<ref name="8.07R">{{cite magazine|date=April 29, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=30–31|id={{ProQuest|2297996138}}}}</ref>
+| viewers12         = 20.53<ref name="8.07V">{{cite news|date=April 29, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=D10|url=https://www.newspapers.com/article/the-los-angeles-times/181092950/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title13           = Episode 807A
+| date13            = April 21, 2009
+| timeslot13        = Tuesday 9:00 p.m.
+| rs13              = 3.2/8<ref name="8.07R"/>
+| viewers13         = 14.72<ref name="8.07V"/>
+
+| title14           = Episode 808
+| date14            = April 27, 2009
+| timeslot14        = Monday 8:00 p.m.
+| rs14              = 4.3/11<ref name="8.08R">{{cite magazine|date=May 7, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=12–13|id={{ProQuest|2298649916}}}}</ref>
+| viewers14         = 19.23<ref name="8.08V">{{cite news|date=May 8, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=D20|url=https://www.newspapers.com/article/the-los-angeles-times/181093101/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title15           = Episode 808A
+| date15            = April 28, 2009
+| timeslot15        = Tuesday 9:00 p.m.
+| rs15              = 3.3/8<ref name="8.08R"/>
+| viewers15         = 14.72<ref name="8.08V"/>
+
+| title16           = Episode 809
+| date16            = May 4, 2009
+| timeslot16        = Monday 8:00 p.m.
+| rs16              = 4.9/13<ref name="8.09R">{{cite magazine|date=May 13, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=16–17|id={{ProQuest|2298639857}}}}</ref>
+| viewers16         = 20.28<ref name="8.09V">{{cite news|date=May 13, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=D11|url=https://www.newspapers.com/article/the-los-angeles-times/80061039/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title17           = Episode 809A
+| date17            = May 5, 2009
+| timeslot17        = Tuesday 9:00 p.m.
+| rs17              = 3.2/8<ref name="8.09R"/>
+| viewers17         = 14.56<ref name="8.09V"/>
+
+| title18           = Episode 810
+| date18            = May 11, 2009
+| timeslot18        = Monday 8:00 p.m.
+| rs18              = 4.2/11<ref name="8.10R">{{cite magazine|date=May 20, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=10–11|id={{ProQuest|2298006796}}}}</ref>
+| viewers18         = 18.55<ref name="8.10V">{{cite news|date=May 20, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=D13|url=https://www.newspapers.com/article/the-los-angeles-times/181093250/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title19           = Episode 810A
+| date19            = May 12, 2009
+| timeslot19        = Tuesday 9:00 p.m.
+| rs19              = 3.1/8<ref name="8.10R"/>
+| viewers19         = 14.06<ref name="8.10V"/>
+
+| title20           = Episode 811
+| date20            = May 18, 2009
+| timeslot20        = Monday 8:00 p.m.
+| rs20              = 4.4/13<ref name="8.11R">{{cite magazine|date=May 28, 2009|title=TV Ratings|magazine=[[The Hollywood Reporter]]|pages=12–13|id={{ProQuest|2298649778}}}}</ref>
+| viewers20         = 19.17<ref name="8.11V">{{cite news|date=May 29, 2009|title=Prime-Time TV Rankings|newspaper=[[Los Angeles Times]]|page=D22|url=https://www.newspapers.com/article/the-los-angeles-times/181093373/|via=[[Newspapers.com]]|access-date=November 30, 2025}}</ref>
+
+| title21           = Episode 811A
+| date21            = May 19, 2009
+| timeslot21        = Tuesday 9:00 p.m.
+| rs21              = 5.2/14<ref name="8.11R"/>
+| viewers21         = 20.31<ref name="8.11V"/>
+}}
+==References==
+{{Reflist}}
+
+==External links==
+*{{Official website|http://abc.go.com/shows/dancing-with-the-stars}}
+
+{{Dancing with the Stars (United States)}}
+
+[[Category:Dancing with the Stars (American TV series)]]
+[[Category:2009 American television seasons]]
