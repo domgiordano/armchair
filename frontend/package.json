@@ -8,9 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "verify": "node scripts/verify-build.mjs",
+    "postbuild": "npm run verify"
   },
   "dependencies": {
+    "aws-amplify": "^6.22.1",
     "next": "16.3.6",
     "react": "19.2.8",
     "react-dom": "19.2.8"
