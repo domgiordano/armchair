@@ -62,15 +62,20 @@ describe("Home", () => {
     render(<Home />);
 
     expect(await screen.findByRole("heading", { name: "Hi, Ada Lovelace" })).toBeTruthy();
-    expect(screen.getByRole("img", { name: "Ada Lovelace" }).textContent).toBe("AL");
+    expect((await screen.findByRole("img", { name: "Ada Lovelace" })).textContent).toBe("AL");
 
+    fireEvent.click(screen.getByRole("button", { name: "Account" }));
     fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
     expect(signOut).toHaveBeenCalled();
   });
 
   it("offers a retry when /users/me fails", async () => {
     vi.mocked(getCurrentUser).mockResolvedValue({ username: "u", userId: "u" });
-    vi.mocked(getMe).mockRejectedValueOnce(new ApiError(500, "Internal error")).mockResolvedValue(ME);
+    // Once for the header's avatar, once for the greeting.
+    vi.mocked(getMe)
+      .mockRejectedValueOnce(new ApiError(500, "Internal error"))
+      .mockRejectedValueOnce(new ApiError(500, "Internal error"))
+      .mockResolvedValue(ME);
     render(<Home />);
 
     expect(await screen.findByText("Could not load your profile: Internal error")).toBeTruthy();

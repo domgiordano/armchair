@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 const replace = vi.fn();
 let search = new URLSearchParams();
 vi.mock("next/navigation", () => ({
+  usePathname: () => "/episode/",
   useRouter: () => ({ replace }),
   useSearchParams: () => search,
 }));
