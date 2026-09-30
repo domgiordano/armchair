@@ -7,6 +7,8 @@ interface AvatarProps {
   name: string | null;
   email: string;
   picture: string | null;
+  // Pixels on a side.
+  size?: number;
 }
 
 export function initials(name: string | null, email: string): string {
@@ -16,7 +18,7 @@ export function initials(name: string | null, email: string): string {
   return (fromName || Array.from(email)[0] || "?").toUpperCase();
 }
 
-export function Avatar({ name, email, picture }: AvatarProps) {
+export function Avatar({ name, email, picture, size = 36 }: AvatarProps) {
   // Keyed by URL so a new picture gets a fresh try after an old one failed.
   const [failed, setFailed] = useState<string | null>(null);
   const label = name ?? email;
@@ -26,13 +28,14 @@ export function Avatar({ name, email, picture }: AvatarProps) {
       <Image
         src={picture}
         alt={label}
-        width={36}
-        height={36}
+        width={size}
+        height={size}
         unoptimized
         // Google's photo host refuses some requests that carry a Referer.
         referrerPolicy="no-referrer"
         onError={() => setFailed(picture)}
-        className="size-9 rounded-full bg-neutral-800 object-cover"
+        style={{ width: size, height: size }}
+        className="shrink-0 rounded-full bg-neutral-800 object-cover"
       />
     );
   }
@@ -41,7 +44,8 @@ export function Avatar({ name, email, picture }: AvatarProps) {
     <span
       role="img"
       aria-label={label}
-      className="flex size-9 items-center justify-center rounded-full bg-amber-300 text-sm font-semibold text-amber-950"
+      style={{ width: size, height: size, fontSize: Math.round(size * 0.39) }}
+      className="flex shrink-0 items-center justify-center rounded-full bg-amber-300 font-semibold text-amber-950"
     >
       <span aria-hidden="true">{initials(name, email)}</span>
     </span>

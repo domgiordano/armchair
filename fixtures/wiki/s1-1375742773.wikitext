@@ -1,0 +1,631 @@
+{{Use American English|date=March 2026}}
+{{use mdy dates|date=April 2022}}
+{{Infobox television season
+| bgcolor      = #16A0F1
+| image        = DWTS-Season-One-2005.jpg
+| caption      = Promotional poster, displayed at [[Dancing with the Stars (American TV series)#Fan convention|Dancing with the Stars Con 2026]]
+| module1      = {{Infobox reality competition season
+| host                 = {{Plainlist|
+* [[Tom Bergeron]]
+* [[Lisa Canning]]
+}}
+| judges               = {{Plainlist|
+* [[Carrie Ann Inaba]]
+* [[Len Goodman]]
+* [[Bruno Tonioli]]
+}}
+| celebrity_winner     = [[Kelly Monaco]]
+| professional_winner  = [[Alec Mazo]]
+}}
+| num_episodes = 8 (including 2 specials)
+| network      = [[American Broadcasting Company|ABC]]
+| first_aired  = {{start date|2005|6|1}}
+| last_aired   = {{end date|2005|9|22}}
+}}
+
+The '''first season''' of ''[[Dancing with the Stars (American TV series)|Dancing with the Stars]]'' debuted on [[American Broadcasting Company|ABC]] on June 1, 2005. Six celebrities were paired with six professional ballroom dancers. [[Tom Bergeron]] and [[Lisa Canning]] were the hosts while [[Carrie Ann Inaba]], [[Len Goodman]], and [[Bruno Tonioli]] were the three judges for this season.
+
+The premiere drew over 13 million viewers, the second biggest summer debut ever for an American reality series after ''[[Survivor (American TV series)|Survivor]]''.<ref>{{cite news | last = Associated Press | title = 'Dancing With the Stars' Debuts in 2nd Place | work = FoxNews | date = 2005-06-08 | url = https://www.foxnews.com/story/dancing-with-the-stars-debuts-in-2nd-place | access-date = 2009-05-06 | archive-url = https://web.archive.org/web/20080414041316/http://www.foxnews.com/story/0,2933,158923,00.html | archive-date = 2008-04-14 | url-status = live }}</ref> The second week climbed to 15 million viewers, and the show climbed to the top of the ratings in the summer 2005 TV season, where it remained for the remainder of the season.<ref>{{cite news | last = Maynard | first = John | title = ABC Cuts In: 'Dancing' Racks Up No. 1 Summer Ratings | newspaper = The Washington Post | date = 2005-07-13 | url = https://www.washingtonpost.com/wp-dyn/content/article/2005/07/12/AR2005071201440.html | access-date = 2009-05-06 | archive-url = https://web.archive.org/web/20121108000601/http://www.washingtonpost.com/wp-dyn/content/article/2005/07/12/AR2005071201440.html | archive-date = 2012-11-08 | url-status = live }}</ref>
+
+The season finale aired on July 6, 2005, where ''[[General Hospital]]'' actress [[Kelly Monaco]] and [[Alec Mazo]] were announced as the winners,<ref>{{cite web|url=http://people.com/celebrity/kelly-monaco-wins-dancing-with-the-stars/|title=Kelly Monaco Wins Dancing with the Stars|date=July 7, 2005|work=peoplecelebrity.com|access-date=May 20, 2017|archive-url=https://web.archive.org/web/20171113131250/http://people.com/celebrity/kelly-monaco-wins-dancing-with-the-stars/|archive-date=November 13, 2017|url-status=live}}</ref> while actor [[John O'Hurley]] and [[Charlotte Jørgensen]] finished in second place.
+
+Due to controversy over Kelly Monaco winning over the consistently higher-scoring John O'Hurley, a special rematch episode was held on September 20, 2005, with the results announced on a September 22 telecast. This time, John O'Hurley and Charlotte Jørgensen were the champions, and sizable donations were made to both Monaco and O'Hurley's chosen charities.<ref>{{Cite web |last=Pierce |first=Scott D. |date=2005-08-02 |title=ABC, 'Dancing' winner sidestepping criticism |url=https://www.deseret.com/2005/8/2/19905015/abc-dancing-winner-sidestepping-criticism |access-date=2023-10-25 |website=Deseret News |language=en |archive-date=October 25, 2023 |archive-url=https://web.archive.org/web/20231025234049/https://www.deseret.com/2005/8/2/19905015/abc-dancing-winner-sidestepping-criticism |url-status=live }}</ref><ref name=":0">{{cite web|url=https://www.today.com/popculture/rematch-gave-dancing-its-rhythm-back-wbna9444985|title=Rematch gave 'Dancing' its rhythm back|date=September 22, 2005|work=today.com}}</ref><ref name=":1">{{cite web|url=https://www.eonline.com/news/50494/monaco-o-hurley-dancing-rematch/|title=Monaco, O'Hurley: "Dancing" Rematch!|date=August 18, 2005|work=eonline.com|access-date=September 28, 2020|archive-date=September 17, 2020|archive-url=https://web.archive.org/web/20200917091807/https://www.eonline.com/news/50494/monaco-o-hurley-dancing-rematch|url-status=live}}</ref>
+
+==Cast==
+===Couples===
+This season featured six celebrity contestants.<ref>{{cite web|url=http://abc.go.com/primetime/dancing/bios/cast.html|archive-url=https://web.archive.org/web/20050521021850/http://abc.go.com/primetime/dancing/bios/cast.html|url-status=dead|archive-date=2005-05-21|title=Dancing with the Stars, season 1 - cast}}</ref>
+{| class="wikitable sortable" style="text-align:center;"
+|-
+! scope="col" | Celebrity
+! scope="col" class="unsortable"| Notability
+! scope="col" | Professional partner
+! scope="col" | Status
+|-
+! scope="row" | {{sortname|Trista|Sutter}}
+| ''[[The Bachelorette (American TV series)|The Bachelorette]]'' star
+| {{sortname|Louis|van Amstel}}
+| bgcolor="#F4C7B8" | Eliminated 1st<br /><small>on June 8, 2005</small>
+|-
+! scope="row" | {{sortname|Evander|Holyfield}}
+|Heavyweight [[Boxing|boxer]]
+| {{sortname|Edyta|Śliwińska}}
+|bgcolor="#F4C7B8"|Eliminated 2nd<br /><small>on June 15, 2005</small>
+|-
+! scope="row" | {{sortname|Rachel|Hunter}}
+|Supermodel
+| {{sortname|Jonathan|Roberts|Jonathan Roberts (dancer)}}
+|bgcolor="#F4C7B8"|Eliminated 3rd<br /><small>on June 22, 2005</small>
+|-
+! scope="row" | {{sortname|Joey|McIntyre}}
+|[[New Kids on the Block]] singer
+| {{sortname|Ashly|DelGrosso}}
+|bgcolor=f4c7b8 |Eliminated 4th<br /><small>on June 29, 2005</small>
+|-
+! scope="row" | {{sortname|John|O'Hurley}}
+| Television actor & game show host
+| {{sortname|Charlotte|Jørgensen}}
+|bgcolor="silver"|Runners-up<br /><small>on July 6, 2005</small>
+|-
+! scope="row" | {{sortname|Kelly|Monaco}}
+|''[[General Hospital]]'' actress
+| {{sortname|Alec|Mazo}}
+|bgcolor="gold"|'''Winners'''<br /><small> on July 6, 2005 </small>
+|}
+
+;Future appearances
+Kelly Monaco returned for the [[Dancing with the Stars (American season 15)|All-Stars]] season, where she was paired with [[Valentin Chmerkovskiy]]. <ref>{{Cite web |last=Sher |first=Lauren |date=July 27, 2012 |title='Dancing With The Stars' All-Stars: Season 15 Cast Announced |url=https://abcnews.go.com/Entertainment/dancing-stars-stars-season-15-cast-announced/story?id=16868617 |access-date=2023-07-04 |website=ABC News |language=en |archive-date=July 4, 2023 |archive-url=https://web.archive.org/web/20230704011135/https://abcnews.go.com/Entertainment/dancing-stars-stars-season-15-cast-announced/story?id=16868617 |url-status=live }}</ref>
+==Episodes==
+<onlyinclude>{{#invoke:Episode table|main|dontclose=y
+|background = #16A0F1
+|overall    = 5
+|season     = 6
+|title      = 40
+|titleR     = <ref name="The Futon Critic">{{cite web|url=http://www.thefutoncritic.com/showatch/dancing-with-the-stars/listings |title=''Dancing with the Stars'' Episode Listings|website=[[The Futon Critic]]}}</ref><ref name="IMBD1">{{cite web|url=https://www.imdb.com/title/tt0463398/episodes/?season=1&ref_=ttep|title=''Dancing with the Stars'' Episode List|website=IMDb}}</ref>
+|aux1       = 10
+|airdate    = 1r
+|country    = U.S.
+|viewers    = 10
+|aux1T      = Rating<br>(18–49)
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 1
+| EpisodeNumber   = 1
+| EpisodeNumber2  = 1
+| Title           = Round One
+| OriginalAirDate = {{Start date|2005|06|01}}
+| Aux1            = 4.30<ref>{{cite magazine |last=Galaviz |first=Rachel |date=2005-06-08 |title=Data Bank: TV Rate Race |magazine=[[The Hollywood Reporter]] |volume=389 |issue=25 |pages=50–51 |id={{ProQuest|2470995275}}}}</ref>
+| Viewers         = 13.48<ref>{{cite news |date=2005-06-08 |title=Prime-Time TV Rankings |newspaper=[[Los Angeles Times]] |page=E12 |url=https://www.newspapers.com/clip/78053406/the-los-angeles-times/ |via=[[Newspapers.com]] |archive-date=May 20, 2021 |access-date=May 21, 2021 |archive-url=https://web.archive.org/web/20210520234929/https://www.newspapers.com/clip/78053406/the-los-angeles-times/ |url-status=live }}</ref>
+| ShortSummary    =
+| LineColor       = #16A0F1
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 1
+| EpisodeNumber   = 2
+| EpisodeNumber2  = 2
+| Title           = Round Two
+| OriginalAirDate = {{Start date|2005|06|08}}
+| Aux1            = 4.80<ref>{{cite magazine |last=Galaviz |first=Rachel |date=2005-06-15 |title=Data Bank: TV Rate Race |magazine=[[The Hollywood Reporter]] |volume=389 |issue=30 |pages=42–43 |id={{ProQuest|2470928863}}}}</ref>
+| Viewers         = 15.09<ref>{{cite news |date=2005-06-15 |title=Prime-Time TV Rankings |newspaper=[[Los Angeles Times]] |page=E12 |url=https://www.newspapers.com/clip/78053424/the-los-angeles-times/ |via=[[Newspapers.com]] |archive-date=May 20, 2021 |access-date=May 21, 2021 |archive-url=https://web.archive.org/web/20210520234915/https://www.newspapers.com/clip/78053424/the-los-angeles-times/ |url-status=live }}</ref>
+| ShortSummary    =
+| LineColor       = #16A0F1
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 1
+| EpisodeNumber   = 3
+| EpisodeNumber2  = 3
+| Title           = Round Three
+| OriginalAirDate = {{Start date|2005|06|15}}
+| Aux1            = 4.80<ref>{{cite magazine |last=Galaviz |first=Rachel |date=2005-06-22 |title=Data Bank: TV Rate Race |magazine=[[The Hollywood Reporter]] |volume=389 |issue=36 |pages=10–11 |id={{ProQuest|2470945415}}}}</ref>
+| Viewers         = 15.67<ref>{{cite news |date=2005-06-22 |title=Prime-Time TV Rankings |newspaper=[[Los Angeles Times]] |page=E12 |url=https://www.newspapers.com/clip/78053441/the-los-angeles-times/ |via=[[Newspapers.com]]}}</ref>
+| ShortSummary    =
+| LineColor       = #16A0F1
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 1
+| EpisodeNumber   = 4
+| EpisodeNumber2  = 4
+| Title           = Round Four
+| OriginalAirDate = {{Start date|2005|06|22}}
+| Aux1            = 4.40<ref>{{cite magazine |last=Galaviz |first=Rachel |date=2005-06-29 |title=Data Bank: TV Rate Race |magazine=[[The Hollywood Reporter]] |volume=389 |issue=41 |pages=10–11 |id={{ProQuest|2470951503}}}}</ref>
+| Viewers         = 15.52<ref>{{cite web |title=Top 20 Network Primetime Series: Total Households |publisher=[[Zap2it]] |url-status=dead |url=http://tv.zap2it.com/tveditorial/tve_main/1,1002,272%7C%7C%7Cweekly,00.html |archive-url=https://web.archive.org/web/20050701022318/http://tv.zap2it.com/tveditorial/tve_main/1,1002,272%7C%7C%7Cweekly,00.html |archive-date=July 1, 2005}}</ref>
+| ShortSummary    =
+| LineColor       = #16A0F1
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 1
+| EpisodeNumber   = 5
+| EpisodeNumber2  = 5
+| Title           = Round Five
+| OriginalAirDate = {{Start date|2005|06|29}}
+| Aux1            = 5.60<ref>{{cite magazine |last=Galaviz |first=Rachel |date=2005-07-07 |title=Data Bank: TV Rate Race |magazine=[[The Hollywood Reporter]] |volume=389 |issue=46 |pages=12–13 |id={{ProQuest|2471825433}}}}</ref>
+| Viewers         = 18.59<ref>{{cite news |date=2005-07-07 |title=Prime-Time TV Rankings |newspaper=[[Los Angeles Times]] |page=E12 |url=https://www.newspapers.com/clip/78053475/the-los-angeles-times/ |via=[[Newspapers.com]] |archive-date=May 20, 2021 |access-date=May 21, 2021 |archive-url=https://web.archive.org/web/20210520234941/https://www.newspapers.com/clip/78053475/the-los-angeles-times/ |url-status=live }}</ref>
+| ShortSummary    =
+| LineColor       = #16A0F1
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 1
+| EpisodeNumber   = 6
+| EpisodeNumber2  = 6
+| Title           = Round Six
+| OriginalAirDate = {{Start date|2005|07|06}}
+| Aux1            = 6.70<ref>{{cite magazine |last=Galaviz |first=Rachel |date=2005-07-13 |title=Data Bank: TV Rate Race |magazine=[[The Hollywood Reporter]] |volume=389 |issue=50 |pages=14–15 |id={{ProQuest|2471828308}}}}</ref>
+| Viewers         = 22.36<ref>{{cite news |date=2005-07-13 |title=Prime-Time TV Rankings |newspaper=[[Los Angeles Times]] |page=E10 |url=https://www.newspapers.com/clip/78053524/the-los-angeles-times/ |via=[[Newspapers.com]] |archive-date=May 20, 2021 |access-date=May 21, 2021 |archive-url=https://web.archive.org/web/20210520234935/https://www.newspapers.com/clip/78053524/the-los-angeles-times/ |url-status=live }}</ref>
+| ShortSummary    =
+| LineColor       = #16A0F1
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 1
+| EpisodeNumber   = 7
+| EpisodeNumber2  = 7
+| Title           = Dance Off
+| OriginalAirDate = {{Start date|2005|09|20}}
+| Aux1            = 2.80<ref name="DOR">{{cite magazine |last=Arrington |first=Augustine |date=2005-09-28 |title=Data Bank: TV Rate Race |magazine=[[The Hollywood Reporter]] |volume=391 |issue=7 |pages=10–11 |id={{ProQuest|2470957236}}}}</ref>
+| Viewers         = 10.91<ref name="DORV">{{cite news |date=2005-09-28 |title=Prime-Time TV Rankings |newspaper=[[Los Angeles Times]] |page=E11 |url=https://www.newspapers.com/article/the-los-angeles-times/168867309/ |via=[[Newspapers.com]] |access-date=November 29, 2025}}</ref>
+| ShortSummary    =
+| LineColor       = #16A0F1
+}}
+{{#invoke:Episode list|sublist|Dancing with the Stars (American TV series) season 1
+| EpisodeNumber   = 8
+| EpisodeNumber2  = 8
+| Title           = Dance Off: Results
+| OriginalAirDate = {{Start date|2005|09|22}}
+| Aux1            = 2.60<ref name="DOR"/>
+| Viewers         = 10.48<ref name="DORV"/>
+| ShortSummary    =
+| LineColor       = #16A0F1
+}}
+{{End|Episode table|html=y}}</onlyinclude>
+
+==Scoring chart==
+The highest score each week is indicated in {{fontcolor|#004600|'''bold green'''}} with a dagger ({{dagger}}), while the lowest score each week is indicated in {{fontcolor|#800000|''italicized red''}} with a double-dagger ({{double-dagger}}).
+
+'''Color key:'''
+{{columns-list|colwidth=20em|
+{{legend|gold|Winners}}
+{{legend|silver|Runners-up}}
+{{legend|lightblue|Bottom two}}
+{{legend|#f4c7b8|Eliminated}}
+}}
+{| class="wikitable sortable" style="text-align:center; font-size:100%"
+|+''Dancing with the Stars'' (season 1) - Weekly scores
+! scope="col" rowspan="2" style="text-align:center" | Couple
+! scope="col" rowspan="2" style="text-align:center" | {{Abbr|Pl.|Place}}
+! colspan="7" style="text-align:center" | Week
+|-
+! scope="col" | 1
+! scope="col" | 2
+! scope="col" | 1+2
+! scope="col" | 3
+! scope="col" | 4
+! scope="col" | 5
+! scope="col" | 6
+|-
+! scope="row" | Kelly & Alec
+| 1st
+| {{fontcolor|#800000|''13''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| 17
+| {{fontcolor|#800000|''30''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| 21
+| {{fontcolor|#004600|'''26'''}}{{dagger|alt=This was the highest score of the night.}}
+| bgcolor="lightblue" {{sort|47|}} | 22+25=47{{efn|name=Bottom2}}
+| bgcolor="gold" {{sort|55|}} | 25+30={{fontcolor|#004600|'''55'''}}{{dagger|alt=This was the highest score of the night.}}{{efn|This couple finished in first place.}}
+|-
+! scope="row" | John & Charlotte
+| 2nd
+| {{fontcolor|#004600|'''20'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''26'''}}{{dagger|alt=This was the highest score of the night.}}
+| {{fontcolor|#004600|'''46'''}}{{dagger|alt=This was the highest score of the night.}}
+| 24
+| bgcolor="lightblue" | 21{{efn|name=Bottom2}}
+| {{sort|54|}} | 27+27={{fontcolor|#004600|'''54'''}}{{dagger|alt=This was the highest score of the night.}}
+| bgcolor="silver" {{sort|54|}} | 27+27={{fontcolor|#800000|''54''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|This couple finished in second place.}}
+|-
+! scope="row" | Joey & Ashly
+| 3rd
+| {{fontcolor|#004600|'''20'''}}{{dagger|alt=This was the highest score of the night.}}
+| 21
+| 41
+| bgcolor="lightblue" | 22{{efn|name=Bottom2}}
+| {{fontcolor|#800000|''20''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| bgcolor="f4c7b8" {{sort|45|}} | 20+25={{fontcolor|#800000|''45''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| rowspan="4" bgcolor="darkgray" |
+|-
+! scope="row" | Rachel & Jonathan
+| 4th
+| {{fontcolor|#004600|'''20'''}}{{dagger|alt=This was the highest score of the night.}}
+| 24
+| bgcolor="lightblue" | 44{{efn|name=Bottom2|This couple was in the bottom two, but was not eliminated.}}
+| {{fontcolor|#004600|'''26'''}}{{dagger|alt=This was the highest score of the night.}}
+| bgcolor="f4c7b8" |25{{efn|name=Elim}}
+| rowspan="3" bgcolor="darkgray" |
+|-
+! scope="row" | Evander & Edyta
+| 5th
+| 18
+| {{fontcolor|#800000|''14''}}{{double-dagger|alt=This was the lowest score of the night.}}
+| 32
+| bgcolor="f4c7b8" |{{fontcolor|#800000|''13''}}{{double-dagger|alt=This was the lowest score of the night.}}{{efn|name=Elim}}
+| rowspan="2" bgcolor="darkgray" |
+|-
+! scope="row" | Trista & Louis
+| 6th
+| 18
+| 19
+| bgcolor="f4c7b8" | 37{{efn|name=Elim|This couple was eliminated.}}
+| bgcolor="darkgray" |
+|}
+;Notes
+{{notelist}}
+{{multiple image
+| align        = center
+| direction    = horizontal
+| total_width  = 1000
+| footer       = The celebrities who competed in the first season of ''Dancing With The Stars'', pictured in order of elimination (L–R):
+<br />{{nowrap|Trista Sutter,}} {{nowrap|Evander Holyfield,}} {{nowrap|Rachel Hunter,}} {{nowrap|Joey McIntyre,}} and {{nowrap|John O'Hurley}}
+Not pictured: Kelly Monaco <!-- Do not add an image, see talk page section 'Kelly Monaco' for more information regarding this. -->
+| footer_align = center
+
+| image1 = Trista Rehn Sutter on RealTVfilms.jpg
+| image2 = Evander Holyfield LA 2011.jpg
+| image3 = Rachel Hunter LF.JPG
+| image4 = Joey McIntyre Photo Collage.jpg
+| image5 = John O'Hurley by Gage Skidmore 2.jpg
+}}
+== Weekly scores ==
+''Individual judges' scores in the charts below (given in parentheses) are listed in this order from left to right: [[Carrie Ann Inaba]], [[Len Goodman]], [[Bruno Tonioli]].''
+
+===Week 1===
+Each couple performed either the [[Cha-cha-cha (dance)|cha-cha-cha]] or the [[waltz]]. Couples are listed in the order they performed.
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+|-
+! scope="row" | Joey & Ashly
+| 20 (7, 7, 6)
+| Cha-cha-cha
+| "[[Crazy in Love (Beyoncé Knowles song)|Crazy in Love]]" — [[Beyoncé Knowles|Beyoncé]], feat. [[Jay-Z]] 
+|-
+! scope="row" | Rachel & Jonathan
+| 20 (7, 6, 7)
+| Waltz
+| "[[Three Times A Lady]]" — [[Commodores]]
+|-
+! scope="row" | Evander & Edyta
+| 18 (5, 7, 6)
+| Cha-cha-cha
+| "[[Respect (song)|Respect]]" — [[Aretha Franklin]]
+|-
+! scope="row" | Kelly & Alec
+| 13 (5, 4, 4)
+| Waltz
+| "[[I Have Nothing]]" — [[Whitney Houston]]
+|-
+! scope="row" | John & Charlotte
+| 20 (7, 7, 6)
+| Cha-cha-cha
+| "[[September (Earth, Wind & Fire song)|September]]" — [[Earth, Wind & Fire]]
+|-
+! scope="row" | Trista & Louis
+| 18 (6, 6, 6)
+| Waltz
+| "[[Come Away with Me]]" — [[Norah Jones]]
+|}
+
+===Week 2===
+Each couple performed either the [[quickstep]] or the [[Rhumba|rumba]]. Couples are listed in the order they performed.
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Rachel & Jonathan
+| {{nowrap|24 (8, 8, 8)}}
+| Rumba
+| "[[I Don't Wanna Miss a Thing]]" — [[Aerosmith]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Joey & Ashly
+| 21 (8, 7, 6)
+| Quickstep
+| "[[You're The One That I Want]]" — [[John Travolta]] & [[Olivia Newton-John]]
+| Safe
+|-
+! scope="row" | Trista & Louis
+| 19 (6, 7, 6)
+| Rumba
+| "[[Endless Love (song)|Endless Love]]" — [[Diana Ross]] & [[Lionel Richie]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | John & Charlotte
+| 26 (8, 9, 9)
+| Quickstep
+| "[[Let's Face the Music and Dance]]" — [[Irving Berlin]]
+| Safe
+|-
+! scope="row" | Kelly & Alec
+| 17 (5, 6, 6)
+| Rumba
+| "[[Hero (Enrique Iglesias song)|Hero]]" — [[Enrique Iglesias]]
+| Safe
+|-
+! scope="row" | Evander & Edyta
+| 14 (5, 4, 5)
+| Quickstep
+| "[[It Don't Mean a Thing]]" — [[Duke Ellington]]
+| Safe
+|}
+
+===Week 3===
+Each couple performed either the [[Jive (dance)|jive]] or the [[tango]]. Couples are listed in the order they performed.
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Evander & Edyta
+| 13 (5, 4, 4)
+| Jive
+| "[[Reet Petite]]" — [[Jackie Wilson]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | Rachel & Jonathan
+| 26 (8, 9, 9)
+| Tango
+| "[[Toxic (song)|Toxic]]" — [[Britney Spears]]
+| Safe
+|-
+! scope="row" | Kelly & Alec
+| 21 (6, 7, 8)
+| Jive
+| "[[Footloose (song)|Footloose]]" — [[Kenny Loggins]]
+| Safe
+|-
+! scope="row" | John & Charlotte
+| 24 (9, 8, 7)
+| Tango
+| "[[Dance with Me (Debelah Morgan song)|Dance with Me]]" — [[Debelah Morgan]]
+| Safe
+|-
+! scope="row" | Joey & Ashly 
+| 22 (7, 7, 8)
+| Jive
+| "[[I'm Still Standing]]" — [[Elton John]]
+| bgcolor=lightblue | Bottom two
+|}
+
+===Week 4===
+Each couple performed the [[Samba (ballroom dance)|samba]], as well as a group [[Viennese waltz]]. Couples are listed in the order they performed.
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" | Joey & Ashly
+| 20 (7, 6, 7)
+| Samba
+| "[[Tequila (Champs song)|Tequila]]" — [[The Champs]]
+| Safe
+|-
+! scope="row" | Rachel & Jonathan
+| 25 (7, 9, 9) 
+| Samba
+| "[[Soul Bossa Nova]]" — [[Quincy Jones]]
+| bgcolor=f4c7b8 | Eliminated
+|-
+! scope="row" | John & Charlotte
+| 21 (7, 8, 6)
+| Samba
+| "[[Just the Two of Us (Grover Washington, Jr. song)|Just The Two of Us]]" — [[Grover Washington, Jr.]] & [[Bill Withers]]
+| bgcolor=lightblue | Bottom two
+|-
+! scope="row" | Kelly & Alec
+| 26 (9, 9, 8)
+| Samba
+| "[[Bailamos]]" — [[Enrique Iglesias]]
+| Safe
+|-
+! scope="row" | Joey & Ashly<br>John & Charlotte<br>Kelly & Alec<br>Rachel & Jonathan
+| bgcolor=lightgray | ''No scores<br>received''
+| Group<br>Viennese waltz 
+| colspan=2 | "[[I Got You Babe]]" — [[Sonny & Cher]]
+|}
+
+===Week 5: Semifinals===
+Each couple performed both the [[foxtrot]] and the [[Pasodoble|paso doble]]. Couples are listed in the order they performed.
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" rowspan="2" | John & Charlotte
+| 27 (9, 9, 9)
+| Foxtrot
+| "[[Let There Be Love (1940 song)|Let There Be Love]]" — [[Nat King Cole]]
+| rowspan="2" | Safe
+|-
+| 27 (9, 9, 9)
+| Paso doble
+| "[[España cañí]]" — Mexicana Aleque la-Band
+|-
+! scope="row" rowspan="2" | Kelly & Alec
+| 22 (8, 7, 7)
+| Foxtrot
+| "[[Don't Know Why]]" — [[Norah Jones]]
+| rowspan="2" bgcolor=lightblue | Bottom two
+|-
+| 25 (9, 8, 8)
+| Paso doble
+| "[[Bamboleo (Gipsy Kings song)|Bamboleo]]" — [[Gipsy Kings]]
+|-
+! scope="row" rowspan="2" | Joey & Ashly
+| 20 (8, 6, 6)
+| Foxtrot
+| "[[Big Spender]]" — [[Shirley Bassey]]
+| rowspan="2" bgcolor=f4c7b8 | Eliminated
+|-
+| 25 (9, 8, 8)
+| Paso doble
+| "[[Eye of the Tiger]]" — [[Survivor (band)|Survivor]]
+|}
+
+===Week 6: Finale===
+Each couple performed two dances, one of which was a [[Street dance|freestyle]]. Couples are listed in the order they performed.
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" class="unsortable"|Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" rowspan=2|John & Charlotte
+| 27 (9, 9, 9)
+| Quickstep
+| "[[Let's Face the Music and Dance]]" — [[Irving Berlin]]
+| rowspan=2 bgcolor=silver | Runners-up
+|-
+| 27 (9, 9, 9)
+| Freestyle
+| "[[I'm So Excited]]" — [[The Pointer Sisters]]
+|-
+! scope="row" rowspan=2 | Kelly & Alec
+| 25 (7, 9, 9)
+| Samba
+| "[[Bailamos]]" — [[Enrique Iglesias]]
+| rowspan=2 bgcolor=gold | '''Winners'''
+|-
+| 30 (10, 10, 10)
+| Freestyle
+| "[[Let's Get Loud (Jennifer Lopez song)|Let's Get Loud]]" — [[Jennifer Lopez]]
+|}
+
+===Rematch===
+This was a special "rematch" broadcast that aired on September 20, 2005, with the results announced on September 22.<ref name=":0" /><ref name=":1" />
+
+{| class="wikitable sortable" style="text-align:center; width:90%"
+|-
+! scope="col" |Couple
+! scope="col" |Scores
+! scope="col" |Dance
+! scope="col" class="unsortable"|Music
+! scope="col" class="unsortable"|Result
+|-
+! scope="row" rowspan=3|Kelly & Alec
+|25 (7, 9, 9)
+|Cha-cha-cha
+|"[[Lady Marmalade]]" — [[All Saints (group)|All Saints]]
+|rowspan=3 bgcolor=silver |Runners-up
+|-
+|24 (9, 7, 8)
+|Quickstep 
+|"[[Diamonds Are a Girl's Best Friend]]" — [[Marilyn Monroe]]
+|-
+|25 (8, 8, 9)
+|Freestyle
+|"[[Get The Party Started]]" — [[Pink (singer)|Pink]]
+|-
+! scope="row" rowspan=3|John & Charlotte
+|22 (7, 8, 7)
+|Rumba
+|"[[The Look of Love (1967 song)|The Look of Love]]" — [[Anita Baker]]
+|rowspan=3 bgcolor=gold | '''Winners'''
+|-
+|30 (10, 10, 10)
+|Waltz 
+|"[[You Light Up My Life (song)|You Light Up My Life]]" — [[Whitney Houston]]
+|-
+|25 (8, 8, 9)
+|Freestyle
+|"[[I Am What I Am (Broadway musical song)|I Am What I Am]]" — [[Gloria Gaynor]]
+|}
+
+==Dance chart==
+The couples performed the following each week:
+*Week 1: One unlearned dance (cha-cha-cha or waltz)
+*Week 2: One unlearned dance (quickstep or rumba)
+*Week 3: One unlearned dance (jive or tango)
+*Week 4: Samba & Viennese waltz group dance
+*Week 5 (Semifinals): Two unlearned dances (foxtrot & paso doble) 
+*Week 6 (Finals): One previously performed dance & freestyle
+
+{| class="wikitable unsortable" style="text-align:center; font-size:95%; line-height:20px"
+|+''Dancing with the Stars'' (season 1) - Dance chart
+! scope="col" rowspan="2" | Couple
+! colspan="9" | Week
+|-
+! scope="col" | 1 
+! scope="col" | 2 
+! scope="col" | 3 
+! colspan="2" scope="col" |4 
+! colspan="2" scope="col" |5 
+! colspan="2" scope="col" |6
+|-
+! scope="row" | Kelly & Alec
+| Waltz
+| Rumba
+| Jive
+| Samba
+| rowspan="4" | Group<br>Viennese waltz
+| Foxtrot
+| Paso doble
+| Samba
+| Freestyle
+|-
+! scope="row" | John & Charlotte
+| Cha-cha-cha
+| Quickstep
+| Tango
+| Samba
+| Foxtrot
+| Paso doble
+| Quickstep
+| Freestyle
+|-
+! scope="row" | Joey & Ashly
+| Cha-cha-cha
+| Quickstep
+| Jive
+| Samba
+| Foxtrot
+| Paso doble
+| colspan="2" rowspan="4" bgcolor="darkgray" |
+|-
+! scope="row" | Rachel & Jonathan
+| Waltz
+| Rumba
+| Tango
+| Samba
+| colspan="2" rowspan="3" bgcolor="darkgray" |
+|-
+! scope="row" | Evander & Edyta
+| Cha-cha-cha
+| Quickstep
+| Jive
+| colspan="2" rowspan="2" bgcolor="darkgray" |
+|-
+! scope="row" | Trista & Louis
+| Waltz
+| Rumba
+| bgcolor="darkgray" |
+|}
+;Notes
+{{notelist}}
+
+==References==
+{{Reflist|30em}}
+
+==External links==
+*{{Official website|http://abc.go.com/shows/dancing-with-the-stars}}
+
+{{Dancing with the Stars (United States)}}
+
+[[Category:Dancing with the Stars (American TV series)]]
+[[Category:2005 American television seasons]]

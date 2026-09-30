@@ -1,0 +1,187 @@
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+const nav = vi.hoisted(() => ({
+  pathname: "/",
+  search: new URLSearchParams(),
+  push: vi.fn(),
+}));
+vi.mock("next/navigation", () => ({
+  usePathname: () => nav.pathname,
+  useRouter: () => ({ push: nav.push, replace: vi.fn() }),
+  useSearchParams: () => nav.search,
+}));
+const signOut = vi.hoisted(() => vi.fn(() => Promise.resolve()));
+vi.mock("@/lib/auth/use-auth", () => ({ useAuth: () => ({ signOut }) }));
+vi.mock("@/lib/api/client", () => ({ getMe: vi.fn() }));
+const unread = vi.hoisted(() => ({ n: 0 }));
+vi.mock("@/lib/social/notifications", () => ({
+  useNotifications: () => ({ unread: unread.n, items: [], loaded: true, error: null, more: false }),
+  useMarkAllReadOnView: () => {},
+}));
+
+import { getMe } from "@/lib/api/client";
+import { activeTab, AppShell } from "./app-shell";
+
+const ME = {
+  sub: "abc",
+  email: "viewer@example.com",
+  name: "Ada Lovelace",
+  picture: null,
+  avatarKind: "initials" as const,
+  createdAt: "2026-09-30T12:00:00+00:00",
+  lastSeenAt: "2026-09-30T12:00:00+00:00",
+};
+
+function renderShell() {
+  vi.mocked(getMe).mockResolvedValue(ME);
+  return render(
+    <AppShell title="Groups">
+      <p>page body</p>
+    </AppShell>,
+  );
+}
+
+// next/link outside a Next build drops the trailing slash that trailingSlash: true keeps.
+const href = (el: HTMLElement) => el.getAttribute("href")?.replace(/\/(?=\?|$)/, "");
+
+// Desktop tabs and the phone sheet both carry a "Main" nav; the tabs come first.
+const tabs = () => within(screen.getAllByRole("navigation", { name: "Main" })[0]);
+
+afterEach(() => {
+  vi.clearAllMocks();
+  nav.pathname = "/";
+  nav.search = new URLSearchParams();
+  unread.n = 0;
+});
+
+describe("activeTab", () => {
+  it.each([
+    ["/", "Overview"],
+    ["/episode/", "Episodes"],
+    ["/episode", "Episodes"],
+    ["/groups/", "Friends & Groups"],
+    ["/join/", "Friends & Groups"],
+    ["/friends/", "Friends & Groups"],
+    ["/stats/", "Stats"],
+  ])("%s lights %s", (path, label) => {
+    expect(activeTab(path)?.label).toBe(label);
+  });
+
+  it("lights nothing on a page outside the tabs", () => {
+    expect(activeTab("/notifications/")).toBeUndefined();
+    expect(activeTab("/credits/")).toBeUndefined();
+  });
+});
+
+describe("AppShell", () => {
+  it("marks the current tab and keeps groups under Friends & Groups", async () => {
+    nav.pathname = "/groups/";
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+
+    const current = tabs().getByRole("link", { current: "page" });
+    expect(current.textContent).toBe("Friends & Groups");
+    expect(href(current)).toBe("/friends");
+    expect(tabs().getAllByRole("link").map((a) => a.textContent)).toEqual([
+      "Overview",
+      "Episodes",
+      "Leaderboard",
+      "Stats",
+      "Friends & Groups",
+      "Profile",
+    ]);
+    expect(screen.getByRole("main", { name: "Groups" }).textContent).toBe("page body");
+  });
+
+  it("carries a past season through every tab and switches season from the picker", async () => {
+    nav.pathname = "/stats/";
+    nav.search = new URLSearchParams("season=dwts-34");
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+
+    expect(href(tabs().getByRole("link", { name: "Episodes" }))).toBe("/episode?season=dwts-34");
+    const [picker] = screen.getAllByRole("combobox", { name: "Season" });
+    expect((picker as HTMLSelectElement).value).toBe("dwts-34");
+
+    fireEvent.change(picker, { target: { value: "dwts-35" } });
+    expect(nav.push).toHaveBeenCalledWith("/stats/");
+  });
+
+  it("falls back to the current season for a malformed param", async () => {
+    nav.search = new URLSearchParams("season=<script>");
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+
+    const [picker] = screen.getAllByRole("combobox", { name: "Season" });
+    expect((picker as HTMLSelectElement).value).toBe("dwts-35");
+    expect(href(tabs().getByRole("link", { name: "Stats" }))).toBe("/stats");
+  });
+
+  it("says how many notifications are unread", async () => {
+    unread.n = 12;
+    renderShell();
+    const bell = await screen.findByRole("link", { name: "Notifications, 12 unread" });
+    expect(href(bell)).toBe("/notifications");
+    expect(bell.textContent).toBe("9+");
+  });
+
+  it("opens the account menu with Profile and Sign out, and Escape closes it back onto its button", async () => {
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+    const account = screen.getByRole("button", { name: "Account" });
+
+    fireEvent.click(account);
+    expect(account.getAttribute("aria-expanded")).toBe("true");
+    const panel = within(document.getElementById(account.getAttribute("aria-controls")!)!);
+    expect(href(panel.getByRole("link", { name: "Profile" }))).toBe("/profile");
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(account.getAttribute("aria-expanded")).toBe("false");
+    expect(document.activeElement).toBe(account);
+    expect(panel.queryByRole("link", { name: "Profile" })).toBeNull();
+
+    fireEvent.click(account);
+    fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
+    expect(signOut).toHaveBeenCalled();
+    await vi.waitFor(() => expect(nav.push).toHaveBeenCalledWith("/"));
+  });
+
+  it("closes a menu on a click outside it", async () => {
+    renderShell();
+    const apps = screen.getByRole("button", { name: "Apps" });
+    fireEvent.click(apps);
+    expect(screen.getByRole("link", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
+
+    fireEvent.pointerDown(screen.getByText("page body"));
+    expect(apps.getAttribute("aria-expanded")).toBe("false");
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+  });
+
+  it("opens the phone menu as a dialog and returns focus to the hamburger on close", async () => {
+    nav.pathname = "/episode/";
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+    const hamburger = screen.getByRole("button", { name: "Open menu" });
+
+    fireEvent.click(hamburger);
+    const sheet = screen.getByRole("dialog", { name: "Menu" });
+    expect(sheet.hasAttribute("open")).toBe(true);
+    expect(within(sheet).getByRole("link", { current: "page" }).textContent).toBe("Episodes");
+    expect(within(sheet).getByRole("combobox", { name: "Season" })).toBeTruthy();
+
+    act(() => within(sheet).getByRole("button", { name: "Close menu" }).click());
+    expect(sheet.hasAttribute("open")).toBe(false);
+    expect(document.activeElement).toBe(hamburger);
+  });
+
+  it("closes the phone menu when a destination is picked", async () => {
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const sheet = screen.getByRole("dialog", { name: "Menu" });
+
+    fireEvent.click(within(sheet).getByRole("link", { name: "Leaderboard" }));
+    expect(sheet.hasAttribute("open")).toBe(false);
+  });
+});

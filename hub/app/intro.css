@@ -1,31 +1,26 @@
 /*
- * The ~5 s intro (components/intro.tsx). Pure CSS on a fixed timeline, so it
- * runs from first paint and fades itself out even without JavaScript.
+ * The ~5 s intro (components/intro.tsx). The 3D stage (components/intro-3d)
+ * runs on the same clock as the CSS here, which starts at first paint:
  *
- *    0 - 1.4 s  spotlight sweeps across and settles centre stage
- *  0.9 - 1.9 s  the chair rises into the light
- *  1.9 - 2.6 s  the crown drops on with a bounce
- *  2.4 - 3.2 s  the "10" paddle flips up
- *  3.1 - 3.9 s  Armchair / Judge
- *  3.8 - 4.6 s  DISCOVER / WATCH / JUDGE types out
+ *  0.35 s       follow spot strikes and swings onto the chair
+ *  1.2 - 2.4 s  the crown drops, bounces and settles
+ *  2.3 - 3.0 s  the "10" paddle springs up; rim lights come up
+ *  3.2 - 4.2 s  Armchair / Judge, then DISCOVER / WATCH / JUDGE
  *  4.7 - 5.2 s  fade to the landing
+ *
+ * Until the 3D stage has drawn (or if it never can), the static mark stands
+ * in from 1.1 s. The exit is CSS too, so the stage leaves even without JS.
  */
 
 .intro {
   position: fixed;
   inset: 0;
   z-index: 50;
-  display: grid;
-  place-items: center;
   overflow: hidden;
   background:
-    radial-gradient(120% 70% at 50% 100%, #0d1440 0%, transparent 60%),
+    radial-gradient(90% 60% at 50% 38%, #0b1236 0%, transparent 70%),
     var(--color-night);
   animation: intro-exit 500ms ease-in 4700ms both;
-}
-
-html[data-intro="skip"] .intro {
-  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -41,71 +36,67 @@ html[data-intro="skip"] .intro {
   }
 }
 
-/* A cone from above the top edge, pivoting on its apex. */
-.intro-beam {
+.intro-canvas {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+
+.intro[data-scene="ready"] .intro-canvas {
+  opacity: 1;
+}
+
+/* Centred where the 3D chair lands (LIFT in intro-3d/scene.tsx). */
+.intro-poster {
   position: absolute;
-  top: -8vh;
+  top: 36%;
   left: 50%;
-  width: 200vmax;
-  height: 150vh;
-  margin-left: -100vmax;
-  transform-origin: 50% 0;
-  background: conic-gradient(
-    at 50% 0,
-    transparent 0deg 166deg,
-    rgb(255 236 204 / 0.12) 171deg,
-    rgb(255 240 214 / 0.32) 176deg 184deg,
-    rgb(255 236 204 / 0.12) 189deg,
-    transparent 194deg
-  );
-  mask-image: linear-gradient(to bottom, #000 25%, transparent 62%);
-  filter: blur(6px);
-  animation: intro-sweep 1400ms cubic-bezier(0.45, 0, 0.2, 1) both;
+  width: min(62vw, 34vh, 340px);
+  overflow: visible;
+  translate: -50% -50%;
+  animation: intro-fade 600ms ease-out 1100ms both;
 }
 
-@keyframes intro-sweep {
-  0% {
-    opacity: 0;
-    transform: rotate(-42deg);
-  }
-  15% {
-    opacity: 1;
-  }
-  62% {
-    transform: rotate(16deg);
-  }
-  100% {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
+.intro[data-scene="ready"] .intro-poster {
+  display: none;
 }
 
-.intro-stage {
-  position: relative;
+.intro-copy {
+  position: absolute;
+  top: 62%;
+  right: 0;
+  left: 0;
+  padding: 0 24px;
+  text-align: center;
+  text-shadow: 0 2px 28px rgb(2 8 30 / 0.85);
+}
+
+.intro-wordmark {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 24px;
-  text-align: center;
-  animation: intro-resolve 500ms ease-in 4700ms both;
+  font-size: clamp(2.5rem, min(12vw, 8vh), 5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
 }
 
-@keyframes intro-resolve {
-  to {
-    transform: scale(0.94);
-  }
+.intro-wordmark > span[aria-hidden] {
+  padding-bottom: 0.06em;
+  animation: intro-rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 3200ms both;
 }
 
-.intro-halo {
-  position: absolute;
-  top: 4%;
-  left: 50%;
-  width: min(92vw, 520px);
-  aspect-ratio: 1;
-  translate: -50% 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgb(122 44 255 / 0.4), rgb(232 63 208 / 0.14) 45%, transparent 70%);
-  animation: intro-fade 1200ms ease-out 1100ms both;
+.intro-wordmark > span[aria-hidden] + span {
+  animation-delay: 3380ms;
+}
+
+.intro-tagline {
+  margin-top: 16px;
+  font-size: clamp(0.7rem, 3.2vw, 0.95rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.4em;
+  color: var(--color-muted);
+  animation: intro-rise 800ms ease-out 3750ms both;
 }
 
 @keyframes intro-fade {
@@ -114,180 +105,11 @@ html[data-intro="skip"] .intro {
   }
 }
 
-.intro-chair {
-  position: relative;
-  width: min(62vw, 40vh, 360px);
-  overflow: visible;
-}
-
-.intro-chair .chair-body,
-.intro-chair .chair-floor {
-  animation: intro-rise 1000ms cubic-bezier(0.2, 0.8, 0.2, 1) 900ms both;
-}
-
 @keyframes intro-rise {
   from {
     opacity: 0;
-    transform: translateY(70px) scale(0.94);
-  }
-}
-
-.intro-chair .chair-body,
-.intro-chair .chair-paddle,
-.intro-chair .chair-crown,
-.intro-chair .chair-bar {
-  transform-box: fill-box;
-}
-
-.intro-chair .chair-body {
-  transform-origin: 50% 100%;
-}
-
-.intro-chair .chair-crown {
-  transform-origin: 50% 100%;
-  animation: intro-crown 760ms linear 1900ms both;
-}
-
-@keyframes intro-crown {
-  0% {
-    opacity: 0;
-    transform: translateY(-260px);
-    animation-timing-function: cubic-bezier(0.5, 0, 1, 1);
-  }
-  8% {
-    opacity: 1;
-  }
-  55% {
-    transform: translateY(0) scale(1.06, 0.9);
-    animation-timing-function: cubic-bezier(0, 0, 0.4, 1);
-  }
-  72% {
-    transform: translateY(-18px);
-    animation-timing-function: cubic-bezier(0.5, 0, 1, 1);
-  }
-  86% {
-    transform: translateY(0) scale(1.02, 0.97);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* Hinged on its bottom edge, like a scorecard lifted off the desk. */
-.intro-chair .chair-paddle {
-  transform-origin: 50% 100%;
-  animation: intro-flip 700ms cubic-bezier(0.3, 1.5, 0.5, 1) 2450ms both;
-}
-
-@keyframes intro-flip {
-  from {
-    opacity: 0;
-    transform: scaleY(0);
-  }
-  30% {
-    opacity: 1;
-  }
-}
-
-.intro-chair .chair-bar {
-  transform-origin: 0 50%;
-  animation: intro-bar 420ms cubic-bezier(0.2, 0.8, 0.2, 1) 2950ms both;
-}
-
-@keyframes intro-bar {
-  from {
-    transform: scaleX(0);
-  }
-}
-
-.intro-wordmark {
-  display: flex;
-  flex-direction: column;
-  margin-top: 12px;
-  font-size: clamp(2.5rem, min(12vw, 8vh), 5rem);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-}
-
-.intro-line {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.08em;
-}
-
-.intro-line > span {
-  display: inline-block;
-  animation: intro-word 700ms cubic-bezier(0.2, 0.8, 0.2, 1) 3100ms both;
-}
-
-.intro-line + .intro-line > span {
-  animation-delay: 3300ms;
-}
-
-@keyframes intro-word {
-  from {
-    transform: translateY(110%);
-  }
-}
-
-.intro-tagline {
-  display: grid;
-  margin-top: 18px;
-  font-size: clamp(0.7rem, 3.2vw, 0.95rem);
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.4em;
-  white-space: pre;
-  color: var(--color-muted);
-}
-
-.intro-ghost,
-.intro-typed {
-  grid-area: 1 / 1;
-}
-
-.intro-ghost {
-  visibility: hidden;
-}
-
-.intro-typed {
-  display: flex;
-  align-items: center;
-  justify-self: start;
-}
-
-.intro-typed > span[style] {
-  max-width: 0;
-  overflow: hidden;
-  animation: intro-type 1ms linear both;
-  animation-delay: calc(3800ms + var(--i) * 32ms);
-}
-
-@keyframes intro-type {
-  to {
-    max-width: 2em;
-  }
-}
-
-.intro-caret {
-  width: 2px;
-  height: 1.1em;
-  margin-left: -0.2em;
-  background: var(--color-gold);
-  opacity: 0;
-  animation: intro-caret 1100ms steps(1) 3800ms forwards;
-}
-
-@keyframes intro-caret {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  25%,
-  75%,
-  100% {
-    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(8px);
   }
 }
 
