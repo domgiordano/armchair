@@ -61,7 +61,7 @@ Five tables, all `{app}-*`, PAY_PER_REQUEST, KMS, PITR, deletion protection, no 
 | | | `JUDGE#{jid}` | name, aliases, headshot. Guest judges get auto-created by the poller from the judge-order line |
 | | | `POLLER` | `lastRevid`, `lastRunAt` (added in PR 10) |
 | `performances` | `EP#dwts#35#05` | `PERF#{cid}#{n}` | `contestants[]` (more than one means a team dance), `rateable`, `style`, `song`, `judges: {jid: {value: Decimal, state: provisional|confirmed, firstSeenAt, rev}}`, `bonus` |
-| `scores` | `EP#dwts#35#05` | `PERF#{cid}#{n}#USER#{sub}` | `value` (int 1-10) or `skipped: true`, `submittedAt`. Written with `attribute_not_exists(sk)` |
+| `scores` | `EP#dwts#35#05` | `PERF#{cid}#{n}#USER#{sub}` | `value` (int 1-10) or `forfeit: true` ("Reveal without scoring"), `submittedAt`. Written with `attribute_not_exists(sk)` |
 | `users` | `sub` | — | `name`, `picture`, `avatarKind` (`google` or `initials` in the MVP), `createdAt`, `lastSeenAt` |
 | `groups` | `GROUP#{gid}` | `META` / `MEMBER#{sub}` | name, `createdBy`, `inviteCode` / `joinedAt` |
 | | `USER#{sub}` | `GROUP#{gid}` | reverse index for "my groups". Written in the same `TransactWriteItems` as `MEMBER#` |
@@ -73,7 +73,7 @@ Five tables, all `{app}-*`, PAY_PER_REQUEST, KMS, PITR, deletion protection, no 
 |---|---|
 | Season roster, schedule, panel, keywords | one Query on `catalog` pk `SEASON#dwts#35` (about 200 items, well under 1 MB) |
 | Episode state for the caller | Query `performances` and `scores` on pk `EP#...`, then filter in memory through the gate |
-| Submit a score | conditional Put on `scores`, plus an upsert of the `PERF#` key-only item if the poller hasn't created it yet |
+| Submit a score | Query `catalog` and `performances` to check the key is rateable, then a conditional Put on `scores` |
 | Caller's groups, a group's members | Query `groups` pk `USER#{sub}` or `GROUP#{gid}` |
 | Join by link | GetItem `INVITE#{code}`, then a transaction writing `MEMBER#` and `USER#...GROUP#` |
 | Season stats for a user | about 11 episode Queries on `scores` + `performances`. Add a `sub` GSI only once global users make this slow |

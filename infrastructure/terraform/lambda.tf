@@ -5,9 +5,32 @@ locals {
   users_lambdas = [
     { name = "me", description = "Upsert and return the caller's profile", path_part = "me", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  scores_lambdas = [
+    { name = "submit", description = "Record the caller's final answer on one performance", path_part = "submit", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+  ]
+  episodes_lambdas = [
+    { name = "state", description = "One episode as the caller may see it, through the gate", path_part = "state", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
-  all_api_lambdas = {
-    for l in local.users_lambdas : "users_${l.name}" => l
+  all_api_lambdas = merge(
+    { for l in local.users_lambdas : "users_${l.name}" => l },
+    { for l in local.scores_lambdas : "scores_${l.name}" => l },
+    { for l in local.episodes_lambdas : "episodes_${l.name}" => l },
+  )
+
+  # One role per function, granted only the table actions its handler makes.
+  # scores_submit can create a score but not update one, which backs up the
+  # conditional put: an answer is final even if the handler is wrong.
+  api_tables = {
+    catalog      = aws_dynamodb_table.catalog.arn
+    performances = aws_dynamodb_table.performances.arn
+    scores       = aws_dynamodb_table.scores.arn
+    users        = aws_dynamodb_table.users.arn
+  }
+  api_grants = {
+    users_me       = ["users:UpdateItem"]
+    scores_submit  = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
+    episodes_state = ["catalog:Query", "performances:Query", "scores:Query"]
   }
 }
 
@@ -18,28 +41,26 @@ resource "aws_cloudwatch_log_group" "api" {
 }
 
 resource "aws_iam_role" "api" {
-  name               = "${var.app_name}-api-exec"
+  for_each           = local.all_api_lambdas
+  name               = "${var.app_name}-${replace(each.key, "_", "-")}-exec"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
 }
 
 data "aws_iam_policy_document" "api" {
+  for_each = local.all_api_lambdas
+
   statement {
     sid       = "Logs"
     actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
-    resources = [for g in aws_cloudwatch_log_group.api : "${g.arn}:*"]
+    resources = ["${aws_cloudwatch_log_group.api[each.key].arn}:*"]
   }
 
-  # Table-prefix grant, as in smirnoff-league: a new armchair-* table needs no
-  # IAM change.
-  statement {
-    sid = "DynamoDB"
-    actions = [
-      "dynamodb:GetItem",
-      "dynamodb:PutItem",
-      "dynamodb:UpdateItem",
-      "dynamodb:Query",
-    ]
-    resources = ["arn:aws:dynamodb:${var.aws_region}:${local.account_id}:table/${var.app_name}-*"]
+  dynamic "statement" {
+    for_each = local.api_grants[each.key]
+    content {
+      actions   = ["dynamodb:${split(":", statement.value)[1]}"]
+      resources = [local.api_tables[split(":", statement.value)[0]]]
+    }
   }
 
   statement {
@@ -50,9 +71,10 @@ data "aws_iam_policy_document" "api" {
 }
 
 resource "aws_iam_role_policy" "api" {
-  name   = "api"
-  role   = aws_iam_role.api.id
-  policy = data.aws_iam_policy_document.api.json
+  for_each = local.all_api_lambdas
+  name     = "api"
+  role     = aws_iam_role.api[each.key].id
+  policy   = data.aws_iam_policy_document.api[each.key].json
 }
 
 resource "aws_lambda_function" "api" {
@@ -62,7 +84,7 @@ resource "aws_lambda_function" "api" {
   # maps every underscore to a dash.
   function_name = "${var.app_name}-${replace(each.key, "_", "-")}"
   description   = each.value.description
-  role          = aws_iam_role.api.arn
+  role          = aws_iam_role.api[each.key].arn
   handler       = "handler.handler"
   runtime       = var.lambda_runtime
   memory_size   = 256

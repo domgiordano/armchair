@@ -14,8 +14,11 @@ locals {
   cors_allowed_origins = "https://${var.domain_name},http://localhost:3000"
 
   lambda_variables = {
-    APP_NAME          = var.app_name
-    CORS_ALLOW_ORIGIN = local.cors_allowed_origins
-    USERS_TABLE       = aws_dynamodb_table.users.id
+    APP_NAME           = var.app_name
+    CORS_ALLOW_ORIGIN  = local.cors_allowed_origins
+    USERS_TABLE        = aws_dynamodb_table.users.id
+    CATALOG_TABLE      = aws_dynamodb_table.catalog.id
+    PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
+    SCORES_TABLE       = aws_dynamodb_table.scores.id
   }
 }
