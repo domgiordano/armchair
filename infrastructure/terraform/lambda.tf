@@ -6,9 +6,19 @@ locals {
     { name = "me", description = "Upsert and return the caller's profile", path_part = "me", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
 
-  all_api_lambdas = {
-    for l in local.users_lambdas : "users_${l.name}" => l
-  }
+  seasons_lambdas = [
+    { name = "vote", description = "Air schedule and SMS keywords for the vote panel", path_part = "vote", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
+
+  admin_lambdas = [
+    { name = "keyword", description = "Set a couple's SMS keyword override", path_part = "keyword", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+  ]
+
+  all_api_lambdas = merge(
+    { for l in local.users_lambdas : "users_${l.name}" => l },
+    { for l in local.seasons_lambdas : "seasons_${l.name}" => l },
+    { for l in local.admin_lambdas : "admin_${l.name}" => l },
+  )
 }
 
 resource "aws_cloudwatch_log_group" "api" {
@@ -40,6 +50,12 @@ data "aws_iam_policy_document" "api" {
       "dynamodb:Query",
     ]
     resources = ["arn:aws:dynamodb:${var.aws_region}:${local.account_id}:table/${var.app_name}-*"]
+  }
+
+  statement {
+    sid       = "ReadConfig"
+    actions   = ["ssm:GetParameter"]
+    resources = ["arn:aws:ssm:${var.aws_region}:${local.account_id}:parameter/${var.app_name}/*"]
   }
 
   statement {

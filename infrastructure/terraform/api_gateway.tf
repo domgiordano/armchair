@@ -4,6 +4,18 @@ locals {
       invoke_arn = aws_lambda_function.api["users_${l.name}"].invoke_arn
     })
   ]
+
+  seasons_endpoints = [
+    for l in local.seasons_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["seasons_${l.name}"].invoke_arn
+    })
+  ]
+
+  admin_endpoints = [
+    for l in local.admin_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["admin_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -27,6 +39,8 @@ module "api" {
   data_trace_enabled = false
 
   services = {
-    users = { path_prefix = "users", endpoints = local.users_endpoints }
+    users   = { path_prefix = "users", endpoints = local.users_endpoints }
+    seasons = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
+    admin   = { path_prefix = "admin", endpoints = local.admin_endpoints }
   }
 }

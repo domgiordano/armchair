@@ -1,3 +1,5 @@
+import json
+
 import boto3
 import pytest
 from moto import mock_aws
@@ -26,3 +28,37 @@ def aws(monkeypatch):
             BillingMode="PAY_PER_REQUEST",
         )
         yield boto3.resource("dynamodb")
+
+
+CATALOG_TABLE = "t-armchair-catalog"
+ADMIN_EMAILS_PARAM = "/armchair/admin-emails"
+
+
+@pytest.fixture
+def catalog(aws, monkeypatch):
+    """The catalog seeded with S35 as seed_season writes it, and an admin list nobody is on."""
+    from scripts.seed_season import SEASONS, items, write
+
+    monkeypatch.setenv("CATALOG_TABLE", CATALOG_TABLE)
+    monkeypatch.setenv("ADMIN_EMAILS_PARAM", ADMIN_EMAILS_PARAM)
+    table = aws.create_table(
+        TableName=CATALOG_TABLE,
+        KeySchema=[
+            {"AttributeName": "pk", "KeyType": "HASH"},
+            {"AttributeName": "sk", "KeyType": "RANGE"},
+        ],
+        AttributeDefinitions=[
+            {"AttributeName": "pk", "AttributeType": "S"},
+            {"AttributeName": "sk", "AttributeType": "S"},
+        ],
+        BillingMode="PAY_PER_REQUEST",
+    )
+    write(table, items(json.loads((SEASONS / "dwts-35.json").read_text())))
+    boto3.client("ssm").put_parameter(Name=ADMIN_EMAILS_PARAM, Type="StringList", Value="unset")
+    return table
+
+
+def set_admins(value: str) -> None:
+    boto3.client("ssm").put_parameter(
+        Name=ADMIN_EMAILS_PARAM, Type="StringList", Value=value, Overwrite=True
+    )

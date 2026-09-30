@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
+import { VotePanel } from "@/components/vote-panel";
 import { getMe, type Me } from "@/lib/api/client";
 import { useAuth } from "@/lib/auth/use-auth";
 
@@ -128,6 +129,7 @@ function SignedInHome({ onSignOut }: SignedInHomeProps) {
               Hi, {state.me.name ?? state.me.email}
             </h1>
             <p className="text-neutral-400">The episode scorecard shows up here once the next show is loaded.</p>
+            <VotePanel />
           </>
         )}
       </main>
