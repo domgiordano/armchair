@@ -29,6 +29,14 @@ locals {
   leaderboard_lambdas = [
     { name = "get", description = "Users ranked by accuracy against the judges, from per-user sums", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  friends_lambdas = [
+    { name = "request", description = "Ask someone to be friends, by sub or invite code", path_part = "request", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "accept", description = "Accept a friend request", path_part = "accept", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "remove", description = "Unfriend, cancel a request, or decline one", path_part = "remove", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "block", description = "Block or unblock someone", path_part = "block", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "list", description = "The caller's friends, requests, blocks and invite code", path_part = "list", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "search", description = "Find people by display name prefix", path_part = "search", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -39,6 +47,7 @@ locals {
     { for l in local.stats_lambdas : "stats_${l.name}" => l },
     { for l in local.groups_lambdas : "groups_${l.name}" => l },
     { for l in local.leaderboard_lambdas : "leaderboard_${l.name}" => l },
+    { for l in local.friends_lambdas : "friends_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -52,9 +61,10 @@ locals {
     users        = aws_dynamodb_table.users.arn
     groups       = aws_dynamodb_table.groups.arn
     board        = aws_dynamodb_table.board.arn
+    social       = aws_dynamodb_table.social.arn
   }
   api_grants = {
-    users_me          = ["users:UpdateItem"]
+    users_me          = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     scores_submit     = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem", "board:PutItem", "board:UpdateItem"]
     scores_reveal_all = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
     episodes_state    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
@@ -64,7 +74,13 @@ locals {
     groups_create     = ["groups:PutItem"]
     groups_join       = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine       = ["groups:Query", "users:BatchGetItem"]
-    leaderboard_get   = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "users:BatchGetItem"]
+    leaderboard_get   = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
+    friends_request   = ["social:GetItem", "social:UpdateItem", "users:GetItem"]
+    friends_accept    = ["social:UpdateItem"]
+    friends_remove    = ["social:GetItem", "social:UpdateItem"]
+    friends_block     = ["social:GetItem", "social:UpdateItem"]
+    friends_list      = ["social:Query", "social:GetItem", "social:PutItem", "users:BatchGetItem"]
+    friends_search    = ["social:Query"]
   }
 }
 

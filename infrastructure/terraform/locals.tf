@@ -23,5 +23,6 @@ locals {
     ADMIN_EMAILS_PARAM = aws_ssm_parameter.admin_emails.name
     GROUPS_TABLE       = aws_dynamodb_table.groups.id
     BOARD_TABLE        = aws_dynamodb_table.board.id
+    SOCIAL_TABLE       = aws_dynamodb_table.social.id
   }
 }

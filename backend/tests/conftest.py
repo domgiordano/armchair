@@ -8,6 +8,7 @@ PERFORMANCES_TABLE = "t-armchair-performances"
 SCORES_TABLE = "t-armchair-scores"
 GROUPS_TABLE = "t-armchair-groups"
 BOARD_TABLE = "t-armchair-board"
+SOCIAL_TABLE = "t-armchair-social"
 
 PK_SK = {
     "KeySchema": [
@@ -35,6 +36,7 @@ def aws(monkeypatch):
         "SCORES_TABLE": SCORES_TABLE,
         "GROUPS_TABLE": GROUPS_TABLE,
         "BOARD_TABLE": BOARD_TABLE,
+        "SOCIAL_TABLE": SOCIAL_TABLE,
         "APP_NAME": "armchair",
         "CORS_ALLOW_ORIGIN": "https://dwts.armchairjudge.com,http://localhost:3000",
     }.items():
@@ -47,7 +49,8 @@ def aws(monkeypatch):
             AttributeDefinitions=[{"AttributeName": "sub", "AttributeType": "S"}],
             BillingMode="PAY_PER_REQUEST",
         )
-        for name in (CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE, GROUPS_TABLE, BOARD_TABLE):
+        tables = (CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE, GROUPS_TABLE, BOARD_TABLE)
+        for name in (*tables, SOCIAL_TABLE):
             client.create_table(TableName=name, BillingMode="PAY_PER_REQUEST", **PK_SK)
         yield boto3.resource("dynamodb")
 

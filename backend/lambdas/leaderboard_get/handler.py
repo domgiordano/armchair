@@ -1,13 +1,14 @@
 """
-GET /leaderboard/get?season=dwts-35|all&scope=global|group[&group=<gid>] - users
+GET /leaderboard/get?season=dwts-35|all&scope=global|friends|group[&group=<gid>] - users
 ranked by mean absolute error against the judges' panel mean.
 
 Reads only the per-user sums common/board_dynamo.py keeps, never a score row,
 and shapes each through gate.standing, so no per-dance value leaves. A user
 ranks after MIN_DANCES scored dances; below that they are listed unranked with
 a count. Ties go to more dances, then share a rank. `season=all` is all-time
-across DWTS seasons. `scope=group` is 403 unless the caller is a member. The
-caller's own standing is always in `me`. Identity is the Cognito sub.
+across DWTS seasons. `scope=friends` is the caller and their accepted friends;
+`scope=group` is 403 unless the caller is a member. The caller's own standing
+is always in `me`. Identity is the Cognito sub.
 """
 
 from __future__ import annotations
@@ -25,7 +26,9 @@ from lambdas.common.api import (
 )
 from lambdas.common.episodes_dynamo import season_ref, season_rows
 from lambdas.common.gate import standing
-from lambdas.common.groups_dynamo import AVATAR_FIELDS, members, profiles
+from lambdas.common.groups_dynamo import members
+from lambdas.common.social_dynamo import peers, status
+from lambdas.common.users_dynamo import cards
 
 MIN_DANCES = 5
 LIMIT = 100
@@ -56,8 +59,11 @@ def handler(event, context):
         if sub not in in_group:
             raise ForbiddenError("Not a member of that group")
         rows = board_dynamo.rows(show, season, in_group)
+    elif scope == "friends":
+        friends = {s for s, item in peers(sub).items() if status(item) == "friend"}
+        rows = board_dynamo.rows(show, season, friends | {sub})
     else:
-        raise ValidationError("scope must be global or group", field="scope")
+        raise ValidationError("scope must be global, friends or group", field="scope")
 
     board = {s: standing(r) for s, r in rows.items() if r.get("n")}
     board.setdefault(sub, standing(None))
@@ -76,10 +82,10 @@ def handler(event, context):
     )
 
     shown = ranked[:LIMIT] + unranked[:LIMIT]
-    people = profiles(set(shown) | {sub})
+    people = cards(set(shown) | {sub})
 
     def person(s: str) -> dict:
-        return {"sub": s, **{f: people.get(s, {}).get(f) for f in AVATAR_FIELDS}}
+        return people[s]
 
     return ok(
         {

@@ -15,8 +15,7 @@ from datetime import UTC, datetime
 
 from lambdas.common.api import NotFoundError
 from lambdas.common.dynamo import query_all, resource, table
-
-AVATAR_FIELDS = ("name", "picture", "avatarKind")
+from lambdas.common.users_dynamo import cards
 
 
 def _now() -> str:
@@ -92,31 +91,7 @@ def mine(sub: str) -> list[dict]:
             {"id": gid, "name": meta["name"], "inviteCode": meta["inviteCode"], "members": subs}
         )
 
-    people = profiles({s for g in groups for s in g["members"]})
+    profiles = cards({s for g in groups for s in g["members"]})
     for g in groups:
-        g["members"] = [
-            {"sub": s, **{f: people.get(s, {}).get(f) for f in AVATAR_FIELDS}}
-            for s in g["members"]
-        ]
+        g["members"] = [profiles[s] for s in g["members"]]
     return groups
-
-
-def profiles(subs: set[str]) -> dict[str, dict]:
-    """Users-table rows by sub, never the email: other members see a name and a face."""
-    name = table("USERS_TABLE").name
-    keys = [{"sub": s} for s in sorted(subs)]
-    out = {}
-    for i in range(0, len(keys), 100):
-        request = {
-            name: {
-                "Keys": keys[i : i + 100],
-                "ProjectionExpression": "#sub, #name, picture, avatarKind",
-                "ExpressionAttributeNames": {"#sub": "sub", "#name": "name"},
-            }
-        }
-        while request:
-            page = resource().batch_get_item(RequestItems=request)
-            for row in page["Responses"].get(name, []):
-                out[row["sub"]] = row
-            request = page.get("UnprocessedKeys")
-    return out

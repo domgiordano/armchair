@@ -9,6 +9,7 @@ import pytest
 from lambdas.common import board_dynamo
 from lambdas.common.groups_dynamo import create as create_group
 from lambdas.common.groups_dynamo import join as join_group
+from lambdas.common.social_dynamo import accept, request
 from lambdas.leaderboard_get.handler import handler
 from lambdas.scores_submit.handler import handler as submit_handler
 from scripts.seed_season import SEASONS, items, write
@@ -204,6 +205,17 @@ def test_group_scope_is_members_only(show):
     assert {r["sub"] for r in board()["ranked"]} == {A, B, C}
 
 
+def test_friends_scope_is_the_caller_and_accepted_friends(show):
+    request(A, B)
+    accept(B, A)
+    request(A, C)  # still pending
+    for sub in (A, B, C):
+        answer_many(sub, lambda cid: 8)
+    data = board(scope="friends")
+    assert {r["sub"] for r in data["ranked"]} == {A, B}
+    assert {r["sub"] for r in board(C, scope="friends")["ranked"]} == {C}
+
+
 def test_group_scope_is_403_for_a_non_member(show):
     gid = create_group(B, "Family")["id"]
     answer_many(B, lambda cid: 8)
@@ -216,9 +228,7 @@ def test_group_that_does_not_exist_is_403(show):
     assert get(scope="group", group="nope")[0] == 403
 
 
-@pytest.mark.parametrize(
-    "params", [{"scope": "friends"}, {"scope": "everyone"}, {"scope": "group"}, {"season": "x"}]
-)
+@pytest.mark.parametrize("params", [{"scope": "everyone"}, {"scope": "group"}, {"season": "x"}])
 def test_bad_params_are_400(show, params):
     assert get(**params)[0] == 400
 
