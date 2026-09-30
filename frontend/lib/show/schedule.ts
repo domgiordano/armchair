@@ -2,7 +2,7 @@ import type { Episode } from "@/lib/api/show";
 
 // Judges' scores reach Wikipedia 5-12 minutes after each dance and confirm 3
 // minutes later (PLAN.md), so the last couples' scores land after the credits.
-const LIVE_TAIL_MS = 30 * 60 * 1000;
+export const LIVE_TAIL_MS = 30 * 60 * 1000;
 
 /** How far `tz` is ahead of UTC at instant `t`, in ms. */
 function offset(t: number, tz: string): number {
