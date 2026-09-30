@@ -34,6 +34,10 @@ locals {
     { name = "list", description = "The caller's friends, requests, blocks and invite code", path_part = "list", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "search", description = "Find people by display name prefix", path_part = "search", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  notifications_lambdas = [
+    { name = "list", description = "The caller's notifications, unread first, paged", path_part = "list", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "read", description = "Mark one notification read, or all", path_part = "read", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -44,6 +48,7 @@ locals {
     { for l in local.stats_lambdas : "stats_${l.name}" => l },
     { for l in local.groups_lambdas : "groups_${l.name}" => l },
     { for l in local.friends_lambdas : "friends_${l.name}" => l },
+    { for l in local.notifications_lambdas : "notifications_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -59,22 +64,24 @@ locals {
     social       = aws_dynamodb_table.social.arn
   }
   api_grants = {
-    users_me          = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
-    scores_submit     = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
-    scores_reveal_all = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
-    episodes_state    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
-    seasons_get       = ["catalog:Query"]
-    admin_keyword     = ["catalog:UpdateItem"]
-    stats_get         = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
-    groups_create     = ["groups:PutItem"]
-    groups_join       = ["groups:GetItem", "groups:UpdateItem"]
-    groups_mine       = ["groups:Query", "users:BatchGetItem"]
-    friends_request   = ["social:GetItem", "social:UpdateItem", "users:GetItem"]
-    friends_accept    = ["social:UpdateItem"]
-    friends_remove    = ["social:GetItem", "social:UpdateItem"]
-    friends_block     = ["social:GetItem", "social:UpdateItem"]
-    friends_list      = ["social:Query", "social:GetItem", "social:PutItem", "users:BatchGetItem"]
-    friends_search    = ["social:Query"]
+    users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
+    scores_submit      = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
+    scores_reveal_all  = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
+    episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
+    seasons_get        = ["catalog:Query"]
+    admin_keyword      = ["catalog:UpdateItem"]
+    stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
+    groups_create      = ["groups:PutItem"]
+    groups_join        = ["groups:GetItem", "groups:UpdateItem"]
+    groups_mine        = ["groups:Query", "users:BatchGetItem"]
+    friends_request    = ["social:GetItem", "social:UpdateItem", "social:PutItem", "users:GetItem"]
+    friends_accept     = ["social:GetItem", "social:UpdateItem", "social:PutItem"]
+    friends_remove     = ["social:GetItem", "social:UpdateItem", "social:DeleteItem"]
+    friends_block      = ["social:GetItem", "social:UpdateItem", "social:DeleteItem"]
+    friends_list       = ["social:Query", "social:GetItem", "social:PutItem", "users:BatchGetItem"]
+    friends_search     = ["social:Query"]
+    notifications_list = ["social:Query", "users:BatchGetItem"]
+    notifications_read = ["social:Query", "social:UpdateItem"]
   }
 }
 

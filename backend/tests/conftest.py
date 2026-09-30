@@ -66,3 +66,13 @@ def set_admins(value: str) -> None:
     boto3.client("ssm").put_parameter(
         Name=ADMIN_EMAILS_PARAM, Type="StringList", Value=value, Overwrite=True
     )
+
+
+@pytest.fixture
+def people(aws):
+    """Three signed-in users, each with a profile and a search row."""
+    from tests.social import A, B, C, sign_in
+
+    sign_in(A, "Ada Lovelace")
+    sign_in(B, "Bea Arthur", picture=None)
+    sign_in(C, "Adam Driver")

@@ -2,7 +2,7 @@
 armchair-social: friendships, requests, blocks, personal invite codes and the
 name search index. Family-level, so nothing here is keyed by show or season.
 
-    USER#{a}     PEER#{b}      state, at, blocking, blockedBy
+    USER#{a}     PEER#{b}      state, at, notif, blocking, blockedBy
     USER#{a}     CODE          code        a's personal invite code
     USER#{a}     NAME          nameSk, name, picture, avatarKind   a's current search row
     CODE#{code}  USER          sub
@@ -12,7 +12,9 @@ A pair has one PEER item on each side, so every transition is a two-item
 transaction. `state` is friend | outgoing (a asked b) | incoming (b asked a).
 `blocking` means a blocked b and `blockedBy` means b blocked a; either one
 clears `state` and keeps the pair apart. Unblocking can leave an item with
-only its keys, which reads as no relationship.
+only its keys, which reads as no relationship. While a request is pending,
+`notif` on both sides is the id of the requestee's notification, so answering
+or withdrawing it can close that out.
 """
 
 from __future__ import annotations
@@ -24,6 +26,7 @@ from datetime import UTC, datetime
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
 
+from lambdas.common import notifications_dynamo as notifications
 from lambdas.common.api import NotFoundError, ValidationError, text
 from lambdas.common.dynamo import resource, table
 
@@ -95,9 +98,17 @@ def peers(sub: str) -> dict[str, dict]:
     return {r["sk"].removeprefix("PEER#"): r for r in rows}
 
 
-def _set_state(a: str, b: str, state: str, now: str, expect: str | None) -> tuple[str, dict]:
+def _set_state(
+    a: str, b: str, state: str, now: str, expect: str | None, notif: str | None = None
+) -> tuple[str, dict]:
     """a's side moves to `state`, from `expect` or, when None, from no relationship."""
     values = {":state": state, ":at": now}
+    update = "SET #state = :state, #at = :at"
+    if notif:
+        update += ", notif = :notif"
+        values[":notif"] = notif
+    else:
+        update += " REMOVE notif"
     if expect is None:
         condition = f"attribute_not_exists(#state) AND {NO_BLOCK}"
     else:
@@ -107,7 +118,7 @@ def _set_state(a: str, b: str, state: str, now: str, expect: str | None) -> tupl
         "Update",
         {
             "Key": _peer(a, b),
-            "UpdateExpression": "SET #state = :state, #at = :at",
+            "UpdateExpression": update,
             "ConditionExpression": condition,
             "ExpressionAttributeNames": {"#state": "state", "#at": "at"},
             "ExpressionAttributeValues": values,
@@ -129,8 +140,13 @@ def request(a: str, b: str) -> str:
     if current in ("friend", "outgoing"):
         return current
     now = _now()
+    notif, put = notifications.put(b, "friend_request", a)
     if _transact(
-        [_set_state(a, b, "outgoing", now, None), _set_state(b, a, "incoming", now, None)]
+        [
+            _set_state(a, b, "outgoing", now, None, notif),
+            _set_state(b, a, "incoming", now, None, notif),
+            put,
+        ]
     ):
         return "outgoing"
     # b asked, or blocked, in the same instant: report where the pair landed.
@@ -138,13 +154,28 @@ def request(a: str, b: str) -> str:
 
 
 def accept(a: str, b: str) -> str:
-    """a accepts b's request."""
+    """a accepts b's request, and b hears about it."""
+    item = peer(a, b) or {}
     now = _now()
+    _, put = notifications.put(b, "friend_accepted", a)
     if not _transact(
-        [_set_state(a, b, "friend", now, "incoming"), _set_state(b, a, "friend", now, "outgoing")]
+        [
+            _set_state(a, b, "friend", now, "incoming"),
+            _set_state(b, a, "friend", now, "outgoing"),
+            put,
+        ]
     ):
         raise NotFoundError("No friend request from that user")
+    notifications.resolve(a, item.get("notif"), "accepted")
     return "friend"
+
+
+def _settle(a: str, b: str, item: dict) -> None:
+    """Closes out the notification behind a pending request that a just ended."""
+    if item.get("state") == "incoming":
+        notifications.resolve(a, item.get("notif"), "declined")
+    elif item.get("state") == "outgoing":
+        notifications.drop(b, item.get("notif"))
 
 
 def unlink(a: str, b: str) -> None:
@@ -153,17 +184,19 @@ def unlink(a: str, b: str) -> None:
     if status(item) not in ("friend", "outgoing", "incoming"):
         return
     remove = {
-        "UpdateExpression": "REMOVE #state, #at",
+        "UpdateExpression": "REMOVE #state, #at, notif",
         "ConditionExpression": "attribute_exists(#state)",
         "ExpressionAttributeNames": {"#state": "state", "#at": "at"},
     }
-    _transact(
+    if _transact(
         [("Update", {"Key": _peer(a, b), **remove}), ("Update", {"Key": _peer(b, a), **remove})]
-    )
+    ):
+        _settle(a, b, item)
 
 
 def block(a: str, b: str) -> None:
     """a blocks b: any friendship or request between them goes with it."""
+    item = peer(a, b) or {}
     now = _now()
 
     def side(x: str, y: str, flag: str) -> tuple[str, dict]:
@@ -171,13 +204,14 @@ def block(a: str, b: str) -> None:
             "Update",
             {
                 "Key": _peer(x, y),
-                "UpdateExpression": f"SET {flag} = :t, #at = :at REMOVE #state",
+                "UpdateExpression": f"SET {flag} = :t, #at = :at REMOVE #state, notif",
                 "ExpressionAttributeNames": {"#state": "state", "#at": "at"},
                 "ExpressionAttributeValues": {":t": True, ":at": now},
             },
         )
 
-    _transact([side(a, b, "blocking"), side(b, a, "blockedBy")])
+    if _transact([side(a, b, "blocking"), side(b, a, "blockedBy")]):
+        _settle(a, b, item)
 
 
 def unblock(a: str, b: str) -> None:
