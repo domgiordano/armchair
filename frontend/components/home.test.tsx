@@ -38,12 +38,15 @@ const ME = {
 
 afterEach(() => {
   vi.clearAllMocks();
+  sessionStorage.clear();
 });
 
 describe("Home", () => {
   it("sends a signed-out visitor straight to Google", async () => {
     vi.mocked(getCurrentUser).mockRejectedValue(new Error("no session"));
+    vi.mocked(getMe).mockRejectedValue(new ApiError(401, "Not signed in"));
     render(<Home />);
+    fireEvent.click(await screen.findByRole("button", { name: "Skip intro" }));
 
     const button = await screen.findByRole("button", { name: "Sign in with Google" });
     await vi.waitFor(() => expect(button).toHaveProperty("disabled", false));
