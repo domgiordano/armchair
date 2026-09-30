@@ -181,3 +181,21 @@ resource "aws_iam_role_policy" "deploy_backfill" {
   role   = aws_iam_role.deploy.id
   policy = data.aws_iam_policy_document.deploy_backfill.json
 }
+
+# Seed Season also publishes a finished season's performances, confirmed, through
+# the poller's publish(): it reads an episode's stored performances and writes
+# them with conditional UpdateItem, like the poller's own role.
+data "aws_iam_policy_document" "deploy_seed_performances" {
+  statement {
+    sid       = "SeedPerformances"
+    effect    = "Allow"
+    actions   = ["dynamodb:Query", "dynamodb:UpdateItem"]
+    resources = [aws_dynamodb_table.performances.arn]
+  }
+}
+
+resource "aws_iam_role_policy" "deploy_seed_performances" {
+  name   = "seed-performances"
+  role   = aws_iam_role.deploy.id
+  policy = data.aws_iam_policy_document.deploy_seed_performances.json
+}

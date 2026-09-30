@@ -31,8 +31,20 @@ def table(monkeypatch):
         )
 
 
-def test_one_partition_with_every_item():
+def test_one_partition_with_every_item_plus_the_season_index():
     rows = items(SEASON)
+    index = [r for r in rows if r["pk"] == "SEASONS#dwts"]
+    assert index == [
+        {
+            "pk": "SEASONS#dwts",
+            "sk": "SEASON#035",
+            "id": "dwts-35",
+            "number": 35,
+            "year": 2026,
+            "current": True,
+        }
+    ]
+    rows = [r for r in rows if r["pk"] != "SEASONS#dwts"]
     sks = [r["sk"] for r in rows]
     assert {r["pk"] for r in rows} == {PK}
     assert len(sks) == len(set(sks)) == 1 + 12 + 3 + 16

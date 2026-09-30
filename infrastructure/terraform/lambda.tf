@@ -19,6 +19,7 @@ locals {
   ]
   seasons_lambdas = [
     { name = "get", description = "Schedule, roster, judges and headshot credits for one season", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "list", description = "Every season of a show for the season picker", path_part = "list", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
   admin_lambdas = [
     { name = "keyword", description = "Set a couple's SMS keyword override", path_part = "keyword", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -69,6 +70,7 @@ locals {
     groups_create     = ["groups:PutItem"]
     groups_join       = ["groups:GetItem", "groups:UpdateItem"]
     groups_mine       = ["groups:Query", "users:BatchGetItem"]
+    seasons_list      = ["catalog:Query"]
     friends_request   = ["social:GetItem", "social:UpdateItem", "users:GetItem"]
     friends_accept    = ["social:UpdateItem"]
     friends_remove    = ["social:GetItem", "social:UpdateItem"]

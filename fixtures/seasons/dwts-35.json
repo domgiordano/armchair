@@ -1,6 +1,8 @@
 {
   "show": "dwts",
   "season": 35,
+  "year": 2026,
+  "current": true,
   "wikiTitle": "Dancing with the Stars (American TV series) season 35",
   "timezone": "America/New_York",
   "defaultPanel": [

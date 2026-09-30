@@ -65,3 +65,10 @@ The past-season files are facts read from the English Wikipedia articles
 "Dancing with the Stars (American TV series) season N" at the revision each file
 records, which are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 S34 is pinned to 1375977389, not the newer unreviewed 1376084251 (see fixtures/wiki/README.md).
+
+## Which season is current
+
+Each file's `current` flag is copied to its `SEASONS#dwts` / `SEASON#<nnn>` index item
+(`id`, `number`, `year`, `current`), which `GET /seasons/list` returns for the season
+picker. Exactly one fixture has `current: true`, today dwts-35. When S36 starts, flip
+dwts-35 to false, add dwts-36 with true, and run Seed Season with `all`.
