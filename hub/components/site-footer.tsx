@@ -1,4 +1,9 @@
+import Link from "next/link";
+
 import { ChairMark } from "@/components/chair-mark";
+
+const link =
+  "-ml-2 flex min-h-11 items-center rounded-full px-2 text-muted underline-offset-4 hover:text-text hover:underline focus-visible:outline-2 focus-visible:outline-gold";
 
 export function SiteFooter() {
   return (
@@ -13,10 +18,20 @@ export function SiteFooter() {
             <p className="text-[11px] font-medium tracking-[0.3em] text-muted">DISCOVER / WATCH / JUDGE</p>
           </div>
         </div>
-        <p className="max-w-md text-xs leading-relaxed text-muted">
-          Not affiliated with ABC, Disney, BBC, Peacock, CBS or the shows&rsquo; producers. Show names are used to describe
-          what you can rate.
-        </p>
+        <div className="max-w-md">
+          <p className="text-xs leading-relaxed text-muted">
+            Not affiliated with ABC, Disney, BBC, Peacock, CBS or the shows&rsquo; producers. Show names are used to
+            describe what you can rate.
+          </p>
+          <nav aria-label="Legal" className="mt-3 flex gap-2 text-sm">
+            <Link href="/privacy/" className={link}>
+              Privacy
+            </Link>
+            <Link href="/terms/" className={link}>
+              Terms
+            </Link>
+          </nav>
+        </div>
       </div>
     </footer>
   );
