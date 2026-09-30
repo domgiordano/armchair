@@ -313,6 +313,62 @@ jobs:
           fi
           echo "$FN deployed (layer=$LAYER)"
 
+  # deploy-changed-lambdas only ships dirs the push touched, so a function
+  # Terraform creates in a push that misses it stays on lambda_stub.py forever
+  # (armchair-seasons-get, 2026-09). This ships any function still running the
+  # stub zip, whatever changed.
+  deploy-stub-lambdas:
+    permissions:
+      id-token: write # mint the OIDC token traded for the deploy role
+      contents: read
+    needs: [detect-changes, deploy-changed-lambdas, update-all-lambdas-layer]
+    if: always() && needs.detect-changes.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Deploy functions still on the stub
+        run: |
+          set -euo pipefail
+          # Lambda's CodeSha256 is the base64 SHA-256 of the zip Terraform uploaded.
+          STUB=$(openssl dgst -sha256 -binary infrastructure/terraform/templates/lambda_stub.zip | base64)
+          STUBBED=$(aws lambda list-functions --region $AWS_REGION --output json \
+            | jq -r --arg prefix "${APP_NAME}-" --arg stub "$STUB" \
+                '.Functions[] | select((.FunctionName | startswith($prefix)) and .CodeSha256 == $stub) | .FunctionName')
+          if [ -z "$STUBBED" ]; then
+            echo "No function is on the stub."
+            exit 0
+          fi
+
+          LAYER=$(aws lambda list-layer-versions \
+            --layer-name ${APP_NAME}-shared-packages \
+            --region $AWS_REGION --no-paginate \
+            --query 'LayerVersions[0].LayerVersionArn' --output text)
+
+          for FN in $STUBBED; do
+            DIR="backend/lambdas/$(echo "${FN#${APP_NAME}-}" | tr '-' '_')"
+            if [ ! -d "$DIR" ]; then
+              echo "::warning::$FN is on the stub and has no $DIR"
+              continue
+            fi
+            echo "$FN is on the stub; deploying $DIR"
+            (cd "$DIR" && zip -r "$GITHUB_WORKSPACE/$(basename "$DIR").zip" . >/dev/null)
+            aws lambda update-function-code --function-name "$FN" \
+              --zip-file "fileb://$GITHUB_WORKSPACE/$(basename "$DIR").zip" --region $AWS_REGION >/dev/null
+            aws lambda wait function-updated --function-name "$FN" --region $AWS_REGION
+            if [ "$LAYER" != "None" ]; then
+              aws lambda update-function-configuration --function-name "$FN" \
+                --layers "$LAYER" --region $AWS_REGION >/dev/null
+              aws lambda wait function-updated --function-name "$FN" --region $AWS_REGION
+            fi
+            echo "$FN deployed (layer=$LAYER)"
+          done
+
   # Reeses went green twice with stale code live: layer attachment spans two
   # jobs with three conditions between them, and one path left every function
   # on the previous layer. This asserts the invariant the whole dance exists to
@@ -321,7 +377,7 @@ jobs:
     permissions:
       id-token: write # mint the OIDC token traded for the deploy role
       contents: read
-    needs: [detect-changes, deploy-layer, update-all-lambdas-layer, deploy-changed-lambdas]
+    needs: [detect-changes, deploy-layer, update-all-lambdas-layer, deploy-changed-lambdas, deploy-stub-lambdas]
     if: always() && needs.detect-changes.outputs.common_changed == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -358,7 +414,7 @@ jobs:
           echo "All functions on the newest layer."
 
   summary:
-    needs: [detect-changes, deploy-layer, update-all-lambdas-layer, deploy-changed-lambdas, verify-layer]
+    needs: [detect-changes, deploy-layer, update-all-lambdas-layer, deploy-changed-lambdas, deploy-stub-lambdas, verify-layer]
     if: always()
     runs-on: ubuntu-latest
     steps:
