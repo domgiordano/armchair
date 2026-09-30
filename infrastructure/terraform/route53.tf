@@ -26,7 +26,7 @@ data "aws_route53_zone" "hub_zone" {
 # verify immediately; the import adopts it.
 import {
   to = aws_route53_record.google_site_verification
-  id = "${data.aws_route53_zone.hub_zone.zone_id}_${var.hub_domain_name}_TXT"
+  id = "Z0279759OM4WDKB0TGYQ_armchairjudge.com_TXT"
 }
 
 resource "aws_route53_record" "google_site_verification" {
