@@ -1,0 +1,2406 @@
+{
+  "$comment": [
+    "Golden output for backend/lambdas/common/wiki_parse.py, read by backend/tests/test_wiki_parse.py.",
+    "Built by backend/scripts/build_wiki_fixtures.py from hand-transcribed values, never from the parser.",
+    "Wikitext sources and CC BY-SA 4.0 attribution: fixtures/wiki/README.md."
+  ],
+  "aliases": {
+    "s35": {
+      "Amber": "amber-glenn",
+      "Ciara": "ciara-miller",
+      "Conner L.": "conner-leavitt",
+      "Connor": "connor-wood",
+      "Connor W.": "connor-wood",
+      "Ezra": "ezra-frech",
+      "Giada": "giada-de-laurentiis",
+      "Guillermo": "guillermo-rodriguez",
+      "Harry": "harry-shum-jr",
+      "Jackson": "jackson-olson",
+      "Jenna": "jenna-dewan",
+      "Julia": "julia-stiles",
+      "Maura": "maura-higgins",
+      "Sarah Jane": "sarah-jane-nader",
+      "Tatyana": "tatyana-ali",
+      "Taylor": "taylor-hanson",
+      "Tyler": "tyler-cameron"
+    },
+    "s34": {
+      "Alix": "alix",
+      "Andy": "andy",
+      "Baron": "baron",
+      "Corey": "corey",
+      "Danielle": "danielle",
+      "Dylan": "dylan",
+      "Elaine": "elaine",
+      "Hilaria": "hilaria",
+      "Jen": "jen",
+      "Jordan": "jordan",
+      "Lauren": "lauren",
+      "Robert": "robert",
+      "Scott": "scott",
+      "Whitney": "whitney"
+    }
+  },
+  "cases": [
+    {
+      "name": "S35 week 1: two nights, Conner L. / Connor W.",
+      "fixture": "s35-1377681547.wikitext",
+      "aliases": "s35",
+      "expected": {
+        "week": 1,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "jackson-olson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              5,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tyler-cameron"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 17,
+            "judges": [
+              6,
+              5,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "conner-leavitt"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 12,
+            "judges": [
+              4,
+              4,
+              4
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "guillermo-rodriguez"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 10,
+            "judges": [
+              4,
+              3,
+              3
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ezra-frech"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 20,
+            "judges": [
+              7,
+              6,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "connor-wood"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 16,
+            "judges": [
+              6,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "taylor-hanson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 16,
+            "judges": [
+              6,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "harry-shum-jr"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "tatyana-ali"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 12,
+            "judges": [
+              4,
+              4,
+              4
+            ],
+            "bonus": null
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "amber-glenn"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "ciara-miller"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              5,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "giada-de-laurentiis"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 16,
+            "judges": [
+              6,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "julia-stiles"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "maura-higgins"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "sarah-jane-nader"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 14,
+            "judges": [
+              5,
+              4,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 2,
+            "contestants": [
+              "jenna-dewan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 19,
+            "judges": [
+              6,
+              6,
+              7
+            ],
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S35 week 2 final",
+      "fixture": "s35-1377681547.wikitext",
+      "aliases": "s35",
+      "expected": {
+        "week": 2,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "jenna-dewan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ciara-miller"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tyler-cameron"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 16,
+            "judges": [
+              6,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "julia-stiles"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 16,
+            "judges": [
+              5,
+              6,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jackson-olson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "giada-de-laurentiis"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 12,
+            "judges": [
+              4,
+              4,
+              4
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "connor-wood"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              5,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ezra-frech"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tatyana-ali"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "amber-glenn"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "guillermo-rodriguez"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 12,
+            "judges": [
+              4,
+              4,
+              4
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "taylor-hanson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              5,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "harry-shum-jr"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "maura-higgins"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 19,
+            "judges": [
+              6,
+              6,
+              7
+            ],
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S35 week 3 final",
+      "fixture": "s35-1377681547.wikitext",
+      "aliases": "s35",
+      "expected": {
+        "week": 3,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "amber-glenn"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 24,
+            "judges": [
+              8,
+              8,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "julia-stiles"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 19,
+            "judges": [
+              6,
+              7,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "guillermo-rodriguez"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              5,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tatyana-ali"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "harry-shum-jr"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 24,
+            "judges": [
+              8,
+              8,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "taylor-hanson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "maura-higgins"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 22,
+            "judges": [
+              7,
+              7,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ciara-miller"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jackson-olson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "connor-wood"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 20,
+            "judges": [
+              7,
+              6,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jenna-dewan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tyler-cameron"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 17,
+            "judges": [
+              5,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ezra-frech"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S35 week 3 vandal revision: Jenna & Val 30, Connor's judges swapped",
+      "fixture": "s35-1377570871-vandal.wikitext",
+      "aliases": "s35",
+      "expected": {
+        "week": 3,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "amber-glenn"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 24,
+            "judges": [
+              8,
+              8,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "julia-stiles"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 19,
+            "judges": [
+              6,
+              7,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "guillermo-rodriguez"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              5,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tatyana-ali"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "harry-shum-jr"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 24,
+            "judges": [
+              8,
+              8,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "taylor-hanson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "maura-higgins"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 22,
+            "judges": [
+              7,
+              7,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ciara-miller"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jackson-olson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "connor-wood"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 20,
+            "judges": [
+              7,
+              7,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jenna-dewan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tyler-cameron"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ezra-frech"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S35 week 3 revert of the vandal edit, mid-show",
+      "fixture": "s35-1377571301-revert.wikitext",
+      "aliases": "s35",
+      "expected": {
+        "week": 3,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "amber-glenn"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 24,
+            "judges": [
+              8,
+              8,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "julia-stiles"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 19,
+            "judges": [
+              6,
+              7,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "guillermo-rodriguez"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              5,
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tatyana-ali"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 21,
+            "judges": [
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "harry-shum-jr"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 24,
+            "judges": [
+              8,
+              8,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "taylor-hanson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "maura-higgins"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 22,
+            "judges": [
+              7,
+              7,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ciara-miller"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jackson-olson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 18,
+            "judges": [
+              6,
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "connor-wood"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jenna-dewan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tyler-cameron"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ezra-frech"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S35 week 4 pre-show alphabetical table, empty cells",
+      "fixture": "s35-1377681547.wikitext",
+      "aliases": "s35",
+      "expected": {
+        "week": 4,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "amber-glenn"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ciara-miller"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "connor-wood"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "ezra-frech"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "guillermo-rodriguez"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "harry-shum-jr"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jackson-olson"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jenna-dewan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "julia-stiles"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "maura-higgins"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tatyana-ali"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "tyler-cameron"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": null,
+            "judges": null,
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S34 week 1: judge absent, 2-judge panel, efn in a score cell",
+      "fixture": "s34-1375977389.wikitext",
+      "aliases": "s34",
+      "expected": {
+        "week": 1,
+        "panel": [
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 10,
+            "judges": [
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 10,
+            "judges": [
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 12,
+            "judges": [
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "whitney"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              7,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "baron"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 10,
+            "judges": [
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 13,
+            "judges": [
+              7,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "scott"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 10,
+            "judges": [
+              5,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "danielle"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 12,
+            "judges": [
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jen"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 12,
+            "judges": [
+              6,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "corey"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 9,
+            "judges": [
+              4,
+              5
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "lauren"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 13,
+            "judges": [
+              7,
+              6
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "andy"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 9,
+            "judges": [
+              5,
+              4
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "hilaria"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 14,
+            "judges": [
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 15,
+            "judges": [
+              8,
+              7
+            ],
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S34 week 7: guest judge, marathon bonus rows, rehearsal-footage score",
+      "fixture": "s34-1375977389.wikitext",
+      "aliases": "s34",
+      "expected": {
+        "week": 7,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Cheryl Burke",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "whitney"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 37,
+            "judges": [
+              9,
+              9,
+              9,
+              10
+            ],
+            "bonus": 5
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 34,
+            "judges": [
+              9,
+              8,
+              8,
+              9
+            ],
+            "bonus": 4
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "andy"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 28,
+            "judges": [
+              7,
+              7,
+              7,
+              7
+            ],
+            "bonus": 1
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 32,
+            "judges": [
+              8,
+              8,
+              8,
+              8
+            ],
+            "bonus": 0
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "danielle"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 33,
+            "judges": [
+              8,
+              8,
+              8,
+              9
+            ],
+            "bonus": 2
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 38,
+            "judges": [
+              10,
+              9,
+              9,
+              10
+            ],
+            "bonus": 3
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jen"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 32,
+            "judges": [
+              8,
+              8,
+              8,
+              8
+            ],
+            "bonus": 2
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 39,
+            "judges": [
+              10,
+              10,
+              9,
+              10
+            ],
+            "bonus": 4
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 35,
+            "judges": [
+              9,
+              9,
+              8,
+              9
+            ],
+            "bonus": 3
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S34 week 8: team dances with hosts, efn nested in nowrap",
+      "fixture": "s34-1375977389.wikitext",
+      "aliases": "s34",
+      "expected": {
+        "week": 8,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Flavor Flav",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 36,
+            "judges": [
+              8,
+              9,
+              10,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 39,
+            "judges": [
+              10,
+              10,
+              9,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "andy"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              7,
+              7,
+              9,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "whitney"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 39,
+            "judges": [
+              9,
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "danielle"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 34,
+            "judges": [
+              9,
+              8,
+              9,
+              8
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 37,
+            "judges": [
+              9,
+              9,
+              10,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 38,
+            "judges": [
+              10,
+              9,
+              10,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 38,
+            "judges": [
+              9,
+              9,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "danielle",
+              "whitney",
+              "jordan",
+              "dylan"
+            ],
+            "n": 1,
+            "rateable": false,
+            "total": 40,
+            "judges": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "andy",
+              "robert",
+              "alix",
+              "elaine"
+            ],
+            "n": 1,
+            "rateable": false,
+            "total": 38,
+            "judges": [
+              9,
+              10,
+              10,
+              9
+            ],
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S34 week 9: 4 judges, relay table without scores ignored",
+      "fixture": "s34-1375977389.wikitext",
+      "aliases": "s34",
+      "expected": {
+        "week": 9,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Tom Bergeron",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 36,
+            "judges": [
+              9,
+              9,
+              9,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 40,
+            "judges": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "andy"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 29,
+            "judges": [
+              8,
+              7,
+              7,
+              7
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 40,
+            "judges": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 37,
+            "judges": [
+              9,
+              10,
+              9,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 40,
+            "judges": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "whitney"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 40,
+            "judges": [
+              10,
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S34 week 10: two dances per couple via rowspan",
+      "fixture": "s34-1375977389.wikitext",
+      "aliases": "s34",
+      "expected": {
+        "week": 10,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 28,
+            "judges": [
+              9,
+              10,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "whitney"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 29,
+            "judges": [
+              9,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "whitney"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 29,
+            "judges": [
+              9,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 28,
+            "judges": [
+              9,
+              9,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 29,
+            "judges": [
+              10,
+              9,
+              10
+            ],
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "name": "S34 week 11: Judge column before Scores, three dances per couple",
+      "fixture": "s34-1375977389.wikitext",
+      "aliases": "s34",
+      "expected": {
+        "week": 11,
+        "panel": [
+          "Carrie Ann Inaba",
+          "Derek Hough",
+          "Bruno Tonioli"
+        ],
+        "performances": [
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "alix"
+            ],
+            "n": 3,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 28,
+            "judges": [
+              9,
+              9,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "dylan"
+            ],
+            "n": 3,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 27,
+            "judges": [
+              9,
+              9,
+              9
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "elaine"
+            ],
+            "n": 3,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 29,
+            "judges": [
+              9,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "robert"
+            ],
+            "n": 3,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 1,
+            "rateable": true,
+            "total": 29,
+            "judges": [
+              9,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 2,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          },
+          {
+            "night": 1,
+            "contestants": [
+              "jordan"
+            ],
+            "n": 3,
+            "rateable": true,
+            "total": 30,
+            "judges": [
+              10,
+              10,
+              10
+            ],
+            "bonus": null
+          }
+        ],
+        "rejected": []
+      }
+    }
+  ]
+}
