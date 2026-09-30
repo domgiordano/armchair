@@ -34,6 +34,11 @@ locals {
       invoke_arn = aws_lambda_function.api["stats_${l.name}"].invoke_arn
     })
   ]
+  friends_endpoints = [
+    for l in local.friends_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["friends_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -64,5 +69,6 @@ module "api" {
     admin    = { path_prefix = "admin", endpoints = local.admin_endpoints }
     stats    = { path_prefix = "stats", endpoints = local.stats_endpoints }
     groups   = { path_prefix = "groups", endpoints = local.groups_endpoints }
+    friends  = { path_prefix = "friends", endpoints = local.friends_endpoints }
   }
 }

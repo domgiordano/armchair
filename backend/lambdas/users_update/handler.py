@@ -3,13 +3,15 @@ PATCH /users/update - set the caller's display name and which photo they show.
 
 Body, any of: name (2-40 characters once trimmed), avatar (google | upload |
 initials), uploadKey (from /users/avatar-upload, after the browser has sent the
-file). An uploadKey on its own also switches the avatar to it.
+file). An uploadKey on its own also switches the avatar to it. The friend-search
+row follows the new name and photo.
 """
 
 from __future__ import annotations
 
 from lambdas.common import avatars
 from lambdas.common.api import ValidationError, api_handler, body, caller_sub, ok
+from lambdas.common.social_dynamo import index_name
 from lambdas.common.users_dynamo import CHOICES, update
 
 NAME_MIN, NAME_MAX = 2, 40
@@ -38,4 +40,6 @@ def handler(event, context):
             raise ValidationError("uploadKey only goes with avatar=upload", field="avatar")
         avatar = "upload"
 
-    return ok(update(sub, name, avatar, key))
+    profile = update(sub, name, avatar, key)
+    index_name(sub, profile["name"], profile["picture"], profile["avatarKind"])
+    return ok(profile)

@@ -7,6 +7,7 @@ from decimal import Decimal
 import pytest
 
 from lambdas.common.groups_dynamo import create as create_group
+from lambdas.common.social_dynamo import accept, block, request
 from lambdas.scores_submit.handler import handler as submit_handler
 from lambdas.users_get.handler import handler
 from lambdas.users_me.handler import handler as me_handler
@@ -164,3 +165,22 @@ def test_unknown_season_is_404(show):
 def test_missing_season_is_400(show):
     event = authorized_event(path="/users/get", query={"sub": B})
     assert handler(event, None)["statusCode"] == 400
+
+
+def test_friend_count_counts_friends_only(show):
+    C = "3f1c2b9a-0000-4000-8000-000000000003"
+    D = "3f1c2b9a-0000-4000-8000-000000000004"
+    request(B, A)
+    accept(A, B)
+    request(C, B)
+    accept(B, C)
+    request(D, B)
+    assert profile(sub=B)["friendCount"] == 2
+    assert profile()["friendCount"] == 1
+
+
+def test_a_block_either_way_hides_the_profile(show):
+    block(B, A)
+    assert get(sub=B)[0] == 404
+    assert get(B, sub=A)[0] == 404
+    assert get(B)[0] == 200

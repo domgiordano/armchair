@@ -17,6 +17,7 @@ from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_all, table
 from lambdas.common.episodes_dynamo import episode_pk, performances, scores, season_ref, season_rows
 from lambdas.common.gate import answered, perf_key, visible_scores
+from lambdas.common.social_dynamo import peer, peers, status
 
 MIN_DANCES = 5
 
@@ -30,7 +31,8 @@ def handler(event, context):
     own = sub == caller
 
     user = table("USERS_TABLE").get_item(Key={"sub": sub}).get("Item")
-    if user is None:
+    # A block either way hides the profile, answering like a sub that doesn't exist.
+    if user is None or (not own and status(peer(caller, sub)) == "blocked"):
         raise NotFoundError("No such user")
     dances = _dances(sub, show, season)
     totals = summary(dances)
@@ -43,6 +45,7 @@ def handler(event, context):
         "picture": user.get("picture"),
         "avatarKind": user.get("avatarKind"),
         "memberSince": user.get("createdAt"),
+        "friendCount": sum(status(p) == "friend" for p in peers(sub).values()),
         "season": {"season": f"{show}-{season}", **totals},
     }
     if own:

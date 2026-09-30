@@ -22,6 +22,7 @@ locals {
     SCORES_TABLE       = aws_dynamodb_table.scores.id
     ADMIN_EMAILS_PARAM = aws_ssm_parameter.admin_emails.name
     GROUPS_TABLE       = aws_dynamodb_table.groups.id
+    SOCIAL_TABLE       = aws_dynamodb_table.social.id
     AVATARS_BUCKET     = aws_s3_bucket.avatars.id
     AVATARS_URL        = "https://${aws_cloudfront_distribution.avatars.domain_name}"
   }

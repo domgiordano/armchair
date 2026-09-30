@@ -7,6 +7,7 @@ import json
 import boto3
 import pytest
 
+from lambdas.common.social_dynamo import search
 from lambdas.users_avatar_upload.handler import handler as upload_handler
 from lambdas.users_me.handler import handler as me_handler
 from lambdas.users_update.handler import handler as update_handler
@@ -174,3 +175,12 @@ def test_a_presigned_key_is_accepted_by_update(me):
     status, body = patch(uploadKey=key)
     assert status == 200, body
     assert body["data"]["avatarKind"] == "upload"
+
+
+def test_friend_search_follows_the_new_name_and_photo(me):
+    key = key_for()
+    patch(name="Dance Mom", uploadKey=key)
+    assert search("test") == []
+    [row] = search("dance")
+    assert row["name"] == "Dance Mom"
+    assert row["picture"] == f"{AVATARS_URL}/{key}"
