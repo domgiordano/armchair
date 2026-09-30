@@ -5,7 +5,7 @@
 ## What This Is
 Friends rate each Dancing with the Stars performance 1-10 on their phones, blind and final, then see how the judges and everyone else scored it. Live at `dwts.xomware.com`. `armchair` is the working name and the permanent resource prefix; the domain is config and will move once the family domain is picked.
 
-The repo is `domgiordano/armchair` (repo id 1398549188), a public personal repo. Use `gh -R domgiordano/armchair`. The plan is `/Users/dom/Code/docs/features/dwts-companion/PLAN.md` (outside this repo), with `BRAINSTORM.md` and `RESEARCH.md` beside it.
+The repo is `domgiordano/armchair` (repo id 1398549188), a public personal repo. Use `gh -R domgiordano/armchair`. The plan is `docs/features/dwts-companion/PLAN.md`, with `BRAINSTORM.md` and `RESEARCH.md` beside it.
 
 ## Stack
 A derby-style monorepo copied from `/Users/dom/Code/smirnoff-league`:
