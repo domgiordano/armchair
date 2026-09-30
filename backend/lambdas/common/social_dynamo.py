@@ -24,11 +24,10 @@ import secrets
 from datetime import UTC, datetime
 
 from boto3.dynamodb.conditions import Key
-from botocore.exceptions import ClientError
 
 from lambdas.common import notifications_dynamo as notifications
 from lambdas.common.api import NotFoundError, ValidationError, text
-from lambdas.common.dynamo import resource, table
+from lambdas.common.dynamo import table, transact
 
 SEARCH_LIMIT = 20
 SUB = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
@@ -54,17 +53,7 @@ def _peer(a: str, b: str) -> dict:
 
 
 def _transact(items: list[tuple[str, dict]]) -> bool:
-    """False when a condition failed, so the caller can re-read and report."""
-    name = table("SOCIAL_TABLE").name
-    try:
-        resource().meta.client.transact_write_items(
-            TransactItems=[{op: {"TableName": name, **args}} for op, args in items]
-        )
-    except ClientError as e:
-        if e.response["Error"]["Code"] != "TransactionCanceledException":
-            raise
-        return False
-    return True
+    return transact(items, "SOCIAL_TABLE")
 
 
 def _query(key) -> list[dict]:
