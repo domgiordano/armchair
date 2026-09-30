@@ -22,3 +22,13 @@ output "api_url" {
   description = "API base URL. Also published to SSM for the frontend build."
   value       = "https://${local.api_domain_name}"
 }
+
+output "hub_url" {
+  description = "Armchair Judge hub."
+  value       = "https://${var.hub_domain_name}"
+}
+
+output "hub_bucket" {
+  description = "Bucket the hub deploy syncs to."
+  value       = module.hub.s3_bucket_id
+}

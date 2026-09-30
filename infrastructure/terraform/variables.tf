@@ -16,6 +16,12 @@ variable "domain_name" {
   default     = "dwts.armchairjudge.com"
 }
 
+variable "hub_domain_name" {
+  description = "Apex hostname for the Armchair Judge hub. Also the hub bucket's name and the hosted zone it lives in; www redirects here."
+  type        = string
+  default     = "armchairjudge.com"
+}
+
 variable "route53_zone_name" {
   description = "Hosted zone that domain_name lives in."
   type        = string

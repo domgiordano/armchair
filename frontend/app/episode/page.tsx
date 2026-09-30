@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { EpisodeScreen } from "@/components/episode-screen";
 
 export const metadata: Metadata = {
-  title: "Scorecard | Armchair",
+  title: "Scorecard",
 };
 
 // useSearchParams has no value at export time, so the static HTML is the

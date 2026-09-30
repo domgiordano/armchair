@@ -28,6 +28,8 @@ frontend/public/data/
 .claude/worktrees/
 frontend/AGENTS.md
 frontend/CLAUDE.md
+hub/AGENTS.md
+hub/CLAUDE.md
 
 # Raw brand images before processing
 assets-incoming/

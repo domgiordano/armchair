@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Credits } from "@/components/credits";
 
 export const metadata: Metadata = {
-  title: "Photo credits | Armchair",
+  title: "Photo credits",
 };
 
 export default function CreditsPage() {

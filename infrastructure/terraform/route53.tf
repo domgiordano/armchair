@@ -14,3 +14,9 @@ resource "aws_route53_record" "api" {
     evaluate_target_health = false
   }
 }
+
+# Created by the domain registration, not by Terraform. Read only.
+data "aws_route53_zone" "hub_zone" {
+  name         = var.hub_domain_name
+  private_zone = false
+}
