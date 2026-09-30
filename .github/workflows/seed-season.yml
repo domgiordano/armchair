@@ -22,7 +22,7 @@ permissions:
 
 env:
   AWS_REGION: us-east-1
-  SITE_BUCKET: dwts.xomware.com
+  SITE_BUCKET: dwts.armchairjudge.com
 
 jobs:
   seed:
