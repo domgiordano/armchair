@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { GroupsScreen } from "@/components/groups";
 
 export const metadata: Metadata = {
-  title: "Groups | Armchair",
+  title: "Groups",
 };
 
 export default function GroupsPage() {
