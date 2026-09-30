@@ -4,15 +4,16 @@ import { describe, expect, it, vi } from "vitest";
 // next/font is a build-time transform; outside Next it has no loader.
 vi.mock("next/font/google", () => ({
   Poppins: () => ({ variable: "font-poppins", className: "font-poppins" }),
+  Playfair_Display: () => ({ variable: "font-playfair", className: "font-playfair" }),
 }));
 
 import { metadata, viewport } from "./layout";
 import Home from "./page";
 
 describe("shell", () => {
-  it("renders the app name", () => {
+  it("opens a signed-out visit on the skippable intro", () => {
     render(<Home />);
-    expect(screen.getByRole("heading", { name: "Armchair Judge" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Skip intro" })).toBeTruthy();
   });
 
   it("titles pages as Armchair Judge for the show", () => {

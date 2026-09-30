@@ -11,6 +11,16 @@
   --color-brand-orange: #ff7a3d;
   --color-crown: #ffc93c;
 
+  /* DWTS show theme: a glam ballroom in midnight navy, gold and mirror-ball silver. */
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+  --color-ballroom: #0a1440;
+  --color-gold: #e8c268;
+  --color-gold-light: #f7e2a4;
+  --color-gold-deep: #b8892f;
+  --color-silver: #d5dbea;
+  --color-silver-dim: #9aa5c0;
+  --color-pearl: #f3f1ea;
+
   /* The desk's paddle raise: up from behind the desk, a small overshoot, settle. */
   --animate-raise: raise 560ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
 
@@ -35,6 +45,18 @@
     var(--color-brand-violet) 35%,
     var(--color-brand-magenta) 65%,
     var(--color-brand-orange)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gold-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-gold-deep),
+    var(--color-gold-light) 45%,
+    var(--color-gold) 70%,
+    var(--color-gold-deep)
   );
   background-clip: text;
   color: transparent;
