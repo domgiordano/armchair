@@ -82,7 +82,9 @@ def episode_view(
         key, owner = score_owner(row)
         if owner == sub:
             mine[key] = row
-    complete = all(k in mine for k in keys)
+    # An empty roster means bad catalog data; keep results hidden rather than
+    # letting all() of nothing reveal them.
+    complete = bool(keys) and all(k in mine for k in keys)
     panel = episode.get("panel") or meta["defaultPanel"]
 
     values = defaultdict(list)

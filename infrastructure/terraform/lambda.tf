@@ -19,8 +19,8 @@ locals {
   )
 
   # One role per function, granted only the table actions its handler makes.
-  # scores_submit can create a score but not update one, which backs up the
-  # conditional put: an answer is final even if the handler is wrong.
+  # PutItem can still overwrite, so the conditional put in episodes_dynamo is
+  # the only thing keeping an answer final.
   api_tables = {
     catalog      = aws_dynamodb_table.catalog.arn
     performances = aws_dynamodb_table.performances.arn
