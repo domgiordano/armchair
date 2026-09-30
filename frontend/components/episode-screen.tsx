@@ -6,7 +6,7 @@ import { useMemo } from "react";
 
 import { CatchUp } from "@/components/catch-up";
 import { GroupPicker } from "@/components/group-picker";
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
 import { SignedIn } from "@/components/signed-in";
@@ -31,7 +31,7 @@ export function EpisodeScreen() {
 function SeasonLoader() {
   const load = useSeason();
   if (load.kind === "loading") return <p className="text-neutral-400">Loading the season...</p>;
-  if (load.kind === "error") return <LoadError what="the season" message={load.message} retry={load.retry} />;
+  if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
   return <EpisodePicker season={load.season} />;
 }
 
@@ -112,7 +112,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
   const judges = useMemo(() => new Map(season.judges.map((j) => [j.id, j])), [season]);
 
   if (data === null) {
-    if (error !== null) return <LoadError what="this episode" message={error} retry={reload} />;
+    if (error !== null) return <ErrorState what="this episode" message={error} retry={reload} />;
     return <p className="text-neutral-400">Loading the episode...</p>;
   }
 

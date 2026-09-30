@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
 import { GroupPicker } from "@/components/group-picker";
 import { formatScore } from "@/components/performance-card";
@@ -27,7 +27,7 @@ export function StatsScreen() {
 function SeasonLoader() {
   const load = useSeason();
   if (load.kind === "loading") return <p className="text-neutral-400">Loading the season...</p>;
-  if (load.kind === "error") return <LoadError what="the season" message={load.message} retry={load.retry} />;
+  if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
   return <StatsLoader season={load.season} />;
 }
 
@@ -63,7 +63,7 @@ function StatsFetcher({ season, group }: { season: Season; group: string | null 
       setLoad({ kind: "loading" });
       setAttempt((n) => n + 1);
     };
-    return <LoadError what="your stats" message={load.message} retry={retry} />;
+    return <ErrorState what="your stats" message={load.message} retry={retry} />;
   }
   return <StatsView season={season} stats={load.stats} />;
 }

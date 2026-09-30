@@ -1,6 +1,6 @@
 "use client";
 
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import { Headshot } from "@/components/headshot";
 import { SignedIn } from "@/components/signed-in";
 import type { Headshot as Shot, Person, Season } from "@/lib/api/show";
@@ -26,7 +26,7 @@ export function credited(season: Season): Credited[] {
 function CreditList() {
   const load = useSeason();
   if (load.kind === "loading") return <p className="text-neutral-400">Loading credits...</p>;
-  if (load.kind === "error") return <LoadError what="credits" message={load.message} retry={load.retry} />;
+  if (load.kind === "error") return <ErrorState what="credits" message={load.message} retry={load.retry} />;
 
   return (
     <>

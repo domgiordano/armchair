@@ -19,7 +19,7 @@ import {
   useAction,
   useLoad,
 } from "@/components/friends/parts";
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import { SignedIn } from "@/components/signed-in";
 import {
   acceptFriend,
@@ -120,7 +120,7 @@ function FriendsAndGroups() {
       </div>
       <section role="tabpanel" id={`${base}-panel`} aria-labelledby={`${base}-${tab}`} className="flex flex-col gap-6">
         {friends.kind === "loading" && <p className="text-neutral-400">Loading...</p>}
-        {friends.kind === "error" && <LoadError what="your friends" message={friends.message} retry={reload} />}
+        {friends.kind === "error" && <ErrorState what="your friends" message={friends.message} retry={reload} />}
         {friends.kind === "ready" && tab === "friends" && <FriendsTab data={friends.value} reload={reload} />}
         {friends.kind === "ready" && tab === "requests" && <RequestsTab data={friends.value} reload={reload} />}
         {friends.kind === "ready" && tab === "groups" && <GroupsPanel friends={friends.value.friends} />}

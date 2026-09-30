@@ -4,13 +4,13 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import { SignedIn } from "@/components/signed-in";
 import type { Notification } from "@/lib/api/social";
 import { useMarkAllReadOnView, useNotifications } from "@/lib/social/notifications";
-import { PRIMARY, SECONDARY } from "@/lib/ui";
+import { PRIMARY, SECONDARY, TEXT_LINK } from "@/lib/ui";
 
-const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300";
+const FOCUS = "focus-ring";
 const SMALL = "min-h-11 px-4 text-sm";
 
 export function NotificationsScreen() {
@@ -62,7 +62,7 @@ export function NotificationList({ compact = false }: { compact?: boolean }) {
 
   if (!loaded) return <p className="px-1 text-sm text-neutral-400">Loading notifications...</p>;
   if (error !== null && items.length === 0) {
-    return <LoadError what="notifications" message={error} retry={() => void refresh()} />;
+    return <ErrorState what="notifications" message={error} retry={() => void refresh()} />;
   }
   if (items.length === 0) {
     return (
@@ -166,7 +166,7 @@ export function NotificationsBell() {
   const button = useRef<HTMLButtonElement>(null);
   const id = useId();
   const label = unread > 0 ? `Notifications, ${unread} unread` : "Notifications";
-  const icon = "relative flex size-11 shrink-0 items-center justify-center rounded-full text-neutral-300 hover:bg-neutral-800 hover:text-neutral-100 active:bg-neutral-700";
+  const icon = "relative flex size-11 shrink-0 items-center justify-center rounded-full text-silver transition-colors hover:bg-silver/10 hover:text-pearl active:bg-silver/15";
 
   useEffect(() => {
     if (!open) return;
@@ -199,7 +199,7 @@ export function NotificationsBell() {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((o) => !o)}
-        className={`${icon} hidden md:flex aria-expanded:bg-neutral-800 ${FOCUS}`}
+        className={`${icon} hidden md:flex aria-expanded:bg-silver/10 ${FOCUS}`}
       >
         <BellIcon />
         <Badge unread={unread} />
@@ -209,14 +209,14 @@ export function NotificationsBell() {
           id={id}
           role="region"
           aria-label="Notifications"
-          className="absolute top-full right-0 z-30 mt-2 flex max-h-[min(34rem,80vh)] w-96 flex-col rounded-xl border border-neutral-700 bg-ink shadow-2xl shadow-black/60"
+          className="absolute top-full right-0 z-30 mt-2 flex max-h-[min(34rem,80vh)] w-96 origin-top-right flex-col rounded-xl border border-silver/15 bg-ballroom shadow-2xl shadow-ink/70 animate-pop-in"
         >
-          <div className="flex items-center justify-between border-b border-neutral-800 px-4 py-3">
-            <h2 className="text-sm font-semibold">Notifications</h2>
+          <div className="flex items-center justify-between border-b border-silver/10 px-4 py-3">
+            <h2 className="text-sm font-semibold text-pearl">Notifications</h2>
             <Link
               href="/notifications/"
               onClick={() => setOpen(false)}
-              className={`rounded-md text-sm text-neutral-400 underline-offset-4 hover:text-neutral-100 hover:underline ${FOCUS}`}
+              className={TEXT_LINK}
             >
               See all
             </Link>
@@ -235,7 +235,7 @@ function Badge({ unread }: { unread: number }) {
   return (
     <span
       aria-hidden="true"
-      className="absolute top-1.5 right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-magenta px-1 text-[10px] leading-none font-semibold text-pearl tabular-nums"
+      className="absolute top-1.5 right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-magenta px-1 text-[10px] leading-none font-semibold text-pearl tabular-nums ring-2 ring-ink animate-pop-in"
     >
       {unread > 9 ? "9+" : unread}
     </span>

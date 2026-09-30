@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import { SignedIn } from "@/components/signed-in";
 import { ALL_TIME, getLeaderboard, type Leaderboard, type Ranked, type Scope } from "@/lib/api/leaderboard";
 import type { Judge } from "@/lib/api/show";
@@ -163,7 +163,7 @@ function BoardFetcher({
       setLoad({ kind: "loading" });
       setAttempt((n) => n + 1);
     };
-    return <LoadError what="the leaderboard" message={load.message} retry={retry} />;
+    return <ErrorState what="the leaderboard" message={load.message} retry={retry} />;
   }
   return <LeaderboardView board={load.board} judges={judges} />;
 }

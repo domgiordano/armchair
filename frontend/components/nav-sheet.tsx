@@ -26,7 +26,7 @@ export function NavSheet({ open, onClose, children }: NavSheetProps) {
       onClose={onClose}
       // A click on the backdrop lands on the dialog itself.
       onClick={(e) => e.target === e.currentTarget && onClose()}
-      className="m-0 h-dvh max-h-none w-[min(20rem,85vw)] max-w-none border-r border-neutral-800 bg-ink p-0 text-neutral-100 backdrop:bg-ink/75 open:animate-[sheet-in_200ms_ease-out] motion-reduce:open:animate-none"
+      className="m-0 h-dvh max-h-none w-[min(20rem,85vw)] max-w-none border-r border-silver/10 bg-ink p-0 text-pearl backdrop:bg-ink/75 backdrop:backdrop-blur-sm open:animate-[sheet-in_200ms_ease-out] motion-reduce:open:animate-none"
     >
       <div className="flex min-h-full flex-col gap-6 px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))]">
         {children}

@@ -6,7 +6,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
 import { Headshot } from "@/components/headshot";
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
 import {
@@ -67,7 +67,7 @@ export function Overview() {
   const load = useLoad(getOverview, season);
 
   if (load.kind === "loading") return <OverviewSkeleton />;
-  if (load.kind === "error") return <LoadError what="your overview" message={load.message} retry={load.retry} />;
+  if (load.kind === "error") return <ErrorState what="your overview" message={load.message} retry={load.retry} />;
   return <OverviewView o={load.data} season={season} />;
 }
 
@@ -380,7 +380,7 @@ function LeaderboardTop({ season }: { season: string }) {
         </Link>
       </div>
       {load.kind === "loading" && <SkeletonRows n={5} />}
-      {load.kind === "error" && <LoadError what="the leaderboard" message={load.message} retry={load.retry} />}
+      {load.kind === "error" && <ErrorState what="the leaderboard" message={load.message} retry={load.retry} />}
       {load.kind === "ready" && <TopFive board={load.data} />}
     </section>
   );

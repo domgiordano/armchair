@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import { NameEditor } from "@/components/name-editor";
 import { ProfilePhoto } from "@/components/profile-photo";
 import { ProfileSeason } from "@/components/profile-season";
@@ -32,7 +32,7 @@ function ProfileRoute() {
   const other = useSearchParams().get("u");
   const load = useSeason();
   if (load.kind === "loading") return <ProfileSkeleton />;
-  if (load.kind === "error") return <LoadError what="the season" message={load.message} retry={load.retry} />;
+  if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
   return other ? <OtherProfile key={other} season={load.season} sub={other} /> : <OwnProfile season={load.season} />;
 }
 
@@ -82,7 +82,7 @@ function OwnProfile({ season }: { season: Season }) {
   const router = useRouter();
 
   if (load.kind === "loading") return <ProfileSkeleton />;
-  if (load.kind === "error") return <LoadError what="your profile" message={load.message} retry={retry} />;
+  if (load.kind === "error") return <ErrorState what="your profile" message={load.message} retry={retry} />;
   const [me, profile] = load.data;
   const onChange = (next: MyProfile) => setData([next, profile]);
 
@@ -130,7 +130,7 @@ function OtherProfile({ season, sub }: { season: Season; sub: string }) {
         </div>
       );
     }
-    return <LoadError what="this profile" message={load.message} retry={retry} />;
+    return <ErrorState what="this profile" message={load.message} retry={retry} />;
   }
   const profile = load.data;
 

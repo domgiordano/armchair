@@ -35,7 +35,7 @@ export function Avatar({ name, email, picture, size = 36 }: AvatarProps) {
         referrerPolicy="no-referrer"
         onError={() => setFailed(picture)}
         style={{ width: size, height: size }}
-        className="shrink-0 rounded-full bg-neutral-800 object-cover"
+        className="shrink-0 rounded-full bg-ballroom object-cover"
       />
     );
   }
@@ -45,7 +45,7 @@ export function Avatar({ name, email, picture, size = 36 }: AvatarProps) {
       role="img"
       aria-label={label}
       style={{ width: size, height: size, fontSize: Math.round(size * 0.39) }}
-      className="flex shrink-0 items-center justify-center rounded-full bg-amber-300 font-semibold text-amber-950"
+      className="flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-light to-gold-deep font-semibold text-ink"
     >
       <span aria-hidden="true">{initials(name, email)}</span>
     </span>

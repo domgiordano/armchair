@@ -8,10 +8,13 @@ import { Avatar } from "@/components/avatar";
 import { Brand } from "@/components/brand";
 import { NavSheet } from "@/components/nav-sheet";
 import { NotificationsBell } from "@/components/notifications";
-import { Popover } from "@/components/popover";
+import { Menu, MenuItem } from "@/components/ui/menu";
+import { Select } from "@/components/ui/select";
+import { ToastProvider } from "@/components/ui/toast";
 import { getMe, type Me } from "@/lib/api/client";
 import { useAuth } from "@/lib/auth/use-auth";
 import { SEASONS, seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
+import { FOCUS } from "@/lib/ui";
 
 export const HUB_URL = "https://armchairjudge.com";
 
@@ -38,9 +41,7 @@ export function activeTab(pathname: string): Tab | undefined {
   );
 }
 
-const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300";
-const ICON_BUTTON = `relative flex size-11 shrink-0 items-center justify-center rounded-full text-neutral-300 hover:bg-neutral-800 hover:text-neutral-100 active:bg-neutral-700 ${FOCUS}`;
-const PANEL_ITEM = `flex min-h-11 w-full items-center rounded-md px-3 text-left text-sm text-neutral-200 hover:bg-neutral-800 active:bg-neutral-700 ${FOCUS}`;
+const ICON_BUTTON = `relative flex size-11 shrink-0 items-center justify-center rounded-full text-silver transition-colors hover:bg-silver/10 hover:text-pearl active:bg-silver/15 aria-expanded:bg-silver/10 ${FOCUS}`;
 
 interface AppShellProps {
   // Names the main landmark; the active tab already says where you are.
@@ -55,9 +56,11 @@ export function AppShell({ title, wide = false, children }: AppShellProps) {
   // The season lives in the query string, which a static export only has on the client.
   return (
     <Suspense>
-      <Shell title={title} wide={wide}>
-        {children}
-      </Shell>
+      <ToastProvider>
+        <Shell title={title} wide={wide}>
+          {children}
+        </Shell>
+      </ToastProvider>
     </Suspense>
   );
 }
@@ -78,11 +81,11 @@ function Shell({ title, wide, children }: AppShellProps) {
     <div className="flex min-h-dvh flex-col">
       <a
         href="#main"
-        className={`sr-only z-50 rounded-md bg-amber-300 px-4 py-2 font-medium text-amber-950 focus:not-sr-only focus:fixed focus:top-2 focus:left-2 ${FOCUS}`}
+        className={`sr-only z-50 rounded-md bg-gold px-4 py-2 font-medium text-ink focus:not-sr-only focus:fixed focus:top-2 focus:left-2 ${FOCUS}`}
       >
         Skip to content
       </a>
-      <header className="sticky top-0 z-20 border-b border-neutral-800 bg-ink/95 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-silver/10 bg-ink/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center gap-2 px-2 py-1.5 sm:px-4">
           <button
             ref={hamburger}
@@ -132,10 +135,10 @@ function Shell({ title, wide, children }: AppShellProps) {
                   href={withSeason(t.href, season)}
                   aria-current={t === current ? "page" : undefined}
                   onClick={() => setMenuOpen(false)}
-                  className={`flex min-h-12 items-center rounded-md border-l-2 px-3 text-base font-medium ${FOCUS} ${
+                  className={`flex min-h-12 items-center rounded-md border-l-2 px-3 text-base font-medium transition-colors ${FOCUS} ${
                     t === current
                       ? "border-gold bg-ballroom text-gold-light"
-                      : "border-transparent text-neutral-300 hover:bg-neutral-900 hover:text-neutral-100 active:bg-neutral-800"
+                      : "border-transparent text-silver hover:bg-ballroom/60 hover:text-pearl active:bg-ballroom"
                   }`}
                 >
                   {t.label}
@@ -147,7 +150,7 @@ function Shell({ title, wide, children }: AppShellProps) {
         <SeasonPicker season={season} />
         <a
           href={HUB_URL}
-          className={`mt-auto flex min-h-11 items-center gap-2 rounded-md text-sm text-neutral-400 hover:text-neutral-200 ${FOCUS}`}
+          className={`mt-auto flex min-h-11 items-center gap-2 rounded-md text-sm text-silver-dim transition-colors hover:text-gold-light ${FOCUS}`}
         >
           More shows on Armchair Judge
           <ArrowIcon />
@@ -170,10 +173,10 @@ function TabLink({ tab, season, active }: { tab: Tab; season: string; active: bo
     <Link
       href={withSeason(tab.href, season)}
       aria-current={active ? "page" : undefined}
-      className={`relative flex min-h-11 items-center rounded-t-md px-3 text-sm font-medium whitespace-nowrap ${FOCUS} after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:rounded-full ${
+      className={`relative flex min-h-11 items-center rounded-t-md px-3 text-sm font-medium whitespace-nowrap transition-colors ${FOCUS} after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:rounded-full after:transition-transform after:duration-300 ${
         active
-          ? "text-gold-light after:bg-gold"
-          : "text-neutral-400 after:bg-transparent hover:text-neutral-100 hover:after:bg-neutral-600 active:text-neutral-200"
+          ? "text-gold-light after:scale-x-100 after:bg-gold after:shadow-[0_0_10px_rgb(232_194_104/0.7)]"
+          : "text-silver-dim after:scale-x-0 after:bg-silver/50 hover:text-pearl hover:after:scale-x-100 active:text-silver"
       }`}
     >
       {tab.label}
@@ -187,27 +190,21 @@ function SeasonPicker({ season }: { season: string }) {
   const options = SEASONS.some((s) => s.id === season) ? SEASONS : [...SEASONS, { id: season, label: seasonLabel(season) }];
 
   return (
-    <label className="flex items-center gap-2 text-sm text-neutral-400">
-      Season
-      <select
-        value={season}
-        // A new season drops the other params: episode 7 of one season isn't episode 7 of another.
-        onChange={(e) => router.push(withSeason(pathname, e.target.value))}
-        className={`min-h-11 rounded-md border border-neutral-700 bg-neutral-900 px-3 text-sm text-neutral-100 hover:border-neutral-500 md:min-h-9 ${FOCUS}`}
-      >
-        {options.map((s) => (
-          <option key={s.id} value={s.id}>
-            {s.label.replace(/^Season /, "")}
-          </option>
-        ))}
-      </select>
-    </label>
+    <Select
+      label="Season"
+      inline
+      compact
+      value={season}
+      options={options.map((s) => ({ value: s.id, label: s.label }))}
+      // A new season drops the other params: episode 7 of one season isn't episode 7 of another.
+      onChange={(id) => router.push(withSeason(pathname, id))}
+    />
   );
 }
 
 function AppsMenu() {
   return (
-    <Popover
+    <Menu
       label="Apps"
       trigger={
         <>
@@ -215,18 +212,18 @@ function AppsMenu() {
           <span className="text-sm font-medium">Apps</span>
         </>
       }
-      triggerClassName={`flex min-h-11 items-center gap-2 rounded-md px-3 text-neutral-300 hover:bg-neutral-800 hover:text-neutral-100 active:bg-neutral-700 aria-expanded:bg-neutral-800 ${FOCUS}`}
+      triggerClassName={`flex min-h-11 items-center gap-2 rounded-md px-3 text-silver transition-colors hover:bg-silver/10 hover:text-pearl active:bg-silver/15 aria-expanded:bg-silver/10 ${FOCUS}`}
     >
       <p className="px-3 pt-1.5 pb-1 text-xs font-semibold tracking-[0.12em] text-silver-dim uppercase">Armchair Judge</p>
       <span aria-current="page" className="flex min-h-11 items-center justify-between gap-3 rounded-md px-3 text-sm text-gold-light">
         Dancing with the Stars
         <span className="text-xs text-silver-dim">You&apos;re here</span>
       </span>
-      <a href={HUB_URL} className={`${PANEL_ITEM} justify-between gap-3`}>
+      <MenuItem href={HUB_URL} className="justify-between">
         All shows
         <ArrowIcon />
-      </a>
-    </Popover>
+      </MenuItem>
+    </Menu>
   );
 }
 
@@ -236,35 +233,25 @@ function AccountMenu() {
   const me = useMe();
 
   return (
-    <Popover
+    <Menu
       label="Account"
       trigger={
         me ? (
           <Avatar name={me.name} email={me.email} picture={me.picture} />
         ) : (
-          <span className="size-9 rounded-full bg-neutral-800" />
+          <span className="size-9 rounded-full skeleton" />
         )
       }
-      triggerClassName={`flex size-11 items-center justify-center rounded-full hover:bg-neutral-800 active:bg-neutral-700 ${FOCUS}`}
+      triggerClassName={`flex size-11 items-center justify-center rounded-full transition-colors hover:bg-silver/10 active:bg-silver/15 aria-expanded:bg-silver/10 ${FOCUS}`}
     >
       {me && (
-        <p className="truncate border-b border-neutral-800 px-3 pt-1.5 pb-2.5 text-sm font-medium text-neutral-100">
+        <p className="truncate border-b border-silver/10 px-3 pt-1.5 pb-2.5 text-sm font-medium text-pearl">
           {me.name ?? me.email}
         </p>
       )}
-      <Link href="/profile/" className={PANEL_ITEM}>
-        Profile
-      </Link>
-      <button
-        type="button"
-        onClick={() => {
-          void signOut().then(() => router.push("/"));
-        }}
-        className={PANEL_ITEM}
-      >
-        Sign out
-      </button>
-    </Popover>
+      <MenuItem href="/profile/">Profile</MenuItem>
+      <MenuItem onSelect={() => void signOut().then(() => router.push("/"))}>Sign out</MenuItem>
+    </Menu>
   );
 }
 

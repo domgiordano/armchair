@@ -20,7 +20,7 @@ import {
   useAction,
   useLoad,
 } from "@/components/friends/parts";
-import { LoadError } from "@/components/load-error";
+import { ErrorState } from "@/components/ui/states";
 import {
   createGroup,
   deleteGroup,
@@ -53,7 +53,7 @@ export function GroupsPanel({ friends }: { friends: Contact[] }) {
   };
 
   if (groups.kind === "loading") return <p className="text-neutral-400">Loading your groups...</p>;
-  if (groups.kind === "error") return <LoadError what="your groups" message={groups.message} retry={reload} />;
+  if (groups.kind === "error") return <ErrorState what="your groups" message={groups.message} retry={reload} />;
 
   const group = groups.value.find((g) => g.id === selected);
   if (group) {
