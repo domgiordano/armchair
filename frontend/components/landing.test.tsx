@@ -48,11 +48,10 @@ beforeEach(() => {
 afterEach(() => {
   vi.useRealTimers();
   vi.clearAllMocks();
-  sessionStorage.clear();
 });
 
 describe("Landing", () => {
-  it("plays the intro into the landing, once per session", async () => {
+  it("plays the intro into the landing on every visit", async () => {
     const first = render(<Home />);
     expect(await screen.findByRole("button", { name: "Skip intro" })).toBeTruthy();
     expect(screen.queryByRole("heading", HEADLINE)).toBeNull();
@@ -66,18 +65,14 @@ describe("Landing", () => {
     first.unmount();
 
     render(<Home />);
-    expect(await screen.findByRole("heading", HEADLINE)).toBeTruthy();
-    expect(screen.queryByRole("button", { name: "Skip intro" })).toBeNull();
+    expect(await screen.findByRole("button", { name: "Skip intro" })).toBeTruthy();
+    expect(screen.queryByRole("heading", HEADLINE)).toBeNull();
   });
 
-  it("skips straight to the landing, and stays skipped", async () => {
-    const first = render(<Home />);
+  it("skips straight to the landing", async () => {
+    render(<Home />);
     fireEvent.click(await screen.findByRole("button", { name: "Skip intro" }));
     expect(screen.getByRole("heading", HEADLINE)).toBeTruthy();
-    first.unmount();
-
-    render(<Home />);
-    expect(await screen.findByRole("heading", HEADLINE)).toBeTruthy();
   });
 
   it("never plays the intro under reduced motion", async () => {
