@@ -73,8 +73,8 @@ data "aws_iam_policy_document" "deploy" {
     resources = [module.web.cloudfront_distribution_arn, module.hub.cloudfront_distribution_arn]
   }
 
-  # The frontend build bakes these into the bundle. xomware-infrastructure owns
-  # the Cognito ones (cognito_armchair.tf, cognito_armchair_google.tf).
+  # The frontend and hub builds bake these into the bundle. xomware-infrastructure
+  # owns the Cognito ones (cognito_armchair.tf, cognito_armchair_google.tf).
   statement {
     sid     = "ReadCognitoConfig"
     effect  = "Allow"
@@ -84,6 +84,7 @@ data "aws_iam_policy_document" "deploy" {
         "user-pool-id",
         "hosted-ui-domain",
         "clients/dwts-id",
+        "clients/hub-id",
       ] : "arn:aws:ssm:${var.aws_region}:${local.account_id}:parameter/armchair/shared/cognito/${name}"
     ]
   }
