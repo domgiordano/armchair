@@ -1270,7 +1270,9 @@
         "phaedra-parks#1",
         "danny-amendola#1",
         "dwight-howard#1",
-        "ilona-maher#1"
+        "ilona-maher#1",
+        "danny-amendola+dwight-howard+phaedra-parks+stephen-nedoroscik#1",
+        "chandler-kinney+ilona-maher+jenn-tran+joey-graziadei#1"
       ],
       "performances": [
         {
@@ -1417,7 +1419,7 @@
             "stephen-nedoroscik"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 24,
           "judges": [
             8,
@@ -1437,7 +1439,7 @@
             "joey-graziadei"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 27,
           "judges": [
             9,

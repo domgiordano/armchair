@@ -89,6 +89,13 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
   const styles = byStyle(dances);
   const pair = calls(dances);
   const couple = (key: string) => season.contestants.find((x) => x.id === key.slice(0, key.lastIndexOf("#")));
+  // A team dance's key names every member couple, "a+b+c#1", so no one couple matches it.
+  const team = (key: string) =>
+    key
+      .slice(0, key.lastIndexOf("#"))
+      .split("+")
+      .map((id) => season.contestants.find((x) => x.id === id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
+      .join(", ");
   const week = (ep: number) => {
     const e = season.episodes.find((x) => x.ep === ep);
     return e ? episodeLabel(e, season.episodes) : `Episode ${ep}`;
@@ -126,6 +133,7 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
               tone="best"
               dance={pair.best}
               couple={couple(pair.best.key)}
+              name={team(pair.best.key)}
               when={week(pair.best.ep)}
             />
             {pair.worst !== pair.best && (
@@ -134,6 +142,7 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
                 tone="worst"
                 dance={pair.worst}
                 couple={couple(pair.worst.key)}
+                name={team(pair.worst.key)}
                 when={week(pair.worst.ep)}
               />
             )}
@@ -149,10 +158,12 @@ interface CallProps {
   tone: "best" | "worst";
   dance: ProfileDance;
   couple: Contestant | undefined;
+  // Shown when no one couple matches: a team dance.
+  name: string;
   when: string;
 }
 
-function Call({ title, tone, dance, couple, when }: CallProps) {
+function Call({ title, tone, dance, couple, name, when }: CallProps) {
   return (
     <li
       className={`flex flex-col gap-2 rounded-xl border p-4 ${tone === "best" ? "border-amber-300/50 bg-amber-300/[0.06]" : "border-neutral-700"}`}
@@ -165,7 +176,7 @@ function Call({ title, tone, dance, couple, when }: CallProps) {
       <div className="flex items-center gap-3">
         {couple && <CoupleAvatars members={couple.members} size={36} />}
         <p className="min-w-0 font-medium">
-          {couple ? coupleName(couple) : dance.key.slice(0, dance.key.lastIndexOf("#"))}
+          {couple ? coupleName(couple) : name}
           <span className="block text-sm font-normal text-neutral-400">
             {[dance.style, when].filter(Boolean).join(" · ")}
           </span>

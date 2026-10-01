@@ -1686,7 +1686,9 @@
         "milo-manheim#1",
         "demarcus-ware#1",
         "alexis-ren#1",
-        "bobby-bones#1"
+        "bobby-bones#1",
+        "bobby-bones+evanna-lynch+john-schneider+milo-manheim#1",
+        "alexis-ren+demarcus-ware+joe-amabile+juan-pablo-di-pace#1"
       ],
       "performances": [
         {
@@ -1833,7 +1835,7 @@
             "milo-manheim"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 29,
           "judges": [
             10,
@@ -1853,7 +1855,7 @@
             "juan-pablo-di-pace"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 26,
           "judges": [
             9,

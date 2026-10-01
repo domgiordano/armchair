@@ -341,7 +341,7 @@ def build(season: int, rev: dict, shots: dict[str, dict | None]) -> tuple[dict, 
             perfs = [p for p in keep if p["night"] == night]
             if not perfs:
                 continue
-            solo = [p for p in perfs if p["rateable"]]
+            solo = [p for p in perfs if len(p["contestants"]) == 1]
             panel = seat((solo or perfs)[0]["panel"])
             episodes.append(
                 {
@@ -356,7 +356,10 @@ def build(season: int, rev: dict, shots: dict[str, dict | None]) -> tuple[dict, 
                     "dancesPerCouple": max(
                         Counter(p["contestants"][0] for p in solo).values(), default=0
                     ),
-                    "rateableKeys": [f"{p['contestants'][0]}#{p['n']}" for p in solo],
+                    # A team dance is keyed by every member, as the poller writes it.
+                    "rateableKeys": [
+                        f"{'+'.join(p['contestants'])}#{p['n']}" for p in perfs if p["rateable"]
+                    ],
                     "performances": [
                         {
                             "contestants": p["contestants"],
@@ -386,7 +389,7 @@ def build(season: int, rev: dict, shots: dict[str, dict | None]) -> tuple[dict, 
     last_ep: dict[str, int] = {}
     for e in episodes:
         for p in e["performances"]:
-            if p["rateable"]:
+            if len(p["contestants"]) == 1:
                 last_ep[p["contestants"][0]] = e["ep"]
     contestants = []
     for c in cast:

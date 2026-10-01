@@ -1218,6 +1218,8 @@
       ],
       "dancesPerCouple": 1,
       "rateableKeys": [
+        "bristol-palin+kyle-massey+rick-fox#1",
+        "brandy+jennifer-grey+kurt-warner#1",
         "kyle-massey#1",
         "kurt-warner#1",
         "bristol-palin#1",
@@ -1233,7 +1235,7 @@
             "rick-fox"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "panel": [
             "carrie-ann-inaba",
             "len-goodman",
@@ -1257,7 +1259,7 @@
             "kurt-warner"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "panel": [
             "carrie-ann-inaba",
             "len-goodman",

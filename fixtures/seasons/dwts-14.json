@@ -1305,7 +1305,9 @@
         "roshon-fegan#1",
         "donald-driver#1",
         "maria-menounos#1",
-        "jaleel-white#1"
+        "jaleel-white#1",
+        "jaleel-white+katherine-jenkins+maria-menounos+roshon-fegan#1",
+        "melissa-gilbert+william-levy+donald-driver#1"
       ],
       "performances": [
         {
@@ -1435,7 +1437,7 @@
             "roshon-fegan"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 27,
           "judges": [
             10,
@@ -1454,7 +1456,7 @@
             "donald-driver"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 26,
           "judges": [
             9,

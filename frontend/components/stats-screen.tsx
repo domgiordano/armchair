@@ -98,6 +98,13 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
   const rank = stats.others.filter((o) => o.mae < (mine.mae ?? 0)).length + 1;
   const short = (ep: number) => label(ep).replace("Week ", "W").replace(", night ", "/");
   const couple = (key: string) => season.contestants.find((x) => x.id === key.split("#")[0]);
+  // A team dance's key names every member couple, "a+b+c#1", so no one couple matches it.
+  const team = (key: string) =>
+    key
+      .slice(0, key.lastIndexOf("#"))
+      .split("+")
+      .map((id) => season.contestants.find((x) => x.id === id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
+      .join(", ");
   const { closest, furthest } = extremes(stats.dances);
 
   return (
@@ -155,8 +162,8 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
         </Card>
 
         <Card id="calls" title="Best calls and biggest misses">
-          <Calls title="Best calls" dances={closest} couple={couple} short={short} />
-          {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} couple={couple} short={short} />}
+          <Calls title="Best calls" dances={closest} couple={couple} team={team} short={short} />
+          {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} couple={couple} team={team} short={short} />}
         </Card>
       </div>
     </>
@@ -184,11 +191,13 @@ function Calls({
   title,
   dances,
   couple,
+  team,
   short,
 }: {
   title: string;
   dances: Dance[];
   couple: (key: string) => Contestant | undefined;
+  team: (key: string) => string;
   short: (ep: number) => string;
 }) {
   return (
@@ -201,7 +210,7 @@ function Calls({
             <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
               {c && <CoupleAvatars members={c.members} size={32} />}
               <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate">{c ? coupleName(c) : d.key.split("#")[0]}</span>
+                <span className="truncate">{c ? coupleName(c) : team(d.key)}</span>
                 <span className="truncate text-xs text-neutral-400">
                   {short(d.ep)}
                   {d.style && ` · ${d.style}`}

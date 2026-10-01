@@ -1732,7 +1732,9 @@
         "danielle-fishel#1",
         "elaine-hendrix#1",
         "jordan-chiles#1",
-        "robert-irwin#1"
+        "robert-irwin#1",
+        "danielle-fishel+whitney-leavitt+jordan-chiles+dylan-efron#1",
+        "andy-richter+robert-irwin+alix-earle+elaine-hendrix#1"
       ],
       "performances": [
         {
@@ -1887,7 +1889,7 @@
             "dylan-efron"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 40,
           "judges": [
             10,
@@ -1908,7 +1910,7 @@
             "elaine-hendrix"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 38,
           "judges": [
             9,

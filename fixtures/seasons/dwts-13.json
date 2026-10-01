@@ -1214,7 +1214,9 @@
         "nancy-grace#1",
         "rob-kardashian#1",
         "ricki-lake#1",
-        "hope-solo#1"
+        "hope-solo#1",
+        "david-arquette+j-r-martinez+nancy-grace#1",
+        "hope-solo+ricki-lake+rob-kardashian#1"
       ],
       "performances": [
         {
@@ -1326,7 +1328,7 @@
             "nancy-grace"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 23,
           "judges": [
             8,
@@ -1345,7 +1347,7 @@
             "rob-kardashian"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 26,
           "judges": [
             9,

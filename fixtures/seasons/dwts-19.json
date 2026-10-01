@@ -1474,7 +1474,9 @@
         "michael-waltrip#1",
         "janel-parrish#1",
         "alfonso-ribeiro#1",
-        "sadie-robertson#1"
+        "sadie-robertson#1",
+        "bethany-mota+janel-parrish+lea-thompson+michael-waltrip#1",
+        "alfonso-ribeiro+antonio-sabato-jr+sadie-robertson+tommy-chong#1"
       ],
       "performances": [
         {
@@ -1629,7 +1631,7 @@
             "michael-waltrip"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 36,
           "judges": [
             9,
@@ -1650,7 +1652,7 @@
             "tommy-chong"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 32,
           "judges": [
             8,

@@ -1364,7 +1364,9 @@
         "nene-leakes#1",
         "charlie-white#1",
         "candace-cameron-bure#1",
-        "meryl-davis#1"
+        "meryl-davis#1",
+        "charlie-white+james-maslow+nene-leakes#1",
+        "amy-purdy+candace-cameron-bure+danica-mckellar+meryl-davis#1"
       ],
       "performances": [
         {
@@ -1500,7 +1502,7 @@
             "nene-leakes"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 35,
           "judges": [
             8,
@@ -1521,7 +1523,7 @@
             "meryl-davis"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 39,
           "judges": [
             10,
@@ -1557,7 +1559,10 @@
         "meryl-davis#1",
         "candace-cameron-bure#1",
         "james-maslow#1",
-        "amy-purdy#1"
+        "amy-purdy#1",
+        "danica-mckellar+meryl-davis#1",
+        "candace-cameron-bure+charlie-white#1",
+        "amy-purdy+james-maslow#1"
       ],
       "performances": [
         {
@@ -1674,7 +1679,7 @@
             "meryl-davis"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 34,
           "judges": [
             8,
@@ -1693,7 +1698,7 @@
             "charlie-white"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 38,
           "judges": [
             9,
@@ -1712,7 +1717,7 @@
             "james-maslow"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 39,
           "judges": [
             9,

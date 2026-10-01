@@ -1522,7 +1522,9 @@
         "mya#1",
         "aaron-carter#1",
         "kelly-osbourne#1",
-        "joanna-krupa#1"
+        "joanna-krupa#1",
+        "aaron-carter+mark-dacascos+michael-irvin+mya#1",
+        "donny-osmond+joanna-krupa+kelly-osbourne#1"
       ],
       "performances": [
         {
@@ -1652,7 +1654,7 @@
             "mya"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 24,
           "judges": [
             8,
@@ -1671,7 +1673,7 @@
             "kelly-osbourne"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 28,
           "judges": [
             9,

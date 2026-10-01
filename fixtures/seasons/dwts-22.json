@@ -1371,7 +1371,9 @@
         "wanya-morris#1",
         "ginger-zee#1",
         "von-miller#1",
-        "paige-vanzant#1"
+        "paige-vanzant#1",
+        "antonio-brown+nyle-dimarco+von-miller+wanya-morris#1",
+        "ginger-zee+jodie-sweetin+kim-fields+paige-vanzant#1"
       ],
       "performances": [
         {
@@ -1518,7 +1520,7 @@
             "wanya-morris"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 28,
           "judges": [
             9,
@@ -1538,7 +1540,7 @@
             "paige-vanzant"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 25,
           "judges": [
             8,

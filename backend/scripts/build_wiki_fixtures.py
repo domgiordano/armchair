@@ -114,7 +114,7 @@ def team(cids, total, judges):
         "night": 1,
         "contestants": cids,
         "n": 1,
-        "rateable": False,
+        "rateable": True,
         "total": total,
         "judges": list(judges),
         "bonus": None,

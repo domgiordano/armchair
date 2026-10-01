@@ -1358,7 +1358,9 @@
         "nicole-scherzinger#1",
         "pamela-anderson#1",
         "niecy-nash#1",
-        "evan-lysacek#1"
+        "evan-lysacek#1",
+        "chad-ochocinco+nicole-scherzinger+pamela-anderson#1",
+        "erin-andrews+evan-lysacek+niecy-nash#1"
       ],
       "performances": [
         {
@@ -1470,7 +1472,7 @@
             "pamela-anderson"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 27,
           "judges": [
             9,
@@ -1489,7 +1491,7 @@
             "niecy-nash"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 24,
           "judges": [
             8,

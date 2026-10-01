@@ -1462,7 +1462,9 @@
         "maurice-greene#1",
         "cody-linley#1",
         "lance-bass#1",
-        "brooke-burke#1"
+        "brooke-burke#1",
+        "cody-linley+lance-bass+susan-lucci#1",
+        "brooke-burke+maurice-greene+warren-sapp#1"
       ],
       "performances": [
         {
@@ -1574,7 +1576,7 @@
             "susan-lucci"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 20,
           "judges": [
             6,
@@ -1593,7 +1595,7 @@
             "warren-sapp"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 29,
           "judges": [
             10,

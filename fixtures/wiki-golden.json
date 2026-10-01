@@ -2424,7 +2424,7 @@
               "dylan"
             ],
             "n": 1,
-            "rateable": false,
+            "rateable": true,
             "total": 40,
             "judges": [
               10,
@@ -2449,7 +2449,7 @@
               "elaine"
             ],
             "n": 1,
-            "rateable": false,
+            "rateable": true,
             "total": 38,
             "judges": [
               9,

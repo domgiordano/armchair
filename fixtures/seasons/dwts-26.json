@@ -297,7 +297,9 @@
         "tonya-harding#1",
         "mirai-nagasu#1",
         "arike-ogunbowale#1",
-        "adam-rippon#1"
+        "adam-rippon#1",
+        "chris-mazdzer+josh-norman+kareem-abdul-jabbar+tonya-harding#1",
+        "adam-rippon+arike-ogunbowale+jennie-finch-daigle+mirai-nagasu#1"
       ],
       "performances": [
         {
@@ -452,7 +454,7 @@
             "tonya-harding"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 33,
           "judges": [
             8,
@@ -473,7 +475,7 @@
             "mirai-nagasu"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 37,
           "judges": [
             9,
