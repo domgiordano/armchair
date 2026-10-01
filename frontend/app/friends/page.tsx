@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
-import { FriendsScreen } from "@/components/friends/friends-screen";
+import { FriendsRoute } from "@/components/social/friend-link";
 
 export const metadata: Metadata = {
-  title: "Friends & Groups",
+  title: "Friends",
 };
 
-// The tab, group and invite code are query params, so the static HTML is a fallback until the client renders.
+// The invite code is a query param, so the static HTML is a fallback until the client renders.
 export default function FriendsPage() {
   return (
     <Suspense>
-      <FriendsScreen />
+      <FriendsRoute />
     </Suspense>
   );
 }

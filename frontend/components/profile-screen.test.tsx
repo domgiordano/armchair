@@ -22,15 +22,30 @@ vi.mock("@/lib/api/profile", () => ({
   uploadAvatar: vi.fn(),
 }));
 vi.mock("@/lib/api/couples", () => ({ getFavorites: vi.fn() }));
-vi.mock("@/lib/api/social", () => ({ getFriends: vi.fn() }));
-vi.mock("@/lib/api/groups", () => ({ getMyGroups: vi.fn() }));
+vi.mock("@/lib/api/social", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/api/social")>()),
+  getFriends: vi.fn(),
+  addFriend: vi.fn(),
+  acceptFriend: vi.fn(),
+  removeFriend: vi.fn(),
+  setBlocked: vi.fn(),
+  mySub: vi.fn(),
+  getNotifications: vi.fn(),
+  markNotificationsRead: vi.fn(),
+}));
+vi.mock("@/lib/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+  getMyGroups: vi.fn(),
+  getGroupDetails: vi.fn(),
+}));
 
 import { ApiError } from "@/lib/api/client";
 import { getFavorites, type CoupleSummary, type Performers } from "@/lib/api/couples";
-import { getMyGroups } from "@/lib/api/groups";
+import { getGroupDetails, getMyGroups } from "@/lib/api/groups";
 import { getMyProfile, getProfile, updateProfile, uploadAvatar, type Detail, type MyProfile, type Profile } from "@/lib/api/profile";
 import { getSeason, type Member, type Season } from "@/lib/api/show";
-import { getFriends } from "@/lib/api/social";
+import { acceptFriend, addFriend, getFriends, getNotifications, mySub, removeFriend } from "@/lib/api/social";
+import { resetNotifications } from "@/lib/social/notifications";
 import { choose } from "./ui/select-test-utils";
 import { ProfileScreen } from "./profile-screen";
 
@@ -196,6 +211,21 @@ beforeEach(() => {
     blocked: [],
   });
   vi.mocked(getMyGroups).mockResolvedValue([{ id: "g1", name: "Family", inviteCode: "i", members: [] }]);
+  vi.mocked(getGroupDetails).mockResolvedValue([
+    {
+      id: "g1",
+      name: "Family",
+      inviteCode: "i",
+      owner: "me",
+      approval: false,
+      members: [{ sub: "me", name: "Test Viewer", picture: null, avatarKind: "initials" }],
+      invited: [],
+      requests: [],
+    },
+  ]);
+  vi.mocked(mySub).mockResolvedValue("me");
+  vi.mocked(getNotifications).mockResolvedValue({ items: [], unread: 0, next: null });
+  resetNotifications();
 });
 
 afterEach(() => {
@@ -216,9 +246,11 @@ describe("ProfileScreen, your own", () => {
     expect(getProfile).toHaveBeenCalledWith("dwts-35", null);
 
     const glance = screen.getByRole("list", { name: "At a glance" });
-    expect(within(glance).getByText("#2 of 14 · Season 35")).toBeTruthy();
-    expect(within(glance).getByRole("link", { name: "3 friends" }).getAttribute("href")).toMatch(/^\/friends\/?$/);
-    expect(within(glance).getByRole("link", { name: "2 groups" }).getAttribute("href")).toMatch(/^\/groups\/?$/);
+    expect(within(glance).getByRole("link", { name: "Rank #2 of 14, Season 35" }).textContent).toBe("#2of 14 · S35");
+    // The count follows your friends list once it lands.
+    expect(await within(glance).findByRole("button", { name: "1 friend" })).toBeTruthy();
+    expect(within(glance).getByRole("button", { name: "2 groups" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /Requests/ })).toBeNull();
     expect(screen.queryByRole("button", { name: "Sign out" })).toBeNull();
 
     const overview = screen.getByRole("tabpanel");
@@ -286,11 +318,56 @@ describe("ProfileScreen, your own", () => {
     expect(screen.queryByRole("combobox", { name: "Seasons" })).toBeNull();
   });
 
-  it("lists your friends and groups", async () => {
+  it("opens your friends and groups from the counts, as a sheet", async () => {
     render(<ProfileScreen />);
-    const panel = await openTab("Social");
-    expect((await within(panel).findByRole("link", { name: "Cara" })).getAttribute("href")).toMatch(/^\/profile\/?\?u=c$/);
-    expect(within(panel).getByText("Family")).toBeTruthy();
+    fireEvent.click(await screen.findByRole("button", { name: "1 friend" }));
+    const sheet = screen.getByRole("dialog", { name: "Your friends and groups" });
+    expect(within(sheet).getByRole("tab", { name: "Friends", selected: true })).toBeTruthy();
+    expect(within(sheet).getByRole("link", { name: "Cara" }).getAttribute("href")).toMatch(/^\/profile\/?\?u=c$/);
+    expect(within(sheet).getAllByRole("tab").map((t) => t.textContent)).toEqual(["Friends", "Groups", "Requests"]);
+
+    fireEvent.click(within(sheet).getByRole("tab", { name: "Groups" }));
+    const family = await within(sheet).findByRole("link", { name: /Family/ });
+    expect(family.getAttribute("href")).toMatch(/^\/groups\/?\?id=g1$/);
+    expect(await within(sheet).findByText(/1 member · Owner/)).toBeTruthy();
+    expect(within(sheet).getByRole("textbox", { name: "Start a group" })).toBeTruthy();
+  });
+
+  it("filters friends in the sheet and unfriends in place", async () => {
+    vi.mocked(removeFriend).mockResolvedValue({ status: null });
+    render(<ProfileScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "1 friend" }));
+    const sheet = screen.getByRole("dialog", { name: "Your friends and groups" });
+    fireEvent.change(within(sheet).getByRole("searchbox", { name: /Search friends/ }), { target: { value: "zz" } });
+    expect(within(sheet).queryByRole("button", { name: "Remove" })).toBeNull();
+    fireEvent.change(within(sheet).getByRole("searchbox", { name: /Search friends/ }), { target: { value: "car" } });
+    fireEvent.click(within(sheet).getByRole("button", { name: "Remove" }));
+    fireEvent.click(within(sheet).getByRole("button", { name: "Unfriend" }));
+    await vi.waitFor(() => expect(removeFriend).toHaveBeenCalledWith("c"));
+  });
+
+  it("shows a Requests pill that opens the requests list", async () => {
+    vi.mocked(getFriends).mockResolvedValue({
+      inviteCode: "x",
+      friends: [],
+      incoming: [{ sub: "d", name: "Dan Levy", picture: null, avatarKind: "initials", at: null }],
+      outgoing: [],
+      blocked: [],
+    });
+    vi.mocked(acceptFriend).mockResolvedValue({ status: "friend" });
+    render(<ProfileScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "Requests, 1 waiting" }));
+    const sheet = screen.getByRole("dialog", { name: "Your friends and groups" });
+    expect(within(sheet).getByRole("tab", { name: "Requests, 1 waiting", selected: true })).toBeTruthy();
+    fireEvent.click(within(sheet).getByRole("button", { name: "Accept" }));
+    await vi.waitFor(() => expect(acceptFriend).toHaveBeenCalledWith("d"));
+  });
+
+  it("opens a list straight away from ?sheet=", async () => {
+    search.value = new URLSearchParams({ sheet: "groups" });
+    render(<ProfileScreen />);
+    const sheet = await screen.findByRole("dialog", { name: "Your friends and groups" });
+    expect(within(sheet).getByRole("tab", { name: "Groups", selected: true })).toBeTruthy();
   });
 
   it("saves a new display name and returns to the heading", async () => {
@@ -404,9 +481,10 @@ describe("ProfileScreen, someone else's", () => {
     expect(await screen.findByRole("heading", { level: 1, name: "Dance Mom" })).toBeTruthy();
     expect(getProfile).toHaveBeenCalledWith("dwts-35", "b");
     expect(getMyProfile).not.toHaveBeenCalled();
-    expect(screen.getAllByRole("tab").map((t) => t.textContent)).toEqual(["Overview", "Favorites", "Accuracy", "History", "Social"]);
+    expect(screen.getAllByRole("tab").map((t) => t.textContent)).toEqual(["Overview", "Favorites", "Accuracy", "History"]);
     const glance = screen.getByRole("list", { name: "At a glance" });
-    expect(within(glance).getByText("1 friend")).toBeTruthy();
+    expect(within(glance).getByRole("button", { name: "1 friend" })).toBeTruthy();
+    expect(within(glance).getByRole("button", { name: "1 shared group" })).toBeTruthy();
     expect(screen.getByText(/accuracy shows once they've scored 5 dances/)).toBeTruthy();
     expect(screen.queryByRole("button", { name: "Edit display name" })).toBeNull();
     expect(screen.queryByRole("button", { name: "Change photo" })).toBeNull();
@@ -431,14 +509,53 @@ describe("ProfileScreen, someone else's", () => {
     expect(await within(favorites).findByText("From the 4 dances you've both scored.")).toBeTruthy();
   });
 
-  it("opens mutual friends and groups from the header", async () => {
+  it("opens mutual friends and shared groups from the header", async () => {
     search.value = new URLSearchParams({ u: "b" });
     render(<ProfileScreen />);
-    fireEvent.click(await screen.findByRole("button", { name: "1 mutual friend" }));
-    const panel = screen.getByRole("tabpanel");
-    expect(within(panel).getByRole("link", { name: "Cara" }).getAttribute("href")).toMatch(/^\/profile\/?\?u=c$/);
-    expect(within(panel).getByText("Family")).toBeTruthy();
-    expect(getFriends).not.toHaveBeenCalled();
+    fireEvent.click(await screen.findByRole("button", { name: "Friends with Cara" }));
+    const sheet = screen.getByRole("dialog", { name: "Dance Mom's friends and groups" });
+    expect(within(sheet).getByText("Dance Mom has 1 friend. You see the ones you share.")).toBeTruthy();
+    expect(within(sheet).getByRole("link", { name: "Cara" }).getAttribute("href")).toMatch(/^\/profile\/?\?u=c$/);
+    fireEvent.click(within(sheet).getByRole("tab", { name: "Shared groups" }));
+    expect(within(sheet).getByRole("link", { name: /Family/ }).getAttribute("href")).toMatch(/^\/groups\/?\?id=g1$/);
+  });
+
+  it("adds them as a friend, then shows the request as sent", async () => {
+    search.value = new URLSearchParams({ u: "b" });
+    vi.mocked(addFriend).mockResolvedValue({ status: "outgoing", user: { sub: "b", name: "Dance Mom", picture: null, avatarKind: "initials" } });
+    render(<ProfileScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "Add friend" }));
+    expect(await screen.findByRole("button", { name: "Requested" })).toBeTruthy();
+    expect(addFriend).toHaveBeenCalledWith({ sub: "b" });
+  });
+
+  it("accepts their request from the header and counts them as a friend", async () => {
+    search.value = new URLSearchParams({ u: "b" });
+    vi.mocked(getFriends).mockResolvedValue({
+      inviteCode: "x",
+      friends: [],
+      incoming: [{ sub: "b", name: "Dance Mom", picture: null, avatarKind: "initials", at: null }],
+      outgoing: [],
+      blocked: [],
+    });
+    vi.mocked(acceptFriend).mockResolvedValue({ status: "friend" });
+    render(<ProfileScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "Accept" }));
+    expect(await screen.findByRole("button", { name: "Friends" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "2 friends" })).toBeTruthy();
+  });
+
+  it("removes a friend from the Friends menu after confirming", async () => {
+    search.value = new URLSearchParams({ u: "c" });
+    vi.mocked(getProfile).mockResolvedValue({ ...THEIRS, sub: "c", name: "Cara" });
+    vi.mocked(removeFriend).mockResolvedValue({ status: null });
+    render(<ProfileScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "Friends" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "Remove friend" }));
+    const confirm = screen.getByRole("dialog", { name: "Remove Cara?" });
+    fireEvent.click(within(confirm).getByRole("button", { name: "Remove friend" }));
+    expect(await screen.findByRole("button", { name: "Add friend" })).toBeTruthy();
+    expect(removeFriend).toHaveBeenCalledWith("c");
   });
 
   it("shows their all-time numbers and recent episodes as counts", async () => {
@@ -452,7 +569,7 @@ describe("ProfileScreen, someone else's", () => {
     const all = await screen.findByRole("region", { name: "All-time" });
     expect(within(all).getByText("42")).toBeTruthy();
     expect(within(all).getByText(/Derek Hough/)).toBeTruthy();
-    expect(within(screen.getByRole("list", { name: "At a glance" })).getByText("#3 of 30 all-time")).toBeTruthy();
+    expect(within(screen.getByRole("list", { name: "At a glance" })).getByRole("link", { name: "Rank #3 of 30, all-time" })).toBeTruthy();
     const recent = screen.getByRole("region", { name: "Recent activity" });
     expect(within(recent).getByText("8 dances scored, 1 revealed")).toBeTruthy();
     expect(within(recent).getByRole("link").getAttribute("href")).toBe("/episode?season=dwts-35&ep=04");

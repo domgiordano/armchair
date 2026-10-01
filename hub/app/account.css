@@ -72,3 +72,56 @@ html[data-account] #page:has(#hero-title) {
     animation: none;
   }
 }
+
+/* Phone menu (components/account/nav-sheet.tsx): slides in from the left. */
+.nav-sheet[open] {
+  animation: nav-sheet 220ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.nav-sheet::backdrop {
+  background: rgb(2 8 30 / 0.75);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes nav-sheet {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+/* Leaderboard rows land in rank order. */
+.board-row {
+  animation: rise 500ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 40ms) backwards;
+}
+
+/* Chart bars and meters grow from their baseline; --d staggers them. */
+.grow-y {
+  transform-origin: bottom;
+  animation: grow-y 700ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms) backwards;
+}
+
+.grow-x {
+  transform-origin: left;
+  animation: grow-x 700ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms) backwards;
+}
+
+@keyframes grow-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-sheet[open],
+  .board-row,
+  .grow-y,
+  .grow-x {
+    animation: none;
+  }
+}

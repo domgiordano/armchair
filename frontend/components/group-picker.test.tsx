@@ -95,7 +95,7 @@ describe("GroupPicker", () => {
     render(<Harness />);
     const link = await screen.findByRole("link", { name: "Start a group to compare with friends" });
     // next/link drops the trailing slash outside a trailingSlash build.
-    expect(link.getAttribute("href")).toMatch(/^\/friends\/?\?tab=groups$/);
+    expect(link.getAttribute("href")).toMatch(/^\/profile\/?\?sheet=groups$/);
     expect(screen.queryByRole("combobox")).toBeNull();
   });
 

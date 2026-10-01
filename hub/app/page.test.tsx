@@ -1,3 +1,6 @@
+import { readdirSync } from "node:fs";
+import path from "node:path";
+
 import { render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -59,6 +62,27 @@ describe("landing", () => {
   it("keeps the About section Google's brand review reads", () => {
     render(<HomePage />);
     expect(screen.getByRole("heading", { name: /what it does with your Google account/ })).toBeTruthy();
+  });
+
+  it("counts the catalog it was built from", () => {
+    render(<HomePage />);
+    const numbers = screen.getByRole("region", { name: /Every season of Dancing with the Stars/ });
+    const seasons = readdirSync(path.join(process.cwd(), "..", "fixtures", "seasons")).filter((f) => f.endsWith(".json"));
+    const value = (label: string) => within(numbers).getByText(label).parentElement?.querySelector(".sr-only")?.textContent;
+    expect(value("Seasons covered")).toBe(String(seasons.length));
+    expect(Number(value("Judges' scores loaded")?.replace(/,/g, ""))).toBeGreaterThan(Number(value("Performances")?.replace(/,/g, "")));
+  });
+
+  it("footer links every app, the legal pages, GitHub and Xomware", () => {
+    render(<HomePage />);
+    const footer = screen.getByRole("contentinfo");
+    const href = (name: string) => within(footer).getByRole("link", { name }).getAttribute("href");
+    expect(within(footer).getByRole("link", { name: /^Dancing with the Stars/ }).getAttribute("href")).toBe("https://dwts.armchairjudge.com");
+    expect(within(footer).getByText("The Traitors").closest("a")).toBeNull();
+    expect(href("GitHub")).toBe("https://github.com/domgiordano/armchair");
+    expect(href("A Xomware app")).toBe("https://xomware.com");
+    expect(href("Photo credits")).toBe("https://dwts.armchairjudge.com/credits/");
+    expect(href("FAQ")).toBe("/#faq");
   });
 
   it("carries the not-affiliated line", () => {

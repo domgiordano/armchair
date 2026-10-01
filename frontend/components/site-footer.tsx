@@ -1,15 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { ChairMark } from "@/components/chair-mark";
+import { HUB_URL } from "@/components/apps-menu";
 import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
-import { DWTS_URL, GITHUB_URL, XOMWARE_URL } from "@/lib/links";
+import { FOCUS } from "@/lib/ui";
 
-// Kept in step with frontend/components/site-footer.tsx by hand: the two apps share no package.
+// Kept in step with hub/components/site-footer.tsx by hand: the two apps share no package.
 
-const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
+const GITHUB_URL = "https://github.com/domgiordano/armchair";
+const XOMWARE_URL = "https://xomware.com";
 
-const LINK = `group/link relative inline-flex min-h-11 items-center gap-2 rounded-md text-sm text-muted transition-colors hover:text-text motion-reduce:transition-none ${FOCUS}`;
+const LINK = `group/link relative inline-flex min-h-11 items-center gap-2 rounded-md text-sm text-silver-dim transition-colors hover:text-pearl motion-reduce:transition-none ${FOCUS}`;
 
 // The underline grows from the left on hover and focus.
 const UNDERLINE =
@@ -25,7 +27,7 @@ interface App {
 }
 
 const APPS: App[] = [
-  { show: "dwts", name: "Dancing with the Stars", href: DWTS_URL },
+  { show: "dwts", name: "Dancing with the Stars", href: "/" },
   { show: "traitors", name: "The Traitors" },
   { show: "survivor", name: "Survivor" },
 ];
@@ -54,7 +56,7 @@ function FooterLink({ href, children }: { href: string; children: ReactNode }) {
 function Column({ title, children }: { title: string; children: ReactNode }) {
   return (
     <nav aria-label={title}>
-      <h2 className="text-[11px] font-semibold tracking-[0.25em] text-text uppercase">{title}</h2>
+      <h2 className="text-[11px] font-semibold tracking-[0.25em] text-pearl uppercase">{title}</h2>
       <ul className="mt-3 flex flex-col">{children}</ul>
     </nav>
   );
@@ -64,10 +66,10 @@ function AppItem({ app }: { app: App }) {
   const icon = <ShowIcon show={app.show} size={28} locked={!app.href} />;
   if (!app.href) {
     return (
-      <li className={`${ICON_TRIGGER} flex min-h-11 items-center gap-2.5 text-sm text-muted/70`}>
+      <li className={`${ICON_TRIGGER} flex min-h-11 items-center gap-2.5 text-sm text-silver-dim/70`}>
         {icon}
         <span>{app.name}</span>
-        <span className="rounded-full border border-line px-2 py-0.5 text-[9px] font-bold tracking-[0.15em] whitespace-nowrap">
+        <span className="rounded-full border border-silver/20 px-2 py-0.5 text-[9px] font-bold tracking-[0.15em] whitespace-nowrap">
           SOON
         </span>
       </li>
@@ -75,42 +77,49 @@ function AppItem({ app }: { app: App }) {
   }
   return (
     <li>
-      <a href={app.href} className={`${LINK} ${ICON_TRIGGER} gap-2.5`}>
+      <Link href={app.href} className={`${LINK} ${ICON_TRIGGER} gap-2.5`}>
         {icon}
         <span className="relative">
           {app.name}
           <span aria-hidden="true" className={`${UNDERLINE} bottom-0`} />
         </span>
-        <span className="flex items-center gap-1 rounded-full bg-magenta/15 px-2 py-0.5 text-[9px] font-bold tracking-[0.15em] text-magenta">
+        <span className="flex items-center gap-1 rounded-full bg-gold/15 px-2 py-0.5 text-[9px] font-bold tracking-[0.15em] text-gold-light">
           <span className="size-1 rounded-full bg-current motion-safe:animate-pulse" aria-hidden="true" />
           LIVE
         </span>
-      </a>
+      </Link>
     </li>
   );
 }
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-line bg-night-2/40">
+    <footer className="relative overflow-hidden border-t border-silver/10 bg-ballroom/30">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-violet/70 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-gold/60 to-transparent"
       />
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-14 pb-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-16">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 pt-14 pb-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-16">
         <div className="flex flex-col items-start gap-4">
-          <Link href="/" className={`group flex min-h-11 items-center gap-3 rounded-lg ${FOCUS}`}>
-            <ChairMark className="h-10 w-10 transition-transform duration-300 group-hover:-rotate-6 motion-reduce:transition-none" />
-            <span className="font-bold tracking-tight">
+          <a href={HUB_URL} className={`group flex min-h-11 items-center gap-3 rounded-md ${FOCUS}`}>
+            <Image
+              src="/brand/mark-96.png"
+              alt=""
+              width={40}
+              height={40}
+              unoptimized
+              className="rounded-md transition-transform duration-300 group-hover:-rotate-6 motion-reduce:transition-none"
+            />
+            <span className="font-bold tracking-tight text-pearl">
               Armchair <span className="text-brand-gradient">Judge</span>
             </span>
-          </Link>
-          <p className="max-w-xs text-sm leading-relaxed text-muted">
+          </a>
+          <p className="max-w-xs text-sm leading-relaxed text-silver-dim">
             Score the show from your couch, then see how the real panel and everyone else scored it.
           </p>
           <a
             href={XOMWARE_URL}
-            className={`inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-xs font-semibold tracking-wide text-muted transition-colors hover:border-gold hover:text-gold motion-reduce:transition-none ${FOCUS}`}
+            className={`inline-flex min-h-11 items-center gap-2 rounded-full border border-silver/20 px-4 text-xs font-semibold tracking-wide text-silver-dim transition-colors hover:border-gold hover:text-gold-light motion-reduce:transition-none ${FOCUS}`}
           >
             A Xomware app
             <ArrowIcon />
@@ -124,7 +133,7 @@ export function SiteFooter() {
                 <AppItem key={app.show} app={app} />
               ))}
               <li>
-                <FooterLink href="https://armchairjudge.com">armchairjudge.com</FooterLink>
+                <FooterLink href={HUB_URL}>armchairjudge.com</FooterLink>
               </li>
             </Column>
           </div>
@@ -133,21 +142,21 @@ export function SiteFooter() {
               <FooterLink href="/#how">How it works</FooterLink>
             </li>
             <li>
-              <FooterLink href="/#faq">FAQ</FooterLink>
+              <FooterLink href={`${HUB_URL}/#faq`}>FAQ</FooterLink>
             </li>
             <li>
-              <FooterLink href={`${DWTS_URL}/discover/`}>Discover</FooterLink>
+              <FooterLink href="/discover/">Discover</FooterLink>
             </li>
           </Column>
           <Column title="Legal">
             <li>
-              <FooterLink href="/privacy/">Privacy</FooterLink>
+              <FooterLink href={`${HUB_URL}/privacy/`}>Privacy</FooterLink>
             </li>
             <li>
-              <FooterLink href="/terms/">Terms</FooterLink>
+              <FooterLink href={`${HUB_URL}/terms/`}>Terms</FooterLink>
             </li>
             <li>
-              <FooterLink href={`${DWTS_URL}/credits/`}>Photo credits</FooterLink>
+              <FooterLink href="/credits/">Photo credits</FooterLink>
             </li>
           </Column>
           <Column title="Open source">
@@ -161,12 +170,10 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-line/60">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-5 text-xs leading-relaxed text-muted sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+      <div className="border-t border-silver/10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs leading-relaxed text-silver-dim sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6">
           <p className="shrink-0">&copy; {YEAR} Armchair Judge &middot; An independent fan project</p>
-          <p className="sm:text-right">
-            Not affiliated with ABC, Disney, BBC, Peacock, CBS or the shows&rsquo; producers.
-          </p>
+          <p className="sm:text-right">Not affiliated with ABC, Disney or BBC Studios.</p>
         </div>
       </div>
     </footer>

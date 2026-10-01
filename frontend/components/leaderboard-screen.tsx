@@ -114,7 +114,7 @@ function Controls() {
           <EmptyState
             title={filter.failed ? "Couldn't load your groups" : "You're not in a group yet"}
             action={
-              <Link href="/groups/" className={button("primary", "sm")}>
+              <Link href="/profile/?sheet=groups" className={button("primary", "sm")}>
                 Start or join one
               </Link>
             }
@@ -173,7 +173,14 @@ function BoardFetcher({
   return <LeaderboardView board={load.board} judges={judges} />;
 }
 
-export function LeaderboardView({ board, judges }: { board: Leaderboard; judges: Judge[] }) {
+interface LeaderboardViewProps {
+  board: Leaderboard;
+  judges: Judge[];
+  /** The sticky "You" bar; a page that already shows your place leaves it off. */
+  you?: boolean;
+}
+
+export function LeaderboardView({ board, judges, you = true }: LeaderboardViewProps) {
   const { ranked, unranked, me, minDances } = board;
   const mine = (sub: string) => sub === me.sub;
   // Side by side only when there's a table to sit beside the podium.
@@ -249,7 +256,7 @@ export function LeaderboardView({ board, judges }: { board: Leaderboard; judges:
 
       {!split && waiting}
 
-      <YouBar me={me} minDances={minDances} judges={judges} />
+      {you && <YouBar me={me} minDances={minDances} judges={judges} />}
     </>
   );
 }

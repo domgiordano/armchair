@@ -29,7 +29,7 @@ vi.mock("aws-amplify/auth", () => ({
 vi.mock("@/lib/auth/amplify", () => ({ authConfigured: true }));
 
 const replace = vi.fn();
-vi.mock("next/navigation", () => ({ useRouter: () => ({ replace }) }));
+vi.mock("next/navigation", () => ({ useRouter: () => ({ replace }), usePathname: () => "/" }));
 
 const landing = <p>The landing</p>;
 

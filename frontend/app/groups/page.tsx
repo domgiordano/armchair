@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
-import { Redirect } from "@/components/redirect";
+import { GroupRoute } from "@/components/groups/group-screen";
 
 export const metadata: Metadata = {
-  title: "Groups",
+  title: "Group",
 };
 
-// Groups moved into Friends & Groups; old links and bookmarks land there.
+// The group id is a query param, so the static HTML is a fallback until the client renders.
 export default function GroupsPage() {
-  return <Redirect to="/friends/?tab=groups" />;
+  return (
+    <Suspense>
+      <GroupRoute />
+    </Suspense>
+  );
 }

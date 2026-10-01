@@ -9,6 +9,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { SignedIn } from "@/components/signed-in";
+import { groupHref } from "@/lib/api/groups";
 import type { Notification } from "@/lib/api/social";
 import { useMarkAllReadOnView, useNotifications } from "@/lib/social/notifications";
 import { button, TEXT_LINK } from "@/lib/ui";
@@ -119,7 +120,16 @@ function NotificationItem({ item, fresh, compact }: { item: Notification; fresh:
             {who}
           </UserLink>{" "}
           {text}
-          {group && <span className="font-semibold text-pearl"> {group}</span>}
+          {group && item.group ? (
+            <>
+              {" "}
+              <Link href={groupHref(item.group.id)} className={`rounded-sm font-semibold text-pearl underline-offset-4 hover:text-gold-light hover:underline ${FOCUS}`}>
+                {group}
+              </Link>
+            </>
+          ) : (
+            group && <span className="font-semibold text-pearl"> {group}</span>
+          )}
           <span className="mt-0.5 block text-xs text-silver-dim">
             <time dateTime={item.at}>{timeAgo(item.at)}</time>
             {fresh && <span className="sr-only">, new</span>}
