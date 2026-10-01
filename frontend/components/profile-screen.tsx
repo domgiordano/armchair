@@ -5,7 +5,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
-import { LoadError } from "@/components/load-error";
+import { PageLoader } from "@/components/disco-loader";
+import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyState, ErrorState } from "@/components/ui/states";
 import { NameEditor } from "@/components/name-editor";
 import { ProfilePhoto } from "@/components/profile-photo";
 import { ProfileSeason } from "@/components/profile-season";
@@ -31,8 +33,8 @@ export function ProfileScreen() {
 function ProfileRoute() {
   const other = useSearchParams().get("u");
   const load = useSeason();
-  if (load.kind === "loading") return <ProfileSkeleton />;
-  if (load.kind === "error") return <LoadError what="the season" message={load.message} retry={load.retry} />;
+  if (load.kind === "loading") return <PageLoader label="Loading the profile" />;
+  if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
   return other ? <OtherProfile key={other} season={load.season} sub={other} /> : <OwnProfile season={load.season} />;
 }
 
@@ -85,7 +87,7 @@ function OwnProfile({ season }: { season: Season }) {
   const router = useRouter();
 
   if (load.kind === "loading") return <ProfileSkeleton />;
-  if (load.kind === "error") return <LoadError what="your profile" message={load.message} retry={retry} />;
+  if (load.kind === "error") return <ErrorState what="your profile" message={load.message} retry={retry} />;
   const [me, profile] = load.data;
   const onChange = (next: MyProfile) => setData([next, profile]);
 
@@ -95,7 +97,7 @@ function OwnProfile({ season }: { season: Season }) {
         <ProfilePhoto me={me} onChange={onChange} />
         <div className="flex flex-col gap-0.5">
           <NameEditor me={me} onChange={onChange} />
-          <p className="text-sm text-neutral-400">{memberSince(me.createdAt)}</p>
+          <p className="text-sm text-silver-dim">{memberSince(me.createdAt)}</p>
         </div>
       </header>
 
@@ -126,30 +128,36 @@ function OtherProfile({ season, sub }: { season: Season; sub: string }) {
   if (load.kind === "error") {
     if (load.status === 404) {
       return (
-        <div className="flex flex-col items-start gap-3">
-          <h1 className="text-xl font-semibold">No one here</h1>
-          <p className="text-neutral-400">That profile link doesn&apos;t match anyone who has signed in.</p>
-          <Link href="/profile/" className={SECONDARY}>
-            Your profile
-          </Link>
-        </div>
+        <>
+          <h1 className="sr-only">No one here</h1>
+          <EmptyState
+            title="No one here"
+            action={
+              <Link href="/profile/" className={SECONDARY}>
+                Your profile
+              </Link>
+            }
+          >
+            That profile link doesn&apos;t match anyone who has signed in.
+          </EmptyState>
+        </>
       );
     }
-    return <LoadError what="this profile" message={load.message} retry={retry} />;
+    return <ErrorState what="this profile" message={load.message} retry={retry} />;
   }
   const profile = load.data;
 
   return (
     <div className={PAGE}>
       <header className="flex items-center gap-4 lg:flex-col lg:items-start">
-        <div className="rounded-full p-1 ring-1 ring-gold/50">
+        <div className="rounded-full bg-gradient-to-br from-gold-light via-gold-deep to-gold p-[3px]">
           <Avatar name={profile.name ?? "Member"} email="" picture={profile.picture} size={88} />
         </div>
         <div className="flex min-w-0 flex-col gap-0.5">
-          <h1 className="truncate text-2xl font-semibold tracking-tight">{profile.name ?? "Member"}</h1>
-          <p className="text-sm text-neutral-400">{memberSince(profile.memberSince)}</p>
+          <h1 className="truncate text-2xl font-semibold tracking-tight text-pearl">{profile.name ?? "Member"}</h1>
+          <p className="text-sm text-silver-dim">{memberSince(profile.memberSince)}</p>
           {profile.friendCount !== undefined && (
-            <p className="text-sm text-neutral-300 tabular-nums">
+            <p className="text-sm text-silver tabular-nums">
               {profile.friendCount} {profile.friendCount === 1 ? "friend" : "friends"}
             </p>
           )}
@@ -164,16 +172,16 @@ function CountLink({ href, label, count }: { href: string; label: string; count?
   return (
     <Link
       href={href}
-      className="group flex min-h-16 items-center justify-between gap-2 rounded-xl border border-neutral-800 px-4 py-3 hover:border-neutral-600 hover:bg-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 active:bg-neutral-800"
+      className="group flex min-h-16 items-center justify-between gap-2 rounded-xl border border-silver/10 bg-ballroom/45 px-4 py-3 transition-colors hover:border-gold/35 hover:bg-ballroom/70 focus-ring active:bg-ballroom"
     >
       <span className="flex flex-col">
-        {count !== undefined && <span className="text-xl font-semibold tabular-nums">{count}</span>}
-        <span className="text-sm text-neutral-400 group-hover:text-neutral-200">{label}</span>
+        {count !== undefined && <span className="text-xl font-semibold text-pearl tabular-nums">{count}</span>}
+        <span className="text-sm text-silver-dim group-hover:text-pearl">{label}</span>
       </span>
       <svg
         viewBox="0 0 20 20"
         aria-hidden="true"
-        className="size-4 text-neutral-500"
+        className="size-4 text-silver-dim transition-transform group-hover:translate-x-0.5 group-hover:text-gold-light"
         fill="none"
         stroke="currentColor"
         strokeWidth={1.8}
@@ -186,15 +194,15 @@ function CountLink({ href, label, count }: { href: string; label: string; count?
 
 function ProfileSkeleton() {
   return (
-    <div aria-busy="true" className="flex flex-col gap-6">
+    <div role="status" aria-busy="true" className="flex flex-col gap-6">
       <span className="sr-only">Loading the profile...</span>
-      <div className="size-28 rounded-full bg-neutral-800 motion-safe:animate-pulse" />
-      <div className="h-7 w-48 rounded-md bg-neutral-800 motion-safe:animate-pulse" />
+      <Skeleton className="size-28 rounded-full" />
+      <Skeleton className="h-7 w-48" />
       <div className="grid grid-cols-2 gap-3">
-        <div className="h-16 rounded-xl bg-neutral-900 motion-safe:animate-pulse" />
-        <div className="h-16 rounded-xl bg-neutral-900 motion-safe:animate-pulse" />
+        <Skeleton className="h-16 rounded-xl" />
+        <Skeleton className="h-16 rounded-xl" />
       </div>
-      <div className="h-40 rounded-xl bg-neutral-900 motion-safe:animate-pulse" />
+      <Skeleton className="h-40 rounded-xl" />
     </div>
   );
 }

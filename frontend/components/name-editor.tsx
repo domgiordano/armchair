@@ -3,7 +3,7 @@
 import { useRef, useState, type FormEvent } from "react";
 
 import { updateProfile, type MyProfile } from "@/lib/api/profile";
-import { PRIMARY, SECONDARY } from "@/lib/ui";
+import { INPUT, PRIMARY, SECONDARY } from "@/lib/ui";
 
 export const NAME_MIN = 2;
 export const NAME_MAX = 40;
@@ -54,13 +54,13 @@ export function NameEditor({ me, onChange }: NameEditorProps) {
   if (!editing) {
     return (
       <div className="flex min-w-0 items-center gap-1">
-        <h1 className="truncate text-2xl font-semibold tracking-tight">{me.name ?? "No name yet"}</h1>
+        <h1 className="truncate text-2xl font-semibold tracking-tight text-pearl">{me.name ?? "No name yet"}</h1>
         <button
           ref={edit}
           type="button"
           onClick={open}
           aria-label="Edit display name"
-          className="flex size-11 shrink-0 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 active:bg-neutral-700"
+          className="flex size-11 shrink-0 items-center justify-center rounded-full text-silver-dim transition-colors hover:bg-silver/10 hover:text-gold-light focus-ring active:bg-silver/15"
         >
           <PencilIcon />
         </button>
@@ -72,10 +72,10 @@ export function NameEditor({ me, onChange }: NameEditorProps) {
     <form
       onSubmit={(e) => void submit(e)}
       onKeyDown={(e) => e.key === "Escape" && !busy && close()}
-      className="flex flex-col gap-2"
+      className="flex flex-col gap-2 animate-pop-in"
       noValidate
     >
-      <label className="flex flex-col gap-1 text-sm text-neutral-300">
+      <label className="flex flex-col gap-1.5 text-sm text-silver-dim">
         Display name
         <input
           autoFocus
@@ -84,14 +84,14 @@ export function NameEditor({ me, onChange }: NameEditorProps) {
           maxLength={NAME_MAX}
           aria-describedby="name-help"
           aria-invalid={error !== null}
-          className="min-h-11 rounded-md border border-neutral-700 bg-neutral-900 px-3 text-base text-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 aria-invalid:border-amber-300"
+          className={INPUT}
         />
       </label>
-      <p id="name-help" className="text-xs text-neutral-400">
+      <p id="name-help" className="text-xs text-silver-dim">
         What friends see on the scorecard and leaderboards. {NAME_MIN} to {NAME_MAX} characters.
       </p>
       {error !== null && (
-        <p role="alert" className="text-sm text-amber-200">
+        <p role="alert" className="text-sm text-red-300">
           {error}
         </p>
       )}

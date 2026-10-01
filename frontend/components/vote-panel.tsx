@@ -14,7 +14,8 @@ import {
   votePhase,
   writeVotes,
 } from "@/lib/show/voting";
-import { BUTTON, PRIMARY } from "@/lib/ui";
+import { Badge } from "@/components/ui/badge";
+import { button, TEXT_LINK } from "@/lib/ui";
 
 interface VotePanelProps {
   episode: Episode;
@@ -30,16 +31,19 @@ export function VotePanel({ episode, tz, couples, now }: VotePanelProps) {
   if (phase === null || episode.start === null) return null;
 
   return (
-    <section aria-labelledby="vote-heading" className="flex flex-col gap-2">
-      <h2 id="vote-heading" className="text-lg font-semibold tracking-tight">
+    <section
+      aria-labelledby="vote-heading"
+      className="flex flex-col gap-3 rounded-xl border border-gold/25 bg-gradient-to-b from-gold/[0.06] to-transparent p-4"
+    >
+      <h2 id="vote-heading" className="text-lg font-semibold tracking-tight text-pearl">
         Vote
       </h2>
-      <div aria-live="polite" className="text-neutral-400">
+      <div aria-live="polite" className="text-sm leading-relaxed text-silver-dim">
         {phase === "before" &&
           `Voting opens at ${clockTime(episode.start)} Eastern and runs only during the live East Coast broadcast.`}
         {phase === "closed" && (
           <>
-            <p className="font-medium text-neutral-100">Voting is closed.</p>
+            <p className="font-medium text-pearl">Voting is closed.</p>
             <p>ABC only counts votes during the live East Coast broadcast.</p>
           </>
         )}
@@ -67,31 +71,31 @@ function VoteList({ ep, couples }: VoteListProps) {
 
   return (
     <>
-      <p className="text-neutral-400">
+      <p className="text-sm leading-relaxed text-silver-dim">
         Voting is open. Each tap opens Messages with the couple&apos;s keyword to {SMS_NUMBER}. ABC counts{" "}
         {MAX_VOTES} texts per couple, plus {MAX_VOTES} more at{" "}
         <a
           href={VOTE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-sm text-amber-300 underline underline-offset-2 hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          className={TEXT_LINK}
         >
           dwtsvote.abc.com
         </a>
         . The tally is kept on this device.
       </p>
-      <ul className="grid divide-y divide-neutral-800 md:grid-cols-2 md:gap-x-8 md:divide-y-0 xl:grid-cols-3">
+      <ul className="stagger grid divide-y divide-silver/10 md:grid-cols-2 md:gap-x-8 md:divide-y-0 xl:grid-cols-3">
         {couples.map((c) => {
           const celebrity = c.members.find((m) => m.role === "celebrity")?.name ?? c.id;
           const pro = c.members.find((m) => m.role === "pro")?.name;
           const sent = votes[c.id] ?? 0;
           return (
-            <li key={c.id} className="flex items-center gap-2 border-neutral-800 py-3 md:border-b">
+            <li key={c.id} className="flex items-center gap-2 border-silver/10 py-3 md:border-b">
               <CoupleAvatars members={c.members} size={32} />
               <div className="min-w-0 flex-1">
-                <p className="font-medium">{pro ? `${celebrity} & ${pro}` : celebrity}</p>
-                <p className="text-sm text-neutral-400">
-                  <span className="font-mono text-neutral-200">{c.keyword}</span>
+                <p className="font-medium text-pearl">{pro ? `${celebrity} & ${pro}` : celebrity}</p>
+                <p className="text-sm text-silver-dim">
+                  <span className="rounded bg-ink/60 px-1.5 py-0.5 font-mono text-xs text-gold-light">{c.keyword}</span>
                   {" · "}
                   <span>
                     {sent} of {MAX_VOTES} sent
@@ -103,20 +107,22 @@ function VoteList({ ep, couples }: VoteListProps) {
                   type="button"
                   onClick={() => change(c.id, -1)}
                   aria-label={`Undo one text for ${celebrity}`}
-                  className={`${BUTTON} text-neutral-300 hover:bg-neutral-800 active:bg-neutral-700`}
+                  className={button("ghost", "sm")}
                 >
                   Undo
                 </button>
               )}
               {sent < MAX_VOTES ? (
-                <a href={smsHref(c.keyword, userAgent)} onClick={() => change(c.id, 1)} className={PRIMARY}>
+                <a href={smsHref(c.keyword, userAgent)} onClick={() => change(c.id, 1)} className={button("primary", "sm")}>
                   Text{" "}
                   <span className="sr-only">
                     {c.keyword} to {SMS_NUMBER}
                   </span>
                 </a>
               ) : (
-                <span className="flex min-h-11 items-center px-3 text-sm text-neutral-400">Done</span>
+                <span className="flex min-h-11 items-center px-2">
+                  <Badge tone="gold">Done</Badge>
+                </span>
               )}
             </li>
           );

@@ -1,40 +1,34 @@
 import Link from "next/link";
 
+import { Select } from "@/components/ui/select";
 import type { GroupFilter } from "@/lib/show/group-filter";
-
-const LINK =
-  "rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300";
+import { button, TEXT_LINK } from "@/lib/ui";
 
 /** Everyone or one of the caller's groups. The server decides what either may show. */
 export function GroupPicker({ groups, failed, group, pick }: GroupFilter) {
-  if (failed) return <p className="text-sm text-neutral-400">Couldn&apos;t load your groups. Showing everyone.</p>;
+  if (failed) return <p className="text-sm text-silver-dim">Couldn&apos;t load your groups. Showing everyone.</p>;
   if (groups === null) return null;
   if (groups.length === 0) {
     return (
-      <Link href="/friends/?tab=groups" className={`${LINK} self-start`}>
+      <Link href="/friends/?tab=groups" className={`${TEXT_LINK} inline-flex min-h-11 items-center self-start`}>
         Start a group to compare with friends
       </Link>
     );
   }
 
   return (
-    <div className="flex items-end gap-3">
-      <label className="flex flex-1 flex-col gap-1 text-sm text-neutral-400">
-        Compare with
-        <select
-          value={group ?? ""}
-          onChange={(e) => pick(e.target.value || null)}
-          className="min-h-11 rounded-md border border-neutral-700 bg-neutral-900 px-3 text-base text-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-        >
-          <option value="">Everyone</option>
-          {groups.map((g) => (
-            <option key={g.id} value={g.id}>
-              {g.name} ({g.members.length})
-            </option>
-          ))}
-        </select>
-      </label>
-      <Link href="/friends/?tab=groups" className={`${LINK} self-center`}>
+    <div className="flex items-end gap-2">
+      <Select
+        label="Compare with"
+        className="flex-1"
+        value={group ?? ""}
+        options={[
+          { value: "", label: "Everyone" },
+          ...groups.map((g) => ({ value: g.id, label: `${g.name} (${g.members.length})` })),
+        ]}
+        onChange={(id) => pick(id || null)}
+      />
+      <Link href="/friends/?tab=groups" className={button("ghost", "sm")}>
         Groups
       </Link>
     </div>

@@ -51,7 +51,7 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
   return (
     <article
       aria-labelledby={headingId}
-      className="flex h-full flex-col gap-4 rounded-lg border border-neutral-800 bg-neutral-900 p-4"
+      className="flex h-full flex-col gap-4 rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] transition-colors hover:border-silver/20"
     >
       <div className="flex items-center gap-3">
         {team ? (
@@ -64,10 +64,10 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
           <CoupleAvatars members={faces} size={48} />
         )}
         <div className="flex min-w-0 flex-col">
-          <h3 id={headingId} className="font-semibold leading-tight">
+          <h3 id={headingId} className="leading-tight font-semibold text-pearl">
             {title}
           </h3>
-          {details.length > 0 && <p className="text-sm text-neutral-400">{details.join(" · ")}</p>}
+          {details.length > 0 && <p className="text-sm text-silver-dim">{details.join(" · ")}</p>}
         </div>
       </div>
       {!card.locked ? (
@@ -132,12 +132,10 @@ interface RowProps {
 function Row({ label, value, note, muted, strong }: RowProps) {
   return (
     <>
-      <dt className={strong ? "font-medium text-neutral-200" : "text-neutral-400"}>{label}</dt>
-      <dd
-        className={`text-right tabular-nums ${muted ? "text-neutral-500" : strong ? "font-semibold" : ""}`}
-      >
+      <dt className={strong ? "font-medium text-pearl" : "text-silver-dim"}>{label}</dt>
+      <dd className={`text-right tabular-nums ${muted ? "text-silver-dim/70" : strong ? "font-semibold text-pearl" : "text-silver"}`}>
         {value}
-        {note && <span className="ml-2 text-xs font-normal text-neutral-400">{note}</span>}
+        {note && <span className="ml-2 text-xs font-normal text-silver-dim">{note}</span>}
       </dd>
     </>
   );

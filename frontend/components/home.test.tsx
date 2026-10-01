@@ -69,7 +69,7 @@ describe("Home", () => {
     expect((await screen.findByRole("img", { name: "Ada Lovelace" })).textContent).toBe("AL");
 
     fireEvent.click(screen.getByRole("button", { name: "Account" }));
-    fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "Sign out" }));
     expect(signOut).toHaveBeenCalled();
   });
 });

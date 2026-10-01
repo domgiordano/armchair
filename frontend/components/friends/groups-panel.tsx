@@ -10,7 +10,6 @@ import {
   CopyLink,
   Empty,
   FOCUS,
-  INPUT,
   PersonRow,
   QUIET,
   SECTION_TITLE,
@@ -21,7 +20,11 @@ import {
   useAction,
   useLoad,
 } from "@/components/friends/parts";
-import { LoadError } from "@/components/load-error";
+import { Badge } from "@/components/ui/badge";
+import { Input, Toggle } from "@/components/ui/field";
+import { SkeletonList } from "@/components/ui/skeleton";
+import { EmptyState, ErrorState } from "@/components/ui/states";
+import { useToast } from "@/components/ui/toast";
 import {
   createGroup,
   deleteGroup,
@@ -34,7 +37,7 @@ import {
 } from "@/lib/api/groups";
 import { mySub, type Contact } from "@/lib/api/social";
 import { saveGroup } from "@/lib/show/group-filter";
-import { PRIMARY } from "@/lib/ui";
+import { button, PRIMARY } from "@/lib/ui";
 
 const NAME_MAX = 40;
 
@@ -53,22 +56,22 @@ export function GroupsPanel({ friends }: { friends: Contact[] }) {
     router.replace(`/friends/?${next}`, { scroll: false });
   };
 
-  if (groups.kind === "loading") return <p className="text-neutral-400">Loading your groups...</p>;
-  if (groups.kind === "error") return <LoadError what="your groups" message={groups.message} retry={reload} />;
+  if (groups.kind === "loading") return <SkeletonList label="Loading your groups" rows={3} row="h-16" />;
+  if (groups.kind === "error") return <ErrorState what="your groups" message={groups.message} retry={reload} />;
 
   const group = groups.value.find((g) => g.id === selected);
   // Phone: the list or one group. Desktop: the list stays beside the open group.
   return (
     <div className={`${SPLIT} gap-6`}>
       <div className={`flex-col gap-6 ${group ? "hidden lg:flex" : "flex"}`}>
-        <p className="text-sm text-neutral-400">
+        <p className="text-sm text-silver-dim">
           A group narrows every scorecard and leaderboard to the people in it, in any Armchair Judge show.
         </p>
         <NewGroup onCreated={(id) => (reload(), open(id))} />
         {groups.value.length === 0 ? (
           <Empty>You&apos;re not in any groups yet.</Empty>
         ) : (
-          <ul className="flex flex-col gap-2">
+          <ul className="stagger flex flex-col gap-2">
             {groups.value.map((g) => {
               const current = g.id === group?.id;
               return (
@@ -77,13 +80,13 @@ export function GroupsPanel({ friends }: { friends: Contact[] }) {
                     type="button"
                     aria-current={current ? "true" : undefined}
                     onClick={() => open(g.id)}
-                    className={`flex w-full items-center gap-3 rounded-lg border p-3 text-left hover:border-neutral-600 hover:bg-neutral-900 active:bg-neutral-800 ${FOCUS} ${
-                      current ? "border-gold/50 bg-ballroom" : "border-neutral-800"
+                    className={`group flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors hover:border-gold/35 hover:bg-ballroom/70 active:bg-ballroom ${FOCUS} ${
+                      current ? "border-gold/50 bg-ballroom" : "border-silver/10 bg-ballroom/45"
                     }`}
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-semibold text-neutral-100">{g.name}</p>
-                      <p className="text-xs text-neutral-500">
+                      <p className="truncate font-semibold text-pearl">{g.name}</p>
+                      <p className="text-xs text-silver-dim">
                         {g.members.length} {g.members.length === 1 ? "member" : "members"}
                         {g.requests.length > 0 && (
                           <span className="text-brand-magenta"> · {g.requests.length} waiting</span>
@@ -92,7 +95,7 @@ export function GroupsPanel({ friends }: { friends: Contact[] }) {
                     </div>
                     <span className="flex -space-x-2" aria-hidden="true">
                       {g.members.slice(0, 4).map((m) => (
-                        <span key={m.sub} className="rounded-full ring-2 ring-ink">
+                        <span key={m.sub} className="rounded-full ring-2 ring-ballroom">
                           <Avatar name={displayName(m)} email="" picture={m.picture} />
                         </span>
                       ))}
@@ -114,11 +117,13 @@ export function GroupsPanel({ friends }: { friends: Contact[] }) {
           back={() => open(null)}
         />
       ) : (
-        <p className="hidden rounded-xl border border-dashed border-neutral-700 px-6 py-16 text-center text-sm text-neutral-400 lg:block">
-          {groups.value.length === 0
-            ? "Start a group and it opens here."
-            : "Pick a group to see its members, invite friends and share its link."}
-        </p>
+        <div className="hidden lg:block">
+          <EmptyState>
+            {groups.value.length === 0
+              ? "Start a group and it opens here."
+              : "Pick a group to see its members, invite friends and share its link."}
+          </EmptyState>
+        </div>
       )}
     </div>
   );
@@ -138,28 +143,20 @@ function NewGroup({ onCreated }: { onCreated: (id: string) => void }) {
   };
 
   return (
-    <form onSubmit={submit} className="flex flex-col gap-2">
-      <label htmlFor="new-group" className="text-sm text-neutral-400">
-        Start a group
-      </label>
-      <div className="flex gap-2">
-        <input
-          id="new-group"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          maxLength={NAME_MAX}
-          placeholder="Family, work, the group chat..."
-          className={INPUT}
-        />
-        <button type="submit" disabled={busy !== null || !name.trim()} className={`${PRIMARY} shrink-0`}>
-          Create
-        </button>
-      </div>
-      {error && (
-        <p role="alert" className="text-sm text-amber-200">
-          Couldn&apos;t start the group: {error}
-        </p>
-      )}
+    <form onSubmit={submit}>
+      <Input
+        label="Start a group"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        maxLength={NAME_MAX}
+        placeholder="Family, work, the group chat..."
+        error={error && `Couldn't start the group: ${error}`}
+        action={
+          <button type="submit" disabled={busy !== null || !name.trim()} className={`${PRIMARY} shrink-0`}>
+            {busy ? "Creating..." : "Create"}
+          </button>
+        }
+      />
     </form>
   );
 }
@@ -181,26 +178,27 @@ function GroupDetailView({
   const inside = new Set([...group.members, ...group.invited].map((m) => m.sub));
   const invitable = friends.filter((f) => !inside.has(f.sub));
   const act = useAction();
+  const toast = useToast();
 
   const change = (name: string, fn: () => Promise<unknown>) => act.run(name, () => fn().then(reload));
 
   return (
     <article
       aria-labelledby="group-name"
-      className="flex flex-col gap-6 lg:rounded-xl lg:border lg:border-neutral-800 lg:bg-ballroom/40 lg:p-6"
+      className="flex flex-col gap-6 lg:rounded-xl lg:border lg:border-silver/10 lg:bg-ballroom/45 lg:p-6"
     >
       <div className="flex flex-col gap-2">
         <button type="button" onClick={back} className={`${QUIET} -ml-3 self-start lg:hidden`}>
           <Chevron flip /> All groups
         </button>
         <div className="flex items-center justify-between gap-3">
-          <h2 id="group-name" className="truncate text-lg font-semibold">
+          <h2 id="group-name" className="truncate text-xl font-semibold text-pearl">
             {group.name}
           </h2>
           <Link
             href="/episode/"
             onClick={() => saveGroup(group.id)}
-            className={`shrink-0 rounded-md text-sm text-neutral-400 underline underline-offset-4 hover:text-neutral-200 ${FOCUS}`}
+            className={`${button("secondary", "sm")} shrink-0`}
           >
             Scorecard
           </Link>
@@ -242,7 +240,10 @@ function GroupDetailView({
       <Section title="Members" count={group.members.length}>
         {group.members.map((m) => (
           <li key={m.sub}>
-            <Row person={m} detail={m.sub === group.owner ? "Owner" : m.sub === me ? "You" : undefined}>
+            <Row
+              person={m}
+              detail={m.sub === group.owner ? <Badge tone="gold">Owner</Badge> : m.sub === me ? "You" : undefined}
+            >
               {(a) =>
                 owner && m.sub !== me ? (
                   <ConfirmButton
@@ -258,7 +259,7 @@ function GroupDetailView({
         ))}
         {group.invited.map((m) => (
           <li key={m.sub}>
-            <PersonRow person={m} detail="Invited" />
+            <PersonRow person={m} detail={<Badge tone="muted">Invited</Badge>} />
           </li>
         ))}
       </Section>
@@ -268,7 +269,7 @@ function GroupDetailView({
         {invitable.length === 0 ? (
           <Empty>{friends.length === 0 ? "Add friends first, or share the group link below." : "All your friends are in."}</Empty>
         ) : (
-          <ul className="divide-y divide-neutral-800">
+          <ul className="stagger divide-y divide-silver/10">
             {invitable.map((f) => (
               <li key={f.sub}>
                 <Row person={f}>
@@ -289,25 +290,27 @@ function GroupDetailView({
         )}
       </div>
 
-      <div className="flex flex-col gap-3 rounded-lg border border-neutral-800 p-4">
+      <div className="flex flex-col gap-3 rounded-xl border border-silver/10 bg-ballroom/45 p-4">
         <CopyLink label="Group link" link={inviteLink(group.inviteCode)} />
         {owner ? (
-          <label className="flex min-h-11 items-center gap-3 text-sm text-neutral-300">
-            <input
-              type="checkbox"
-              checked={group.approval}
-              disabled={act.busy !== null}
-              onChange={(e) => void change("approval", () => manageGroup(group.id, { action: "approval", approval: e.target.checked }))}
-              className="size-5 accent-amber-300"
-            />
-            Approve people who join by link
-          </label>
+          <Toggle
+            label="Approve people who join by link"
+            checked={group.approval}
+            disabled={act.busy !== null}
+            onChange={(on) =>
+              void change("approval", () =>
+                manageGroup(group.id, { action: "approval", approval: on }).then(() =>
+                  toast(on ? "You'll approve new members" : "Anyone with the link joins"),
+                ),
+              )
+            }
+          />
         ) : (
-          group.approval && <p className="text-xs text-neutral-500">The owner approves people who join by link.</p>
+          group.approval && <p className="text-xs text-silver-dim">The owner approves people who join by link.</p>
         )}
       </div>
 
-      <div className="flex flex-col items-start gap-2 border-t border-neutral-800 pt-4">
+      <div className="flex flex-col items-start gap-2 border-t border-silver/10 pt-4">
         {owner ? (
           <ConfirmButton
             label="Delete group"
@@ -324,7 +327,7 @@ function GroupDetailView({
           />
         )}
         {act.error && (
-          <p role="alert" className="text-sm text-amber-200">
+          <p role="alert" className="text-sm text-red-300">
             {act.error}
           </p>
         )}
@@ -354,24 +357,26 @@ function Rename({ group, reload }: { group: GroupDetail; reload: () => void }) {
     });
   };
   return (
-    <form onSubmit={submit} className="flex flex-col gap-2">
-      <label htmlFor="rename-group" className="sr-only">
-        Group name
-      </label>
-      <div className="flex gap-2">
-        <input id="rename-group" value={name} onChange={(e) => setName(e.target.value)} maxLength={NAME_MAX} className={INPUT} />
-        <button type="submit" disabled={busy !== null || !name.trim()} className={SMALL_PRIMARY}>
-          Save
-        </button>
-        <button type="button" onClick={() => setEditing(false)} className={QUIET}>
-          Cancel
-        </button>
-      </div>
-      {error && (
-        <p role="alert" className="text-sm text-amber-200">
-          {error}
-        </p>
-      )}
+    <form onSubmit={submit} className="animate-pop-in">
+      <Input
+        label="Group name"
+        hideLabel
+        autoFocus
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        maxLength={NAME_MAX}
+        error={error}
+        action={
+          <>
+            <button type="submit" disabled={busy !== null || !name.trim()} className={`${PRIMARY} shrink-0`}>
+              Save
+            </button>
+            <button type="button" onClick={() => setEditing(false)} className={`${QUIET} min-h-11`}>
+              Cancel
+            </button>
+          </>
+        }
+      />
     </form>
   );
 }
@@ -380,9 +385,9 @@ function Section({ title, count, children }: { title: string; count: number; chi
   return (
     <div className="flex flex-col">
       <h3 className={SECTION_TITLE}>
-        {title} <span className="text-neutral-500 tabular-nums">{count}</span>
+        {title} <span className="text-gold tabular-nums">{count}</span>
       </h3>
-      <ul className="divide-y divide-neutral-800">{children}</ul>
+      <ul className="stagger divide-y divide-silver/10">{children}</ul>
     </div>
   );
 }
@@ -393,7 +398,7 @@ function Row({
   children,
 }: {
   person: Contact | GroupDetail["members"][number];
-  detail?: string;
+  detail?: ReactNode;
   children: (a: ReturnType<typeof useAction>) => ReactNode;
 }) {
   const a = useAction();
@@ -416,7 +421,7 @@ function Chevron({ flip = false }: { flip?: boolean }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={`shrink-0 text-neutral-500 ${flip ? "rotate-180" : ""}`}
+      className={`shrink-0 text-silver-dim transition-transform ${flip ? "rotate-180" : "group-hover:translate-x-0.5 group-hover:text-gold-light"}`}
     >
       <path d="m9 6 6 6-6 6" />
     </svg>

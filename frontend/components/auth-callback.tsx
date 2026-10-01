@@ -5,9 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import { Brand } from "@/components/brand";
 import { DiscoLoader } from "@/components/disco-loader";
 import { takeReturn } from "@/lib/auth/return-to";
 import { useAuth } from "@/lib/auth/use-auth";
+import { SECONDARY } from "@/lib/ui";
 
 // A Hosted UI round trip can fail without the browser reporting it (revoked
 // consent, clock skew, a code already redeemed), so after this long the page
@@ -43,17 +45,15 @@ export function AuthCallback() {
 
   if (failed && status !== "signedIn") {
     return (
-      <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-4 px-6">
-        <h1 className="text-2xl font-semibold tracking-tight">That sign-in did not finish</h1>
-        <p className="text-neutral-400">
-          The link may have expired, or the window sat open too long. Try again.
-        </p>
-        <Link
-          href="/"
-          className="flex min-h-11 items-center justify-center rounded-md border border-neutral-600 px-5 font-medium hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 active:bg-neutral-700"
-        >
-          Back to sign in
-        </Link>
+      <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-6 px-6">
+        <Brand />
+        <div role="alert" className="flex flex-col gap-4 rounded-2xl border border-red-300/25 bg-ballroom/60 p-6 animate-pop-in">
+          <h1 className="text-2xl font-semibold tracking-tight text-pearl">That sign-in did not finish</h1>
+          <p className="text-silver-dim">The link may have expired, or the window sat open too long. Try again.</p>
+          <Link href="/" className={SECONDARY}>
+            Back to sign in
+          </Link>
+        </div>
       </main>
     );
   }
@@ -61,7 +61,7 @@ export function AuthCallback() {
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-4 px-6">
       <DiscoLoader size="lg" label="Signing you in" />
-      <p aria-hidden="true" className="text-neutral-400">
+      <p aria-hidden="true" className="text-silver-dim">
         Signing you in...
       </p>
     </main>

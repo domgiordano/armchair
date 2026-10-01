@@ -4,19 +4,20 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
-import { LoadError } from "@/components/load-error";
+import { PageHeader } from "@/components/ui/page-header";
+import { SkeletonList } from "@/components/ui/skeleton";
+import { EmptyState, ErrorState } from "@/components/ui/states";
 import { SignedIn } from "@/components/signed-in";
 import type { Notification } from "@/lib/api/social";
 import { useMarkAllReadOnView, useNotifications } from "@/lib/social/notifications";
-import { PRIMARY, SECONDARY } from "@/lib/ui";
+import { button, TEXT_LINK } from "@/lib/ui";
 
-const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300";
-const SMALL = "min-h-11 px-4 text-sm";
+const FOCUS = "focus-ring";
 
 export function NotificationsScreen() {
   return (
     <SignedIn title="Notifications">
-      <h1 className="text-xl font-semibold tracking-tight">Notifications</h1>
+      <PageHeader title="Notifications" />
       <NotificationList />
     </SignedIn>
   );
@@ -60,20 +61,18 @@ export function NotificationList({ compact = false }: { compact?: boolean }) {
   if (loaded && fresh === null) setFresh(new Set(items.filter((n) => !n.read).map((n) => n.id)));
   useMarkAllReadOnView(fresh !== null);
 
-  if (!loaded) return <p className="px-1 text-sm text-neutral-400">Loading notifications...</p>;
+  if (!loaded) return <SkeletonList label="Loading notifications" rows={compact ? 3 : 4} row="h-14" avatar />;
   if (error !== null && items.length === 0) {
-    return <LoadError what="notifications" message={error} retry={() => void refresh()} />;
+    return <ErrorState what="notifications" message={error} retry={() => void refresh()} />;
   }
   if (items.length === 0) {
     return (
-      <p className="px-1 py-6 text-center text-sm text-neutral-400">
-        Nothing yet. Friend requests and group invites show up here.
-      </p>
+      <EmptyState compact={compact}>Nothing yet. Friend requests and group invites show up here.</EmptyState>
     );
   }
   return (
     <>
-      <ul aria-label="Notifications" className={`flex flex-col ${compact ? "" : "gap-2"}`}>
+      <ul aria-label="Notifications" className={`stagger flex flex-col ${compact ? "" : "gap-2"}`}>
         {items.map((n) => (
           <li key={n.id}>
             <NotificationItem item={n} fresh={fresh?.has(n.id) ?? false} compact={compact} />
@@ -81,7 +80,7 @@ export function NotificationList({ compact = false }: { compact?: boolean }) {
         ))}
       </ul>
       {more && !compact && (
-        <p className="text-center text-xs text-neutral-500">Showing the latest 50.</p>
+        <p className="text-center text-xs text-silver-dim">Showing the latest 50.</p>
       )}
     </>
   );
@@ -108,16 +107,16 @@ function NotificationItem({ item, fresh, compact }: { item: Notification; fresh:
   return (
     <article
       aria-label={`${who} ${text}${group ? ` ${group}` : ""}`}
-      className={`flex gap-3 rounded-lg p-3 ${compact ? "" : "border border-neutral-800"} ${
-        fresh ? "bg-ballroom/70" : ""
+      className={`flex gap-3 rounded-xl p-3 transition-colors ${compact ? "hover:bg-silver/5" : "border border-silver/10 bg-ballroom/30"} ${
+        fresh ? "border-gold/25 bg-ballroom/80" : ""
       }`}
     >
       <Avatar name={who} email="" picture={item.from.picture} />
       <div className="flex min-w-0 flex-1 flex-col gap-2">
-        <p className="text-sm leading-snug text-neutral-300">
-          <span className="font-semibold text-neutral-100">{who}</span> {text}
-          {group && <span className="font-semibold text-neutral-100"> {group}</span>}
-          <span className="mt-0.5 block text-xs text-neutral-500">
+        <p className="text-sm leading-snug text-silver">
+          <span className="font-semibold text-pearl">{who}</span> {text}
+          {group && <span className="font-semibold text-pearl"> {group}</span>}
+          <span className="mt-0.5 block text-xs text-silver-dim">
             <time dateTime={item.at}>{timeAgo(item.at)}</time>
             {fresh && <span className="sr-only">, new</span>}
           </span>
@@ -128,7 +127,7 @@ function NotificationItem({ item, fresh, compact }: { item: Notification; fresh:
               type="button"
               disabled={busy !== null}
               onClick={() => void act(true)}
-              className={`${PRIMARY} ${SMALL}`}
+              className={button("primary", "sm")}
             >
               {busy === "accept" ? "Accepting..." : "Accept"}
             </button>
@@ -136,21 +135,21 @@ function NotificationItem({ item, fresh, compact }: { item: Notification; fresh:
               type="button"
               disabled={busy !== null}
               onClick={() => void act(false)}
-              className={`${SECONDARY} ${SMALL}`}
+              className={button("secondary", "sm")}
             >
               {busy === "decline" ? "Declining..." : "Decline"}
             </button>
           </div>
         )}
         {item.state === "accepted" && <p className="text-xs font-medium text-gold">Accepted</p>}
-        {item.state === "declined" && <p className="text-xs text-neutral-500">Declined</p>}
+        {item.state === "declined" && <p className="text-xs text-silver-dim">Declined</p>}
         {error !== null && (
-          <p role="alert" className="text-sm text-amber-200">
+          <p role="alert" className="text-sm text-red-300">
             {error}
           </p>
         )}
       </div>
-      {fresh && <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-full bg-brand-magenta" />}
+      {fresh && <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-full bg-brand-magenta shadow-[0_0_8px_var(--color-brand-magenta)]" />}
     </article>
   );
 }
@@ -166,7 +165,7 @@ export function NotificationsBell() {
   const button = useRef<HTMLButtonElement>(null);
   const id = useId();
   const label = unread > 0 ? `Notifications, ${unread} unread` : "Notifications";
-  const icon = "relative flex size-11 shrink-0 items-center justify-center rounded-full text-neutral-300 hover:bg-neutral-800 hover:text-neutral-100 active:bg-neutral-700";
+  const icon = "relative flex size-11 shrink-0 items-center justify-center rounded-full text-silver transition-colors hover:bg-silver/10 hover:text-pearl active:bg-silver/15";
 
   useEffect(() => {
     if (!open) return;
@@ -199,7 +198,7 @@ export function NotificationsBell() {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((o) => !o)}
-        className={`${icon} hidden md:flex aria-expanded:bg-neutral-800 ${FOCUS}`}
+        className={`${icon} hidden md:flex aria-expanded:bg-silver/10 ${FOCUS}`}
       >
         <BellIcon />
         <Badge unread={unread} />
@@ -209,14 +208,14 @@ export function NotificationsBell() {
           id={id}
           role="region"
           aria-label="Notifications"
-          className="absolute top-full right-0 z-30 mt-2 flex max-h-[min(34rem,80vh)] w-96 flex-col rounded-xl border border-neutral-700 bg-ink shadow-2xl shadow-black/60"
+          className="absolute top-full right-0 z-30 mt-2 flex max-h-[min(34rem,80vh)] w-96 origin-top-right flex-col rounded-xl border border-silver/15 bg-ballroom shadow-2xl shadow-ink/70 animate-pop-in"
         >
-          <div className="flex items-center justify-between border-b border-neutral-800 px-4 py-3">
-            <h2 className="text-sm font-semibold">Notifications</h2>
+          <div className="flex items-center justify-between border-b border-silver/10 px-4 py-3">
+            <h2 className="text-sm font-semibold text-pearl">Notifications</h2>
             <Link
               href="/notifications/"
               onClick={() => setOpen(false)}
-              className={`rounded-md text-sm text-neutral-400 underline-offset-4 hover:text-neutral-100 hover:underline ${FOCUS}`}
+              className={TEXT_LINK}
             >
               See all
             </Link>
@@ -235,7 +234,7 @@ function Badge({ unread }: { unread: number }) {
   return (
     <span
       aria-hidden="true"
-      className="absolute top-1.5 right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-magenta px-1 text-[10px] leading-none font-semibold text-pearl tabular-nums"
+      className="absolute top-1.5 right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-magenta px-1 text-[10px] leading-none font-semibold text-pearl tabular-nums ring-2 ring-ink animate-pop-in"
     >
       {unread > 9 ? "9+" : unread}
     </span>

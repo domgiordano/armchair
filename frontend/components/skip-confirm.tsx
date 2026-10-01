@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { PRIMARY, SECONDARY } from "@/lib/ui";
+import { button, SECONDARY } from "@/lib/ui";
 
 interface SkipConfirmProps {
   title: string;
@@ -30,9 +30,28 @@ export function SkipConfirm({ title, scope, confirmLabel, onConfirm, onCancel }:
   };
 
   return (
-    <div role="group" aria-label={title} className="flex flex-col gap-3 rounded-lg border border-neutral-700 p-4">
-      <p className="font-semibold">{title}</p>
-      <p className="text-sm text-neutral-400">
+    <div
+      role="group"
+      aria-label={title}
+      className="flex flex-col gap-3 rounded-xl border border-red-300/25 bg-red-400/[0.04] p-4 animate-pop-in"
+    >
+      <p className="flex items-center gap-2 font-semibold text-pearl">
+        <svg
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+          className="size-5 shrink-0 text-red-300"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.7}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M10 3 2.5 16.5h15z" />
+          <path d="M10 8.5v3.5M10 14.5v.2" />
+        </svg>
+        {title}
+      </p>
+      <p className="text-sm leading-relaxed text-silver-dim">
         Every dance you haven&apos;t scored {scope} is revealed without a score. This is final: they won&apos;t count
         toward your accuracy and you can&apos;t score them later.
       </p>
@@ -43,7 +62,7 @@ export function SkipConfirm({ title, scope, confirmLabel, onConfirm, onCancel }:
       )}
       <div className="flex flex-wrap gap-2">
         {/* The button that opened this step is gone, so focus lands here instead of <body>. */}
-        <button type="button" autoFocus disabled={busy} onClick={() => void send()} className={PRIMARY}>
+        <button type="button" autoFocus disabled={busy} onClick={() => void send()} className={button("danger")}>
           {busy ? "Revealing..." : confirmLabel}
         </button>
         <button type="button" disabled={busy} onClick={onCancel} className={SECONDARY}>

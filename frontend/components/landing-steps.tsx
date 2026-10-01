@@ -106,9 +106,12 @@ const STEPS: Step[] = [
 /** "How it works": four beats of a show night, each with a small diagram. */
 export function LandingSteps() {
   return (
-    <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <ol className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {STEPS.map((s, i) => (
-        <li key={s.title} className="flex flex-col gap-3 rounded-xl border border-silver/10 bg-ballroom/40 p-5">
+        <li
+          key={s.title}
+          className="flex flex-col gap-3 rounded-xl border border-silver/10 bg-ballroom/40 p-5 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-gold/30"
+        >
           <svg viewBox="0 0 160 88" aria-hidden="true" className="w-full max-w-60">
             {s.diagram}
           </svg>

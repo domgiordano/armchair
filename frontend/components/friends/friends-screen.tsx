@@ -1,14 +1,13 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import { GroupsPanel } from "@/components/friends/groups-panel";
 import {
   ConfirmButton,
   CopyLink,
   Empty,
-  INPUT,
   PersonRow,
   QUIET,
   SECTION_TITLE,
@@ -20,8 +19,14 @@ import {
   useAction,
   useLoad,
 } from "@/components/friends/parts";
-import { LoadError } from "@/components/load-error";
 import { SignedIn } from "@/components/signed-in";
+import { Badge } from "@/components/ui/badge";
+import { SearchInput } from "@/components/ui/field";
+import { PageHeader } from "@/components/ui/page-header";
+import { SkeletonList } from "@/components/ui/skeleton";
+import { Spinner } from "@/components/ui/spinner";
+import { ErrorState } from "@/components/ui/states";
+import { tabId, Tabs } from "@/components/ui/tabs";
 import {
   acceptFriend,
   addFriend,
@@ -43,6 +48,7 @@ const TABS = [
   { id: "groups", label: "Groups" },
 ] as const;
 type TabId = (typeof TABS)[number]["id"];
+const PANEL = "friends-panel";
 
 export function FriendsScreen() {
   return (
@@ -60,8 +66,6 @@ function FriendsAndGroups() {
   const { items } = useNotifications();
   const invites = items.filter((n) => n.type === "group_invite" && n.state === "pending").length;
   const incoming = friends.kind === "ready" ? friends.value.incoming.length : 0;
-  const base = useId();
-  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const go = (id: TabId) => {
     const next = new URLSearchParams(params.toString());
@@ -70,58 +74,22 @@ function FriendsAndGroups() {
     router.replace(`/friends/?${next}`, { scroll: false });
   };
 
-  // Arrow keys move between tabs, as the tabs pattern promises.
-  const onKey = (e: KeyboardEvent, i: number) => {
-    const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
-    if (!step) return;
-    const next = (i + step + TABS.length) % TABS.length;
-    go(TABS[next].id);
-    tabs.current[next]?.focus();
-  };
-
   return (
     <>
-      <h1 className="text-xl font-semibold tracking-tight">Friends &amp; Groups</h1>
+      <PageHeader title="Friends & Groups" />
       <AddByLink onAdded={reload} />
-      <div role="tablist" aria-label="Friends and groups" className="grid grid-cols-3 gap-1 rounded-lg bg-neutral-900 p-1 md:max-w-md">
-        {TABS.map((t, i) => {
-          const count = t.id === "requests" ? incoming + invites : 0;
-          const selected = t.id === tab;
-          return (
-            <button
-              key={t.id}
-              ref={(el) => {
-                tabs.current[i] = el;
-              }}
-              type="button"
-              role="tab"
-              id={`${base}-${t.id}`}
-              aria-label={count > 0 ? `${t.label}, ${count} waiting` : undefined}
-              aria-selected={selected}
-              aria-controls={`${base}-panel`}
-              tabIndex={selected ? 0 : -1}
-              onClick={() => go(t.id)}
-              onKeyDown={(e) => onKey(e, i)}
-              className={`flex min-h-10 items-center justify-center gap-1.5 rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 ${
-                selected ? "bg-ballroom text-gold-light shadow" : "text-neutral-400 hover:text-neutral-100"
-              }`}
-            >
-              {t.label}
-              {count > 0 && (
-                <span
-                  aria-hidden="true"
-                  className="rounded-full bg-brand-magenta px-1.5 text-[11px] leading-4 font-semibold text-pearl tabular-nums"
-                >
-                  {count}
-                </span>
-              )}
-            </button>
-          );
-        })}
+      <div className="md:max-w-md">
+        <Tabs
+          label="Friends and groups"
+          tabs={TABS.map((t) => ({ ...t, badge: t.id === "requests" ? incoming + invites : undefined }))}
+          value={tab}
+          onChange={go}
+          panelId={PANEL}
+        />
       </div>
-      <section role="tabpanel" id={`${base}-panel`} aria-labelledby={`${base}-${tab}`} className="flex flex-col gap-6">
-        {friends.kind === "loading" && <p className="text-neutral-400">Loading...</p>}
-        {friends.kind === "error" && <LoadError what="your friends" message={friends.message} retry={reload} />}
+      <section role="tabpanel" id={PANEL} aria-labelledby={tabId(PANEL, tab)} className="flex flex-col gap-6">
+        {friends.kind === "loading" && <SkeletonList label="Loading your friends" avatar />}
+        {friends.kind === "error" && <ErrorState what="your friends" message={friends.message} retry={reload} />}
         {friends.kind === "ready" && tab === "friends" && <FriendsTab data={friends.value} reload={reload} />}
         {friends.kind === "ready" && tab === "requests" && <RequestsTab data={friends.value} reload={reload} />}
         {friends.kind === "ready" && tab === "groups" && <GroupsPanel friends={friends.value.friends} />}
@@ -157,13 +125,20 @@ function AddByLink({ onAdded }: { onAdded: () => void }) {
     };
   }, [code, onAdded, router]);
 
-  if (code && result === null) return <p className="text-sm text-neutral-400">Sending a friend request...</p>;
+  if (code && result === null) {
+    return (
+      <p role="status" className="flex items-center gap-2 text-sm text-silver-dim">
+        <Spinner />
+        Sending a friend request...
+      </p>
+    );
+  }
   if (result === null) return null;
   return (
     <p
       role={result.ok ? "status" : "alert"}
-      className={`rounded-lg border p-3 text-sm ${
-        result.ok ? "border-gold/40 bg-ballroom text-gold-light" : "border-amber-300/40 text-amber-200"
+      className={`rounded-xl border p-3 text-sm animate-pop-in ${
+        result.ok ? "border-gold/40 bg-gold/10 text-gold-light" : "border-red-300/30 bg-red-400/5 text-red-200"
       }`}
     >
       {result.text}
@@ -176,20 +151,20 @@ function FriendsTab({ data, reload }: { data: Friends; reload: () => void }) {
     <div className={`${SPLIT} gap-6`}>
       <div className="flex flex-col gap-6">
         <FindPeople onChange={reload} />
-        <div className="rounded-lg border border-neutral-800 p-4">
+        <div className="rounded-xl border border-silver/10 bg-ballroom/45 p-4">
           <CopyLink label="Or send your invite link" link={friendLink(data.inviteCode)} />
         </div>
       </div>
       <div className="flex flex-col">
         <h2 className={SECTION_TITLE}>
-          Your friends <span className="text-neutral-500 tabular-nums">{data.friends.length}</span>
+          Your friends <span className="text-gold tabular-nums">{data.friends.length}</span>
         </h2>
         {data.friends.length === 0 ? (
           <div className="pt-2">
             <Empty>No friends yet. Find someone by name or send your link.</Empty>
           </div>
         ) : (
-          <ul className="divide-y divide-neutral-800">
+          <ul className="stagger divide-y divide-silver/10">
             {data.friends.map((f) => (
               <li key={f.sub}>
                 <FriendRow friend={f} reload={reload} />
@@ -251,6 +226,7 @@ function FindPeople({ onChange }: { onChange: () => void }) {
   }, [trimmed, short]);
 
   const shown = short ? null : results;
+  const busy = !short && results === null && error === null;
   const update = (sub: string, status: Match["status"]) => {
     setResults((rs) => rs?.map((r) => (r.sub === sub ? { ...r, status } : r)) ?? null);
     onChange();
@@ -258,29 +234,25 @@ function FindPeople({ onChange }: { onChange: () => void }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="flex flex-col gap-1 text-sm text-neutral-400">
-        Find people by name
-        <input
-          type="search"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="At least 2 letters"
-          autoComplete="off"
-          maxLength={40}
-          className={INPUT}
-        />
-      </label>
+      <SearchInput
+        label="Find people by name"
+        value={q}
+        onChange={setQ}
+        placeholder="At least 2 letters"
+        maxLength={40}
+        busy={busy}
+      />
       {error !== null && (
-        <p role="alert" className="text-sm text-amber-200">
+        <p role="alert" className="text-sm text-red-300">
           Search failed: {error}
         </p>
       )}
       {shown && (
         <div aria-live="polite">
           {shown.length === 0 ? (
-            <p className="py-2 text-sm text-neutral-400">Nobody by that name yet. Send them your link instead.</p>
+            <p className="py-2 text-sm text-silver-dim">Nobody by that name yet. Send them your link instead.</p>
           ) : (
-            <ul aria-label="Search results" className="divide-y divide-neutral-800">
+            <ul aria-label="Search results" className="divide-y divide-silver/10 animate-fade-in">
               {shown.map((m) => (
                 <li key={m.sub}>
                   <MatchRow match={m} onUpdate={update} />
@@ -319,8 +291,8 @@ function MatchRow({ match, onUpdate }: { match: Match; onUpdate: (sub: string, s
           Accept
         </button>
       )}
-      {match.status === "outgoing" && <span className="px-3 text-sm text-neutral-400">Requested</span>}
-      {match.status === "friend" && <span className="px-3 text-sm text-gold">Friends</span>}
+      {match.status === "outgoing" && <Badge tone="muted">Requested</Badge>}
+      {match.status === "friend" && <Badge tone="gold">Friends</Badge>}
     </PersonRow>
   );
 }
@@ -360,7 +332,7 @@ function RequestsTab({ data, reload }: { data: Friends; reload: () => void }) {
       {invites.length > 0 && (
         <div className="flex flex-col">
           <h2 className={SECTION_TITLE}>Group invites</h2>
-          <ul className="divide-y divide-neutral-800">
+          <ul className="stagger divide-y divide-silver/10">
             {invites.map((n) => (
               <li key={n.id}>
                 <InviteRow
@@ -419,9 +391,9 @@ function RequestList({
   return (
     <div className="flex flex-col">
       <h2 className={SECTION_TITLE}>
-        {title} <span className="text-neutral-500 tabular-nums">{people.length}</span>
+        {title} <span className="text-gold tabular-nums">{people.length}</span>
       </h2>
-      <ul className="divide-y divide-neutral-800">
+      <ul className="stagger divide-y divide-silver/10">
         {people.map((p) => (
           <li key={p.sub}>
             <RequestRow person={p}>{children}</RequestRow>

@@ -6,7 +6,7 @@ export function Brand() {
   return (
     <Link
       href="/"
-      className="flex min-h-11 items-center gap-2 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+      className="flex min-h-11 items-center gap-2 rounded-md focus-ring"
     >
       <Image src="/brand/mark-96.png" alt="" width={32} height={32} unoptimized className="rounded-md" />
       {/* Stacked like the logo on phones, so the header keeps room for the avatar and Sign out. */}

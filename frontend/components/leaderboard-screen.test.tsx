@@ -28,6 +28,7 @@ import { getMyGroups, type Group } from "@/lib/api/groups";
 import { getLeaderboard, type Leaderboard, type Ranked } from "@/lib/api/leaderboard";
 import { getSeason, type Season } from "@/lib/api/show";
 import { judgeName, LeaderboardScreen } from "./leaderboard-screen";
+import { choose } from "./ui/select-test-utils";
 
 const SEASON: Season = {
   season: "dwts-35",
@@ -125,7 +126,7 @@ describe("LeaderboardScreen", () => {
     render(<LeaderboardScreen />);
     fireEvent.click(await screen.findByRole("tab", { name: "Groups" }));
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=dwts-35&scope=group&group=fam");
-    fireEvent.change(screen.getByRole("combobox", { name: "Standings for" }), { target: { value: "all" } });
+    choose(screen.getByRole("combobox", { name: "Standings for" }), "All-time");
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=all&scope=global");
     fireEvent.click(screen.getByRole("tab", { name: "Friends" }));
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=dwts-35&scope=friends");

@@ -35,11 +35,11 @@ export function RevealAll({ open, onConfirm }: RevealAllProps) {
   const busy = step.kind === "sending";
 
   return (
-    <div role="group" aria-label="Reveal all" className="flex flex-col gap-3 rounded-lg border border-neutral-700 p-4">
-      <p className="font-semibold">
+    <div role="group" aria-label="Reveal all" className="flex flex-col gap-3 rounded-xl border border-gold/30 bg-ballroom/60 p-4 animate-pop-in">
+      <p className="font-semibold text-pearl">
         Reveal the {open} {open === 1 ? "dance" : "dances"} you haven&apos;t scored?
       </p>
-      <p className="text-sm text-neutral-400">
+      <p className="text-sm text-silver-dim">
         This is final. You&apos;ll see every score and the result, but you can&apos;t score these later.
       </p>
       {step.kind === "error" && (

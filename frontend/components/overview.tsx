@@ -1,15 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
+import { PageLoader } from "@/components/disco-loader";
 import { CoupleAvatars } from "@/components/headshot";
-import { LoadError } from "@/components/load-error";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
 import { SkipConfirm } from "@/components/skip-confirm";
+import { Badge } from "@/components/ui/badge";
+import { CountUp } from "@/components/ui/count-up";
+import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyState, ErrorState } from "@/components/ui/states";
 import {
   getLeaderboard,
   getOverview,
@@ -24,16 +28,13 @@ import { countdown, hero, showTime } from "@/lib/show/overview";
 import { formatAirDate } from "@/lib/show/schedule";
 import { seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
 import { useNow } from "@/lib/show/use-now";
+import { button, DISPLAY, TEXT_LINK as LINK } from "@/lib/ui";
 
-const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light";
-const BUTTON = `flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium ${FOCUS}`;
-const GOLD = `${BUTTON} bg-gold text-ink hover:bg-gold-light active:bg-gold-deep`;
-const OUTLINE = `${BUTTON} border border-silver/35 text-silver hover:bg-silver/10 active:bg-silver/15`;
-// Archivo Black ships one weight; font-bold would synthesize a smeared bold.
-const DISPLAY = "font-display font-normal tracking-[-0.045em] text-pearl";
+const GOLD = button("primary");
+const OUTLINE = button("secondary");
 const EYEBROW = "text-xs font-semibold tracking-[0.2em] text-gold uppercase";
-const PANEL = "rounded-xl border border-silver/10 bg-ballroom/40 p-4 sm:p-5";
-const TEXT_LINK = `rounded-sm text-sm text-silver underline underline-offset-4 hover:text-pearl ${FOCUS}`;
+const PANEL = "rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] sm:p-5";
+const TEXT_LINK = `${LINK} inline-flex min-h-11 items-center`;
 
 type Load<T> =
   | { kind: "loading" }
@@ -72,8 +73,8 @@ export function Overview() {
   const season = useSeasonId();
   const load = useLoad(getOverview, season);
 
-  if (load.kind === "loading") return <OverviewSkeleton />;
-  if (load.kind === "error") return <LoadError what="your overview" message={load.message} retry={load.retry} />;
+  if (load.kind === "loading") return <PageLoader label="Loading your overview" />;
+  if (load.kind === "error") return <ErrorState what="your overview" message={load.message} retry={load.retry} />;
   return <OverviewView o={load.data} season={season} reload={load.reload} />;
 }
 
@@ -122,7 +123,7 @@ function OverviewView({ o, season, reload }: ViewProps) {
         )}
       </section>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-3">
         <div className="flex flex-col gap-8 lg:col-span-2">
           <section aria-labelledby="accuracy" className={`${PANEL} flex flex-col gap-4`}>
             <div className="flex flex-col gap-1">
@@ -136,9 +137,7 @@ function OverviewView({ o, season, reload }: ViewProps) {
             {o.me.count > 0 ? (
               <AccuracyChart episodes={o.episodes} />
             ) : (
-              <p className="rounded-lg border border-dashed border-silver/15 px-4 py-10 text-center text-sm text-silver-dim">
-                Score a dance and your gap to the judges draws here, one bar a week.
-              </p>
+              <EmptyState>Score a dance and your gap to the judges draws here, one bar a week.</EmptyState>
             )}
           </section>
 
@@ -154,7 +153,7 @@ function OverviewView({ o, season, reload }: ViewProps) {
               )}
             </div>
             {o.reveals.length > 0 ? (
-              <ul className="grid gap-3 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              <ul className="stagger grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
                 {o.reveals.map((r) => (
                   <li key={`${r.ep}-${r.key}`}>
                     <MiniDesk
@@ -168,9 +167,7 @@ function OverviewView({ o, season, reload }: ViewProps) {
                 ))}
               </ul>
             ) : (
-              <p className="rounded-lg border border-dashed border-silver/15 px-4 py-8 text-center text-sm text-silver-dim">
-                Each dance you score turns over here: the judges&apos; paddles next to yours.
-              </p>
+              <EmptyState>Each dance you score turns over here: the judges&apos; paddles next to yours.</EmptyState>
             )}
           </section>
         </div>
@@ -364,7 +361,10 @@ function NextEpisode({ o, now }: { o: OverviewData; now: number }) {
           aria-valuenow={aired}
           className="h-1.5 overflow-hidden rounded-full bg-silver/10"
         >
-          <div className="h-full rounded-full bg-gold" style={{ width: `${total ? (aired / total) * 100 : 0}%` }} />
+          <div
+            className="grow-x h-full rounded-full bg-gradient-to-r from-gold-deep to-gold-light"
+            style={{ width: `${total ? (aired / total) * 100 : 0}%`, "--d": "300ms" } as CSSProperties}
+          />
         </div>
         <p className="text-xs text-silver-dim">Eliminations count once you finish that episode.</p>
       </div>
@@ -378,11 +378,11 @@ function StatTiles({ o }: { o: OverviewData }) {
   const judge = me.closestJudge;
 
   return (
-    <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
-      <Tile label="Dances scored" value={String(me.scored)} note={`across ${scoredEps} ${scoredEps === 1 ? "episode" : "episodes"}`} />
+    <dl className="stagger grid grid-cols-2 gap-3 md:grid-cols-4">
+      <Tile label="Dances scored" value={<CountUp value={me.scored} />} note={`across ${scoredEps} ${scoredEps === 1 ? "episode" : "episodes"}`} />
       <Tile
         label="Average gap"
-        value={me.mae === null ? "-" : formatScore(me.mae)}
+        value={me.mae === null ? "-" : <CountUp value={me.mae} format={formatScore} />}
         unit={me.mae === null ? undefined : "off"}
         note={me.mae === null ? "once a judge's score confirms" : `vs the judges, over ${me.count}`}
       />
@@ -393,7 +393,7 @@ function StatTiles({ o }: { o: OverviewData }) {
       />
       <Tile
         label="Streak"
-        value={String(me.streak)}
+        value={<CountUp value={me.streak} />}
         unit={me.streak === 1 ? "episode" : "episodes"}
         note="finished in a row"
       />
@@ -401,9 +401,9 @@ function StatTiles({ o }: { o: OverviewData }) {
   );
 }
 
-function Tile({ label, value, unit, note }: { label: string; value: string; unit?: string; note: string }) {
+function Tile({ label, value, unit, note }: { label: string; value: ReactNode; unit?: string; note: string }) {
   return (
-    <div className="flex min-w-0 flex-col gap-1 rounded-xl border border-silver/10 bg-ballroom/40 p-4">
+    <div className="flex min-w-0 flex-col gap-1 rounded-xl border border-silver/10 bg-ballroom/45 p-4 transition-colors hover:border-gold/25">
       <dt className="text-xs font-medium tracking-[0.12em] text-silver-dim uppercase">{label}</dt>
       <dd className="flex min-w-0 flex-col gap-0.5">
         <span className="truncate text-3xl font-semibold text-pearl tabular-nums">
@@ -430,7 +430,7 @@ function LeaderboardTop({ season }: { season: string }) {
         </Link>
       </div>
       {load.kind === "loading" && <SkeletonRows n={5} />}
-      {load.kind === "error" && <LoadError what="the leaderboard" message={load.message} retry={load.retry} />}
+      {load.kind === "error" && <ErrorState what="the leaderboard" message={load.message} retry={load.retry} />}
       {load.kind === "ready" && <TopFive board={load.data} />}
     </section>
   );
@@ -447,13 +447,13 @@ function TopFive({ board }: { board: Leaderboard }) {
   }
   return (
     <>
-      <ol className="flex flex-col">
+      <ol className="stagger flex flex-col">
         {top.map((s) => {
           const you = s.sub === board.me.sub;
           return (
             <li
               key={s.sub}
-              className={`flex items-center gap-3 rounded-lg px-2 py-2 ${you ? "bg-gold/10" : ""}`}
+              className={`flex items-center gap-3 rounded-lg px-2 py-2 transition-colors ${you ? "bg-gold/10 ring-1 ring-gold/30" : "hover:bg-silver/5"}`}
             >
               <span className={`w-5 text-center text-sm font-semibold tabular-nums ${s.rank === 1 ? "text-gold" : "text-silver-dim"}`}>
                 {s.rank}
@@ -499,8 +499,8 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
         </h2>
         <p className="text-sm text-silver-dim">Judges&apos; average over the dances you&apos;ve scored.</p>
       </div>
-      <ol id="standings-list" className="flex flex-col">
-        {shown.map((c) => {
+      <ol id="standings-list" className="stagger flex flex-col">
+        {shown.map((c, i) => {
           const celebrity = c.members.find((m) => m.role === "celebrity") ?? c.members[0];
           const pro = c.members.find((m) => m.role === "pro");
           return (
@@ -510,17 +510,15 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
                 <span className="flex items-center gap-2">
                   <span className="truncate text-sm font-medium text-pearl">{celebrity.name}</span>
                   {c.out && (
-                    <span className="shrink-0 rounded-sm border border-silver/25 px-1 text-[10px] tracking-[0.1em] text-silver-dim uppercase">
-                      Out
-                    </span>
+                    <Badge tone="muted">Out</Badge>
                   )}
                 </span>
                 {pro && <span className="block truncate text-xs text-silver-dim">with {pro.name}</span>}
                 {c.average !== null && (
                   <span aria-hidden="true" className="mt-1 block h-1 rounded-full bg-silver/10">
                     <span
-                      className={`block h-full rounded-full ${c.average === top ? "bg-gold-light" : "bg-gold/70"}`}
-                      style={{ width: `${(c.average / 10) * 100}%` }}
+                      className={`grow-x block h-full rounded-full ${c.average === top ? "bg-gold-light" : "bg-gold/70"}`}
+                      style={{ width: `${(c.average / 10) * 100}%`, "--d": `${300 + i * 60}ms` } as CSSProperties}
                     />
                   </span>
                 )}
@@ -549,7 +547,7 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
           aria-expanded={all}
           aria-controls="standings-list"
           onClick={() => setAll((a) => !a)}
-          className={`${BUTTON} min-h-11 border border-silver/20 text-sm text-silver hover:bg-silver/10 active:bg-silver/15`}
+          className={button("secondary", "sm")}
         >
           {all ? "Show fewer" : `Show all ${couples.length} couples`}
         </button>
@@ -560,31 +558,11 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
 
 function SkeletonRows({ n }: { n: number }) {
   return (
-    <div aria-hidden="true" className="flex flex-col gap-3">
+    <div role="status" className="flex flex-col gap-3">
+      <span className="sr-only">Loading...</span>
       {Array.from({ length: n }, (_, i) => (
-        <div key={i} className="h-10 rounded-lg bg-silver/5 motion-safe:animate-pulse" />
+        <Skeleton key={i} className="h-10 rounded-lg" />
       ))}
-    </div>
-  );
-}
-
-function OverviewSkeleton() {
-  return (
-    <div className="flex flex-col gap-8">
-      <p className="sr-only">Loading your overview...</p>
-      <div aria-hidden="true" className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-        <div className="flex flex-col gap-4 pt-4">
-          <div className="h-3 w-48 rounded bg-silver/10 motion-safe:animate-pulse" />
-          <div className="h-14 w-3/4 rounded bg-silver/10 motion-safe:animate-pulse" />
-          <div className="h-4 w-2/3 rounded bg-silver/5 motion-safe:animate-pulse" />
-        </div>
-        <div className="h-48 rounded-xl bg-silver/5 motion-safe:animate-pulse" />
-      </div>
-      <div aria-hidden="true" className="grid grid-cols-2 gap-3 md:grid-cols-4">
-        {Array.from({ length: 4 }, (_, i) => (
-          <div key={i} className="h-24 rounded-xl bg-silver/5 motion-safe:animate-pulse" />
-        ))}
-      </div>
     </div>
   );
 }

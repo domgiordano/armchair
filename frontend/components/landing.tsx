@@ -7,14 +7,12 @@ import { Brand } from "@/components/brand";
 import { Intro } from "@/components/intro";
 import { LandingDesk } from "@/components/landing-desk";
 import { LandingSteps } from "@/components/landing-steps";
+import { Specks } from "@/components/ui/specks";
 import { useReducedMotion } from "@/lib/motion";
+import { button, DISPLAY, TEXT_LINK } from "@/lib/ui";
 
-const BUTTON =
-  "flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light disabled:cursor-not-allowed disabled:opacity-50";
-const GOLD = `${BUTTON} bg-gold text-ink hover:bg-gold-light active:bg-gold-deep`;
-// Archivo Black ships one weight; font-bold here would get a synthesized, smeared bold.
-const DISPLAY = "font-display font-normal tracking-[-0.045em] text-pearl";
-const OUTLINE = `${BUTTON} border border-silver/35 text-silver hover:bg-silver/10 active:bg-silver/15`;
+const GOLD = button("primary");
+const OUTLINE = button("secondary");
 
 interface LandingProps {
   status: "signedOut" | "unconfigured";
@@ -57,6 +55,7 @@ export function Landing({ status, onSignIn }: LandingProps) {
 
   return (
     <div className="relative isolate min-h-dvh overflow-hidden text-silver">
+      <Specks />
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 -z-10 h-[900px] bg-[radial-gradient(ellipse_60%_50%_at_75%_10%,rgb(232_194_104/0.16),transparent_70%),radial-gradient(ellipse_70%_60%_at_10%_0%,rgb(59_91_255/0.22),transparent_70%)]"
@@ -69,7 +68,7 @@ export function Landing({ status, onSignIn }: LandingProps) {
 
       <main>
         <section className="mx-auto grid max-w-6xl gap-10 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16 lg:pt-20 lg:pb-24">
-          <div className="flex flex-col gap-6">
+          <div className="stagger flex flex-col gap-6">
             <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-gold">
               <Sparkle className="size-3.5" />
               DANCING WITH THE STARS · SEASON 35
@@ -97,7 +96,9 @@ export function Landing({ status, onSignIn }: LandingProps) {
               {error && "Could not start sign-in. Try again."}
             </div>
           </div>
-          <LandingDesk />
+          <div className="animate-rise-in [animation-delay:250ms]">
+            <LandingDesk />
+          </div>
         </section>
 
         <section id="how" className="scroll-mt-4 border-t border-silver/10 py-16 lg:py-24">
@@ -133,14 +134,11 @@ export function Landing({ status, onSignIn }: LandingProps) {
           <div className="flex gap-4">
             <a
               href="https://armchairjudge.com"
-              className="rounded-sm underline underline-offset-4 hover:text-silver focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
+              className={`${TEXT_LINK} inline-flex min-h-11 items-center`}
             >
               More shows at Armchair Judge
             </a>
-            <Link
-            href="/credits/"
-            className="rounded-sm underline underline-offset-4 hover:text-silver focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
-          >
+            <Link href="/credits/" className={`${TEXT_LINK} inline-flex min-h-11 items-center`}>
               Photo credits
             </Link>
           </div>

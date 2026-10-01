@@ -18,6 +18,7 @@ import { getMyGroups } from "@/lib/api/groups";
 import { getSeason, type Season } from "@/lib/api/show";
 import { getStats, type Stats } from "@/lib/api/stats";
 import { StatsScreen } from "./stats-screen";
+import { choose } from "./ui/select-test-utils";
 
 const SEASON: Season = {
   season: "dwts-35",
@@ -91,7 +92,7 @@ describe("StatsScreen", () => {
     const picker = await screen.findByRole("combobox", { name: "Compare with" });
     expect(getStats).toHaveBeenLastCalledWith("dwts-35", "fam");
 
-    fireEvent.change(picker, { target: { value: "" } });
+    choose(picker, "Everyone");
     await vi.waitFor(() => expect(getStats).toHaveBeenLastCalledWith("dwts-35", null));
   });
 

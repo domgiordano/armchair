@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import { formatScore } from "@/components/performance-card";
 import type { OverviewEpisode } from "@/lib/api/overview";
 import { shortLabel } from "@/lib/show/overview";
@@ -36,19 +38,22 @@ export function AccuracyChart({ episodes }: AccuracyChartProps) {
             ))}
           </div>
           <ol className="relative flex h-44 items-stretch gap-1 sm:gap-2">
-            {aired.map((e) => (
+            {aired.map((e, i) => (
               <li key={e.ep} className="flex min-w-0 flex-1 flex-col items-center">
                 <div className="flex w-full flex-1 flex-col items-center justify-end">
                   {e.mae == null ? (
                     <span className="mb-1 text-[10px] text-silver-dim/70">-</span>
                   ) : (
                     <>
-                      <span className="mb-1 text-[11px] leading-none font-semibold text-pearl tabular-nums">
+                      <span
+                        style={{ animationDelay: `${i * 70 + 500}ms` }}
+                        className="mb-1 animate-rise-in text-[11px] leading-none font-semibold text-pearl tabular-nums"
+                      >
                         {formatScore(e.mae)}
                       </span>
                       <span
-                        className={`w-full max-w-9 rounded-t-sm ${e.mae === best ? "bg-gold-light" : "bg-gold"}`}
-                        style={{ height: `${Math.max(2, (e.mae / top) * 100)}%` }}
+                        className={`grow-y w-full max-w-9 rounded-t-sm ${e.mae === best ? "bg-gradient-to-t from-gold to-gold-light shadow-[0_0_14px_-2px_rgb(247_226_164/0.6)]" : "bg-gradient-to-t from-gold-deep to-gold"}`}
+                        style={{ height: `${Math.max(2, (e.mae / top) * 100)}%`, "--d": `${i * 70}ms` } as CSSProperties}
                       />
                     </>
                   )}

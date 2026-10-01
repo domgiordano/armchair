@@ -9,6 +9,7 @@ vi.mock("@/lib/api/groups", async (importOriginal) => ({
 import { getMyGroups, type Group } from "@/lib/api/groups";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { GroupPicker } from "./group-picker";
+import { choose } from "./ui/select-test-utils";
 
 const member = (sub: string) => ({ sub, name: null, picture: null, avatarKind: null });
 const GROUPS: Group[] = [
@@ -51,18 +52,16 @@ describe("GroupPicker", () => {
   it("offers Everyone and each group, and remembers the pick", async () => {
     render(<Harness />);
     const select = await screen.findByRole("combobox", { name: "Compare with" });
-    expect([...select.querySelectorAll("option")].map((o) => o.textContent)).toEqual([
-      "Everyone",
-      "Family (2)",
-      "Work (1)",
-    ]);
+    fireEvent.click(select);
+    expect(screen.getAllByRole("option").map((o) => o.textContent)).toEqual(["Everyone", "Family (2)", "Work (1)"]);
+    fireEvent.click(select);
     expect(picked()).toBe("everyone");
 
-    fireEvent.change(select, { target: { value: "work" } });
+    choose(select, "Work (1)");
     expect(picked()).toBe("work");
     expect(localStorage.getItem("armchair.group")).toBe("work");
 
-    fireEvent.change(select, { target: { value: "" } });
+    choose(select, "Everyone");
     expect(picked()).toBe("everyone");
     expect(localStorage.getItem("armchair.group")).toBeNull();
   });
@@ -71,13 +70,13 @@ describe("GroupPicker", () => {
     localStorage.setItem("armchair.group", "fam");
     render(<Harness />);
     expect(picked()).toBe("fam");
-    expect(await screen.findByRole("combobox", { name: "Compare with" })).toHaveProperty("value", "fam");
+    expect((await screen.findByRole("combobox", { name: "Compare with" })).textContent).toBe("Family (2)");
   });
 
   it("drops a remembered group the caller isn't in once the list arrives", async () => {
     localStorage.setItem("armchair.group", "someone-elses");
     render(<Harness />);
-    expect(await screen.findByRole("combobox", { name: "Compare with" })).toHaveProperty("value", "");
+    expect((await screen.findByRole("combobox", { name: "Compare with" })).textContent).toBe("Everyone");
     expect(picked()).toBe("everyone");
   });
 
@@ -87,9 +86,7 @@ describe("GroupPicker", () => {
     };
     vi.stubGlobal("localStorage", { getItem: refuse, setItem: refuse, removeItem: refuse });
     render(<Harness />);
-    fireEvent.change(await screen.findByRole("combobox", { name: "Compare with" }), {
-      target: { value: "fam" },
-    });
+    choose(await screen.findByRole("combobox", { name: "Compare with" }), "Family (2)");
     expect(picked()).toBe("fam");
   });
 

@@ -102,9 +102,10 @@ describe("AppShell", () => {
 
     expect(href(tabs().getByRole("link", { name: "Episodes" }))).toBe("/episode?season=dwts-34");
     const [picker] = screen.getAllByRole("combobox", { name: "Season" });
-    expect((picker as HTMLSelectElement).value).toBe("dwts-34");
+    expect(picker.textContent).toBe("Season 34");
 
-    fireEvent.change(picker, { target: { value: "dwts-35" } });
+    fireEvent.click(picker);
+    fireEvent.click(screen.getByRole("option", { name: "Season 35" }));
     expect(nav.push).toHaveBeenCalledWith("/stats/");
   });
 
@@ -114,7 +115,7 @@ describe("AppShell", () => {
     await screen.findByRole("img", { name: "Ada Lovelace" });
 
     const [picker] = screen.getAllByRole("combobox", { name: "Season" });
-    expect((picker as HTMLSelectElement).value).toBe("dwts-35");
+    expect(picker.textContent).toBe("Season 35");
     expect(href(tabs().getByRole("link", { name: "Stats" }))).toBe("/stats");
   });
 
@@ -133,16 +134,24 @@ describe("AppShell", () => {
 
     fireEvent.click(account);
     expect(account.getAttribute("aria-expanded")).toBe("true");
-    const panel = within(document.getElementById(account.getAttribute("aria-controls")!)!);
-    expect(href(panel.getByRole("link", { name: "Profile" }))).toBe("/profile");
+    const menu = screen.getByRole("menu", { name: "Account" });
+    expect(menu.id).toBe(account.getAttribute("aria-controls"));
+    const profile = within(menu).getByRole("menuitem", { name: "Profile" });
+    expect(href(profile)).toBe("/profile");
+    expect(document.activeElement).toBe(profile);
+
+    fireEvent.keyDown(menu, { key: "ArrowDown" });
+    expect(document.activeElement).toBe(within(menu).getByRole("menuitem", { name: "Sign out" }));
+    fireEvent.keyDown(menu, { key: "ArrowDown" });
+    expect(document.activeElement).toBe(profile);
 
     fireEvent.keyDown(document, { key: "Escape" });
     expect(account.getAttribute("aria-expanded")).toBe("false");
     expect(document.activeElement).toBe(account);
-    expect(panel.queryByRole("link", { name: "Profile" })).toBeNull();
+    expect(screen.queryByRole("menu")).toBeNull();
 
     fireEvent.click(account);
-    fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "Sign out" }));
     expect(signOut).toHaveBeenCalled();
     await vi.waitFor(() => expect(nav.push).toHaveBeenCalledWith("/"));
   });
@@ -151,7 +160,7 @@ describe("AppShell", () => {
     renderShell();
     const apps = screen.getByRole("button", { name: "Apps" });
     fireEvent.click(apps);
-    expect(screen.getByRole("link", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
+    expect(screen.getByRole("menuitem", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
 
     fireEvent.pointerDown(screen.getByText("page body"));
     expect(apps.getAttribute("aria-expanded")).toBe("false");

@@ -10,13 +10,12 @@ const poppins = Poppins({
   display: "swap",
 });
 
-// Only the signed-out landing uses it, behind a 5 s intro, so skip the preload.
+// Our chrome page headings, on every page.
 const archivo = Archivo_Black({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-archivo",
   display: "swap",
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -41,7 +40,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${poppins.variable} ${archivo.variable} h-full antialiased`}>
-      <body className="min-h-full bg-ink font-sans text-neutral-100">{children}</body>
+      <body className="min-h-full bg-ink font-sans text-pearl">{children}</body>
     </html>
   );
 }
