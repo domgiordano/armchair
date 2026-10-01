@@ -33,11 +33,14 @@ export function zonedInstant(date: string, time: string, tz: string): number {
   return wall - offset(first, tz);
 }
 
+/** An episode with no time is a past season's, so it has aired. */
 export function hasAired(e: Episode, tz: string, now: number): boolean {
+  if (e.airDate === null || e.start === null) return true;
   return now >= zonedInstant(e.airDate, e.start, tz);
 }
 
 export function isLive(e: Episode, tz: string, now: number): boolean {
+  if (e.airDate === null || e.end === null) return false;
   return hasAired(e, tz, now) && now < zonedInstant(e.airDate, e.end, tz) + LIVE_TAIL_MS;
 }
 
@@ -47,7 +50,8 @@ export function latestAired(episodes: Episode[], tz: string, now: number): Episo
 }
 
 /** "Tue, Oct 13". The date is already the show's local date, so no zone shift applies. */
-export function formatAirDate(date: string): string {
+export function formatAirDate(date: string | null): string | null {
+  if (date === null) return null;
   return new Date(`${date}T12:00:00Z`).toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",

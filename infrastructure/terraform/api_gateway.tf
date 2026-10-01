@@ -77,17 +77,6 @@ module "api" {
   data_trace_enabled = false
 
   services = {
-    users    = { path_prefix = "users", endpoints = local.users_endpoints }
-    scores   = { path_prefix = "scores", endpoints = local.scores_endpoints }
-    episodes = { path_prefix = "episodes", endpoints = local.episodes_endpoints }
-    seasons  = { path_prefix = "seasons", endpoints = local.seasons_endpoints }
-    admin    = { path_prefix = "admin", endpoints = local.admin_endpoints }
-    stats    = { path_prefix = "stats", endpoints = local.stats_endpoints }
-    groups   = { path_prefix = "groups", endpoints = local.groups_endpoints }
-    overview = { path_prefix = "overview", endpoints = local.overview_endpoints }
-    friends  = { path_prefix = "friends", endpoints = local.friends_endpoints }
-
-    leaderboard   = { path_prefix = "leaderboard", endpoints = local.leaderboard_endpoints }
     users         = { path_prefix = "users", endpoints = local.users_endpoints }
     scores        = { path_prefix = "scores", endpoints = local.scores_endpoints }
     episodes      = { path_prefix = "episodes", endpoints = local.episodes_endpoints }
@@ -97,6 +86,7 @@ module "api" {
     groups        = { path_prefix = "groups", endpoints = local.groups_endpoints }
     overview      = { path_prefix = "overview", endpoints = local.overview_endpoints }
     friends       = { path_prefix = "friends", endpoints = local.friends_endpoints }
+    leaderboard   = { path_prefix = "leaderboard", endpoints = local.leaderboard_endpoints }
     notifications = { path_prefix = "notifications", endpoints = local.notifications_endpoints }
   }
 }

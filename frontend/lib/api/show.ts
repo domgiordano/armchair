@@ -26,12 +26,13 @@ export interface Judge extends Person {
   id: string;
 }
 
+// A past season's fixture has no start or end times, and some lack the air date.
 export interface Episode {
   ep: number;
   week: number;
-  airDate: string;
-  start: string;
-  end: string;
+  airDate: string | null;
+  start: string | null;
+  end: string | null;
   theme: string | null;
 }
 
@@ -74,7 +75,7 @@ export interface EpisodeState {
   season: string;
   ep: number;
   week: number;
-  airDate: string;
+  airDate: string | null;
   theme: string | null;
   panel: string[];
   rateable: number;
