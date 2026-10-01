@@ -203,6 +203,13 @@ describe("Groups tab", () => {
     expect(nav.replace).toHaveBeenCalledWith(`/friends/?tab=groups&group=${GID}`, { scroll: false });
   });
 
+  it("keeps the list beside an open group and marks the one that's open", async () => {
+    at(`tab=groups&group=${GID}`);
+    render(<FriendsScreen />);
+    await screen.findByRole("article", { name: "Family" });
+    expect(screen.getByRole("button", { name: /Family.*2 members/ }).getAttribute("aria-current")).toBe("true");
+  });
+
   it("gives the owner the controls: requests, removal, invites, delete", async () => {
     at(`tab=groups&group=${GID}`);
     render(<FriendsScreen />);
