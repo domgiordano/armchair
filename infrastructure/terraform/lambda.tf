@@ -62,6 +62,7 @@ locals {
   ]
   people_lambdas = [
     { name = "search", description = "Users, stars, pros and judges whose name matches", path_part = "search", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "get", description = "A celebrity, pro or judge: bio, seasons, dances and numbers, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
 
   all_api_lambdas = merge(
@@ -127,6 +128,7 @@ locals {
     performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem"]
     week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
     people_search      = ["catalog:Query", "social:Query", "users:BatchGetItem"]
+    people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query"]
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
