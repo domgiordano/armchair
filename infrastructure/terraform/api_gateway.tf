@@ -80,7 +80,12 @@ module "api" {
   authorization          = "COGNITO_USER_POOLS"
   cognito_user_pool_arns = [data.aws_ssm_parameter.cognito_user_pool_arn.value]
 
-  allow_origin = local.cors_allowed_origins
+  # The module answers preflights from a MOCK integration, whose response
+  # template can't read the request's Origin, so a list always returned its
+  # first entry and the hub's calls failed. "*" is safe here: the API takes a
+  # bearer token, never cookies. Real responses still echo only the allowed
+  # origins (CORS_ALLOW_ORIGIN in the Lambdas).
+  allow_origin = "*"
 
   # Data trace writes full request and response bodies to CloudWatch, and these
   # carry friends' names and emails.
