@@ -1,16 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useState } from "react";
 import { GoogleMark } from "@/components/google-mark";
 
-import { Brand } from "@/components/brand";
 import { Intro } from "@/components/intro";
+import { LandingNav } from "@/components/landing-nav";
 import { LandingDesk } from "@/components/landing-desk";
 import { LandingSteps } from "@/components/landing-steps";
+import { SiteFooter } from "@/components/site-footer";
 import { Specks } from "@/components/ui/specks";
 import { useReducedMotion } from "@/lib/motion";
-import { button, DISPLAY, TEXT_LINK } from "@/lib/ui";
+import { button, DISPLAY } from "@/lib/ui";
 
 const GOLD = button("primary");
 const OUTLINE = button("secondary");
@@ -42,33 +42,15 @@ export function Landing({ status, onSignIn }: LandingProps) {
     }
   };
 
-  // Only the hero button reports the redirect; the header one just disables.
-  const signIn = (label: string, className: string, busy: boolean) => (
-    <button
-      type="button"
-      onClick={() => void start()}
-      disabled={status !== "signedOut" || redirecting}
-      className={className}
-    >
-      <span className="inline-flex items-center justify-center gap-2.5">
-        <GoogleMark />
-        {busy && redirecting ? "Opening Google..." : label}
-      </span>
-    </button>
-  );
-
   return (
-    <div className="relative isolate min-h-dvh overflow-hidden text-silver">
+    <div className="relative isolate min-h-dvh overflow-clip text-silver">
       <Specks />
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 -z-10 h-[900px] bg-[radial-gradient(ellipse_60%_50%_at_75%_10%,rgb(232_194_104/0.16),transparent_70%),radial-gradient(ellipse_70%_60%_at_10%_0%,rgb(59_91_255/0.22),transparent_70%)]"
       />
 
-      <header className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2 sm:px-6">
-        <Brand />
-        {signIn("Sign in", `${OUTLINE} px-4 text-sm`, false)}
-      </header>
+      <LandingNav disabled={status !== "signedOut" || redirecting} onSignIn={() => void start()} />
 
       <main>
         <section className="mx-auto grid max-w-6xl gap-10 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16 lg:pt-20 lg:pb-24">
@@ -90,7 +72,18 @@ export function Landing({ status, onSignIn }: LandingProps) {
               the desk turns over: the judges, your friends, everyone watching, and how close you came.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              {signIn("Sign in with Google", GOLD, true)}
+              {/* Only this button reports the redirect; the header's just disable. */}
+              <button
+                type="button"
+                onClick={() => void start()}
+                disabled={status !== "signedOut" || redirecting}
+                className={GOLD}
+              >
+                <span className="inline-flex items-center justify-center gap-2.5">
+                  <GoogleMark />
+                  {redirecting ? "Opening Google..." : "Sign in with Google"}
+                </span>
+              </button>
               <a href="#how" className={OUTLINE}>
                 How it works
               </a>
@@ -105,7 +98,7 @@ export function Landing({ status, onSignIn }: LandingProps) {
           </div>
         </section>
 
-        <section id="how" className="scroll-mt-4 border-t border-silver/10 py-16 lg:py-24">
+        <section id="how" className="scroll-mt-16 border-t border-silver/10 py-16 lg:py-24">
           <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 sm:px-6">
             <div className="flex max-w-2xl flex-col gap-3">
               <p className="text-xs font-semibold tracking-[0.2em] text-gold">HOW IT WORKS</p>
@@ -132,22 +125,7 @@ export function Landing({ status, onSignIn }: LandingProps) {
         </section>
       </main>
 
-      <footer className="border-t border-silver/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-silver-dim sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>Not affiliated with ABC, Disney or BBC Studios.</p>
-          <div className="flex gap-4">
-            <a
-              href="https://armchairjudge.com"
-              className={`${TEXT_LINK} inline-flex min-h-11 items-center`}
-            >
-              More shows at Armchair Judge
-            </a>
-            <Link href="/credits/" className={`${TEXT_LINK} inline-flex min-h-11 items-center`}>
-              Photo credits
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

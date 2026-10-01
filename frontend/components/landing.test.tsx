@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.hoisted(() => {
@@ -90,9 +90,37 @@ describe("Landing", () => {
     expect(await screen.findByRole("group", { name: /^Judges' desk: Marisol Vega 8/ })).toBeTruthy();
     expect(screen.getByText("Illustration with invented couples, judges and scores.")).toBeTruthy();
     expect(screen.getByText("Not affiliated with ABC, Disney or BBC Studios.")).toBeTruthy();
-    expect(screen.getByRole("link", { name: "More shows at Armchair Judge" }).getAttribute("href")).toBe(
+    expect(screen.getByRole("link", { name: "armchairjudge.com" }).getAttribute("href")).toBe(
       "https://armchairjudge.com",
     );
+  });
+
+  it("has a top nav with the page links, the apps and Google sign-in", async () => {
+    reduceMotion(true);
+    render(<Home />);
+    const nav = (await screen.findAllByRole("navigation", { name: "Main" }))[0];
+    expect(within(nav).getByRole("link", { name: "How it works" }).getAttribute("href")).toBe("#how");
+    expect(within(nav).getByRole("link", { name: "Discover" }).getAttribute("href")).toMatch(/^\/discover\/?$/);
+
+    fireEvent.click(within(nav).getByRole("button", { name: "Apps" }));
+    const apps = screen.getByRole("menu", { name: "Apps" });
+    expect(within(apps).getByText("The Traitors")).toBeTruthy();
+    expect(within(apps).getByRole("menuitem", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
+
+    const header = screen.getByRole("banner");
+    expect(within(header).getByRole("button", { name: "Sign in with Google" })).toBeTruthy();
+  });
+
+  it("footer links the other apps, the legal pages, GitHub and Xomware", async () => {
+    reduceMotion(true);
+    render(<Home />);
+    const footer = await screen.findByRole("contentinfo");
+    const href = (name: string) => within(footer).getByRole("link", { name }).getAttribute("href");
+    expect(href("GitHub")).toBe("https://github.com/domgiordano/armchair");
+    expect(href("A Xomware app")).toBe("https://xomware.com");
+    expect(href("Privacy")).toBe("https://armchairjudge.com/privacy/");
+    expect(href("Photo credits")).toMatch(/^\/credits\/?$/);
+    expect(within(footer).getByText("Survivor").closest("a")).toBeNull();
   });
 
   it("keeps signed-in users on their home, with no intro or landing", async () => {

@@ -7,6 +7,8 @@ import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 export const COUNT_MS = 1600;
 
+const fmt = (n: number) => n.toLocaleString("en-US");
+
 interface CountUpProps {
   value: number;
 }
@@ -27,7 +29,7 @@ export function CountUp({ value }: CountUpProps) {
       const tick = (now: number) => {
         start ??= now;
         const t = Math.min((now - start) / COUNT_MS, 1);
-        el.textContent = String(Math.round(value * (1 - (1 - t) ** 3)));
+        el.textContent = fmt(Math.round(value * (1 - (1 - t) ** 3)));
         if (t < 1) frame = requestAnimationFrame(tick);
       };
       frame = requestAnimationFrame(tick);
@@ -35,16 +37,16 @@ export function CountUp({ value }: CountUpProps) {
     return () => {
       stop();
       cancelAnimationFrame(frame);
-      el.textContent = String(value);
+      el.textContent = fmt(value);
     };
   }, [value, reduced]);
 
   return (
     <>
       <span ref={ref} aria-hidden="true">
-        {value}
+        {fmt(value)}
       </span>
-      <span className="sr-only">{value}</span>
+      <span className="sr-only">{fmt(value)}</span>
     </>
   );
 }

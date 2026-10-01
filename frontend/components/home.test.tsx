@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 // amplify.ts reads these at import time, so they must exist before any import.
@@ -50,7 +50,8 @@ describe("Home", () => {
     render(<Home />);
     fireEvent.click(await screen.findByRole("button", { name: "Skip intro" }));
 
-    const button = await screen.findByRole("button", { name: "Sign in with Google" });
+    // The hero's button; the header has its own.
+    const button = within(await screen.findByRole("main")).getByRole("button", { name: "Sign in with Google" });
     await vi.waitFor(() => expect(button).toHaveProperty("disabled", false));
     fireEvent.click(button);
 

@@ -13,3 +13,6 @@ export function dwtsLink(path = "/", params: Record<string, string> = {}): strin
 export const profileLink = (sub: string) => dwtsLink("/profile/", { u: sub });
 
 export const friendInviteLink = (code: string) => `${DWTS_URL}/friends/?add=${encodeURIComponent(code)}`;
+
+export const GITHUB_URL = "https://github.com/domgiordano/armchair";
+export const XOMWARE_URL = "https://xomware.com";
