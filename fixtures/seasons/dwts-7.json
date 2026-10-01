@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -53,7 +58,12 @@
       "aliases": [
         "Michael Flatley"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Flatley_alone_cropped.jpg",
+        "author": "Flatley_alone.jpg: https://www.flickr.com/photos/maxguy derivative work: Beaumain (talk)",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Flatley_alone_cropped.jpg"
+      }
     }
   ],
   "episodes": [
@@ -2175,7 +2185,12 @@
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 1
@@ -2189,7 +2204,12 @@
         {
           "name": "Ted McGinley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Ted_McGinley_at_PaleyLive_Shrinking_2024.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ted_McGinley_at_PaleyLive_Shrinking_2024.jpg"
+          }
         },
         {
           "name": "Inna Brayer",
@@ -2208,12 +2228,22 @@
         {
           "name": "Kim Kardashian",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "President_Trump_Meets_with_Sentencing_Commutation_Recipients_(49624188912)_(cropped).jpg",
+            "author": "The White House from Washington, DC",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:President_Trump_Meets_with_Sentencing_Commutation_Recipients_(49624188912)_(cropped).jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2227,12 +2257,22 @@
         {
           "name": "Misty May-Treanor",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Misty_May-Treanor.jpg",
+            "author": "Jasonschock (talk)",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Misty_May-Treanor.jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2246,12 +2286,22 @@
         {
           "name": "Rocco DiSpirito",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Rocco_DiSpirito_in_July_2008_(2712230904).jpg",
+            "author": "Sheri Wetherell from Seattle, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rocco_DiSpirito_in_July_2008_(2712230904).jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2265,7 +2315,12 @@
         {
           "name": "Toni Braxton",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Toni_Braxton_2013.jpg",
+            "author": "The Heart Truth",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Toni_Braxton_2013.jpg"
+          }
         },
         {
           "name": "Alec Mazo",
@@ -2284,7 +2339,12 @@
         {
           "name": "Cloris Leachman",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Cloris_Leachman_2014_crop.jpg",
+            "author": "Voice Chasers",
+            "license": "CC BY 2.5",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cloris_Leachman_2014_crop.jpg"
+          }
         },
         {
           "name": "Corky Ballas",
@@ -2303,12 +2363,22 @@
         {
           "name": "Susan Lucci",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "S_SOAP_07_037_SMILE!_Susan_Lucci.JPG",
+            "author": "Teresa Simmons permission= given",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:S_SOAP_07_037_SMILE!_Susan_Lucci.JPG"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2322,12 +2392,22 @@
         {
           "name": "Maurice Greene",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Maurice_Greene,_Sydney2000.jpg",
+            "author": "Jimmy Harris (Blog)",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maurice_Greene,_Sydney2000.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2341,12 +2421,22 @@
         {
           "name": "Cody Linley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Cody_Linley.jpg",
+            "author": "Palace Resorts",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cody_Linley.jpg"
+          }
         },
         {
           "name": "Julianne Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+            "author": "https://www.flickr.com/photos/greg2600",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2360,7 +2450,12 @@
         {
           "name": "Lance Bass",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lance_Bass_2014.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lance_Bass_2014.jpg"
+          }
         },
         {
           "name": "Lacey Schwimmer",
@@ -2379,12 +2474,22 @@
         {
           "name": "Warren Sapp",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Warren_Sapp_at_2010_Pro_Bowl_-_cropped.jpg",
+            "author": "Anthony Quintano",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warren_Sapp_at_2010_Pro_Bowl_-_cropped.jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2398,12 +2503,22 @@
         {
           "name": "Brooke Burke",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Brooke_Burke_2021.jpg",
+            "author": "Copyright Brooke Burke",
+            "license": "CC BY 2.5",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brooke_Burke_2021.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": null

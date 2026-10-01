@@ -583,7 +583,12 @@
         {
           "name": "Rylee Arnold",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Rylee_Arnold_at_Press_Play_2026.jpg",
+            "author": "Mikepascoe",
+            "license": "CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rylee_Arnold_at_Press_Play_2026.jpg"
+          }
         }
       ]
     }

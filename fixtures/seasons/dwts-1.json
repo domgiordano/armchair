@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -732,7 +737,12 @@
         {
           "name": "Trista Sutter",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Trista_Rehn_Sutter_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trista_Rehn_Sutter_on_RealTVfilms.jpg"
+          }
         },
         {
           "name": "Louis van Amstel",
@@ -751,12 +761,22 @@
         {
           "name": "Evander Holyfield",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Evander_Holyfield_LA_2011.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evander_Holyfield_LA_2011.jpg"
+          }
         },
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -770,7 +790,12 @@
         {
           "name": "Rachel Hunter",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Rachel_Hunter_LF.JPG",
+            "author": "lukeford.net",
+            "license": "CC BY-SA 2.5",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rachel_Hunter_LF.JPG"
+          }
         },
         {
           "name": "Jonathan Roberts",
@@ -789,12 +814,22 @@
         {
           "name": "Joey McIntyre",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Joe_McIntyre_–_Vienna_2014_03.JPG",
+            "author": "Ibolya Nyikos",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joe_McIntyre_%E2%80%93_Vienna_2014_03.JPG"
+          }
         },
         {
           "name": "Ashly DelGrosso",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Ashleydelgrosso.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ashleydelgrosso.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -808,7 +843,12 @@
         {
           "name": "John O'Hurley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "John_O'Hurley_by_Gage_Skidmore_2.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_O%27Hurley_by_Gage_Skidmore_2.jpg"
+          }
         },
         {
           "name": "Charlotte Jørgensen",

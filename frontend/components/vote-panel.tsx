@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { CoupleAvatars } from "@/components/headshot";
 import type { Contestant, Episode } from "@/lib/api/show";
 import {
   clockTime,
@@ -86,6 +87,7 @@ function VoteList({ ep, couples }: VoteListProps) {
           const sent = votes[c.id] ?? 0;
           return (
             <li key={c.id} className="flex items-center gap-2 border-neutral-800 py-3 md:border-b">
+              <CoupleAvatars members={c.members} size={32} />
               <div className="min-w-0 flex-1">
                 <p className="font-medium">{pro ? `${celebrity} & ${pro}` : celebrity}</p>
                 <p className="text-sm text-neutral-400">

@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -1960,7 +1965,12 @@
         {
           "name": "Paulina Porizkova",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Pavlína_Pořízková_2014.JPG",
+            "author": "David Sedlecký",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pavl%C3%ADna_Po%C5%99%C3%ADzkov%C3%A1_2014.JPG"
+          }
         },
         {
           "name": "Alec Mazo",
@@ -1979,12 +1989,22 @@
         {
           "name": "Shandi Finnessey",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Shandi_Finnessey.jpg",
+            "author": "Unknown author",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shandi_Finnessey.jpg"
+          }
         },
         {
           "name": "Brian Fortuna",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Brian_fortuna_Nov_16_08_1.jpg",
+            "author": "Responsiballot",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brian_fortuna_Nov_16_08_1.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -1998,12 +2018,22 @@
         {
           "name": "Leeza Gibbons",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Leeza_Gibbons.jpg",
+            "author": "Original uploader was Txcrossbow at en.wikipedia",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leeza_Gibbons.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2017,7 +2047,12 @@
         {
           "name": "Clyde Drexler",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Clyde_Drexler_02.jpg",
+            "author": "University of Houston",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Clyde_Drexler_02.jpg"
+          }
         },
         {
           "name": "Elena Grinenko",
@@ -2036,7 +2071,12 @@
         {
           "name": "Heather Mills",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Heather_Mills_-_Wien_2019_(2).JPG",
+            "author": "C.Stadler/Bwag",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Heather_Mills_-_Wien_2019_(2).JPG"
+          }
         },
         {
           "name": "Jonathan Roberts",
@@ -2055,12 +2095,22 @@
         {
           "name": "John Ratzenberger",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "John_Ratzenberger_2011_Shankbone.JPG",
+            "author": "David Shankbone",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Ratzenberger_2011_Shankbone.JPG"
+          }
         },
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2074,12 +2124,22 @@
         {
           "name": "Billy Ray Cyrus",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Billy_Ray_Cyrus_2019.jpg",
+            "author": "The White House from Washington, DC",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Billy_Ray_Cyrus_2019.jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2093,12 +2153,22 @@
         {
           "name": "Ian Ziering",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Ian_Ziering_at_CCR_Ontario_2026.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ian_Ziering_at_CCR_Ontario_2026.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2112,12 +2182,22 @@
         {
           "name": "Laila Ali",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Laila_Ali_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laila_Ali_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2131,12 +2211,22 @@
         {
           "name": "Joey Fatone",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Joey_Fatone_(31503991831).jpg",
+            "author": "Super Festivals from Ft. Lauderdale, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joey_Fatone_(31503991831).jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2150,12 +2240,22 @@
         {
           "name": "Apolo Anton Ohno",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Apolo_Anton_Ohno_headshot.jpg",
+            "author": "OlympicHistorian",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apolo_Anton_Ohno_headshot.jpg"
+          }
         },
         {
           "name": "Julianne Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+            "author": "https://www.flickr.com/photos/greg2600",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null

@@ -58,7 +58,12 @@
       "aliases": [
         "Kym Johnson"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Kymjohnson.jpg",
+        "author": "Albert Domasin from Los Angeles, united states",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+      }
     },
     {
       "id": "jon-m-chu",
@@ -66,7 +71,12 @@
       "aliases": [
         "Jon M. Chu"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Jon_Chu_-_Wicked.jpg",
+        "author": "Kevin Paul",
+        "license": "CC BY 4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jon_Chu_-_Wicked.jpg"
+      }
     },
     {
       "id": "cheryl-burke",
@@ -74,7 +84,12 @@
       "aliases": [
         "Cheryl Burke"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Cheryl_Burke_2009.jpg",
+        "author": "Toglenn",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+      }
     },
     {
       "id": "flavor-flav",
@@ -82,7 +97,12 @@
       "aliases": [
         "Flavor Flav"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Flavor-flav.jpg",
+        "author": "Darian Cabot",
+        "license": "Public domain",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Flavor-flav.jpg"
+      }
     },
     {
       "id": "tom-bergeron",
@@ -90,7 +110,12 @@
       "aliases": [
         "Tom Bergeron"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "TomBergeronApr09.jpg",
+        "author": "jfer21 at https://www.flickr.com/photos/jfer21/",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:TomBergeronApr09.jpg"
+      }
     }
   ],
   "episodes": [
@@ -2586,12 +2611,22 @@
         {
           "name": "Baron Davis",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Baron_Davis_March_2012.jpg",
+            "author": "scott mecum",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baron_Davis_March_2012.jpg"
+          }
         },
         {
           "name": "Britt Stewart",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "author": "CaseyJNewell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2605,7 +2640,12 @@
         {
           "name": "Corey Feldman",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Corey_Feldman_Photo_Op_GalaxyCon_Richmond_2023.jpg",
+            "author": "Super Festivals from Ft. Lauderdale, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corey_Feldman_Photo_Op_GalaxyCon_Richmond_2023.jpg"
+          }
         },
         {
           "name": "Jenna Johnson",
@@ -2624,7 +2664,12 @@
         {
           "name": "Lauren Jauregui",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lauren_Jauregui_in_2017_(cropped)_2.jpg",
+            "author": "Karen Cante",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lauren_Jauregui_in_2017_(cropped)_2.jpg"
+          }
         },
         {
           "name": "Brandon Armstrong",
@@ -2643,12 +2688,22 @@
         {
           "name": "Hilaria Baldwin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Hilaria_Baldwin(cropped).jpg",
+            "author": "Joella Marano",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hilaria_Baldwin(cropped).jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2662,12 +2717,22 @@
         {
           "name": "Scott Hoying",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "ScottHoying-byPhilipRomano2.jpg",
+            "author": "PhilipRomanoPhoto",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:ScottHoying-byPhilipRomano2.jpg"
+          }
         },
         {
           "name": "Rylee Arnold",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Rylee_Arnold_at_Press_Play_2026.jpg",
+            "author": "Mikepascoe",
+            "license": "CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rylee_Arnold_at_Press_Play_2026.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2686,7 +2751,12 @@
         {
           "name": "Jan Ravnik",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Jan_Ravnik_at_Tribeca_Film_Festival_2026-1.jpg",
+            "author": "CaseyJNewell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jan_Ravnik_at_Tribeca_Film_Festival_2026-1.jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2700,12 +2770,22 @@
         {
           "name": "Danielle Fishel",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Danielle_Fishel_Photo_Op_GalaxyCon_Richmond_2023.jpg",
+            "author": "Super Festivals from Ft. Lauderdale, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Danielle_Fishel_Photo_Op_GalaxyCon_Richmond_2023.jpg"
+          }
         },
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "author": "Panache Star Dancesport",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2719,12 +2799,22 @@
         {
           "name": "Andy Richter",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Andy_Richter_at_the_2013_Final_Four_in_Atlanta_Georgia_02_(cropped).jpg",
+            "author": "Ryan Schreiber",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andy_Richter_at_the_2013_Final_Four_in_Atlanta_Georgia_02_(cropped).jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2738,12 +2828,22 @@
         {
           "name": "Whitney Leavitt",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Whitney_Leavitt,_Ambassador_Theatre,_February_2026.jpg",
+            "author": "Skjiisa",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Whitney_Leavitt,_Ambassador_Theatre,_February_2026.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2757,7 +2857,12 @@
         {
           "name": "Elaine Hendrix",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Elaine_Hendrix_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elaine_Hendrix_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Alan Bersten",
@@ -2776,7 +2881,12 @@
         {
           "name": "Dylan Efron",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Dylan_Efron_for_Faculty_Department,_profile.jpg",
+            "author": "Justin Chung",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dylan_Efron_for_Faculty_Department,_profile.jpg"
+          }
         },
         {
           "name": "Daniella Karagach",
@@ -2795,7 +2905,12 @@
         {
           "name": "Jordan Chiles",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jordan_Chiles_2024.jpg",
+            "author": "Ocoudis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jordan_Chiles_2024.jpg"
+          }
         },
         {
           "name": "Ezra Sosa",
@@ -2814,7 +2929,12 @@
         {
           "name": "Alix Earle",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Alix_Earle_in_2023.png",
+            "author": "Sonali Prabhu",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alix_Earle_in_2023.png"
+          }
         },
         {
           "name": "Val Chmerkovskiy",
@@ -2833,12 +2953,22 @@
         {
           "name": "Robert Irwin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "WTTC_-_2JB09838_(54056477863).jpg",
+            "author": "World Travel & Tourism Council",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:WTTC_-_2JB09838_(54056477863).jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null

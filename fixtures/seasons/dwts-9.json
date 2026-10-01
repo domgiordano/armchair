@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -2257,7 +2262,12 @@
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 1
@@ -2271,7 +2281,12 @@
         {
           "name": "Macy Gray",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Macy_Gray_2008.07.23_027.jpg",
+            "author": "livepict.com",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Macy_Gray_2008.07.23_027.jpg"
+          }
         },
         {
           "name": "Jonathan Roberts",
@@ -2290,12 +2305,22 @@
         {
           "name": "Kathy Ireland",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kathy_at_New_York_Stock_Exchange_(cropped).jpg",
+            "author": "kathy ireland",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kathy_at_New_York_Stock_Exchange_(cropped).jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2309,12 +2334,22 @@
         {
           "name": "Tom DeLay",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "TomDeLay.jpg",
+            "author": "United States Congress",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TomDeLay.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2328,12 +2363,22 @@
         {
           "name": "Debi Mazar",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Debi_Mazar_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Debi_Mazar_2009.jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2347,7 +2392,12 @@
         {
           "name": "Chuck Liddell",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chuck_Liddell_in_Santa_Monica-California_2005_photo_by_Ithaka_Darin_Pappas.jpg",
+            "author": "IthakaDarinPappas",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chuck_Liddell_in_Santa_Monica-California_2005_photo_by_Ithaka_Darin_Pappas.jpg"
+          }
         },
         {
           "name": "Anna Trebunskaya",
@@ -2366,7 +2416,12 @@
         {
           "name": "Natalie Coughlin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Natalie_Coughlin,_2018_(cropped).jpg",
+            "author": "Fuzheado",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Natalie_Coughlin,_2018_(cropped).jpg"
+          }
         },
         {
           "name": "Alec Mazo",
@@ -2385,12 +2440,22 @@
         {
           "name": "Melissa Joan Hart",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Melissa_Joan_Hart_(36726572364)_(cropped_and_rotated).jpg",
+            "author": "https://www.flickr.com/photos/greg2600/",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melissa_Joan_Hart_(36726572364)_(cropped_and_rotated).jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2409,7 +2474,12 @@
         {
           "name": "Chelsie Hightower",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "ChelsieHightowerApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2423,7 +2493,12 @@
         {
           "name": "Michael Irvin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Michael_Irvin.jpg",
+            "author": "Lobberich (Flickr profile)",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Irvin.jpg"
+          }
         },
         {
           "name": "Anna Demidova",
@@ -2442,7 +2517,12 @@
         {
           "name": "Mark Dacascos",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Dacascos_-_Drive_1997.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Dacascos_-_Drive_1997.jpg"
+          }
         },
         {
           "name": "Lacey Schwimmer",
@@ -2461,12 +2541,22 @@
         {
           "name": "Aaron Carter",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Aaron_Carter_Performing_at_the_Gramercy_Theatre_-_Photo_by_Peter_Dzubay_(cropped).jpg",
+            "author": "Peter Dzubay",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aaron_Carter_Performing_at_the_Gramercy_Theatre_-_Photo_by_Peter_Dzubay_(cropped).jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2480,12 +2570,22 @@
         {
           "name": "Joanna Krupa",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Joanna_Krupa_adjust.jpg",
+            "author": "Joanna_Krupa.JPG: lukeford.net; derivative work: Tabercil",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joanna_Krupa_adjust.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2518,12 +2618,22 @@
         {
           "name": "Mýa",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mýa_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:M%C3%BDa_2009.jpg"
+          }
         },
         {
           "name": "Dmitry Chaplin",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "DSC03939_print.jpg",
+            "author": "Dmitry Chaplin",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:DSC03939_print.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2537,12 +2647,22 @@
         {
           "name": "Donny Osmond",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Osmond,_Donny_(2006)_(cropped).jpg",
+            "author": "Michael Schamis from New York, NY, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Osmond,_Donny_(2006)_(cropped).jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": null
