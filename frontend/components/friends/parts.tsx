@@ -5,6 +5,7 @@ import { useCallback, useEffect, useId, useState, type ReactNode } from "react";
 import { Avatar } from "@/components/avatar";
 import { EmptyState } from "@/components/ui/states";
 import { useToast } from "@/components/ui/toast";
+import { UserLink } from "@/components/user-link";
 import type { Person } from "@/lib/api/social";
 import { button, EYEBROW, INPUT } from "@/lib/ui";
 
@@ -78,7 +79,9 @@ export function PersonRow({
         <div className="flex min-w-[8rem] flex-1 items-center gap-3">
           <Avatar name={name} email="" picture={person.picture} />
           <div className="min-w-0 flex-1">
-            <p className="truncate font-medium text-pearl">{name}</p>
+            <p className="truncate font-medium text-pearl">
+              <UserLink sub={person.sub}>{name}</UserLink>
+            </p>
             {detail && <p className="text-xs text-silver-dim">{detail}</p>}
           </div>
         </div>

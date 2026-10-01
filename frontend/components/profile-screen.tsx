@@ -9,6 +9,7 @@ import { PageLoader } from "@/components/disco-loader";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { NameEditor } from "@/components/name-editor";
+import { ProfileAllTime } from "@/components/profile-all-time";
 import { ProfilePhoto } from "@/components/profile-photo";
 import { ProfileSeason } from "@/components/profile-season";
 import { SignedIn } from "@/components/signed-in";
@@ -106,8 +107,9 @@ function OwnProfile({ season }: { season: Season }) {
         <CountLink href="/groups/" label="Groups" count={profile.groupCount} />
       </nav>
 
-      <div className="lg:col-start-2 lg:row-span-3 lg:row-start-1">
+      <div className="flex flex-col gap-10 lg:col-start-2 lg:row-span-3 lg:row-start-1">
         <ProfileSeason season={season} profile={profile} own />
+        <ProfileAllTime season={season} profile={profile} />
       </div>
 
       <button
@@ -163,7 +165,10 @@ function OtherProfile({ season, sub }: { season: Season; sub: string }) {
           )}
         </div>
       </header>
-      <ProfileSeason season={season} profile={profile} own={false} />
+      <div className="flex flex-col gap-10">
+        <ProfileSeason season={season} profile={profile} own={false} />
+        <ProfileAllTime season={season} profile={profile} />
+      </div>
     </div>
   );
 }

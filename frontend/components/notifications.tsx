@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { Avatar } from "@/components/avatar";
+import { UserLink } from "@/components/user-link";
 import { PageHeader } from "@/components/ui/page-header";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
@@ -114,7 +115,10 @@ function NotificationItem({ item, fresh, compact }: { item: Notification; fresh:
       <Avatar name={who} email="" picture={item.from.picture} />
       <div className="flex min-w-0 flex-1 flex-col gap-2">
         <p className="text-sm leading-snug text-silver">
-          <span className="font-semibold text-pearl">{who}</span> {text}
+          <UserLink sub={item.from.sub} className="font-semibold text-pearl">
+            {who}
+          </UserLink>{" "}
+          {text}
           {group && <span className="font-semibold text-pearl"> {group}</span>}
           <span className="mt-0.5 block text-xs text-silver-dim">
             <time dateTime={item.at}>{timeAgo(item.at)}</time>

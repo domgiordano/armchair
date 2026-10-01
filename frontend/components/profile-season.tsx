@@ -76,7 +76,7 @@ export function ProfileSeason({ season, profile, own }: ProfileSeasonProps) {
   );
 }
 
-function Stat({ label, value, note }: { label: string; value: ReactNode; note?: string }) {
+export function Stat({ label, value, note }: { label: string; value: ReactNode; note?: string }) {
   return (
     <div className="flex h-full flex-col gap-1 bg-ballroom/90 p-4">
       <dt className="text-xs font-medium tracking-[0.12em] text-silver-dim uppercase">{label}</dt>

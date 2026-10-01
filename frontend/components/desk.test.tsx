@@ -68,7 +68,7 @@ describe("Desk", () => {
     const all = seat(container, "All");
     expect(paddle(all).textContent).toBe("7.3");
     expect(within(all).getByText("12 scores")).toBeTruthy();
-    expect(screen.getByRole("img", { name: /everyone 7\.3 from 12 scores$/ })).toBeTruthy();
+    expect(screen.getByRole("group", { name: /everyone 7\.3 from 12 scores$/ })).toBeTruthy();
   });
 
   it("keeps a pending judge's paddle down, and dashes a provisional one", () => {
@@ -101,7 +101,7 @@ describe("Desk", () => {
 
     expect(screen.getByText("Dashed paddles are unconfirmed.")).toBeTruthy();
     expect(
-      screen.getByRole("img", {
+      screen.getByRole("group", {
         name: /^Judges' desk: Carrie Ann Inaba 8, Derek Hough 7\.5 unconfirmed, Bruno Tonioli pending, you 6/,
       }),
     ).toBeTruthy();
@@ -166,8 +166,8 @@ describe("Desk", () => {
         card={card(confirmed(3))}
         judges={judgeMap}
         members={[
-          { name: "Sam Friend", picture: null, value: 9 },
-          { name: "Lee Friend", picture: null, value: 4 },
+          { sub: "sam", name: "Sam Friend", picture: null, value: 9 },
+          { sub: "lee", name: "Lee Friend", picture: null, value: 4 },
         ]}
       >
         list
@@ -183,6 +183,9 @@ describe("Desk", () => {
     ]);
     expect(paddle(seat(container, "Sam")).textContent).toBe("9");
     expect(within(container).queryByText("All")).toBeNull();
+    // Plates open the member's profile and the judge's page.
+    expect(screen.getByRole("link", { name: "Sam Friend 9" }).getAttribute("href")).toBe("/profile?u=sam");
+    expect(screen.getByRole("link", { name: /^Carrie Ann Inaba/ }).getAttribute("href")).toBe("/people?id=carrie-ann-inaba");
   });
 
   it("keeps the number list under Details", () => {
