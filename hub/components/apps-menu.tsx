@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useEffectEvent, useId, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent, type ReactNode } from "react";
+import { GoogleMark } from "@/components/google-mark";
 
 import { DWTS_URL } from "@/lib/links";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
@@ -264,7 +265,10 @@ export function AppsMenu() {
                 href={DWTS_URL}
                 className="mt-2 flex min-h-12 items-center justify-center rounded-full sm:hidden bg-text font-semibold text-night hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold active:scale-[0.98]"
               >
-                Sign in
+                <span className="inline-flex items-center gap-2">
+                  <GoogleMark className="h-4 w-4" />
+                  Sign in
+                </span>
               </a>
             </div>
           </div>

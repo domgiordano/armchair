@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AppsMenu } from "@/components/apps-menu";
 import { ChairMark } from "@/components/chair-mark";
 import { DWTS_URL } from "@/lib/links";
+import { GoogleMark } from "@/components/google-mark";
 
 const link =
   "flex min-h-11 items-center rounded-full px-3 text-sm font-medium text-muted transition-colors hover:text-text focus-visible:outline-2 focus-visible:outline-gold motion-reduce:transition-none";
@@ -39,7 +40,10 @@ export function SiteHeader() {
             href={DWTS_URL}
             className="ml-1 hidden min-h-11 items-center rounded-full bg-text px-4 text-sm font-semibold text-night transition-colors hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold active:scale-95 motion-reduce:transition-none sm:flex"
           >
-            Sign in
+            <span className="inline-flex items-center gap-2">
+              <GoogleMark className="h-4 w-4" />
+              Sign in
+            </span>
           </a>
         </nav>
       </div>
