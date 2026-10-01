@@ -1,4 +1,5 @@
 import { ChairMark } from "@/components/chair-mark";
+import { reveal } from "@/lib/reveal";
 
 const POINTS = [
   "One Google sign-in opens every show app. No new account per show.",
@@ -14,7 +15,7 @@ const SHOWS = [
 
 function AccountDiagram() {
   return (
-    <div className="relative mx-auto w-full max-w-md" aria-hidden="true">
+    <div className="relative mx-auto w-full max-w-md" aria-hidden="true" {...reveal(2)}>
       <div className="mx-auto flex w-fit items-center gap-3 rounded-2xl border border-line bg-night-2 px-4 py-3 shadow-xl shadow-violet/10">
         <ChairMark className="size-10" />
         <div>
@@ -24,7 +25,7 @@ function AccountDiagram() {
       </div>
       <svg viewBox="0 0 300 60" className="h-14 w-full" preserveAspectRatio="none">
         {[50, 150, 250].map((x) => (
-          <path key={x} d={`M150 0 C150 30 ${x} 30 ${x} 60`} fill="none" className="stroke-violet/60" strokeWidth="1.5" strokeDasharray="4 4" />
+          <path key={x} d={`M150 0 C150 30 ${x} 30 ${x} 60`} fill="none" className="account-flow stroke-violet/60" strokeWidth="1.5" strokeDasharray="4 4" />
         ))}
       </svg>
       <ul className="grid grid-cols-3 gap-2">
@@ -46,7 +47,7 @@ export function OneAccount() {
   return (
     <section id="account" aria-labelledby="account-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
-        <div>
+        <div {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-violet uppercase">One account</p>
           <h2 id="account-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             Every show, <span className="text-brand-gradient">the same couch.</span>
