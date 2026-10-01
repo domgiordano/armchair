@@ -29,6 +29,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from lambdas.common.people import slug
 from lambdas.common.wiki_parse import (
     blocks,
     cell_text,
@@ -69,11 +70,6 @@ def fetch(title: str, revid: int | None) -> dict:
         "timestamp": rev["timestamp"],
         "text": rev["slots"]["main"]["content"],
     }
-
-
-def slug(name: str) -> str:
-    ascii_ = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
-    return re.sub(r"[^a-z0-9]+", "-", ascii_.lower().replace("'", "")).strip("-")
 
 
 def section(text: str, heading: str) -> str:
