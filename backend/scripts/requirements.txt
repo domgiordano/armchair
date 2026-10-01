@@ -1,0 +1,2 @@
+# The scripts beyond the Lambda layer: Seed Season and Test Backend install this.
+opencv-python-headless==4.14.0.94

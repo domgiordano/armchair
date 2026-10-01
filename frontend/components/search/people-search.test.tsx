@@ -20,7 +20,7 @@ const RESULTS: SearchResults = {
   stars: [],
   pros: [{ id: "derek-hough-sr", name: "Derek Hough Sr", roles: ["pro"], headshot: null, seasons: [3, 4] }],
   judges: [
-    { id: "derek-hough", name: "Derek Hough", roles: ["judge", "pro"], headshot: "Derek.jpg", seasons: [1, 2, 3] },
+    { id: "derek-hough", name: "Derek Hough", roles: ["judge", "pro"], headshot: "derek-hough-0123456789.webp", seasons: [1, 2, 3] },
   ],
 };
 

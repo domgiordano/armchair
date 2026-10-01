@@ -79,7 +79,13 @@ def test_nothing_answered_locks_every_couple(show):
     assert data["answered"] == 0 and data["rateable"] == len(data["locked"])
     names = [c["members"][0]["name"] for c in data["locked"]]
     assert names == sorted(names, key=str.casefold)
-    assert "8" not in json.dumps(data["locked"])
+    # A locked couple shows who they are and nothing anyone scored.
+    assert {k for c in data["locked"] for k in c} == {"id", "members"}
+    assert {k for c in data["locked"] for m in c["members"] for k in m} == {
+        "name",
+        "role",
+        "headshot",
+    }
 
 
 def test_ranks_four_ways(show):

@@ -4,7 +4,13 @@ import { describe, expect, it } from "vitest";
 import { CoupleAvatars, coupleName } from "@/components/headshot";
 import type { Member } from "@/lib/api/show";
 
-const shot = { file: "Witney Carson (cropped).jpg", author: "a", license: "CC BY 4.0", sourceUrl: "u" };
+const shot = {
+  file: "Witney Carson (cropped).jpg",
+  image: "witney-carson-0123456789.webp",
+  author: "a",
+  license: "CC BY 4.0",
+  sourceUrl: "u",
+};
 const pair: Member[] = [
   { name: "Robert Irwin", role: "celebrity", headshot: null },
   { name: "Witney Carson", role: "pro", headshot: shot },
@@ -15,7 +21,7 @@ describe("CoupleAvatars", () => {
     const { container } = render(<CoupleAvatars members={pair} />);
     expect(screen.getByText("RI")).toBeTruthy();
     const img = container.querySelector("img");
-    expect(img?.getAttribute("src")).toMatch(/\/headshots\/Witney%20Carson%20\(cropped\)\.jpg$/);
+    expect(img?.getAttribute("src")).toMatch(/\/headshots\/witney-carson-0123456789\.webp$/);
   });
 
   it("puts the celebrity first whatever the member order", () => {

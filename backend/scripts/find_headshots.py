@@ -13,12 +13,12 @@ name itself leads to when that links to the show. It only counts when its Wikida
 is a human labelled with the name: some names redirect to the show's own article (S1's
 Charlotte Jørgensen), and "Jenna Johnson" is a different person from the dancer.
 
-Per person, in order, the first file that is on Commons, free and not a network photo:
-1. the article's Wikidata P18 image
-2. the article's free lead image (pageimages)
-3. a file in the person's Commons category (Wikidata P373, else the category with their
-   name when it is filed under dance) whose file name or description is the person alone
-4. a Commons search hit whose file name is the person's and whose page mentions dancing
+Per person, the first file that is on Commons, free, not a network photo, and has one
+clear face that faces.crop() can centre on:
+1. the Wikidata item's own P18 image
+2. a file whose Commons structured data says it depicts that item (P180), solo depictions
+   and files named for the person first. The article's lead image only counts this way.
+Category members and name searches are never used: they turned up namesakes and crowds.
 """
 
 from __future__ import annotations
@@ -32,11 +32,11 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from functools import partial
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from scripts import faces
 from scripts.build_season import SEASONS, UA, words
 
 REGISTRY = SEASONS.parent / "headshots.json"
@@ -50,20 +50,18 @@ PRESS = re.compile(
     r"\b(ABC|Disney|press (photo|release|kit)|publicity|Records|Studios)\b", re.IGNORECASE
 )
 # Some P18 images of people are their signature or their grave.
-NOT_A_FACE = re.compile(r"signature|autograph|grave|headstone|tomb", re.IGNORECASE)
+# Whole words only: "TomBergeronApr09.jpg" is not a tomb.
+NOT_A_FACE = re.compile(
+    r"(?<![a-z])(signature|autograph|grave|headstone|tomb)(?![a-z])", re.IGNORECASE
+)
 IMAGE = {"image/jpeg", "image/png", "image/webp"}
-# Words a file name may add to the person's name: "Witney Carson 2019 (cropped).jpg".
-FILLER = {"cropped", "crop", "headshot", "portrait"}
-# Where the name is followed by a place or a credit: "Jan Ravnik at Tribeca Film Festival 2026",
-# "Witney Carson 2019 by Glenn Francis".
-AT = {"at", "in", "on", "during", "by"}
 SHOW = "Dancing with the Stars (American TV series)"
 # Looked at by hand and left null. Registry entries, so they are never resolved again.
 SKIP = {
     "Guillermo Rodriguez": "the Commons description names Guillermo Díaz",
     "Daniella Karagach": "the only free photo is a two-person dance shot",
 }
-# Files that pass every check but show no usable face, from looking at them.
+# Files that pass every check but are no usable headshot, from looking at the contact sheet.
 REJECT = {
     "Aldrin_Apollo_11_(3x5_crop).jpg": "helmet visor",
     "Visually_impaired_woman_number_4b.JPG": "skiing, far away",
@@ -75,6 +73,40 @@ REJECT = {
     "Kim_Zolciak_and_Allison_DeMarcus.jpg": "two people in a crowd",
     "DSD_hosts_The_Secretary_of_Defense_Employer_Support_Freedom_Awards_Ceremony_170825-D-SV709-004.jpg": "far away at a podium",
     "Ginger_Zee_at_Pre-White_House_Correspondents'_Dinner_Reception_Pre-Party_-_13927260579.jpg": "in front of an ABC News backdrop",
+    "Carrie_Ann_Inaba.jpg": "sunglasses, street signs behind",
+    "Derek_Fisher_Thunder.jpg": "mid-shot, arms over his head",
+    "Hines_Ward_Steelers.jpg": "face behind a helmet facemask",
+    "Ginger_Zee_May_2014.jpg": "ABC logo behind her",
+    "Jerry_Rice.jpg": "off to one side of a sign",
+    "Jojo_Siwa_on_the_iHeart_Awards_2024_01.jpg": "face paint hides her face",
+    "Jack_Wagner_2009.jpg": "mid golf swing, looking down",
+    "Laurie_Hernandez_2016-08-04.jpg": "looking down mid-routine",
+    "Kellie_Pickler_Al_Asad_4.jpg": "blurred, arms in the air",
+    "Kenny_ortega.jpg": "dark, looking down",
+    "Kim_Zolciak.jpg": "washed out and blurred",
+    "Lindsey_Stirling_Portrait.jpg": "playing violin, face behind her hair",
+    "Lil'_Kim_-_crop_3_(cropped).png": "on a dark stage, blurred",
+    "Josie_Maran_(face).jpg": "blurred",
+    "Kurt_Warner.jpg": "far away at a podium",
+    "Matt_James_(51914462301)_(cropped)_(cropped).jpg": "looking straight up",
+    "Misty_May-Treanor.jpg": "sunglasses, looking down mid-game",
+    "Nagasu_2010_TEB.jpg": "far away on the ice",
+    "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg": "dark and blurred",
+    "PhaedraParks2018.png": "dark and blurred",
+    "Rylee_Arnold.jpg": "blurred, face cut off",
+    "Sailor_Brinkley_Cook_2013_01.jpg": "blurred",
+    "Sharna_Burgess_October_2,2012.jpg": "side-on in front of a logo wall",
+    "Sean_Spicer.jpg": "far away at the press room podium",
+    "TaylorHanson.jpg": "blurred under red stage light",
+    "Tonya_harding_mac_club_1994_crop.jpg": "pixelated",
+    "Wynonna_Judd_is_performing.jpg": "on stage, turned away",
+    "Hines_Ward_vs._Chiefs.jpg": "face behind a helmet facemask",
+    "Jack_Wagner.jpg": "visor down, looking at the ground",
+    "JoJo_Siwa_driving_her_car_in_Beverly_Hills.jpg": "side-on through a car window",
+    "Misty_May-Treanor_plays_volleyball_with_wounded_warriors,_130511-M-IX060-011.jpg": "mid-shout",
+    "Antonio_Brown_2015.jpg": "face behind a helmet facemask",
+    "Women's_visually_impaired_superg_skier_number_5d.JPG": "ski goggles and helmet",
+    "Matt_James_(51914462301).jpg": "looking straight up",
 }
 
 
@@ -88,7 +120,11 @@ def get(url: str, params: dict) -> dict:
         except urllib.error.HTTPError as e:
             if e.code not in (429, 503) or attempt == 3:
                 raise
-            time.sleep(5 * (attempt + 1))
+        # Dropped connections ("No route to host") come and go.
+        except urllib.error.URLError:
+            if attempt == 3:
+                raise
+        time.sleep(5 * (attempt + 1))
     raise AssertionError("unreachable")
 
 
@@ -200,13 +236,14 @@ def file_info(files: list[str]) -> dict[str, dict]:
             {
                 "titles": "|".join(f"File:{f}" for f in files[i : i + 50]),
                 "prop": "imageinfo",
-                "iiprop": "url|mime|extmetadata",
+                "iiprop": "url|mime|sha1|extmetadata",
                 "iiextmetadatafilter": "Artist|Credit|LicenseShortName|ImageDescription|Categories",
             },
         )
         for r in rows:
             if r.get("imageinfo") and r.get("imagerepository") == "local":
-                out[r["title"].removeprefix("File:").replace(" ", "_")] = r["imageinfo"][0]
+                file = r["title"].removeprefix("File:").replace(" ", "_")
+                out[file] = {**r["imageinfo"][0], "pageid": r["pageid"]}
     return out
 
 
@@ -226,82 +263,71 @@ def usable(file: str, info: dict) -> bool:
     )
 
 
-def named(file: str, name: str) -> bool:
-    """The file name is the person's name, then years, counters and FILLER, or an AT place."""
-    stem = urllib.parse.unquote(file).rsplit(".", 1)[0].replace("_", " ")
-    w = words(stem)
-    n = words(name)
-    if w[: len(n)] != n:
-        return False
-    rest = [t for t in w[len(n) :] if not t.isdigit()]
-    return (bool(rest) and rest[0] in AT) or all(t in FILLER for t in rest)
-
-
-def category_files(category: str) -> list[str]:
-    data = get(
-        COMMONS,
-        {
-            "action": "query",
-            "list": "categorymembers",
-            "cmtitle": f"Category:{category}",
-            "cmtype": "file",
-            "cmlimit": "max",
-        },
-    )
-    return [
-        m["title"].removeprefix("File:").replace(" ", "_") for m in data["query"]["categorymembers"]
-    ]
-
-
-def about_dancing(category: str) -> bool:
-    """A Commons category filed under dance: "Chelsie Hightower" is in "American female dancers"."""
-    rows = query_all(COMMONS, {"titles": f"Category:{category}", "prop": "categories"})
-    parents = [c["title"] for r in rows for c in r.get("categories", [])]
-    return any("danc" in p.lower() for p in parents)
-
-
-def solo(names: tuple[str, ...], info: dict) -> bool:
-    """The description starts with one of the person's names and names nobody alongside."""
-    text = meta(info, "ImageDescription")
-    alone = not re.search(r"\b(and|with)\b|&", text)
-    return alone and any(same(text[: len(n)], n) for n in names)
-
-
-def search_files(name: str) -> list[str]:
+def depicting(qid: str) -> list[str]:
+    """Commons files whose structured data says they depict the Wikidata item."""
     data = get(
         COMMONS,
         {
             "action": "query",
             "list": "search",
-            "srsearch": f'intitle:"{name}" filetype:bitmap',
+            "srsearch": f"haswbstatement:P180={qid} filetype:bitmap",
             "srnamespace": 6,
-            "srlimit": 20,
+            "srlimit": 50,
         },
     )
     return [m["title"].removeprefix("File:").replace(" ", "_") for m in data["query"]["search"]]
 
 
-def credit(file: str, info: dict) -> dict:
+def depicts(infos: dict[str, dict]) -> dict[str, set[str]]:
+    """{file: the Wikidata items its Commons structured data (P180) says it depicts}."""
+    mids = {f"M{info['pageid']}": file for file, info in infos.items()}
+    out: dict[str, set[str]] = {file: set() for file in infos}
+    keys = sorted(mids)
+    for i in range(0, len(keys), 50):
+        data = get(COMMONS, {"action": "wbgetentities", "ids": "|".join(keys[i : i + 50])})
+        for mid, entity in data["entities"].items():
+            # A file with no statements has `"statements": []`, a PHP empty array.
+            for s in (entity.get("statements") or {}).get("P180", []):
+                if "datavalue" in s["mainsnak"]:
+                    out[mids[mid]].add(s["mainsnak"]["datavalue"]["value"]["id"])
+        time.sleep(0.2)
+    return out
+
+
+def titled(file: str, name: str) -> bool:
+    """The person's name, word for word, somewhere in the file name."""
+    w, n = words(urllib.parse.unquote(file).replace("_", " ")), words(name)
+    return any(w[i : i + len(n)] == n for i in range(len(w) - len(n) + 1))
+
+
+def order(
+    qid: str, p18: str | None, files: list[str], shows: dict[str, set[str]], names: list[str]
+) -> list[str]:
+    """Files to try, best first: the item's own P18, then files that depict the person,
+    those depicting nobody else and named for them first. Anything else is never tried:
+    a Wikipedia lead image or a Commons search hit can be someone else, or a crowd."""
+    rest = [f for f in dict.fromkeys(files) if f != p18 and qid in shows.get(f, set())]
+    rest.sort(key=lambda f: (len(shows[f]) > 1, not any(titled(f, n) for n in names)))
+    return ([p18] if p18 else []) + rest
+
+
+def credit(name: str, file: str, info: dict) -> dict:
     return {
         "file": file,
+        "image": faces.key(name, info["sha1"]),
         "author": meta(info, "Artist") or meta(info, "Credit") or "Unknown author",
         "license": meta(info, "LicenseShortName"),
         "sourceUrl": info["descriptionurl"],
     }
 
 
-def pick(files: list[str], ok=lambda info: True) -> dict | None:
-    infos = file_info(files) if files else {}
-    for file in (f.replace(" ", "_") for f in files):
+def pick(name: str, files: list[str], infos: dict[str, dict]) -> dict | None:
+    """The first file that is free, not a network photo, and has one clear face in it."""
+    for file in files:
         info = infos.get(file)
-        if info and usable(file, info) and ok(info):
-            return credit(file, info)
+        if info and usable(file, info) and faces.crop(faces.fetch(file)) is not None:
+            return credit(name, file, info)
     return None
-
-
-def dancing(info: dict) -> bool:
-    """A search hit only counts when Commons files it under dance: names repeat."""
-    return "danc" in (meta(info, "ImageDescription") + meta(info, "Categories")).lower()
 
 
 def articles(people: dict[str, set[str]]) -> dict[str, tuple[dict, dict]]:
@@ -335,24 +361,18 @@ def resolve(people: dict[str, set[str]]) -> dict[str, dict | None]:
     known = articles(people)
     out = {}
     for name in sorted(people):
-        page, item = known.get(name, ({"pageprops": {}}, {}))
-        label = (labels(item) or [name])[0]
-        shot = pick(
-            [f for f in (claim(item, "P18"), page["pageprops"].get("page_image_free")) if f]
-        )
-        # The item's own Commons category, else one named for the person that dance files under.
-        cats = [claim(item, "P373")] + [c for c in (name, label) if about_dancing(c)]
-        for cat in dict.fromkeys(c for c in cats if c):
-            files = category_files(cat)[:100]
-            if not shot:
-                shot = pick([f for f in files if named(f, name) or named(f, label)])
-            if not shot:
-                shot = pick(files, partial(solo, (name, label)))
-        for query in dict.fromkeys([name, label]):
-            if not shot:
-                shot = pick([f for f in search_files(query) if named(f, query)], dancing)
-        out[name] = shot
-        print(f"{name}: {shot['file'] if shot else '-'}", flush=True)
+        if name not in known:
+            out[name] = None
+            print(f"{name}: no article", flush=True)
+            continue
+        page, item = known[name]
+        p18, lead = claim(item, "P18"), page["pageprops"].get("page_image_free")
+        files = [f.replace(" ", "_") for f in (p18, lead, *depicting(item["id"])) if f]
+        infos = file_info(list(dict.fromkeys(files)))
+        p18 = p18 and p18.replace(" ", "_")
+        tries = order(item["id"], p18, files, depicts(infos), [name, *labels(item)])
+        out[name] = pick(name, tries, infos)
+        print(f"{name}: {out[name]['file'] if out[name] else '-'} of {len(tries)}", flush=True)
         time.sleep(0.2)
     return out
 
