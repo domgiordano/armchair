@@ -71,14 +71,14 @@ export function BarList({ bars, label }: { bars: Bar[]; label: string }) {
       {bars.map((b) => (
         <li key={b.label} className="flex flex-col gap-1">
           <span className="flex items-baseline justify-between gap-3 text-sm">
-            <span className="truncate">{b.label}</span>
-            <span className="shrink-0 tabular-nums text-neutral-400">
-              <span className="text-neutral-100">{b.value.toFixed(2)}</span> off · {b.count}
+            <span className="truncate text-pearl">{b.label}</span>
+            <span className="shrink-0 text-silver-dim tabular-nums">
+              <span className="text-pearl">{b.value.toFixed(2)}</span> off · {b.count}
             </span>
           </span>
-          <span aria-hidden="true" className="h-2 overflow-hidden rounded-full bg-neutral-800">
+          <span aria-hidden="true" className="h-2 overflow-hidden rounded-full bg-silver/10">
             <span
-              className={`block h-full rounded-full ${b.value === best ? "bg-gold" : "bg-silver-dim"}`}
+              className={`block h-full rounded-full ${b.value === best ? "bg-gradient-to-r from-gold-deep to-gold-light" : "bg-silver-dim/70"}`}
               style={{ width: `${Math.max(2, (b.value / max) * 100)}%` }}
             />
           </span>
@@ -142,7 +142,7 @@ export function Histogram({ bins }: { bins: { value: number; mine: number; judge
 
 export function Legend({ items }: { items: { label: string; swatch: string }[] }) {
   return (
-    <p className="flex gap-4 text-xs text-neutral-400">
+    <p className="flex gap-4 text-xs text-silver-dim">
       {items.map((i) => (
         <span key={i.label} className="flex items-center gap-1.5">
           <span aria-hidden="true" className={`inline-block size-2.5 rounded-sm ${i.swatch}`} />

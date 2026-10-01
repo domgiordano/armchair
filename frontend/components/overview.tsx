@@ -6,9 +6,11 @@ import { useEffect, useState, type ReactNode } from "react";
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
 import { Headshot } from "@/components/headshot";
-import { ErrorState } from "@/components/ui/states";
+import { EmptyState, ErrorState } from "@/components/ui/states";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   getLeaderboard,
   getOverview,
@@ -21,16 +23,13 @@ import { countdown, hero, showTime } from "@/lib/show/overview";
 import { formatAirDate } from "@/lib/show/schedule";
 import { seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
 import { useNow } from "@/lib/show/use-now";
+import { button, DISPLAY, TEXT_LINK as LINK } from "@/lib/ui";
 
-const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light";
-const BUTTON = `flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium ${FOCUS}`;
-const GOLD = `${BUTTON} bg-gold text-ink hover:bg-gold-light active:bg-gold-deep`;
-const OUTLINE = `${BUTTON} border border-silver/35 text-silver hover:bg-silver/10 active:bg-silver/15`;
-// Archivo Black ships one weight; font-bold would synthesize a smeared bold.
-const DISPLAY = "font-display font-normal tracking-[-0.045em] text-pearl";
+const GOLD = button("primary");
+const OUTLINE = button("secondary");
 const EYEBROW = "text-xs font-semibold tracking-[0.2em] text-gold uppercase";
-const PANEL = "rounded-xl border border-silver/10 bg-ballroom/40 p-4 sm:p-5";
-const TEXT_LINK = `rounded-sm text-sm text-silver underline underline-offset-4 hover:text-pearl ${FOCUS}`;
+const PANEL = "rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] sm:p-5";
+const TEXT_LINK = `${LINK} inline-flex min-h-11 items-center`;
 
 type Load<T> = { kind: "loading" } | { kind: "ready"; data: T } | { kind: "error"; message: string; retry: () => void };
 
@@ -129,9 +128,7 @@ function OverviewView({ o, season }: ViewProps) {
             {o.me.count > 0 ? (
               <AccuracyChart episodes={o.episodes} />
             ) : (
-              <p className="rounded-lg border border-dashed border-silver/15 px-4 py-10 text-center text-sm text-silver-dim">
-                Score a dance and your gap to the judges draws here, one bar a week.
-              </p>
+              <EmptyState>Score a dance and your gap to the judges draws here, one bar a week.</EmptyState>
             )}
           </section>
 
@@ -161,9 +158,7 @@ function OverviewView({ o, season }: ViewProps) {
                 ))}
               </ul>
             ) : (
-              <p className="rounded-lg border border-dashed border-silver/15 px-4 py-8 text-center text-sm text-silver-dim">
-                Each dance you score turns over here: the judges&apos; paddles next to yours.
-              </p>
+              <EmptyState>Each dance you score turns over here: the judges&apos; paddles next to yours.</EmptyState>
             )}
           </section>
         </div>
@@ -353,7 +348,7 @@ function StatTiles({ o }: { o: OverviewData }) {
 
 function Tile({ label, value, unit, note }: { label: string; value: string; unit?: string; note: string }) {
   return (
-    <div className="flex min-w-0 flex-col gap-1 rounded-xl border border-silver/10 bg-ballroom/40 p-4">
+    <div className="flex min-w-0 flex-col gap-1 rounded-xl border border-silver/10 bg-ballroom/45 p-4 transition-colors hover:border-gold/25">
       <dt className="text-xs font-medium tracking-[0.12em] text-silver-dim uppercase">{label}</dt>
       <dd className="flex min-w-0 flex-col gap-0.5">
         <span className="truncate text-3xl font-semibold text-pearl tabular-nums">
@@ -403,7 +398,7 @@ function TopFive({ board }: { board: Leaderboard }) {
           return (
             <li
               key={s.sub}
-              className={`flex items-center gap-3 rounded-lg px-2 py-2 ${you ? "bg-gold/10" : ""}`}
+              className={`flex items-center gap-3 rounded-lg px-2 py-2 transition-colors ${you ? "bg-gold/10 ring-1 ring-gold/30" : "hover:bg-silver/5"}`}
             >
               <span className={`w-5 text-center text-sm font-semibold tabular-nums ${s.rank === 1 ? "text-gold" : "text-silver-dim"}`}>
                 {s.rank}
@@ -460,9 +455,7 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
                 <span className="flex items-center gap-2">
                   <span className="truncate text-sm font-medium text-pearl">{celebrity.name}</span>
                   {c.out && (
-                    <span className="shrink-0 rounded-sm border border-silver/25 px-1 text-[10px] tracking-[0.1em] text-silver-dim uppercase">
-                      Out
-                    </span>
+                    <Badge tone="muted">Out</Badge>
                   )}
                 </span>
                 {pro && <span className="block truncate text-xs text-silver-dim">with {pro.name}</span>}
@@ -499,7 +492,7 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
           aria-expanded={all}
           aria-controls="standings-list"
           onClick={() => setAll((a) => !a)}
-          className={`${BUTTON} min-h-11 border border-silver/20 text-sm text-silver hover:bg-silver/10 active:bg-silver/15`}
+          className={button("secondary", "sm")}
         >
           {all ? "Show fewer" : `Show all ${couples.length} couples`}
         </button>
@@ -510,9 +503,10 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
 
 function SkeletonRows({ n }: { n: number }) {
   return (
-    <div aria-hidden="true" className="flex flex-col gap-3">
+    <div role="status" className="flex flex-col gap-3">
+      <span className="sr-only">Loading...</span>
       {Array.from({ length: n }, (_, i) => (
-        <div key={i} className="h-10 rounded-lg bg-silver/5 motion-safe:animate-pulse" />
+        <Skeleton key={i} className="h-10 rounded-lg" />
       ))}
     </div>
   );
@@ -520,20 +514,25 @@ function SkeletonRows({ n }: { n: number }) {
 
 function OverviewSkeleton() {
   return (
-    <div className="flex flex-col gap-8">
-      <p className="sr-only">Loading your overview...</p>
-      <div aria-hidden="true" className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
+    <div role="status" className="flex flex-col gap-8">
+      <span className="sr-only">Loading your overview...</span>
+      <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div className="flex flex-col gap-4 pt-4">
-          <div className="h-3 w-48 rounded bg-silver/10 motion-safe:animate-pulse" />
-          <div className="h-14 w-3/4 rounded bg-silver/10 motion-safe:animate-pulse" />
-          <div className="h-4 w-2/3 rounded bg-silver/5 motion-safe:animate-pulse" />
+          <Skeleton className="h-3 w-48" />
+          <Skeleton className="h-14 w-3/4" />
+          <Skeleton className="h-4 w-2/3" />
+          <Skeleton className="h-11 w-32" />
         </div>
-        <div className="h-48 rounded-xl bg-silver/5 motion-safe:animate-pulse" />
+        <Skeleton className="h-48 rounded-xl" />
       </div>
-      <div aria-hidden="true" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {Array.from({ length: 4 }, (_, i) => (
-          <div key={i} className="h-24 rounded-xl bg-silver/5 motion-safe:animate-pulse" />
+          <Skeleton key={i} className="h-24 rounded-xl" />
         ))}
+      </div>
+      <div className="grid gap-8 lg:grid-cols-3">
+        <Skeleton className="h-64 rounded-xl lg:col-span-2" />
+        <Skeleton className="h-64 rounded-xl" />
       </div>
     </div>
   );

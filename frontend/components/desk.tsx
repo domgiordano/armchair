@@ -138,16 +138,16 @@ export function Desk({ card, judges, members, children }: DeskProps) {
         ))}
       </div>
       {anyProvisional && (
-        <p className="text-center text-xs text-neutral-400">Dashed paddles are unconfirmed.</p>
+        <p className="text-center text-xs text-silver-dim">Dashed paddles are unconfirmed.</p>
       )}
       <details className="group text-sm">
-        <summary className="flex min-h-11 cursor-pointer items-center gap-1 self-start rounded-md text-neutral-300 hover:text-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 [&::-webkit-details-marker]:hidden">
-          <svg viewBox="0 0 16 16" aria-hidden="true" className="size-4 transition-transform group-open:rotate-90 motion-reduce:transition-none">
+        <summary className="flex min-h-11 w-fit cursor-pointer list-none items-center gap-1.5 rounded-md pr-2 text-silver transition-colors hover:text-gold-light focus-ring [&::-webkit-details-marker]:hidden">
+          <svg viewBox="0 0 16 16" aria-hidden="true" className="size-4 transition-transform duration-200 group-open:rotate-90">
             <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           Details
         </summary>
-        <div className="pt-1">{children}</div>
+        <div className="rounded-lg border border-silver/10 bg-ink/40 p-3 group-open:animate-pop-in">{children}</div>
       </details>
     </div>
   );
@@ -178,50 +178,47 @@ function Seat({ seat, index, divider }: SeatProps) {
             className={up ? "motion-safe:animate-raise" : "[transform:translateY(62px)]"}
             style={up ? { animationDelay: `${index * 90}ms` } : undefined}
           >
-            <rect x="40.5" y="34" width="3" height="60" rx="1" className={up ? "fill-stone-400" : "fill-neutral-600"} />
+            <rect x="39.5" y="37" width="5" height="60" rx="2.5" className={up ? "fill-lacquer" : "fill-silver/20"} />
+            <rect x="38" y="34.5" width="8" height="4" rx="1.2" className={up ? "fill-gold" : "fill-silver/25"} />
             <rect
-              x="25"
-              y="4"
-              width="34"
-              height="31"
-              rx="3"
+              x="24"
+              y="3"
+              width="36"
+              height="33"
+              rx="7"
               strokeWidth="2"
               strokeDasharray={seat.provisional ? "4 3" : undefined}
               className={
                 !up
-                  ? "fill-neutral-600 stroke-neutral-700"
+                  ? "fill-ballroom stroke-silver/25"
                   : you
-                    ? "fill-amber-300 stroke-amber-600"
+                    ? "fill-gold stroke-gold-deep"
                     : seat.provisional
-                      ? "fill-stone-200 stroke-stone-400"
-                      : "fill-stone-100 stroke-amber-600"
+                      ? "fill-paddle-shade stroke-gold-deep"
+                      : "fill-paddle stroke-gold-deep"
               }
             />
+            {up && <rect x="27" y="5.5" width="30" height="8" rx="4" className="fill-paddle opacity-50" />}
             {up && (
-              <text
-                x="42"
-                y="26.5"
-                textAnchor="middle"
-                className={`text-[18px] font-bold tabular-nums ${you ? "fill-amber-950" : "fill-stone-900"}`}
-              >
+              <text x="42" y="27" textAnchor="middle" className="fill-ink text-[18px] font-extrabold tabular-nums">
                 {formatScore(seat.value ?? 0)}
               </text>
             )}
           </g>
           <path
             d="M4 100C4 87 13 81 26 81C39 81 48 87 48 100Z"
-            className={you ? "fill-amber-800" : seat.tone === "crowd" ? "fill-neutral-600" : "fill-neutral-700"}
+            className={you ? "fill-gold-deep" : seat.tone === "crowd" ? "fill-silver/15" : "fill-silver/25"}
           />
         </svg>
         <Face face={seat.face} muted={!up && seat.tone === "judge"} you={you} />
       </div>
       <div
-        className={`flex flex-1 flex-col items-center border-t-2 border-amber-300/70 bg-neutral-800 px-0.5 pt-1 pb-1.5 text-center ${divider ? "border-l border-l-neutral-950" : ""}`}
+        className={`flex flex-1 flex-col items-center border-t-2 border-gold/70 bg-gradient-to-b from-ballroom to-ink px-0.5 pt-1 pb-1.5 text-center ${divider ? "border-l border-l-gold/30" : ""}`}
       >
-        <span className={`w-full truncate text-xs font-medium ${up ? "text-neutral-100" : "text-neutral-300"}`}>
+        <span className={`w-full truncate text-xs font-medium ${up ? "text-pearl" : "text-silver"}`}>
           {seat.plate}
         </span>
-        <span className="min-h-4 w-full truncate text-[10px] leading-4 text-neutral-400">{seat.caption}</span>
+        <span className="min-h-4 w-full truncate text-[10px] leading-4 text-silver-dim">{seat.caption}</span>
       </div>
     </div>
   );
@@ -237,12 +234,12 @@ interface FaceProps {
 // photos keep referrerPolicy and the initials fallback.
 function Face({ face, muted, you }: FaceProps) {
   const [failed, setFailed] = useState<string | null>(null);
-  const ring = you ? "ring-2 ring-amber-300" : "ring-2 ring-neutral-900";
+  const ring = you ? "ring-2 ring-gold" : "ring-2 ring-ink";
   const box = `absolute top-1/2 left-[15.6%] aspect-square w-1/2 overflow-hidden rounded-full ${ring} ${muted ? "opacity-60 grayscale" : ""}`;
 
   if (face === "crowd") {
     return (
-      <span className={`${box} flex items-center justify-center bg-neutral-700 text-neutral-200`}>
+      <span className={`${box} flex items-center justify-center bg-ballroom text-silver`}>
         <svg viewBox="0 0 24 24" aria-hidden="true" className="w-3/4">
           <circle cx="9" cy="9" r="3.2" fill="currentColor" />
           <circle cx="16.5" cy="10" r="2.6" fill="currentColor" opacity="0.7" />
@@ -256,7 +253,7 @@ function Face({ face, muted, you }: FaceProps) {
   if (face.src && failed !== face.src) {
     const src = face.src;
     return (
-      <span className={`${box} bg-neutral-800`}>
+      <span className={`${box} bg-ballroom`}>
         <Image
           src={src}
           alt=""
@@ -273,7 +270,7 @@ function Face({ face, muted, you }: FaceProps) {
 
   return (
     <span
-      className={`${box} flex items-center justify-center text-[11px] font-semibold ${you ? "bg-amber-300 text-amber-950" : "bg-neutral-600 text-neutral-100"}`}
+      className={`${box} flex items-center justify-center text-[11px] font-semibold ${you ? "bg-gold text-ink" : "bg-silver/25 text-pearl"}`}
     >
       {initials(face.name, "")}
     </span>

@@ -33,6 +33,7 @@ import {
   type Season,
 } from "@/lib/api/show";
 import { EpisodeScreen } from "./episode-screen";
+import { choose } from "./ui/select-test-utils";
 
 const person = (name: string) => ({ name, headshot: null });
 const SEASON: Season = {
@@ -181,7 +182,7 @@ describe("EpisodeScreen", () => {
 
   it("switches episodes through the URL", async () => {
     render(<EpisodeScreen />);
-    fireEvent.change(await screen.findByRole("combobox", { name: "Episode" }), { target: { value: "5" } });
+    choose(await screen.findByRole("combobox", { name: "Episode" }), /Mariah Carey/);
     expect(replace).toHaveBeenCalledWith("/episode/?ep=5");
   });
 
@@ -201,7 +202,7 @@ describe("EpisodeScreen", () => {
   it("reloads the episode for the picked group", async () => {
     vi.mocked(getMyGroups).mockResolvedValue([{ id: "fam", name: "Family", inviteCode: "c".repeat(16), members: [] }]);
     render(<EpisodeScreen />);
-    fireEvent.change(await screen.findByRole("combobox", { name: "Compare with" }), { target: { value: "fam" } });
+    choose(await screen.findByRole("combobox", { name: "Compare with" }), "Family (0)");
     await vi.waitFor(() => expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 4, "fam"));
   });
 
@@ -222,7 +223,7 @@ describe("EpisodeScreen", () => {
     await screen.findByRole("heading", { name: "Yacht Rock" });
     expect(seats().map((s) => s.dataset.seat)).toEqual(["judge", "judge", "you", "crowd"]);
 
-    fireEvent.change(screen.getByRole("combobox", { name: "Compare with" }), { target: { value: "fam" } });
+    choose(screen.getByRole("combobox", { name: "Compare with" }), "Family (3)");
     await vi.waitFor(() => expect(seats().map((s) => s.dataset.seat)).toEqual(["judge", "judge", "you", "member"]));
     const sam = seats()[3];
     expect(within(sam).getByText("Sam")).toBeTruthy();

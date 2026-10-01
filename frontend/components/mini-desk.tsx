@@ -1,8 +1,10 @@
 import Link from "next/link";
 
+import { Paddle as PaddleArt } from "@/components/paddle";
 import { formatScore } from "@/components/performance-card";
 import type { CoupleStanding, Reveal } from "@/lib/api/overview";
 import { withSeason } from "@/lib/show/seasons";
+import { TEXT_LINK } from "@/lib/ui";
 
 interface MiniDeskProps {
   reveal: Reveal;
@@ -21,7 +23,10 @@ export function MiniDesk({ reveal, couple, judgeName, weekLabel, season }: MiniD
   const gap = mine !== null && reveal.panelMean !== null ? mine - reveal.panelMean : null;
 
   return (
-    <article aria-label={title} className="flex flex-col gap-3 rounded-lg border border-silver/10 bg-ballroom/60 p-4">
+    <article
+      aria-label={title}
+      className="flex h-full flex-col gap-3 rounded-xl border border-silver/10 bg-ballroom/60 p-4 transition-colors hover:border-gold/30"
+    >
       <header className="flex flex-col gap-0.5">
         <h3 className="truncate font-semibold text-pearl">{title}</h3>
         <p className="truncate text-xs text-silver-dim">
@@ -38,10 +43,10 @@ export function MiniDesk({ reveal, couple, judgeName, weekLabel, season }: MiniD
             dashed={j.state === "provisional"}
           />
         ))}
-        <li aria-hidden="true" className="mx-1 h-10 w-px self-center bg-silver/15" />
+        <li aria-hidden="true" className="mx-1 h-12 w-px self-start bg-gold/25" />
         <Paddle label="You" spoken="You" value={mine} you />
       </ul>
-      <div className="flex items-center justify-between gap-3 text-sm">
+      <div className="mt-auto flex items-center justify-between gap-3 text-sm">
         <p className="text-silver-dim">
           {gap === null ? (
             "Judges not all confirmed yet"
@@ -56,7 +61,7 @@ export function MiniDesk({ reveal, couple, judgeName, weekLabel, season }: MiniD
         </p>
         <Link
           href={withSeason(`/episode/?ep=${reveal.ep}`, season)}
-          className="shrink-0 rounded-sm text-xs text-silver underline underline-offset-4 hover:text-pearl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
+          className={`${TEXT_LINK} inline-flex min-h-11 shrink-0 items-center text-xs`}
         >
           Scorecard<span className="sr-only">, {weekLabel}</span>
         </Link>
@@ -80,18 +85,13 @@ function Paddle({ label, spoken, value, you = false, dashed = false }: PaddlePro
         {spoken} {value === null ? "pending" : formatScore(value)}
         {dashed && ", unconfirmed"}
       </span>
-      <span
-        aria-hidden="true"
-        className={`flex h-10 w-full items-center justify-center rounded-md border-2 text-lg font-bold tabular-nums ${
-          value === null
-            ? "border-neutral-700 bg-neutral-800 text-neutral-500"
-            : you
-              ? "border-gold-deep bg-gold text-ink"
-              : "border-gold-deep/70 bg-pearl text-ink"
-        } ${dashed ? "border-dashed" : ""}`}
-      >
-        {value === null ? "-" : formatScore(value)}
-      </span>
+      <PaddleArt
+        face={value === null ? "-" : formatScore(value)}
+        tone={value === null ? "pending" : you ? "you" : "judge"}
+        dashed={dashed}
+        size="sm"
+        className="w-full"
+      />
       <span aria-hidden="true" className="w-full truncate text-center text-[11px] text-silver-dim">
         {label}
       </span>

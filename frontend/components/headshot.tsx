@@ -26,7 +26,7 @@ export function Headshot({ person }: HeadshotProps) {
         unoptimized
         loading="lazy"
         onError={() => setFailed(true)}
-        className="size-12 shrink-0 rounded-full bg-neutral-800 object-cover ring-2 ring-neutral-900"
+        className="size-12 shrink-0 rounded-full bg-ballroom object-cover ring-2 ring-ink"
       />
     );
   }
@@ -34,7 +34,7 @@ export function Headshot({ person }: HeadshotProps) {
   return (
     <span
       aria-hidden="true"
-      className="flex size-12 shrink-0 items-center justify-center rounded-full bg-neutral-700 text-sm font-semibold text-neutral-100 ring-2 ring-neutral-900"
+      className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-ballroom to-silver/30 text-sm font-semibold text-pearl ring-2 ring-ink"
     >
       {initials(person.name, "")}
     </span>

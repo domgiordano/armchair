@@ -1,18 +1,23 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-import { ErrorState } from "@/components/ui/states";
 import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
 import { GroupPicker } from "@/components/group-picker";
 import { formatScore } from "@/components/performance-card";
 import { SignedIn } from "@/components/signed-in";
+import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
+import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyState, ErrorState } from "@/components/ui/states";
 import type { Season } from "@/lib/api/show";
 import { getStats, type Dance, type Stats } from "@/lib/api/stats";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel } from "@/lib/show/schedule";
 import { useSeason } from "@/lib/show/use-season";
 import { byStyle, distribution, extremes, type Bar } from "@/lib/show/stats-summary";
+import { button } from "@/lib/ui";
 
 type StatsLoad = { kind: "loading" } | { kind: "ready"; stats: Stats } | { kind: "error"; message: string };
 
@@ -26,7 +31,7 @@ export function StatsScreen() {
 
 function SeasonLoader() {
   const load = useSeason();
-  if (load.kind === "loading") return <p className="text-neutral-400">Loading the season...</p>;
+  if (load.kind === "loading") return <StatsSkeleton label="Loading the season" />;
   if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
   return <StatsLoader season={load.season} />;
 }
@@ -35,6 +40,7 @@ function StatsLoader({ season }: { season: Season }) {
   const filter = useGroupFilter();
   return (
     <>
+      <PageHeader title="Your accuracy" />
       <GroupPicker {...filter} />
       <StatsFetcher season={season} group={filter.group} />
     </>
@@ -57,7 +63,7 @@ function StatsFetcher({ season, group }: { season: Season; group: string | null 
     };
   }, [season.season, group, attempt]);
 
-  if (load.kind === "loading") return <p className="text-neutral-400">Loading your stats...</p>;
+  if (load.kind === "loading") return <StatsSkeleton label="Loading your stats" />;
   if (load.kind === "error") {
     const retry = () => {
       setLoad({ kind: "loading" });
@@ -81,10 +87,16 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
   if (mine.mae === null) {
     return (
       <>
-        <h1 className="text-xl font-semibold tracking-tight">Your accuracy</h1>
-        <p className="text-neutral-400">
-          Nothing to compare yet. Stats count dances you scored once every judge&apos;s score is confirmed.
-        </p>
+        <EmptyState
+          title="Nothing to compare yet"
+          action={
+            <Link href="/episode/" className={button("primary", "sm")}>
+              Score a dance
+            </Link>
+          }
+        >
+          Stats count dances you scored once every judge&apos;s score is confirmed.
+        </EmptyState>
       </>
     );
   }
@@ -102,13 +114,19 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
 
   return (
     <>
-      <h1 className="text-xl font-semibold tracking-tight">Your accuracy</h1>
-      <section aria-labelledby="overall" className="flex flex-col gap-1">
-        <h2 id="overall" className="text-sm text-neutral-400">
+      <section
+        aria-labelledby="overall"
+        className="relative flex flex-col gap-1 overflow-hidden rounded-xl border border-gold/25 bg-gradient-to-br from-ballroom to-ink p-5"
+      >
+        <span
+          aria-hidden="true"
+          className="absolute -top-16 -right-10 size-48 rounded-full bg-[radial-gradient(circle,rgb(232_194_104/0.18),transparent_70%)]"
+        />
+        <h2 id="overall" className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">
           Against the judges&apos; average
         </h2>
-        <p className="text-3xl font-semibold tabular-nums">{off(mine.mae)}</p>
-        <p className="text-sm text-neutral-400">
+        <p className="text-4xl font-semibold text-pearl tabular-nums">{off(mine.mae)}</p>
+        <p className="text-sm text-silver-dim">
           Average gap per dance, over {mine.count} {mine.count === 1 ? "dance" : "dances"}.
           {stats.others.length > 0 && ` You rank ${rank} of ${stats.others.length + 1} on the dances you've scored.`}
         </p>
@@ -140,9 +158,9 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
 
       <Card id="progression" title="You vs the judges, dance by dance">
         <Progression dances={stats.dances} label={label} />
-        <p className="flex gap-4 text-xs text-neutral-400">
+        <p className="flex gap-4 text-xs text-silver-dim">
           <span className="flex items-center gap-1">
-            <span aria-hidden="true" className="inline-block h-0.5 w-4 bg-amber-300" />
+            <span aria-hidden="true" className="inline-block h-0.5 w-4 bg-gold" />
             You
           </span>
           <span className="flex items-center gap-1">
@@ -160,23 +178,6 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
   );
 }
 
-function Card({ id, title, note, children }: { id: string; title: string; note?: string; children: ReactNode }) {
-  return (
-    <section
-      aria-labelledby={id}
-      className="flex flex-col gap-3 rounded-xl border border-neutral-800 bg-ballroom/40 p-4"
-    >
-      <div className="flex flex-col gap-0.5">
-        <h2 id={id} className="font-semibold">
-          {title}
-        </h2>
-        {note && <p className="text-xs text-neutral-400">{note}</p>}
-      </div>
-      {children}
-    </section>
-  );
-}
-
 function Calls({
   title,
   dances,
@@ -190,13 +191,13 @@ function Calls({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <h3 className="text-xs font-semibold tracking-wide text-neutral-400 uppercase">{title}</h3>
-      <ul aria-label={title} className="flex flex-col divide-y divide-neutral-800 text-sm">
+      <h3 className="text-xs font-semibold tracking-[0.14em] text-silver-dim uppercase">{title}</h3>
+      <ul aria-label={title} className="flex flex-col divide-y divide-silver/10 text-sm">
         {dances.map((d) => (
           <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
             <span className="flex min-w-0 flex-col">
-              <span className="truncate">{celebrity(d.key)}</span>
-              <span className="truncate text-xs text-neutral-400">
+              <span className="truncate text-pearl">{celebrity(d.key)}</span>
+              <span className="truncate text-xs text-silver-dim">
                 {short(d.ep)}
                 {d.style && ` · ${d.style}`}
               </span>
@@ -205,7 +206,7 @@ function Calls({
               <span className="block">
                 You {d.paddle} · judges {formatScore(d.panelMean)}
               </span>
-              <span className="block text-xs text-neutral-400">{off(d.error)}</span>
+              <span className="block text-xs text-silver-dim">{off(d.error)}</span>
             </span>
           </li>
         ))}
@@ -232,7 +233,7 @@ export function Progression({ dances, label }: { dances: Dance[]; label: (ep: nu
       viewBox={`0 0 ${W} ${H}`}
       role="img"
       aria-label={`Your paddle and the judges' average across ${dances.length} dances`}
-      className="w-full text-neutral-400"
+      className="w-full text-silver-dim"
     >
       {[2, 4, 6, 8, 10].map((v) => (
         <g key={v}>
@@ -248,7 +249,7 @@ export function Progression({ dances, label }: { dances: Dance[]; label: (ep: nu
         </text>
       ))}
       <polyline points={line((d) => d.panelMean)} fill="none" stroke="currentColor" strokeWidth={1.5} />
-      <g className="text-amber-300">
+      <g className="text-gold">
         <polyline points={line((d) => d.paddle)} fill="none" stroke="currentColor" strokeWidth={2} />
         {dances.map((d, i) => (
           <circle key={`${d.ep}-${d.key}`} cx={x(i)} cy={y(d.paddle)} r={2.5} fill="currentColor">
@@ -257,5 +258,17 @@ export function Progression({ dances, label }: { dances: Dance[]; label: (ep: nu
         ))}
       </g>
     </svg>
+  );
+}
+
+function StatsSkeleton({ label }: { label: string }) {
+  return (
+    <div role="status" className="flex flex-col gap-4">
+      <span className="sr-only">{label}...</span>
+      <Skeleton className="h-9 w-56" />
+      <Skeleton className="h-32 rounded-xl" />
+      <Skeleton className="h-56 rounded-xl" />
+      <Skeleton className="h-40 rounded-xl" />
+    </div>
   );
 }

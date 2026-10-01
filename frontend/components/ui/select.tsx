@@ -149,6 +149,7 @@ export function Select({ label, value, options, onChange, hideLabel, inline, com
           data-index={i}
           role="option"
           aria-selected={i === selected}
+          aria-label={o.detail ? `${o.label}, ${o.detail}` : undefined}
           onPointerEnter={() => setActive(i)}
           // Keep focus on the button so the combobox stays the one focus stop.
           onPointerDown={(e) => e.preventDefault()}

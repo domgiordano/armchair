@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { Paddle as PaddleArt } from "@/components/paddle";
 import type { Answer } from "@/lib/api/show";
-import { PRIMARY, SECONDARY } from "@/lib/ui";
+import { PRIMARY, SECONDARY, TEXT_LINK } from "@/lib/ui";
 
 const VALUES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -37,12 +38,12 @@ function Paddle({ value, label, disabled, onPick }: PaddleProps) {
       aria-label={`Score ${value} for ${label}`}
       disabled={disabled}
       onClick={onPick}
-      className="group flex min-h-20 flex-col items-center rounded-md pt-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 disabled:cursor-not-allowed disabled:opacity-40"
+      className="group flex min-h-20 flex-col items-center rounded-lg pt-1 focus-ring disabled:cursor-not-allowed disabled:opacity-40"
     >
-      <span className="flex h-14 w-full items-center justify-center rounded-md border-2 border-amber-600 bg-stone-200 text-2xl font-bold tabular-nums text-stone-900 shadow-sm transition-transform group-hover:-translate-y-1 group-hover:bg-stone-100 group-active:translate-y-0 group-active:bg-amber-300 group-disabled:translate-y-0 motion-reduce:transition-none">
-        {value}
-      </span>
-      <span aria-hidden="true" className="h-4 w-2 rounded-b-sm bg-stone-500" />
+      <PaddleArt
+        face={String(value)}
+        className="w-full origin-bottom transition-transform duration-200 ease-[cubic-bezier(0.2,0.8,0.3,1)] group-hover:-translate-y-1.5 group-hover:-rotate-3 group-active:translate-y-0 group-active:scale-95 group-disabled:transform-none"
+      />
     </button>
   );
 }
@@ -91,13 +92,13 @@ export function PaddlePicker({ label, airsOn, onSubmit }: PaddlePickerProps) {
           ))}
         </div>
         {airsOn !== null ? (
-          <p className="text-sm text-neutral-400">Airs {airsOn}</p>
+          <p className="text-sm text-silver-dim">Airs {airsOn}</p>
         ) : (
           <button
             type="button"
             data-pick="forfeit"
             onClick={() => setStep({ kind: "confirm", answer: { forfeit: true } })}
-            className="min-h-11 self-start rounded-md text-sm text-neutral-300 underline underline-offset-4 hover:text-neutral-100 active:text-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+            className={`${TEXT_LINK} inline-flex min-h-11 items-center self-start`}
           >
             Reveal without scoring
           </button>
@@ -113,14 +114,10 @@ export function PaddlePicker({ label, airsOn, onSubmit }: PaddlePickerProps) {
   return (
     <div role="group" aria-label={`Confirm for ${label}`} className="flex flex-col gap-3">
       <div aria-live="polite" className="flex items-center gap-4">
-        {!forfeit && (
-          <span className="flex h-14 w-12 items-center justify-center rounded-md border-2 border-amber-600 bg-amber-300 text-2xl font-bold tabular-nums text-amber-950">
-            {answer.value}
-          </span>
-        )}
+        {!forfeit && <PaddleArt face={String(answer.value)} tone="you" className="w-14 shrink-0 animate-raise" />}
         <div className="flex flex-col gap-1">
-          <p className="font-semibold">{forfeit ? "Reveal without scoring?" : "Scores are final"}</p>
-          <p className="text-sm text-neutral-400">
+          <p className="font-semibold text-pearl">{forfeit ? "Reveal without scoring?" : "Scores are final"}</p>
+          <p className="text-sm text-silver-dim">
             {forfeit
               ? "This is final. You'll see the scores, but you can't score this dance later."
               : "You can't change it after you lock it in."}
