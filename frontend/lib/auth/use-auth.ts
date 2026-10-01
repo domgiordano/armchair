@@ -5,6 +5,7 @@ import { getCurrentUser, signInWithRedirect, signOut as amplifySignOut } from "a
 import { Hub } from "aws-amplify/utils";
 
 import { authConfigured } from "./amplify";
+import { clearWho } from "./who";
 
 export type AuthStatus = "loading" | "signedIn" | "signedOut" | "unconfigured";
 
@@ -58,6 +59,7 @@ export function useAuth() {
     status,
     refresh,
     signOut: async () => {
+      clearWho();
       await amplifySignOut();
       await refresh();
     },

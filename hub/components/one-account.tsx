@@ -1,4 +1,5 @@
 import { ChairMark } from "@/components/chair-mark";
+import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 import { reveal } from "@/lib/reveal";
 
 const POINTS = [
@@ -7,10 +8,10 @@ const POINTS = [
   "Accuracy is kept per show and per season, so a great ballroom eye doesn't prop up a bad read on the round table.",
 ];
 
-const SHOWS = [
-  { name: "Dancing with the Stars", tile: "border-[#2b3a7a] from-[#16245e] to-[#060b26] text-[#f3e6c0]", live: true },
-  { name: "The Traitors", tile: "border-[#1c3a2a] from-[#0b2418] to-[#040d08] text-[#e9dcc0]", live: false },
-  { name: "Survivor", tile: "border-[#5a2a10] from-[#3a1606] to-[#140803] text-[#ffe2c4]", live: false },
+const SHOWS: { show: Show; name: string; tile: string; live: boolean }[] = [
+  { show: "dwts", name: "Dancing with the Stars", tile: "border-[#2b3a7a] from-[#16245e] to-[#060b26] text-[#f3e6c0]", live: true },
+  { show: "traitors", name: "The Traitors", tile: "border-[#1c3a2a] from-[#0b2418] to-[#040d08] text-[#e9dcc0]", live: false },
+  { show: "survivor", name: "Survivor", tile: "border-[#5a2a10] from-[#3a1606] to-[#140803] text-[#ffe2c4]", live: false },
 ];
 
 function AccountDiagram() {
@@ -32,10 +33,11 @@ function AccountDiagram() {
         {SHOWS.map((s) => (
           <li
             key={s.name}
-            className={`flex min-h-24 flex-col justify-between rounded-2xl border bg-linear-to-b p-3 ${s.tile} ${s.live ? "" : "opacity-55"}`}
+            className={`${ICON_TRIGGER} flex min-h-24 flex-col gap-2 rounded-2xl border bg-linear-to-b p-3 ${s.tile}`}
           >
-            <span className="text-xs leading-tight font-semibold">{s.name}</span>
-            <span className="text-[9px] font-bold tracking-[0.15em] opacity-80">{s.live ? "LIVE" : "SOON"}</span>
+            <ShowIcon show={s.show} size={36} locked={!s.live} />
+            <span className={`text-xs leading-tight font-semibold ${s.live ? "" : "opacity-55"}`}>{s.name}</span>
+            <span className="mt-auto text-[9px] font-bold tracking-[0.15em] opacity-80">{s.live ? "LIVE" : "SOON"}</span>
           </li>
         ))}
       </ul>

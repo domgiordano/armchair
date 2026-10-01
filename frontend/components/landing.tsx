@@ -16,7 +16,7 @@ const GOLD = button("primary");
 const OUTLINE = button("secondary");
 
 interface LandingProps {
-  status: "signedOut" | "unconfigured";
+  status: "loading" | "signedOut" | "unconfigured";
   onSignIn: () => Promise<void>;
 }
 

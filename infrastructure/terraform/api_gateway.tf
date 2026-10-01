@@ -54,6 +54,16 @@ locals {
       invoke_arn = aws_lambda_function.api["notifications_${l.name}"].invoke_arn
     })
   ]
+  performers_endpoints = [
+    for l in local.performers_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["performers_${l.name}"].invoke_arn
+    })
+  ]
+  week_board_endpoints = [
+    for l in local.week_board_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["week_board_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -70,7 +80,12 @@ module "api" {
   authorization          = "COGNITO_USER_POOLS"
   cognito_user_pool_arns = [data.aws_ssm_parameter.cognito_user_pool_arn.value]
 
-  allow_origin = local.cors_allowed_origins
+  # The module answers preflights from a MOCK integration, whose response
+  # template can't read the request's Origin, so a list always returned its
+  # first entry and the hub's calls failed. "*" is safe here: the API takes a
+  # bearer token, never cookies. Real responses still echo only the allowed
+  # origins (CORS_ALLOW_ORIGIN in the Lambdas).
+  allow_origin = "*"
 
   # Data trace writes full request and response bodies to CloudWatch, and these
   # carry friends' names and emails.
@@ -88,5 +103,7 @@ module "api" {
     friends       = { path_prefix = "friends", endpoints = local.friends_endpoints }
     leaderboard   = { path_prefix = "leaderboard", endpoints = local.leaderboard_endpoints }
     notifications = { path_prefix = "notifications", endpoints = local.notifications_endpoints }
+    performers    = { path_prefix = "performers", endpoints = local.performers_endpoints }
+    week_board    = { path_prefix = "week-board", endpoints = local.week_board_endpoints }
   }
 }
