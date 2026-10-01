@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -1697,6 +1688,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Tucker_Carlson_2025.jpg",
+            "image": "tucker-carlson-096118e0c2.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tucker_Carlson_2025.jpg"
@@ -1721,6 +1713,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Shanna_Moakler_2010.jpg",
+            "image": "shanna-moakler-8487ed030e.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shanna_Moakler_2010.jpg"
@@ -1745,6 +1738,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Harry_Hamlin.jpg",
+            "image": "harry-hamlin-58254679f4.webp",
             "author": "Alan Light",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Harry_Hamlin.jpg"
@@ -1755,6 +1749,7 @@
           "role": "pro",
           "headshot": {
             "file": "Ashleydelgrosso.jpg",
+            "image": "ashly-delgrosso-6faba4cec3.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ashleydelgrosso.jpg"
@@ -1774,6 +1769,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Vivica_A._Fox_Cinequest_2026_04.jpg",
+            "image": "vivica-a-fox-170ca64569.webp",
             "author": "Jesse Kornblum",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vivica_A._Fox_Cinequest_2026_04.jpg"
@@ -1796,18 +1792,14 @@
         {
           "name": "Willa Ford",
           "role": "celebrity",
-          "headshot": {
-            "file": "Willa_Ford.jpg",
-            "author": "Danny Bollinger",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Willa_Ford.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -1827,6 +1819,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Sara_Evans_-_June_2018_01.jpg",
+            "image": "sara-evans-63b4996bfc.webp",
             "author": "United States Senate - Office of Doug Jones",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sara_Evans_-_June_2018_01.jpg"
@@ -1837,6 +1830,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -1856,6 +1850,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jerry_Springer_at_Emory_(cropped).jpg",
+            "image": "jerry-springer-f074265058.webp",
             "author": "Nrbelex",
             "license": "CC BY-SA 2.5",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jerry_Springer_at_Emory_(cropped).jpg"
@@ -1866,6 +1861,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -1885,6 +1881,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Monique_Coleman_at_MultiCon_2025.jpg",
+            "image": "monique-coleman-dbe254eff5.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Monique_Coleman_at_MultiCon_2025.jpg"
@@ -1909,6 +1906,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Joey_Lawrence_Photo_Op_GalaxyCon_Richmond_2024.jpg",
+            "image": "joey-lawrence-f61389f366.webp",
             "author": "Super Festivals from Ft. Lauderdale, USA",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joey_Lawrence_Photo_Op_GalaxyCon_Richmond_2024.jpg"
@@ -1919,6 +1917,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -1938,6 +1937,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Mario_Lopez_by_Gage_Skidmore_3.jpg",
+            "image": "mario-lopez-e41767f2f3.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mario_Lopez_by_Gage_Skidmore_3.jpg"
@@ -1948,6 +1948,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -1967,6 +1968,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "EmmittSmith2007.jpg",
+            "image": "emmitt-smith-6b8a679740.webp",
             "author": "John Trainor",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:EmmittSmith2007.jpg"
@@ -1977,6 +1979,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"

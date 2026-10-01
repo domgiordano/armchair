@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2266,6 +2257,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -2285,6 +2277,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Macy_Gray_2008.07.23_027.jpg",
+            "image": "macy-gray-1019f64d15.webp",
             "author": "livepict.com",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Macy_Gray_2008.07.23_027.jpg"
@@ -2309,6 +2302,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Kathy_at_New_York_Stock_Exchange_(cropped).jpg",
+            "image": "kathy-ireland-ce858b41f6.webp",
             "author": "kathy ireland",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kathy_at_New_York_Stock_Exchange_(cropped).jpg"
@@ -2319,6 +2313,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2338,6 +2333,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "TomDeLay.jpg",
+            "image": "tom-delay-16caafa6f1.webp",
             "author": "United States Congress",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TomDeLay.jpg"
@@ -2348,6 +2344,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2367,6 +2364,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Debi_Mazar_2009.jpg",
+            "image": "debi-mazar-fa9920eb19.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Debi_Mazar_2009.jpg"
@@ -2377,6 +2375,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2396,6 +2395,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chuck_Liddell_in_Santa_Monica-California_2005_photo_by_Ithaka_Darin_Pappas.jpg",
+            "image": "chuck-liddell-c9a4d4c692.webp",
             "author": "IthakaDarinPappas",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chuck_Liddell_in_Santa_Monica-California_2005_photo_by_Ithaka_Darin_Pappas.jpg"
@@ -2420,6 +2420,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Natalie_Coughlin,_2018_(cropped).jpg",
+            "image": "natalie-coughlin-f0b035278b.webp",
             "author": "Fuzheado",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Natalie_Coughlin,_2018_(cropped).jpg"
@@ -2444,6 +2445,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Melissa_Joan_Hart_(36726572364)_(cropped_and_rotated).jpg",
+            "image": "melissa-joan-hart-bd17baf885.webp",
             "author": "https://www.flickr.com/photos/greg2600/",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melissa_Joan_Hart_(36726572364)_(cropped_and_rotated).jpg"
@@ -2453,10 +2455,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2478,6 +2481,7 @@
           "role": "pro",
           "headshot": {
             "file": "ChelsieHightowerApr09.jpg",
+            "image": "chelsie-hightower-9a09d28e75.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
@@ -2497,6 +2501,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Michael_Irvin.jpg",
+            "image": "michael-irvin-f976596ce8.webp",
             "author": "Lobberich (Flickr profile)",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Irvin.jpg"
@@ -2521,6 +2526,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Mark_Dacascos_-_Drive_1997.jpg",
+            "image": "mark-dacascos-e4931ab7d3.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Dacascos_-_Drive_1997.jpg"
@@ -2545,6 +2551,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Aaron_Carter_Performing_at_the_Gramercy_Theatre_-_Photo_by_Peter_Dzubay_(cropped).jpg",
+            "image": "aaron-carter-bb3cf29493.webp",
             "author": "Peter Dzubay",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aaron_Carter_Performing_at_the_Gramercy_Theatre_-_Photo_by_Peter_Dzubay_(cropped).jpg"
@@ -2555,6 +2562,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2574,6 +2582,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Joanna_Krupa_adjust.jpg",
+            "image": "joanna-krupa-4a5e072576.webp",
             "author": "Joanna_Krupa.JPG: lukeford.net; derivative work: Tabercil",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joanna_Krupa_adjust.jpg"
@@ -2584,6 +2593,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -2622,6 +2632,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Mýa_2009.jpg",
+            "image": "mya-cb41037237.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:M%C3%BDa_2009.jpg"
@@ -2632,6 +2643,7 @@
           "role": "pro",
           "headshot": {
             "file": "DSC03939_print.jpg",
+            "image": "dmitry-chaplin-54b0e8f1a6.webp",
             "author": "Dmitry Chaplin",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:DSC03939_print.jpg"
@@ -2651,6 +2663,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Osmond,_Donny_(2006)_(cropped).jpg",
+            "image": "donny-osmond-1a1fd9a410.webp",
             "author": "Michael Schamis from New York, NY, USA",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Osmond,_Donny_(2006)_(cropped).jpg"
@@ -2661,6 +2674,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"

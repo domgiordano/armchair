@@ -1,15 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 
 import { initials } from "@/components/avatar";
 import { headshotUrl } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
 import { getMe, type Me } from "@/lib/api/client";
+import { profileHref } from "@/lib/api/people";
 import type { Judge, RevealedCard } from "@/lib/api/show";
+import { personHref } from "@/lib/show/people";
+import { FOCUS } from "@/lib/ui";
 
 export interface DeskMember {
+  sub: string;
   name: string;
   picture: string | null;
   value: number;
@@ -35,6 +40,8 @@ interface SeatModel {
   provisional: boolean;
   caption: string | null;
   tone: Tone;
+  /** The judge's page or the member's profile; the plate links there. */
+  href?: string;
 }
 
 // One /users/me per page load, shared by every card's desk.
@@ -76,11 +83,12 @@ export function Desk({ card, judges, members, children }: DeskProps) {
         j.value === null
           ? `${name} pending`
           : `${name} ${formatScore(j.value)}${provisional ? " unconfirmed" : ""}`,
-      face: { src: judge?.headshot ? headshotUrl(judge.headshot.file) : null, name },
+      face: { src: judge?.headshot?.image ? headshotUrl(judge.headshot.image) : null, name },
       value: j.value,
       provisional,
       caption: j.value === null ? "pending" : null,
       tone: "judge",
+      href: personHref(j.id),
     };
   });
 
@@ -107,6 +115,7 @@ export function Desk({ card, judges, members, children }: DeskProps) {
         provisional: false,
         caption: null,
         tone: "member",
+        href: profileHref(m.sub),
       }))
     : [
         {
@@ -127,8 +136,9 @@ export function Desk({ card, judges, members, children }: DeskProps) {
 
   return (
     <div className="flex flex-col gap-2">
+      {/* A group, not an img: the plates of judges and group members are links. */}
       <div
-        role="img"
+        role="group"
         aria-label={`Judges' desk: ${seats.map((s) => s.spoken).join(", ")}`}
         className="mx-auto grid w-full overflow-hidden rounded-b-md"
         style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, maxWidth: `${cols * 76}px` }}
@@ -171,8 +181,8 @@ function Seat({ seat, index, divider }: SeatProps) {
       data-state={!up ? "pending" : seat.provisional ? "provisional" : "confirmed"}
       className="flex min-w-0 flex-col"
     >
-      <div className="relative">
-        <svg viewBox="0 0 64 100" aria-hidden="true" className="block w-full">
+      <div aria-hidden="true" className="relative">
+        <svg viewBox="0 0 64 100" className="block w-full">
           <g
             data-paddle={up ? "up" : "down"}
             className={up ? "motion-safe:animate-raise" : "[transform:translateY(62px)]"}
@@ -215,10 +225,26 @@ function Seat({ seat, index, divider }: SeatProps) {
       <div
         className={`flex flex-1 flex-col items-center border-t-2 border-gold/70 bg-gradient-to-b from-ballroom to-ink px-0.5 pt-1 pb-1.5 text-center ${divider ? "border-l border-l-gold/30" : ""}`}
       >
-        <span className={`w-full truncate text-xs font-medium ${up ? "text-pearl" : "text-silver"}`}>
-          {seat.plate}
+        <span
+          aria-hidden={seat.href ? undefined : true}
+          className={`w-full truncate text-xs font-medium ${up ? "text-pearl" : "text-silver"}`}
+        >
+          {seat.href ? (
+            <Link
+              href={seat.href}
+              prefetch={false}
+              aria-label={seat.spoken}
+              className={`rounded-sm underline-offset-2 transition-colors hover:text-gold-light hover:underline ${FOCUS}`}
+            >
+              {seat.plate}
+            </Link>
+          ) : (
+            seat.plate
+          )}
         </span>
-        <span className="min-h-4 w-full truncate text-[10px] leading-4 text-silver-dim">{seat.caption}</span>
+        <span aria-hidden="true" className="min-h-4 w-full truncate text-[10px] leading-4 text-silver-dim">
+          {seat.caption}
+        </span>
       </div>
     </div>
   );

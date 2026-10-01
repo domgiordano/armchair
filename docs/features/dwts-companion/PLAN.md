@@ -57,7 +57,7 @@ Five tables, all `{app}-*`, PAY_PER_REQUEST, KMS, PITR, deletion protection, no 
 |---|---|---|---|
 | `catalog` | `SEASON#dwts#35` | `META` | wiki page title, default judge order, air timezone `America/New_York`; the poller's `lastRevid`, `lastRunAt`, `pending` (PR 10) |
 | | | `EP#05` | `week`, `airDate`, `start`/`end` local times, `theme`, `panel` (ordered judge ids, which sets the seat count), `dancesPerCouple` (default 1), `results` (eliminated ids, per-couple totals and bonus; read only through the gate) |
-| | | `CONTESTANT#{cid}` | `members[]` (`{name, role: celebrity|pro, headshot: {file, author, license, sourceUrl} or null}`), `aliases[]` (`Connor W.`, `Conner L.`), `keyword` (derived), `keywordOverride`, `eliminatedEp` (read only through the gate) |
+| | | `CONTESTANT#{cid}` | `members[]` (`{name, role: celebrity|pro, headshot: {file, image, author, license, sourceUrl} or null}`), `aliases[]` (`Connor W.`, `Conner L.`), `keyword` (derived), `keywordOverride`, `eliminatedEp` (read only through the gate) |
 | | | `JUDGE#{jid}` | name, aliases, headshot. Guest judges get auto-created by the poller from the judge-order line |
 | `performances` | `EP#dwts#35#05` | `PERF#{cid}#{n}` | `contestants[]` (more than one means a team dance), `rateable`, `style`, `song`, `judges: {jid: {value: Decimal, state: provisional|confirmed, firstSeenAt, rev}}`, `bonus` |
 | `scores` | `EP#dwts#35#05` | `PERF#{cid}#{n}#USER#{sub}` | `value` (int 1-10) or `forfeit: true` ("Reveal without scoring"), `submittedAt`. Written with `attribute_not_exists(sk)` |

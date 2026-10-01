@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 
 import { Avatar } from "@/components/avatar";
+import { UserLink } from "@/components/user-link";
 import { SignedIn } from "@/components/signed-in";
 import { CountUp } from "@/components/ui/count-up";
 import { PageHeader } from "@/components/ui/page-header";
@@ -189,7 +190,9 @@ export function LeaderboardView({ board, judges }: { board: Leaderboard; judges:
             className="flex items-center gap-2 rounded-full border border-silver/15 bg-ballroom/40 py-1 pr-3 pl-1 text-sm"
           >
             <Avatar name={u.name ?? "Player"} email="" picture={u.picture} size={24} />
-            <span className="text-pearl">{u.name ?? "Player"}</span>
+            <UserLink sub={u.sub} className="text-pearl">
+              {u.name ?? "Player"}
+            </UserLink>
             <span className="text-silver-dim tabular-nums">
               {u.count}/{minDances}
             </span>
@@ -227,7 +230,9 @@ export function LeaderboardView({ board, judges }: { board: Leaderboard; judges:
                   <span className="w-6 text-right text-sm font-semibold text-silver-dim tabular-nums">{r.rank}</span>
                   <Avatar name={r.name ?? "Player"} email="" picture={r.picture} size={36} />
                   <span className="flex min-w-0 flex-1 flex-col">
-                    <span className="truncate font-medium text-pearl">{r.name ?? "Player"}</span>
+                    <span className="truncate font-medium text-pearl">
+                      <UserLink sub={r.sub}>{r.name ?? "Player"}</UserLink>
+                    </span>
                     <span className="truncate text-xs text-silver-dim">
                       {r.count} dances
                       {r.closestJudge && ` · closest to ${judgeName(r.closestJudge.id, judges)}`}
@@ -279,7 +284,7 @@ function Podium({ top, mine }: { top: Ranked[]; mine: (sub: string) => boolean }
             </span>
             <span className="flex w-full flex-col items-center text-center">
               <span className="w-full truncate text-sm font-medium">
-                {r.name ?? "Player"}
+                <UserLink sub={r.sub}>{r.name ?? "Player"}</UserLink>
                 {mine(r.sub) && <span className="text-gold-light"> (you)</span>}
               </span>
               <span className="text-xs text-silver-dim tabular-nums">{off(r.mae)}</span>

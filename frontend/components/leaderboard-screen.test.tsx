@@ -78,7 +78,8 @@ describe("LeaderboardScreen", () => {
     const steps = within(podium).getAllByRole("listitem").map((li) => li.textContent);
     expect(steps).toEqual(["BBo1.10 off2", "AAda0.80 off1", "CCy1.25 off3"]);
     const rest = screen.getByRole("list", { name: "Rankings" });
-    expect(within(rest).getByText("Me Myself")).toBeTruthy();
+    expect(within(rest).getByRole("link", { name: "Me Myself" }).getAttribute("href")).toMatch(/^\/profile\/?\?u=/);
+    expect(within(podium).getAllByRole("link").map((a) => a.textContent)).toEqual(["Bo", "Ada", "Cy"]);
     expect(within(rest).getByText("10 dances · closest to Derek Hough")).toBeTruthy();
     expect(getLeaderboard).toHaveBeenCalledWith("dwts-35", "global", null);
   });

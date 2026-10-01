@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -1918,6 +1909,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Metta_World_Peace.jpg",
+            "image": "ron-artest-5c8b9d9f9c.webp",
             "author": "Keith Allison from Hanover, MD, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Metta_World_Peace.jpg"
@@ -1928,6 +1920,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -1947,6 +1940,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Elisabetta_Canalis_66ème_Festival_de_Venise_(Mostra).jpg",
+            "image": "elisabetta-canalis-f36eb33967.webp",
             "author": "nicolas genin",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elisabetta_Canalis_66%C3%A8me_Festival_de_Venise_(Mostra).jpg"
@@ -1971,6 +1965,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "KristinCavallariSept10.jpg",
+            "image": "kristin-cavallari-355fb81749.webp",
             "author": "Nick Stepowyj at https://www.flickr.com/photos/22601582@N08/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:KristinCavallariSept10.jpg"
@@ -1980,10 +1975,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2000,6 +1996,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chynna_Phillips.jpg",
+            "image": "chynna-phillips-58b5d99552.webp",
             "author": "InSapphoWeTrust",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chynna_Phillips.jpg"
@@ -2010,6 +2007,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2029,6 +2027,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Carson_Kressley_(cropped).jpg",
+            "image": "carson-kressley-ec5e9bb7e7.webp",
             "author": "Carson Kressley",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carson_Kressley_(cropped).jpg"
@@ -2053,6 +2052,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chaz_Bono_by_Gage_Skidmore.jpg",
+            "image": "chaz-bono-e5cd3e81d4.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chaz_Bono_by_Gage_Skidmore.jpg"
@@ -2077,6 +2077,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "David_Arquette_Alpha1_2019_(cropped).jpg",
+            "image": "david-arquette-599c9b5d68.webp",
             "author": "Tabercil",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_Arquette_Alpha1_2019_(cropped).jpg"
@@ -2087,6 +2088,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2106,6 +2108,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nancy_Grace.PNG",
+            "image": "nancy-grace-1822ebc51a.webp",
             "author": "Vidiot",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nancy_Grace.PNG"
@@ -2130,6 +2133,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "USWNT_vs._Japan_Hope_Solo_(26884679173).jpg",
+            "image": "hope-solo-577565be3c.webp",
             "author": "Erik Drost",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:USWNT_vs._Japan_Hope_Solo_(26884679173).jpg"
@@ -2140,6 +2144,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2159,6 +2164,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Ricki_Lake_May_2015_(cropped).jpg",
+            "image": "ricki-lake-09d33ff4c9.webp",
             "author": "Mingle MediaTV",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ricki_Lake_May_2015_(cropped).jpg"
@@ -2169,6 +2175,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -2193,6 +2200,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2212,6 +2220,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "J.R._Martinez.jpg",
+            "image": "j-r-martinez-682a800a0a.webp",
             "author": "JRmartinez",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:J.R._Martinez.jpg"
@@ -2222,6 +2231,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"

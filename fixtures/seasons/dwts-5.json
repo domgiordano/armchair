@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2004,10 +1995,11 @@
           "name": "Josie Maran",
           "role": "celebrity",
           "headshot": {
-            "file": "Josie_Maran_(face).jpg",
+            "file": "Josie_Maran.jpg",
+            "image": "josie-maran-ff423e3ce5.webp",
             "author": "jenny cu from bay area, usa",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Josie_Maran_(face).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Josie_Maran.jpg"
           }
         },
         {
@@ -2048,6 +2040,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Wayne_Newton_in_Washington_D.C.jpg",
+            "image": "wayne-newton-1534e401c2.webp",
             "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wayne_Newton_in_Washington_D.C.jpg"
@@ -2058,6 +2051,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2077,6 +2071,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Floyd_Mayweather,_Jr._at_DeWalt_event_(5888721735)_(rotated_4).jpg",
+            "image": "floyd-mayweather-jr-dd0f3a45d8.webp",
             "author": "DEWALT POWER TOOLS FIGHT NIGHT CLUB 2010",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Floyd_Mayweather,_Jr._at_DeWalt_event_(5888721735)_(rotated_4).jpg"
@@ -2087,6 +2082,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2106,6 +2102,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "MarkCuban2023.jpg",
+            "image": "mark-cuban-3113ed5101.webp",
             "author": "Philip Romano",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:MarkCuban2023.jpg"
@@ -2116,6 +2113,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2135,6 +2133,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "SabrinaDWTSLV.JPG",
+            "image": "sabrina-bryan-de557f8855.webp",
             "author": "Dcimo2",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:SabrinaDWTSLV.JPG"
@@ -2144,10 +2143,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2164,6 +2164,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jane_Seymour_2019_by_Glenn_Francis.jpg",
+            "image": "jane-seymour-15387cbcfb.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jane_Seymour_2019_by_Glenn_Francis.jpg"
@@ -2174,6 +2175,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2193,6 +2195,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Cameron_Mathison_Super_soap_weekend_2008_016.JPG",
+            "image": "cameron-mathison-cae3d11b5f.webp",
             "author": "Graytess",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cameron_Mathison_Super_soap_weekend_2008_016.JPG"
@@ -2203,6 +2206,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -2222,6 +2226,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jennie_Garth_at_CCR_Ontario_2026.jpg",
+            "image": "jennie-garth-68c7fcdc9b.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jennie_Garth_at_CCR_Ontario_2026.jpg"
@@ -2232,6 +2237,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -2251,6 +2257,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Marie_Osmond.jpg",
+            "image": "marie-osmond-822b23b02d.webp",
             "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marie_Osmond.jpg"
@@ -2275,6 +2282,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Mel_B_(6330979387).jpg",
+            "image": "mel-b-70117bb99f.webp",
             "author": "Eva Rinaldi",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mel_B_(6330979387).jpg"
@@ -2285,6 +2293,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2305,6 +2314,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Hélio_Castroneves_at_the_2018_Indianapolis_500.jpg",
+            "image": "helio-castroneves-b3c7dfc0cb.webp",
             "author": "Zach Catanzareti Photo",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:H%C3%A9lio_Castroneves_at_the_2018_Indianapolis_500.jpg"
@@ -2315,6 +2325,7 @@
           "role": "pro",
           "headshot": {
             "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+            "image": "julianne-hough-51a37a8917.webp",
             "author": "https://www.flickr.com/photos/greg2600",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"

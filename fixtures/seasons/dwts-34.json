@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "derek-hough",
@@ -34,6 +29,7 @@
       ],
       "headshot": {
         "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+        "image": "derek-hough-5f221ba9e7.webp",
         "author": "Kevin Paul",
         "license": "CC BY 4.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -47,6 +43,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -60,6 +57,7 @@
       ],
       "headshot": {
         "file": "Kymjohnson.jpg",
+        "image": "kym-johnson-461b5153ac.webp",
         "author": "Albert Domasin from Los Angeles, united states",
         "license": "CC BY 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -73,6 +71,7 @@
       ],
       "headshot": {
         "file": "Jon_Chu_-_Wicked.jpg",
+        "image": "jon-m-chu-829b50b114.webp",
         "author": "Kevin Paul",
         "license": "CC BY 4.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jon_Chu_-_Wicked.jpg"
@@ -86,6 +85,7 @@
       ],
       "headshot": {
         "file": "Cheryl_Burke_2009.jpg",
+        "image": "cheryl-burke-e812ea50ef.webp",
         "author": "Toglenn",
         "license": "CC BY-SA 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -98,10 +98,11 @@
         "Flavor Flav"
       ],
       "headshot": {
-        "file": "Flavor-flav.jpg",
-        "author": "Darian Cabot",
-        "license": "Public domain",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Flavor-flav.jpg"
+        "file": "Flavor_Flav_of_Public_Enemy.jpg",
+        "image": "flavor-flav-2df5f94d70.webp",
+        "author": "kowarski",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Flavor_Flav_of_Public_Enemy.jpg"
       }
     },
     {
@@ -112,6 +113,7 @@
       ],
       "headshot": {
         "file": "TomBergeronApr09.jpg",
+        "image": "tom-bergeron-e24fe200d4.webp",
         "author": "jfer21 at https://www.flickr.com/photos/jfer21/",
         "license": "CC BY-SA 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:TomBergeronApr09.jpg"
@@ -2615,6 +2617,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Baron_Davis_March_2012.jpg",
+            "image": "baron-davis-947536bda0.webp",
             "author": "scott mecum",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baron_Davis_March_2012.jpg"
@@ -2625,6 +2628,7 @@
           "role": "pro",
           "headshot": {
             "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "image": "britt-stewart-b3460d77d9.webp",
             "author": "CaseyJNewell",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
@@ -2644,6 +2648,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Corey_Feldman_Photo_Op_GalaxyCon_Richmond_2023.jpg",
+            "image": "corey-feldman-0ca7fc1016.webp",
             "author": "Super Festivals from Ft. Lauderdale, USA",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corey_Feldman_Photo_Op_GalaxyCon_Richmond_2023.jpg"
@@ -2668,6 +2673,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Lauren_Jauregui_in_2017_(cropped)_2.jpg",
+            "image": "lauren-jauregui-87a8cd6671.webp",
             "author": "Karen Cante",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lauren_Jauregui_in_2017_(cropped)_2.jpg"
@@ -2692,6 +2698,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Hilaria_Baldwin(cropped).jpg",
+            "image": "hilaria-baldwin-128301d856.webp",
             "author": "Joella Marano",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hilaria_Baldwin(cropped).jpg"
@@ -2701,10 +2708,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2721,6 +2729,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "ScottHoying-byPhilipRomano2.jpg",
+            "image": "scott-hoying-4cf7e007e2.webp",
             "author": "PhilipRomanoPhoto",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:ScottHoying-byPhilipRomano2.jpg"
@@ -2731,6 +2740,7 @@
           "role": "pro",
           "headshot": {
             "file": "Rylee_Arnold_at_Press_Play_2026.jpg",
+            "image": "rylee-arnold-6c46e03e23.webp",
             "author": "Mikepascoe",
             "license": "CC0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rylee_Arnold_at_Press_Play_2026.jpg"
@@ -2754,10 +2764,11 @@
           "name": "Jan Ravnik",
           "role": "pro",
           "headshot": {
-            "file": "Jan_Ravnik_at_Tribeca_Film_Festival_2026-1.jpg",
-            "author": "CaseyJNewell",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jan_Ravnik_at_Tribeca_Film_Festival_2026-1.jpg"
+            "file": "Taylor_Swift_The_Eras_Tour_1989_Era_Set_(53109932195)_(cropped).jpg",
+            "image": "jan-ravnik-a3d6086739.webp",
+            "author": "Paolo V",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_The_Eras_Tour_1989_Era_Set_(53109932195)_(cropped).jpg"
           }
         }
       ],
@@ -2774,6 +2785,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Danielle_Fishel_Photo_Op_GalaxyCon_Richmond_2023.jpg",
+            "image": "danielle-fishel-2fad197f5f.webp",
             "author": "Super Festivals from Ft. Lauderdale, USA",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Danielle_Fishel_Photo_Op_GalaxyCon_Richmond_2023.jpg"
@@ -2782,12 +2794,7 @@
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": {
-            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
-            "author": "Panache Star Dancesport",
-            "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 8
@@ -2803,6 +2810,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Andy_Richter_at_the_2013_Final_Four_in_Atlanta_Georgia_02_(cropped).jpg",
+            "image": "andy-richter-0d6ed257c6.webp",
             "author": "Ryan Schreiber",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andy_Richter_at_the_2013_Final_Four_in_Atlanta_Georgia_02_(cropped).jpg"
@@ -2812,10 +2820,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2832,6 +2841,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Whitney_Leavitt,_Ambassador_Theatre,_February_2026.jpg",
+            "image": "whitney-leavitt-97eca38f71.webp",
             "author": "Skjiisa",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Whitney_Leavitt,_Ambassador_Theatre,_February_2026.jpg"
@@ -2841,10 +2851,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2861,6 +2872,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Elaine_Hendrix_by_Gage_Skidmore.jpg",
+            "image": "elaine-hendrix-19c9f294ef.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elaine_Hendrix_by_Gage_Skidmore.jpg"
@@ -2885,6 +2897,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Dylan_Efron_for_Faculty_Department,_profile.jpg",
+            "image": "dylan-efron-44c306ecb4.webp",
             "author": "Justin Chung",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dylan_Efron_for_Faculty_Department,_profile.jpg"
@@ -2909,6 +2922,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jordan_Chiles_2024.jpg",
+            "image": "jordan-chiles-8b67000076.webp",
             "author": "Ocoudis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jordan_Chiles_2024.jpg"
@@ -2933,6 +2947,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Alix_Earle_in_2023.png",
+            "image": "alix-earle-3a2d5cf1ac.webp",
             "author": "Sonali Prabhu",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alix_Earle_in_2023.png"
@@ -2957,6 +2972,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "WTTC_-_2JB09838_(54056477863).jpg",
+            "image": "robert-irwin-940a219294.webp",
             "author": "World Travel & Tourism Council",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:WTTC_-_2JB09838_(54056477863).jpg"
@@ -2966,10 +2982,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],

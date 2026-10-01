@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2015,6 +2006,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "David_Hasselhoff_2013.jpg",
+            "image": "david-hasselhoff-0e6ec41020.webp",
             "author": "Georges Biard",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_Hasselhoff_2013.jpg"
@@ -2025,6 +2017,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2044,6 +2037,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Michael_Bolton-01.jpg",
+            "image": "michael-bolton-3eb4d8160d.webp",
             "author": "Alterna2 http://www.alterna2.com",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Bolton-01.jpg"
@@ -2054,6 +2048,7 @@
           "role": "pro",
           "headshot": {
             "file": "ChelsieHightowerApr09.jpg",
+            "image": "chelsie-hightower-9a09d28e75.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
@@ -2073,6 +2068,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Margaret_Cho_2009.jpg",
+            "image": "margaret-cho-58c2332b6e.webp",
             "author": "Derek Nicoletto",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Margaret_Cho_2009.jpg"
@@ -2102,6 +2098,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2121,6 +2118,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Florence_Henderson_cropped.jpg",
+            "image": "florence-henderson-4cf87d0803.webp",
             "author": "Alan Light",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Florence_Henderson_cropped.jpg"
@@ -2145,6 +2143,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Audrina_Patridge_by_Gage_Skidmore.jpg",
+            "image": "audrina-patridge-a9827f2d79.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Audrina_Patridge_by_Gage_Skidmore.jpg"
@@ -2155,6 +2154,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2174,6 +2174,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Rick_Fox_(40679251643)_(cropped).jpg",
+            "image": "rick-fox-a95bb2fb1a.webp",
             "author": "Greg2600",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rick_Fox_(40679251643)_(cropped).jpg"
@@ -2184,6 +2185,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2202,10 +2204,11 @@
           "name": "Kurt Warner",
           "role": "celebrity",
           "headshot": {
-            "file": "Kurt_Warner.jpg",
-            "author": "John Trainor (Flickr profile)",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kurt_Warner.jpg"
+            "file": "Kurt_Warner_2022_(cropped).jpg",
+            "image": "kurt-warner-b077f41a5d.webp",
+            "author": "Staff Sgt. Cody Trimble",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kurt_Warner_2022_(cropped).jpg"
           }
         },
         {
@@ -2232,6 +2235,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2251,6 +2255,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Bristol_Palin_by_Gage_Skidmore_4.jpg",
+            "image": "bristol-palin-be1b24d031.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bristol_Palin_by_Gage_Skidmore_4.jpg"
@@ -2260,10 +2265,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2280,6 +2286,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Kyle_Massey_2012.jpg",
+            "image": "kyle-massey-430569b104.webp",
             "author": "MingleMediaTVNetwork",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kyle_Massey_2012.jpg"
@@ -2304,6 +2311,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jennifer_Grey_at_the_2024_New_York_Film_Festival_2_(cropped2).jpg",
+            "image": "jennifer-grey-660cedb2d5.webp",
             "author": "Bryan Berlin",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jennifer_Grey_at_the_2024_New_York_Film_Festival_2_(cropped2).jpg"
@@ -2314,6 +2322,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"

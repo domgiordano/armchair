@@ -5,6 +5,7 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
+import { UserLink } from "@/components/user-link";
 import { PageLoader } from "@/components/disco-loader";
 import { CoupleAvatars } from "@/components/headshot";
 import { MiniDesk } from "@/components/mini-desk";
@@ -461,7 +462,7 @@ function TopFive({ board }: { board: Leaderboard }) {
               <Avatar name={s.name ?? "Player"} email="" picture={s.picture} />
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-medium text-pearl">
-                  {s.name ?? "Player"}
+                  <UserLink sub={s.sub}>{s.name ?? "Player"}</UserLink>
                   {you && <span className="text-gold-light"> (you)</span>}
                 </span>
                 <span className="block text-xs text-silver-dim tabular-nums">

@@ -16,6 +16,23 @@ export interface SeasonSummary {
   judges: Record<string, { count: number; mae: number }>;
 }
 
+/** The leaderboard's all-time row; someone else's error stays null below five dances. */
+export interface AllTime {
+  count: number;
+  mae: number | null;
+  closestJudge: { id: string; mae: number } | null;
+}
+
+/** One episode the profile's owner answered something in: counts only. */
+export interface Activity {
+  ep: number;
+  week: number | null;
+  theme: string | null;
+  airDate: string | null;
+  answered: number;
+  scored: number;
+}
+
 export interface ProfileDance {
   ep: number;
   key: string;
@@ -32,6 +49,8 @@ export interface Profile {
   avatarKind: AvatarKind | null;
   memberSince: string | null;
   season: SeasonSummary;
+  allTime?: AllTime;
+  recent?: Activity[];
   friendCount?: number;
   // Only on your own profile.
   groupCount?: number;

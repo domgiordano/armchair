@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2062,6 +2053,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Shannen_Doherty_(cropped).jpg",
+            "image": "shannen-doherty-0338f6fce0.webp",
             "author": "Wilson Cleveland",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shannen_Doherty_(cropped).jpg"
@@ -2071,10 +2063,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2091,6 +2084,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Buzz_Aldrin.jpg",
+            "image": "buzz-aldrin-ae1007d2db.webp",
             "author": "NASA",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buzz_Aldrin.jpg"
@@ -2115,6 +2109,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Aiden_Turner_Super_soap_weekend_2008_081.JPG",
+            "image": "aiden-turner-e9d9eceaa3.webp",
             "author": "Graytess",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aiden_Turner_Super_soap_weekend_2008_081.JPG"
@@ -2125,6 +2120,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -2144,6 +2140,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Kate_Gosselin.jpg",
+            "image": "kate-gosselin-cf36fe63ba.webp",
             "author": "Kathy",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kate_Gosselin.jpg"
@@ -2154,6 +2151,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2173,6 +2171,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jake_Pavelka_Shirtless.png",
+            "image": "jake-pavelka-d2d019ee98.webp",
             "author": "יהלום מלוטש",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jake_Pavelka_Shirtless.png"
@@ -2183,6 +2182,7 @@
           "role": "pro",
           "headshot": {
             "file": "ChelsieHightowerApr09.jpg",
+            "image": "chelsie-hightower-9a09d28e75.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
@@ -2202,6 +2202,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg",
+            "image": "pamela-anderson-c72c9a8c7c.webp",
             "author": "Norman Wong",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg"
@@ -2226,6 +2227,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Niecy_Nash_2010.jpg",
+            "image": "niecy-nash-59bbe4ecb7.webp",
             "author": "Clorox Toilet Products",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Niecy_Nash_2010.jpg"
@@ -2250,6 +2252,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chad_Ochocinco_ESPNWeekend2010-014_(cropped).jpg",
+            "image": "chad-ochocinco-b247f07257.webp",
             "author": "Jeff Kern",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chad_Ochocinco_ESPNWeekend2010-014_(cropped).jpg"
@@ -2260,6 +2263,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2279,6 +2283,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Erin_Andrews_2012_Shankbone.JPG",
+            "image": "erin-andrews-7de845dcbb.webp",
             "author": "David Shankbone",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erin_Andrews_2012_Shankbone.JPG"
@@ -2289,6 +2294,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2308,6 +2314,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Evan_Lysacek_Podium_2009_Worlds.jpg",
+            "image": "evan-lysacek-6f784673c7.webp",
             "author": "David W. Carmichael",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evan_Lysacek_Podium_2009_Worlds.jpg"
@@ -2332,6 +2339,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nicole_Scherzinger_2012.jpg",
+            "image": "nicole-scherzinger-7dd77efc88.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nicole_Scherzinger_2012.jpg"
@@ -2342,6 +2350,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"

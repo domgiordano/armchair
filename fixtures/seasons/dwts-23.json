@@ -20,12 +20,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -33,12 +28,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "julianne-hough",
@@ -48,6 +38,7 @@
       ],
       "headshot": {
         "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "image": "julianne-hough-51a37a8917.webp",
         "author": "https://www.flickr.com/photos/greg2600",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -61,6 +52,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -73,10 +65,11 @@
         "Pitbull"
       ],
       "headshot": {
-        "file": "Pitbull_(7906558674).jpg",
+        "file": "Pitbull,_2012_(2).jpg",
+        "image": "pitbull-66700de83b.webp",
         "author": "Eva Rinaldi",
         "license": "CC BY-SA 2.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pitbull_(7906558674).jpg"
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pitbull,_2012_(2).jpg"
       }
     },
     {
@@ -86,10 +79,11 @@
         "Idina Menzel"
       ],
       "headshot": {
-        "file": "IdinaMenzel-TodayShow.jpg",
-        "author": "Erin Privratsky",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:IdinaMenzel-TodayShow.jpg"
+        "file": "Idina_Menzel_Defense.gov_Crop.png",
+        "image": "idina-menzel-cf31545d2e.webp",
+        "author": "U.S. Navy Petty Officer 1st Class Chad J. McNeeley",
+        "license": "Public domain",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Idina_Menzel_Defense.gov_Crop.png"
       }
     }
   ],
@@ -2481,6 +2475,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "JTA2017.jpg",
+            "image": "jake-t-austin-44a1a90b4e.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:JTA2017.jpg"
@@ -2505,6 +2500,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Rick_Perry_official_portrait.jpg",
+            "image": "rick-perry-7c289499d9.webp",
             "author": "Ken Shipp/United States Department of Energy",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rick_Perry_official_portrait.jpg"
@@ -2514,10 +2510,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2534,6 +2531,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "KennethBabyfaceEdmondsHWOFMay2013.jpg",
+            "image": "babyface-d670e73b35.webp",
             "author": "Angela George",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:KennethBabyfaceEdmondsHWOFMay2013.jpg"
@@ -2544,6 +2542,7 @@
           "role": "pro",
           "headshot": {
             "file": "Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg",
+            "image": "allison-holker-2c2e59994c.webp",
             "author": "Lex 24/7!",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg"
@@ -2563,6 +2562,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Vanilla_Ice_2010_(cropped).jpg",
+            "image": "vanilla-ice-5767e0fafb.webp",
             "author": "Rick Marshall",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vanilla_Ice_2010_(cropped).jpg"
@@ -2572,10 +2572,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2592,6 +2593,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Amber_Rose_2018_by_Glenn_Francis_(cropped).jpg",
+            "image": "amber-rose-b6247c9371.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Amber_Rose_2018_by_Glenn_Francis_(cropped).jpg"
@@ -2602,6 +2604,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2621,6 +2624,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Maureen_McCormick_Maui_crop.PNG",
+            "image": "maureen-mccormick-8c01ec574a.webp",
             "author": "cesariojpn",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maureen_McCormick_Maui_crop.PNG"
@@ -2645,6 +2649,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "London_2012_200m_backstroke_IMG_5105_(7737962738)_(Lochte).jpg",
+            "image": "ryan-lochte-da2bc64f5c.webp",
             "author": "Rory",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:London_2012_200m_backstroke_IMG_5105_(7737962738)_(Lochte).jpg"
@@ -2655,6 +2660,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2674,6 +2680,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Marilu_Henner_2011.jpg",
+            "image": "marilu-henner-3db940d62b.webp",
             "author": "Jeff Katz",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marilu_Henner_2011.jpg"
@@ -2684,6 +2691,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -2722,6 +2730,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jana_Kramer_2019_by_Glenn_Francis_(cropped).jpg",
+            "image": "jana-kramer-1d6e54b259.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jana_Kramer_2019_by_Glenn_Francis_(cropped).jpg"
@@ -2731,10 +2740,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2751,6 +2761,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Calvin_Johnson_(cropped).png",
+            "image": "calvin-johnson-jr-485e0f2347.webp",
             "author": "Kevind810",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Calvin_Johnson_(cropped).png"
@@ -2775,6 +2786,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "James_hinchcliffe_(51382773096)_(cropped).jpg",
+            "image": "james-hinchcliffe-ce33c900d3.webp",
             "author": "Zach Catanzareti Photo",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:James_hinchcliffe_(51382773096)_(cropped).jpg"
@@ -2783,12 +2795,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": null
@@ -2803,10 +2810,11 @@
           "name": "Laurie Hernandez",
           "role": "celebrity",
           "headshot": {
-            "file": "Laurie_Hernandez_2016-08-04.jpg",
-            "author": "Fernando Frazão/Agência Brasil",
-            "license": "CC BY 3.0 br",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laurie_Hernandez_2016-08-04.jpg"
+            "file": "Laurie_Hernandez_(35055904373)_(cropped).jpg",
+            "image": "laurie-hernandez-aeb645a2f1.webp",
+            "author": "Gage Skidmore from Peoria, AZ, United States of America",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laurie_Hernandez_(35055904373)_(cropped).jpg"
           }
         },
         {

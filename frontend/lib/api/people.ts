@@ -10,7 +10,7 @@ export interface PersonHit {
   name: string;
   /** Most recent role first. */
   roles: Role[];
-  /** A Commons file under /headshots/, or null. */
+  /** Our crop under /headshots/, or null. */
   headshot: string | null;
   seasons: number[];
 }

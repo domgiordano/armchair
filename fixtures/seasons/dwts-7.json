@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -60,6 +51,7 @@
       ],
       "headshot": {
         "file": "Flatley_alone_cropped.jpg",
+        "image": "michael-flatley-d5d20b01b6.webp",
         "author": "Flatley_alone.jpg: https://www.flickr.com/photos/maxguy derivative work: Beaumain (talk)",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Flatley_alone_cropped.jpg"
@@ -2189,6 +2181,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -2208,6 +2201,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Ted_McGinley_at_PaleyLive_Shrinking_2024.jpg",
+            "image": "ted-mcginley-6aa80cb658.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ted_McGinley_at_PaleyLive_Shrinking_2024.jpg"
@@ -2232,6 +2226,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "President_Trump_Meets_with_Sentencing_Commutation_Recipients_(49624188912)_(cropped).jpg",
+            "image": "kim-kardashian-6bcc8ee1df.webp",
             "author": "The White House from Washington, DC",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:President_Trump_Meets_with_Sentencing_Commutation_Recipients_(49624188912)_(cropped).jpg"
@@ -2241,10 +2236,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2260,10 +2256,11 @@
           "name": "Misty May-Treanor",
           "role": "celebrity",
           "headshot": {
-            "file": "Misty_May-Treanor.jpg",
-            "author": "Jasonschock (talk)",
-            "license": "CC BY-SA 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Misty_May-Treanor.jpg"
+            "file": "Misty_May-Treanor_official_photo_(cropped).jpg",
+            "image": "misty-may-treanor-df7cf28af7.webp",
+            "author": "U.S. Department of Health and Human Services",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Misty_May-Treanor_official_photo_(cropped).jpg"
           }
         },
         {
@@ -2271,6 +2268,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2290,6 +2288,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Rocco_DiSpirito_in_July_2008_(2712230904).jpg",
+            "image": "rocco-dispirito-b356498c5d.webp",
             "author": "Sheri Wetherell from Seattle, USA",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rocco_DiSpirito_in_July_2008_(2712230904).jpg"
@@ -2300,6 +2299,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2319,6 +2319,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Toni_Braxton_2013.jpg",
+            "image": "toni-braxton-43e1688ebe.webp",
             "author": "The Heart Truth",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Toni_Braxton_2013.jpg"
@@ -2343,6 +2344,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Cloris_Leachman_2014_crop.jpg",
+            "image": "cloris-leachman-df40fc86e3.webp",
             "author": "Voice Chasers",
             "license": "CC BY 2.5",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cloris_Leachman_2014_crop.jpg"
@@ -2367,6 +2369,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "S_SOAP_07_037_SMILE!_Susan_Lucci.JPG",
+            "image": "susan-lucci-1a9cc85d2c.webp",
             "author": "Teresa Simmons permission= given",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:S_SOAP_07_037_SMILE!_Susan_Lucci.JPG"
@@ -2377,6 +2380,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2396,6 +2400,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Maurice_Greene,_Sydney2000.jpg",
+            "image": "maurice-greene-ffdcd9e1ec.webp",
             "author": "Jimmy Harris (Blog)",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maurice_Greene,_Sydney2000.jpg"
@@ -2406,6 +2411,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2425,6 +2431,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Cody_Linley.jpg",
+            "image": "cody-linley-f3484c3928.webp",
             "author": "Palace Resorts",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cody_Linley.jpg"
@@ -2435,6 +2442,7 @@
           "role": "pro",
           "headshot": {
             "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+            "image": "julianne-hough-51a37a8917.webp",
             "author": "https://www.flickr.com/photos/greg2600",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -2454,6 +2462,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Lance_Bass_2014.jpg",
+            "image": "lance-bass-e579063836.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lance_Bass_2014.jpg"
@@ -2478,6 +2487,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Warren_Sapp_at_2010_Pro_Bowl_-_cropped.jpg",
+            "image": "warren-sapp-6eb586cd1f.webp",
             "author": "Anthony Quintano",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warren_Sapp_at_2010_Pro_Bowl_-_cropped.jpg"
@@ -2488,6 +2498,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2506,10 +2517,11 @@
           "name": "Brooke Burke",
           "role": "celebrity",
           "headshot": {
-            "file": "Brooke_Burke_2021.jpg",
-            "author": "Copyright Brooke Burke",
-            "license": "CC BY 2.5",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brooke_Burke_2021.jpg"
+            "file": "Brooke_Burke-D.jpg",
+            "image": "brooke-burke-030e40e051.webp",
+            "author": "Dysepsion",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brooke_Burke-D.jpg"
           }
         },
         {
@@ -2517,6 +2529,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"

@@ -282,6 +282,22 @@ describe("ProfileScreen, someone else's", () => {
     expect(screen.queryByRole("button", { name: "Sign out" })).toBeNull();
   });
 
+  it("shows their all-time numbers and recent episodes as counts", async () => {
+    search.value = new URLSearchParams({ u: "b" });
+    vi.mocked(getProfile).mockResolvedValue({
+      ...THEIRS,
+      allTime: { count: 42, mae: 1.04, closestJudge: { id: "derek-hough", mae: 0.9 } },
+      recent: [{ ep: 4, week: 3, theme: "Yacht Rock", airDate: "2026-09-29", answered: 9, scored: 8 }],
+    });
+    render(<ProfileScreen />);
+    const all = await screen.findByRole("region", { name: "All-time" });
+    expect(within(all).getByText("42")).toBeTruthy();
+    expect(within(all).getByText("Derek Hough")).toBeTruthy();
+    const recent = screen.getByRole("region", { name: "Recent activity" });
+    expect(within(recent).getByText("8 dances scored, 1 revealed")).toBeTruthy();
+    expect(within(recent).getByRole("link").getAttribute("href")).toBe("/episode?season=dwts-35&ep=04");
+  });
+
   it("says so when the link matches no one", async () => {
     search.value = new URLSearchParams({ u: "nobody" });
     vi.mocked(getProfile).mockRejectedValue(new ApiError(404, "No such user"));

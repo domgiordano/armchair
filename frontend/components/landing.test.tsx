@@ -87,7 +87,7 @@ describe("Landing", () => {
   it("shows the invented-data desk and the not-affiliated line", async () => {
     reduceMotion(true);
     render(<Home />);
-    expect(await screen.findByRole("img", { name: /^Judges' desk: Marisol Vega 8/ })).toBeTruthy();
+    expect(await screen.findByRole("group", { name: /^Judges' desk: Marisol Vega 8/ })).toBeTruthy();
     expect(screen.getByText("Illustration with invented couples, judges and scores.")).toBeTruthy();
     expect(screen.getByText("Not affiliated with ABC, Disney or BBC Studios.")).toBeTruthy();
     expect(screen.getByRole("link", { name: "More shows at Armchair Judge" }).getAttribute("href")).toBe(
