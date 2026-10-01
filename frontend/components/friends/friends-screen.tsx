@@ -14,6 +14,7 @@ import {
   SECTION_TITLE,
   SMALL_PRIMARY,
   SMALL_SECONDARY,
+  SPLIT,
   displayName,
   message,
   useAction,
@@ -45,7 +46,7 @@ type TabId = (typeof TABS)[number]["id"];
 
 export function FriendsScreen() {
   return (
-    <SignedIn title="Friends & Groups">
+    <SignedIn title="Friends & Groups" wide>
       <FriendsAndGroups />
     </SignedIn>
   );
@@ -82,7 +83,7 @@ function FriendsAndGroups() {
     <>
       <h1 className="text-xl font-semibold tracking-tight">Friends &amp; Groups</h1>
       <AddByLink onAdded={reload} />
-      <div role="tablist" aria-label="Friends and groups" className="grid grid-cols-3 gap-1 rounded-lg bg-neutral-900 p-1">
+      <div role="tablist" aria-label="Friends and groups" className="grid grid-cols-3 gap-1 rounded-lg bg-neutral-900 p-1 md:max-w-md">
         {TABS.map((t, i) => {
           const count = t.id === "requests" ? incoming + invites : 0;
           const selected = t.id === tab;
@@ -172,10 +173,12 @@ function AddByLink({ onAdded }: { onAdded: () => void }) {
 
 function FriendsTab({ data, reload }: { data: Friends; reload: () => void }) {
   return (
-    <>
-      <FindPeople onChange={reload} />
-      <div className="rounded-lg border border-neutral-800 p-4">
-        <CopyLink label="Or send your invite link" link={friendLink(data.inviteCode)} />
+    <div className={`${SPLIT} gap-6`}>
+      <div className="flex flex-col gap-6">
+        <FindPeople onChange={reload} />
+        <div className="rounded-lg border border-neutral-800 p-4">
+          <CopyLink label="Or send your invite link" link={friendLink(data.inviteCode)} />
+        </div>
       </div>
       <div className="flex flex-col">
         <h2 className={SECTION_TITLE}>
@@ -195,7 +198,7 @@ function FriendsTab({ data, reload }: { data: Friends; reload: () => void }) {
           </ul>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
@@ -328,7 +331,7 @@ function RequestsTab({ data, reload }: { data: Friends; reload: () => void }) {
   const nothing = data.incoming.length + data.outgoing.length + invites.length === 0;
 
   return (
-    <>
+    <div className="flex flex-col gap-6 lg:max-w-2xl">
       {nothing && <Empty>No requests right now.</Empty>}
       {data.incoming.length > 0 && (
         <RequestList title="Friend requests" people={data.incoming}>
@@ -398,7 +401,7 @@ function RequestsTab({ data, reload }: { data: Friends; reload: () => void }) {
           )}
         </RequestList>
       )}
-    </>
+    </div>
   );
 }
 

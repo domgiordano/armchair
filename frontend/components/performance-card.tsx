@@ -51,7 +51,7 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
   return (
     <article
       aria-labelledby={headingId}
-      className="flex flex-col gap-4 rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] transition-colors hover:border-silver/20"
+      className="flex h-full flex-col gap-4 rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] transition-colors hover:border-silver/20"
     >
       <div className="flex items-center gap-3">
         <div className="flex -space-x-3">

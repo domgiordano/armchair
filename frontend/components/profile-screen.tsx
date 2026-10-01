@@ -19,7 +19,7 @@ import { SECONDARY } from "@/lib/ui";
 
 export function ProfileScreen() {
   return (
-    <SignedIn title="Profile">
+    <SignedIn title="Profile" wide>
       {/* ?u= is only readable on the client in a static export. */}
       <Suspense fallback={<ProfileSkeleton />}>
         <ProfileRoute />
@@ -68,6 +68,9 @@ function useLoad<T>(fetcher: () => Promise<T>, deps: unknown[]): [Load<T>, () =>
   return [load, retry, (data: T) => setLoad({ kind: "ready", data })];
 }
 
+// Phone: one column. Desktop: who they are on the left, their season beside it.
+const PAGE = "flex flex-col gap-8 lg:grid lg:grid-cols-[20rem_minmax(0,1fr)] lg:items-start lg:gap-x-12 lg:gap-y-8";
+
 const memberSince = (iso: string | null) =>
   iso
     ? `Member since ${new Date(iso).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })}`
@@ -87,8 +90,8 @@ function OwnProfile({ season }: { season: Season }) {
   const onChange = (next: MyProfile) => setData([next, profile]);
 
   return (
-    <div className="flex flex-col gap-8">
-      <header className="flex flex-col gap-3">
+    <div className={`${PAGE} lg:grid-rows-[auto_auto_1fr]`}>
+      <header className="flex flex-col gap-3 lg:col-start-1">
         <ProfilePhoto me={me} onChange={onChange} />
         <div className="flex flex-col gap-0.5">
           <NameEditor me={me} onChange={onChange} />
@@ -96,17 +99,19 @@ function OwnProfile({ season }: { season: Season }) {
         </div>
       </header>
 
-      <nav aria-label="Your people" className="grid grid-cols-2 gap-3">
+      <nav aria-label="Your people" className="grid grid-cols-2 gap-3 lg:col-start-1">
         <CountLink href="/friends/" label="Friends" count={profile.friendCount} />
         <CountLink href="/groups/" label="Groups" count={profile.groupCount} />
       </nav>
 
-      <ProfileSeason season={season} profile={profile} own />
+      <div className="lg:col-start-2 lg:row-span-3 lg:row-start-1">
+        <ProfileSeason season={season} profile={profile} own />
+      </div>
 
       <button
         type="button"
         onClick={() => void signOut().then(() => router.push("/"))}
-        className={`${SECONDARY} self-start`}
+        className={`${SECONDARY} self-start lg:col-start-1`}
       >
         Sign out
       </button>
@@ -135,8 +140,8 @@ function OtherProfile({ season, sub }: { season: Season; sub: string }) {
   const profile = load.data;
 
   return (
-    <div className="flex flex-col gap-8">
-      <header className="flex items-center gap-4">
+    <div className={PAGE}>
+      <header className="flex items-center gap-4 lg:flex-col lg:items-start">
         <div className="rounded-full p-1 ring-1 ring-gold/50">
           <Avatar name={profile.name ?? "Member"} email="" picture={profile.picture} size={88} />
         </div>

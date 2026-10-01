@@ -5,6 +5,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
+import { PageLoader } from "@/components/disco-loader";
 import { Headshot } from "@/components/headshot";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { MiniDesk } from "@/components/mini-desk";
@@ -65,7 +66,7 @@ export function Overview() {
   const season = useSeasonId();
   const load = useLoad(getOverview, season);
 
-  if (load.kind === "loading") return <OverviewSkeleton />;
+  if (load.kind === "loading") return <PageLoader label="Loading your overview" />;
   if (load.kind === "error") return <ErrorState what="your overview" message={load.message} retry={load.retry} />;
   return <OverviewView o={load.data} season={season} />;
 }
@@ -163,7 +164,7 @@ function OverviewView({ o, season }: ViewProps) {
           </section>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="grid items-start gap-8 md:grid-cols-2 lg:flex lg:flex-col lg:items-stretch">
           <LeaderboardTop season={season} />
           <Standings couples={o.couples} />
         </div>
@@ -323,7 +324,7 @@ function StatTiles({ o }: { o: OverviewData }) {
   const judge = me.closestJudge;
 
   return (
-    <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+    <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
       <Tile label="Dances scored" value={String(me.scored)} note={`across ${scoredEps} ${scoredEps === 1 ? "episode" : "episodes"}`} />
       <Tile
         label="Average gap"
@@ -508,32 +509,6 @@ function SkeletonRows({ n }: { n: number }) {
       {Array.from({ length: n }, (_, i) => (
         <Skeleton key={i} className="h-10 rounded-lg" />
       ))}
-    </div>
-  );
-}
-
-function OverviewSkeleton() {
-  return (
-    <div role="status" className="flex flex-col gap-8">
-      <span className="sr-only">Loading your overview...</span>
-      <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-        <div className="flex flex-col gap-4 pt-4">
-          <Skeleton className="h-3 w-48" />
-          <Skeleton className="h-14 w-3/4" />
-          <Skeleton className="h-4 w-2/3" />
-          <Skeleton className="h-11 w-32" />
-        </div>
-        <Skeleton className="h-48 rounded-xl" />
-      </div>
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {Array.from({ length: 4 }, (_, i) => (
-          <Skeleton key={i} className="h-24 rounded-xl" />
-        ))}
-      </div>
-      <div className="grid gap-8 lg:grid-cols-3">
-        <Skeleton className="h-64 rounded-xl lg:col-span-2" />
-        <Skeleton className="h-64 rounded-xl" />
-      </div>
     </div>
   );
 }
