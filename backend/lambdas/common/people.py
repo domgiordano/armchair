@@ -43,3 +43,11 @@ def rank(name: str, q: str) -> int | None:
 def index(show: str) -> list[dict]:
     """Every PEOPLE row of the show: about 500 small items, one Query."""
     return query_all(table("CATALOG_TABLE"), f"PEOPLE#{show}")
+
+
+def person(show: str, pid: str) -> dict | None:
+    return (
+        table("CATALOG_TABLE")
+        .get_item(Key={"pk": f"PERSON#{show}#{pid}", "sk": "META"})
+        .get("Item")
+    )

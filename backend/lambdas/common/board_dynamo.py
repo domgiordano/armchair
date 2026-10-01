@@ -165,3 +165,17 @@ def rows(show: str, season: int | str, subs: set[str] | None = None) -> dict[str
                 items += page["Responses"].get(tbl.name, [])
                 request = page.get("UnprocessedKeys")
     return {r["sk"].removeprefix("USER#"): r for r in items}
+
+
+def seasons_scored(show: str, sub: str, seasons: set[int]) -> set[int]:
+    """Which of `seasons` the user has a BOARD row in: one scored dance the judges confirmed."""
+    tbl = table("BOARD_TABLE")
+    keys = [{"pk": board_pk(show, n), "sk": f"USER#{sub}"} for n in sorted(seasons)]
+    found = set()
+    for i in range(0, len(keys), 100):
+        request = {tbl.name: {"Keys": keys[i : i + 100], "ProjectionExpression": "pk"}}
+        while request:
+            page = resource().batch_get_item(RequestItems=request)
+            found |= {int(r["pk"].rsplit("#", 1)[1]) for r in page["Responses"].get(tbl.name, [])}
+            request = page.get("UnprocessedKeys")
+    return found
