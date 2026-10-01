@@ -1,8 +1,13 @@
 "use client";
 
 import { getImageProps } from "next/image";
-import { lazy, Suspense, useCallback, useEffect, useState, useSyncExternalStore, type ComponentType, type CSSProperties } from "react";
+import { lazy, Suspense, useCallback, useEffect, useRef, useState, useSyncExternalStore, type ComponentType, type CSSProperties } from "react";
 
+import { DiscoLoader } from "@/components/disco-loader";
+import { likelySignedIn } from "@/lib/auth/session-hint";
+import ball from "./intro-assets/ball.webp";
+import poster from "./intro-assets/poster.webp";
+import posterPortrait from "./intro-assets/poster-portrait.webp";
 import styles from "./intro.module.css";
 
 // Scene length in ms, counted from the first drawn frame; intro.module.css and
@@ -43,13 +48,11 @@ const loadScene = () => import("./intro-scene/intro-scene");
 let pending: ReturnType<typeof loadScene> | undefined;
 const sceneModule = () => (pending ??= loadScene());
 
-// Amplify keeps the signed-in user under this key; a signed-in visit never plays the intro.
-const signedIn = () => Object.keys(localStorage).some((k) => k.endsWith(".LastAuthUser"));
 const reducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
 
 // Start the download while the auth check runs, not after it mounts the intro.
 // A failure is handled where Scene reads the same promise.
-if (typeof window !== "undefined" && !reducedMotion() && !signedIn()) sceneModule().catch(() => {});
+if (typeof window !== "undefined" && !reducedMotion() && !likelySignedIn()) sceneModule().catch(() => {});
 
 // three.js and friends stay out of the landing bundle. A chunk that fails to
 // download falls back to the 2D ballroom instead of an empty stage.
@@ -109,8 +112,10 @@ const GLINTS = [
 
 /**
  * The ballroom intro: a real-time scene where WebGL allows, the 2D ballroom
- * where not. The 3D stage holds on a poster of its opening frame until the
- * scene has compiled and drawn that frame, and the show's clock starts there.
+ * where not. The static HTML opens on the load-in (the mirror ball loader on
+ * the navy stage), which gives way to a poster of the scene's opening frame.
+ * The scene takes over once it has compiled and drawn that same frame; the 2D
+ * ballroom once its ball sprite, cut from that frame, has loaded.
  */
 export function Intro({ onDone }: IntroProps) {
   // Undecided on the server and through hydration, so neither backdrop is baked into the HTML.
@@ -118,12 +123,18 @@ export function Intro({ onDone }: IntroProps) {
   const [fallback, setFallback] = useState(false);
   const [arrived, setArrived] = useState(false);
   const [ready, setReady] = useState(false);
+  const [posterLoaded, setPosterLoaded] = useState(false);
+  const [spriteLoaded, setSpriteLoaded] = useState(false);
   const stage = webgl === null ? null : webgl && !fallback ? "3d" : "2d";
-  const playing = stage === "2d" || ready;
+  const playing = stage === "2d" ? spriteLoaded : ready;
+  const posterShown = stage !== null && posterLoaded;
 
   const onReady = useCallback(() => setReady(true), []);
   const onFail = useCallback(() => setFallback(true), []);
   const onArrive = useCallback(() => setArrived(true), []);
+  const onPosterLoad = useCallback(() => setPosterLoaded(true), []);
+  // A sprite that fails to load still lets the show go on, ball or no ball.
+  const onSprite = useCallback(() => setSpriteLoaded(true), []);
 
   useEffect(() => {
     if (stage !== "3d" || !arrived || ready) return;
@@ -142,18 +153,26 @@ export function Intro({ onDone }: IntroProps) {
       aria-label="Intro"
       data-stage={stage ?? undefined}
       data-playing={playing || undefined}
+      data-loaded={posterShown || playing || undefined}
       className={styles.scene}
     >
+      <div className={styles.loadin}>
+        <span aria-hidden="true" className={styles.cord} />
+        <DiscoLoader size="lg" label="Loading the intro" />
+      </div>
+      {/* In the static HTML too, so it downloads alongside the JS rather than after it. */}
+      <Poster shown={posterShown} onLoad={onPosterLoad} />
       {stage === "3d" && (
-        <>
-          <Poster />
-          <Suspense>
-            <Scene onReady={onReady} onFail={onFail} />
-            <Arrived onArrive={onArrive} />
-          </Suspense>
-        </>
+        <Suspense>
+          <Scene onReady={onReady} onFail={onFail} />
+          <Arrived onArrive={onArrive} />
+        </Suspense>
       )}
-      {stage === "2d" && <Ballroom />}
+      {stage === "2d" && !spriteLoaded && (
+        // eslint-disable-next-line @next/next/no-img-element -- a hidden preload, not content; next/image defers onLoad behind decode()
+        <img src={sprite} alt="" hidden onLoad={onSprite} onError={onSprite} />
+      )}
+      {stage === "2d" && spriteLoaded && <Ballroom />}
 
       {playing && (
         <>
@@ -201,6 +220,8 @@ function Glints() {
   );
 }
 
+const sprite = getImageProps({ src: ball, alt: "", width: 400, height: 400, unoptimized: true }).props.src;
+
 /** The 2D ballroom: the 3D scene's ball as a sprite over the same room, beams, sparkles, paddles. */
 function Ballroom() {
   return (
@@ -220,7 +241,7 @@ function Ballroom() {
         ))}
         <div className={styles.ball}>
           <span className={styles.chain} />
-          <span className={styles.sphere} />
+          <span className={styles.sphere} style={{ backgroundImage: `url(${sprite})` }} />
           <Glints />
         </div>
         {SPARKLES.map((s, i) => (
@@ -252,21 +273,36 @@ function Ballroom() {
   );
 }
 
-// A still of the scene's opening frame, shown until the WebGL chunk has loaded
-// and drawn that same frame over it. Fades up from the stage colour on load.
-// Regenerate it whenever the scene's t=0 changes, or the swap shows a jump.
-function Poster() {
-  const [loaded, setLoaded] = useState(false);
-  const common = { alt: "", unoptimized: true, priority: true };
-  const portrait = getImageProps({ ...common, src: "/intro/poster-portrait.webp", width: 780, height: 1688 }).props;
-  const { props } = getImageProps({ ...common, src: "/intro/poster.webp", width: 1600, height: 1000 });
+interface PosterProps {
+  shown: boolean;
+  onLoad: () => void;
+}
+
+// A still of the scene's opening frame, fading up over the load-in once it has
+// loaded and hydration has picked a stage. The scene draws that same frame over
+// it, or the 2D room fades in from it. Regenerate it whenever the scene's t=0
+// changes, or the swap shows a jump. Imported rather than served from public/,
+// so a new poster gets a new hashed URL and no browser keeps the old one.
+function Poster({ shown, onLoad }: PosterProps) {
+  const img = useRef<HTMLImageElement>(null);
+  // Lazy: still fetched at first layout, while the JS downloads, but never for
+  // the stage hidden from signed-in or reduced-motion visitors.
+  const common = { alt: "", unoptimized: true, loading: "lazy" as const, fetchPriority: "high" as const };
+  const portrait = getImageProps({ ...common, src: posterPortrait, width: 780, height: 1688 }).props;
+  const { props } = getImageProps({ ...common, src: poster, width: 1600, height: 1000 });
+
+  // A poster that finished loading before hydration fired its load event before React was listening.
+  useEffect(() => {
+    if (img.current?.complete && img.current.naturalWidth > 0) onLoad();
+  }, [onLoad]);
+
   return (
     <>
       <picture>
         <source media="(orientation: portrait)" srcSet={portrait.srcSet ?? portrait.src} />
-        <img {...props} alt="" onLoad={() => setLoaded(true)} data-loaded={loaded || undefined} className={styles.poster} />
+        <img {...props} ref={img} alt="" onLoad={onLoad} data-shown={shown || undefined} className={styles.poster} />
       </picture>
-      {loaded && (
+      {shown && (
         <div aria-hidden="true" className={styles.still}>
           <Glints />
         </div>
