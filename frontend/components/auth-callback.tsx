@@ -1,5 +1,6 @@
 "use client";
 
+import { signInWithRedirect } from "aws-amplify/auth";
 import { Hub } from "aws-amplify/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { Brand } from "@/components/brand";
 import { DiscoLoader } from "@/components/disco-loader";
 import { takeReturn } from "@/lib/auth/return-to";
+import { takeSilent } from "@/lib/auth/silent";
 import { useAuth } from "@/lib/auth/use-auth";
 import { SECONDARY } from "@/lib/ui";
 
@@ -27,7 +29,14 @@ export function AuthCallback() {
   useEffect(() => {
     const stop = Hub.listen("auth", ({ payload }) => {
       if (payload.event === "signInWithRedirect") void refresh();
-      if (payload.event === "signInWithRedirect_failure") setFailed(true);
+      if (payload.event !== "signInWithRedirect_failure") return;
+      // A hub hand-off (components/sso-handoff.tsx) with no Armchair session
+      // left: Google signs a returning user straight back in instead.
+      if (takeSilent()) {
+        void signInWithRedirect({ provider: "Google" }).catch(() => setFailed(true));
+        return;
+      }
+      setFailed(true);
     });
     const timer = setTimeout(() => setFailed(true), TIMEOUT_MS);
     return () => {
@@ -39,6 +48,7 @@ export function AuthCallback() {
   useEffect(() => {
     // replace(), not push(): the callback URL holds a spent authorization code.
     if (status !== "signedIn") return;
+    takeSilent();
     returnTo.current ??= takeReturn();
     router.replace(returnTo.current);
   }, [status, router]);

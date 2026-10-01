@@ -48,6 +48,7 @@ beforeEach(() => {
 afterEach(() => {
   vi.useRealTimers();
   vi.clearAllMocks();
+  localStorage.clear();
 });
 
 describe("Landing", () => {
@@ -56,11 +57,12 @@ describe("Landing", () => {
     expect(await screen.findByRole("button", { name: "Skip intro" })).toBeTruthy();
     expect(screen.queryByRole("heading", HEADLINE)).toBeNull();
 
-    // The landing mounts from an async auth update, so its effects (the intro's timer) flush on the scheduler first.
-    await act(() => vi.advanceTimersByTimeAsync(0));
-    act(() => vi.advanceTimersByTime(5799));
+    // jsdom has no WebGL, so this is the 2D stage, which waits on its ball sprite.
+    fireEvent.load(document.querySelector("section[aria-label=Intro] img[hidden]")!);
+    // shouldAdvanceTime lets real time slip in, so stop short of 5.8 s before checking it's still on.
+    await act(() => vi.advanceTimersByTimeAsync(5600));
     expect(screen.getByRole("button", { name: "Skip intro" })).toBeTruthy();
-    act(() => vi.advanceTimersByTime(1));
+    await act(() => vi.advanceTimersByTimeAsync(200));
     expect(screen.getByRole("heading", HEADLINE)).toBeTruthy();
     first.unmount();
 
@@ -111,7 +113,14 @@ describe("Landing", () => {
     expect(screen.queryByRole("heading", HEADLINE)).toBeNull();
   });
 
-  it("shows nothing while the session is still being read", () => {
+  it("opens on the intro while the session is still being read", () => {
+    vi.mocked(getCurrentUser).mockReturnValue(new Promise(() => {}));
+    render(<Home />);
+    expect(screen.getByRole("button", { name: "Skip intro" })).toBeTruthy();
+  });
+
+  it("shows nothing while a returning user's session is read", () => {
+    localStorage.setItem("CognitoIdentityServiceProvider.client.LastAuthUser", "someone");
     vi.mocked(getCurrentUser).mockReturnValue(new Promise(() => {}));
     const { container } = render(<Home />);
     expect(container.innerHTML).toBe("");
