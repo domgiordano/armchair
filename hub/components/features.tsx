@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { AccuracyArt, BlindArt, GroupArt, RevealArt, SeasonsArt, VoteArt } from "@/components/feature-art";
+import { reveal } from "@/lib/reveal";
 
 interface Feature {
   title: string;
@@ -74,7 +75,7 @@ export function Features() {
   return (
     <section id="features" aria-labelledby="features-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-4 lg:grid-cols-[1fr_1fr] lg:items-end">
+        <div className="grid gap-4 lg:grid-cols-[1fr_1fr] lg:items-end" {...reveal()}>
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-blue uppercase">What you get</p>
             <h2 id="features-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
@@ -87,10 +88,11 @@ export function Features() {
           </p>
         </div>
         <ul className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((f) => (
+          {FEATURES.map((f, i) => (
             <li
               key={f.title}
-              className={`grid grid-cols-1 overflow-hidden rounded-3xl border border-line bg-night-2/60 transition-colors hover:border-muted/40 motion-reduce:transition-none ${SPAN[f.span]}`}
+              className={`grid grid-cols-1 overflow-hidden rounded-3xl border border-line bg-night-2/60 transition hover:-translate-y-1 hover:border-muted/40 hover:shadow-2xl hover:shadow-violet/10 motion-reduce:transition-none ${SPAN[f.span]}`}
+              {...reveal((i % 3) + 1)}
             >
               <div
                 className={`h-44 border-b border-line bg-[radial-gradient(80%_90%_at_50%_0%,rgb(122_44_255/0.18),transparent)] ${

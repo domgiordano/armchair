@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { reveal } from "@/lib/reveal";
+
 interface Step {
   title: string;
   body: string;
@@ -111,14 +113,22 @@ export function HowItWorks() {
   return (
     <section id="how" aria-labelledby="how-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="text-xs font-semibold tracking-[0.3em] text-orange uppercase">How it works</p>
-        <h2 id="how-title" className="mt-3 max-w-xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
-          Blind first. <span className="text-brand-gradient">Then the reveal.</span>
-        </h2>
+        <div {...reveal()}>
+          <p className="text-xs font-semibold tracking-[0.3em] text-orange uppercase">How it works</p>
+          <h2 id="how-title" className="mt-3 max-w-xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
+            Blind first. <span className="text-brand-gradient">Then the reveal.</span>
+          </h2>
+        </div>
         <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => (
-            <li key={s.title} className="flex flex-col rounded-2xl border border-line bg-night-2/60 p-5">
-              <div className="mx-auto w-full max-w-60 px-2 pt-1">{s.diagram}</div>
+            <li
+              key={s.title}
+              className="group flex flex-col rounded-2xl border border-line bg-night-2/60 p-5 transition-colors hover:border-muted/40 motion-reduce:transition-none"
+              {...reveal(i + 1)}
+            >
+              <div className="mx-auto w-full max-w-60 px-2 pt-1 transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.03] motion-reduce:transition-none">
+                {s.diagram}
+              </div>
               <p className="mt-5 text-xs font-semibold tracking-[0.2em] text-muted tabular-nums">0{i + 1}</p>
               <h3 className="mt-1 text-lg font-semibold">{s.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{s.body}</p>

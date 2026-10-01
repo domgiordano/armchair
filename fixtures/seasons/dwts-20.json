@@ -33,7 +33,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "julianne-hough",
@@ -41,7 +46,12 @@
       "aliases": [
         "Julianne Hough"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "author": "https://www.flickr.com/photos/greg2600",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -1207,7 +1217,9 @@
         "noah-galloway#1",
         "rumer-willis#1",
         "chris-soules#1",
-        "riker-lynch#1"
+        "riker-lynch#1",
+        "nastia-liukin+noah-galloway+robert-herjavec+willow-shields#1",
+        "chris-soules+patti-labelle+riker-lynch+rumer-willis#1"
       ],
       "performances": [
         {
@@ -1362,7 +1374,7 @@
             "willow-shields"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 39,
           "judges": [
             10,
@@ -1383,7 +1395,7 @@
             "rumer-willis"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 39,
           "judges": [
             10,
@@ -2193,12 +2205,22 @@
         {
           "name": "Redfoo",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "LMFAO,_2011.jpg",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:LMFAO,_2011.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2212,12 +2234,22 @@
         {
           "name": "Charlotte McKinney",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Web_Summit_2018_-_Modum_-_Day_3,_November_8_SAM_4711_(30842329347)_(cropped).jpg",
+            "author": "Web Summit",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Web_Summit_2018_-_Modum_-_Day_3,_November_8_SAM_4711_(30842329347)_(cropped).jpg"
+          }
         },
         {
           "name": "Keo Motsepe",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2231,12 +2263,22 @@
         {
           "name": "Michael Sam",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Michael_Sam_final_Mizzou_home_game.jpg",
+            "author": "Marcus Qwertyus",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Sam_final_Mizzou_home_game.jpg"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2250,12 +2292,22 @@
         {
           "name": "Suzanne Somers",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Suzanne_Somers_in_Ina_Soltani_(1).jpg",
+            "author": "The Heart Truth",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Suzanne_Somers_in_Ina_Soltani_(1).jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2269,7 +2321,12 @@
         {
           "name": "Patti LaBelle",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Patti_Labelle_at_Black_Excellence_Brunch_New_Orleans_2026.jpg",
+            "author": "Danielle G. Campbell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Patti_Labelle_at_Black_Excellence_Brunch_New_Orleans_2026.jpg"
+          }
         },
         {
           "name": "Artem Chigvintsev",
@@ -2288,12 +2345,22 @@
         {
           "name": "Willow Shields",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "SDCC_2015_-_Willow_Shields_(19033948844).jpg",
+            "author": "Gage Skidmore from Peoria, AZ, United States of America",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:SDCC_2015_-_Willow_Shields_(19033948844).jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2307,12 +2374,22 @@
         {
           "name": "Robert Herjavec",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "RobertHerjavec2023.jpg",
+            "author": "Philip Romano",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:RobertHerjavec2023.jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2331,7 +2408,12 @@
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2345,12 +2427,22 @@
         {
           "name": "Nastia Liukin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Nastia_Liukin_2009.jpg",
+            "author": "ravedelay",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nastia_Liukin_2009.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2369,7 +2461,12 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2383,12 +2480,22 @@
         {
           "name": "Riker Lynch",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Riker_Lynch_Paparazzo_Photography.jpg",
+            "author": "Paparazzo Presents",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Riker_Lynch_Paparazzo_Photography.jpg"
+          }
         },
         {
           "name": "Allison Holker",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg",
+            "author": "Lex 24/7!",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2402,7 +2509,12 @@
         {
           "name": "Rumer Willis",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Rumer_Willis_2019_(facecrop).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rumer_Willis_2019_(facecrop).jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",

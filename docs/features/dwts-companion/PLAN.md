@@ -106,7 +106,7 @@ A performance is keyed `episode + contestant + ordinal`, so a user can score a c
 **Accuracy (`common/accuracy.py`).** It runs per performance, only where the caller answered with a value, the performance is `rateable`, and every panel judge is `confirmed`.
 - vs the mean: `|paddle - mean(panel values)|`. This puts 2-, 3- and 4-judge nights on the same 1-10 scale.
 - vs each judge: `|paddle - value_j|` for each judge on that night's panel. A judge absent that night contributes nothing, and a guest judge counts as their own judge.
-- Aggregates are mean absolute error per episode and per season, overall and per judge. Skips, bonus points and team dances are excluded.
+- Aggregates are mean absolute error per episode and per season, overall and per judge. Skips and bonus points are excluded. Amended 9/30: a team dance the judges scored is rateable and counts like a solo, keyed by every member (`a+b+c#1`); a group dance with no scores never reaches the catalog.
 
 **SMS keyword derivation (`common/keywords.py`).** The keyword is the celebrity's first name. If two celebrities in the same season share a first name (case-insensitive), each gets first name + space + last-name initial, e.g. `John S`. Suffixes like `Jr.` don't count as the last name: `Harry Shum Jr.` → `S`. An admin `keywordOverride` always wins. The rule doesn't catch spelling variants: ABC split `Conner`/`Connor` in the S35 premiere even though the names differ (RESEARCH Q4), so that case needs the override. Casing is **unknown**: past seasons used caps (`JOEY`), and whether caps matter to 21523 is **unknown**. On 10/6, check the derived set against the FAQ list.
 
@@ -214,7 +214,7 @@ Sizes count hand-written logic only; HCL copied from smirnoff with renames count
 | EventStreams trigger, F3 early confirm, WebSockets, Rive | next season | BRAINSTORM Option 3 |
 | ABC widget JSON for the real voting window | later | undocumented, Disney ToS; clock fallback until then |
 | Group management (leave, remove, rename), "closest judge" stat, notifications, second show | later | |
-| Team dances and bonus rounds as rateable | later | |
+| Bonus rounds as rateable | later | Scored team dances became rateable 9/30 |
 
 ## Out of Scope
 - Typing judges' scores by hand as an admin. Dom won't (BRAINSTORM).
@@ -238,7 +238,7 @@ Sizes count hand-written logic only; HCL copied from smirnoff with renames count
 - [x] 1. `armchair` is the permanent prefix. No existing "Armchair Judge" app found; `domgiordano/armchair` is free on GitHub. Closest: `utzn/armchair-judge` (boxing scorer) and a 2022-23 combat-sports podcast.
 - [x] 2. New pool goes in `xomware-infrastructure`.
 - [x] 3. Users score couples in any order, any time. An unscored performance simply stays locked and scorable. "Skip" is renamed **Reveal without scoring**: an explicit, final forfeit that unlocks the reveal and is excluded from accuracy.
-- [x] 4. Opening episode N with N-1 unfinished shows an interstitial: "Finish week N-1" or "Go to week N". Going ahead leaves N-1's performances unanswered and still scorable; the elimination leak is accepted.
+- [x] 4. Opening episode N with N-1 unfinished shows an interstitial: "Finish week N-1" or "Go to week N". Going ahead leaves N-1's performances unanswered and still scorable; the elimination leak is accepted. Amended 9/30: the question counts every unfinished earlier episode and offers "Catch up on N earlier episodes" or "Skip to this week" (`/scores/skip-before`, a bulk forfeit of everything unanswered before N, through `gate.py`). Opening N and leaving the rest scorable stays as a link. A finished season offers "Just browse" (skip the whole season) or "Score from the start".
 - [x] 5. Global desk: judges + you + global-average paddle; individual seats only under a group filter.
 - [x] 6. No reporter plan for the finale; Wikipedia is expected to work, delayed fill is acceptable.
 - [x] 7. Weeks 1-3 are scorable after the fact. Add a per-episode **Reveal all** (bulk forfeit of every unanswered performance) for catch-up users.

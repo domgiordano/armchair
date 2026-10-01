@@ -33,7 +33,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "julianne-hough",
@@ -41,7 +46,12 @@
       "aliases": [
         "Julianne Hough"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "author": "https://www.flickr.com/photos/greg2600",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -62,7 +72,12 @@
       "aliases": [
         "Nick Carter"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Nick_Carter_Freehold_NJ.jpg",
+        "author": "Melodyschamble",
+        "license": "CC BY-SA 4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nick_Carter_Freehold_NJ.jpg"
+      }
     },
     {
       "id": "mandy-moore",
@@ -1223,7 +1238,9 @@
         "normani#1",
         "david-ross#1",
         "rashad-jennings#1",
-        "heather-morris#1"
+        "heather-morris#1",
+        "bonner-bolton+david-ross+nick-viall+rashad-jennings#1",
+        "heather-morris+nancy-kerrigan+normani+simone-biles#1"
       ],
       "performances": [
         {
@@ -1378,7 +1395,7 @@
             "rashad-jennings"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 33,
           "judges": [
             8,
@@ -1399,7 +1416,7 @@
             "simone-biles"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 34,
           "judges": [
             8,
@@ -2171,12 +2188,22 @@
         {
           "name": "Chris Kattan",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chris_Kattan_at_San_Diego_Comic_Con_2026-1.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chris_Kattan_at_San_Diego_Comic_Con_2026-1.jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2190,12 +2217,22 @@
         {
           "name": "Charo",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Charo_2013_ALMA_Awards.jpg",
+            "author": "Richard Sandoval",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charo_2013_ALMA_Awards.jpg"
+          }
         },
         {
           "name": "Keo Motsepe",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2209,12 +2246,22 @@
         {
           "name": "Mr. T",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mr_T_WWE_Hall_of_Fame_2014_(cropped).jpg",
+            "author": "Miguel Discart",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mr_T_WWE_Hall_of_Fame_2014_(cropped).jpg"
+          }
         },
         {
           "name": "Kym Herjavec",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2228,12 +2275,22 @@
         {
           "name": "Erika Jayne",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Erika_Jayne_in_2019.jpg",
+            "author": "Keith Dobbs",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erika_Jayne_in_2019.jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2247,12 +2304,22 @@
         {
           "name": "Heather Morris",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Heather_Morris_PaleyFest_11a_crop.jpg",
+            "author": "Heather_Morris_PaleyFest_11a.jpg: Jennifer Tse from Los Angeles, CA derivative work: Tabercil (talk)",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Heather_Morris_PaleyFest_11a_crop.jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2266,7 +2333,12 @@
         {
           "name": "Nancy Kerrigan",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Nancy_Kerrigan_1995.jpg",
+            "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nancy_Kerrigan_1995.jpg"
+          }
         },
         {
           "name": "Artem Chigvintsev",
@@ -2290,7 +2362,12 @@
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2309,7 +2386,12 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2323,7 +2405,12 @@
         {
           "name": "Simone Biles",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Simone_Biles_National_Team_2024.jpg",
+            "author": "Ocoudis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Simone_Biles_National_Team_2024.jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -2342,7 +2429,12 @@
         {
           "name": "Normani",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Normani_BTS_2019.jpg",
+            "author": "NewYorkMADE",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Normani_BTS_2019.jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",
@@ -2361,7 +2453,12 @@
         {
           "name": "David Ross",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "David_Ross_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_Ross_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Lindsay Arnold",
@@ -2385,7 +2482,12 @@
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null

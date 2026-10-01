@@ -40,7 +40,7 @@ export function SectionRail() {
             href={`#${id}`}
             aria-label={label}
             aria-current={current ? "location" : undefined}
-            className="group flex h-8 w-11 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-gold"
+            className="group flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-gold"
           >
             <span
               className={`block w-2 rounded-full transition-all motion-reduce:transition-none ${

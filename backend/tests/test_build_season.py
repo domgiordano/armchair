@@ -11,7 +11,7 @@ SHOT = {"file": "x.jpg", "author": "a", "license": "CC BY 4.0", "sourceUrl": "u"
 def season(n: int) -> dict:
     (path,) = WIKI.glob(f"s{n}-*.wikitext")
     rev = {"revid": int(path.stem.split("-")[1]), "timestamp": "t", "text": path.read_text()}
-    fixture, _ = build(n, rev, {"bruno-tonioli": SHOT})
+    fixture, _ = build(n, rev, {"Bruno Tonioli": SHOT, "Kelly Monaco": SHOT})
     return fixture
 
 
@@ -79,9 +79,11 @@ def test_s1_group_dance_is_skipped_with_its_reason(s1):
     }
 
 
-def test_judge_headshots_come_from_the_given_credits(s1):
+def test_headshots_come_from_the_given_credits_by_name(s1):
     shots = {j["id"]: j["headshot"] for j in s1["judges"]}
     assert shots == {"carrie-ann-inaba": None, "len-goodman": None, "bruno-tonioli": SHOT}
+    kelly = next(c for c in s1["contestants"] if c["id"] == "kelly-monaco")
+    assert [m["headshot"] for m in kelly["members"]] == [SHOT, None]
 
 
 def test_s8_dance_off_is_its_own_episode(s8):

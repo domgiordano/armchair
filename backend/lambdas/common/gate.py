@@ -32,19 +32,29 @@ def rateable(
     """
     Keys the caller must answer before the episode's results open: every couple
     still in the competition that night times dancesPerCouple. Known before the
-    poller writes anything; a performance the poller marks unrateable (a team
-    dance) drops out. An episode that lists its keys (`rateableKeys`) uses them: a
-    two-night week, a dance-off or a withdrawal makes the roster count wrong.
+    poller writes anything; a performance marked unrateable (a team dance
+    written before team dances were scored) drops out. An episode that lists
+    its keys (`rateableKeys`) uses them: a two-night week, a dance-off or a
+    withdrawal makes the roster count wrong. A scored team dance joins once the
+    poller writes it, keyed by every member: `a+b+c#1`.
     """
     off = {perf_key(p["sk"]) for p in performances if p.get("rateable") is False}
     if episode.get("rateableKeys") is not None:
-        return [k for k in episode["rateableKeys"] if k not in off]
-    dances = int(episode.get("dancesPerCouple") or 1)
-    keys = [
-        f"{cid(c)}#{n}"
-        for c in contestants
-        if c.get("eliminatedEp") is None or c["eliminatedEp"] >= ep
-        for n in range(1, dances + 1)
+        keys = list(episode["rateableKeys"])
+    else:
+        dances = int(episode.get("dancesPerCouple") or 1)
+        keys = [
+            f"{cid(c)}#{n}"
+            for c in contestants
+            if c.get("eliminatedEp") is None or c["eliminatedEp"] >= ep
+            for n in range(1, dances + 1)
+        ]
+    keys += [
+        perf_key(p["sk"])
+        for p in performances
+        if p.get("rateable") is True
+        and len(p.get("contestants") or []) > 1
+        and perf_key(p["sk"]) not in keys
     ]
     return [k for k in keys if k not in off]
 
@@ -101,7 +111,7 @@ def episode_view(
             key, owner = score_owner(row)
             values[key].append((owner, int(row["value"])))
 
-    # Team dances have no answer of their own, so they open with the episode.
+    # An unrateable team dance has no answer of its own, so it opens with the episode.
     cards = [(k, k in mine) for k in keys]
     cards += [(k, complete) for k, p in perfs.items() if p.get("rateable") is False]
 

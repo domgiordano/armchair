@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -1681,7 +1686,9 @@
         "milo-manheim#1",
         "demarcus-ware#1",
         "alexis-ren#1",
-        "bobby-bones#1"
+        "bobby-bones#1",
+        "bobby-bones+evanna-lynch+john-schneider+milo-manheim#1",
+        "alexis-ren+demarcus-ware+joe-amabile+juan-pablo-di-pace#1"
       ],
       "performances": [
         {
@@ -1828,7 +1835,7 @@
             "milo-manheim"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 29,
           "judges": [
             10,
@@ -1848,7 +1855,7 @@
             "juan-pablo-di-pace"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 26,
           "judges": [
             9,
@@ -2271,12 +2278,22 @@
         {
           "name": "Nikki Glaser",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Nikki_Glaser_on_Neal_Brennan_Uploaded_James_Tamim_(cropped).png",
+            "author": "Neal Brennan",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nikki_Glaser_on_Neal_Brennan_Uploaded_James_Tamim_(cropped).png"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2309,7 +2326,12 @@
         {
           "name": "Nancy McKeon",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "The_Reagans_with_Michael_J._Fox_and_Nancy_McKeon_(cropped)_-_Nancy_McKeon.jpg",
+            "author": "Series: Reagan White House Photographs, 1/20/1981 - 1/20/1989 Collection: White House Photographic Collection, 1/20/1981 - 1/20/1989",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Reagans_with_Michael_J._Fox_and_Nancy_McKeon_(cropped)_-_Nancy_McKeon.jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",
@@ -2328,7 +2350,12 @@
         {
           "name": "Tinashe",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Tinashe_2020_Vogue_1.jpg",
+            "author": "Tiffany Frances",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tinashe_2020_Vogue_1.jpg"
+          }
         },
         {
           "name": "Brandon Armstrong",
@@ -2347,7 +2374,12 @@
         {
           "name": "Mary Lou Retton",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Retton-m.jpg",
+            "author": "US Health and Human Services. No specific photo credit is given by the source.",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Retton-m.jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -2366,12 +2398,22 @@
         {
           "name": "John Schneider",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "JohnSchneiderB_yPhilKOnstantinPublicDomainCropped.jpg",
+            "author": "Philkon Phil Konstantin. Cropped and edited by Entheta",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:JohnSchneiderB_yPhilKOnstantinPublicDomainCropped.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2385,7 +2427,12 @@
         {
           "name": "DeMarcus Ware",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "DeMarcus_Ware.JPG",
+            "author": "Jeffrey Beall",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:DeMarcus_Ware.JPG"
+          }
         },
         {
           "name": "Lindsay Arnold",
@@ -2428,7 +2475,12 @@
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2442,7 +2494,12 @@
         {
           "name": "Alexis Ren",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Alexis_Ren.jpg",
+            "author": "L’Oréal Paris",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alexis_Ren.jpg"
+          }
         },
         {
           "name": "Alan Bersten",
@@ -2461,12 +2518,22 @@
         {
           "name": "Evanna Lynch",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Evanna_Lynch_Comic_Con_Cape_Town_2026_02.jpg",
+            "author": "EGilham",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evanna_Lynch_Comic_Con_Cape_Town_2026_02.jpg"
+          }
         },
         {
           "name": "Keo Motsepe",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2480,12 +2547,22 @@
         {
           "name": "Milo Manheim",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Milo_Manheim_2019.jpg",
+            "author": "Milo&Mason",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Milo_Manheim_2019.jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2499,12 +2576,22 @@
         {
           "name": "Bobby Bones",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Bobby_Bones_-_iHeartRadio_Theater.jpg",
+            "author": "Lisa Gansky from New York, NY, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bobby_Bones_-_iHeartRadio_Theater.jpg"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null

@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -61,7 +66,12 @@
       "aliases": [
         "David Ross"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "David_Ross_by_Gage_Skidmore.jpg",
+        "author": "Gage Skidmore",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_Ross_by_Gage_Skidmore.jpg"
+      }
     }
   ],
   "episodes": [
@@ -287,7 +297,9 @@
         "tonya-harding#1",
         "mirai-nagasu#1",
         "arike-ogunbowale#1",
-        "adam-rippon#1"
+        "adam-rippon#1",
+        "chris-mazdzer+josh-norman+kareem-abdul-jabbar+tonya-harding#1",
+        "adam-rippon+arike-ogunbowale+jennie-finch-daigle+mirai-nagasu#1"
       ],
       "performances": [
         {
@@ -442,7 +454,7 @@
             "tonya-harding"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 33,
           "judges": [
             8,
@@ -463,7 +475,7 @@
             "mirai-nagasu"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 37,
           "judges": [
             9,
@@ -750,7 +762,12 @@
         {
           "name": "Jamie Anderson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jamie_Anderson_with_campers_(cropped).jpg",
+            "author": "The Camp of Champions Snowboard & Ski Summer Camp from Canada",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jamie_Anderson_with_campers_(cropped).jpg"
+          }
         },
         {
           "name": "Artem Chigvintsev",
@@ -769,12 +786,22 @@
         {
           "name": "Johnny Damon",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Johnny_Damon_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johnny_Damon_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 1
@@ -788,7 +815,12 @@
         {
           "name": "Kareem Abdul-Jabbar",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kareem_Abdul-Jabbar_1975.jpeg",
+            "author": "Steve Jenner",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kareem_Abdul-Jabbar_1975.jpeg"
+          }
         },
         {
           "name": "Lindsay Arnold",
@@ -807,12 +839,22 @@
         {
           "name": "Arike Ogunbowale",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Arike_Ogunbowale_01_(cropped).jpg",
+            "author": "Lorie Shaull",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arike_Ogunbowale_01_(cropped).jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -831,7 +873,12 @@
         {
           "name": "Keo Motsepe",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -845,12 +892,22 @@
         {
           "name": "Chris Mazdzer",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chris_Mazdzer_2013.jpg",
+            "author": "Tim Hipps",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chris_Mazdzer_2013.jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -864,7 +921,12 @@
         {
           "name": "Mirai Nagasu",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Nagasu_2010_TEB.jpg",
+            "author": "David W. Carmichael",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nagasu_2010_TEB.jpg"
+          }
         },
         {
           "name": "Alan Bersten",
@@ -883,7 +945,12 @@
         {
           "name": "Tonya Harding",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Tonya_harding_mac_club_1994_crop.jpg",
+            "author": "Copy Editor",
+            "license": "CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tonya_harding_mac_club_1994_crop.jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -902,12 +969,22 @@
         {
           "name": "Josh Norman",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Josh_Norman.jpg",
+            "author": "Keith Allison",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Josh_Norman.jpg"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -921,7 +998,12 @@
         {
           "name": "Adam Rippon",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Adam_Rippon_2009_TEB.jpg",
+            "author": "David W.Carmichael",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adam_Rippon_2009_TEB.jpg"
+          }
         },
         {
           "name": "Jenna Johnson",

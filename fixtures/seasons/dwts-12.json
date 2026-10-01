@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -53,7 +58,12 @@
       "aliases": [
         "Donnie Burns"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Donnie.jpg",
+        "author": "http://www.wikidancesport.com/Attachments/Instructors/Donnie%20Burns/Donnie.jpg",
+        "license": "CC0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Donnie.jpg"
+      }
     }
   ],
   "episodes": [
@@ -1195,6 +1205,8 @@
       ],
       "dancesPerCouple": 1,
       "rateableKeys": [
+        "chelsea-kane+ralph-macchio+romeo#1",
+        "hines-ward+kendra-wilkinson+kirstie-alley#1",
         "chelsea-kane#1",
         "kendra-wilkinson#1",
         "kirstie-alley#1",
@@ -1210,7 +1222,7 @@
             "romeo"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 30,
           "judges": [
             8,
@@ -1230,7 +1242,7 @@
             "kirstie-alley"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 30,
           "judges": [
             7,
@@ -1926,7 +1938,12 @@
         {
           "name": "Mike Catherwood",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mike_Catherwood.jpg",
+            "author": "rootseven from Anaheim, CA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mike_Catherwood.jpg"
+          }
         },
         {
           "name": "Lacey Schwimmer",
@@ -1945,12 +1962,22 @@
         {
           "name": "Wendy Williams",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Wendy_Williams_2018_WBLS_Interview_4.png",
+            "author": "WBLS",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wendy_Williams_2018_WBLS_Interview_4.png"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -1964,7 +1991,12 @@
         {
           "name": "Sugar Ray Leonard",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Sugar_Ray_Leonard.jpg",
+            "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sugar_Ray_Leonard.jpg"
+          }
         },
         {
           "name": "Anna Trebunskaya",
@@ -1983,12 +2015,22 @@
         {
           "name": "Petra Němcová",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Petra_Nemcova_Cannes_2018_2.jpg",
+            "author": "Georges Biard",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Petra_Nemcova_Cannes_2018_2.jpg"
+          }
         },
         {
           "name": "Dmitry Chaplin",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "DSC03939_print.jpg",
+            "author": "Dmitry Chaplin",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:DSC03939_print.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2002,12 +2044,22 @@
         {
           "name": "Chris Jericho",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chris_Jericho_GalaxyCon_Raleigh_July,_25,_2026_681.jpg",
+            "author": "John Manard",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chris_Jericho_GalaxyCon_Raleigh_July,_25,_2026_681.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2021,7 +2073,12 @@
         {
           "name": "Kendra Wilkinson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kendra_Wilkinson_2011.jpg",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kendra_Wilkinson_2011.jpg"
+          }
         },
         {
           "name": "Louis van Amstel",
@@ -2045,7 +2102,12 @@
         {
           "name": "Chelsie Hightower",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "ChelsieHightowerApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2059,12 +2121,22 @@
         {
           "name": "Ralph Macchio",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Ralph_Macchio_GalaxyCon_Raleigh_July,_24,_2026_992.jpg",
+            "author": "John Manard",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ralph_Macchio_GalaxyCon_Raleigh_July,_24,_2026_992.jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2078,12 +2150,22 @@
         {
           "name": "Chelsea Kane",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chelsea_Kane_2010.jpg",
+            "author": "Blake Raab at https://www.flickr.com/photos/bearsonpatrol",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chelsea_Kane_2010.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2097,12 +2179,22 @@
         {
           "name": "Kirstie Alley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "KirstieAlley1994-close.jpg",
+            "author": "Kirstie Alley 1994.jpg: Photo by Alan Light derivative work: Bad Randolph (talk)",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:KirstieAlley1994-close.jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2116,12 +2208,22 @@
         {
           "name": "Hines Ward",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Hines_Ward_Steelers.jpg",
+            "author": "photo taken by flickr user SteelCityHobbies",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hines_Ward_Steelers.jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": null

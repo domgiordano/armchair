@@ -287,8 +287,8 @@ def year_of(text: str) -> int:
     return spoken(re.search(r"premiered on ([^.]*)", text).group(1)).year
 
 
-def build(season: int, rev: dict, judge_shots: dict[str, dict]) -> tuple[dict, list[str]]:
-    """The season's fixture and a list of report lines."""
+def build(season: int, rev: dict, shots: dict[str, dict | None]) -> tuple[dict, list[str]]:
+    """The season's fixture and a list of report lines. `shots` is fixtures/headshots.json."""
     text = rev["text"]
     live = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
     cast = roster(text)
@@ -341,7 +341,7 @@ def build(season: int, rev: dict, judge_shots: dict[str, dict]) -> tuple[dict, l
             perfs = [p for p in keep if p["night"] == night]
             if not perfs:
                 continue
-            solo = [p for p in perfs if p["rateable"]]
+            solo = [p for p in perfs if len(p["contestants"]) == 1]
             panel = seat((solo or perfs)[0]["panel"])
             episodes.append(
                 {
@@ -356,7 +356,10 @@ def build(season: int, rev: dict, judge_shots: dict[str, dict]) -> tuple[dict, l
                     "dancesPerCouple": max(
                         Counter(p["contestants"][0] for p in solo).values(), default=0
                     ),
-                    "rateableKeys": [f"{p['contestants'][0]}#{p['n']}" for p in solo],
+                    # A team dance is keyed by every member, as the poller writes it.
+                    "rateableKeys": [
+                        f"{'+'.join(p['contestants'])}#{p['n']}" for p in perfs if p["rateable"]
+                    ],
                     "performances": [
                         {
                             "contestants": p["contestants"],
@@ -386,7 +389,7 @@ def build(season: int, rev: dict, judge_shots: dict[str, dict]) -> tuple[dict, l
     last_ep: dict[str, int] = {}
     for e in episodes:
         for p in e["performances"]:
-            if p["rateable"]:
+            if len(p["contestants"]) == 1:
                 last_ep[p["contestants"][0]] = e["ep"]
     contestants = []
     for c in cast:
@@ -399,8 +402,12 @@ def build(season: int, rev: dict, judge_shots: dict[str, dict]) -> tuple[dict, l
                 "id": cid,
                 "aliases": sorted(a for a, v in aliases.items() if v == cid),
                 "members": [
-                    {"name": c["celebrity"], "role": "celebrity", "headshot": None},
-                    {"name": c["pro"], "role": "pro", "headshot": None},
+                    {
+                        "name": c["celebrity"],
+                        "role": "celebrity",
+                        "headshot": shots.get(c["celebrity"]),
+                    },
+                    {"name": c["pro"], "role": "pro", "headshot": shots.get(c["pro"])},
                 ],
                 "eliminatedEp": last_ep.get(cid) if out else None,
             }
@@ -408,8 +415,8 @@ def build(season: int, rev: dict, judge_shots: dict[str, dict]) -> tuple[dict, l
 
     if not default:
         default = Counter(tuple(e["panel"]) for e in episodes).most_common(1)[0][0]
-    for jid, j in judges.items():
-        j["headshot"] = judge_shots.get(jid)
+    for j in judges.values():
+        j["headshot"] = shots.get(j["name"])
     for s in skipped:
         report.append(f"week {s['week']} night {s['night']}: {s['row']!r}: {s['reason']}")
 
@@ -445,10 +452,7 @@ def main(argv: list[str] | None = None) -> None:
     if args.revid and len(args.seasons) > 1:
         parser.error("--revid needs a single season")
 
-    # Judges' Commons headshots and credits are already checked in the current season's file.
-    shots = {
-        j["id"]: j["headshot"] for j in json.loads((SEASONS / "dwts-35.json").read_text())["judges"]
-    }
+    shots = json.loads((SEASONS.parent / "headshots.json").read_text())
     for i, n in enumerate(args.seasons):
         if i:
             time.sleep(1)

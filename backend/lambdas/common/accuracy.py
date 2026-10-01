@@ -17,10 +17,11 @@ from lambdas.common.gate import perf_key, score_owner
 def judged(perf: dict, panel: list[str]) -> dict[str, float] | None:
     """
     The panel's values for one performance, or None when it can't be scored
-    against: a team dance, not rateable, or any panel judge not yet confirmed.
+    against: not rateable, or any panel judge not yet confirmed. A team dance
+    counts like any other: every member couple shares the one set of paddles.
     Bonus points live beside the judges, so they never reach this.
     """
-    if perf.get("rateable") is False or len(perf.get("contestants") or []) > 1:
+    if perf.get("rateable") is False:
         return None
     judges = perf.get("judges") or {}
     if not panel or any((judges.get(j) or {}).get("state") != "confirmed" for j in panel):

@@ -34,7 +34,12 @@
         "Len Goodman",
         "Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -57,7 +62,12 @@
         "Paula Abdul",
         "Abdul"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Paula_Abdul_2007.jpg",
+        "author": "Toglenn",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paula_Abdul_2007.jpg"
+      }
     }
   ],
   "episodes": [
@@ -975,7 +985,8 @@
         "kelly-monaco#1",
         "gilles-marini#1",
         "kirstie-alley#1",
-        "emmitt-smith#1"
+        "emmitt-smith#1",
+        "apolo-anton-ohno+melissa-rycroft+sabrina-bryan+shawn-johnson#1"
       ],
       "performances": [
         {
@@ -1054,7 +1065,7 @@
             "shawn-johnson"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 29.5,
           "judges": [
             9.5,
@@ -1086,7 +1097,8 @@
         "melissa-rycroft#1",
         "shawn-johnson#1",
         "apolo-anton-ohno#1",
-        "sabrina-bryan#1"
+        "sabrina-bryan#1",
+        "emmitt-smith+gilles-marini+kelly-monaco+kirstie-alley#1"
       ],
       "performances": [
         {
@@ -1165,7 +1177,7 @@
             "kirstie-alley"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 27,
           "judges": [
             9,
@@ -2168,7 +2180,12 @@
         {
           "name": "Pamela Anderson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg",
+            "author": "Norman Wong",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg"
+          }
         },
         {
           "name": "Tristan MacManus",
@@ -2187,12 +2204,22 @@
         {
           "name": "Joey Fatone",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Joey_Fatone_(31503991831).jpg",
+            "author": "Super Festivals from Ft. Lauderdale, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joey_Fatone_(31503991831).jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2206,7 +2233,12 @@
         {
           "name": "Drew Lachey",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Drew_Lachey.jpg",
+            "author": "dwightsghost from New York, NY, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Drew_Lachey.jpg"
+          }
         },
         {
           "name": "Anna Trebunskaya",
@@ -2225,12 +2257,22 @@
         {
           "name": "Hélio Castroneves",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Hélio_Castroneves_at_the_2018_Indianapolis_500.jpg",
+            "author": "Zach Catanzareti Photo",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:H%C3%A9lio_Castroneves_at_the_2018_Indianapolis_500.jpg"
+          }
         },
         {
           "name": "Chelsie Hightower",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "ChelsieHightowerApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2244,12 +2286,22 @@
         {
           "name": "Bristol Palin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Bristol_Palin_by_Gage_Skidmore_4.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bristol_Palin_by_Gage_Skidmore_4.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2263,7 +2315,12 @@
         {
           "name": "Sabrina Bryan",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "SabrinaDWTSLV.JPG",
+            "author": "Dcimo2",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:SabrinaDWTSLV.JPG"
+          }
         },
         {
           "name": "Louis van Amstel",
@@ -2282,12 +2339,22 @@
         {
           "name": "Kirstie Alley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "KirstieAlley1994-close.jpg",
+            "author": "Kirstie Alley 1994.jpg: Photo by Alan Light derivative work: Bad Randolph (talk)",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:KirstieAlley1994-close.jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2301,12 +2368,22 @@
         {
           "name": "Gilles Marini",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG",
+            "author": "Frantogian",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2320,12 +2397,22 @@
         {
           "name": "Apolo Anton Ohno",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Apolo_Anton_Ohno_headshot.jpg",
+            "author": "OlympicHistorian",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apolo_Anton_Ohno_headshot.jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2339,12 +2426,22 @@
         {
           "name": "Emmitt Smith",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "EmmittSmith2007.jpg",
+            "author": "John Trainor",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:EmmittSmith2007.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2377,12 +2474,22 @@
         {
           "name": "Shawn Johnson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Johnson_in_2012_-_Portrait.jpg",
+            "author": "The Ray Center - CHARACTER COUNTS!",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johnson_in_2012_-_Portrait.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2396,12 +2503,22 @@
         {
           "name": "Melissa Rycroft",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Melissa_Rycroft_on_Valder_Beebe_Show.jpg",
+            "author": "Valder Beebe Show",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melissa_Rycroft_on_Valder_Beebe_Show.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": null

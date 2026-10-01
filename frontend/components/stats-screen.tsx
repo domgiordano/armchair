@@ -6,6 +6,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { PageLoader } from "@/components/disco-loader";
 import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
 import { GroupPicker } from "@/components/group-picker";
+import { CoupleAvatars, coupleName } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
 import { SignedIn } from "@/components/signed-in";
 import { Card } from "@/components/ui/card";
@@ -13,7 +14,7 @@ import { CountUp } from "@/components/ui/count-up";
 import { PageHeader } from "@/components/ui/page-header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
-import type { Season } from "@/lib/api/show";
+import type { Contestant, Season } from "@/lib/api/show";
 import { getStats, type Dance, type Stats } from "@/lib/api/stats";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel } from "@/lib/show/schedule";
@@ -110,10 +111,14 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
     .sort((a, b) => a.value - b.value);
   const rank = stats.others.filter((o) => o.mae < (mine.mae ?? 0)).length + 1;
   const short = (ep: number) => label(ep).replace("Week ", "W").replace(", night ", "/");
-  const celebrity = (key: string) => {
-    const c = season.contestants.find((x) => x.id === key.split("#")[0]);
-    return c?.members.find((m) => m.role === "celebrity")?.name ?? key.split("#")[0];
-  };
+  const couple = (key: string) => season.contestants.find((x) => x.id === key.split("#")[0]);
+  // A team dance's key names every member couple, "a+b+c#1", so no one couple matches it.
+  const team = (key: string) =>
+    key
+      .slice(0, key.lastIndexOf("#"))
+      .split("+")
+      .map((id) => season.contestants.find((x) => x.id === id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
+      .join(", ");
   const { closest, furthest } = extremes(stats.dances);
 
   return (
@@ -179,8 +184,8 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
         </Card>
 
         <Card id="calls" title="Best calls and biggest misses">
-          <Calls title="Best calls" dances={closest} celebrity={celebrity} short={short} />
-          {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} celebrity={celebrity} short={short} />}
+          <Calls title="Best calls" dances={closest} couple={couple} team={team} short={short} />
+          {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} couple={couple} team={team} short={short} />}
         </Card>
       </div>
     </>
@@ -190,35 +195,41 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
 function Calls({
   title,
   dances,
-  celebrity,
+  couple,
+  team,
   short,
 }: {
   title: string;
   dances: Dance[];
-  celebrity: (key: string) => string;
+  couple: (key: string) => Contestant | undefined;
+  team: (key: string) => string;
   short: (ep: number) => string;
 }) {
   return (
     <div className="flex flex-col gap-1">
       <h3 className="text-xs font-semibold tracking-[0.14em] text-silver-dim uppercase">{title}</h3>
       <ul aria-label={title} className="flex flex-col divide-y divide-silver/10 text-sm">
-        {dances.map((d) => (
-          <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
-            <span className="flex min-w-0 flex-col">
-              <span className="truncate text-pearl">{celebrity(d.key)}</span>
-              <span className="truncate text-xs text-silver-dim">
-                {short(d.ep)}
-                {d.style && ` · ${d.style}`}
+        {dances.map((d) => {
+          const c = couple(d.key);
+          return (
+            <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
+              {c && <CoupleAvatars members={c.members} size={32} />}
+              <span className="flex min-w-0 flex-1 flex-col">
+                <span className="truncate text-pearl">{c ? coupleName(c) : team(d.key)}</span>
+                <span className="truncate text-xs text-silver-dim">
+                  {short(d.ep)}
+                  {d.style && ` · ${d.style}`}
+                </span>
               </span>
-            </span>
-            <span className="shrink-0 text-right tabular-nums">
-              <span className="block">
-                You {d.paddle} · judges {formatScore(d.panelMean)}
+              <span className="shrink-0 text-right tabular-nums">
+                <span className="block">
+                  You {d.paddle} · judges {formatScore(d.panelMean)}
+                </span>
+                <span className="block text-xs text-silver-dim">{off(d.error)}</span>
               </span>
-              <span className="block text-xs text-silver-dim">{off(d.error)}</span>
-            </span>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

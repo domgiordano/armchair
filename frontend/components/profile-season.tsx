@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { CoupleAvatars, coupleName } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
 import { DistributionChart, StyleChart, off } from "@/components/profile-charts";
 import { CountUp } from "@/components/ui/count-up";
 import type { Profile, ProfileDance } from "@/lib/api/profile";
-import type { Season } from "@/lib/api/show";
+import type { Contestant, Season } from "@/lib/api/show";
 import { byStyle, calls, closestJudge, distribution } from "@/lib/profile/season-stats";
 import { episodeLabel } from "@/lib/show/schedule";
 import { TEXT_LINK } from "@/lib/ui";
@@ -90,11 +91,14 @@ function Stat({ label, value, note }: { label: string; value: ReactNode; note?: 
 function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] }) {
   const styles = byStyle(dances);
   const pair = calls(dances);
-  const celebrity = (key: string) => {
-    const cid = key.slice(0, key.lastIndexOf("#"));
-    const c = season.contestants.find((x) => x.id === cid);
-    return c?.members.find((m) => m.role === "celebrity")?.name ?? cid;
-  };
+  const couple = (key: string) => season.contestants.find((x) => x.id === key.slice(0, key.lastIndexOf("#")));
+  // A team dance's key names every member couple, "a+b+c#1", so no one couple matches it.
+  const team = (key: string) =>
+    key
+      .slice(0, key.lastIndexOf("#"))
+      .split("+")
+      .map((id) => season.contestants.find((x) => x.id === id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
+      .join(", ");
   const week = (ep: number) => {
     const e = season.episodes.find((x) => x.ep === ep);
     return e ? episodeLabel(e, season.episodes) : `Episode ${ep}`;
@@ -131,7 +135,8 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
               title="Best call"
               tone="best"
               dance={pair.best}
-              who={celebrity(pair.best.key)}
+              couple={couple(pair.best.key)}
+              name={team(pair.best.key)}
               when={week(pair.best.ep)}
             />
             {pair.worst !== pair.best && (
@@ -139,7 +144,8 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
                 title="Worst call"
                 tone="worst"
                 dance={pair.worst}
-                who={celebrity(pair.worst.key)}
+                couple={couple(pair.worst.key)}
+                name={team(pair.worst.key)}
                 when={week(pair.worst.ep)}
               />
             )}
@@ -154,11 +160,13 @@ interface CallProps {
   title: string;
   tone: "best" | "worst";
   dance: ProfileDance;
-  who: string;
+  couple: Contestant | undefined;
+  // Shown when no one couple matches: a team dance.
+  name: string;
   when: string;
 }
 
-function Call({ title, tone, dance, who, when }: CallProps) {
+function Call({ title, tone, dance, couple, name, when }: CallProps) {
   return (
     <li
       className={`flex flex-col gap-2 rounded-xl border p-4 ${tone === "best" ? "border-gold/45 bg-gold/[0.07]" : "border-silver/15 bg-ballroom/40"}`}
@@ -166,12 +174,15 @@ function Call({ title, tone, dance, who, when }: CallProps) {
       <p className={`text-xs font-semibold tracking-[0.12em] uppercase ${tone === "best" ? "text-gold" : "text-silver-dim"}`}>
         {title}
       </p>
-      <p className="font-medium text-pearl">
-        {who}
-        <span className="block text-sm font-normal text-silver-dim">
-          {[dance.style, when].filter(Boolean).join(" · ")}
-        </span>
-      </p>
+      <div className="flex items-center gap-3">
+        {couple && <CoupleAvatars members={couple.members} size={36} />}
+        <p className="min-w-0 font-medium text-pearl">
+          {couple ? coupleName(couple) : name}
+          <span className="block text-sm font-normal text-silver-dim">
+            {[dance.style, when].filter(Boolean).join(" · ")}
+          </span>
+        </p>
+      </div>
       <p className="flex items-baseline gap-3 text-sm tabular-nums">
         <span>
           You <span className="text-lg font-semibold">{dance.paddle}</span>

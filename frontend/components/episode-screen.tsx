@@ -61,7 +61,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
           options={season.episodes.map((e) => ({
             value: String(e.ep),
             label: [episodeLabel(e, season.episodes), e.theme].filter(Boolean).join(" · "),
-            detail: formatAirDate(e.airDate),
+            detail: formatAirDate(e.airDate) ?? undefined,
           }))}
           onChange={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
         />
@@ -70,11 +70,9 @@ function EpisodePicker({ season }: EpisodePickerProps) {
       <CatchUp
         key={episode.ep}
         season={season.season}
-        tz={season.timezone}
         episodes={season.episodes}
         episode={episode}
-        now={now}
-        onFinishPrevious={(previous) => router.replace(withSeason(`/episode/?ep=${previous.ep}`, season.season))}
+        onCatchUp={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
       >
         <EpisodeView
           season={season}

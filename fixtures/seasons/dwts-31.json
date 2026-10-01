@@ -33,7 +33,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "derek-hough",
@@ -67,7 +72,12 @@
       "aliases": [
         "Michael Bublé"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Michael_Bublé_(53695559289)_(cropped).jpg",
+        "author": "Gage Skidmore from Surprise, AZ, United States of America",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Bubl%C3%A9_(53695559289)_(cropped).jpg"
+      }
     }
   ],
   "episodes": [
@@ -1975,7 +1985,9 @@
         "heidi-damelio#1",
         "gabby-windey#1",
         "wayne-brady#1",
-        "trevor-donovan#1"
+        "trevor-donovan#1",
+        "gabby-windey+heidi-damelio+jordin-sparks+shangela+vinny-guadagnino#1",
+        "charli-damelio+daniel-durant+trevor-donovan+wayne-brady#1"
       ],
       "performances": [
         {
@@ -2149,7 +2161,7 @@
             "vinny-guadagnino"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 33,
           "judges": [
             8,
@@ -2170,7 +2182,7 @@
             "wayne-brady"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 39,
           "judges": [
             10,
@@ -2788,12 +2800,22 @@
         {
           "name": "Jason Lewis",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jason_Lewis_(actor).jpg",
+            "author": "Photo by Christopher Peterson",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jason_Lewis_(actor).jpg"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 1
@@ -2807,12 +2829,22 @@
         {
           "name": "Teresa Giudice",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Teresa_Giudice_at_New_York_Fashion_Week_2016.jpg",
+            "author": "Behind The Velvet Rope TV",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Teresa_Giudice_at_New_York_Fashion_Week_2016.jpg"
+          }
         },
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "author": "Panache Star Dancesport",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2826,7 +2858,12 @@
         {
           "name": "Cheryl Ladd",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Ladd_2b.jpg",
+            "author": "John Haslam",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Ladd_2b.jpg"
+          }
         },
         {
           "name": "Louis van Amstel",
@@ -2845,12 +2882,22 @@
         {
           "name": "Sam Champion",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Sam_Champion_121121-G-OD937-141_(cropped).jpg",
+            "author": "Petty Officer 2nd Class Jetta Disco",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sam_Champion_121121-G-OD937-141_(cropped).jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2864,7 +2911,12 @@
         {
           "name": "Selma Blair",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Selma_Blair_(6541171199).jpg",
+            "author": "Gordon Correll",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Selma_Blair_(6541171199).jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -2902,7 +2954,12 @@
         {
           "name": "Jessie James Decker",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jessie_James_at_the_Tour_for_the_Troops_concert_in_Incirlik_Air_Base_03.JPG",
+            "author": "U.S. Air Force photo/Senior Airman Ashley Wood",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jessie_James_at_the_Tour_for_the_Troops_concert_in_Incirlik_Air_Base_03.JPG"
+          }
         },
         {
           "name": "Alan Bersten",
@@ -2921,7 +2978,12 @@
         {
           "name": "Jordin Sparks",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jordin_Sparks_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jordin_Sparks_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Brandon Armstrong",
@@ -2959,7 +3021,12 @@
         {
           "name": "Vinny Guadagnino",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Vinny_Guadagnino_2011.jpg",
+            "author": "Mike L Photo's",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vinny_Guadagnino_2011.jpg"
+          }
         },
         {
           "name": "Koko Iwasaki",
@@ -2978,12 +3045,22 @@
         {
           "name": "Trevor Donovan",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Trevor_Donovan_July_2010.jpg",
+            "author": "Greg Hernandez",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trevor_Donovan_July_2010.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2997,12 +3074,22 @@
         {
           "name": "Daniel Durant",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Daniel_Durant_-_Being_Heumann_-_TIFF_2026-12.jpg",
+            "author": "Sarran Hamilton",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Daniel_Durant_-_Being_Heumann_-_TIFF_2026-12.jpg"
+          }
         },
         {
           "name": "Britt Stewart",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "author": "CaseyJNewell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -3016,12 +3103,22 @@
         {
           "name": "Shangela",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Shangela_at_Rupaul's_Dragcon_2017_(cropped).jpg",
+            "author": "DVSROSS",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shangela_at_Rupaul%27s_Dragcon_2017_(cropped).jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -3035,12 +3132,22 @@
         {
           "name": "Wayne Brady",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Wayne_Brady_2015.jpg",
+            "author": "SAMHSA",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wayne_Brady_2015.jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -3073,12 +3180,22 @@
         {
           "name": "Charli D'Amelio",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Charli_D'Amelio_in_Nov_2020_5.jpg",
+            "author": "Brad Mondo",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charli_D%27Amelio_in_Nov_2020_5.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null

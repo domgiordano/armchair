@@ -1,7 +1,7 @@
 "use client";
 
 import { Desk, type DeskMember } from "@/components/desk";
-import { Headshot } from "@/components/headshot";
+import { CoupleAvatars, Headshot } from "@/components/headshot";
 import type { GroupMember } from "@/lib/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { PaddlePicker } from "@/components/paddle-picker";
@@ -54,11 +54,15 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
       className="flex h-full flex-col gap-4 rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] transition-colors hover:border-silver/20"
     >
       <div className="flex items-center gap-3">
-        <div className="flex -space-x-3">
-          {faces.map((m) => (
-            <Headshot key={m.name} person={m} />
-          ))}
-        </div>
+        {team ? (
+          <div className="flex -space-x-3">
+            {faces.map((m) => (
+              <Headshot key={m.name} person={m} />
+            ))}
+          </div>
+        ) : (
+          <CoupleAvatars members={faces} size={48} />
+        )}
         <div className="flex min-w-0 flex-col">
           <h3 id={headingId} className="leading-tight font-semibold text-pearl">
             {title}
@@ -70,10 +74,6 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
         <Desk card={card} judges={judges} members={members ? memberSeats(card, members) : undefined}>
           <Scores card={card} judges={judges} />
         </Desk>
-      ) : team ? (
-        <p className="rounded-lg border border-dashed border-silver/15 px-3 py-2 text-sm text-silver-dim">
-          Not scored. Opens when you finish the episode.
-        </p>
       ) : (
         <PaddlePicker label={title} airsOn={airsOn} onSubmit={(answer) => onSubmit(card, answer)} />
       )}

@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -53,7 +58,12 @@
       "aliases": [
         "Julianne Hough"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "author": "https://www.flickr.com/photos/greg2600",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+      }
     },
     {
       "id": "cher",
@@ -61,7 +71,12 @@
       "aliases": [
         "Cher"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Cher_(50537941963)_(cropped).jpg",
+        "author": "Gage Skidmore from Surprise, AZ, United States of America",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cher_(50537941963)_(cropped).jpg"
+      }
     },
     {
       "id": "maksim-chmerkovskiy",
@@ -69,7 +84,12 @@
       "aliases": [
         "Maksim Chmerkovskiy"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Maksimchmerkovskiy.jpg",
+        "author": "Albert Domasin from Los Angeles, united states",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+      }
     }
   ],
   "episodes": [
@@ -1325,7 +1345,9 @@
         "amber-riley#1",
         "bill-engvall#1",
         "nicole-snooki-polizzi#1",
-        "corbin-bleu#1"
+        "corbin-bleu#1",
+        "bill-engvall+elizabeth-berkley-lauren+leah-remini+nicole-snooki-polizzi#1",
+        "amber-riley+brant-daugherty+corbin-bleu+jack-osbourne#1"
       ],
       "performances": [
         {
@@ -1472,7 +1494,7 @@
             "nicole-snooki-polizzi"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 27,
           "judges": [
             9,
@@ -1492,7 +1514,7 @@
             "jack-osbourne"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 30,
           "judges": [
             10,
@@ -2343,12 +2365,22 @@
         {
           "name": "Keyshawn Johnson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Keyshawn_Johnson_2006-10-15.jpg",
+            "author": "Keith Allison from Baltimore, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keyshawn_Johnson_2006-10-15.jpg"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2362,7 +2394,12 @@
         {
           "name": "Bill Nye",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Bill_Nye_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bill_Nye_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Tyne Stecklein",
@@ -2381,7 +2418,12 @@
         {
           "name": "Valerie Harper",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Valerie_Harper_in_1996_(cropped).jpg",
+            "author": "John Mathew Smith & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Valerie_Harper_in_1996_(cropped).jpg"
+          }
         },
         {
           "name": "Tristan MacManus",
@@ -2400,12 +2442,22 @@
         {
           "name": "Christina Milian",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Christina_Milian_(29975025233)_(cropped).jpg",
+            "author": "Greg2600",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christina_Milian_(29975025233)_(cropped).jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2419,7 +2471,12 @@
         {
           "name": "Nicole \"Snooki\" Polizzi",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Snooki_at_James_Madison_University_(cropped).jpg",
+            "author": "Amy Nicole Waltney",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Snooki_at_James_Madison_University_(cropped).jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -2443,7 +2500,12 @@
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2457,7 +2519,12 @@
         {
           "name": "Elizabeth Berkley Lauren",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Elizabeth_Berkley_2008.jpg",
+            "author": "vwilsonroberts; cropped by Spinoziano",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elizabeth_Berkley_2008.jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",
@@ -2476,12 +2543,22 @@
         {
           "name": "Leah Remini",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Leah_Remini_in_2018.jpg",
+            "author": "greg2600",
+            "license": "CC BY 2.5",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leah_Remini_in_2018.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2495,12 +2572,22 @@
         {
           "name": "Bill Engvall",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Bill_Engvall_2010.jpg",
+            "author": "DOD photo by U.S. Navy Petty Officer 1st Class Chad J. McNeeley",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bill_Engvall_2010.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 11
@@ -2514,12 +2601,22 @@
         {
           "name": "Jack Osbourne",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jack_Osbourne_2011_Shankbone.JPG",
+            "author": "David Shankbone",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jack_Osbourne_2011_Shankbone.JPG"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2533,12 +2630,22 @@
         {
           "name": "Corbin Bleu",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Corbin_Bleu.jpg",
+            "author": "Barry Mulling from North Hollywood, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corbin_Bleu.jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2552,12 +2659,22 @@
         {
           "name": "Amber Riley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Amber_Riley_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Amber_Riley_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": null

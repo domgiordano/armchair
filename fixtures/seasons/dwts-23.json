@@ -33,7 +33,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "julianne-hough",
@@ -41,7 +46,12 @@
       "aliases": [
         "Julianne Hough"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "author": "https://www.flickr.com/photos/greg2600",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -62,7 +72,12 @@
       "aliases": [
         "Pitbull"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Pitbull_(7906558674).jpg",
+        "author": "Eva Rinaldi",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pitbull_(7906558674).jpg"
+      }
     },
     {
       "id": "idina-menzel",
@@ -70,7 +85,12 @@
       "aliases": [
         "Idina Menzel"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "IdinaMenzel-TodayShow.jpg",
+        "author": "Erin Privratsky",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:IdinaMenzel-TodayShow.jpg"
+      }
     }
   ],
   "episodes": [
@@ -1468,7 +1488,9 @@
         "maureen-mccormick#1",
         "terra-jole#1",
         "jana-kramer#1",
-        "james-hinchcliffe#1"
+        "james-hinchcliffe#1",
+        "calvin-johnson-jr+james-hinchcliffe+maureen-mccormick+ryan-lochte#1",
+        "jana-kramer+laurie-hernandez+marilu-henner+terra-jole#1"
       ],
       "performances": [
         {
@@ -1623,7 +1645,7 @@
             "ryan-lochte"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 38,
           "judges": [
             10,
@@ -1644,7 +1666,7 @@
             "terra-jole"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 35,
           "judges": [
             8,
@@ -1825,7 +1847,10 @@
         "james-hinchcliffe#1",
         "terra-jole#1",
         "jana-kramer#1",
-        "laurie-hernandez#1"
+        "laurie-hernandez#1",
+        "james-hinchcliffe+calvin-johnson-jr#1",
+        "marilu-henner+terra-jole#1",
+        "laurie-hernandez+jana-kramer#1"
       ],
       "performances": [
         {
@@ -1942,7 +1967,7 @@
             "calvin-johnson-jr"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 37,
           "judges": [
             9,
@@ -1961,7 +1986,7 @@
             "terra-jole"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 36,
           "judges": [
             9,
@@ -1980,7 +2005,7 @@
             "jana-kramer"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 40,
           "judges": [
             10,
@@ -2454,7 +2479,12 @@
         {
           "name": "Jake T. Austin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "JTA2017.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:JTA2017.jpg"
+          }
         },
         {
           "name": "Jenna Johnson",
@@ -2473,12 +2503,22 @@
         {
           "name": "Rick Perry",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Rick_Perry_official_portrait.jpg",
+            "author": "Ken Shipp/United States Department of Energy",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rick_Perry_official_portrait.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2492,12 +2532,22 @@
         {
           "name": "Babyface",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "KennethBabyfaceEdmondsHWOFMay2013.jpg",
+            "author": "Angela George",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:KennethBabyfaceEdmondsHWOFMay2013.jpg"
+          }
         },
         {
           "name": "Allison Holker",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg",
+            "author": "Lex 24/7!",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2511,12 +2561,22 @@
         {
           "name": "Vanilla Ice",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Vanilla_Ice_2010_(cropped).jpg",
+            "author": "Rick Marshall",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vanilla_Ice_2010_(cropped).jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2530,12 +2590,22 @@
         {
           "name": "Amber Rose",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Amber_Rose_2018_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Amber_Rose_2018_by_Glenn_Francis_(cropped).jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2549,7 +2619,12 @@
         {
           "name": "Maureen McCormick",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Maureen_McCormick_Maui_crop.PNG",
+            "author": "cesariojpn",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maureen_McCormick_Maui_crop.PNG"
+          }
         },
         {
           "name": "Artem Chigvintsev",
@@ -2568,12 +2643,22 @@
         {
           "name": "Ryan Lochte",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "London_2012_200m_backstroke_IMG_5105_(7737962738)_(Lochte).jpg",
+            "author": "Rory",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:London_2012_200m_backstroke_IMG_5105_(7737962738)_(Lochte).jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2587,12 +2672,22 @@
         {
           "name": "Marilu Henner",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Marilu_Henner_2011.jpg",
+            "author": "Jeff Katz",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marilu_Henner_2011.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2625,12 +2720,22 @@
         {
           "name": "Jana Kramer",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jana_Kramer_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jana_Kramer_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 11
@@ -2644,7 +2749,12 @@
         {
           "name": "Calvin Johnson Jr.",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Calvin_Johnson_(cropped).png",
+            "author": "Kevind810",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Calvin_Johnson_(cropped).png"
+          }
         },
         {
           "name": "Lindsay Arnold",
@@ -2663,12 +2773,22 @@
         {
           "name": "James Hinchcliffe",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "James_hinchcliffe_(51382773096)_(cropped).jpg",
+            "author": "Zach Catanzareti Photo",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:James_hinchcliffe_(51382773096)_(cropped).jpg"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2682,7 +2802,12 @@
         {
           "name": "Laurie Hernandez",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Laurie_Hernandez_2016-08-04.jpg",
+            "author": "Fernando Frazão/Agência Brasil",
+            "license": "CC BY 3.0 br",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laurie_Hernandez_2016-08-04.jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",

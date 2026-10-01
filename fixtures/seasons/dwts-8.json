@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -1681,7 +1686,8 @@
         "chuck-wicks#1",
         "shawn-johnson#1",
         "melissa-rycroft#1",
-        "ty-murray#1"
+        "ty-murray#1",
+        "gilles-marini+lil-kim+ty-murray#1"
       ],
       "performances": [
         {
@@ -1793,7 +1799,7 @@
             "ty-murray"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 28,
           "judges": [
             9,
@@ -2380,7 +2386,12 @@
         {
           "name": "Belinda Carlisle",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Belinda_Carlisle_at_Manchester_Pride_2010.jpg",
+            "author": "Phil King",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Belinda_Carlisle_at_Manchester_Pride_2010.jpg"
+          }
         },
         {
           "name": "Jonathan Roberts",
@@ -2399,12 +2410,22 @@
         {
           "name": "Denise Richards",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Denise_Richards_Dragon_Con_September_5_2026_0639.JPG",
+            "author": "John Manard",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Denise_Richards_Dragon_Con_September_5_2026_0639.JPG"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2418,12 +2439,22 @@
         {
           "name": "Holly Madison",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Holly_Madison_(24126137872).jpg",
+            "author": "Holly Madison",
+            "license": "CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holly_Madison_(24126137872).jpg"
+          }
         },
         {
           "name": "Dmitry Chaplin",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "DSC03939_print.jpg",
+            "author": "Dmitry Chaplin",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:DSC03939_print.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2437,12 +2468,22 @@
         {
           "name": "Steve Wozniak",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Steve_Wozniak_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steve_Wozniak_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2456,12 +2497,22 @@
         {
           "name": "David Alan Grier",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "David_alan_grier_2021_1.jpg",
+            "author": "The Tony Awards",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_alan_grier_2021_1.jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2475,7 +2526,12 @@
         {
           "name": "Steve-O",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Steve-O_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steve-O_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Lacey Schwimmer",
@@ -2494,12 +2550,22 @@
         {
           "name": "Lawrence Taylor",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lawrence_Taylor_in_2025_(cropped).jpg",
+            "author": "The White House",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lawrence_Taylor_in_2025_(cropped).jpg"
+          }
         },
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2513,12 +2579,22 @@
         {
           "name": "Chuck Wicks",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chuck_wicks.jpg",
+            "author": "goaliej54",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chuck_wicks.jpg"
+          }
         },
         {
           "name": "Julianne Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+            "author": "https://www.flickr.com/photos/greg2600",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 11
@@ -2532,12 +2608,22 @@
         {
           "name": "Lil' Kim",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lil_Kim_Mercedes_Benz_Fashion_Week_2012_(modified).jpg",
+            "author": "Monique Tatum",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lil_Kim_Mercedes_Benz_Fashion_Week_2012_(modified).jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": 12
@@ -2551,12 +2637,22 @@
         {
           "name": "Ty Murray",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "TyMurrayApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TyMurrayApr09.jpg"
+          }
         },
         {
           "name": "Chelsie Hightower",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "ChelsieHightowerApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 13
@@ -2570,12 +2666,22 @@
         {
           "name": "Melissa Rycroft",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Melissa_Rycroft_on_Valder_Beebe_Show.jpg",
+            "author": "Valder Beebe Show",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melissa_Rycroft_on_Valder_Beebe_Show.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2589,12 +2695,22 @@
         {
           "name": "Gilles Marini",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG",
+            "author": "Frantogian",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2608,12 +2724,22 @@
         {
           "name": "Shawn Johnson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Johnson_in_2012_-_Portrait.jpg",
+            "author": "The Ray Center - CHARACTER COUNTS!",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johnson_in_2012_-_Portrait.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
