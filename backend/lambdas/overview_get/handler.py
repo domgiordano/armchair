@@ -65,15 +65,19 @@ def handler(event, context):
     for n, ep in sorted(
         (int(sk.removeprefix("EP#")), r) for sk, r in by_sk.items() if sk.startswith("EP#")
     ):
-        starts = _at(ep["airDate"], ep["start"], tz)
+        starts = ends = None
+        if ep.get("airDate") and ep.get("start") and ep.get("end"):
+            starts = _at(ep["airDate"], ep["start"], tz)
+            ends = _at(ep["airDate"], ep["end"], tz)
         entry = {
             "ep": n,
             "week": ep.get("week"),
             "theme": ep.get("theme"),
-            "airDate": ep["airDate"],
-            "startsAt": _iso(starts),
-            "endsAt": _iso(_at(ep["airDate"], ep["end"], tz)),
-            "aired": starts <= now,
+            "airDate": ep.get("airDate"),
+            "startsAt": starts and _iso(starts),
+            "endsAt": ends and _iso(ends),
+            # A past season's fixture has no start times, and every episode of it has aired.
+            "aired": not meta.get("current") or (starts is not None and starts <= now),
         }
         episodes.append(entry)
         if not entry["aired"]:

@@ -170,6 +170,17 @@ describe("EpisodeScreen", () => {
     expect(submitScore).toHaveBeenCalledWith("dwts-35", 4, STATE.performances[0], { value: 8 });
   });
 
+  it("opens a past season's last episode, whose fixture has no times", async () => {
+    const untimed = SEASON.episodes.map((e) => ({ ...e, airDate: null, start: null, end: null }));
+    vi.mocked(getSeason).mockResolvedValue({ ...SEASON, season: "dwts-20", episodes: untimed });
+    episodes({ 4: { answered: 2 }, 5: { ep: 5, theme: "Mariah Carey" } });
+    render(<EpisodeScreen />);
+
+    expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
+    expect(screen.queryByRole("region", { name: "Vote" })).toBeNull();
+    expect(within(screen.getByRole("combobox", { name: "Episode" })).getAllByRole("option").map((o) => o.textContent)).toEqual(["Week 3 · Yacht Rock", "Week 4 · Mariah Carey"]);
+  });
+
   it("disables scoring before the picked episode airs", async () => {
     search = new URLSearchParams("ep=5");
     episodes({ 4: { answered: 2 }, 5: { ep: 5, answered: 0, performances: [{ key: "amber-glenn#1", ...LOCKED }] } });

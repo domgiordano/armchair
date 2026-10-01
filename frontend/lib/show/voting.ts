@@ -13,6 +13,7 @@ export type VotePhase = "before" | "open" | "closed";
  * time, so a Pacific viewer watching at 8 pm local finds it closed.
  */
 export function votePhase(e: Episode, tz: string, now: number): VotePhase | null {
+  if (e.airDate === null || e.start === null || e.end === null) return null;
   const dayStart = zonedInstant(e.airDate, "00:00", tz);
   const dayEnd = zonedInstant(e.airDate, "23:59", tz) + 60_000;
   if (now < dayStart || now >= dayEnd) return null;

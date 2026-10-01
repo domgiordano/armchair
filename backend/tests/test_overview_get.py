@@ -204,3 +204,16 @@ def test_unknown_season_is_404(show):
 def test_malformed_season_is_400(show):
     status, _ = get(season="season-thirty-five!")
     assert status == 400
+
+
+def test_a_past_season_with_no_start_times_has_aired_whole(show):
+    s20 = json.loads((SEASONS / "dwts-20.json").read_text(), parse_float=Decimal)
+    write(show.Table(CATALOG_TABLE), items(s20))
+    status, body = get(season="dwts-20")
+    assert status == 200, body
+    d = body["data"]
+    assert d["next"] is None
+    assert d["progress"]["aired"] == d["progress"]["total"] == len(s20["episodes"])
+    first = d["episodes"][0]
+    assert first["airDate"] is None and first["startsAt"] is None and first["endsAt"] is None
+    assert first["aired"] and first["rateable"] == len(s20["episodes"][0]["rateableKeys"])
