@@ -70,7 +70,28 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - run: npm run build
+      # Same SSM reads as deploy-frontend.yml, with the hub's own app client.
+      # The client comes from xomware-infrastructure, which must have applied
+      # before this runs or get-parameter fails the job.
+      - name: Resolve Cognito and API config from SSM
+        run: |
+          set -euo pipefail
+          get() {
+            aws ssm get-parameter --name "$1" \
+              --query Parameter.Value --output text
+          }
+          {
+            echo "NEXT_PUBLIC_COGNITO_USER_POOL_ID=$(get /armchair/shared/cognito/user-pool-id)"
+            echo "NEXT_PUBLIC_COGNITO_CLIENT_ID=$(get /armchair/shared/cognito/clients/hub-id)"
+            echo "NEXT_PUBLIC_COGNITO_DOMAIN=$(get /armchair/shared/cognito/hosted-ui-domain)"
+            echo "NEXT_PUBLIC_API_URL=$(get /armchair/api-url)"
+          } >> "$GITHUB_ENV"
+
+      - name: Build
+        env:
+          # The hub's postbuild verify fails unless the values above reached the bundle.
+          REQUIRE_AUTH_ENV: "1"
+        run: npm run build
 
       # Found by the alias it serves rather than stored as a secret: exactly one
       # distribution fronts this hostname.

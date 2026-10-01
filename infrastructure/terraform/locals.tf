@@ -10,8 +10,9 @@ locals {
   api_domain_name = "api.${var.domain_name}"
 
   # Comma-delimited, the api-gateway-service contract. The first entry is the
-  # fallback for an origin that matches none of them (common/api.py).
-  cors_allowed_origins = "https://${var.domain_name},http://localhost:3000"
+  # fallback for an origin that matches none of them (common/api.py). The hub
+  # calls the same API; its www host needs no entry, CloudFront 301s it first.
+  cors_allowed_origins = "https://${var.domain_name},https://${var.hub_domain_name},http://localhost:3000,http://localhost:3001"
 
   lambda_variables = {
     APP_NAME           = var.app_name
