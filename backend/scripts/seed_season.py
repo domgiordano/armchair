@@ -5,7 +5,7 @@
     python scripts/seed_season.py --dry-run                  # print the items, write nothing
     python scripts/seed_season.py                            # write armchair-catalog
     python scripts/seed_season.py all                        # every fixture, past seasons too
-    python scripts/seed_season.py all --headshots <bucket>   # also copy missing headshots from Commons
+    python scripts/seed_season.py all --headshots <bucket>   # also crop missing headshots from Commons
 
 A finished season's fixture carries its performances: they go to armchair-performances
 through the poller's publish() with every judge's value confirmed, then each episode's
@@ -22,8 +22,6 @@ import json
 import os
 import sys
 import time
-import urllib.parse
-import urllib.request
 from decimal import Decimal
 from pathlib import Path
 
@@ -36,10 +34,9 @@ os.environ.setdefault("PERFORMANCES_TABLE", "armchair-performances")
 
 from lambdas.common.keywords import keywords
 from lambdas.cron_poll_wiki.handler import publish
+from scripts import faces
 
 SEASONS = Path(__file__).resolve().parents[2] / "fixtures" / "seasons"
-UA = {"User-Agent": "armchair/0.1 (https://github.com/domgiordano/armchair)"}
-COMMONS = "https://commons.wikimedia.org"
 # The poller and admin endpoints own these once the season is running, so a re-seed
 # only fills them in when absent. keywordOverride and results are never written here.
 LATER_OWNED = {"panel", "dancesPerCouple", "eliminatedEp"}
@@ -132,30 +129,40 @@ def headshots(season: dict) -> list[dict]:
 
 
 def upload(shots: list[dict], bucket: str, dry_run: bool) -> None:
-    """Copies a 400px Commons thumbnail of each file not yet in s3://bucket/headshots/."""
+    """Crops each headshot not yet at s3://bucket/headshots/<image> from its Commons photo.
+
+    Keys are content-hashed (faces.key), so the year-long cache never serves a replaced
+    photo. A photo the cropper finds no face in is left out, and the run fails naming it:
+    the site shows initials for it until the registry drops or replaces it.
+    """
     s3 = boto3.client("s3")
     pages = s3.get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix="headshots/")
     have = {o["Key"] for page in pages for o in page.get("Contents", [])}
     skipped = 0
-    for file in sorted({s["file"] for s in shots}):
-        key = f"headshots/{file}"
+    faceless = []
+    for shot in sorted({s["image"]: s for s in shots}.values(), key=lambda s: s["image"]):
+        key = f"headshots/{shot['image']}"
         if key in have:
             skipped += 1
             continue
-        src = f"{COMMONS}/wiki/Special:FilePath/{urllib.parse.quote(file)}?width=400"
-        print(f"{src} -> s3://{bucket}/{key}")
+        print(f"{shot['file']} -> s3://{bucket}/{key}")
         if dry_run:
             continue
-        with urllib.request.urlopen(urllib.request.Request(src, headers=UA), timeout=30) as resp:
-            s3.put_object(
-                Bucket=bucket,
-                Key=key,
-                Body=resp.read(),
-                ContentType=resp.headers["Content-Type"],
-                CacheControl="public, max-age=86400",
-            )
+        body = faces.crop(faces.fetch(shot["file"]))
+        if body is None:
+            faceless.append(shot["file"])
+            continue
+        s3.put_object(
+            Bucket=bucket,
+            Key=key,
+            Body=body,
+            ContentType="image/webp",
+            CacheControl="public, max-age=31536000, immutable",
+        )
         time.sleep(0.2)
     print(f"headshots: {skipped} already in the bucket")
+    if faceless:
+        sys.exit(f"headshots with no face found, not uploaded: {', '.join(faceless)}")
 
 
 def main(argv: list[str] | None = None) -> None:

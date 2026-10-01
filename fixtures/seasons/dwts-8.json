@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2388,6 +2379,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Belinda_Carlisle_at_Manchester_Pride_2010.jpg",
+            "image": "belinda-carlisle-2291f87ef8.webp",
             "author": "Phil King",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Belinda_Carlisle_at_Manchester_Pride_2010.jpg"
@@ -2412,6 +2404,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Denise_Richards_Dragon_Con_September_5_2026_0639.JPG",
+            "image": "denise-richards-721c46608d.webp",
             "author": "John Manard",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Denise_Richards_Dragon_Con_September_5_2026_0639.JPG"
@@ -2422,6 +2415,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2441,6 +2435,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Holly_Madison_(24126137872).jpg",
+            "image": "holly-madison-837553a8ec.webp",
             "author": "Holly Madison",
             "license": "CC0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holly_Madison_(24126137872).jpg"
@@ -2451,6 +2446,7 @@
           "role": "pro",
           "headshot": {
             "file": "DSC03939_print.jpg",
+            "image": "dmitry-chaplin-54b0e8f1a6.webp",
             "author": "Dmitry Chaplin",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:DSC03939_print.jpg"
@@ -2470,6 +2466,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Steve_Wozniak_by_Gage_Skidmore.jpg",
+            "image": "steve-wozniak-9f0c0b1225.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steve_Wozniak_by_Gage_Skidmore.jpg"
@@ -2480,6 +2477,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2499,6 +2497,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "David_alan_grier_2021_1.jpg",
+            "image": "david-alan-grier-d9c0754902.webp",
             "author": "The Tony Awards",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_alan_grier_2021_1.jpg"
@@ -2509,6 +2508,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2528,6 +2528,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Steve-O_by_Gage_Skidmore.jpg",
+            "image": "steve-o-e9560f8838.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steve-O_by_Gage_Skidmore.jpg"
@@ -2552,6 +2553,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Lawrence_Taylor_in_2025_(cropped).jpg",
+            "image": "lawrence-taylor-8d4a2ff927.webp",
             "author": "The White House",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lawrence_Taylor_in_2025_(cropped).jpg"
@@ -2562,6 +2564,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -2581,6 +2584,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chuck_wicks.jpg",
+            "image": "chuck-wicks-6d43c3a097.webp",
             "author": "goaliej54",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chuck_wicks.jpg"
@@ -2591,6 +2595,7 @@
           "role": "pro",
           "headshot": {
             "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+            "image": "julianne-hough-51a37a8917.webp",
             "author": "https://www.flickr.com/photos/greg2600",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -2609,10 +2614,11 @@
           "name": "Lil' Kim",
           "role": "celebrity",
           "headshot": {
-            "file": "Lil_Kim_Mercedes_Benz_Fashion_Week_2012_(modified).jpg",
-            "author": "Monique Tatum",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lil_Kim_Mercedes_Benz_Fashion_Week_2012_(modified).jpg"
+            "file": "Kim_OTR_Tour_(1).jpg",
+            "image": "lil-kim-f7b08f599e.webp",
+            "author": "Thiago Campbell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kim_OTR_Tour_(1).jpg"
           }
         },
         {
@@ -2620,6 +2626,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -2639,6 +2646,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "TyMurrayApr09.jpg",
+            "image": "ty-murray-bfa325a6a0.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TyMurrayApr09.jpg"
@@ -2649,6 +2657,7 @@
           "role": "pro",
           "headshot": {
             "file": "ChelsieHightowerApr09.jpg",
+            "image": "chelsie-hightower-9a09d28e75.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
@@ -2666,18 +2675,14 @@
         {
           "name": "Melissa Rycroft",
           "role": "celebrity",
-          "headshot": {
-            "file": "Melissa_Rycroft_on_Valder_Beebe_Show.jpg",
-            "author": "Valder Beebe Show",
-            "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melissa_Rycroft_on_Valder_Beebe_Show.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2697,6 +2702,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG",
+            "image": "gilles-marini-e3a06de0d1.webp",
             "author": "Frantogian",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG"
@@ -2707,6 +2713,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2726,6 +2733,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Johnson_in_2012_-_Portrait.jpg",
+            "image": "shawn-johnson-6f9c1b4b0e.webp",
             "author": "The Ray Center - CHARACTER COUNTS!",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johnson_in_2012_-_Portrait.jpg"
@@ -2735,10 +2743,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],

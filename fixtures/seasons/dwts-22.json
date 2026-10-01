@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -59,10 +50,11 @@
         "Zendaya"
       ],
       "headshot": {
-        "file": "Zendaya_2011.jpg",
-        "author": "Mingle MediaTV at https://www.flickr.com/photos/minglemediatv",
-        "license": "CC BY-SA 2.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zendaya_2011.jpg"
+        "file": "Zendaya-byPhilipRomano.jpg",
+        "image": "zendaya-61805f3a74.webp",
+        "author": "PhilipRomano",
+        "license": "CC BY-SA 4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zendaya-byPhilipRomano.jpg"
       }
     },
     {
@@ -73,6 +65,7 @@
       ],
       "headshot": {
         "file": "Maksimchmerkovskiy.jpg",
+        "image": "maksim-chmerkovskiy-9e1699554f.webp",
         "author": "Albert Domasin from Los Angeles, united states",
         "license": "CC BY 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2093,6 +2086,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "GeraldoRiveraSept2010.jpg",
+            "image": "geraldo-rivera-72d697f623.webp",
             "author": "Justin Hoch[dead link] photographing for Hudson Union Society",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:GeraldoRiveraSept2010.jpg"
@@ -2103,6 +2097,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -2121,10 +2116,11 @@
           "name": "Mischa Barton",
           "role": "celebrity",
           "headshot": {
-            "file": "Mischa_barton_london.JPG",
-            "author": "Absinthe",
+            "file": "Mischa_Barton_2017.png",
+            "image": "mischa-barton-ef5fc8aaa4.webp",
+            "author": "Anjaagnieszka",
             "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mischa_barton_london.JPG"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mischa_Barton_2017.png"
           }
         },
         {
@@ -2146,6 +2142,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Marla_Maples_(2014).jpg",
+            "image": "marla-maples-274597ad62.webp",
             "author": "Zakirmithu",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marla_Maples_(2014).jpg"
@@ -2156,6 +2153,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2175,6 +2173,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "2025,_Alum02,_Doug_Flutie.jpg",
+            "image": "doug-flutie-aecc3868f4.webp",
             "author": "Cmm3",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:2025,_Alum02,_Doug_Flutie.jpg"
@@ -2185,6 +2184,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2204,6 +2204,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Kim_Fields_2011.jpg",
+            "image": "kim-fields-9324c8afd3.webp",
             "author": "Dr. Duru",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kim_Fields_2011.jpg"
@@ -2228,6 +2229,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Commanders_Training_Camp_-_54752497153.jpg",
+            "image": "von-miller-79345254a1.webp",
             "author": "All-Pro Reels",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Commanders_Training_Camp_-_54752497153.jpg"
@@ -2237,10 +2239,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2257,6 +2260,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "WW_Chicago_2015_-_Jodie_Sweetin_01_(21038113562).jpg",
+            "image": "jodie-sweetin-f1053e3eb6.webp",
             "author": "GabboT",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:WW_Chicago_2015_-_Jodie_Sweetin_01_(21038113562).jpg"
@@ -2267,6 +2271,7 @@
           "role": "pro",
           "headshot": {
             "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "image": "keo-motsepe-657048226c.webp",
             "author": "RealTVfilms",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
@@ -2285,21 +2290,17 @@
           "name": "Antonio Brown",
           "role": "celebrity",
           "headshot": {
-            "file": "Antonio_Brown_2015.jpg",
-            "author": "Keith Allison",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Antonio_Brown_2015.jpg"
+            "file": "Antonio_Brown_(wide_receiver,_born_1988).JPG",
+            "image": "antonio-brown-b23794fc77.webp",
+            "author": "Jeffrey Beall",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Antonio_Brown_(wide_receiver,_born_1988).JPG"
           }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 9
@@ -2315,6 +2316,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Wanya_Morris_cropped.jpg",
+            "image": "wanya-morris-59112e4218.webp",
             "author": "Wanya_Morris.jpg: Luis Avilesortiz from Dublin, Ireland derivative work: Truu (talk)",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wanya_Morris_cropped.jpg"
@@ -2358,6 +2360,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Paige_VanZant_180428-D-SW162-1542_(cropped).jpg",
+            "image": "paige-vanzant-af5c31e778.webp",
             "author": "Chairman of the Joint Chiefs of Staff from Washington D.C, United States",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paige_VanZant_180428-D-SW162-1542_(cropped).jpg"
@@ -2367,10 +2370,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2387,6 +2391,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nyle_DiMarco_Citation_Presentation_(28915940204)_(cropped).jpg",
+            "image": "nyle-dimarco-d5ba70c0ae.webp",
             "author": "Maryland GovPics",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nyle_DiMarco_Citation_Presentation_(28915940204)_(cropped).jpg"
@@ -2397,6 +2402,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"

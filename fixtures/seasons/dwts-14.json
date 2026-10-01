@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2080,10 +2071,11 @@
           "name": "Martina Navratilova",
           "role": "celebrity",
           "headshot": {
-            "file": "Tennis_Nederland_tegen_Verenigde_Staten_in_Den_Haag_Navratilova_in_aktie,_Bestanddeelnr_930-9118_(cropped).jpg",
-            "author": "Hans van Dijk for Anefo",
-            "license": "CC0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tennis_Nederland_tegen_Verenigde_Staten_in_Den_Haag_Navratilova_in_aktie,_Bestanddeelnr_930-9118_(cropped).jpg"
+            "file": "25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Martina_Navratilova_-_240422_183713_(cropped).jpg",
+            "image": "martina-navratilova-50cc6419d6.webp",
+            "author": "Barcex",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Martina_Navratilova_-_240422_183713_(cropped).jpg"
           }
         },
         {
@@ -2091,6 +2083,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2108,12 +2101,7 @@
         {
           "name": "Jack Wagner",
           "role": "celebrity",
-          "headshot": {
-            "file": "Jack_Wagner_2009.jpg",
-            "author": "Westerberg1",
-            "license": "CC BY-SA 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jack_Wagner_2009.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Anna Trebunskaya",
@@ -2133,10 +2121,11 @@
           "name": "Sherri Shepherd",
           "role": "celebrity",
           "headshot": {
-            "file": "SherriShepherd-byPhilipRomano.jpg",
-            "author": "PhilipRomanoPhoto",
-            "license": "CC BY 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:SherriShepherd-byPhilipRomano.jpg"
+            "file": "Sherri_Shepherd_Speaking_at_the_Essence_Festival_of_Culture_2026_05.jpg",
+            "image": "sherri-shepherd-06f00be56c.webp",
+            "author": "Gabriel Brooks",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sherri_Shepherd_Speaking_at_the_Essence_Festival_of_Culture_2026_05.jpg"
           }
         },
         {
@@ -2158,6 +2147,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Gavin_DeGraw_at_Mentor_Rocks.jpg",
+            "image": "gavin-degraw-ea08d00487.webp",
             "author": "Erik Drost",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gavin_DeGraw_at_Mentor_Rocks.jpg"
@@ -2168,6 +2158,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2187,6 +2178,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Gladys_Knight_-_2016.jpg",
+            "image": "gladys-knight-a772e5ca9d.webp",
             "author": "United States House of Representatives - Office of Ruben Gallego",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gladys_Knight_-_2016.jpg"
@@ -2211,6 +2203,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jaleel_White_at_Galaxy_Con_Columbus.jpg",
+            "image": "jaleel-white-6503c2fc11.webp",
             "author": "John Manard",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jaleel_White_at_Galaxy_Con_Columbus.jpg"
@@ -2221,6 +2214,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2240,6 +2234,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Roshon_Fegan.jpg",
+            "image": "roshon-fegan-c6c38e220b.webp",
             "author": "Rachel Hislop for GlobalGrindTV",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roshon_Fegan.jpg"
@@ -2250,6 +2245,7 @@
           "role": "pro",
           "headshot": {
             "file": "ChelsieHightowerApr09.jpg",
+            "image": "chelsie-hightower-9a09d28e75.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
@@ -2269,6 +2265,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Melissa_Gilbert_after_Drug_Free_America_shoot_-_cropped_(5242325680).jpg",
+            "image": "melissa-gilbert-1867f9cf85.webp",
             "author": "Bob Bekian from Thousand Oaks Ca., USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melissa_Gilbert_after_Drug_Free_America_shoot_-_cropped_(5242325680).jpg"
@@ -2279,6 +2276,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2298,6 +2296,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Maria_Menounos,_As_Sayliyah_2008_(cropped).jpg",
+            "image": "maria-menounos-330b8b9e33.webp",
             "author": "Dustin Senger, Area Support Group Qatar Public Affairs Office",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maria_Menounos,_As_Sayliyah_2008_(cropped).jpg"
@@ -2308,6 +2307,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -2326,10 +2326,11 @@
           "name": "William Levy",
           "role": "celebrity",
           "headshot": {
-            "file": "Málaga_Film_Festival_2026_-_William_Levy_-_4_(cropped).jpg",
-            "author": "Pedro J Pacheco",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:M%C3%A1laga_Film_Festival_2026_-_William_Levy_-_4_(cropped).jpg"
+            "file": "William_Levy_in_2015_(1).jpg",
+            "image": "william-levy-7cf1de4c7d.webp",
+            "author": "Publinews Guatemala",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:William_Levy_in_2015_(1).jpg"
           }
         },
         {
@@ -2337,6 +2338,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2356,6 +2358,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Katherine_Jenkins_in_2022_(cropped).jpg",
+            "image": "katherine-jenkins-6d2ff9242a.webp",
             "author": "UKinUSA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Katherine_Jenkins_in_2022_(cropped).jpg"
@@ -2365,10 +2368,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2384,10 +2388,11 @@
           "name": "Donald Driver",
           "role": "celebrity",
           "headshot": {
-            "file": "Donald_Driver.jpg",
-            "author": "Mike Morbeck",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Donald_Driver.jpg"
+            "file": "Official_Donald_Driver_Photo.jpg",
+            "image": "donald-driver-1f36602c28.webp",
+            "author": "Lammi Sports",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Official_Donald_Driver_Photo.jpg"
           }
         },
         {
@@ -2395,6 +2400,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"

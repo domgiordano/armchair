@@ -20,12 +20,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -33,12 +28,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "derek-hough",
@@ -48,6 +38,7 @@
       ],
       "headshot": {
         "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+        "image": "derek-hough-5f221ba9e7.webp",
         "author": "Kevin Paul",
         "license": "CC BY 4.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -61,6 +52,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -74,6 +66,7 @@
       ],
       "headshot": {
         "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "image": "julianne-hough-51a37a8917.webp",
         "author": "https://www.flickr.com/photos/greg2600",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -2730,10 +2723,11 @@
           "name": "Martin Kove",
           "role": "celebrity",
           "headshot": {
-            "file": "Martin_Kove_2015.jpg",
-            "author": "GabboT",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Martin_Kove_2015.jpg"
+            "file": "Martin_Kove_(45564886945).jpg",
+            "image": "martin-kove-80d51fb641.webp",
+            "author": "Super Festivals from Ft. Lauderdale, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Martin_Kove_(45564886945).jpg"
           }
         },
         {
@@ -2741,6 +2735,7 @@
           "role": "pro",
           "headshot": {
             "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "image": "britt-stewart-b3460d77d9.webp",
             "author": "CaseyJNewell",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
@@ -2763,12 +2758,7 @@
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": {
-            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
-            "author": "Panache Star Dancesport",
-            "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 3
@@ -2784,6 +2774,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Brian_Austin_Green,_3_April_2025_(cropped).jpg",
+            "image": "brian-austin-green-6c889dcd53.webp",
             "author": "Andywallxyz",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brian_Austin_Green,_3_April_2025_(cropped).jpg"
@@ -2792,12 +2783,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 5
@@ -2811,12 +2797,7 @@
         {
           "name": "Matt James",
           "role": "celebrity",
-          "headshot": {
-            "file": "Matt_James_(51914462301)_(cropped)_(cropped).jpg",
-            "author": "Erik Drost",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Matt_James_(51914462301)_(cropped)_(cropped).jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Lindsay Arnold",
@@ -2837,6 +2818,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Melanie_Chisholm_2019.jpg",
+            "image": "melanie-c-fe7732eeee.webp",
             "author": "The Academy",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melanie_Chisholm_2019.jpg"
@@ -2846,10 +2828,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2866,6 +2849,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "KenyaMoore2019.png",
+            "image": "kenya-moore-abf905db45.webp",
             "author": "Sister Circle TV",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:KenyaMoore2019.png"
@@ -2894,10 +2878,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2931,21 +2916,17 @@
         {
           "name": "Jimmie Allen",
           "role": "celebrity",
-          "headshot": {
-            "file": "Jimmie_Allen_(51914711276)_(cropped).jpg",
-            "author": "Erik Drost",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jimmie_Allen_(51914711276)_(cropped).jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2962,6 +2943,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Melora_Hardin_LF.jpg",
+            "image": "melora-hardin-c9916fecfb.webp",
             "author": "lukeford.net",
             "license": "CC BY-SA 2.5",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melora_Hardin_LF.jpg"
@@ -2986,6 +2968,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Sunisa_Lee_(2022)_01.png",
+            "image": "suni-lee-6d19cda3de.webp",
             "author": "Saint Paul Public Schools",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunisa_Lee_(2022)_01.png"
@@ -3034,6 +3017,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -3052,10 +3036,11 @@
           "name": "JoJo Siwa",
           "role": "celebrity",
           "headshot": {
-            "file": "Jojo_Siwa_on_the_iHeart_Awards_2024_01.jpg",
-            "author": "iHeartRadioCA",
+            "file": "JoJo_Siwa_2_(cropped).jpg",
+            "image": "jojo-siwa-f01042a1f4.webp",
+            "author": "JoJo Siwa",
             "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jojo_Siwa_on_the_iHeart_Awards_2024_01.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:JoJo_Siwa_2_(cropped).jpg"
           }
         },
         {
@@ -3077,6 +3062,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Iman_Shumpert_Knicks.jpg",
+            "image": "iman-shumpert-aa3f5a3f4b.webp",
             "author": "File:Wizards vs Knicks.jpg: Keith Allison derivative work: Chrishmt0423",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iman_Shumpert_Knicks.jpg"

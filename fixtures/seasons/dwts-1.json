@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -737,12 +728,7 @@
         {
           "name": "Trista Sutter",
           "role": "celebrity",
-          "headshot": {
-            "file": "Trista_Rehn_Sutter_on_RealTVfilms.jpg",
-            "author": "RealTVfilms",
-            "license": "CC BY-SA 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trista_Rehn_Sutter_on_RealTVfilms.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Louis van Amstel",
@@ -763,6 +749,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Evander_Holyfield_LA_2011.jpg",
+            "image": "evander-holyfield-21270ef0f5.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evander_Holyfield_LA_2011.jpg"
@@ -773,6 +760,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -792,6 +780,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Rachel_Hunter_LF.JPG",
+            "image": "rachel-hunter-b89bd22ea3.webp",
             "author": "lukeford.net",
             "license": "CC BY-SA 2.5",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rachel_Hunter_LF.JPG"
@@ -816,6 +805,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Joe_McIntyre_–_Vienna_2014_03.JPG",
+            "image": "joey-mcintyre-b65adaa778.webp",
             "author": "Ibolya Nyikos",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joe_McIntyre_%E2%80%93_Vienna_2014_03.JPG"
@@ -826,6 +816,7 @@
           "role": "pro",
           "headshot": {
             "file": "Ashleydelgrosso.jpg",
+            "image": "ashly-delgrosso-6faba4cec3.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ashleydelgrosso.jpg"
@@ -845,6 +836,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "John_O'Hurley_by_Gage_Skidmore_2.jpg",
+            "image": "john-o-hurley-2c7137fc59.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_O%27Hurley_by_Gage_Skidmore_2.jpg"
