@@ -37,7 +37,7 @@ export const ROUTES: Record<string, Route> = {
   "/users/me": () => ({ data: ME }),
   "/seasons/list": () => ({ data: { show: "dwts", seasons: [{ id: "dwts-35", number: 35, year: 2026, current: true }] } }),
   "/stats/get": () => ({ data: { mine: { count: 14, mae: 0.87 } } }),
-  "/leaderboard/get": () => ({ data: { minDances: 5, ranked: [{}, {}, {}, {}], me: { rank: 2 } } }),
+  "/leaderboard/get": () => ({ data: { minDances: 5, ranked: [{}, {}, {}, {}], me: { rank: 2 } }, meta: { ranked: 4 } }),
   "/friends/list": () => ({
     data: {
       inviteCode: "CODE42",
