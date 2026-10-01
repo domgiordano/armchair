@@ -17,7 +17,7 @@ function respond(status: number, body: unknown) {
 beforeEach(() => {
   fetchAuthSession.mockResolvedValue({
     tokens: {
-      idToken: { toString: () => "id-token" },
+      idToken: { toString: () => "id-token", payload: { sub: "u1" } },
       accessToken: { toString: () => "access-token" },
     },
   });
