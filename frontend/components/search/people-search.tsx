@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode, type RefObject } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode, type RefObject } from "react";
 
 import { Avatar } from "@/components/avatar";
 import { Headshot } from "@/components/headshot";
 import { Spinner } from "@/components/ui/spinner";
-import { profileHref, SEARCH_MAX, SEARCH_MIN, searchAll, type PersonHit, type Role, type SearchResults } from "@/lib/api/people";
+import { profileHref, SEARCH_MAX, SEARCH_MIN, type PersonHit, type Role, type SearchResults } from "@/lib/api/people";
 import type { Match } from "@/lib/api/social";
+import { fold } from "@/lib/search/match";
+import { knownMembers, loadContacts, loadIndex, mergeUsers, searchIndex, searchMembers, startsWith } from "@/lib/search/people";
 import { personHref } from "@/lib/show/people";
 import { cn, EYEBROW, FOCUS, INPUT } from "@/lib/ui";
 
@@ -74,39 +76,75 @@ export function sections(r: SearchResults): Section[] {
   ].filter((s) => s.hits.length > 0);
 }
 
-interface Found {
+const message = (e: unknown) => (e instanceof Error ? e.message : "Request failed");
+
+interface Members {
   q: string;
-  results: SearchResults | null;
+  list: Match[];
   error: string | null;
 }
 
-/** Debounced search; the last results stay up while the next ones load. */
+/**
+ * Stars, pros, judges and your contacts match here as you type; other members
+ * come from the server after a pause. Until they do, the last member list stays
+ * up, narrowed to the new query, so rows don't flicker.
+ */
 export function useSearch(q: string) {
-  const trimmed = q.trim();
-  const short = trimmed.length < SEARCH_MIN;
-  const [found, setFound] = useState<Found>({ q: "", results: null, error: null });
+  const raw = q.trim();
+  const query = fold(q);
+  const short = query.length < SEARCH_MIN;
+  const [people, setPeople] = useState<PersonHit[] | null>(null);
+  const [indexError, setIndexError] = useState<string | null>(null);
+  const [contacts, setContacts] = useState<Match[]>([]);
+  const [members, setMembers] = useState<Members>({ q: "", list: [], error: null });
+  const known = short ? undefined : knownMembers(raw);
+  const ask = !short && !known;
 
   useEffect(() => {
-    if (short) return;
+    let cancelled = false;
+    loadIndex().then(
+      (p) => !cancelled && setPeople(p),
+      (e: unknown) => !cancelled && setIndexError(message(e)),
+    );
+    // Contacts only put friends first and find them mid-name; the server finds
+    // them by prefix anyway, so search works on without them.
+    loadContacts().then(
+      (c) => !cancelled && setContacts(c),
+      () => {},
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!ask) return;
     let cancelled = false;
     const t = setTimeout(() => {
-      searchAll(trimmed).then(
-        (results) => !cancelled && setFound({ q: trimmed, results, error: null }),
-        (e: unknown) =>
-          !cancelled && setFound({ q: trimmed, results: null, error: e instanceof Error ? e.message : "Request failed" }),
+      searchMembers(raw).then(
+        (list) => !cancelled && setMembers({ q: raw, list, error: null }),
+        (e: unknown) => !cancelled && setMembers({ q: raw, list: [], error: message(e) }),
       );
     }, DELAY_MS);
     return () => {
       cancelled = true;
       clearTimeout(t);
     };
-  }, [trimmed, short]);
+  }, [raw, ask]);
 
+  const pending = ask && members.q !== raw;
+  const found = known ?? (pending ? members.list.filter((m) => startsWith(m, raw)) : members.list);
+  const local = useMemo(() => (people && !short ? searchIndex(people, query) : null), [people, query, short]);
+
+  if (short) return { short, busy: false, results: null, error: null };
   return {
     short,
-    busy: !short && found.q !== trimmed,
-    results: short ? null : found.results,
-    error: short ? null : found.error,
+    busy: pending || (people === null && indexError === null),
+    results: {
+      users: mergeUsers(contacts, found, query),
+      ...(local ?? { stars: [], pros: [], judges: [] }),
+    },
+    error: indexError ?? (ask && !pending ? members.error : null),
   };
 }
 
@@ -139,9 +177,10 @@ export function SearchBox({ variant, inputRef, autoFocus, onNavigate, onEscape, 
   const optionId = (i: number) => `${listId}-${i}`;
 
   // A new list starts with nothing picked.
-  const [seen, setSeen] = useState(results);
-  if (seen !== results) {
-    setSeen(results);
+  const listed = hits.map((h) => h.id).join(" ");
+  const [seen, setSeen] = useState(listed);
+  if (seen !== listed) {
+    setSeen(listed);
     setActive(-1);
   }
 
@@ -196,7 +235,7 @@ export function SearchBox({ variant, inputRef, autoFocus, onNavigate, onEscape, 
       active={active}
       optionId={optionId}
       onPick={picked}
-      empty={results !== null && hits.length === 0}
+      empty={results !== null && !busy && hits.length === 0}
       error={error}
       q={q.trim()}
     />
@@ -235,10 +274,10 @@ export function SearchBox({ variant, inputRef, autoFocus, onNavigate, onEscape, 
             INPUT,
             "pr-10 pl-10 [&::-webkit-search-cancel-button]:hidden",
             variant === "popover" &&
-              "min-h-10 w-48 rounded-full bg-ink/40 text-sm transition-[width,background-color] duration-300 ease-[cubic-bezier(0.2,0.8,0.3,1)] focus:w-80 focus:bg-ink/80 lg:w-60 lg:focus:w-96 motion-reduce:transition-none",
+              "min-h-10 w-48 animate-search-open rounded-full bg-ink/40 text-sm transition-[width,background-color] duration-300 ease-[cubic-bezier(0.2,0.8,0.3,1)] focus:w-80 focus:bg-ink/80 lg:w-60 lg:focus:w-96 motion-reduce:animate-none motion-reduce:transition-none",
           )}
         />
-        {busy && <Spinner className="absolute top-1/2 right-3.5 -translate-y-1/2" />}
+        {busy && hits.length === 0 && <Spinner className="absolute top-1/2 right-3.5 -translate-y-1/2" />}
         </div>
         {aside}
       </div>

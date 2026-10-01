@@ -18,6 +18,8 @@ next-env.d.ts
 
 # Generated at build time from Sleeper
 frontend/public/data/
+# Generated at build time from fixtures/seasons
+frontend/lib/search/people-index.json
 
 # Media and write-ups live in S3, never in this public repo
 *.pdf
