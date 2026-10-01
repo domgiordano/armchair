@@ -20,12 +20,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -33,12 +28,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "julianne-hough",
@@ -48,6 +38,7 @@
       ],
       "headshot": {
         "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "image": "julianne-hough-51a37a8917.webp",
         "author": "https://www.flickr.com/photos/greg2600",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -61,6 +52,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -74,6 +66,7 @@
       ],
       "headshot": {
         "file": "Nick_Carter_Freehold_NJ.jpg",
+        "image": "nick-carter-dc549f6760.webp",
         "author": "Melodyschamble",
         "license": "CC BY-SA 4.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nick_Carter_Freehold_NJ.jpg"
@@ -2190,6 +2183,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chris_Kattan_at_San_Diego_Comic_Con_2026-1.jpg",
+            "image": "chris-kattan-3abd3b7675.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chris_Kattan_at_San_Diego_Comic_Con_2026-1.jpg"
@@ -2199,10 +2193,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2218,10 +2213,11 @@
           "name": "Charo",
           "role": "celebrity",
           "headshot": {
-            "file": "Charo_2013_ALMA_Awards.jpg",
-            "author": "Richard Sandoval",
+            "file": "Charo_black_dress.jpg",
+            "image": "charo-a111c4e482.webp",
+            "author": "Paul W. Drew",
             "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charo_2013_ALMA_Awards.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charo_black_dress.jpg"
           }
         },
         {
@@ -2229,6 +2225,7 @@
           "role": "pro",
           "headshot": {
             "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "image": "keo-motsepe-657048226c.webp",
             "author": "RealTVfilms",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
@@ -2248,6 +2245,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Mr_T_WWE_Hall_of_Fame_2014_(cropped).jpg",
+            "image": "mr-t-d3a36a9e72.webp",
             "author": "Miguel Discart",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mr_T_WWE_Hall_of_Fame_2014_(cropped).jpg"
@@ -2258,6 +2256,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-herjavec-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2277,6 +2276,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Erika_Jayne_in_2019.jpg",
+            "image": "erika-jayne-4d07718288.webp",
             "author": "Keith Dobbs",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erika_Jayne_in_2019.jpg"
@@ -2286,10 +2286,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2306,6 +2307,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Heather_Morris_PaleyFest_11a_crop.jpg",
+            "image": "heather-morris-3b524d0193.webp",
             "author": "Heather_Morris_PaleyFest_11a.jpg: Jennifer Tse from Los Angeles, CA derivative work: Tabercil (talk)",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Heather_Morris_PaleyFest_11a_crop.jpg"
@@ -2316,6 +2318,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2335,6 +2338,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nancy_Kerrigan_1995.jpg",
+            "image": "nancy-kerrigan-55b60cddb5.webp",
             "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nancy_Kerrigan_1995.jpg"
@@ -2364,6 +2368,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2386,12 +2391,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 8
@@ -2407,6 +2407,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Simone_Biles_National_Team_2024.jpg",
+            "image": "simone-biles-3e2c3eb412.webp",
             "author": "Ocoudis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Simone_Biles_National_Team_2024.jpg"
@@ -2431,6 +2432,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Normani_BTS_2019.jpg",
+            "image": "normani-d2fa11f93a.webp",
             "author": "NewYorkMADE",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Normani_BTS_2019.jpg"
@@ -2453,12 +2455,7 @@
         {
           "name": "David Ross",
           "role": "celebrity",
-          "headshot": {
-            "file": "David_Ross_by_Gage_Skidmore.jpg",
-            "author": "Gage Skidmore",
-            "license": "CC BY-SA 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_Ross_by_Gage_Skidmore.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Lindsay Arnold",
@@ -2483,10 +2480,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],

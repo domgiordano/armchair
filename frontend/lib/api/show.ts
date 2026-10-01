@@ -1,7 +1,10 @@
 import { request } from "./client";
 
 export interface Headshot {
+  // The Commons file, credited on /credits.
   file: string;
+  // Our face-centred square crop of it, under /headshots/.
+  image: string;
   author: string;
   license: string;
   sourceUrl: string;

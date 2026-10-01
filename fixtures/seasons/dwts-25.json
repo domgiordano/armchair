@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -60,6 +51,7 @@
       ],
       "headshot": {
         "file": "Shania_Twain_Glaston2024_2806_300624_(33_of_173)_(53838111535)_(cropped).jpg",
+        "image": "shania-twain-88dd697b9b.webp",
         "author": "Raph_PH",
         "license": "CC BY 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shania_Twain_Glaston2024_2806_300624_(33_of_173)_(53838111535)_(cropped).jpg"
@@ -73,6 +65,7 @@
       ],
       "headshot": {
         "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "image": "julianne-hough-51a37a8917.webp",
         "author": "https://www.flickr.com/photos/greg2600",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -2596,6 +2589,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "BarbaraCorcoran2023.jpg",
+            "image": "barbara-corcoran-08e23bbb32.webp",
             "author": "Philip Romano",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:BarbaraCorcoran2023.jpg"
@@ -2606,6 +2600,7 @@
           "role": "pro",
           "headshot": {
             "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "image": "keo-motsepe-657048226c.webp",
             "author": "RealTVfilms",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
@@ -2625,6 +2620,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Debbie_Gibson_-_LATFOB_2026-03.jpg",
+            "image": "debbie-gibson-61b44d6e98.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Debbie_Gibson_-_LATFOB_2026-03.jpg"
@@ -2648,21 +2644,17 @@
           "name": "Derek Fisher",
           "role": "celebrity",
           "headshot": {
-            "file": "Derek_Fisher_Thunder.jpg",
-            "author": "Keith Allison",
+            "file": "Derek_Fisher_2009.jpg",
+            "image": "derek-fisher-5003970c1c.webp",
+            "author": "donielle",
             "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Fisher_Thunder.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Fisher_2009.jpg"
           }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 5
@@ -2678,6 +2670,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Sasha_Pieterse_PaleyFest_2014_(cropped).jpg",
+            "image": "sasha-pieterse-afe4f3c334.webp",
             "author": "Mingle Media TV",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sasha_Pieterse_PaleyFest_2014_(cropped).jpg"
@@ -2687,10 +2680,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2707,6 +2701,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nick_Lachey_3.jpg",
+            "image": "nick-lachey-87f43f2dae.webp",
             "author": "Eva Rinaldi",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nick_Lachey_3.jpg"
@@ -2717,6 +2712,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2736,6 +2732,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "John_Cena_and_Nikki_Bella_at_SXSW_Red_Carpet_premiere_of_BLOCKERS_(26876913048)_(cropped).jpg",
+            "image": "nikki-bella-345bfaa3c8.webp",
             "author": "Daniel Benavides from Austin, TX",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Cena_and_Nikki_Bella_at_SXSW_Red_Carpet_premiere_of_BLOCKERS_(26876913048)_(cropped).jpg"
@@ -2760,6 +2757,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Vanessa_Minillo_(6883560980)_(cropped).jpg",
+            "image": "vanessa-lachey-0b445cbc08.webp",
             "author": "Eva Rinaldi",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vanessa_Minillo_(6883560980)_(cropped).jpg"
@@ -2770,6 +2768,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2789,6 +2788,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Terrell_Owens_2017-05-02_(34255853692)_(cropped).jpg",
+            "image": "terrell-owens-b200a9e433.webp",
             "author": "Collision Conf from New Orleans, Louisiana, USA",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Terrell_Owens_2017-05-02_(34255853692)_(cropped).jpg"
@@ -2799,6 +2799,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2818,6 +2819,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Victoria_Arlen_Project_Walk.jpg",
+            "image": "victoria-arlen-df8c49c737.webp",
             "author": "Bmalkinson",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Victoria_Arlen_Project_Walk.jpg"
@@ -2842,6 +2844,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Drew_Scott_-_Let's_Read_Let's_Move.jpg",
+            "image": "drew-scott-4a73bd37d8.webp",
             "author": "Unknown authorUnknown author",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Drew_Scott_-_Let%27s_Read_Let%27s_Move.jpg"
@@ -2851,10 +2854,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2870,20 +2874,22 @@
           "name": "Frankie Muniz",
           "role": "celebrity",
           "headshot": {
-            "file": "Frankie_Muniz_2011.jpg",
-            "author": "Real TV Films/Carole Lowe Photography",
+            "file": "Frankie_muniz_(52703160866)_(cropped).jpg",
+            "image": "frankie-muniz-b110ed09e6.webp",
+            "author": "Zach Catanzareti Photo",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Frankie_Muniz_2011.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Frankie_muniz_(52703160866)_(cropped).jpg"
           }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2899,20 +2905,22 @@
           "name": "Lindsey Stirling",
           "role": "celebrity",
           "headshot": {
-            "file": "Lindsey_Stirling_Portrait.jpg",
-            "author": "Moongroow",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lindsey_Stirling_Portrait.jpg"
+            "file": "Lindsey_Stirling_01_26_2018_-3_(26271970618).jpg",
+            "image": "lindsey-stirling-8fb36c252b.webp",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lindsey_Stirling_01_26_2018_-3_(26271970618).jpg"
           }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2929,6 +2937,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jordan_Fisher_2016.jpg",
+            "image": "jordan-fisher-d3c13a8c3f.webp",
             "author": "Jathan Wilson",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jordan_Fisher_2016.jpg"

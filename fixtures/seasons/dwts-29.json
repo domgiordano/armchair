@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "derek-hough",
@@ -34,6 +29,7 @@
       ],
       "headshot": {
         "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+        "image": "derek-hough-5f221ba9e7.webp",
         "author": "Kevin Paul",
         "license": "CC BY 4.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -47,6 +43,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2526,6 +2523,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Charles_Oakley,_2007_(cropped).jpg",
+            "image": "charles-oakley-cd38bf4296.webp",
             "author": "Kevin Coles",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charles_Oakley,_2007_(cropped).jpg"
@@ -2535,10 +2533,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2555,6 +2554,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Carole_Baskin_September_2019_(cropped).png",
+            "image": "carole-baskin-f19abc14fe.webp",
             "author": "Michael Noonan",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carole_Baskin_September_2019_(cropped).png"
@@ -2563,12 +2563,7 @@
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": {
-            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
-            "author": "Panache Star Dancesport",
-            "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 3
@@ -2584,6 +2579,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Anne_Heche_July_14,_2014_(cropped).jpg",
+            "image": "anne-heche-02b7d4b381.webp",
             "author": "Mingle Media TV",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anne_Heche_July_14,_2014_(cropped).jpg"
@@ -2594,6 +2590,7 @@
           "role": "pro",
           "headshot": {
             "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "image": "keo-motsepe-657048226c.webp",
             "author": "RealTVfilms",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
@@ -2613,6 +2610,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jesse_Metcalfe_at_PaleyFest_2013.jpg",
+            "image": "jesse-metcalfe-50fc7aba1a.webp",
             "author": "iDominick",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jesse_Metcalfe_at_PaleyFest_2013.jpg"
@@ -2621,12 +2619,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 5
@@ -2642,6 +2635,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Vernon_Davis_2018_(cropped).jpg",
+            "image": "vernon-davis-14f7c750ef.webp",
             "author": "Keith Allison from Hanover, MD, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vernon_Davis_2018_(cropped).jpg"
@@ -2652,6 +2646,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2690,6 +2685,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jeannie_Mai.jpg",
+            "image": "jeannie-mai-4ad63bdf15.webp",
             "author": "The Paparazzi Gamer [TPG]",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jeannie_Mai.jpg"
@@ -2714,6 +2710,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chrishell_Stause_at_WWD_Style_Awards_2026-2255.jpg",
+            "image": "chrishell-stause-fccf3a3279.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chrishell_Stause_at_WWD_Style_Awards_2026-2255.jpg"
@@ -2723,10 +2720,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2743,6 +2741,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "AJStockholm09.JPG",
+            "image": "aj-mclean-a522669934.webp",
             "author": "Meany",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:AJStockholm09.JPG"
@@ -2753,6 +2752,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2772,6 +2772,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Johnny_WEIR_2008_World_Championships.jpg",
+            "image": "johnny-weir-f5f48f6a71.webp",
             "author": "David W. Carmichael",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johnny_WEIR_2008_World_Championships.jpg"
@@ -2782,6 +2783,7 @@
           "role": "pro",
           "headshot": {
             "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "image": "britt-stewart-b3460d77d9.webp",
             "author": "CaseyJNewell",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
@@ -2801,6 +2803,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Skai_Jackson_at_WWD_Style_Awards_2026.jpg",
+            "image": "skai-jackson-9bc9ab4b3c.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Skai_Jackson_at_WWD_Style_Awards_2026.jpg"
@@ -2825,6 +2828,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Justina_Machado_at_Queen_of_the_South_at_ATX.jpg",
+            "image": "justina-machado-481fc535ff.webp",
             "author": "iDominick",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Justina_Machado_at_Queen_of_the_South_at_ATX.jpg"
@@ -2849,6 +2853,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Iverson_Nelly_2_(cropped)_(2)_(3x4).jpg",
+            "image": "nelly-386181ff29.webp",
             "author": "reeb0k2008",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iverson_Nelly_2_(cropped)_(2)_(3x4).jpg"
@@ -2873,6 +2878,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nev_Schulman_Obvious_Child_Premiere_2014_(cropped).jpg",
+            "image": "nev-schulman-6c9921dca1.webp",
             "author": "Mingle Media TV",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nev_Schulman_Obvious_Child_Premiere_2014_(cropped).jpg"
@@ -2897,6 +2903,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Kaitlyn_Bristowe.jpg",
+            "image": "kaitlyn-bristowe-55ed06a3b3.webp",
             "author": "Citygirl21",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kaitlyn_Bristowe.jpg"

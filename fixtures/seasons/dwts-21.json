@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "julianne-hough",
@@ -34,6 +29,7 @@
       ],
       "headshot": {
         "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "image": "julianne-hough-51a37a8917.webp",
         "author": "https://www.flickr.com/photos/greg2600",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -47,6 +43,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -60,6 +57,7 @@
       ],
       "headshot": {
         "file": "Alfonso_Ribeiro.JPG",
+        "image": "alfonso-ribeiro-2140b6f76d.webp",
         "author": "Alfonso Ribeiro",
         "license": "CC BY-SA 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alfonso_Ribeiro.JPG"
@@ -73,6 +71,7 @@
       ],
       "headshot": {
         "file": "Maksimchmerkovskiy.jpg",
+        "image": "maksim-chmerkovskiy-9e1699554f.webp",
         "author": "Albert Domasin from Los Angeles, united states",
         "license": "CC BY 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -86,6 +85,7 @@
       ],
       "headshot": {
         "file": "Olivia_Newton_John_(6707495311)_(cropped_to_look_large).jpg",
+        "image": "olivia-newton-john-d4e9d4788b.webp",
         "author": "Eva Rinaldi",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Olivia_Newton_John_(6707495311)_(cropped_to_look_large).jpg"
@@ -2571,6 +2571,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chaka_Khan_in_Chris_March_01_(cropped).jpg",
+            "image": "chaka-khan-7a8fc342b4.webp",
             "author": "The Heart Truth",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chaka_Khan_in_Chris_March_01_(cropped).jpg"
@@ -2581,6 +2582,7 @@
           "role": "pro",
           "headshot": {
             "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "image": "keo-motsepe-657048226c.webp",
             "author": "RealTVfilms",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
@@ -2599,10 +2601,11 @@
           "name": "Victor Espinoza",
           "role": "celebrity",
           "headshot": {
-            "file": "Victor_Espinoza.jpg",
-            "author": "Maryland GovPics",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Victor_Espinoza.jpg"
+            "file": "Victor_Espinoza_at_Los_Alamitos_track_2016_25.jpg",
+            "image": "victor-espinoza-81de33c1cf.webp",
+            "author": "Montanabw",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Victor_Espinoza_at_Los_Alamitos_track_2016_25.jpg"
           }
         },
         {
@@ -2610,6 +2613,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2627,18 +2631,14 @@
         {
           "name": "Kim Zolciak-Biermann",
           "role": "celebrity",
-          "headshot": {
-            "file": "Kim_Zolciak.jpg",
-            "author": "Keith HInkle",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kim_Zolciak.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2658,6 +2658,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Gary_Busey_2007.jpg",
+            "image": "gary-busey-ea5df8f741.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gary_Busey_2007.jpg"
@@ -2682,6 +2683,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Fleet_Week_New_York_City_2009_090521-N-DG679-144_(cropped).jpg",
+            "image": "paula-deen-1578e2eea6.webp",
             "author": "Mass Communication Specialist 1st Class Toiete Jackson, U.S. Navy",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fleet_Week_New_York_City_2009_090521-N-DG679-144_(cropped).jpg"
@@ -2710,10 +2712,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2730,6 +2733,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Andy_Grammer_2014.jpg",
+            "image": "andy-grammer-671bb635ac.webp",
             "author": "Justin Higuchi",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andy_Grammer_2014.jpg"
@@ -2740,6 +2744,7 @@
           "role": "pro",
           "headshot": {
             "file": "Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg",
+            "image": "allison-holker-2c2e59994c.webp",
             "author": "Lex 24/7!",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg"
@@ -2759,6 +2764,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Alexa_Vega_3,_2012_(cropped).jpg",
+            "image": "alexa-penavega-3e78ca0069.webp",
             "author": "Joella Marano",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alexa_Vega_3,_2012_(cropped).jpg"
@@ -2768,10 +2774,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2788,6 +2795,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Tamar_Braxton.jpg",
+            "image": "tamar-braxton-835e7249b3.webp",
             "author": "MingleMediaTVNetwork",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tamar_Braxton.jpg"
@@ -2812,6 +2820,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Carlos_Pena_Jr_BTR_Paparazzo.jpg",
+            "image": "carlos-penavega-cbb7b8a75b.webp",
             "author": "Paparazzo Presents",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carlos_Pena_Jr_BTR_Paparazzo.jpg"
@@ -2821,10 +2830,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2841,6 +2851,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "150824-F-RN211-034_(cropped_3×4).jpg",
+            "image": "alek-skarlatos-20fe2c1e6d.webp",
             "author": "U.S. Air Force photo/Tech. Sgt. Ryan Crane",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:150824-F-RN211-034_(cropped_3%C3%974).jpg"
@@ -2865,6 +2876,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nick_Carter_Freehold_NJ.jpg",
+            "image": "nick-carter-dc549f6760.webp",
             "author": "Melodyschamble",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nick_Carter_Freehold_NJ.jpg"
@@ -2873,12 +2885,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": null
@@ -2894,6 +2901,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Bindi_Irwin_in_June_2013.jpg",
+            "image": "bindi-irwin-4f931c9df0.webp",
             "author": "Eva Rinaldi",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bindi_Irwin_in_June_2013.jpg"
@@ -2904,6 +2912,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"

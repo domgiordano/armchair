@@ -20,12 +20,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -33,12 +28,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "julianne-hough",
@@ -48,6 +38,7 @@
       ],
       "headshot": {
         "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "image": "julianne-hough-51a37a8917.webp",
         "author": "https://www.flickr.com/photos/greg2600",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -61,6 +52,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2207,6 +2199,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "LMFAO,_2011.jpg",
+            "image": "redfoo-663a776a77.webp",
             "author": "Eva Rinaldi",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:LMFAO,_2011.jpg"
@@ -2216,10 +2209,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2236,6 +2230,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Web_Summit_2018_-_Modum_-_Day_3,_November_8_SAM_4711_(30842329347)_(cropped).jpg",
+            "image": "charlotte-mckinney-ff3449f169.webp",
             "author": "Web Summit",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Web_Summit_2018_-_Modum_-_Day_3,_November_8_SAM_4711_(30842329347)_(cropped).jpg"
@@ -2246,6 +2241,7 @@
           "role": "pro",
           "headshot": {
             "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "image": "keo-motsepe-657048226c.webp",
             "author": "RealTVfilms",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
@@ -2265,6 +2261,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Michael_Sam_final_Mizzou_home_game.jpg",
+            "image": "michael-sam-33e4fd98b5.webp",
             "author": "Marcus Qwertyus",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Sam_final_Mizzou_home_game.jpg"
@@ -2275,6 +2272,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2293,10 +2291,11 @@
           "name": "Suzanne Somers",
           "role": "celebrity",
           "headshot": {
-            "file": "Suzanne_Somers_in_Ina_Soltani_(1).jpg",
-            "author": "The Heart Truth",
+            "file": "Suzanne_Somers_USO_1_alone.jpg",
+            "image": "suzanne-somers-48f1226fd3.webp",
+            "author": "Unknown author",
             "license": "Public domain",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Suzanne_Somers_in_Ina_Soltani_(1).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Suzanne_Somers_USO_1_alone.jpg"
           }
         },
         {
@@ -2304,6 +2303,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2323,6 +2323,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Patti_Labelle_at_Black_Excellence_Brunch_New_Orleans_2026.jpg",
+            "image": "patti-labelle-ff1b13088b.webp",
             "author": "Danielle G. Campbell",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Patti_Labelle_at_Black_Excellence_Brunch_New_Orleans_2026.jpg"
@@ -2347,6 +2348,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "SDCC_2015_-_Willow_Shields_(19033948844).jpg",
+            "image": "willow-shields-9f8d3bba1c.webp",
             "author": "Gage Skidmore from Peoria, AZ, United States of America",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:SDCC_2015_-_Willow_Shields_(19033948844).jpg"
@@ -2356,10 +2358,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2376,6 +2379,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "RobertHerjavec2023.jpg",
+            "image": "robert-herjavec-e9400c784e.webp",
             "author": "Philip Romano",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:RobertHerjavec2023.jpg"
@@ -2386,6 +2390,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2409,10 +2414,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2429,6 +2435,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nastia_Liukin_2009.jpg",
+            "image": "nastia-liukin-860f46210c.webp",
             "author": "ravedelay",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nastia_Liukin_2009.jpg"
@@ -2439,6 +2446,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -2461,12 +2469,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": null
@@ -2482,6 +2485,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Riker_Lynch_Paparazzo_Photography.jpg",
+            "image": "riker-lynch-a4c5b61cc6.webp",
             "author": "Paparazzo Presents",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Riker_Lynch_Paparazzo_Photography.jpg"
@@ -2492,6 +2496,7 @@
           "role": "pro",
           "headshot": {
             "file": "Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg",
+            "image": "allison-holker-2c2e59994c.webp",
             "author": "Lex 24/7!",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg"
@@ -2511,6 +2516,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Rumer_Willis_2019_(facecrop).jpg",
+            "image": "rumer-willis-06c72cb13f.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rumer_Willis_2019_(facecrop).jpg"

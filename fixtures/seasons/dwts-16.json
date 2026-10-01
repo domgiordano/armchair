@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2154,6 +2145,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Dorothy_Hamil_2001.jpg",
+            "image": "dorothy-hamill-e16b6639af.webp",
             "author": "John Mathew Smith & www.celebrity-photos.com from Laurel Maryland, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dorothy_Hamil_2001.jpg"
@@ -2177,10 +2169,11 @@
           "name": "Wynonna Judd",
           "role": "celebrity",
           "headshot": {
-            "file": "Wynonna_Judd_is_performing.jpg",
-            "author": "Fred W. Baker III, US DoD",
-            "license": "Public domain",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wynonna_Judd_is_performing.jpg"
+            "file": "Wynonna_Judd_performs_live.jpg",
+            "image": "wynonna-judd-536edc1a7c.webp",
+            "author": "Michael Dyer",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wynonna_Judd_performs_live.jpg"
           }
         },
         {
@@ -2188,6 +2181,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2207,6 +2201,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Lisa_Vanderpump_2014.jpg",
+            "image": "lisa-vanderpump-9fc04b1b0b.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lisa_Vanderpump_2014.jpg"
@@ -2216,10 +2211,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2236,6 +2232,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "D._L._Hughley,_Robin_Roberts,_and_Doreen_Ringer-Ross,_May_2013_(cropped)x.jpg",
+            "image": "d-l-hughley-9cd78de103.webp",
             "author": "Peabody Awards",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:D._L._Hughley,_Robin_Roberts,_and_Doreen_Ringer-Ross,_May_2013_(cropped)x.jpg"
@@ -2246,6 +2243,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2264,10 +2262,11 @@
           "name": "Victor Ortiz",
           "role": "celebrity",
           "headshot": {
-            "file": "Victor_Ortiz.jpg",
-            "author": "DEWALT POWER TOOLS FIGHT NIGHT CLUB 2010",
+            "file": "Victor_Ortiz_June_2011.jpg",
+            "image": "victor-ortiz-eae77749d6.webp",
+            "author": "Chamber of Fear",
             "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Victor_Ortiz.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Victor_Ortiz_June_2011.jpg"
           }
         },
         {
@@ -2289,6 +2288,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Andy_Dick_2012_Shankbone_2.JPG",
+            "image": "andy-dick-0718fe64ea.webp",
             "author": "David Shankbone",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andy_Dick_2012_Shankbone_2.JPG"
@@ -2297,12 +2297,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 7
@@ -2323,6 +2318,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2347,6 +2343,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2366,6 +2363,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Aly_Raisman_Rio_2016b.jpg",
+            "image": "alexandra-raisman-fea3279552.webp",
             "author": "Agência Brasil Fotografias",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aly_Raisman_Rio_2016b.jpg"
@@ -2375,10 +2373,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2395,6 +2394,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jacoby_Jones_(16070179516).jpg",
+            "image": "jacoby-jones-900a2d9ed9.webp",
             "author": "Aberdeen Proving Ground",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jacoby_Jones_(16070179516).jpg"
@@ -2405,6 +2405,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2423,10 +2424,11 @@
           "name": "Zendaya",
           "role": "celebrity",
           "headshot": {
-            "file": "Zendaya_2011.jpg",
-            "author": "Mingle MediaTV at https://www.flickr.com/photos/minglemediatv",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zendaya_2011.jpg"
+            "file": "Zendaya-byPhilipRomano.jpg",
+            "image": "zendaya-61805f3a74.webp",
+            "author": "PhilipRomano",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zendaya-byPhilipRomano.jpg"
           }
         },
         {
@@ -2447,10 +2449,11 @@
           "name": "Kellie Pickler",
           "role": "celebrity",
           "headshot": {
-            "file": "Kellie_Pickler_Al_Asad_4.jpg",
-            "author": "Lance Cpl. Jacob Singsank",
-            "license": "Public domain",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kellie_Pickler_Al_Asad_4.jpg"
+            "file": "Kellie_Pickler_2008-11-06_(2).jpg",
+            "image": "kellie-pickler-a82b3cb34d.webp",
+            "author": "Craig ONeal",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kellie_Pickler_2008-11-06_(2).jpg"
           }
         },
         {
@@ -2458,6 +2461,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
