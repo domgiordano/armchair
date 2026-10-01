@@ -31,6 +31,7 @@ from collections import defaultdict
 from lambdas.common import board_dynamo
 from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
+from lambdas.common.couples import people
 from lambdas.common.dynamo import query_all, table
 from lambdas.common.episodes_dynamo import (
     episode_pk,
@@ -40,7 +41,15 @@ from lambdas.common.episodes_dynamo import (
     season_ref,
     season_rows,
 )
-from lambdas.common.gate import answered, perf_key, places, score_owner, standing, visible_scores
+from lambdas.common.gate import (
+    answered,
+    cid,
+    perf_key,
+    places,
+    score_owner,
+    standing,
+    visible_scores,
+)
 from lambdas.common.social_dynamo import peer, peers, status
 from lambdas.common.users_dynamo import cards
 
@@ -142,6 +151,7 @@ def _dances(sub: str, show: str, season: int, viewer: str) -> tuple[list, list, 
     rows = {r["sk"]: r for r in season_rows(show, season)}
     if "META" not in rows:
         raise NotFoundError("No such season", season=f"{show}-{season}")
+    roster = {cid(r): r["members"] for sk, r in rows.items() if sk.startswith("CONTESTANT#")}
     out, shared, activity = [], [], []
     for sk, episode in sorted(rows.items()):
         if not sk.startswith("EP#"):
@@ -172,6 +182,12 @@ def _dances(sub: str, show: str, season: int, viewer: str) -> tuple[list, list, 
                 "ep": n,
                 "week": episode.get("week"),
                 "style": style.get(d["key"]),
+                # A team dance's key names every member couple: "a+b+c#1".
+                "members": [
+                    m
+                    for c in d["key"].rsplit("#", 1)[0].split("+")
+                    for m in people(roster.get(c, []))
+                ],
                 **d,
             }
             out.append(row)
@@ -200,7 +216,10 @@ def _averages(rows: list[dict]) -> dict:
 
 def _call(r: dict) -> dict:
     return {
-        **{k: r[k] for k in ("season", "ep", "week", "key", "style", "paddle", "panelMean")},
+        **{
+            k: r[k]
+            for k in ("season", "ep", "week", "key", "style", "members", "paddle", "panelMean")
+        },
         "error": round(r["error"], 2),
     }
 

@@ -252,10 +252,13 @@ def test_own_detail_breaks_down_every_scored_dance(show):
         "week": detail["worst"]["week"],
         "key": f"{COUPLES[0]}#1",
         "style": "Tango",
+        "members": detail["worst"]["members"],
         "paddle": 6,
         "panelMean": 8,
         "error": 2,
     }
+    celebrity = detail["worst"]["members"][0]
+    assert (celebrity["name"], celebrity["role"]) == ("Tyler Cameron", "celebrity")
 
 
 def test_someone_elses_detail_covers_only_dances_the_viewer_answered(show):
