@@ -12,6 +12,8 @@ export const SMALL_SECONDARY = `${SECONDARY} min-h-10 px-3 text-sm`;
 export const QUIET = `flex min-h-10 items-center rounded-md px-3 text-sm text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100 active:bg-neutral-700 disabled:opacity-50 ${FOCUS}`;
 export const INPUT = `min-h-11 w-full rounded-md border border-neutral-700 bg-neutral-900 px-3 text-base text-neutral-100 placeholder:text-neutral-500 ${FOCUS}`;
 export const SECTION_TITLE = "text-xs font-semibold tracking-[0.12em] text-silver-dim uppercase";
+// Friends and Groups tabs on desktop: tools or the list on the left, the main list or detail on the right.
+export const SPLIT = "grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-10";
 
 export const displayName = (p: Person) => p.name ?? "Someone";
 

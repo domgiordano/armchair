@@ -2,7 +2,7 @@
 # it holds only the public static bundle, so a CMK would add a KMS grant for
 # CloudFront and the deploy role without protecting anything.
 module "web" {
-  source = "git::https://github.com/domgiordano/web-hosting.git?ref=v1.6.0"
+  source = "git::https://github.com/domgiordano/web-hosting.git?ref=v1.7.0"
 
   app_name    = var.app_name
   domain_name = var.domain_name
@@ -25,7 +25,7 @@ module "web" {
 # names its OAC, function and header policy after app_name, so this instance
 # needs its own.
 module "hub" {
-  source = "git::https://github.com/domgiordano/web-hosting.git?ref=v1.6.0"
+  source = "git::https://github.com/domgiordano/web-hosting.git?ref=v1.7.0"
 
   app_name    = "${var.app_name}-hub"
   domain_name = var.hub_domain_name
