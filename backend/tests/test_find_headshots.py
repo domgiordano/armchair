@@ -9,14 +9,17 @@ import numpy as np
 import pytest
 from moto import mock_aws
 
-from scripts import faces
+from scripts import faces, find_headshots
 from scripts.find_headshots import (
     FREE,
+    MANUAL,
     REGISTRY,
+    REJECT,
     candidates,
     everyone,
     fixtures,
     is_person,
+    manual,
     order,
     pick,
     titled,
@@ -158,7 +161,8 @@ def test_every_registry_headshot_is_credited_and_free():
     for name, shot in REG.items():
         if shot is None:
             continue
-        assert set(shot) == {"file", "image", "author", "license", "sourceUrl"}, name
+        keys = {"file", "image", "author", "license", "sourceUrl"}
+        assert set(shot) == keys | ({"box"} if name in MANUAL else set()), name
         assert shot["author"] and FREE.match(shot["license"]), name
         assert shot["sourceUrl"].startswith("https://commons.wikimedia.org/wiki/File:"), name
         assert re.fullmatch(r"[a-z0-9-]+-[0-9a-f]{10}\.webp", shot["image"]), name
@@ -221,3 +225,50 @@ def test_upload_fails_naming_a_photo_with_no_face(monkeypatch):
             pytest.raises(SystemExit, match="Back.jpg"),
         ):
             upload(shots, "site", dry_run=False)
+
+
+def test_a_rejected_file_is_never_picked():
+    file = next(iter(REJECT))
+    with patch.object(faces, "fetch", return_value=FACE):
+        assert pick("Jane Doe", [file], {file: free()}) is None
+
+
+def test_manual_picks_skip_the_face_check_but_not_the_license():
+    name, (file, box) = next(iter(MANUAL.items()))
+    blank = encode(np.full((600, 600, 3), 128, np.uint8))
+    with (
+        patch.object(find_headshots, "file_info", return_value={file: free("9")}),
+        patch.object(faces, "fetch", return_value=blank),
+    ):
+        shot = manual(name)
+        assert shot["box"] == list(box)
+        assert shot["image"] == faces.key(name, "9", box) != faces.key(name, "9")
+    nc = {
+        **free(),
+        "extmetadata": {**free()["extmetadata"], "LicenseShortName": {"value": "CC BY-NC 2.0"}},
+    }
+    with (
+        patch.object(find_headshots, "file_info", return_value={file: nc}),
+        pytest.raises(ValueError, match="not free"),
+    ):
+        manual(name)
+
+
+def test_a_hand_box_crops_to_a_square_and_must_fit():
+    out = decode(faces.crop_box(FACE, (10, 20, 200)))
+    assert out.shape == (faces.SIZE, faces.SIZE, 3)
+    with pytest.raises(ValueError, match="outside"):
+        faces.crop_box(FACE, (300, 0, 200))
+
+
+def test_upload_crops_a_manual_shot_by_its_box_without_a_face(monkeypatch):
+    monkeypatch.setenv("AWS_DEFAULT_REGION", "us-east-1")
+    blank = encode(np.full((300, 300, 3), 128, np.uint8))
+    with mock_aws():
+        s3 = boto3.client("s3")
+        s3.create_bucket(Bucket="site")
+        shot = {"file": "Sign.jpg", "image": "judge-1.webp", "box": [0, 0, 100]}
+        with patch.object(faces, "fetch", return_value=blank):
+            upload([shot], "site", dry_run=False)
+        body = s3.get_object(Bucket="site", Key="headshots/judge-1.webp")["Body"].read()
+        assert decode(body).shape == (faces.SIZE, faces.SIZE, 3)

@@ -19,7 +19,18 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "image": "carrie-ann-inaba-130d90accf.webp",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg",
+        "box": [
+          146,
+          112,
+          104
+        ]
+      }
     },
     {
       "id": "len-goodman",
@@ -27,7 +38,18 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "image": "len-goodman-13c71036ad.webp",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG",
+        "box": [
+          340,
+          60,
+          380
+        ]
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -2433,7 +2455,18 @@
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "image": "pasha-pashkov-a5b8ecbbe7.webp",
+            "author": "Panache Star Dancesport",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "box": [
+              245,
+              0,
+              175
+            ]
+          }
         }
       ],
       "eliminatedEp": 8

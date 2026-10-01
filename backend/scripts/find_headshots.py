@@ -59,7 +59,23 @@ SHOW = "Dancing with the Stars (American TV series)"
 # Looked at by hand and left null. Registry entries, so they are never resolved again.
 SKIP = {
     "Guillermo Rodriguez": "the Commons description names Guillermo Díaz",
-    "Daniella Karagach": "the only free photo is a two-person dance shot",
+}
+# People whose only good free photo fails the automatic rules, cropped by hand after looking
+# at it: (file, (left, top, side) in the faces.WIDTH px thumbnail). The license and
+# network-photo checks still apply; the face count, depicts and REJECT do not.
+MANUAL = {
+    # Her only Commons photo. The crop clears the street signs; the sunglasses stay.
+    "Carrie Ann Inaba": ("Carrie_Ann_Inaba.jpg", (146, 112, 104)),
+    # Photographers behind him are cropped out.
+    "Len Goodman": ("Len_Goodman_1.JPG", (340, 60, 380)),
+    # The 2012 photo is in profile against a logo wall; this one leaves out her partner.
+    "Sharna Burgess": (
+        "2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
+        (245, 130, 150),
+    ),
+    # Tight on the face: the rest of the frame is a dark, busy dance floor.
+    "Pasha Pashkov": ("Pasha_Pashkov_on_Panache_Star_Dancesport.jpg", (245, 0, 175)),
+    "Daniella Karagach": ("Daniella_Karagach_on_Panache_Star_Dancesport.jpg", (140, 25, 150)),
 }
 # Files that pass every check but are no usable headshot, from looking at the contact sheet.
 REJECT = {
@@ -255,8 +271,7 @@ def meta(info: dict, key: str) -> str:
 def usable(file: str, info: dict) -> bool:
     text = " ".join(meta(info, k) for k in ("Artist", "Credit", "ImageDescription"))
     return (
-        file not in REJECT
-        and not NOT_A_FACE.search(file + " " + meta(info, "ImageDescription"))
+        not NOT_A_FACE.search(file + " " + meta(info, "ImageDescription"))
         and info["mime"] in IMAGE
         and bool(FREE.match(meta(info, "LicenseShortName")))
         and not PRESS.search(text + " " + info["descriptionurl"])
@@ -311,21 +326,37 @@ def order(
     return ([p18] if p18 else []) + rest
 
 
-def credit(name: str, file: str, info: dict) -> dict:
+def credit(name: str, file: str, info: dict, box: tuple[int, int, int] | None = None) -> dict:
     return {
         "file": file,
-        "image": faces.key(name, info["sha1"]),
+        "image": faces.key(name, info["sha1"], box),
         "author": meta(info, "Artist") or meta(info, "Credit") or "Unknown author",
         "license": meta(info, "LicenseShortName"),
         "sourceUrl": info["descriptionurl"],
+        **({"box": list(box)} if box else {}),
     }
+
+
+def manual(name: str) -> dict:
+    """The MANUAL headshot, credited, with its box for seed_season to crop."""
+    file, box = MANUAL[name]
+    info = file_info([file])[file]
+    if not usable(file, info):
+        raise ValueError(f"MANUAL photo for {name} is not free, or is a network photo: {file}")
+    faces.crop_box(faces.fetch(file), box)
+    return credit(name, file, info, box)
 
 
 def pick(name: str, files: list[str], infos: dict[str, dict]) -> dict | None:
     """The first file that is free, not a network photo, and has one clear face in it."""
     for file in files:
         info = infos.get(file)
-        if info and usable(file, info) and faces.crop(faces.fetch(file)) is not None:
+        if (
+            info
+            and file not in REJECT
+            and usable(file, info)
+            and faces.crop(faces.fetch(file)) is not None
+        ):
             return credit(name, file, info)
     return None
 
@@ -361,6 +392,10 @@ def resolve(people: dict[str, set[str]]) -> dict[str, dict | None]:
     known = articles(people)
     out = {}
     for name in sorted(people):
+        if name in MANUAL:
+            out[name] = manual(name)
+            print(f"{name}: {out[name]['file']} (manual)", flush=True)
+            continue
         if name not in known:
             out[name] = None
             print(f"{name}: no article", flush=True)

@@ -20,7 +20,18 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Carrie_Ann_Inaba.jpg",
+        "image": "carrie-ann-inaba-130d90accf.webp",
+        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg",
+        "box": [
+          146,
+          112,
+          104
+        ]
+      }
     },
     {
       "id": "len-goodman",
@@ -28,7 +39,18 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "image": "len-goodman-13c71036ad.webp",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG",
+        "box": [
+          340,
+          60,
+          380
+        ]
+      }
     },
     {
       "id": "julianne-hough",
@@ -2795,7 +2817,18 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
+            "image": "sharna-burgess-8323368f60.webp",
+            "author": "NaBUru38",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
+            "box": [
+              245,
+              130,
+              150
+            ]
+          }
         }
       ],
       "eliminatedEp": null

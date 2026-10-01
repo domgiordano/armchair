@@ -225,7 +225,8 @@ def upload(shots: list[dict], bucket: str, dry_run: bool) -> None:
         print(f"{shot['file']} -> s3://{bucket}/{key}")
         if dry_run:
             continue
-        body = faces.crop(faces.fetch(shot["file"]))
+        data = faces.fetch(shot["file"])
+        body = faces.crop_box(data, tuple(shot["box"])) if "box" in shot else faces.crop(data)
         if body is None:
             faceless.append(shot["file"])
             continue

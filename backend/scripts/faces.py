@@ -97,6 +97,21 @@ def crop(data: bytes) -> bytes | None:
     cx, cy = x + w // 2, y + h // 2 + h // 4
     left = min(max(cx - side // 2, 0), width - side)
     top = min(max(cy - side // 2, 0), height - side)
+    return _webp(img, (left, top, side))
+
+
+def crop_box(data: bytes, box: tuple[int, int, int]) -> bytes:
+    """The (left, top, side) square of the WIDTH px thumbnail, picked by hand: no face check."""
+    img = cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR)
+    left, top, side = box
+    height, width = img.shape[:2]
+    if left < 0 or top < 0 or left + side > width or top + side > height:
+        raise ValueError(f"crop box {box} is outside the {width}x{height} thumbnail")
+    return _webp(img, box)
+
+
+def _webp(img: np.ndarray, box: tuple[int, int, int]) -> bytes:
+    left, top, side = box
     square = cv2.resize(
         img[top : top + side, left : left + side], (SIZE, SIZE), interpolation=cv2.INTER_AREA
     )
@@ -105,10 +120,11 @@ def crop(data: bytes) -> bytes | None:
     return out.tobytes()
 
 
-def key(name: str, sha1: str) -> str:
+def key(name: str, sha1: str, box: tuple[int, int, int] | None = None) -> str:
     """The S3 name of a person's crop: "witney-carson-<10 hex>.webp", hashed from the
-    Commons file's sha1 and RECIPE."""
+    Commons file's sha1 and RECIPE, or the hand-picked box that replaces it."""
     ascii_ = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().lower()
     slug = re.sub(r"[^a-z0-9]+", "-", ascii_).strip("-")
-    digest = hashlib.sha256(f"{sha1} {RECIPE}".encode()).hexdigest()[:10]
+    recipe = f"box {list(box)} {SIZE} webp" if box else RECIPE
+    digest = hashlib.sha256(f"{sha1} {recipe}".encode()).hexdigest()[:10]
     return f"{slug}-{digest}.webp"
