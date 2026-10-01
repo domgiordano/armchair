@@ -30,6 +30,10 @@ async function load({ webgl, scene = standIn }: { webgl: boolean; scene?: () => 
 const region = () => screen.getByRole("region", { name: "Intro" });
 const stage = () => region().getAttribute("data-stage");
 const playing = () => region().hasAttribute("data-playing");
+const loadedIn = () => region().hasAttribute("data-loaded");
+const poster = () => region().querySelector("img:not([hidden])")!;
+// jsdom never loads images; the 2D stage waits on its ball sprite.
+const spriteLoads = () => fireEvent.load(region().querySelector("img[hidden]")!);
 
 // vitest.setup.ts stubs in jsdom's storage, and unstubAllGlobals would take it away again.
 const storage = localStorage;
@@ -44,11 +48,17 @@ afterEach(() => {
 });
 
 describe("Intro", () => {
-  it("plays the 2D ballroom when there's no WebGL", async () => {
+  it("plays the 2D ballroom when there's no WebGL, once its ball sprite is in", async () => {
     const { Intro } = await load({ webgl: false });
     render(<Intro onDone={() => {}} />);
     expect(stage()).toBe("2d");
+    expect(playing()).toBe(false);
+    expect(loadedIn()).toBe(false);
+    expect(screen.queryByText("29")).toBeNull();
+
+    spriteLoads();
     expect(playing()).toBe(true);
+    expect(loadedIn()).toBe(true);
     expect(screen.getAllByText("9")).toHaveLength(1);
     expect(screen.getAllByText("10")).toHaveLength(2);
     expect(screen.getByText("29")).toBeTruthy();
@@ -58,11 +68,32 @@ describe("Intro", () => {
 
   it("loads the 3D scene over the poster when WebGL works, and hands the probe context back", async () => {
     const { Intro, lose } = await load({ webgl: true });
-    const { container } = render(<Intro onDone={() => {}} />);
+    render(<Intro onDone={() => {}} />);
     expect(stage()).toBe("3d");
-    expect(container.querySelector("img")?.getAttribute("src")).toBe("/intro/poster.webp");
+    expect(poster().getAttribute("src")).toMatch(/poster\.webp$/);
     expect(lose).toHaveBeenCalledTimes(1);
     expect(await screen.findByTestId("scene")).toBeTruthy();
+  });
+
+  it("holds the load-in until the poster has loaded, then fades the poster up", async () => {
+    const { Intro } = await load({ webgl: true, scene: () => new Promise(() => {}) });
+    render(<Intro onDone={() => {}} />);
+    const img = poster();
+    expect(screen.getByRole("status").textContent).toBe("Loading the intro");
+    expect(loadedIn()).toBe(false);
+    expect(img.hasAttribute("data-shown")).toBe(false);
+
+    fireEvent.load(img);
+    expect(loadedIn()).toBe(true);
+    expect(img.hasAttribute("data-shown")).toBe(true);
+  });
+
+  it("shows the poster on the 2D stage while the sprite loads, since the 2D room was matched to it", async () => {
+    const { Intro } = await load({ webgl: false });
+    render(<Intro onDone={() => {}} />);
+    fireEvent.load(poster());
+    expect(loadedIn()).toBe(true);
+    expect(playing()).toBe(false);
   });
 
   it("holds on the poster until the scene's first frame, then starts the show's clock", async () => {
@@ -99,11 +130,11 @@ describe("Intro", () => {
   it("holds the poster however long the scene takes to download", async () => {
     const { Intro } = await load({ webgl: true, scene: () => new Promise(() => {}) });
     vi.useFakeTimers();
-    const { container } = render(<Intro onDone={() => {}} />);
+    render(<Intro onDone={() => {}} />);
     act(() => vi.advanceTimersByTime(30_000));
     expect(stage()).toBe("3d");
     expect(playing()).toBe(false);
-    expect(container.querySelector("img")?.getAttribute("src")).toBe("/intro/poster.webp");
+    expect(poster().getAttribute("src")).toMatch(/poster\.webp$/);
   });
 
   it("plays the 2D ballroom when the downloaded scene never draws", async () => {
@@ -118,6 +149,7 @@ describe("Intro", () => {
     expect(stage()).toBe("3d");
     act(() => vi.advanceTimersByTime(500));
     expect(stage()).toBe("2d");
+    spriteLoads();
     expect(playing()).toBe(true);
     expect(screen.queryByTestId("scene")).toBeNull();
     expect(screen.getByText("29")).toBeTruthy();
@@ -130,20 +162,23 @@ describe("Intro", () => {
         throw new Error("ChunkLoadError");
       },
     });
-    const { container } = render(<Intro onDone={() => {}} />);
-    expect(await screen.findAllByText("10")).toHaveLength(2);
-    expect(stage()).toBe("2d");
-    expect(container.querySelector("img")).toBeNull();
+    render(<Intro onDone={() => {}} />);
+    await vi.waitFor(() => expect(stage()).toBe("2d"));
+    spriteLoads();
+    expect(screen.getAllByText("10")).toHaveLength(2);
     expect(screen.queryByTestId("scene")).toBeNull();
   });
 
-  it("server-renders without probing WebGL or picking a backdrop", async () => {
+  it("server-renders the load-in with the poster downloading, without probing WebGL or picking a backdrop", async () => {
     const { Intro } = await load({ webgl: true });
     const { renderToString } = await import("react-dom/server");
     const html = renderToString(<Intro onDone={() => {}} />);
     expect(html).toContain("Skip intro");
+    expect(html).toContain("Loading the intro");
+    expect(html).toMatch(/<img[^>]+poster\.webp/);
     expect(html).not.toContain("data-stage");
-    expect(html).not.toContain("poster");
+    expect(html).not.toContain("data-loaded");
+    expect(html).not.toContain("data-shown");
     expect(HTMLCanvasElement.prototype.getContext).not.toHaveBeenCalled();
   });
 
@@ -152,6 +187,7 @@ describe("Intro", () => {
     vi.useFakeTimers();
     const onDone = vi.fn();
     render(<Intro onDone={onDone} />);
+    spriteLoads();
     act(() => vi.advanceTimersByTime(5799));
     expect(onDone).not.toHaveBeenCalled();
     act(() => vi.advanceTimersByTime(1));

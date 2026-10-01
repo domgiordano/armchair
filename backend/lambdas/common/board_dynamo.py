@@ -167,15 +167,15 @@ def rows(show: str, season: int | str, subs: set[str] | None = None) -> dict[str
     return {r["sk"].removeprefix("USER#"): r for r in items}
 
 
-def seasons_scored(show: str, sub: str, seasons: set[int]) -> set[int]:
-    """Which of `seasons` the user has a BOARD row in: one scored dance the judges confirmed."""
+def seasons_with(sub: str, show: str, seasons: list[int]) -> list[int]:
+    """The seasons, of those given, where the caller has at least one dance counted."""
     tbl = table("BOARD_TABLE")
-    keys = [{"pk": board_pk(show, n), "sk": f"USER#{sub}"} for n in sorted(seasons)]
+    keys = [{"pk": board_pk(show, s), "sk": f"USER#{sub}"} for s in seasons]
     found = set()
     for i in range(0, len(keys), 100):
-        request = {tbl.name: {"Keys": keys[i : i + 100], "ProjectionExpression": "pk"}}
+        request = {tbl.name: {"Keys": keys[i : i + 100], "ProjectionExpression": "pk, n"}}
         while request:
             page = resource().batch_get_item(RequestItems=request)
-            found |= {int(r["pk"].rsplit("#", 1)[1]) for r in page["Responses"].get(tbl.name, [])}
+            found |= {r["pk"] for r in page["Responses"].get(tbl.name, []) if r.get("n")}
             request = page.get("UnprocessedKeys")
-    return found
+    return [s for s in seasons if board_pk(show, s) in found]

@@ -66,7 +66,7 @@ def handler(event, context):
         wanted = numbers
     else:
         current = {int(r["number"]) for r in season_index(SHOW) if r.get("current")}
-        scored = board_dynamo.seasons_scored(SHOW, sub, numbers)
+        scored = set(board_dynamo.seasons_with(sub, SHOW, sorted(numbers)))
         wanted = numbers & ({max(numbers), only, shown} | current | scored)
     seasons = _seasons(wanted)
     nights = [

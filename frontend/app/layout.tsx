@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Poppins } from "next/font/google";
 
+import { SESSION_HINT_SCRIPT } from "@/lib/auth/session-hint";
+
 import "./globals.css";
+
+import { SsoHandoff } from "@/components/sso-handoff";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -39,8 +43,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${poppins.variable} ${archivo.variable} h-full antialiased`}>
-      <body className="min-h-full bg-ink font-sans text-pearl">{children}</body>
+    // The head script marks <html data-session> before hydration.
+    <html lang="en" className={`${poppins.variable} ${archivo.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SESSION_HINT_SCRIPT }} />
+      </head>
+      <body className="min-h-full bg-ink font-sans text-pearl">
+        <SsoHandoff />
+        {children}
+      </body>
     </html>
   );
 }

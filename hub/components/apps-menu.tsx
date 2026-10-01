@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useEffectEvent, useId, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent, type ReactNode } from "react";
-import { GoogleMark } from "@/components/google-mark";
+import { useEffect, useEffectEvent, useId, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent } from "react";
+import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 
 import { DWTS_URL } from "@/lib/links";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
@@ -12,49 +12,13 @@ interface ShowApp {
   line: string;
   /** Only live apps have one; the rest render as "coming soon" rows. */
   href?: string;
-  tile: string;
-  glyph: ReactNode;
+  show: Show;
 }
 
-// Tile colours follow each show card in shows.tsx: evoke the show, never its artwork.
 const APPS: ShowApp[] = [
-  {
-    name: "Dancing with the Stars",
-    line: "Score every dance before the judges' paddles go up.",
-    href: DWTS_URL,
-    tile: "border-[#2b3a7a] bg-linear-to-br from-[#16245e] to-[#060b26] text-[#f3d98b]",
-    glyph: (
-      <>
-        <path d="M12 2v3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        <circle cx="12" cy="12" r="7" fill="currentColor" opacity="0.25" />
-        <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M5 12h14M12 5c-2.5 2-2.5 12 0 14M12 5c2.5 2 2.5 12 0 14" fill="none" stroke="currentColor" strokeWidth="1" />
-      </>
-    ),
-  },
-  {
-    name: "The Traitors",
-    line: "Call the banishment before the round table does.",
-    tile: "border-[#1c3a2a] bg-linear-to-br from-[#0b2418] to-[#040d08] text-[#e9dcc0]",
-    glyph: (
-      <>
-        <rect x="9.5" y="11" width="5" height="10" rx="1" fill="currentColor" />
-        <path d="M12 3c2 3 2.6 4.6 2 6-.4 1-1.2 1.4-2 1.4S10.4 10 10 9c-.6-1.4 0-3 2-6Z" fill="#ffb547" />
-      </>
-    ),
-  },
-  {
-    name: "Survivor",
-    line: "Rate the blindside before the tribe has spoken.",
-    tile: "border-[#5a2a10] bg-linear-to-br from-[#3a1606] to-[#140803] text-[#ffb070]",
-    glyph: (
-      <>
-        <path d="M10.5 22 11 11h2l.5 11Z" fill="currentColor" opacity="0.7" />
-        <path d="M8.5 9h7l-1 2.5h-5Z" fill="currentColor" />
-        <path d="M12 1.5c2.4 3 3 4.8 2.4 6.3-.4 1-1.4 1.4-2.4 1.4s-2-.4-2.4-1.4C9 6.3 9.6 4.5 12 1.5Z" fill="#ffb547" />
-      </>
-    ),
-  },
+  { name: "Dancing with the Stars", line: "Score every dance before the judges' paddles go up.", href: DWTS_URL, show: "dwts" },
+  { name: "The Traitors", line: "Call the banishment before the round table does.", show: "traitors" },
+  { name: "Survivor", line: "Rate the blindside before the tribe has spoken.", show: "survivor" },
 ];
 
 // The longer of the two exit animations in app/motion.css.
@@ -70,12 +34,8 @@ const SECTION_LINKS = [
 function AppRow({ app }: { app: ShowApp }) {
   const body = (
     <>
-      <span className={`flex size-11 shrink-0 items-center justify-center rounded-xl border ${app.tile}`}>
-        <svg viewBox="0 0 24 24" className="size-7" aria-hidden="true">
-          {app.glyph}
-        </svg>
-      </span>
-      <span className="min-w-0 flex-1">
+      <ShowIcon show={app.show} size={44} locked={!app.href} />
+      <span className={`min-w-0 flex-1 ${app.href ? "" : "opacity-60"}`}>
         <span className="block text-sm font-semibold text-text">{app.name}</span>
         <span className="mt-0.5 block text-xs leading-snug text-muted">{app.line}</span>
       </span>
@@ -93,12 +53,12 @@ function AppRow({ app }: { app: ShowApp }) {
   );
 
   if (!app.href) {
-    return <div className="flex items-center gap-3 rounded-2xl p-3 opacity-60">{body}</div>;
+    return <div className={`${ICON_TRIGGER} flex items-center gap-3 rounded-2xl p-3`}>{body}</div>;
   }
   return (
     <a
       href={app.href}
-      className="flex items-center gap-3 rounded-2xl p-3 hover:bg-line/50 focus-visible:bg-line/50 focus-visible:outline-2 focus-visible:outline-gold active:bg-line"
+      className={`${ICON_TRIGGER} flex items-center gap-3 rounded-2xl p-3 hover:bg-line/50 focus-visible:bg-line/50 focus-visible:outline-2 focus-visible:outline-gold active:bg-line`}
     >
       {body}
     </a>
@@ -261,15 +221,6 @@ export function AppsMenu() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={DWTS_URL}
-                className="mt-2 flex min-h-12 items-center justify-center rounded-full sm:hidden bg-text font-semibold text-night hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold active:scale-[0.98]"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <GoogleMark className="h-4 w-4" />
-                  Sign in
-                </span>
-              </a>
             </div>
           </div>
         </>
