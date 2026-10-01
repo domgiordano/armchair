@@ -17,12 +17,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "derek-hough",
@@ -32,6 +27,7 @@
       ],
       "headshot": {
         "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+        "image": "derek-hough-5f221ba9e7.webp",
         "author": "Kevin Paul",
         "license": "CC BY 4.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -45,6 +41,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -262,10 +259,11 @@
           "name": "Giada De Laurentiis",
           "role": "celebrity",
           "headshot": {
-            "file": "Giada_De_Laurentiis_2010.jpg",
+            "file": "Giada_De_Laurentiis,_2010_(cropped).jpg",
+            "image": "giada-de-laurentiis-be5349295c.webp",
             "author": "kennejima",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Giada_De_Laurentiis_2010.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Giada_De_Laurentiis,_2010_(cropped).jpg"
           }
         },
         {
@@ -287,6 +285,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Hanson_(33424899242).jpg",
+            "image": "taylor-hanson-dc2655a08c.webp",
             "author": "friedoxygen",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hanson_(33424899242).jpg"
@@ -297,6 +296,7 @@
           "role": "pro",
           "headshot": {
             "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "image": "britt-stewart-b3460d77d9.webp",
             "author": "CaseyJNewell",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
@@ -316,6 +316,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Streamy_Awards_Photo_1302_(4513297565).jpg",
+            "image": "tatyana-ali-2ac84160c2.webp",
             "author": "The Bui Brothers",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Streamy_Awards_Photo_1302_(4513297565).jpg"
@@ -325,10 +326,11 @@
           "name": "Jan Ravnik",
           "role": "pro",
           "headshot": {
-            "file": "Jan_Ravnik_at_Tribeca_Film_Festival_2026-1.jpg",
-            "author": "CaseyJNewell",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jan_Ravnik_at_Tribeca_Film_Festival_2026-1.jpg"
+            "file": "Taylor_Swift_The_Eras_Tour_1989_Era_Set_(53109932195)_(cropped).jpg",
+            "image": "jan-ravnik-a3d6086739.webp",
+            "author": "Paolo V",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_The_Eras_Tour_1989_Era_Set_(53109932195)_(cropped).jpg"
           }
         }
       ]
@@ -347,12 +349,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ]
     },
@@ -367,6 +364,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jenna_Dewan_at_San_Diego_Comic_Con_2026-2.jpg",
+            "image": "jenna-dewan-34a1b85d0c.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jenna_Dewan_at_San_Diego_Comic_Con_2026-2.jpg"
@@ -390,6 +388,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Ezra_Frech_Milan_2026.jpg",
+            "image": "ezra-frech-b647cc81b7.webp",
             "author": "US Embassy Italy",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ezra_Frech_Milan_2026.jpg"
@@ -413,6 +412,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Amber_Glenn_in_2026.jpg",
+            "image": "amber-glenn-41c81d3036.webp",
             "author": "SpiritedMichelle",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Amber_Glenn_in_2026.jpg"
@@ -421,12 +421,7 @@
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": {
-            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
-            "author": "Panache Star Dancesport",
-            "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
-          }
+          "headshot": null
         }
       ]
     },
@@ -440,20 +435,22 @@
           "name": "Maura Higgins",
           "role": "celebrity",
           "headshot": {
-            "file": "Maura_Higgins_attending_the_World_premier_of_\"Argylle\"_in_London_,_January_2024_(cropped).jpg",
+            "file": "Maura_Higgins,_world_premier_of_\"Argylle\"_in_London,_January_2024_(crop).jpg",
+            "image": "maura-higgins-2f41ec8964.webp",
             "author": "Daltoncitys",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maura_Higgins_attending_the_World_premier_of_%22Argylle%22_in_London_,_January_2024_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maura_Higgins,_world_premier_of_%22Argylle%22_in_London,_January_2024_(crop).jpg"
           }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ]
@@ -491,10 +488,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ]
@@ -514,10 +512,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ]
@@ -532,10 +531,11 @@
           "name": "Harry Shum Jr.",
           "role": "celebrity",
           "headshot": {
-            "file": "Harry_Shum_Jr._podczas_San_Diego_ComicCon_2017.jpg",
-            "author": "Xbradscookiex",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Harry_Shum_Jr._podczas_San_Diego_ComicCon_2017.jpg"
+            "file": "Harry_Shum_by_Gage_Skidmore.jpg",
+            "image": "harry-shum-jr-af4b3e6781.webp",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Harry_Shum_by_Gage_Skidmore.jpg"
           }
         },
         {
@@ -556,6 +556,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Julia_Stiles_by_David_Shankbone_cropped.jpg",
+            "image": "julia-stiles-f97591bdab.webp",
             "author": "David Shankbone",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julia_Stiles_by_David_Shankbone_cropped.jpg"
@@ -585,6 +586,7 @@
           "role": "pro",
           "headshot": {
             "file": "Rylee_Arnold_at_Press_Play_2026.jpg",
+            "image": "rylee-arnold-6c46e03e23.webp",
             "author": "Mikepascoe",
             "license": "CC0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rylee_Arnold_at_Press_Play_2026.jpg"

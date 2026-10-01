@@ -235,3 +235,20 @@ def standing(row: dict | None) -> dict:
         "mae": round(float(row["err"]) / count, 2) if count else None,
         "closestJudge": closest and {"id": closest[1], "mae": round(closest[0], 2)},
     }
+
+
+def places(board: dict[str, dict], floor: int) -> dict[str, int]:
+    """
+    Leaderboard places by sub over `standing` rows: lowest mean error first,
+    ties to more dances, then shared. Below `floor` dances a user has no place.
+    """
+
+    def order(s: str) -> tuple:
+        return board[s]["mae"], -board[s]["count"]
+
+    ranked = sorted((s for s, b in board.items() if b["count"] >= floor), key=order)
+    out: dict[str, int] = {}
+    for i, s in enumerate(ranked):
+        tie = i and order(ranked[i - 1]) == order(s)
+        out[s] = out[ranked[i - 1]] if tie else i + 1
+    return out

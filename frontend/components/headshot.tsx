@@ -12,13 +12,13 @@ interface HeadshotProps {
   size?: number;
 }
 
-export const headshotUrl = (file: string) => `/headshots/${encodeURIComponent(file)}`;
+export const headshotUrl = (image: string) => `/headshots/${encodeURIComponent(image)}`;
 
 /** Decorative: every use sits beside the person's name. */
 export function Headshot({ person, size = 48 }: HeadshotProps) {
-  // Keyed by file so a different person in the same slot gets a fresh try.
+  // Keyed by image so a different person in the same slot gets a fresh try.
   const [failed, setFailed] = useState<string | null>(null);
-  const file = person.headshot?.file;
+  const image = person.headshot?.image;
 
   return (
     <span
@@ -26,17 +26,16 @@ export function Headshot({ person, size = 48 }: HeadshotProps) {
       style={{ width: size, height: size }}
       className="flex shrink-0 rounded-full bg-gradient-to-br from-gold-light via-gold to-ballroom p-0.5"
     >
-      {file && failed !== file ? (
+      {image && failed !== image ? (
         <Image
-          src={headshotUrl(file)}
+          src={headshotUrl(image)}
           alt=""
           width={size}
           height={size}
           unoptimized
           loading="lazy"
-          onError={() => setFailed(file)}
-          // Commons portraits put the face in the upper third.
-          className="size-full rounded-full bg-ballroom object-cover object-[50%_20%]"
+          onError={() => setFailed(image)}
+          className="size-full rounded-full bg-ballroom object-cover"
         />
       ) : (
         <span

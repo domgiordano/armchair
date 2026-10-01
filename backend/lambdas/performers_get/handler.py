@@ -1,20 +1,27 @@
 """
-GET /performers/get?season=dwts-35|all[&group=<gid>] - how the caller scored
-each couple against the judges, and how their friends and everyone else scored
-the same dances.
+GET /performers/get?season=dwts-35|all[&group=<gid>|&sub=<sub>] - how the
+caller, or the user `sub`, scored each couple against the judges, and how the
+caller's friends and everyone else scored the same dances.
 
 Per couple: the caller's average paddle, the judges' average, the signed and
 absolute gap (paddle minus panel mean), dances, best and worst dance by the
 caller's paddle, each dance for a chart, and friends' and everyone else's
 averages. Then the same per pro and per celebrity, and the caller's favorites,
-least favorites, and the couples they're softest and toughest on.
+least favorites, the couples they're softest and toughest on, and their
+average paddle per dance style.
 
 Every number comes from common/couples.py over performances the caller
 paddled, so an unanswered or skipped dance never counts, for anyone. Other
 people appear only as means over at least couples.MIN_RATERS of them. `group`
 narrows friends and everyone to that group's members and is 403 unless the
 caller is one. `season=all` covers every DWTS season where the caller has a
-dance counted on the leaderboard. Identity is the Cognito sub.
+dance counted on the leaderboard.
+
+With someone else's `sub` it is that user's numbers, over only the dances the
+caller has answered too, so nothing comes from a performance the gate keeps
+from the caller. Even then no single dance goes out: couples lose their best,
+worst and per-week rows. A block either way answers 404, like an unknown sub,
+and `group` can't be combined with it. Identity is the Cognito sub.
 """
 
 from __future__ import annotations
@@ -22,8 +29,16 @@ from __future__ import annotations
 from collections import defaultdict
 
 from lambdas.common import board_dynamo
-from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
+from lambdas.common.api import (
+    NotFoundError,
+    ValidationError,
+    api_handler,
+    caller_sub,
+    ok,
+    query,
+)
 from lambdas.common.couples import crowd, dances, friends, group_pool, people, summary
+from lambdas.common.dynamo import table
 from lambdas.common.episodes_dynamo import (
     episode_pk,
     performances,
@@ -32,7 +47,8 @@ from lambdas.common.episodes_dynamo import (
     season_ref,
     season_rows,
 )
-from lambdas.common.gate import answered, cid
+from lambdas.common.gate import answered, cid, visible_scores
+from lambdas.common.social_dynamo import peer, status
 
 HIGHLIGHTS = 3
 # The only show with past seasons to sum across.
@@ -41,10 +57,18 @@ SHOW = "dwts"
 
 @api_handler("performers_get")
 def handler(event, context):
-    sub = caller_sub(event)
+    caller = caller_sub(event)
     params = query(event)
-    pool = group_pool(sub, params["group"]) if params.get("group") else None
-    mates = friends(sub)
+    sub = params.get("sub") or caller
+    own = sub == caller
+    if not own:
+        if params.get("group"):
+            raise ValidationError("group and sub can't be combined", field="group")
+        user = table("USERS_TABLE").get_item(Key={"sub": sub}).get("Item")
+        if user is None or status(peer(caller, sub)) == "blocked":
+            raise NotFoundError("No such user")
+    pool = group_pool(caller, params["group"]) if params.get("group") else None
+    mates = friends(caller)
     if pool is not None:
         mates &= pool
 
@@ -70,6 +94,9 @@ def handler(event, context):
                 continue
             pk = episode_pk(show, season, int(sk.removeprefix("EP#")))
             score_rows = scores(pk)
+            if not own:
+                # Members None: every row on what the caller answered, the owner's among them.
+                score_rows = visible_scores(caller, score_rows)
             if not answered(sub, score_rows):
                 continue
             panel = episode.get("panel") or rows["META"]["defaultPanel"]
@@ -77,7 +104,7 @@ def handler(event, context):
                 by_couple[d["couple"]].append(d)
         for c, ds in by_couple.items():
             if c in roster:
-                couple = _couple(f"{show}-{season}", roster[c], ds, mates)
+                couple = _couple(f"{show}-{season}", roster[c], ds, mates, own)
                 couples.append(couple)
                 raw[couple["ref"]] = ds
 
@@ -87,11 +114,13 @@ def handler(event, context):
     gapped = sorted((c for c in couples if c["gap"] is not None), key=lambda c: -c["gap"])
     return ok(
         {
+            "sub": sub,
             "season": label,
             "group": params.get("group"),
             "couples": rated,
             "pros": _by_member(couples, raw, "pro"),
             "celebrities": _by_member(couples, raw, "celebrity"),
+            "styles": _by_style([d for ds in raw.values() for d in ds]),
             "favorites": [c["ref"] for c in favorites],
             "leastFavorites": [c["ref"] for c in least],
             "softerOn": [c["ref"] for c in gapped if c["gap"] > 0][:HIGHLIGHTS],
@@ -101,9 +130,9 @@ def handler(event, context):
     )
 
 
-def _couple(season: str, contestant: dict, ds: list[dict], mates: set[str]) -> dict:
+def _couple(season: str, contestant: dict, ds: list[dict], mates: set[str], own: bool) -> dict:
     ds = sorted(ds, key=lambda d: (d["ep"], d["key"]))
-    return {
+    out = {
         # A returning all-star keeps their id, so the season tells two runs apart.
         "ref": f"{season}/{cid(contestant)}",
         "id": cid(contestant),
@@ -112,10 +141,12 @@ def _couple(season: str, contestant: dict, ds: list[dict], mates: set[str]) -> d
         **summary(ds),
         "friends": crowd(ds, mates),
         "everyone": crowd(ds),
-        "best": _dance(max(ds, key=lambda d: d["paddle"])),
-        "worst": _dance(min(ds, key=lambda d: d["paddle"])),
-        "weeks": [_dance(d) for d in ds],
     }
+    if own:
+        out["best"] = _dance(max(ds, key=lambda d: d["paddle"]))
+        out["worst"] = _dance(min(ds, key=lambda d: d["paddle"]))
+        out["weeks"] = [_dance(d) for d in ds]
+    return out
 
 
 def _dance(d: dict) -> dict:
@@ -142,3 +173,13 @@ def _by_member(couples: list[dict], raw: dict[str, list[dict]], role: str) -> li
             }
         )
     return sorted(out, key=lambda p: (-p["you"], -p["dances"]))
+
+
+def _by_style(ds: list[dict]) -> list[dict]:
+    """Dances summed by style, highest average paddle first. Unknown styles are left out."""
+    grouped = defaultdict(list)
+    for d in ds:
+        if d["style"]:
+            grouped[d["style"]].append(d)
+    out = [{"style": style, **summary(rows)} for style, rows in grouped.items()]
+    return sorted(out, key=lambda s: (-s["you"], -s["dances"], s["style"]))

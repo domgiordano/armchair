@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -1354,6 +1345,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Tatum_O'Neal_in_2019.jpg",
+            "image": "tatum-o-neal-59a6c5162a.webp",
             "author": "John Mathew Smith & www.celebrity-photos.com from Laurel Maryland, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tatum_O%27Neal_in_2019.jpg"
@@ -1397,6 +1389,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Master_p-02.jpg",
+            "image": "master-p-1af528a79b.webp",
             "author": "Mikamote",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Master_p-02.jpg"
@@ -1407,6 +1400,7 @@
           "role": "pro",
           "headshot": {
             "file": "Ashleydelgrosso.jpg",
+            "image": "ashly-delgrosso-6faba4cec3.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ashleydelgrosso.jpg"
@@ -1426,6 +1420,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Tia_Carrere_by_Gage_Skidmore.jpg",
+            "image": "tia-carrere-7448f9fa0b.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tia_Carrere_by_Gage_Skidmore.jpg"
@@ -1436,6 +1431,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -1455,6 +1451,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "GeorgeHamiltonAug09.jpg",
+            "image": "george-hamilton-1371899c16.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:GeorgeHamiltonAug09.jpg"
@@ -1465,6 +1462,7 @@
           "role": "pro",
           "headshot": {
             "file": "EdytaŚliwińskaNov09.jpg",
+            "image": "edyta-sliwinska-7b40ae829d.webp",
             "author": "Keith Hinkle",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
@@ -1484,6 +1482,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Lisa_Rinna_at_WWD_Style_Awards_2026.jpg",
+            "image": "lisa-rinna-6e4928df9e.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lisa_Rinna_at_WWD_Style_Awards_2026.jpg"
@@ -1508,6 +1507,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "StacyKeibler2011.jpeg",
+            "image": "stacy-keibler-379eadf215.webp",
             "author": "Cliff Lipson",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:StacyKeibler2011.jpeg"
@@ -1518,6 +1518,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -1536,10 +1537,11 @@
           "name": "Jerry Rice",
           "role": "celebrity",
           "headshot": {
-            "file": "Jerry_Rice.jpg",
-            "author": "Glenn's GISuser.com Map, Mash-up & GIS PhotoBlog (GISuser.com) from Canada",
+            "file": "Super_Bowl_44_Miami_Florida_NFL_Network_South_Beach_Set_Deon_Sanders_interviews_Jerry_Rice_(4331549867)_(cropped)_-_Jerry_Rice.jpg",
+            "image": "jerry-rice-953c3baf50.webp",
+            "author": "Anthony Quintano from Honolulu, HI, United States",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jerry_Rice.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Super_Bowl_44_Miami_Florida_NFL_Network_South_Beach_Set_Deon_Sanders_interviews_Jerry_Rice_(4331549867)_(cropped)_-_Jerry_Rice.jpg"
           }
         },
         {
@@ -1559,18 +1561,14 @@
         {
           "name": "Drew Lachey",
           "role": "celebrity",
-          "headshot": {
-            "file": "Drew_Lachey.jpg",
-            "author": "dwightsghost from New York, NY, USA",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Drew_Lachey.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"

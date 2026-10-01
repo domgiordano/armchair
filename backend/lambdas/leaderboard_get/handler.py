@@ -25,7 +25,7 @@ from lambdas.common.api import (
     require,
 )
 from lambdas.common.episodes_dynamo import season_ref, season_rows
-from lambdas.common.gate import standing
+from lambdas.common.gate import places, standing
 from lambdas.common.groups_dynamo import members
 from lambdas.common.social_dynamo import peers, status
 from lambdas.common.users_dynamo import cards
@@ -68,14 +68,8 @@ def handler(event, context):
     board = {s: standing(r) for s, r in rows.items() if r.get("n")}
     board.setdefault(sub, standing(None))
 
-    def order(s: str) -> tuple:
-        return board[s]["mae"], -board[s]["count"]
-
-    ranked = sorted((s for s, b in board.items() if b["count"] >= MIN_DANCES), key=order)
-    ranks: dict[str, int] = {}
-    for i, s in enumerate(ranked):
-        tie = i and order(ranked[i - 1]) == order(s)
-        ranks[s] = ranks[ranked[i - 1]] if tie else i + 1
+    ranks = places(board, MIN_DANCES)
+    ranked = sorted(ranks, key=lambda s: (ranks[s], -board[s]["count"]))
     unranked = sorted(
         (s for s in board if s not in ranks),
         key=lambda s: -board[s]["count"],
