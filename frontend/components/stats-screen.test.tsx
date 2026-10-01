@@ -124,10 +124,10 @@ describe("StatsScreen", () => {
     ).toBeTruthy();
   });
 
-  it("lists best calls and biggest misses with the celebrity's name", async () => {
+  it("lists best calls and biggest misses with the couple's avatars and name", async () => {
     render(<StatsScreen />);
     const misses = await screen.findByRole("list", { name: "Biggest misses" });
-    expect(within(misses).getAllByRole("listitem")[0].textContent).toBe("Tyler CameronW2 · TangoYou 6 · judges 82 off");
+    expect(within(misses).getAllByRole("listitem")[0].textContent).toBe("TCTyler CameronW2 · TangoYou 6 · judges 82 off");
     const best = screen.getByRole("list", { name: "Best calls" });
     expect(within(best).getAllByRole("listitem")).toHaveLength(2);
   });
