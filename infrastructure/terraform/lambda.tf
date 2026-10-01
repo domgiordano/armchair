@@ -60,6 +60,10 @@ locals {
   week_board_lambdas = [
     { name = "get", description = "One episode's couples ranked by judges, the caller, friends and everyone, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  people_lambdas = [
+    { name = "search", description = "Users, stars, pros and judges whose name matches", path_part = "search", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "get", description = "A celebrity, pro or judge: bio, seasons, dances and numbers, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -75,6 +79,7 @@ locals {
     { for l in local.notifications_lambdas : "notifications_${l.name}" => l },
     { for l in local.performers_lambdas : "performers_${l.name}" => l },
     { for l in local.week_board_lambdas : "week_board_${l.name}" => l },
+    { for l in local.people_lambdas : "people_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -110,7 +115,7 @@ locals {
     friends_list       = ["social:Query", "social:GetItem", "social:PutItem", "users:BatchGetItem"]
     friends_search     = ["social:Query"]
     users_update       = ["users:GetItem", "users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
-    users_get          = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem"]
+    users_get          = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem", "board:BatchGetItem"]
     leaderboard_get    = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     notifications_list = ["social:Query", "users:BatchGetItem"]
     notifications_read = ["social:Query", "social:UpdateItem"]
@@ -122,6 +127,8 @@ locals {
     scores_skip_before = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem"]
     performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem"]
     week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
+    people_search      = ["catalog:Query", "social:Query", "users:BatchGetItem"]
+    people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query"]
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is

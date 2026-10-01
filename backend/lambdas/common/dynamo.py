@@ -8,11 +8,14 @@ after import.
 from __future__ import annotations
 
 import os
+from concurrent.futures import ThreadPoolExecutor
 
 import boto3
 from botocore.exceptions import ClientError
 
 _resource = None
+# Below the client's pool of 10 connections, so no request waits on a socket.
+WORKERS = 8
 
 
 def resource():
@@ -42,6 +45,33 @@ def query_all(tbl, pk: str) -> list[dict]:
         if "LastEvaluatedKey" not in page:
             return items
         kwargs["ExclusiveStartKey"] = page["LastEvaluatedKey"]
+
+
+def query_partitions(env_var: str, pks: list[str]) -> dict[str, list[dict]]:
+    """
+    query_all for many partitions at once, for a page that reads hundreds of
+    episodes. Runs on the resource's client, which is thread-safe where a Table
+    is not, and takes and returns plain values the way the resource does.
+    """
+    name = table(env_var).name
+    client = resource().meta.client
+
+    def one(pk: str) -> list[dict]:
+        kwargs = {
+            "TableName": name,
+            "KeyConditionExpression": "pk = :pk",
+            "ExpressionAttributeValues": {":pk": pk},
+        }
+        items = []
+        while True:
+            page = client.query(**kwargs)
+            items += page["Items"]
+            if "LastEvaluatedKey" not in page:
+                return items
+            kwargs["ExclusiveStartKey"] = page["LastEvaluatedKey"]
+
+    with ThreadPoolExecutor(WORKERS) as pool:
+        return dict(zip(pks, pool.map(one, pks)))
 
 
 def update(env_var: str, key: dict, values: dict, condition: str | None = None) -> bool:
