@@ -45,6 +45,24 @@ photos, signatures and graves are refused by rule.
 `seed_season.py all --headshots <site-bucket>` copies a 400px Commons thumbnail of each
 file not already under `s3://<site-bucket>/headshots/<file>`.
 
+## Bios and the person index
+
+`fixtures/bios.json` maps each name, as the fixtures spell it, to a short bio or `null`:
+the Wikipedia REST summary of the person's article (`description` and up to three
+sentences of `extract`), the article `url` for CC BY-SA attribution, and Wikidata's
+`born`, `died`, `occupations` and `nationality`. `backend/scripts/find_bios.py` fills it
+for names not yet there, finding the article the same way `find_headshots.py` does.
+
+```bash
+cd backend && python scripts/find_bios.py
+```
+
+Every Seed Season run writes the person index from every fixture: a `PERSON#dwts#<id>`
+item per celebrity, pro and judge (roles, seasons, partners, headshot, bio) and a
+`PEOPLE#dwts` row each for search. A celebrity's id is their contestant id and a pro's
+is their name's slug, so Derek Hough the pro and the judge are one person. No result or
+elimination is copied; those stay gated per episode.
+
 ## dwts-1.json to dwts-34.json
 
 Built by `backend/scripts/build_season.py` from one Wikipedia revision per season,

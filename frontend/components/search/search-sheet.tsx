@@ -32,7 +32,7 @@ export function SearchSheet({ open, onClose }: SearchSheetProps) {
       {open && (
         <div className="flex min-h-full flex-col px-3 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))]">
           <SearchBox
-            variant="sheet"
+            variant="inline"
             autoFocus
             onNavigate={onClose}
             onEscape={onClose}

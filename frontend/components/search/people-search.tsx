@@ -111,15 +111,15 @@ export function useSearch(q: string) {
 }
 
 interface SearchBoxProps {
-  /** "popover" floats the results under the field; "sheet" lists them in place. */
-  variant: "popover" | "sheet";
+  /** "popover" floats the results under the field; "inline" lists them in place. */
+  variant: "popover" | "inline";
   inputRef?: RefObject<HTMLInputElement | null>;
   autoFocus?: boolean;
   /** After a result is picked. */
   onNavigate?: () => void;
   /** Escape on an empty field. */
   onEscape?: () => void;
-  /** Beside the field, like the sheet's Cancel. */
+  /** Beside the field, like the phone sheet's Cancel. */
   aside?: ReactNode;
   className?: string;
 }
@@ -128,7 +128,7 @@ interface SearchBoxProps {
 export function SearchBox({ variant, inputRef, autoFocus, onNavigate, onEscape, aside, className }: SearchBoxProps) {
   const router = useRouter();
   const [q, setQ] = useState("");
-  const [open, setOpen] = useState(variant === "sheet");
+  const [open, setOpen] = useState(variant === "inline");
   const [active, setActive] = useState(-1);
   const { short, busy, results, error } = useSearch(q);
   const listId = useId();
@@ -242,7 +242,7 @@ export function SearchBox({ variant, inputRef, autoFocus, onNavigate, onEscape, 
         </div>
         {aside}
       </div>
-      {variant === "sheet" && short && (
+      {variant === "inline" && short && (
         <p className="px-1 pt-6 text-sm text-silver-dim">Find friends by name, or any star, pro or judge from every season.</p>
       )}
       {expanded &&
