@@ -48,7 +48,13 @@ def episode_pk(show: str, season: int, ep: int) -> str:
 
 def catalog(show: str, season: int, ep: int) -> tuple[dict, dict, list[dict]]:
     """(META, the EP item, every CONTESTANT item) for one episode, from one Query."""
-    rows = season_rows(show, season)
+    return episode_rows(season_rows(show, season), show, season, ep)
+
+
+def episode_rows(
+    rows: list[dict], show: str, season: int, ep: int
+) -> tuple[dict, dict, list[dict]]:
+    """catalog() from a season's rows already read."""
     by_sk = {r["sk"]: r for r in rows}
     episode = by_sk.get(f"EP#{ep:02d}")
     if "META" not in by_sk or episode is None:
@@ -57,8 +63,12 @@ def catalog(show: str, season: int, ep: int) -> tuple[dict, dict, list[dict]]:
     return by_sk["META"], episode, contestants
 
 
+def season_pk(show: str, season: int) -> str:
+    return f"SEASON#{show}#{season}"
+
+
 def season_rows(show: str, season: int) -> list[dict]:
-    return query_all(table("CATALOG_TABLE"), f"SEASON#{show}#{season}")
+    return query_all(table("CATALOG_TABLE"), season_pk(show, season))
 
 
 def season_index(show: str) -> list[dict]:

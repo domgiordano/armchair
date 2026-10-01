@@ -16,14 +16,8 @@ from collections import defaultdict
 
 from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import ForbiddenError, NotFoundError, api_handler, caller_sub, ok, query
-from lambdas.common.episodes_dynamo import (
-    episode_pk,
-    performances,
-    ref,
-    scores,
-    season_ref,
-    season_rows,
-)
+from lambdas.common.dynamo import query_many
+from lambdas.common.episodes_dynamo import episode_pk, ref, season_ref, season_rows
 from lambdas.common.gate import answered, perf_key, visible_scores
 from lambdas.common.groups_dynamo import members
 
@@ -51,17 +45,20 @@ def handler(event, context):
         if not episodes:
             raise NotFoundError("No such episode", season=f"{show}-{season}", ep=ep)
 
+    # Every episode's reads in parallel. An unanswered episode's performances are
+    # read and dropped, which costs less than a second round trip for the rest.
+    pks = [episode_pk(show, season, n) for n, _ in episodes]
+    found = query_many([(t, pk) for pk in pks for t in ("SCORES_TABLE", "PERFORMANCES_TABLE")])
+
     mine = []
     details = {}
     per_episode = []
     everyone = defaultdict(list)
-    for n, episode in episodes:
-        pk = episode_pk(show, season, n)
-        score_rows = scores(pk)
+    for i, (n, episode) in enumerate(episodes):
+        score_rows, perfs = found[2 * i], found[2 * i + 1]
         if not answered(sub, score_rows):
             continue
         panel = episode.get("panel") or rows["META"]["defaultPanel"]
-        perfs = performances(pk)
         by_owner = errors(panel, perfs, visible_scores(sub, score_rows, in_group))
         for owner, errs in by_owner.items():
             everyone[owner] += errs

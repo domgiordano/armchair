@@ -212,7 +212,7 @@ resource "aws_lambda_function" "api" {
   role          = aws_iam_role.api[each.key].arn
   handler       = "handler.handler"
   runtime       = var.lambda_runtime
-  memory_size   = 256
+  memory_size   = 1024 # CPU scales with memory; at 256 MB a cold start took ~2 s
   timeout       = 10
   layers        = [aws_lambda_layer_version.lambda_layer.arn]
 
