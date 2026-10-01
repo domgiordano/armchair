@@ -17,6 +17,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, GROUPS_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.seasons import close
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
 C = "3f1c2b9a-0000-4000-8000-000000000003"
@@ -96,6 +97,7 @@ def test_no_answers_means_every_card_is_locked(show):
         assert set(card) == LOCKED and card["locked"] is True
     assert "results" not in view and "eliminated" not in view
     assert (view["rateable"], view["answered"], view["complete"]) == (12, 0, False)
+    assert view["open"] is False
     raw = json.dumps(view)
     assert B not in raw and "7.5" not in raw
 
@@ -162,6 +164,42 @@ def test_results_open_only_after_every_rateable_performance(show):
     assert view["complete"] is True
     assert view["eliminated"] == ["taylor-hanson"]
     assert view["results"] == {"eliminated": ["taylor-hanson"]}
+
+
+def test_a_season_opens_to_everyone_once_it_is_no_longer_current(show):
+    show.Table(CATALOG_TABLE).update_item(
+        Key={"pk": "SEASON#dwts#35", "sk": "EP#05"},
+        UpdateExpression="SET results = :r",
+        ExpressionAttributeValues={":r": {"eliminated": ["tyler-cameron"]}},
+    )
+    score(B, JUDGED, value=8)
+    score(C, JUDGED, value=3)
+    assert set(cards(state())[JUDGED]) == LOCKED
+
+    close(show, SEASON)
+    view = state()
+    assert view["open"] is True
+    assert (view["answered"], view["complete"]) == (0, True)
+    assert view["results"] == {"eliminated": ["tyler-cameron"]}
+    assert all(c["locked"] is False and c["mine"] is None for c in view["performances"])
+    card = cards(view)[JUDGED]
+    assert [j["value"] for j in card["judges"]] == [8, 7.5, None]
+    assert card["others"] == [{"sub": B, "value": 8}, {"sub": C, "value": 3}]
+    assert card["aggregate"] == {"count": 2, "mean": 5.5}
+    assert card["bonus"] == 2
+    # A group still narrows; it just has nothing left to hide.
+    card = cards(episode_view(A, 5, *_ep5_inputs(show), members={C}))[JUDGED]
+    assert card["others"] == [{"sub": C, "value": 3}]
+
+
+def test_a_past_season_keeps_its_answers_and_takes_no_more(show):
+    score(A, JUDGED, value=6)
+    close(show, SEASON)
+    assert cards(state())[JUDGED]["mine"] == {"value": 6}
+    status, body = submit(contestant="amber-glenn", value=7)
+    assert status == 403, body
+    assert submit(contestant="tyler-cameron", value=6)[0] == 403
+    assert len(show.Table(SCORES_TABLE).scan()["Items"]) == 1
 
 
 def test_bonus_opens_with_the_episode(show):
@@ -342,6 +380,8 @@ def test_stats_see_only_answered_performances(show):
         ("PERF#amber-glenn#1", B),
         ("PERF#amber-glenn#1", C),
     }
+    opened = {tuple(r["sk"].split("#USER#")) for r in visible_scores(C, rows, opened=True)}
+    assert len(opened) == len(rows) == 4
 
 
 def test_resubmitting_the_same_value_returns_the_stored_row(show):
@@ -399,7 +439,9 @@ def test_unknown_episode_submit_is_404(show):
 
 def test_empty_roster_keeps_results_hidden(show):
     meta, episode, _, perfs, scores = _ep5_inputs(show)
-    view = episode_view(A, 5, meta, {**episode, "results": {"eliminated": ["x"]}}, [], perfs, scores)
+    view = episode_view(
+        A, 5, meta, {**episode, "results": {"eliminated": ["x"]}}, [], perfs, scores
+    )
     assert "results" not in view
 
 

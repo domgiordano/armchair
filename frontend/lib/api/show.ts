@@ -41,6 +41,8 @@ export interface Episode {
 
 export interface Season {
   season: string;
+  /** A past season: every score and result shows to everyone, and nothing takes a paddle. */
+  open: boolean;
   timezone: string;
   episodes: Episode[];
   judges: Judge[];
@@ -81,6 +83,7 @@ export interface EpisodeState {
   airDate: string | null;
   theme: string | null;
   panel: string[];
+  open: boolean;
   rateable: number;
   answered: number;
   complete: boolean;

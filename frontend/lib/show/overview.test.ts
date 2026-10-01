@@ -19,6 +19,7 @@ const ep = (n: number, startsAt: string, extra: Partial<OverviewEpisode> = {}): 
 
 const overview = (episodes: OverviewEpisode[], scored = 0): Overview => ({
   season: "dwts-35",
+  open: false,
   timezone: "America/New_York",
   judges: [],
   progress: { aired: 0, total: episodes.length, couples: 16, couplesLeft: 16 },

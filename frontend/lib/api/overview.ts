@@ -39,6 +39,7 @@ export interface CoupleStanding {
 
 export interface Overview {
   season: string;
+  open: boolean;
   timezone: string;
   judges: { id: string; name: string; headshot: Headshot | null }[];
   progress: { aired: number; total: number; couples: number; couplesLeft: number };

@@ -40,6 +40,7 @@ const JENNA = pair("Jenna Dewan", "Val Chmerkovskiy");
 
 const SEASON: Season = {
   season: "dwts-35",
+  open: false,
   timezone: "America/New_York",
   episodes: [
     { ep: 4, week: 3, airDate: "2026-09-29", start: "20:00", end: "22:00", theme: "Yacht Rock" },
@@ -102,6 +103,7 @@ const boardRow = (id: string, members: Member[], you: number, judges: number, ra
 
 const BOARD: WeekBoard = {
   season: "dwts-35",
+  open: false,
   ep: 4,
   week: 3,
   theme: "Yacht Rock",
@@ -246,6 +248,14 @@ describe("Week board", () => {
     render(<CouplesScreen />);
     await screen.findByRole("list", { name: "Couples" });
     expect(getWeekBoard).toHaveBeenCalledWith("dwts-35", 4, null);
+  });
+
+  it("asks nothing of a past season: no still-to-score card", async () => {
+    vi.mocked(getWeekBoard).mockResolvedValue({ ...BOARD, open: true, answered: 0, locked: [] });
+    render(<CouplesScreen />);
+    await screen.findByRole("list", { name: "Couples" });
+    expect(screen.queryByRole("heading", { name: /still to score/ })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Score them" })).toBeNull();
   });
 
   it("nudges to score an episode with nothing scored", async () => {

@@ -53,6 +53,7 @@ function data(over: Partial<Data> = {}): Data {
   const eps = episodes(5);
   return {
     season: "dwts-35",
+    open: false,
     timezone: "America/New_York",
     judges: [judge("carrie", "Carrie Ann Inaba"), judge("derek", "Derek Hough"), judge("bruno", "Bruno Tonioli")],
     progress: { aired: 5, total: 12, couples: 16, couplesLeft: 16 },
@@ -167,6 +168,21 @@ describe("Overview", () => {
     fireEvent.click(screen.getByRole("button", { name: "Browse the season" }));
     expect((await screen.findByRole("alert")).textContent).toBe("Nothing skipped: Internal error");
     expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 13);
+  });
+
+  it("shows a past season as a wrap to browse, with no catch-up or paddle prompts", async () => {
+    vi.setSystemTime(new Date("2026-12-20T12:00:00Z"));
+    const all = episodes(12).map((e) => ({ ...e, answered: 0, complete: true }));
+    vi.mocked(getOverview).mockResolvedValue(
+      data({ open: true, episodes: all, next: null, progress: { aired: 12, total: 12, couples: 16, couplesLeft: 1 } }),
+    );
+    render(<Overview />);
+
+    expect(await screen.findByRole("heading", { level: 1, name: "that's a wrap." })).toBeTruthy();
+    expect(screen.getByText(/is over. Every score and result is open to browse./)).toBeTruthy();
+    expect(screen.getByText("A past season, open to everyone.")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Just browse" })).toBeNull();
+    expect(screen.queryByRole("link", { name: /^Score|^Catch up/ })).toBeNull();
   });
 
   it("says Score now while an episode is on air", async () => {

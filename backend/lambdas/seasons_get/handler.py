@@ -3,13 +3,15 @@ GET /seasons/get?season=dwts-35 - schedule, roster, judges and headshot credits.
 
 Built field by field from the catalog, never by passing items through:
 eliminatedEp and results are gated per episode (common/gate.py), so they reach
-a caller only via /episodes/state.
+a caller only via /episodes/state. `open` is gate.is_open: a past season,
+view-only and ungated.
 """
 
 from __future__ import annotations
 
 from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.episodes_dynamo import season_ref, season_rows
+from lambdas.common.gate import is_open
 
 
 def _pick(item: dict, *fields: str) -> dict:
@@ -31,6 +33,7 @@ def handler(event, context):
     return ok(
         {
             "season": f"{show}-{season}",
+            "open": is_open(meta),
             "timezone": meta["timezone"],
             "episodes": [
                 {"ep": int(ep), **_pick(e, "week", "airDate", "start", "end", "theme")}

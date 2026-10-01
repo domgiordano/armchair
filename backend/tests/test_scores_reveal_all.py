@@ -7,6 +7,7 @@ from scripts.seed_season import items, write
 from tests.conftest import CATALOG_TABLE, SCORES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.seasons import close
 from tests.test_gate import EP5_KEYS, JUDGED, SEASON, B, score, state, submit
 
 
@@ -66,6 +67,12 @@ def test_touches_nobody_else(show):
 def test_a_value_after_reveal_all_is_409(show):
     reveal_all()
     assert submit(contestant="tyler-cameron", value=7)[0] == 409
+
+
+def test_a_past_season_is_view_only(show):
+    close(show, SEASON)
+    assert reveal_all()[0] == 403
+    assert rows(show) == {}
 
 
 @pytest.mark.parametrize("fields", [{"season": "dwts-35"}, {"season": "dwts35", "ep": "05"}])

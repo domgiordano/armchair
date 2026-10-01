@@ -15,6 +15,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.seasons import close
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
 C = "3f1c2b9a-0000-4000-8000-000000000003"
@@ -86,6 +87,24 @@ def test_nothing_answered_locks_every_couple(show):
         "role",
         "headshot",
     }
+
+
+def test_a_past_season_ranks_every_couple_unanswered(show):
+    answer(B, X, value=8)
+    answer(C, X, value=6)
+    assert board()["open"] is False
+    close(show, SEASON)
+    data = board()
+    assert data["open"] is True and data["locked"] == []
+    assert data["answered"] == 0
+    assert {(r["id"], r["judges"], r["you"]) for r in data["couples"]} == {
+        (X, 8, None),
+        (Y, 6, None),
+        (Z, 9, None),
+    }
+    assert row(data, X)["everyone"] == 7.0
+    assert row(data, Z)["ranks"] == {"judges": 1, "you": None, "friends": None, "everyone": None}
+    assert data["disagreements"] == []
 
 
 def test_ranks_four_ways(show):

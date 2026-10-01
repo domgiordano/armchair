@@ -15,6 +15,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.seasons import close
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
 SEASON = json.loads((SEASONS / "dwts-35.json").read_text())
@@ -284,6 +285,16 @@ def test_someone_elses_detail_covers_only_dances_the_viewer_answered(show):
     # Episode 4's paddle of 1, which the viewer never answered, leaves no trace.
     assert sum(d["you"] for d in detail["distribution"]) == 2
     assert {detail["best"]["ep"], detail["worst"]["ep"]} == {5}
+
+
+def test_someone_elses_detail_on_a_past_season_covers_every_dance(show):
+    for cid in COUPLES:
+        answer(B, cid, value=10)
+    answer(B, COUPLES[0], ep=4, value=1)
+    close(show, SEASON)
+    detail = profile(sub=B)["detail"]
+    assert detail["count"] == len(COUPLES) + 1
+    assert [(w["ep"], w["count"]) for w in detail["weeks"]] == [(4, 1), (5, len(COUPLES))]
 
 
 def test_someone_elses_detail_needs_no_floor(show):

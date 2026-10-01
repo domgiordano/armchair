@@ -22,6 +22,7 @@ import { choose } from "./ui/select-test-utils";
 
 const SEASON: Season = {
   season: "dwts-35",
+  open: false,
   timezone: "America/New_York",
   episodes: [
     { ep: 3, week: 2, airDate: "2026-09-22", start: "20:00", end: "22:00", theme: null },

@@ -187,6 +187,12 @@ def test_latest_three_reveals_newest_first(show):
     assert [r["ep"] for r in reveals][:2] == [5, 5]
 
 
+def test_the_current_season_is_not_open(show):
+    d = data()
+    assert d["open"] is False
+    assert not any(e.get("complete") for e in d["episodes"])
+
+
 def test_streak_counts_finished_episodes_back_from_the_latest(show):
     finish(A, 3)
     finish(A, 4)
@@ -217,3 +223,8 @@ def test_a_past_season_with_no_start_times_has_aired_whole(show):
     first = d["episodes"][0]
     assert first["airDate"] is None and first["startsAt"] is None and first["endsAt"] is None
     assert first["aired"] and first["rateable"] == len(s20["episodes"][0]["rateableKeys"])
+    # Open to everyone: every episode's results, nothing to catch up on, no streak unearned.
+    assert d["open"] is True
+    assert all(e["complete"] and e["answered"] == 0 for e in d["episodes"])
+    assert d["me"]["streak"] == 0
+    assert d["progress"]["couplesLeft"] < d["progress"]["couples"]

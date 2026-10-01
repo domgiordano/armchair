@@ -19,9 +19,10 @@ dance counted on the leaderboard.
 
 With someone else's `sub` it is that user's numbers, over only the dances the
 caller has answered too, so nothing comes from a performance the gate keeps
-from the caller. Even then no single dance goes out: couples lose their best,
-worst and per-week rows. A block either way answers 404, like an unknown sub,
-and `group` can't be combined with it. Identity is the Cognito sub.
+from the caller; on a past season (gate.is_open) it keeps nothing back. Even
+then no single dance goes out: couples lose their best, worst and per-week
+rows. A block either way answers 404, like an unknown sub, and `group` can't be
+combined with it. Identity is the Cognito sub.
 """
 
 from __future__ import annotations
@@ -47,7 +48,7 @@ from lambdas.common.episodes_dynamo import (
     season_ref,
     season_rows,
 )
-from lambdas.common.gate import answered, cid, visible_scores
+from lambdas.common.gate import answered, cid, is_open, visible_scores
 from lambdas.common.social_dynamo import peer, status
 
 HIGHLIGHTS = 3
@@ -88,6 +89,7 @@ def handler(event, context):
         if "META" not in rows:
             raise NotFoundError("No such season", season=f"{show}-{season}")
         roster = {cid(r): r for sk, r in rows.items() if sk.startswith("CONTESTANT#")}
+        opened = is_open(rows["META"])
         by_couple = defaultdict(list)
         for sk, episode in sorted(rows.items()):
             if not sk.startswith("EP#"):
@@ -96,7 +98,7 @@ def handler(event, context):
             score_rows = scores(pk)
             if not own:
                 # Members None: every row on what the caller answered, the owner's among them.
-                score_rows = visible_scores(caller, score_rows)
+                score_rows = visible_scores(caller, score_rows, opened=opened)
             if not answered(sub, score_rows):
                 continue
             panel = episode.get("panel") or rows["META"]["defaultPanel"]

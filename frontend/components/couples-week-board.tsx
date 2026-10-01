@@ -98,7 +98,7 @@ function Board({ board, season, column }: { board: WeekBoard; season: Season; co
   const unranked = rows.filter((r) => r.ranks[column] === null);
   const byId = new Map(board.couples.map((r) => [r.id, r]));
   const split = board.disagreements.flatMap((id) => byId.get(id) ?? []);
-  const left = board.rateable - board.answered;
+  const left = board.open ? 0 : board.rateable - board.answered;
 
   return (
     <>
@@ -114,7 +114,9 @@ function Board({ board, season, column }: { board: WeekBoard; season: Season; co
         </p>
       )}
 
-      {board.couples.length === 0 ? (
+      {board.couples.length === 0 && board.open ? (
+        <EmptyState title="No dances on record">This episode has no scored dances to rank.</EmptyState>
+      ) : board.couples.length === 0 ? (
         <EmptyState
           title="Score this episode to see its board"
           action={
@@ -222,7 +224,7 @@ function BoardItem({ row: r, column }: { row: BoardRow; column: BoardColumn }) {
         <span className="truncate text-xs text-silver-dim tabular-nums">
           {[
             column !== "judges" && r.judges !== null && `Judges ${formatScore(r.judges)}`,
-            column !== "you" && `You ${formatScore(r.you)}`,
+            column !== "you" && r.you !== null && `You ${formatScore(r.you)}`,
             r.styles.filter(Boolean).join(", "),
           ]
             .filter(Boolean)
@@ -285,7 +287,7 @@ function Disagreements({ rows }: { rows: BoardRow[] }) {
               <span className="flex min-w-0 flex-1 flex-col">
                 <span className="truncate text-sm font-medium text-pearl">{name(r)}</span>
                 <span className="text-xs text-silver-dim tabular-nums">
-                  You {formatScore(r.you)} · judges {r.judges === null ? "–" : formatScore(r.judges)}
+                  You {r.you === null ? "–" : formatScore(r.you)} · judges {r.judges === null ? "–" : formatScore(r.judges)}
                 </span>
               </span>
               <span className="flex shrink-0 flex-col items-end text-xs tabular-nums">
