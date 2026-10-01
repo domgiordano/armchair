@@ -33,8 +33,8 @@ def rateable(
     Keys the caller must answer before the episode's results open: every couple
     still in the competition that night times dancesPerCouple. Known before the
     poller writes anything; a performance marked unrateable (a team dance
-    written before team dances were scored) drops out. A past-season episode
-    lists its keys (`rateableKeys`): a two-night week, a dance-off or a
+    written before team dances were scored) drops out. An episode that lists
+    its keys (`rateableKeys`) uses them: a two-night week, a dance-off or a
     withdrawal makes the roster count wrong. A scored team dance joins once the
     poller writes it, keyed by every member: `a+b+c#1`.
     """

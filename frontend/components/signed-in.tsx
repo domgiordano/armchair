@@ -10,14 +10,21 @@ import { PRIMARY } from "@/lib/ui";
 
 interface SignedInProps {
   title: string;
+  wide?: boolean;
   children: ReactNode;
 }
 
 /** The app shell once signed in, a sign-in wall before. UX only: the API is what refuses a missing token. */
-export function SignedIn({ title, children }: SignedInProps) {
+export function SignedIn({ title, wide = false, children }: SignedInProps) {
   const { status, signInWithGoogle } = useAuth();
 
-  if (status === "signedIn") return <AppShell title={title}>{children}</AppShell>;
+  if (status === "signedIn") {
+    return (
+      <AppShell title={title} wide={wide}>
+        {children}
+      </AppShell>
+    );
+  }
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col">
