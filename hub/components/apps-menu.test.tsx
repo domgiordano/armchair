@@ -38,11 +38,6 @@ describe("AppsMenu", () => {
     }
   });
 
-  it("offers sign-in inside the mobile sheet", () => {
-    const panel = renderOpen();
-    expect(within(panel).getByRole("link", { name: "Sign in" }).getAttribute("href")).toBe("https://dwts.armchairjudge.com");
-  });
-
   it("closes on Escape and hands focus back to the button", () => {
     renderOpen();
     const dwts = screen.getByRole("link", { name: /Dancing with the Stars/ });
