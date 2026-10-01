@@ -29,7 +29,9 @@ describe("leaderboards tab", () => {
       }),
     });
     render(<LeaderboardsScreen />);
-    const alex = await screen.findByRole("link", { name: /Alex Recliner/ });
+    // Seasons, then the board: two fetch rounds on a cold first render ran past
+    // findBy's 1s default on CI runners (1.35s, three runs in a row).
+    const alex = await screen.findByRole("link", { name: /Alex Recliner/ }, { timeout: 5000 });
     expect(alex.getAttribute("href")).toBe("https://dwts.armchairjudge.com/profile/?u=u-1&sso=1");
     expect(screen.getByRole("link", { name: /Pat Couch/ }).closest("li")?.textContent).toContain("7");
     expect(screen.getByText(/Showing the top 2 of 7/)).toBeTruthy();
