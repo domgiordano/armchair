@@ -8,9 +8,11 @@ import styles from "./intro.module.css";
 // Scene length in ms, counted from the first drawn frame; intro.module.css and
 // the 3D timeline are both timed against the same start.
 const LENGTH = 5800;
-// How long the poster may wait for the 3D scene's first frame before the 2D
-// ballroom plays instead.
-const PATIENCE = 3000;
+// How long the poster may wait, once the 3D chunk has arrived, for the scene's
+// first frame before the 2D ballroom plays instead. A slow download never
+// counts against it: the chunk is ~1 MB and a cold phone can take longer than
+// this just to fetch it.
+const PATIENCE = 8000;
 const SCORES = [9, 10, 10];
 const CARD_DELAYS = [3200, 3550, 3900];
 
@@ -37,10 +39,22 @@ function ChunkFailed({ onFail }: SceneProps) {
   return null;
 }
 
+const loadScene = () => import("./intro-scene/intro-scene");
+let pending: ReturnType<typeof loadScene> | undefined;
+const sceneModule = () => (pending ??= loadScene());
+
+// Amplify keeps the signed-in user under this key; a signed-in visit never plays the intro.
+const signedIn = () => Object.keys(localStorage).some((k) => k.endsWith(".LastAuthUser"));
+const reducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+
+// Start the download while the auth check runs, not after it mounts the intro.
+// A failure is handled where Scene reads the same promise.
+if (typeof window !== "undefined" && !reducedMotion() && !signedIn()) sceneModule().catch(() => {});
+
 // three.js and friends stay out of the landing bundle. A chunk that fails to
 // download falls back to the 2D ballroom instead of an empty stage.
 const Scene = lazy<ComponentType<SceneProps>>(() =>
-  import("./intro-scene/intro-scene").then(
+  sceneModule().then(
     (m) => ({ default: m.IntroScene }),
     () => ({ default: ChunkFailed }),
   ),
@@ -83,15 +97,15 @@ const BEAMS = [
   { from: 62, to: -6, gold: false },
 ];
 
-const FACETS = Array.from({ length: 14 }, () => ({
-  x: 18 + next() * 64,
-  y: 16 + next() * 68,
-  delay: next() * 900,
-}));
-
-// Evenly spaced polar angles, projected: latitudes at 50 - 48cos(a), longitudes rx 48sin(a).
-const LATITUDES = [1, 2, 3, 4, 5, 6, 7].map((k) => 50 - 48 * Math.cos((k * Math.PI) / 8));
-const LONGITUDES = [1, 2, 3].map((k) => 48 * Math.sin((k * Math.PI) / 8));
+// Tiles on the ball that catch the light in turn, as % of the ball's box.
+const GLINTS = [
+  { x: 64, y: 38, size: 1, delay: 0 },
+  { x: 22, y: 52, size: 0.8, delay: 700 },
+  { x: 56, y: 71, size: 0.7, delay: 1300 },
+  { x: 84, y: 61, size: 0.9, delay: 400 },
+  { x: 36, y: 17, size: 0.75, delay: 1000 },
+  { x: 76, y: 24, size: 0.6, delay: 1650 },
+];
 
 /**
  * The ballroom intro: a real-time scene where WebGL allows, the 2D ballroom
@@ -102,18 +116,20 @@ export function Intro({ onDone }: IntroProps) {
   // Undecided on the server and through hydration, so neither backdrop is baked into the HTML.
   const webgl = useSyncExternalStore(noSubscribe, hasWebGL, () => null);
   const [fallback, setFallback] = useState(false);
+  const [arrived, setArrived] = useState(false);
   const [ready, setReady] = useState(false);
   const stage = webgl === null ? null : webgl && !fallback ? "3d" : "2d";
   const playing = stage === "2d" || ready;
 
   const onReady = useCallback(() => setReady(true), []);
   const onFail = useCallback(() => setFallback(true), []);
+  const onArrive = useCallback(() => setArrived(true), []);
 
   useEffect(() => {
-    if (stage !== "3d" || ready) return;
+    if (stage !== "3d" || !arrived || ready) return;
     const id = setTimeout(onFail, PATIENCE);
     return () => clearTimeout(id);
-  }, [stage, ready, onFail]);
+  }, [stage, arrived, ready, onFail]);
 
   useEffect(() => {
     if (!playing) return;
@@ -133,6 +149,7 @@ export function Intro({ onDone }: IntroProps) {
           <Poster />
           <Suspense>
             <Scene onReady={onReady} onFail={onFail} />
+            <Arrived onArrive={onArrive} />
           </Suspense>
         </>
       )}
@@ -159,13 +176,41 @@ export function Intro({ onDone }: IntroProps) {
   );
 }
 
-/** The 2D ballroom: CSS mirror ball, sweeping beams, sparkles, paddles. */
+interface ArrivedProps {
+  onArrive: () => void;
+}
+
+// Commits alongside the lazy scene, so its effect runs once the chunk is in.
+function Arrived({ onArrive }: ArrivedProps) {
+  useEffect(onArrive, [onArrive]);
+  return null;
+}
+
+/** Twinkles over the ball's tiles, so a still of it doesn't read as frozen. */
+function Glints() {
+  return (
+    <span aria-hidden="true" className={styles.glints}>
+      {GLINTS.map((g, i) => (
+        <span
+          key={i}
+          className={styles.glint}
+          style={{ left: `${g.x}%`, top: `${g.y}%`, "--size": g.size, animationDelay: `${g.delay}ms` } as CSSProperties}
+        />
+      ))}
+    </span>
+  );
+}
+
+/** The 2D ballroom: the 3D scene's ball as a sprite over the same room, beams, sparkles, paddles. */
 function Ballroom() {
   return (
     <>
       <div aria-hidden="true" className={styles.floor} />
+      <div aria-hidden="true" className={styles.bulbs} />
 
       <div aria-hidden="true" className={styles.rig}>
+        <span className={`${styles.cone} ${styles.gold}`} style={{ "--tilt": "47deg" } as CSSProperties} />
+        <span className={styles.cone} style={{ "--tilt": "-47deg" } as CSSProperties} />
         {BEAMS.map((b, i) => (
           <span
             key={i}
@@ -175,43 +220,8 @@ function Ballroom() {
         ))}
         <div className={styles.ball}>
           <span className={styles.chain} />
-          <svg viewBox="0 0 100 100" className={styles.sphere}>
-            <defs>
-              <radialGradient id="intro-silver" cx="36%" cy="30%" r="75%">
-                <stop offset="0" stopColor="#f4f6fc" />
-                <stop offset="0.35" stopColor="#c3cadc" />
-                <stop offset="0.75" stopColor="#58627f" />
-                <stop offset="1" stopColor="#1c2445" />
-              </radialGradient>
-              <clipPath id="intro-ball">
-                <circle cx="50" cy="50" r="48" />
-              </clipPath>
-            </defs>
-            <circle cx="50" cy="50" r="48" fill="url(#intro-silver)" />
-            <g clipPath="url(#intro-ball)" fill="none" stroke="#0d1535" strokeOpacity="0.55" strokeWidth="0.9">
-              {LATITUDES.map((y) => (
-                <line key={y} x1="0" x2="100" y1={y} y2={y} />
-              ))}
-              <line x1="50" x2="50" y1="0" y2="100" />
-              {LONGITUDES.map((rx) => (
-                <ellipse key={rx} cx="50" cy="50" rx={rx} ry="48" />
-              ))}
-            </g>
-            <g clipPath="url(#intro-ball)">
-              {FACETS.map((f, i) => (
-                <rect
-                  key={i}
-                  x={f.x}
-                  y={f.y}
-                  width="6"
-                  height="6"
-                  fill="#fdf6de"
-                  className={styles.facet}
-                  style={{ animationDelay: `${f.delay}ms` }}
-                />
-              ))}
-            </g>
-          </svg>
+          <span className={styles.sphere} />
+          <Glints />
         </div>
         {SPARKLES.map((s, i) => (
           <span
@@ -244,15 +254,23 @@ function Ballroom() {
 
 // A still of the scene's opening frame, shown until the WebGL chunk has loaded
 // and drawn that same frame over it. Fades up from the stage colour on load.
+// Regenerate it whenever the scene's t=0 changes, or the swap shows a jump.
 function Poster() {
   const [loaded, setLoaded] = useState(false);
   const common = { alt: "", unoptimized: true, priority: true };
   const portrait = getImageProps({ ...common, src: "/intro/poster-portrait.webp", width: 780, height: 1688 }).props;
   const { props } = getImageProps({ ...common, src: "/intro/poster.webp", width: 1600, height: 1000 });
   return (
-    <picture>
-      <source media="(orientation: portrait)" srcSet={portrait.srcSet ?? portrait.src} />
-      <img {...props} alt="" onLoad={() => setLoaded(true)} data-loaded={loaded || undefined} className={styles.poster} />
-    </picture>
+    <>
+      <picture>
+        <source media="(orientation: portrait)" srcSet={portrait.srcSet ?? portrait.src} />
+        <img {...props} alt="" onLoad={() => setLoaded(true)} data-loaded={loaded || undefined} className={styles.poster} />
+      </picture>
+      {loaded && (
+        <div aria-hidden="true" className={styles.still}>
+          <Glints />
+        </div>
+      )}
+    </>
   );
 }
