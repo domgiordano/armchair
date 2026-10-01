@@ -110,7 +110,7 @@ locals {
     friends_list       = ["social:Query", "social:GetItem", "social:PutItem", "users:BatchGetItem"]
     friends_search     = ["social:Query"]
     users_update       = ["users:GetItem", "users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
-    users_get          = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem"]
+    users_get          = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem", "board:BatchGetItem"]
     leaderboard_get    = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     notifications_list = ["social:Query", "users:BatchGetItem"]
     notifications_read = ["social:Query", "social:UpdateItem"]
