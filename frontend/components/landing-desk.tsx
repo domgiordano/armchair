@@ -87,7 +87,7 @@ export function LandingDesk() {
       </div>
 
       <Desk key={index} card={toCard(dance)} judges={JUDGE_MAP}>
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-neutral-300">
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-silver">
           <dt>Judges&apos; average</dt>
           <dd className="text-right tabular-nums">{formatScore(Math.round(panel * 10) / 10)}</dd>
           <dt>Everyone</dt>

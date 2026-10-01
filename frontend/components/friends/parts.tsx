@@ -3,15 +3,16 @@
 import { useCallback, useEffect, useId, useState, type ReactNode } from "react";
 
 import { Avatar } from "@/components/avatar";
+import { EmptyState } from "@/components/ui/states";
+import { useToast } from "@/components/ui/toast";
 import type { Person } from "@/lib/api/social";
-import { PRIMARY, SECONDARY } from "@/lib/ui";
+import { button, EYEBROW, INPUT } from "@/lib/ui";
 
-export const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300";
-export const SMALL_PRIMARY = `${PRIMARY} min-h-10 px-3 text-sm`;
-export const SMALL_SECONDARY = `${SECONDARY} min-h-10 px-3 text-sm`;
-export const QUIET = `flex min-h-10 items-center rounded-md px-3 text-sm text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100 active:bg-neutral-700 disabled:opacity-50 ${FOCUS}`;
-export const INPUT = `min-h-11 w-full rounded-md border border-neutral-700 bg-neutral-900 px-3 text-base text-neutral-100 placeholder:text-neutral-500 ${FOCUS}`;
-export const SECTION_TITLE = "text-xs font-semibold tracking-[0.12em] text-silver-dim uppercase";
+export { FOCUS, INPUT } from "@/lib/ui";
+export const SMALL_PRIMARY = button("primary", "sm");
+export const SMALL_SECONDARY = button("secondary", "sm");
+export const QUIET = button("ghost", "sm");
+export const SECTION_TITLE = `${EYEBROW} pb-1`;
 
 export const displayName = (p: Person) => p.name ?? "Someone";
 
@@ -72,17 +73,17 @@ export function PersonRow({
     <div className="flex flex-col gap-1.5 py-2.5">
       {/* Actions drop under the name when both won't fit, rather than truncating it. */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-        <div className="flex min-w-[10rem] flex-1 items-center gap-3">
+        <div className="flex min-w-[8rem] flex-1 items-center gap-3">
           <Avatar name={name} email="" picture={person.picture} />
           <div className="min-w-0 flex-1">
-            <p className="truncate font-medium text-neutral-100">{name}</p>
-            {detail && <p className="text-xs text-neutral-500">{detail}</p>}
+            <p className="truncate font-medium text-pearl">{name}</p>
+            {detail && <p className="text-xs text-silver-dim">{detail}</p>}
           </div>
         </div>
         {children && <div className="ml-auto flex shrink-0 items-center gap-1.5">{children}</div>}
       </div>
       {error && (
-        <p role="alert" className="pl-12 text-sm text-amber-200">
+        <p role="alert" className="pl-12 text-sm text-red-300">
           {error}
         </p>
       )}
@@ -116,7 +117,7 @@ export function ConfirmButton({
         type="button"
         disabled={busy}
         onClick={onConfirm}
-        className={`flex min-h-10 items-center rounded-md bg-red-400/15 px-3 text-sm font-medium text-red-200 hover:bg-red-400/25 disabled:opacity-50 ${FOCUS}`}
+        className={`${button("danger", "sm")} animate-pop-in`}
       >
         {confirm}
       </button>
@@ -130,18 +131,21 @@ export function ConfirmButton({
 export function CopyLink({ label, link }: { label: string; link: string }) {
   const [copied, setCopied] = useState(false);
   const id = useId();
+  const toast = useToast();
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(link);
       setCopied(true);
+      toast("Link copied");
     } catch {
       // Clipboard refused: the link stays on screen to copy by hand.
       setCopied(false);
+      toast("Couldn't copy. Select the link and copy it by hand.", "error");
     }
   };
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm text-neutral-400">
+      <label htmlFor={id} className="text-sm text-silver-dim">
         {label}
       </label>
       <div className="flex gap-2">
@@ -150,9 +154,9 @@ export function CopyLink({ label, link }: { label: string; link: string }) {
           readOnly
           value={link}
           onFocus={(e) => e.target.select()}
-          className={`${INPUT} min-w-0 text-sm`}
+          className={`${INPUT} min-w-0 font-mono text-sm text-silver`}
         />
-        <button type="button" onClick={() => void copy()} className={`${SECONDARY} shrink-0 px-4 text-sm`}>
+        <button type="button" onClick={() => void copy()} className={`${button("secondary")} shrink-0 px-4 text-sm`}>
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
@@ -161,5 +165,5 @@ export function CopyLink({ label, link }: { label: string; link: string }) {
 }
 
 export function Empty({ children }: { children: ReactNode }) {
-  return <p className="rounded-lg border border-dashed border-neutral-800 p-4 text-sm text-neutral-400">{children}</p>;
+  return <EmptyState compact>{children}</EmptyState>;
 }

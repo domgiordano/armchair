@@ -18,12 +18,12 @@ export function StyleChart({ styles }: StyleChartProps) {
       {styles.map((s, i) => (
         <li key={s.style} className="grid grid-cols-[minmax(0,7rem)_1fr_4.5rem] items-center gap-3">
           <span className="flex min-w-0 flex-col">
-            <span className="truncate text-sm font-medium">{s.style}</span>
-            <span className="text-xs text-neutral-400">{plural(s.count, "dance")}</span>
+            <span className="truncate text-sm font-medium text-pearl">{s.style}</span>
+            <span className="text-xs text-silver-dim">{plural(s.count, "dance")}</span>
           </span>
-          <span aria-hidden="true" className="h-2.5 overflow-hidden rounded-full bg-neutral-800">
+          <span aria-hidden="true" className="h-2.5 overflow-hidden rounded-full bg-silver/10">
             <span
-              className={`block h-full rounded-full ${i === 0 ? "bg-amber-300" : "bg-silver-dim"}`}
+              className={`block h-full rounded-full ${i === 0 ? "bg-gold" : "bg-silver-dim"}`}
               style={{ width: `${Math.max(3, (s.mae / top) * 100)}%` }}
             />
           </span>
@@ -65,7 +65,7 @@ export function DistributionChart({ counts }: DistributionChartProps) {
 
   return (
     <figure className="flex flex-col gap-2">
-      <svg viewBox={`0 0 ${W} ${H}`} aria-hidden="true" className="w-full text-neutral-400">
+      <svg viewBox={`0 0 ${W} ${H}`} aria-hidden="true" className="w-full text-silver-dim">
         {ticks.map((t) => (
           <g key={t}>
             <line x1={PAD.left} x2={W - PAD.right} y1={y(t)} y2={y(t)} stroke="currentColor" strokeOpacity={0.18} />
@@ -84,7 +84,7 @@ export function DistributionChart({ counts }: DistributionChartProps) {
                 width={bar}
                 height={y(0) - y(c.you)}
                 rx={1.5}
-                className="fill-amber-300"
+                className="fill-gold"
               >
                 <title>{`Paddle ${c.score}: you ${c.you}`}</title>
               </rect>
@@ -107,16 +107,16 @@ export function DistributionChart({ counts }: DistributionChartProps) {
           );
         })}
       </svg>
-      <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-neutral-400">
+      <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-silver-dim">
         <span className="flex items-center gap-1.5">
-          <span aria-hidden="true" className="inline-block size-2.5 rounded-sm bg-amber-300" />
+          <span aria-hidden="true" className="inline-block size-2.5 rounded-sm bg-gold" />
           Your paddle
         </span>
         <span className="flex items-center gap-1.5">
           <span aria-hidden="true" className="inline-block size-2.5 rounded-sm border-[1.5px] border-silver" />
           Judges&apos; average, rounded
         </span>
-        <span className="w-full text-neutral-300">
+        <span className="w-full text-silver">
           You raise {withArticle(mostCommon(counts, (c) => c.you))} most often; the judges&apos; average lands on{" "}
           {mostCommon(counts, (c) => c.judges)} most.
         </span>

@@ -8,13 +8,10 @@ import { Intro } from "@/components/intro";
 import { LandingDesk } from "@/components/landing-desk";
 import { LandingSteps } from "@/components/landing-steps";
 import { useReducedMotion } from "@/lib/motion";
+import { button, DISPLAY, TEXT_LINK } from "@/lib/ui";
 
-const BUTTON =
-  "flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light disabled:cursor-not-allowed disabled:opacity-50";
-const GOLD = `${BUTTON} bg-gold text-ink hover:bg-gold-light active:bg-gold-deep`;
-// Archivo Black ships one weight; font-bold here would get a synthesized, smeared bold.
-const DISPLAY = "font-display font-normal tracking-[-0.045em] text-pearl";
-const OUTLINE = `${BUTTON} border border-silver/35 text-silver hover:bg-silver/10 active:bg-silver/15`;
+const GOLD = button("primary");
+const OUTLINE = button("secondary");
 
 interface LandingProps {
   status: "signedOut" | "unconfigured";
@@ -133,14 +130,11 @@ export function Landing({ status, onSignIn }: LandingProps) {
           <div className="flex gap-4">
             <a
               href="https://armchairjudge.com"
-              className="rounded-sm underline underline-offset-4 hover:text-silver focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
+              className={`${TEXT_LINK} inline-flex min-h-11 items-center`}
             >
               More shows at Armchair Judge
             </a>
-            <Link
-            href="/credits/"
-            className="rounded-sm underline underline-offset-4 hover:text-silver focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
-          >
+            <Link href="/credits/" className={`${TEXT_LINK} inline-flex min-h-11 items-center`}>
               Photo credits
             </Link>
           </div>

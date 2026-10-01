@@ -2,6 +2,7 @@
 
 import { useId, type InputHTMLAttributes, type ReactNode } from "react";
 
+import { Spinner } from "@/components/ui/spinner";
 import { cn, FOCUS, INPUT } from "@/lib/ui";
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "id"> {
@@ -87,10 +88,7 @@ export function SearchInput({ label, value, onChange, placeholder, maxLength, bu
           className={cn(INPUT, "pr-11 pl-10 [&::-webkit-search-cancel-button]:hidden")}
         />
         {busy ? (
-          <span
-            aria-hidden="true"
-            className="absolute top-1/2 right-3.5 size-4 -translate-y-1/2 animate-spin rounded-full border-2 border-silver/25 border-t-gold"
-          />
+          <Spinner className="absolute top-1/2 right-3.5 -translate-y-1/2" />
         ) : (
           value && (
             <button

@@ -6,6 +6,7 @@ import type { Profile, ProfileDance } from "@/lib/api/profile";
 import type { Season } from "@/lib/api/show";
 import { byStyle, calls, closestJudge, distribution } from "@/lib/profile/season-stats";
 import { episodeLabel } from "@/lib/show/schedule";
+import { TEXT_LINK } from "@/lib/ui";
 
 // Mirrors users_get.MIN_DANCES: below it the API sends no error for someone else.
 const MIN_DANCES = 5;
@@ -28,11 +29,11 @@ export function ProfileSeason({ season, profile, own }: ProfileSeasonProps) {
   return (
     <section aria-labelledby="season-heading" className="flex flex-col gap-5">
       <h2 id="season-heading" className="flex items-baseline justify-between gap-3">
-        <span className="text-lg font-semibold tracking-tight">{seasonTitle(profile.season.season)}</span>
+        <span className="text-lg font-semibold tracking-tight text-pearl">{seasonTitle(profile.season.season)}</span>
         <span className="text-xs font-medium tracking-[0.14em] text-gold uppercase">Accuracy</span>
       </h2>
 
-      <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-neutral-800 bg-neutral-800">
+      <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-silver/10 bg-silver/10">
         <Stat label="Dances scored" value={String(count)} />
         <Stat
           label="Gap to the judges"
@@ -49,19 +50,19 @@ export function ProfileSeason({ season, profile, own }: ProfileSeasonProps) {
       </dl>
 
       {!own && mae === null && count > 0 && (
-        <p className="text-sm text-neutral-400">
+        <p className="text-sm text-silver-dim">
           Accuracy shows once they&apos;ve scored {MIN_DANCES} dances the judges have confirmed.
         </p>
       )}
       {own && count === 0 && (
-        <div className="flex flex-col items-start gap-2 rounded-xl border border-dashed border-neutral-700 p-4">
-          <p className="text-sm text-neutral-300">
+        <div className="flex flex-col items-start gap-2 rounded-xl border border-dashed border-silver/15 bg-ink/30 p-4">
+          <p className="text-sm text-silver">
             Nothing to compare yet. A dance counts here once you&apos;ve scored it and every judge&apos;s score is
             confirmed.
           </p>
           <Link
             href="/episode/"
-            className="rounded-md text-sm font-medium text-amber-300 underline underline-offset-4 hover:text-amber-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+            className={`${TEXT_LINK} inline-flex min-h-11 items-center font-medium`}
           >
             Score this week&apos;s dances
           </Link>
@@ -74,11 +75,11 @@ export function ProfileSeason({ season, profile, own }: ProfileSeasonProps) {
 
 function Stat({ label, value, note }: { label: string; value: string; note?: string }) {
   return (
-    <div className="flex h-full flex-col gap-1 bg-ink p-4">
-      <dt className="text-xs text-neutral-400">{label}</dt>
+    <div className="flex h-full flex-col gap-1 bg-ballroom/90 p-4">
+      <dt className="text-xs font-medium tracking-[0.12em] text-silver-dim uppercase">{label}</dt>
       <dd className="flex flex-wrap items-baseline gap-x-2">
-        <span className="text-xl font-semibold tabular-nums">{value}</span>
-        {note && <span className="text-xs text-neutral-400 tabular-nums">{note}</span>}
+        <span className="text-xl font-semibold text-pearl tabular-nums">{value}</span>
+        {note && <span className="text-xs text-silver-dim tabular-nums">{note}</span>}
       </dd>
     </div>
   );
@@ -102,17 +103,17 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
       {styles.length > 0 && (
         <section aria-labelledby="by-style" className="flex flex-col gap-3">
           <div>
-            <h3 id="by-style" className="font-semibold">
+            <h3 id="by-style" className="font-semibold text-pearl">
               By dance style
             </h3>
-            <p className="text-xs text-neutral-400">Average gap to the judges. Shorter is closer.</p>
+            <p className="text-xs text-silver-dim">Average gap to the judges. Shorter is closer.</p>
           </div>
           <StyleChart styles={styles} />
         </section>
       )}
 
       <section aria-labelledby="distribution" className="flex flex-col gap-3">
-        <h3 id="distribution" className="font-semibold">
+        <h3 id="distribution" className="font-semibold text-pearl">
           Paddles you raised
         </h3>
         <DistributionChart counts={distribution(dances)} />
@@ -120,7 +121,7 @@ function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] 
 
       {pair && (
         <section aria-labelledby="calls" className="flex flex-col gap-3">
-          <h3 id="calls" className="font-semibold">
+          <h3 id="calls" className="font-semibold text-pearl">
             Best and worst calls
           </h3>
           <ul className="grid gap-3">
@@ -158,16 +159,14 @@ interface CallProps {
 function Call({ title, tone, dance, who, when }: CallProps) {
   return (
     <li
-      className={`flex flex-col gap-2 rounded-xl border p-4 ${tone === "best" ? "border-amber-300/50 bg-amber-300/[0.06]" : "border-neutral-700"}`}
+      className={`flex flex-col gap-2 rounded-xl border p-4 ${tone === "best" ? "border-gold/45 bg-gold/[0.07]" : "border-silver/15 bg-ballroom/40"}`}
     >
-      <p
-        className={`text-xs font-semibold tracking-[0.12em] uppercase ${tone === "best" ? "text-amber-300" : "text-neutral-400"}`}
-      >
+      <p className={`text-xs font-semibold tracking-[0.12em] uppercase ${tone === "best" ? "text-gold" : "text-silver-dim"}`}>
         {title}
       </p>
-      <p className="font-medium">
+      <p className="font-medium text-pearl">
         {who}
-        <span className="block text-sm font-normal text-neutral-400">
+        <span className="block text-sm font-normal text-silver-dim">
           {[dance.style, when].filter(Boolean).join(" · ")}
         </span>
       </p>
@@ -175,10 +174,10 @@ function Call({ title, tone, dance, who, when }: CallProps) {
         <span>
           You <span className="text-lg font-semibold">{dance.paddle}</span>
         </span>
-        <span className="text-neutral-400">
-          Judges <span className="text-lg font-semibold text-neutral-100">{formatScore(dance.panelMean)}</span>
+        <span className="text-silver-dim">
+          Judges <span className="text-lg font-semibold text-pearl">{formatScore(dance.panelMean)}</span>
         </span>
-        <span className="ml-auto text-neutral-400">{off(dance.error)}</span>
+        <span className="ml-auto text-silver-dim">{off(dance.error)}</span>
       </p>
     </li>
   );

@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 
 import { MAX_ZOOM, renderSquare, square } from "@/lib/profile/crop";
+import { Skeleton } from "@/components/ui/skeleton";
 import { PRIMARY, SECONDARY } from "@/lib/ui";
 
 interface AvatarCropperProps {
@@ -48,7 +49,12 @@ export function AvatarCropper({ file, onCancel, onCropped }: AvatarCropperProps)
     );
   }
   if (source.kind === "loading" || center === null) {
-    return <p className="text-neutral-400">Opening the photo...</p>;
+    return (
+      <div role="status" className="flex flex-col items-center gap-4">
+        <span className="sr-only">Opening the photo...</span>
+        <Skeleton className="aspect-square w-full max-w-72 rounded-xl" />
+      </div>
+    );
   }
 
   const { image, url } = source;
@@ -109,7 +115,7 @@ export function AvatarCropper({ file, onCancel, onCropped }: AvatarCropperProps)
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <p id="crop-hint" className="self-start text-sm text-neutral-400">
+      <p id="crop-hint" className="self-start text-sm text-silver-dim">
         Drag to frame your face. Arrow keys move it, plus and minus zoom.
       </p>
       <div
@@ -123,7 +129,7 @@ export function AvatarCropper({ file, onCancel, onCropped }: AvatarCropperProps)
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onKeyDown={onKeyDown}
-        className="relative aspect-square w-full max-w-72 cursor-grab touch-none overflow-hidden rounded-xl bg-neutral-900 select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300 active:cursor-grabbing"
+        className="relative aspect-square w-full max-w-72 cursor-grab touch-none overflow-hidden rounded-xl bg-ink select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light active:cursor-grabbing"
       >
         <Image
           src={url}
@@ -146,7 +152,7 @@ export function AvatarCropper({ file, onCancel, onCropped }: AvatarCropperProps)
           className="pointer-events-none absolute inset-0 rounded-full shadow-[0_0_0_999px_rgb(2_8_30/0.62)] ring-2 ring-pearl/80"
         />
       </div>
-      <label className="flex w-full max-w-72 flex-col gap-1 text-sm text-neutral-300">
+      <label className="flex w-full max-w-72 flex-col gap-1 text-sm text-silver-dim">
         Zoom
         <input
           type="range"
@@ -159,11 +165,12 @@ export function AvatarCropper({ file, onCancel, onCropped }: AvatarCropperProps)
             setZoom(z);
             moveTo(center.x, center.y, z);
           }}
-          className="h-11 accent-amber-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          style={{ "--fill": `${((zoom - 1) / (MAX_ZOOM - 1)) * 100}%` } as CSSProperties}
+          className="h-11 range-gold focus-ring rounded-full"
         />
       </label>
       {error !== null && (
-        <p role="alert" className="self-start text-sm text-amber-200">
+        <p role="alert" className="self-start text-sm text-red-300">
           {error}
         </p>
       )}

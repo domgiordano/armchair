@@ -74,7 +74,7 @@ export function ProfilePhoto({ me, onChange }: ProfilePhotoProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-end gap-3">
-        <div className="rounded-full p-1 ring-1 ring-gold/50">
+        <div className="rounded-full bg-gradient-to-br from-gold-light via-gold-deep to-gold p-[3px] shadow-[0_0_30px_-6px_rgb(232_194_104/0.6)]">
           <Avatar name={me.name} email={me.email} picture={me.picture} size={104} />
         </div>
         <button
@@ -94,18 +94,18 @@ export function ProfilePhoto({ me, onChange }: ProfilePhotoProps) {
         <section
           id="photo-editor"
           aria-label="Profile photo"
-          className="flex flex-col gap-4 rounded-xl border border-neutral-700 bg-neutral-900/60 p-4"
+          className="flex flex-col gap-4 rounded-xl border border-silver/15 bg-ballroom/60 p-4 animate-pop-in"
         >
           {file ? (
             <AvatarCropper file={file} onCancel={() => setFile(null)} onCropped={cropped} />
           ) : (
             <>
               <fieldset className="flex flex-col gap-2" disabled={status.kind === "saving"}>
-                <legend className="mb-2 text-sm font-medium text-neutral-300">Show</legend>
+                <legend className="mb-2 text-xs font-semibold tracking-[0.14em] text-silver-dim uppercase">Show</legend>
                 {options.map((o) => (
                   <label
                     key={o.kind}
-                    className="flex min-h-14 cursor-pointer items-center gap-3 rounded-lg border border-neutral-700 px-3 has-checked:border-amber-300 has-checked:bg-amber-300/10 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-amber-300 hover:bg-neutral-800"
+                    className="flex min-h-14 cursor-pointer items-center gap-3 rounded-lg border border-silver/15 px-3 transition-colors hover:border-silver/30 hover:bg-silver/5 has-checked:border-gold/60 has-checked:bg-gold/10 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-gold-light"
                   >
                     <input
                       type="radio"
@@ -113,23 +113,23 @@ export function ProfilePhoto({ me, onChange }: ProfilePhotoProps) {
                       value={o.kind}
                       checked={me.avatarKind === o.kind}
                       onChange={() => void choose(o.kind)}
-                      className="size-4 accent-amber-300"
+                      className="radio-gold"
                     />
                     <span aria-hidden="true">
                       <Avatar name={me.name} email={me.email} picture={o.picture} size={36} />
                     </span>
-                    <span className="text-sm">{o.label}</span>
+                    <span className="text-sm text-pearl">{o.label}</span>
                   </label>
                 ))}
               </fieldset>
               <div className="flex flex-col gap-1">
                 <label
-                  className={`${SECONDARY} cursor-pointer self-start has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-amber-300`}
+                  className={`${SECONDARY} cursor-pointer self-start has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-gold-light`}
                 >
                   <input type="file" accept="image/*" onChange={pick} className="sr-only" />
                   Upload a new photo
                 </label>
-                <p className="text-xs text-neutral-400">Any photo. You&apos;ll frame it as a square next.</p>
+                <p className="text-xs text-silver-dim">Any photo. You&apos;ll frame it as a square next.</p>
               </div>
             </>
           )}
@@ -138,7 +138,7 @@ export function ProfilePhoto({ me, onChange }: ProfilePhotoProps) {
 
       <p
         aria-live="polite"
-        className={`min-h-5 text-sm ${status.kind === "error" ? "text-amber-200" : "text-neutral-400"}`}
+        className={`min-h-5 text-sm ${status.kind === "error" ? "text-red-300" : "text-silver-dim"}`}
       >
         {status.kind === "saving" && "Saving..."}
         {status.kind === "saved" && "Photo updated."}
