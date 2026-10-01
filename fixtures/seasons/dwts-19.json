@@ -33,7 +33,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "julianne-hough",
@@ -41,7 +46,12 @@
       "aliases": [
         "Julianne Hough"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "author": "https://www.flickr.com/photos/greg2600",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -62,7 +72,12 @@
       "aliases": [
         "Kevin Hart"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Kevin_Hart_2014_(cropped_2).jpg",
+        "author": "Eva Rinaldi",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kevin_Hart_2014_(cropped_2).jpg"
+      }
     },
     {
       "id": "americas-score",
@@ -78,7 +93,12 @@
       "aliases": [
         "Jessie J"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Jessie_J_performing_live_at_The_Peppermint_Club_05_(cropped).jpg",
+        "author": "File:Jessie J performing live at The Peppermint Club 05.jpg: Justin Higuchi derivative work: Begoon",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jessie_J_performing_live_at_The_Peppermint_Club_05_(cropped).jpg"
+      }
     },
     {
       "id": "pitbull",
@@ -86,7 +106,12 @@
       "aliases": [
         "Pitbull"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Pitbull_(7906558674).jpg",
+        "author": "Eva Rinaldi",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pitbull_(7906558674).jpg"
+      }
     }
   ],
   "episodes": [
@@ -2513,12 +2538,22 @@
         {
           "name": "Lolo Jones",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "LoloJones2008.jpg",
+            "author": "KDSanders (talk)",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:LoloJones2008.jpg"
+          }
         },
         {
           "name": "Keo Motsepe",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
+          }
         }
       ],
       "eliminatedEp": 1
@@ -2532,12 +2567,22 @@
         {
           "name": "Tavis Smiley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Tavis_Smiley.jpg",
+            "author": "Avdmg",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tavis_Smiley.jpg"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2551,12 +2596,22 @@
         {
           "name": "Randy Couture",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Randy_Couture_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Randy_Couture_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2570,12 +2625,22 @@
         {
           "name": "Betsey Johnson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Betsey_Johnson,_Red_Dress_Collection_2007.jpg",
+            "author": "The Heart Truth",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Betsey_Johnson,_Red_Dress_Collection_2007.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2589,12 +2654,22 @@
         {
           "name": "Jonathan Bennett",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jonathan_Bennett_-_Good_Riddance_Day_2024_81_(cropped).jpg",
+            "author": "SWinxy",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jonathan_Bennett_-_Good_Riddance_Day_2024_81_(cropped).jpg"
+          }
         },
         {
           "name": "Allison Holker",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg",
+            "author": "Lex 24/7!",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Allison_Holker_at_Dizzy_Feet_Gala_2014.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2608,12 +2683,22 @@
         {
           "name": "Antonio Sabàto Jr.",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Antonio_Sabàto_Jr._at_the_2018_National_Christmas_Tree_Lighting_(31162479757)_(cropped).jpg",
+            "author": "The White House from Washington, DC",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Antonio_Sab%C3%A0to_Jr._at_the_2018_National_Christmas_Tree_Lighting_(31162479757)_(cropped).jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2627,12 +2712,22 @@
         {
           "name": "Michael Waltrip",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Michael_Waltrip_2008_Daytona_500.jpg",
+            "author": "Freewheeling Daredevil",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Waltrip_2008_Daytona_500.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2646,7 +2741,12 @@
         {
           "name": "Lea Thompson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lea_Thompson_2013_(cropped).jpg",
+            "author": "SAMHSA",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lea_Thompson_2013_(cropped).jpg"
+          }
         },
         {
           "name": "Artem Chigvintsev",
@@ -2665,12 +2765,22 @@
         {
           "name": "Tommy Chong",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Tommy_Chong_GalaxyCon_Oklahoma_City_052026-4.jpg",
+            "author": "John Manard",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tommy_Chong_GalaxyCon_Oklahoma_City_052026-4.jpg"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2684,12 +2794,22 @@
         {
           "name": "Bethany Mota",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Bethany_Mota_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bethany_Mota_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": 11
@@ -2703,7 +2823,12 @@
         {
           "name": "Janel Parrish",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Janel_Parrish_in_2020.jpg",
+            "author": "Sidewalks Entertainment",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Janel_Parrish_in_2020.jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",
@@ -2722,12 +2847,22 @@
         {
           "name": "Sadie Robertson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Sadie_Robertson_2014.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sadie_Robertson_2014.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2741,12 +2876,22 @@
         {
           "name": "Alfonso Ribeiro",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Alfonso_Ribeiro.JPG",
+            "author": "Alfonso Ribeiro",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alfonso_Ribeiro.JPG"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null

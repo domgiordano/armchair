@@ -1,7 +1,7 @@
 "use client";
 
 import { Desk, type DeskMember } from "@/components/desk";
-import { Headshot } from "@/components/headshot";
+import { CoupleAvatars, Headshot } from "@/components/headshot";
 import type { GroupMember } from "@/lib/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { PaddlePicker } from "@/components/paddle-picker";
@@ -54,11 +54,15 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
       className="flex h-full flex-col gap-4 rounded-lg border border-neutral-800 bg-neutral-900 p-4"
     >
       <div className="flex items-center gap-3">
-        <div className="flex -space-x-3">
-          {faces.map((m) => (
-            <Headshot key={m.name} person={m} />
-          ))}
-        </div>
+        {team ? (
+          <div className="flex -space-x-3">
+            {faces.map((m) => (
+              <Headshot key={m.name} person={m} />
+            ))}
+          </div>
+        ) : (
+          <CoupleAvatars members={faces} size={48} />
+        )}
         <div className="flex min-w-0 flex-col">
           <h3 id={headingId} className="font-semibold leading-tight">
             {title}

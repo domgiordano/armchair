@@ -5,7 +5,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
-import { Headshot } from "@/components/headshot";
+import { CoupleAvatars } from "@/components/headshot";
 import { LoadError } from "@/components/load-error";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
@@ -455,7 +455,7 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
           const pro = c.members.find((m) => m.role === "pro");
           return (
             <li key={c.id} className={`flex items-center gap-3 py-2 ${c.out ? "opacity-60" : ""}`}>
-              <Headshot person={celebrity} />
+              <CoupleAvatars members={c.members} size={36} />
               <span className="min-w-0 flex-1">
                 <span className="flex items-center gap-2">
                   <span className="truncate text-sm font-medium text-pearl">{celebrity.name}</span>

@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -1347,7 +1352,12 @@
         {
           "name": "Tatum O'Neal",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Tatum_O'Neal_in_2019.jpg",
+            "author": "John Mathew Smith & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tatum_O%27Neal_in_2019.jpg"
+          }
         },
         {
           "name": "Nick Kosovich",
@@ -1385,12 +1395,22 @@
         {
           "name": "Master P",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Master_p-02.jpg",
+            "author": "Mikamote",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Master_p-02.jpg"
+          }
         },
         {
           "name": "Ashly DelGrosso",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Ashleydelgrosso.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ashleydelgrosso.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -1404,12 +1424,22 @@
         {
           "name": "Tia Carrere",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Tia_Carrere_by_Gage_Skidmore.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tia_Carrere_by_Gage_Skidmore.jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -1423,12 +1453,22 @@
         {
           "name": "George Hamilton",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "GeorgeHamiltonAug09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:GeorgeHamiltonAug09.jpg"
+          }
         },
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -1442,7 +1482,12 @@
         {
           "name": "Lisa Rinna",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lisa_Rinna_at_WWD_Style_Awards_2026.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lisa_Rinna_at_WWD_Style_Awards_2026.jpg"
+          }
         },
         {
           "name": "Louis van Amstel",
@@ -1461,12 +1506,22 @@
         {
           "name": "Stacy Keibler",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "StacyKeibler2011.jpeg",
+            "author": "Cliff Lipson",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:StacyKeibler2011.jpeg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -1480,7 +1535,12 @@
         {
           "name": "Jerry Rice",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jerry_Rice.jpg",
+            "author": "Glenn's GISuser.com Map, Mash-up & GIS PhotoBlog (GISuser.com) from Canada",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jerry_Rice.jpg"
+          }
         },
         {
           "name": "Anna Trebunskaya",
@@ -1499,12 +1559,22 @@
         {
           "name": "Drew Lachey",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Drew_Lachey.jpg",
+            "author": "dwightsghost from New York, NY, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Drew_Lachey.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": null

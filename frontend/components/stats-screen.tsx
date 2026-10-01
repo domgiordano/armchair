@@ -5,9 +5,10 @@ import { useEffect, useState, type ReactNode } from "react";
 import { LoadError } from "@/components/load-error";
 import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
 import { GroupPicker } from "@/components/group-picker";
+import { CoupleAvatars, coupleName } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
 import { SignedIn } from "@/components/signed-in";
-import type { Season } from "@/lib/api/show";
+import type { Contestant, Season } from "@/lib/api/show";
 import { getStats, type Dance, type Stats } from "@/lib/api/stats";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel } from "@/lib/show/schedule";
@@ -96,8 +97,9 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
     .sort((a, b) => a.value - b.value);
   const rank = stats.others.filter((o) => o.mae < (mine.mae ?? 0)).length + 1;
   const short = (ep: number) => label(ep).replace("Week ", "W").replace(", night ", "/");
-  // A team dance's key names every member couple: "a+b+c#1".
-  const celebrity = (key: string) =>
+  const couple = (key: string) => season.contestants.find((x) => x.id === key.split("#")[0]);
+  // A team dance's key names every member couple, "a+b+c#1", so no one couple matches it.
+  const team = (key: string) =>
     key
       .slice(0, key.lastIndexOf("#"))
       .split("+")
@@ -160,8 +162,8 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
         </Card>
 
         <Card id="calls" title="Best calls and biggest misses">
-          <Calls title="Best calls" dances={closest} celebrity={celebrity} short={short} />
-          {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} celebrity={celebrity} short={short} />}
+          <Calls title="Best calls" dances={closest} couple={couple} team={team} short={short} />
+          {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} couple={couple} team={team} short={short} />}
         </Card>
       </div>
     </>
@@ -188,35 +190,41 @@ function Card({ id, title, note, children }: { id: string; title: string; note?:
 function Calls({
   title,
   dances,
-  celebrity,
+  couple,
+  team,
   short,
 }: {
   title: string;
   dances: Dance[];
-  celebrity: (key: string) => string;
+  couple: (key: string) => Contestant | undefined;
+  team: (key: string) => string;
   short: (ep: number) => string;
 }) {
   return (
     <div className="flex flex-col gap-1">
       <h3 className="text-xs font-semibold tracking-wide text-neutral-400 uppercase">{title}</h3>
       <ul aria-label={title} className="flex flex-col divide-y divide-neutral-800 text-sm">
-        {dances.map((d) => (
-          <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
-            <span className="flex min-w-0 flex-col">
-              <span className="truncate">{celebrity(d.key)}</span>
-              <span className="truncate text-xs text-neutral-400">
-                {short(d.ep)}
-                {d.style && ` · ${d.style}`}
+        {dances.map((d) => {
+          const c = couple(d.key);
+          return (
+            <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
+              {c && <CoupleAvatars members={c.members} size={32} />}
+              <span className="flex min-w-0 flex-1 flex-col">
+                <span className="truncate">{c ? coupleName(c) : team(d.key)}</span>
+                <span className="truncate text-xs text-neutral-400">
+                  {short(d.ep)}
+                  {d.style && ` · ${d.style}`}
+                </span>
               </span>
-            </span>
-            <span className="shrink-0 text-right tabular-nums">
-              <span className="block">
-                You {d.paddle} · judges {formatScore(d.panelMean)}
+              <span className="shrink-0 text-right tabular-nums">
+                <span className="block">
+                  You {d.paddle} · judges {formatScore(d.panelMean)}
+                </span>
+                <span className="block text-xs text-neutral-400">{off(d.error)}</span>
               </span>
-              <span className="block text-xs text-neutral-400">{off(d.error)}</span>
-            </span>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

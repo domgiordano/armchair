@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -53,7 +58,12 @@
       "aliases": [
         "Leah Remini"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Leah_Remini_in_2018.jpg",
+        "author": "greg2600",
+        "license": "CC BY 2.5",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leah_Remini_in_2018.jpg"
+      }
     },
     {
       "id": "joey-fatone",
@@ -61,7 +71,12 @@
       "aliases": [
         "Joey Fatone"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Joey_Fatone_(31503991831).jpg",
+        "author": "Super Festivals from Ft. Lauderdale, USA",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joey_Fatone_(31503991831).jpg"
+      }
     }
   ],
   "episodes": [
@@ -2277,7 +2292,12 @@
         {
           "name": "Mary Wilson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mary_Wilson_1.jpg",
+            "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mary_Wilson_1.jpg"
+          }
         },
         {
           "name": "Brandon Armstrong",
@@ -2296,12 +2316,22 @@
         {
           "name": "Ray Lewis",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Ray_Lewis_at_Andrews_AFB_070821-F-0000J-002_crop.jpg",
+            "author": "Bobby Jones",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ray_Lewis_at_Andrews_AFB_070821-F-0000J-002_crop.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2315,12 +2345,22 @@
         {
           "name": "Lamar Odom",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lamar_Odom_2012_Shankbone.JPG",
+            "author": "David Shankbone",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lamar_Odom_2012_Shankbone.JPG"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2334,7 +2374,12 @@
         {
           "name": "Sailor Brinkley-Cook",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Sailor_Brinkley_Cook_2013_01.jpg",
+            "author": "Youth 4 African Wildlife",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sailor_Brinkley_Cook_2013_01.jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",
@@ -2353,7 +2398,12 @@
         {
           "name": "Karamo Brown",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Karamo_Brown,_2018-06_on_MTV_International.jpg",
+            "author": "MTV International",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karamo_Brown,_2018-06_on_MTV_International.jpg"
+          }
         },
         {
           "name": "Jenna Johnson",
@@ -2372,12 +2422,22 @@
         {
           "name": "Kate Flannery",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "KateFlanneryJune09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:KateFlanneryJune09.jpg"
+          }
         },
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "author": "Panache Star Dancesport",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2391,7 +2451,12 @@
         {
           "name": "Sean Spicer",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Sean_Spicer.jpg",
+            "author": "VOA",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sean_Spicer.jpg"
+          }
         },
         {
           "name": "Lindsay Arnold",
@@ -2410,12 +2475,22 @@
         {
           "name": "James Van Der Beek",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "JamesVanDerBeekSept2013TIFF.jpg",
+            "author": "gdcgraphics",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:JamesVanDerBeekSept2013TIFF.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2429,12 +2504,22 @@
         {
           "name": "Lauren Alaina",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "2023_Independence_Day_celebration_on_MCB_Camp_Lejeune_(4)_(cropped).jpg",
+            "author": "Cpl. Antonino Mazzamuto",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_Independence_Day_celebration_on_MCB_Camp_Lejeune_(4)_(cropped).jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2448,7 +2533,12 @@
         {
           "name": "Ally Brooke",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Ally_Brooke_2017_(cropped).jpg",
+            "author": "Natanya Hansen",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ally_Brooke_2017_(cropped).jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -2467,12 +2557,22 @@
         {
           "name": "Kel Mitchell",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kel_Mitchell_at_MultiCon_2025.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kel_Mitchell_at_MultiCon_2025.jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2486,7 +2586,12 @@
         {
           "name": "Hannah Brown",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Hannah_Brown_2018.jpg",
+            "author": "United States House of Representatives - Office of Robert Aderholt",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hannah_Brown_2018.jpg"
+          }
         },
         {
           "name": "Alan Bersten",

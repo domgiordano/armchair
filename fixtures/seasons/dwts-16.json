@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -2147,7 +2152,12 @@
         {
           "name": "Dorothy Hamill",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Dorothy_Hamil_2001.jpg",
+            "author": "John Mathew Smith & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dorothy_Hamil_2001.jpg"
+          }
         },
         {
           "name": "Tristan MacManus",
@@ -2166,12 +2176,22 @@
         {
           "name": "Wynonna Judd",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Wynonna_Judd_is_performing.jpg",
+            "author": "Fred W. Baker III, US DoD",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wynonna_Judd_is_performing.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2185,12 +2205,22 @@
         {
           "name": "Lisa Vanderpump",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lisa_Vanderpump_2014.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lisa_Vanderpump_2014.jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2204,12 +2234,22 @@
         {
           "name": "D.L.  Hughley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "D._L._Hughley,_Robin_Roberts,_and_Doreen_Ringer-Ross,_May_2013_(cropped)x.jpg",
+            "author": "Peabody Awards",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:D._L._Hughley,_Robin_Roberts,_and_Doreen_Ringer-Ross,_May_2013_(cropped)x.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2223,7 +2263,12 @@
         {
           "name": "Victor Ortiz",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Victor_Ortiz.jpg",
+            "author": "DEWALT POWER TOOLS FIGHT NIGHT CLUB 2010",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Victor_Ortiz.jpg"
+          }
         },
         {
           "name": "Lindsay Arnold",
@@ -2242,12 +2287,22 @@
         {
           "name": "Andy Dick",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Andy_Dick_2012_Shankbone_2.JPG",
+            "author": "David Shankbone",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andy_Dick_2012_Shankbone_2.JPG"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2266,7 +2321,12 @@
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2285,7 +2345,12 @@
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2299,12 +2364,22 @@
         {
           "name": "Alexandra Raisman",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Aly_Raisman_Rio_2016b.jpg",
+            "author": "Agência Brasil Fotografias",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aly_Raisman_Rio_2016b.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2318,12 +2393,22 @@
         {
           "name": "Jacoby Jones",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jacoby_Jones_(16070179516).jpg",
+            "author": "Aberdeen Proving Ground",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jacoby_Jones_(16070179516).jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2337,7 +2422,12 @@
         {
           "name": "Zendaya",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Zendaya_2011.jpg",
+            "author": "Mingle MediaTV at https://www.flickr.com/photos/minglemediatv",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zendaya_2011.jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",
@@ -2356,12 +2446,22 @@
         {
           "name": "Kellie Pickler",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kellie_Pickler_Al_Asad_4.jpg",
+            "author": "Lance Cpl. Jacob Singsank",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kellie_Pickler_Al_Asad_4.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": null

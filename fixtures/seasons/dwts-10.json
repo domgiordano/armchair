@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -2055,12 +2060,22 @@
         {
           "name": "Shannen Doherty",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Shannen_Doherty_(cropped).jpg",
+            "author": "Wilson Cleveland",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shannen_Doherty_(cropped).jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2074,7 +2089,12 @@
         {
           "name": "Buzz Aldrin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Buzz_Aldrin.jpg",
+            "author": "NASA",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buzz_Aldrin.jpg"
+          }
         },
         {
           "name": "Ashly Costa",
@@ -2093,12 +2113,22 @@
         {
           "name": "Aiden Turner",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Aiden_Turner_Super_soap_weekend_2008_081.JPG",
+            "author": "Graytess",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aiden_Turner_Super_soap_weekend_2008_081.JPG"
+          }
         },
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2112,12 +2142,22 @@
         {
           "name": "Kate Gosselin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kate_Gosselin.jpg",
+            "author": "Kathy",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kate_Gosselin.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2131,12 +2171,22 @@
         {
           "name": "Jake Pavelka",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jake_Pavelka_Shirtless.png",
+            "author": "יהלום מלוטש",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jake_Pavelka_Shirtless.png"
+          }
         },
         {
           "name": "Chelsie Hightower",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "ChelsieHightowerApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2150,7 +2200,12 @@
         {
           "name": "Pamela Anderson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg",
+            "author": "Norman Wong",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg"
+          }
         },
         {
           "name": "Damian Whitewood",
@@ -2169,7 +2224,12 @@
         {
           "name": "Niecy Nash",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Niecy_Nash_2010.jpg",
+            "author": "Clorox Toilet Products",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Niecy_Nash_2010.jpg"
+          }
         },
         {
           "name": "Louis van Amstel",
@@ -2188,12 +2248,22 @@
         {
           "name": "Chad Ochocinco",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chad_Ochocinco_ESPNWeekend2010-014_(cropped).jpg",
+            "author": "Jeff Kern",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chad_Ochocinco_ESPNWeekend2010-014_(cropped).jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2207,12 +2277,22 @@
         {
           "name": "Erin Andrews",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Erin_Andrews_2012_Shankbone.JPG",
+            "author": "David Shankbone",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erin_Andrews_2012_Shankbone.JPG"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2226,7 +2306,12 @@
         {
           "name": "Evan Lysacek",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Evan_Lysacek_Podium_2009_Worlds.jpg",
+            "author": "David W. Carmichael",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evan_Lysacek_Podium_2009_Worlds.jpg"
+          }
         },
         {
           "name": "Anna Trebunskaya",
@@ -2245,12 +2330,22 @@
         {
           "name": "Nicole Scherzinger",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Nicole_Scherzinger_2012.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nicole_Scherzinger_2012.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": null
