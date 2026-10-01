@@ -64,6 +64,7 @@ describe("activeTab", () => {
     ["/join/", "Friends & Groups"],
     ["/friends/", "Friends & Groups"],
     ["/stats/", "Stats"],
+    ["/couples/", "Couples"],
   ])("%s lights %s", (path, label) => {
     expect(activeTab(path)?.label).toBe(label);
   });
@@ -88,6 +89,7 @@ describe("AppShell", () => {
       "Episodes",
       "Leaderboard",
       "Stats",
+      "Couples",
       "Friends & Groups",
       "Profile",
     ]);

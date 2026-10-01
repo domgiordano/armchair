@@ -31,6 +31,7 @@ export const TABS: Tab[] = [
   { href: "/episode/", label: "Episodes", match: ["/episode"] },
   { href: "/leaderboard/", label: "Leaderboard", match: ["/leaderboard"] },
   { href: "/stats/", label: "Stats", match: ["/stats"] },
+  { href: "/couples/", label: "Couples", match: ["/couples"] },
   { href: "/friends/", label: "Friends & Groups", match: ["/friends", "/groups", "/join"] },
   { href: "/profile/", label: "Profile", match: ["/profile"] },
 ];
