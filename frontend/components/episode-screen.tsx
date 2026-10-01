@@ -70,11 +70,9 @@ function EpisodePicker({ season }: EpisodePickerProps) {
       <CatchUp
         key={episode.ep}
         season={season.season}
-        tz={season.timezone}
         episodes={season.episodes}
         episode={episode}
-        now={now}
-        onFinishPrevious={(previous) => router.replace(withSeason(`/episode/?ep=${previous.ep}`, season.season))}
+        onCatchUp={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
       >
         <EpisodeView
           season={season}

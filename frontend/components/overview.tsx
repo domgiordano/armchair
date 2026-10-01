@@ -9,6 +9,7 @@ import { CoupleAvatars } from "@/components/headshot";
 import { LoadError } from "@/components/load-error";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
+import { SkipConfirm } from "@/components/skip-confirm";
 import {
   getLeaderboard,
   getOverview,
@@ -17,6 +18,8 @@ import {
   type Overview as OverviewData,
   type OverviewEpisode,
 } from "@/lib/api/overview";
+import { skipBefore } from "@/lib/api/show";
+import { skipTarget, unfinishedBefore } from "@/lib/show/catch-up";
 import { countdown, hero, showTime } from "@/lib/show/overview";
 import { formatAirDate } from "@/lib/show/schedule";
 import { seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
@@ -32,7 +35,10 @@ const EYEBROW = "text-xs font-semibold tracking-[0.2em] text-gold uppercase";
 const PANEL = "rounded-xl border border-silver/10 bg-ballroom/40 p-4 sm:p-5";
 const TEXT_LINK = `rounded-sm text-sm text-silver underline underline-offset-4 hover:text-pearl ${FOCUS}`;
 
-type Load<T> = { kind: "loading" } | { kind: "ready"; data: T } | { kind: "error"; message: string; retry: () => void };
+type Load<T> =
+  | { kind: "loading" }
+  | { kind: "ready"; data: T; reload: () => void }
+  | { kind: "error"; message: string; retry: () => void };
 
 function useLoad<T>(fetch: (season: string) => Promise<T>, season: string): Load<T> {
   const [load, setLoad] = useState<Load<T>>({ kind: "loading" });
@@ -41,7 +47,7 @@ function useLoad<T>(fetch: (season: string) => Promise<T>, season: string): Load
   useEffect(() => {
     let cancelled = false;
     fetch(season).then(
-      (data) => !cancelled && setLoad({ kind: "ready", data }),
+      (data) => !cancelled && setLoad({ kind: "ready", data, reload: () => setAttempt((n) => n + 1) }),
       (e: unknown) =>
         !cancelled &&
         setLoad({
@@ -68,7 +74,7 @@ export function Overview() {
 
   if (load.kind === "loading") return <OverviewSkeleton />;
   if (load.kind === "error") return <LoadError what="your overview" message={load.message} retry={load.retry} />;
-  return <OverviewView o={load.data} season={season} />;
+  return <OverviewView o={load.data} season={season} reload={load.reload} />;
 }
 
 function weekName(e: Pick<OverviewEpisode, "week" | "ep">, episodes: OverviewEpisode[]): string {
@@ -80,9 +86,10 @@ function weekName(e: Pick<OverviewEpisode, "week" | "ep">, episodes: OverviewEpi
 interface ViewProps {
   o: OverviewData;
   season: string;
+  reload: () => void;
 }
 
-function OverviewView({ o, season }: ViewProps) {
+function OverviewView({ o, season, reload }: ViewProps) {
   const couples = new Map(o.couples.map((c) => [c.id, c]));
   const judgeName = (id: string) => o.judges.find((j) => j.id === id)?.name ?? id;
   const fresh = o.me.scored === 0;
@@ -90,7 +97,7 @@ function OverviewView({ o, season }: ViewProps) {
 
   return (
     <div className="flex flex-col gap-8 pb-8">
-      <Hero o={o} season={season} />
+      <Hero o={o} season={season} reload={reload} />
 
       <section aria-labelledby="your-season" className="flex flex-col gap-3">
         <h2 id="your-season" className="text-lg font-semibold text-pearl">
@@ -177,9 +184,10 @@ function OverviewView({ o, season }: ViewProps) {
   );
 }
 
-function Hero({ o, season }: ViewProps) {
+function Hero({ o, season, reload }: ViewProps) {
   const now = useNow(1000);
   const h = hero(o, now);
+  const [skipping, setSkipping] = useState(false);
   const title = seasonLabel(o.season);
 
   let eyebrow = `Dancing with the Stars · ${title}`;
@@ -204,15 +212,57 @@ function Hero({ o, season }: ViewProps) {
   } else if (h.kind === "catchUp") {
     const e = h.episode;
     const where = `${weekName(e, o.episodes)}${e.theme ? `, ${e.theme}` : ""}`;
+    const latest = o.episodes.findLast((x) => x.aired) ?? e;
+    const behind = unfinishedBefore(o, latest.ep);
+    const count = `${behind.length} earlier ${behind.length === 1 ? "episode" : "episodes"}`;
+    const latestName = weekName(latest, o.episodes);
+    const over = o.next === null;
     headline = h.fresh ? "grab your paddle." : "catch up.";
-    body = h.fresh
-      ? `${o.progress.aired} ${o.progress.aired === 1 ? "episode has" : "episodes have"} aired. Start with ${where}: score every dance blind, then see how the judges did.`
-      : `${h.waiting} ${h.waiting === 1 ? "episode" : "episodes"} left to finish, starting with ${where}.`;
-    cta = (
-      <Link href={withSeason(`/episode/?ep=${e.ep}`, season)} className={GOLD}>
-        {h.fresh ? `Start with ${weekName(e, o.episodes)}` : "Catch up"}
+    body = over
+      ? "Browse every score and result now, or score it blind from the start, week by week."
+      : h.fresh
+        ? `${o.progress.aired} ${o.progress.aired === 1 ? "episode has" : "episodes have"} aired. Start with ${where}: score every dance blind, then see how the judges did.`
+        : `${h.waiting} ${h.waiting === 1 ? "episode" : "episodes"} left to finish, starting with ${where}.`;
+    const start = (label: string, className: string) => (
+      <Link href={withSeason(`/episode/?ep=${e.ep}`, season)} className={className}>
+        {label}
       </Link>
     );
+    if (skipping) {
+      cta = (
+        <SkipConfirm
+          title={over ? "Browse the whole season?" : `Skip ${count}?`}
+          scope={over ? "this season" : `before ${latestName}`}
+          confirmLabel={over ? "Browse the season" : `Skip to ${latestName}`}
+          onConfirm={async () => {
+            await skipBefore(season, skipTarget(o, latest.ep));
+            setSkipping(false);
+            reload();
+          }}
+          onCancel={() => setSkipping(false)}
+        />
+      );
+    } else if (over) {
+      cta = (
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => setSkipping(true)} className={GOLD}>
+            Just browse
+          </button>
+          {start("Score from the start", OUTLINE)}
+        </div>
+      );
+    } else if (behind.length > 0) {
+      cta = (
+        <div className="flex flex-wrap gap-2">
+          {start(`Catch up on ${count}`, GOLD)}
+          <button type="button" onClick={() => setSkipping(true)} className={OUTLINE}>
+            Skip to {latestName}
+          </button>
+        </div>
+      );
+    } else {
+      cta = start(h.fresh ? `Start with ${weekName(e, o.episodes)}` : "Catch up", GOLD);
+    }
   } else if (h.kind === "upNext") {
     headline = "all caught up.";
     body = "Every dance so far has your paddle on it. The next episode opens for scoring at showtime.";

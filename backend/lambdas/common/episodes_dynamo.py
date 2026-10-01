@@ -8,6 +8,7 @@ Nothing here decides visibility: callers pass what they read to common/gate.py.
 from __future__ import annotations
 
 import re
+import time
 
 from botocore.exceptions import ClientError
 
@@ -16,6 +17,9 @@ from lambdas.common.dynamo import query_all, resource, table
 
 SEASON = re.compile(r"([a-z]+)-(\d{1,3})")
 EP = re.compile(r"\d{1,2}")
+# TransactWriteItems takes at most 100 items.
+CHUNK = 100
+ATTEMPTS = 4
 
 
 def season_ref(source: dict) -> tuple[str, int]:
@@ -96,3 +100,51 @@ def create_score(item: dict, also: list[dict] | None = None) -> dict:
         # The row is absent, so something in `also` failed its condition.
         raise RuntimeError(f"score write for {item['sk']} cancelled with no row stored")
     return stored
+
+
+def create_scores(items: list[dict]) -> list[dict]:
+    """
+    create_score for many rows: conditional puts, CHUNK to a transaction. A row
+    already stored when its transaction runs is dropped from the chunk and the
+    rest retried, so an answer that races in stands. Returns the rows written.
+    BatchWriteItem can't carry a condition, which is why this isn't one.
+    """
+    client = resource().meta.client
+    name = table("SCORES_TABLE").name
+    written = []
+    for i in range(0, len(items), CHUNK):
+        chunk = items[i : i + CHUNK]
+        for attempt in range(ATTEMPTS):
+            if not chunk:
+                break
+            try:
+                client.transact_write_items(
+                    TransactItems=[
+                        {
+                            "Put": {
+                                "TableName": name,
+                                "Item": item,
+                                "ConditionExpression": "attribute_not_exists(sk)",
+                            }
+                        }
+                        for item in chunk
+                    ]
+                )
+                written += chunk
+                break
+            except ClientError as e:
+                if e.response["Error"]["Code"] != "TransactionCanceledException":
+                    raise
+                reasons = e.response.get("CancellationReasons") or []
+                taken = {
+                    j for j, r in enumerate(reasons) if r.get("Code") == "ConditionalCheckFailed"
+                }
+                chunk = [item for j, item in enumerate(chunk) if j not in taken]
+                # Nothing already stored: a conflicting transaction or throttling, so back off.
+                if not taken:
+                    time.sleep(0.1 * 2**attempt)
+        else:
+            raise RuntimeError(
+                f"{len(chunk)} score writes still cancelled after {ATTEMPTS} attempts"
+            )
+    return written

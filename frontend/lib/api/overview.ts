@@ -5,9 +5,10 @@ export interface OverviewEpisode {
   ep: number;
   week: number;
   theme: string | null;
-  airDate: string;
-  startsAt: string;
-  endsAt: string;
+  // Null on a past season, whose episodes have all aired.
+  airDate: string | null;
+  startsAt: string | null;
+  endsAt: string | null;
   aired: boolean;
   // Only on aired episodes.
   rateable?: number;
@@ -48,7 +49,7 @@ export interface Overview {
     closestJudge: { id: string; name: string | null; mae: number } | null;
     streak: number;
   };
-  next: Pick<OverviewEpisode, "ep" | "week" | "theme" | "airDate" | "startsAt"> | null;
+  next: { ep: number; week: number; theme: string | null; airDate: string; startsAt: string } | null;
   episodes: OverviewEpisode[];
   reveals: Reveal[];
   couples: CoupleStanding[];

@@ -13,8 +13,9 @@ export type Hero =
  * than the fetch's `aired` flag, so the hero turns live at showtime without a reload.
  */
 export function hero(o: Overview, now: number): Hero {
-  const started = o.episodes.filter((e) => Date.parse(e.startsAt) <= now);
-  const live = started.find((e) => now < Date.parse(e.endsAt) + LIVE_TAIL_MS && !e.complete);
+  // A past season's episodes have no times, only `aired`.
+  const started = o.episodes.filter((e) => (e.startsAt === null ? e.aired : Date.parse(e.startsAt) <= now));
+  const live = started.find((e) => e.endsAt !== null && now < Date.parse(e.endsAt) + LIVE_TAIL_MS && !e.complete);
   if (live) return { kind: "live", episode: live };
   const open = started.filter((e) => !e.complete);
   if (open.length > 0) {

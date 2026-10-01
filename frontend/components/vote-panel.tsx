@@ -27,7 +27,7 @@ interface VotePanelProps {
 /** ABC's SMS vote on the episode's air date. Nothing on any other day. */
 export function VotePanel({ episode, tz, couples, now }: VotePanelProps) {
   const phase = votePhase(episode, tz, now);
-  if (phase === null) return null;
+  if (phase === null || episode.start === null) return null;
 
   return (
     <section aria-labelledby="vote-heading" className="flex flex-col gap-2">
