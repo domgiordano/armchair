@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { SignedIn } from "@/components/signed-in";
 import { PageHeader } from "@/components/ui/page-header";
 import { PageLoader } from "@/components/disco-loader";
-import { joinGroup } from "@/lib/api/groups";
+import { groupHref, joinGroup } from "@/lib/api/groups";
 import { saveGroup } from "@/lib/show/group-filter";
 import { SECONDARY } from "@/lib/ui";
 
@@ -19,7 +19,7 @@ export function JoinScreen() {
   );
 }
 
-/** Joins by the link's code, then opens the scorecard filtered to that group. */
+/** Joins by the link's code, then opens the group's page; the scorecard is filtered to it from then on. */
 function Joiner() {
   const router = useRouter();
   const code = useSearchParams().get("code");
@@ -37,7 +37,7 @@ function Joiner() {
           return;
         }
         saveGroup(group.id);
-        router.replace("/episode/");
+        router.replace(groupHref(group.id));
       },
       (e: unknown) => !cancelled && setError(e instanceof Error ? e.message : "Request failed"),
     );
@@ -54,7 +54,7 @@ function Joiner() {
           Asked to join <span className="font-semibold text-pearl">{pending}</span>. You&apos;ll get a notification when the owner
           lets you in.
         </p>
-        <Link href="/friends/?tab=groups" className={SECONDARY}>
+        <Link href="/profile/?sheet=groups" className={SECONDARY}>
           Your groups
         </Link>
       </div>

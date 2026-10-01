@@ -60,9 +60,6 @@ describe("activeTab", () => {
     ["/", "Overview"],
     ["/episode/", "Episodes"],
     ["/episode", "Episodes"],
-    ["/groups/", "Friends & Groups"],
-    ["/join/", "Friends & Groups"],
-    ["/friends/", "Friends & Groups"],
     ["/stats/", "Stats"],
     ["/couples/", "Couples"],
     ["/discover/", "Discover"],
@@ -75,18 +72,20 @@ describe("activeTab", () => {
     expect(activeTab("/notifications/")).toBeUndefined();
     expect(activeTab("/credits/")).toBeUndefined();
     expect(activeTab("/profile/")).toBeUndefined();
+    expect(activeTab("/groups/")).toBeUndefined();
+    expect(activeTab("/friends/")).toBeUndefined();
   });
 });
 
 describe("AppShell", () => {
-  it("marks the current tab and keeps groups under Friends & Groups", async () => {
-    nav.pathname = "/groups/";
+  it("marks the current tab, with friends and groups on profiles rather than a tab", async () => {
+    nav.pathname = "/discover/";
     renderShell();
     await screen.findByRole("img", { name: "Ada Lovelace" });
 
     const current = tabs().getByRole("link", { current: "page" });
-    expect(current.textContent).toBe("Friends & Groups");
-    expect(href(current)).toBe("/friends");
+    expect(current.textContent).toBe("Discover");
+    expect(href(current)).toBe("/discover");
     expect(tabs().getAllByRole("link").map((a) => a.textContent)).toEqual([
       "Overview",
       "Episodes",
@@ -94,7 +93,6 @@ describe("AppShell", () => {
       "Stats",
       "Couples",
       "Discover",
-      "Friends & Groups",
     ]);
     expect(screen.getByRole("main", { name: "Groups" }).textContent).toBe("page body");
   });
