@@ -25,7 +25,8 @@ CARRIE, DEREK, BRUNO = PANEL
 X, Y = "tyler-cameron", "amber-glenn"
 # Panel means: X 8, Y 6.
 VALUES = {X: (7, 8, 9), Y: (6, 6, 6)}
-DANCES = [(ep, cid) for ep in range(1, 6) for cid in (X, Y)]
+# From episode 3: the premiere split X and Y across its two nights.
+DANCES = [(ep, cid) for ep in range(3, 8) for cid in (X, Y)]
 ROW_FIELDS = {"rank", "sub", "name", "picture", "avatarKind", "count", "mae", "closestJudge"}
 
 
@@ -151,9 +152,9 @@ def test_no_per_dance_value_leaves(show):
 
 
 def test_a_forfeit_or_a_retry_never_counts(show):
-    answer(A, X, 1, value=8)
-    answer(A, X, 1, value=8)
-    answer(A, Y, 1, forfeit=True)
+    answer(A, X, 3, value=8)
+    answer(A, X, 3, value=8)
+    answer(A, Y, 3, forfeit=True)
     assert board_row(show, A)["n"] == 1
 
 

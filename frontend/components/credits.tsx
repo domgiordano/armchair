@@ -1,10 +1,10 @@
 "use client";
 
+import { PageLoader } from "@/components/disco-loader";
 import { ErrorState } from "@/components/ui/states";
 import { Headshot } from "@/components/headshot";
 import { SignedIn } from "@/components/signed-in";
 import { PageHeader } from "@/components/ui/page-header";
-import { SkeletonList } from "@/components/ui/skeleton";
 import type { Headshot as Shot, Person, Season } from "@/lib/api/show";
 import { useSeason } from "@/lib/show/use-season";
 import { TEXT_LINK } from "@/lib/ui";
@@ -28,7 +28,7 @@ export function credited(season: Season): Credited[] {
 
 function CreditList() {
   const load = useSeason();
-  if (load.kind === "loading") return <SkeletonList label="Loading credits" rows={6} row="h-12" avatar />;
+  if (load.kind === "loading") return <PageLoader label="Loading credits" />;
   if (load.kind === "error") return <ErrorState what="credits" message={load.message} retry={load.retry} />;
 
   return (

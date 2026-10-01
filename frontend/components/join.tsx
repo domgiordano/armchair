@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import { SignedIn } from "@/components/signed-in";
 import { PageHeader } from "@/components/ui/page-header";
-import { Spinner } from "@/components/ui/spinner";
+import { PageLoader } from "@/components/disco-loader";
 import { joinGroup } from "@/lib/api/groups";
 import { saveGroup } from "@/lib/show/group-filter";
 import { SECONDARY } from "@/lib/ui";
@@ -62,10 +62,7 @@ function Joiner() {
   }
   if (code && error === null) {
     return (
-      <p role="status" className="flex items-center gap-2 text-silver-dim">
-        <Spinner />
-        Joining the group...
-      </p>
+      <PageLoader label="Joining the group" />
     );
   }
   return (

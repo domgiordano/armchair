@@ -4,21 +4,28 @@ import type { ReactNode } from "react";
 
 import { AppShell } from "@/components/app-shell";
 import { Brand } from "@/components/brand";
-import { Spinner } from "@/components/ui/spinner";
+import { PageLoader } from "@/components/disco-loader";
 import { rememberReturn } from "@/lib/auth/return-to";
 import { useAuth } from "@/lib/auth/use-auth";
 import { DISPLAY, PRIMARY } from "@/lib/ui";
 
 interface SignedInProps {
   title: string;
+  wide?: boolean;
   children: ReactNode;
 }
 
 /** The app shell once signed in, a sign-in wall before. UX only: the API is what refuses a missing token. */
-export function SignedIn({ title, children }: SignedInProps) {
+export function SignedIn({ title, wide = false, children }: SignedInProps) {
   const { status, signInWithGoogle } = useAuth();
 
-  if (status === "signedIn") return <AppShell title={title}>{children}</AppShell>;
+  if (status === "signedIn") {
+    return (
+      <AppShell title={title} wide={wide}>
+        {children}
+      </AppShell>
+    );
+  }
 
   return (
     <div className="relative isolate mx-auto flex min-h-dvh max-w-md flex-col">
@@ -31,12 +38,7 @@ export function SignedIn({ title, children }: SignedInProps) {
         <span className="text-sm text-silver-dim">{title}</span>
       </header>
       <main aria-live="polite" className="flex flex-1 flex-col justify-center gap-4 px-6 py-10">
-        {status === "loading" && (
-          <p role="status" className="flex items-center gap-2 self-center text-silver-dim">
-            <Spinner />
-            Loading...
-          </p>
-        )}
+        {status === "loading" && <PageLoader />}
         {status === "unconfigured" && <p className="text-silver-dim">Sign-in is not configured in this build.</p>}
         {status === "signedOut" && (
           <div className="flex flex-col gap-5 rounded-2xl border border-gold/25 bg-ballroom/60 p-6 shadow-[0_24px_80px_-32px_rgb(232_194_104/0.35)] animate-pop-in">

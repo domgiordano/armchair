@@ -2,7 +2,7 @@
    from data-playing (the 3D scene's first drawn frame, or mount for the 2D stage):
    3D: 0-1.5 s the ball turns, sparkles scatter · 1.3-2.5 s tilt down to the couples
    2.6-3.3 s crane back over the judges' desk · 2.9 s spots on the desk
-   2D: 0-1.3 s ball drops, sparkles scatter · 1.6 s ball lifts away · 0.9-3.7 s beams sweep
+   2D: 0-1.3 s ball turns, sparkles scatter · 1.3-2.9 s ball lifts away · 0.9-3.7 s beams sweep
    Both: 3.2 / 3.55 / 3.9 s cards 9, 10, 10 with the total ticking to 29 · 4.5 s wordmark
    5.3 s fade out */
 
@@ -12,7 +12,21 @@
   z-index: 50;
   overflow: hidden;
   isolation: isolate;
+  container-type: size;
   background: radial-gradient(ellipse 90% 60% at 50% 30%, #0c1850 0%, #050c30 45%, var(--color-ink) 90%);
+  /* The ball's diameter where the poster (object-fit: cover, ball dead centre) puts it. */
+  --ball: max(calc(100cqw * 430 / 1600), calc(100cqh * 430 / 1000));
+}
+
+@media (orientation: portrait) {
+  .scene {
+    --ball: max(calc(100cqw * 456 / 780), calc(100cqh * 456 / 1688));
+  }
+}
+
+/* The 3D scene's room: near-black navy, a warm wash on the floor. */
+.scene[data-stage="2d"] {
+  background: radial-gradient(ellipse 70% 40% at 50% 100%, rgb(232 194 104 / 0.14), transparent 70%), #030718;
 }
 
 .scene[data-playing] {
@@ -25,16 +39,28 @@
   height: 34vh;
   border-top: 1px solid rgb(213 219 234 / 0.12);
   background:
-    radial-gradient(ellipse 55% 70% at 50% 0%, rgb(232 194 104 / 0.22), transparent 70%),
-    linear-gradient(to bottom, rgb(10 20 64 / 0.9), var(--color-ink));
+    radial-gradient(ellipse 55% 70% at 50% 0%, rgb(232 194 104 / 0.12), transparent 70%),
+    linear-gradient(to bottom, rgb(6 12 40 / 0.9), #030718);
   animation: pool 1400ms 700ms ease-out both;
+}
+
+/* The string of bulbs just under the ball, spaced as in the scene. */
+.bulbs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + var(--ball) * 0.5);
+  height: 16px;
+  translate: 0 -50%;
+  background: radial-gradient(circle, #fff6dc 0 2px, rgb(247 226 164 / 0.45) 3px, transparent 7px) center / calc(var(--ball) * 0.205)
+    16px repeat-x;
 }
 
 /* Everything hangs from the mirror ball's resting centre. */
 .rig {
   position: absolute;
   left: 50%;
-  top: 30vh;
+  top: 50%;
   width: 0;
   height: 0;
 }
@@ -43,12 +69,10 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: clamp(96px, 24vmin, 200px);
+  width: var(--ball);
   aspect-ratio: 1;
   translate: -50% -50%;
-  animation:
-    drop 1300ms cubic-bezier(0.2, 0.9, 0.3, 1.08) both,
-    lift 800ms 1600ms cubic-bezier(0.5, 0, 0.8, 0.4) forwards;
+  animation: lift 1600ms 1300ms cubic-bezier(0.5, 0, 0.7, 0.6) forwards;
 }
 
 .chain {
@@ -58,19 +82,43 @@
   width: 2px;
   height: 60vh;
   translate: -50% 0;
-  background: linear-gradient(to top, #aab3c9, rgb(170 179 201 / 0.2));
+  background: #39405a;
 }
 
+/* The 3D scene's ball, cut from its opening frame. */
 .sphere {
   display: block;
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 28px rgb(213 219 234 / 0.35));
+  background: url("/intro/ball.webp") center / contain no-repeat;
+  filter: drop-shadow(0 0 24px rgb(150 165 230 / 0.3));
 }
 
-.facet {
-  animation: glint 900ms ease-in-out infinite alternate;
-  opacity: 0.1;
+/* Over the poster's ball, which sits dead centre at --ball across. */
+.still {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--ball);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+}
+
+.glints {
+  position: absolute;
+  inset: 0;
+  filter: drop-shadow(0 0 5px rgb(255 248 230 / 0.9));
+}
+
+.glint {
+  position: absolute;
+  width: calc(var(--ball) * 0.09 * var(--size));
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: #fffaf0;
+  clip-path: polygon(50% 0, 57% 43%, 100% 50%, 57% 57%, 50% 100%, 43% 57%, 0 50%, 43% 43%);
+  opacity: 0;
+  animation: twinkle 2200ms ease-in-out infinite;
 }
 
 .beam {
@@ -86,6 +134,25 @@
   mix-blend-mode: screen;
   opacity: 0;
   animation: sweep 2800ms 900ms ease-in-out both;
+}
+
+/* The scene's opening key lights, gold from the left and silver from the right, gone as the ball lifts. */
+.cone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--ball) * 0.32);
+  height: 150cqh;
+  translate: -50% 0;
+  transform: rotate(var(--tilt));
+  transform-origin: 50% 0;
+  background: linear-gradient(to bottom, rgb(190 200 235 / 0.5), rgb(150 165 220 / 0.12) 60%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 35%, #000 65%, transparent);
+  animation: fade-out 900ms 1400ms ease-in forwards;
+}
+
+.cone.gold {
+  background: linear-gradient(to bottom, rgb(232 194 104 / 0.55), rgb(232 194 104 / 0.14) 60%, transparent);
 }
 
 .beam.gold {
@@ -276,29 +343,27 @@
   outline-offset: 2px;
 }
 
-@keyframes drop {
-  from {
-    transform: translateY(-70vh);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
 @keyframes lift {
   from {
     transform: translateY(0);
     opacity: 1;
   }
   to {
-    transform: translateY(-70vh);
-    opacity: 0.4;
+    transform: translateY(-85cqh);
+    opacity: 0.6;
   }
 }
 
-@keyframes glint {
-  to {
-    opacity: 0.95;
+@keyframes twinkle {
+  0%,
+  60%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
   }
 }
 

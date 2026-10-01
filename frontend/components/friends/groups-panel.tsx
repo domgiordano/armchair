@@ -15,6 +15,7 @@ import {
   SECTION_TITLE,
   SMALL_PRIMARY,
   SMALL_SECONDARY,
+  SPLIT,
   displayName,
   useAction,
   useLoad,
@@ -22,7 +23,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Input, Toggle } from "@/components/ui/field";
 import { SkeletonList } from "@/components/ui/skeleton";
-import { ErrorState } from "@/components/ui/states";
+import { EmptyState, ErrorState } from "@/components/ui/states";
 import { useToast } from "@/components/ui/toast";
 import {
   createGroup,
@@ -59,57 +60,72 @@ export function GroupsPanel({ friends }: { friends: Contact[] }) {
   if (groups.kind === "error") return <ErrorState what="your groups" message={groups.message} retry={reload} />;
 
   const group = groups.value.find((g) => g.id === selected);
-  if (group) {
-    return (
-      <GroupDetailView
-        group={group}
-        me={me.kind === "ready" ? me.value : null}
-        friends={friends}
-        reload={reload}
-        back={() => open(null)}
-      />
-    );
-  }
+  // Phone: the list or one group. Desktop: the list stays beside the open group.
   return (
-    <>
-      <p className="text-sm text-silver-dim">
-        A group narrows every scorecard and leaderboard to the people in it, in any Armchair Judge show.
-      </p>
-      <NewGroup onCreated={(id) => (reload(), open(id))} />
-      {groups.value.length === 0 ? (
-        <Empty>You&apos;re not in any groups yet.</Empty>
-      ) : (
-        <ul className="flex flex-col gap-2">
-          {groups.value.map((g) => (
-            <li key={g.id}>
-              <button
-                type="button"
-                onClick={() => open(g.id)}
-                className={`group flex w-full items-center gap-3 rounded-xl border border-silver/10 bg-ballroom/45 p-3 text-left transition-colors hover:border-gold/35 hover:bg-ballroom/70 active:bg-ballroom ${FOCUS}`}
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="truncate font-semibold text-pearl">{g.name}</p>
-                  <p className="text-xs text-silver-dim">
-                    {g.members.length} {g.members.length === 1 ? "member" : "members"}
-                    {g.requests.length > 0 && (
-                      <span className="text-brand-magenta"> · {g.requests.length} waiting</span>
-                    )}
-                  </p>
-                </div>
-                <span className="flex -space-x-2" aria-hidden="true">
-                  {g.members.slice(0, 4).map((m) => (
-                    <span key={m.sub} className="rounded-full ring-2 ring-ballroom">
-                      <Avatar name={displayName(m)} email="" picture={m.picture} />
+    <div className={`${SPLIT} gap-6`}>
+      <div className={`flex-col gap-6 ${group ? "hidden lg:flex" : "flex"}`}>
+        <p className="text-sm text-silver-dim">
+          A group narrows every scorecard and leaderboard to the people in it, in any Armchair Judge show.
+        </p>
+        <NewGroup onCreated={(id) => (reload(), open(id))} />
+        {groups.value.length === 0 ? (
+          <Empty>You&apos;re not in any groups yet.</Empty>
+        ) : (
+          <ul className="flex flex-col gap-2">
+            {groups.value.map((g) => {
+              const current = g.id === group?.id;
+              return (
+                <li key={g.id}>
+                  <button
+                    type="button"
+                    aria-current={current ? "true" : undefined}
+                    onClick={() => open(g.id)}
+                    className={`group flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors hover:border-gold/35 hover:bg-ballroom/70 active:bg-ballroom ${FOCUS} ${
+                      current ? "border-gold/50 bg-ballroom" : "border-silver/10 bg-ballroom/45"
+                    }`}
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate font-semibold text-pearl">{g.name}</p>
+                      <p className="text-xs text-silver-dim">
+                        {g.members.length} {g.members.length === 1 ? "member" : "members"}
+                        {g.requests.length > 0 && (
+                          <span className="text-brand-magenta"> · {g.requests.length} waiting</span>
+                        )}
+                      </p>
+                    </div>
+                    <span className="flex -space-x-2" aria-hidden="true">
+                      {g.members.slice(0, 4).map((m) => (
+                        <span key={m.sub} className="rounded-full ring-2 ring-ballroom">
+                          <Avatar name={displayName(m)} email="" picture={m.picture} />
+                        </span>
+                      ))}
                     </span>
-                  ))}
-                </span>
-                <Chevron />
-              </button>
-            </li>
-          ))}
-        </ul>
+                    <Chevron />
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+      {group ? (
+        <GroupDetailView
+          group={group}
+          me={me.kind === "ready" ? me.value : null}
+          friends={friends}
+          reload={reload}
+          back={() => open(null)}
+        />
+      ) : (
+        <div className="hidden lg:block">
+          <EmptyState>
+            {groups.value.length === 0
+              ? "Start a group and it opens here."
+              : "Pick a group to see its members, invite friends and share its link."}
+          </EmptyState>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
@@ -167,9 +183,12 @@ function GroupDetailView({
   const change = (name: string, fn: () => Promise<unknown>) => act.run(name, () => fn().then(reload));
 
   return (
-    <article aria-labelledby="group-name" className="flex flex-col gap-6">
+    <article
+      aria-labelledby="group-name"
+      className="flex flex-col gap-6 lg:rounded-xl lg:border lg:border-silver/10 lg:bg-ballroom/45 lg:p-6"
+    >
       <div className="flex flex-col gap-2">
-        <button type="button" onClick={back} className={`${QUIET} -ml-3 self-start`}>
+        <button type="button" onClick={back} className={`${QUIET} -ml-3 self-start lg:hidden`}>
           <Chevron flip /> All groups
         </button>
         <div className="flex items-center justify-between gap-3">

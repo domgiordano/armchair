@@ -13,6 +13,8 @@ export const SMALL_PRIMARY = button("primary", "sm");
 export const SMALL_SECONDARY = button("secondary", "sm");
 export const QUIET = button("ghost", "sm");
 export const SECTION_TITLE = `${EYEBROW} pb-1`;
+// Friends and Groups tabs on desktop: tools or the list on the left, the main list or detail on the right.
+export const SPLIT = "grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-10";
 
 export const displayName = (p: Person) => p.name ?? "Someone";
 

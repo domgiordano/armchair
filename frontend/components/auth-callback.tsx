@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { Brand } from "@/components/brand";
-import { Spinner } from "@/components/ui/spinner";
+import { DiscoLoader } from "@/components/disco-loader";
 import { takeReturn } from "@/lib/auth/return-to";
 import { useAuth } from "@/lib/auth/use-auth";
 import { SECONDARY } from "@/lib/ui";
@@ -59,10 +59,9 @@ export function AuthCallback() {
   }
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-6 px-6">
-      <Brand />
-      <p role="status" className="flex items-center gap-2 text-silver-dim">
-        <Spinner />
+    <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-4 px-6">
+      <DiscoLoader size="lg" label="Signing you in" />
+      <p aria-hidden="true" className="text-silver-dim">
         Signing you in...
       </p>
     </main>

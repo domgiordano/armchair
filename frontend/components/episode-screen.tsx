@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
 import { CatchUp } from "@/components/catch-up";
+import { PageLoader } from "@/components/disco-loader";
 import { GroupPicker } from "@/components/group-picker";
 import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
@@ -25,7 +26,7 @@ import { TEXT_LINK } from "@/lib/ui";
 
 export function EpisodeScreen() {
   return (
-    <SignedIn title="Scorecard">
+    <SignedIn title="Scorecard" wide>
       <SeasonLoader />
     </SignedIn>
   );
@@ -33,7 +34,7 @@ export function EpisodeScreen() {
 
 function SeasonLoader() {
   const load = useSeason();
-  if (load.kind === "loading") return <EpisodeSkeleton label="Loading the season" controls />;
+  if (load.kind === "loading") return <PageLoader label="Loading the season" />;
   if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
   return <EpisodePicker season={load.season} />;
 }
@@ -53,17 +54,19 @@ function EpisodePicker({ season }: EpisodePickerProps) {
 
   return (
     <>
-      <Select
-        label="Episode"
-        value={String(episode.ep)}
-        options={season.episodes.map((e) => ({
-          value: String(e.ep),
-          label: [episodeLabel(e, season.episodes), e.theme].filter(Boolean).join(" · "),
-          detail: formatAirDate(e.airDate),
-        }))}
-        onChange={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
-      />
-      <GroupPicker {...filter} />
+      <div className="grid gap-3 md:grid-cols-2 md:items-end">
+        <Select
+          label="Episode"
+          value={String(episode.ep)}
+          options={season.episodes.map((e) => ({
+            value: String(e.ep),
+            label: [episodeLabel(e, season.episodes), e.theme].filter(Boolean).join(" · "),
+            detail: formatAirDate(e.airDate),
+          }))}
+          onChange={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
+        />
+        <GroupPicker {...filter} />
+      </div>
       <CatchUp
         key={episode.ep}
         season={season.season}
@@ -81,7 +84,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
           members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
         />
       </CatchUp>
-      <div className="flex gap-6 border-t border-silver/10 pt-2">
+      <div className="flex flex-wrap gap-x-6 border-t border-silver/10 pt-2">
         <Link href="/stats/" className={`${TEXT_LINK} inline-flex min-h-11 items-center`}>
           Your accuracy
         </Link>
@@ -183,7 +186,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
       {data.performances.length === 0 ? (
         <EmptyState title="No dances yet">Performances appear here once the running order is in.</EmptyState>
       ) : (
-        <ul className="flex flex-col gap-3">
+        <ul className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {data.performances.map((card) => (
             <li key={card.key}>
               <PerformanceCard
@@ -203,11 +206,10 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
   );
 }
 
-function EpisodeSkeleton({ label, controls = false }: { label: string; controls?: boolean }) {
+function EpisodeSkeleton({ label }: { label: string }) {
   return (
     <div role="status" className="flex flex-col gap-4">
       <span className="sr-only">{label}...</span>
-      {controls && <Skeleton className="h-11" />}
       <div className="flex flex-col gap-2 pt-2">
         <Skeleton className="h-3 w-24" />
         <Skeleton className="h-7 w-48" />
