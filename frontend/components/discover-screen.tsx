@@ -165,7 +165,7 @@ function YourPeople({ people }: { people: People }) {
           <EmptyState
             compact
             action={
-              <Link href="/friends/" className={TEXT_LINK}>
+              <Link href="/profile/?sheet=friends" className={TEXT_LINK}>
                 Find friends
               </Link>
             }

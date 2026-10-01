@@ -56,5 +56,7 @@ export const deleteGroup = (group: string) => post<{ ok: true }>("/groups/delete
 
 export const leaveGroup = (group: string) => post<{ ok: true }>("/groups/leave", { group });
 
+export const groupHref = (id: string) => `/groups/?id=${encodeURIComponent(id)}`;
+
 export const inviteLink = (code: string) =>
   `${window.location.origin}/join/?code=${encodeURIComponent(code)}`;

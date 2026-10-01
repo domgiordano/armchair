@@ -25,7 +25,7 @@ export const HUB_URL = "https://armchairjudge.com";
 interface Tab {
   href: string;
   label: string;
-  // Path prefixes that light this tab up; /groups/ and /join/ live under Friends & Groups.
+  // Path prefixes that light this tab up.
   match: string[];
 }
 
@@ -36,7 +36,6 @@ export const TABS: Tab[] = [
   { href: "/stats/", label: "Stats", match: ["/stats"] },
   { href: "/couples/", label: "Couples", match: ["/couples"] },
   { href: "/discover/", label: "Discover", match: ["/discover", "/people"] },
-  { href: "/friends/", label: "Friends & Groups", match: ["/friends", "/groups", "/join"] },
 ];
 
 export function activeTab(pathname: string): Tab | undefined {
