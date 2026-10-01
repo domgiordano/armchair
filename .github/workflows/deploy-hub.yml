@@ -21,7 +21,7 @@ jobs:
 
   deploy:
     needs: wait-for-terraform
-    uses: Xomware/github-actions/.github/workflows/deploy-frontend-s3.yml@feature/nextjs-upload
+    uses: Xomware/github-actions/.github/workflows/deploy-frontend-s3.yml@v1
     with:
       app: armchair
       role-key: AWS_DEPLOY_ROLE_ARN
