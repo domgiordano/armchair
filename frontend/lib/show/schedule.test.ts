@@ -80,3 +80,13 @@ describe("labels", () => {
     expect(formatAirDate("2026-10-13")).toBe("Tue, Oct 13");
   });
 });
+
+describe("an untimed past-season episode", () => {
+  const past: Episode = { ep: 1, week: 1, airDate: null, start: null, end: null, theme: null };
+
+  it("has aired, is never live, and has no date to show", () => {
+    expect(hasAired(past, TZ, 0)).toBe(true);
+    expect(isLive(past, TZ, at("2026-09-16T01:00:00Z"))).toBe(false);
+    expect(formatAirDate(null)).toBeNull();
+  });
+});

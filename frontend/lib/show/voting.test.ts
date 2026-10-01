@@ -111,3 +111,10 @@ describe("vote tally storage", () => {
     }
   });
 });
+
+describe("votePhase on an untimed past-season episode", () => {
+  it("is null: there is no vote to show", () => {
+    const past: Episode = { ep: 1, week: 1, airDate: "2025-09-16", start: null, end: null, theme: null };
+    expect(votePhase(past, ET, new Date("2025-09-16T20:30:00-04:00").getTime())).toBeNull();
+  });
+});

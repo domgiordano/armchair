@@ -52,6 +52,14 @@ describe("hero", () => {
     expect(hero(overview([e2, e3]), at("2026-09-25T00:00:00Z"))).toMatchObject({ kind: "catchUp", fresh: true });
   });
 
+  it("takes a past season's untimed episodes as aired and never live", () => {
+    const past = (n: number, complete: boolean) =>
+      ep(n, "2026-09-16T00:00:00Z", { airDate: null, startsAt: null, endsAt: null, aired: true, complete });
+    const o = overview([past(1, true), past(2, false)]);
+    expect(hero(o, at("2026-09-16T00:30:00Z"))).toMatchObject({ kind: "catchUp", episode: { ep: 2 } });
+    expect(hero(overview([past(1, true)]), at("2026-09-16T00:30:00Z")).kind).toBe("wrap");
+  });
+
   it("counts down once caught up, and wraps after the finale", () => {
     expect(hero(overview([e1, e3], 3), at("2026-09-20T00:00:00Z")).kind).toBe("upNext");
     expect(hero(overview([e1], 3), at("2026-09-20T00:00:00Z")).kind).toBe("wrap");
