@@ -54,6 +54,11 @@ locals {
       invoke_arn = aws_lambda_function.api["notifications_${l.name}"].invoke_arn
     })
   ]
+  people_endpoints = [
+    for l in local.people_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["people_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -88,5 +93,6 @@ module "api" {
     friends       = { path_prefix = "friends", endpoints = local.friends_endpoints }
     leaderboard   = { path_prefix = "leaderboard", endpoints = local.leaderboard_endpoints }
     notifications = { path_prefix = "notifications", endpoints = local.notifications_endpoints }
+    people        = { path_prefix = "people", endpoints = local.people_endpoints }
   }
 }

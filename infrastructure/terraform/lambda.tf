@@ -54,6 +54,9 @@ locals {
     { name = "list", description = "The caller's notifications, unread first, paged", path_part = "list", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "read", description = "Mark one notification read, or all", path_part = "read", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
+  people_lambdas = [
+    { name = "search", description = "Users, stars, pros and judges whose name matches", path_part = "search", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -67,6 +70,7 @@ locals {
     { for l in local.overview_lambdas : "overview_${l.name}" => l },
     { for l in local.friends_lambdas : "friends_${l.name}" => l },
     { for l in local.notifications_lambdas : "notifications_${l.name}" => l },
+    { for l in local.people_lambdas : "people_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -112,6 +116,7 @@ locals {
     groups_delete      = ["groups:GetItem", "groups:Query", "groups:BatchWriteItem", "groups:DeleteItem", "social:DeleteItem"]
     groups_leave       = ["groups:GetItem", "groups:DeleteItem"]
     scores_skip_before = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem"]
+    people_search      = ["catalog:Query", "social:Query", "users:BatchGetItem"]
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
