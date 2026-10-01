@@ -203,4 +203,19 @@ describe("AppShell", () => {
     fireEvent.click(within(sheet).getByRole("link", { name: "Leaderboard" }));
     expect(sheet.hasAttribute("open")).toBe(false);
   });
+
+  it("opens phone search as a full-screen dialog and returns focus to its button on Cancel", async () => {
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+    const open = screen.getByRole("button", { name: "Search" });
+
+    fireEvent.click(open);
+    const sheet = screen.getByRole("dialog", { name: "Search" });
+    expect(sheet.hasAttribute("open")).toBe(true);
+    expect(within(sheet).getByRole("combobox", { name: /search people/i })).toBeTruthy();
+
+    fireEvent.click(within(sheet).getByRole("button", { name: "Cancel" }));
+    expect(sheet.hasAttribute("open")).toBe(false);
+    expect(document.activeElement).toBe(open);
+  });
 });
