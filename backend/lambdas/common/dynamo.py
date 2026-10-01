@@ -48,17 +48,24 @@ def query_all(tbl, pk: str) -> list[dict]:
 
 
 def query_partitions(env_var: str, pks: list[str]) -> dict[str, list[dict]]:
-    """
-    query_all for many partitions at once, for a page that reads hundreds of
-    episodes. Runs on the resource's client, which is thread-safe where a Table
-    is not, and takes and returns plain values the way the resource does.
-    """
-    name = table(env_var).name
-    client = resource().meta.client
+    """query_all for many partitions of one table at once."""
+    return dict(zip(pks, query_many([(env_var, pk) for pk in pks])))
 
-    def one(pk: str) -> list[dict]:
+
+def query_many(pairs: list[tuple[str, str]]) -> list[list[dict]]:
+    """
+    query_all for each (table env var, pk) at once, in order, so a handler pays
+    one round trip for reads that don't depend on each other. Runs on the
+    resource's client, which is thread-safe where a Table is not, and takes and
+    returns plain values the way the resource does.
+    """
+    client = resource().meta.client
+    names = {env: table(env).name for env, _ in pairs}
+
+    def one(pair: tuple[str, str]) -> list[dict]:
+        env, pk = pair
         kwargs = {
-            "TableName": name,
+            "TableName": names[env],
             "KeyConditionExpression": "pk = :pk",
             "ExpressionAttributeValues": {":pk": pk},
         }
@@ -71,7 +78,7 @@ def query_partitions(env_var: str, pks: list[str]) -> dict[str, list[dict]]:
             kwargs["ExclusiveStartKey"] = page["LastEvaluatedKey"]
 
     with ThreadPoolExecutor(WORKERS) as pool:
-        return dict(zip(pks, pool.map(one, pks)))
+        return list(pool.map(one, pairs))
 
 
 def update(env_var: str, key: dict, values: dict, condition: str | None = None) -> bool:

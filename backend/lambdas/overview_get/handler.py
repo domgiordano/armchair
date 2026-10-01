@@ -19,13 +19,8 @@ from zoneinfo import ZoneInfo
 
 from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
-from lambdas.common.episodes_dynamo import (
-    episode_pk,
-    performances,
-    scores,
-    season_ref,
-    season_rows,
-)
+from lambdas.common.dynamo import query_many
+from lambdas.common.episodes_dynamo import episode_pk, season_ref, season_rows
 from lambdas.common.gate import cid, episode_view, score_owner, visible_scores
 
 LATEST = 3
@@ -57,11 +52,7 @@ def handler(event, context):
     tz = ZoneInfo(meta["timezone"])
     now = _now()
 
-    episodes = []
-    mine = []
-    reveals = []
-    judged = defaultdict(list)
-    out: set[str] = set()
+    schedule = []
     for n, ep in sorted(
         (int(sk.removeprefix("EP#")), r) for sk, r in by_sk.items() if sk.startswith("EP#")
     ):
@@ -79,13 +70,20 @@ def handler(event, context):
             # A past season's fixture has no start times, and every episode of it has aired.
             "aired": not meta.get("current") or (starts is not None and starts <= now),
         }
-        episodes.append(entry)
-        if not entry["aired"]:
-            continue
+        schedule.append((n, ep, entry))
+    episodes = [entry for _, _, entry in schedule]
 
-        pk = episode_pk(show, season, n)
-        perfs = performances(pk)
-        score_rows = scores(pk)
+    # Every aired episode's reads in parallel, rather than two after another per episode.
+    past = [(n, ep, entry) for n, ep, entry in schedule if entry["aired"]]
+    pks = [episode_pk(show, season, n) for n, _, _ in past]
+    found = query_many([(t, pk) for pk in pks for t in ("PERFORMANCES_TABLE", "SCORES_TABLE")])
+
+    mine = []
+    reveals = []
+    judged = defaultdict(list)
+    out: set[str] = set()
+    for i, (n, ep, entry) in enumerate(past):
+        perfs, score_rows = found[2 * i], found[2 * i + 1]
         view = episode_view(sub, n, meta, ep, contestants, perfs, score_rows)
         # An empty member set leaves only the caller's own rows.
         errs = errors(view["panel"], perfs, visible_scores(sub, score_rows, set())).get(sub, [])

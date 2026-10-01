@@ -15,6 +15,7 @@ import json
 import os
 from typing import Any, Callable
 
+from lambdas.common.dynamo import resource
 from lambdas.common.logger import get_logger
 
 log = get_logger(__file__)
@@ -100,6 +101,12 @@ def api_handler(name: str) -> Callable:
     def decorate(fn):
         @functools.wraps(fn)
         def wrapper(event, context):
+            if (event or {}).get("warm") is True:
+                # A ping from the warmer schedule (warmer.tf), never from API Gateway,
+                # whose events have no top-level "warm". Building the DynamoDB client
+                # here spares the next real request its model load.
+                resource()
+                return {"warm": True}
             try:
                 response = fn(event, context)
             except ApiError as e:

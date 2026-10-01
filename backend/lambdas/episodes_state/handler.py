@@ -11,7 +11,8 @@ shows. Identity is the Cognito sub; admins get the same view as everyone else.
 from __future__ import annotations
 
 from lambdas.common.api import ForbiddenError, api_handler, caller_sub, ok, query
-from lambdas.common.episodes_dynamo import catalog, episode_pk, performances, ref, scores
+from lambdas.common.dynamo import query_many
+from lambdas.common.episodes_dynamo import episode_pk, episode_rows, ref, season_pk
 from lambdas.common.gate import episode_view
 from lambdas.common.groups_dynamo import members
 
@@ -28,7 +29,14 @@ def handler(event, context):
         # A group that doesn't exist answers the same, so a guess learns nothing.
         if sub not in in_group:
             raise ForbiddenError("Not a member of that group")
-    meta, episode, contestants = catalog(show, season, ep)
     pk = episode_pk(show, season, ep)
-    view = episode_view(sub, ep, meta, episode, contestants, performances(pk), scores(pk), in_group)
+    rows, perfs, score_rows = query_many(
+        [
+            ("CATALOG_TABLE", season_pk(show, season)),
+            ("PERFORMANCES_TABLE", pk),
+            ("SCORES_TABLE", pk),
+        ]
+    )
+    meta, episode, contestants = episode_rows(rows, show, season, ep)
+    view = episode_view(sub, ep, meta, episode, contestants, perfs, score_rows, in_group)
     return ok({"season": f"{show}-{season}", **view})
