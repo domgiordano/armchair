@@ -12,6 +12,10 @@ through the poller's publish() with every judge's value confirmed, then each epi
 results. The SEASONS#<show> partition lists every season for the season picker; the one
 fixture with `current: true` is the default.
 
+Every run also writes the cross-season person index from every fixture, whichever season
+was asked for: a PERSON item per celebrity, pro and judge, with their bio from
+fixtures/bios.json (scripts/find_bios.py), and a PEOPLE#<show> row each for search.
+
 Writes with the default AWS credentials. Re-running is safe: see write() and publish().
 """
 
@@ -35,14 +39,18 @@ os.environ.setdefault("CATALOG_TABLE", "armchair-catalog")
 os.environ.setdefault("PERFORMANCES_TABLE", "armchair-performances")
 
 from lambdas.common.keywords import keywords
+from lambdas.common.people import slug
 from lambdas.cron_poll_wiki.handler import publish
 
 SEASONS = Path(__file__).resolve().parents[2] / "fixtures" / "seasons"
+BIOS = SEASONS.parent / "bios.json"
 UA = {"User-Agent": "armchair/0.1 (https://github.com/domgiordano/armchair)"}
 COMMONS = "https://commons.wikimedia.org"
 # The poller and admin endpoints own these once the season is running, so a re-seed
 # only fills them in when absent. keywordOverride and results are never written here.
 LATER_OWNED = {"panel", "dancesPerCouple", "eliminatedEp"}
+# A person who held two roles in one season is listed under the first of these.
+RANK = ("judge", "pro", "celebrity")
 
 
 def items(season: dict) -> list[dict]:
@@ -92,6 +100,75 @@ def items(season: dict) -> list[dict]:
         for c in season["contestants"]
     ]
     return rows
+
+
+def people(seasons: list[dict], bios: dict[str, dict | None]) -> list[dict]:
+    """
+    A PERSON item and a PEOPLE search row for everyone in `seasons`, keyed by the
+    contestant id for a celebrity and the name's slug for a pro, the same as a judge id,
+    so Derek Hough the pro and Derek Hough the judge are one person. No result or
+    elimination is copied: those are gated per episode and read from the season.
+    """
+    found: dict[str, dict] = {}
+    for s in sorted(seasons, key=lambda s: s["season"]):
+        for c in s["contestants"]:
+            ids = [c["id"] if m["role"] == "celebrity" else slug(m["name"]) for m in c["members"]]
+            for pid, m in zip(ids, c["members"]):
+                partners = [
+                    {"id": other, "name": om["name"]}
+                    for other, om in zip(ids, c["members"])
+                    if other != pid
+                ]
+                _person(found, s, pid, m)["seasons"].append(
+                    {
+                        "season": s["season"],
+                        "role": m["role"],
+                        "couple": c["id"],
+                        "partners": partners,
+                    }
+                )
+        for j in s["judges"]:
+            _person(found, s, j["id"], j)["seasons"].append(
+                {"season": s["season"], "role": "judge"}
+            )
+
+    rows = []
+    for pid, p in sorted(found.items()):
+        latest = sorted(p["seasons"], key=lambda e: (-e["season"], RANK.index(e["role"])))
+        roles = list(dict.fromkeys(e["role"] for e in latest))
+        bio = bios.get(p["name"])
+        rows.append(
+            {
+                "pk": f"PERSON#{p['show']}#{pid}",
+                "sk": "META",
+                "name": p["name"],
+                "roles": roles,
+                "headshot": p["headshot"],
+                "seasons": p["seasons"],
+                "bio": bio and {k: bio[k] for k in ("title", "url", "description", "extract")},
+                "facts": bio
+                and {k: bio[k] for k in ("born", "died", "occupations", "nationality")},
+            }
+        )
+        rows.append(
+            {
+                "pk": f"PEOPLE#{p['show']}",
+                "sk": f"PERSON#{pid}",
+                "name": p["name"],
+                "roles": roles,
+                "headshot": p["headshot"] and p["headshot"]["file"],
+                "seasons": sorted({e["season"] for e in p["seasons"]}),
+            }
+        )
+    return rows
+
+
+def _person(found: dict[str, dict], season: dict, pid: str, member: dict) -> dict:
+    p = found.setdefault(
+        pid, {"show": season["show"], "name": member["name"], "headshot": None, "seasons": []}
+    )
+    p["headshot"] = p["headshot"] or member.get("headshot")
+    return p
 
 
 def write(table, rows: list[dict]) -> None:
@@ -173,6 +250,7 @@ def main(argv: list[str] | None = None) -> None:
     )
 
     shots = []
+    table = None if args.dry_run else boto3.resource("dynamodb").Table(os.environ["CATALOG_TABLE"])
     for path in paths:
         # Scores as Decimal: DynamoDB takes no floats, and half points are real (S15).
         season = json.loads(path.read_text(), parse_float=Decimal)
@@ -180,10 +258,16 @@ def main(argv: list[str] | None = None) -> None:
         if args.dry_run:
             print(json.dumps(rows, indent=2, ensure_ascii=False, default=str))
         else:
-            write(boto3.resource("dynamodb").Table(os.environ["CATALOG_TABLE"]), rows)
+            write(table, rows)
             dances = publish_all(season)
             print(f"{path.stem}: {len(rows)} catalog items, {dances} performances")
         shots += headshots(season)
+
+    every = [json.loads(p.read_text(), parse_float=Decimal) for p in SEASONS.glob("*.json")]
+    index = people(every, json.loads(BIOS.read_text()))
+    if table is not None:
+        write(table, index)
+    print(f"people: {len(index) // 2} people")
     if args.headshots:
         upload(shots, args.headshots, args.dry_run)
 
