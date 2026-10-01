@@ -8,9 +8,10 @@ import pytest
 
 from lambdas.common.groups_dynamo import create as create_group
 from lambdas.common.groups_dynamo import join as join_group
-from lambdas.common.social_dynamo import accept, request
+from lambdas.common.social_dynamo import accept, block, request
 from lambdas.performers_get.handler import handler
 from lambdas.scores_submit.handler import handler as submit_handler
+from lambdas.users_me.handler import handler as me_handler
 from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
@@ -217,3 +218,64 @@ def test_no_subject_is_401(show):
     event = authorized_event(path="/performers/get", query={"season": "dwts-35"})
     del event["requestContext"]["authorizer"]["claims"]["sub"]
     assert handler(event, None)["statusCode"] == 401
+
+
+def of(target, viewer=A, **params) -> tuple[int, dict]:
+    query = {"season": "dwts-35", "sub": target, **params}
+    res = handler(authorized_event(path="/performers/get", sub=viewer, query=query), None)
+    return res["statusCode"], json.loads(res["body"])
+
+
+def signed_in(*subs):
+    for sub in subs:
+        assert me_handler(authorized_event(sub=sub, name="Someone"), None)["statusCode"] == 200
+
+
+def test_styles_average_your_paddle_per_style(show):
+    answer(A, X, ep=4, value=10)
+    answer(A, Y, ep=4, value=6)
+    answer(A, X, value=4)
+    styles = performers()["styles"]
+    assert [(s["style"], s["dances"], s["you"]) for s in styles] == [
+        ("Jive", 2, 8.0),
+        ("Tango", 1, 4.0),
+    ]
+    assert styles[0]["judges"] == 7.0
+
+
+def test_someone_else_covers_only_dances_the_viewer_answered(show):
+    signed_in(A, B)
+    answer(B, X, ep=4, value=10)
+    answer(B, Y, ep=4, value=2)
+    answer(B, X, value=7)
+    status, body = of(B)
+    assert status == 200
+    assert body["data"]["sub"] == B
+    assert body["data"]["couples"] == [] and body["data"]["styles"] == []
+
+    answer(A, X, value=8)
+    data = of(B)[1]["data"]
+    assert [(c["id"], c["dances"], c["you"]) for c in data["couples"]] == [(X, 1, 7.0)]
+    assert [(s["style"], s["you"]) for s in data["styles"]] == [("Tango", 7.0)]
+    assert data["favorites"] == [f"dwts-35/{X}"]
+    # Means over the shared dances only, and never one dance's row.
+    for key in ("best", "worst", "weeks"):
+        assert key not in data["couples"][0]
+    assert performers(B)["couples"][0]["weeks"]
+
+
+def test_someone_else_all_seasons_follows_their_scored_seasons(show):
+    signed_in(A, B)
+    answer(B, W, ep=3, season="dwts-34", value=5)
+    answer(A, W, ep=3, season="dwts-34", value=9)
+    data = of(B, season="all")[1]["data"]
+    assert [c["ref"] for c in data["couples"]] == [f"dwts-34/{W}"]
+
+
+def test_someone_else_unknown_or_blocked_is_404_and_group_is_400(show):
+    signed_in(A, B)
+    assert of("nobody")[0] == 404
+    assert of(B, group="abcdefghijkl")[0] == 400
+    block(B, A)
+    assert of(B)[0] == 404
+    assert of(A, viewer=B)[0] == 404
