@@ -7,6 +7,8 @@ import { ChairLoader } from "@/components/chair-loader";
 
 // When the exit fade in app/intro.css finishes.
 export const INTRO_MS = 5200;
+// When that fade starts.
+const HANDOFF_MS = 4700;
 
 // three.js and friends load only when the intro plays; the landing never pays for them.
 const IntroScene = dynamic(() => import("@/components/intro-3d/scene").then((m) => m.IntroScene), { ssr: false });
@@ -69,10 +71,15 @@ export function Intro() {
     const page = document.getElementById("page");
     const main = document.getElementById("main");
     html.style.overflow = "hidden";
+    html.dataset.intro = "playing";
     page?.setAttribute("inert", "");
+    // The landing's own entrance starts as the stage begins to fade, not after.
+    const handoff = window.setTimeout(() => delete html.dataset.intro, HANDOFF_MS);
     const timer = window.setTimeout(timeUp, INTRO_MS);
     return () => {
+      window.clearTimeout(handoff);
       window.clearTimeout(timer);
+      delete html.dataset.intro;
       html.style.overflow = "";
       page?.removeAttribute("inert");
       if (refocus.current) main?.focus();

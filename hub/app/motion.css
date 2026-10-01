@@ -1,0 +1,399 @@
+/*
+ * Landing motion. Base styles are the end state everywhere, so reduced motion
+ * (bottom of this file) only has to switch animations off.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Hero entrance (components/hero.tsx). Held at the start while the intro covers
+   the page; clearing data-intro restarts the animation in view. */
+.hero-in {
+  animation: hero-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i) * 75ms + 80ms) backwards;
+}
+
+html[data-intro="playing"] .hero-in {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    translate: 0 0.5em;
+    filter: blur(8px);
+  }
+}
+
+.hero-desk {
+  animation-name: hero-desk;
+  animation-duration: 1100ms;
+}
+
+@keyframes hero-desk {
+  from {
+    opacity: 0;
+    translate: 0 40px;
+    scale: 0.96;
+  }
+}
+
+/* Scroll reveals (components/scroll-reveals.tsx). Nothing hides until that has run. */
+.reveals [data-reveal]:not([data-shown]) {
+  opacity: 0;
+}
+
+[data-shown] {
+  animation: reveal 800ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms) backwards;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+  }
+}
+
+/* Drifting orbs and a faint sparkle field behind every page (components/backdrop.tsx). */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  width: 70vmax;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--tint), transparent);
+  animation: orb-drift var(--dur) ease-in-out var(--wait) infinite alternate;
+}
+
+@keyframes orb-drift {
+  to {
+    transform: translate(var(--dx), var(--dy)) scale(1.15);
+  }
+}
+
+.sparkle-field {
+  position: absolute;
+  inset: -20% 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 24px 40px, rgb(238 240 251 / 0.55), transparent),
+    radial-gradient(1px 1px at 150px 110px, rgb(255 201 60 / 0.6), transparent),
+    radial-gradient(1px 1px at 90px 200px, rgb(238 240 251 / 0.45), transparent),
+    radial-gradient(1.5px 1.5px at 230px 160px, rgb(232 63 208 / 0.45), transparent);
+  background-size: 260px 260px;
+  opacity: 0.5;
+  animation:
+    twinkle 4.5s ease-in-out infinite alternate,
+    sparkle-rise 90s linear infinite;
+}
+
+.sparkle-field + .sparkle-field {
+  background-size: 380px 380px;
+  background-position: 120px 60px;
+  animation-delay: -2.2s, -40s;
+  animation-duration: 6s, 140s;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.15;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+@keyframes sparkle-rise {
+  to {
+    transform: translateY(-260px);
+  }
+}
+
+.star {
+  position: absolute;
+  width: 14px;
+  fill: var(--color-gold);
+  opacity: 0;
+  animation: star 5s ease-in-out var(--wait) infinite;
+}
+
+@keyframes star {
+  0%,
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  85% {
+    opacity: 0.7;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+/* Show night timeline (components/show-night.tsx): --p is how far it has drawn. */
+.night-line {
+  transform-origin: top;
+  transform: scaleY(var(--p, 1));
+}
+
+@media (min-width: 64rem) {
+  .night-line {
+    transform-origin: left;
+    transform: scaleX(var(--p, 1));
+  }
+}
+
+.night-track li {
+  transition: opacity 500ms ease;
+}
+
+.night-track li .night-dot {
+  transition:
+    background-color 400ms ease,
+    box-shadow 400ms ease,
+    scale 400ms cubic-bezier(0.2, 0.8, 0.3, 1.4);
+}
+
+.night-track[data-live] li:not([data-lit]) {
+  opacity: 0.4;
+}
+
+.night-track[data-live] li:not([data-lit]) .night-dot {
+  background-color: var(--color-night);
+  scale: 0.75;
+}
+
+.night-track[data-live] li[data-lit] .night-dot {
+  box-shadow: 0 0 16px 2px rgb(122 44 255 / 0.7);
+}
+
+/* Show cards (components/tilt.tsx): --tx/--ty run -0.5..0.5 across the card. */
+.tilt {
+  perspective: 1000px;
+}
+
+.tilt > * {
+  transform: rotateX(calc(var(--ty, 0) * -9deg)) rotateY(calc(var(--tx, 0) * 11deg));
+  transition:
+    transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    translate 150ms,
+    box-shadow 150ms,
+    border-color 150ms;
+}
+
+.tilt[data-active] > * {
+  transition-duration: 120ms, 150ms, 150ms, 150ms;
+}
+
+.tilt-art > svg {
+  transform: translate(calc(var(--tx, 0) * -18px), calc(var(--ty, 0) * -12px)) scale(1.08);
+  transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at calc((var(--tx, 0) + 0.5) * 100%) calc((var(--ty, 0) + 0.5) * 100%),
+    rgb(255 244 214 / 0.14),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.tilt[data-active] .tilt-glare {
+  opacity: 1;
+}
+
+/* The tape's stripes crawl and its lettering drifts along. */
+.caution-tape {
+  animation: tape-crawl 1400ms linear infinite;
+}
+
+@keyframes tape-crawl {
+  to {
+    background-position:
+      28.28px 0,
+      28.28px 100%,
+      0 0;
+  }
+}
+
+.tape-text {
+  display: inline-block;
+  animation: tape-text 30s linear infinite;
+}
+
+.caution-tape + .caution-tape .tape-text {
+  animation-direction: reverse;
+}
+
+@keyframes tape-text {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Feature illustrations (components/feature-art.tsx). */
+.art-peek {
+  animation: art-peek 2400ms ease-in-out var(--delay) infinite;
+}
+
+@keyframes art-peek {
+  0%,
+  60%,
+  100% {
+    border-color: rgb(163 170 208 / 0.4);
+    transform: none;
+  }
+  75% {
+    border-color: var(--color-gold);
+    transform: translateY(-3px) rotate(-4deg);
+  }
+}
+
+.art-wave {
+  animation: art-wave 2200ms ease-in-out var(--delay) infinite;
+}
+
+@keyframes art-wave {
+  0%,
+  50%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+}
+
+.art-fill {
+  transform-origin: left;
+  animation: art-fill 5s cubic-bezier(0.2, 0.7, 0.2, 1) var(--delay) infinite both;
+}
+
+@keyframes art-fill {
+  0% {
+    transform: scaleX(0);
+  }
+  40%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.art-pan {
+  animation: art-pan 14s ease-in-out infinite alternate;
+}
+
+@keyframes art-pan {
+  to {
+    transform: translateX(-40%);
+  }
+}
+
+/* One account's dashed links flow from the account down to each show. */
+.account-flow {
+  animation: account-flow 1.2s linear infinite;
+}
+
+@keyframes account-flow {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+.cta-glow {
+  animation: cta-glow 9s ease-in-out infinite alternate;
+}
+
+@keyframes cta-glow {
+  to {
+    transform: scale(1.25) translateX(4%);
+    opacity: 0.7;
+  }
+}
+
+/* Apps menu (components/apps-menu.tsx): rows follow the panel in; closing plays it back out. */
+.apps-panel li {
+  animation: apps-row 320ms cubic-bezier(0.2, 0.8, 0.3, 1) calc(var(--row) * 45ms + 60ms) backwards;
+}
+
+@keyframes apps-row {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+
+.apps-panel[data-closing] {
+  animation: apps-sink 200ms ease-in both;
+}
+
+.apps-backdrop[data-closing] {
+  animation: apps-fade 200ms ease reverse both;
+}
+
+@keyframes apps-sink {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (min-width: 40rem) {
+  .apps-panel[data-closing] {
+    animation-name: apps-lift;
+    animation-duration: 140ms;
+  }
+}
+
+@keyframes apps-lift {
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-in,
+  [data-shown],
+  .orb,
+  .sparkle-field,
+  .star,
+  .caution-tape,
+  .tape-text,
+  .art-peek,
+  .art-wave,
+  .art-fill,
+  .art-pan,
+  .account-flow,
+  .cta-glow,
+  .apps-panel li,
+  .apps-panel[data-closing],
+  .apps-backdrop[data-closing] {
+    animation: none;
+  }
+
+  html[data-intro="playing"] .hero-in {
+    opacity: 1;
+  }
+
+  .tilt > *,
+  .tilt-art > svg,
+  .night-line {
+    transform: none;
+    transition: none;
+  }
+}
