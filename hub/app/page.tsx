@@ -7,6 +7,7 @@ import { Hero } from "@/components/hero";
 import { HowItWorks } from "@/components/how-it-works";
 import { Intro } from "@/components/intro";
 import { OneAccount } from "@/components/one-account";
+import { ScrollReveals } from "@/components/scroll-reveals";
 import { SectionRail } from "@/components/section-rail";
 import { ShowNight } from "@/components/show-night";
 import { Shows } from "@/components/shows";
@@ -17,6 +18,7 @@ export default function HomePage() {
   return (
     <>
       <Intro />
+      <ScrollReveals />
       <div id="page">
         <SiteHeader />
         <SectionRail />

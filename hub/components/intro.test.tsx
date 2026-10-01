@@ -52,8 +52,13 @@ describe("Intro", () => {
     expect(stage()).not.toBeNull();
     expect(document.getElementById("page")?.hasAttribute("inert")).toBe(true);
     expect(document.documentElement.style.overflow).toBe("hidden");
+    expect(document.documentElement.dataset.intro).toBe("playing");
 
-    act(() => vi.advanceTimersByTime(INTRO_MS));
+    act(() => vi.advanceTimersByTime(4700));
+    expect(document.documentElement.dataset.intro).toBeUndefined();
+    expect(stage()).not.toBeNull();
+
+    act(() => vi.advanceTimersByTime(INTRO_MS - 4700));
 
     expect(stage()).toBeNull();
     expect(document.getElementById("page")?.hasAttribute("inert")).toBe(false);
@@ -76,6 +81,7 @@ describe("Intro", () => {
     fireEvent.click(skip);
 
     expect(stage()).toBeNull();
+    expect(document.documentElement.dataset.intro).toBeUndefined();
     expect(document.activeElement).toBe(document.getElementById("main"));
     expect(document.getElementById("page")?.hasAttribute("inert")).toBe(false);
   });

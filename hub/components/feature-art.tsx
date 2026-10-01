@@ -10,9 +10,12 @@ export function BlindArt() {
   return (
     <div className="flex h-full flex-col justify-center gap-5 px-5">
       <div className="flex items-end justify-center gap-3">
-        {["Judges", "Your group", "Everyone"].map((who) => (
+        {["Judges", "Your group", "Everyone"].map((who, i) => (
           <div key={who} className="flex flex-col items-center gap-1.5">
-            <span className="flex h-11 w-10 items-center justify-center rounded-lg border border-dashed border-muted/40 text-lg font-bold text-muted/70">
+            <span
+              className="art-peek flex h-11 w-10 items-center justify-center rounded-lg border border-dashed border-muted/40 text-lg font-bold text-muted/70"
+              style={delay(i * 400)}
+            >
               ?
             </span>
             <span className="text-[10px] tracking-wide text-muted">{who}</span>
@@ -129,10 +132,11 @@ export function GroupArt() {
           <p className="text-[11px] text-muted">4 members &middot; joined by invite link</p>
         </div>
         <div className="flex -space-x-2">
-          {CREW.map((m) => (
+          {CREW.map((m, i) => (
             <span
               key={m.initials}
-              className={`flex size-8 items-center justify-center rounded-full border-2 border-night-2 text-[10px] font-bold text-text ${m.tone}`}
+              style={delay(i * 150)}
+              className={`art-wave flex size-8 items-center justify-center rounded-full border-2 border-night-2 text-[10px] font-bold text-text ${m.tone}`}
             >
               {m.initials}
             </span>
@@ -163,17 +167,19 @@ export function SeasonsArt() {
   const seasons = Array.from({ length: 14 }, (_, i) => 35 - i);
   return (
     <div className="flex h-full flex-col justify-center gap-3 overflow-hidden px-5">
-      <div className="flex gap-1.5 [mask-image:linear-gradient(90deg,#000_65%,transparent)]">
-        {seasons.map((s) => (
-          <span
-            key={s}
-            className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold tabular-nums ${
-              s === 35 ? "bg-text text-night" : "border border-line text-muted"
-            }`}
-          >
-            S{s}
-          </span>
-        ))}
+      <div className="[mask-image:linear-gradient(90deg,#000_65%,transparent)]">
+        <div className="art-pan flex gap-1.5">
+          {seasons.map((s) => (
+            <span
+              key={s}
+              className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold tabular-nums ${
+                s === 35 ? "bg-text text-night" : "border border-line text-muted"
+              }`}
+            >
+              S{s}
+            </span>
+          ))}
+        </div>
       </div>
       <div className="flex items-center gap-3 rounded-xl border border-line bg-night/60 px-3 py-2.5">
         <span className="flex h-9 w-8 shrink-0 items-center justify-center rounded-md bg-gold text-sm font-extrabold text-night">9</span>
@@ -197,11 +203,14 @@ export function VoteArt() {
       {[
         { couple: "Couple 1", votes: 10 },
         { couple: "Couple 4", votes: 6 },
-      ].map((c) => (
+      ].map((c, i) => (
         <div key={c.couple} className="flex items-center gap-3">
           <span className="w-16 text-xs text-muted">{c.couple}</span>
           <span className="h-2 flex-1 overflow-hidden rounded-full bg-line">
-            <span className="block h-full rounded-full bg-linear-to-r from-blue to-magenta" style={{ width: `${c.votes * 10}%` }} />
+            <span
+              className="art-fill block h-full rounded-full bg-linear-to-r from-blue to-magenta"
+              style={{ width: `${c.votes * 10}%`, ...delay(i * 300) }}
+            />
           </span>
           <span className="w-10 text-right text-xs font-semibold tabular-nums">{c.votes}/10</span>
         </div>

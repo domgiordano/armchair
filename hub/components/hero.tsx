@@ -1,5 +1,12 @@
+import { Fragment, type CSSProperties } from "react";
+
 import { DeskDemo } from "@/components/desk-demo";
 import { DWTS_URL } from "@/lib/links";
+
+const LINE = ["You’ve", "always", "judged", "from", "the", "couch."];
+
+// Each piece of the hero enters in turn once the intro hands off (app/globals.css, .hero-in).
+const step = (i: number) => ({ "--i": i }) as CSSProperties;
 
 export function Hero() {
   return (
@@ -10,17 +17,27 @@ export function Hero() {
       />
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pt-14 pb-20 sm:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-24 lg:pb-28">
         <div>
-          <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Rate the show like a judge</p>
+          <p className="hero-in text-xs font-semibold tracking-[0.3em] text-gold uppercase" style={step(0)}>
+            Rate the show like a judge
+          </p>
           <h1 id="hero-title" className="mt-4 text-4xl leading-[1.08] font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-            You&rsquo;ve always judged from the couch.
-            <span className="mt-1 block text-brand-gradient">Now it counts.</span>
+            {LINE.map((word, i) => (
+              <Fragment key={word}>
+                <span className="hero-in inline-block" style={step(i + 1)}>
+                  {word}
+                </span>{" "}
+              </Fragment>
+            ))}
+            <span className="hero-in mt-1 block text-brand-gradient" style={step(LINE.length + 2)}>
+              Now it counts.
+            </span>
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+          <p className="hero-in mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg" style={step(10)}>
             Watch live or catch up later. Hold up your paddle for every performance, 1 to 10. Nobody else&rsquo;s score
             shows until yours is in; then the real judges and everyone else flip theirs, and Armchair Judge tracks how
             close you run to the panel all season.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="hero-in mt-8 flex flex-wrap items-center gap-3" style={step(12)}>
             <a
               href={DWTS_URL}
               className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-text px-6 font-semibold text-night shadow-lg shadow-violet/20 hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold transition active:scale-[0.98] motion-reduce:transition-none"
@@ -37,9 +54,11 @@ export function Hero() {
               How it works
             </a>
           </div>
-          <p className="mt-5 text-xs text-muted/80">The desk on this page is an illustration with invented scores.</p>
+          <p className="hero-in mt-5 text-xs text-muted/80" style={step(13)}>The desk on this page is an illustration with invented scores.</p>
         </div>
-        <DeskDemo />
+        <div className="hero-in hero-desk" style={step(5)}>
+          <DeskDemo />
+        </div>
       </div>
     </section>
   );

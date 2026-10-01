@@ -1,7 +1,9 @@
 import { Cinzel, Permanent_Marker, Playfair_Display } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { Tilt } from "@/components/tilt";
 import { DWTS_URL } from "@/lib/links";
+import { reveal } from "@/lib/reveal";
 
 // Each show's card borrows the mood of the show, never its logo or artwork.
 // Below the fold, so none of these preload.
@@ -123,11 +125,18 @@ function IslandArt() {
   );
 }
 
+// Twice over, so sliding the text by half its width loops without a seam.
+const TAPE = "COMING SOON \u00b7 ".repeat(8);
+
 function CautionTape() {
   return (
     <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden" aria-hidden="true">
-      <div className="caution-tape top-[17%] -rotate-12">COMING SOON &middot; COMING SOON &middot; COMING SOON &middot; COMING SOON</div>
-      <div className="caution-tape top-[29%] rotate-6">COMING SOON &middot; COMING SOON &middot; COMING SOON &middot; COMING SOON</div>
+      <div className="caution-tape top-[17%] -rotate-12">
+        <span className="tape-text">{TAPE}</span>
+      </div>
+      <div className="caution-tape top-[29%] rotate-6">
+        <span className="tape-text">{TAPE}</span>
+      </div>
     </div>
   );
 }
@@ -144,7 +153,7 @@ interface ShowCardProps {
 function ShowCard({ name, line, titleClass, surface, art, href }: ShowCardProps) {
   const body = (
     <>
-      <div className="relative h-44 overflow-hidden">{art}</div>
+      <div className="tilt-art relative h-44 overflow-hidden">{art}</div>
       <div className="relative flex flex-1 flex-col p-6">
         <p className="text-[11px] font-semibold tracking-[0.25em] uppercase opacity-80">
           {href ? (
@@ -180,6 +189,7 @@ function ShowCard({ name, line, titleClass, surface, art, href }: ShowCardProps)
         className={`group ${frame} transition hover:-translate-y-1 hover:shadow-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold active:translate-y-0 motion-reduce:transition-none`}
       >
         {body}
+        <span className="tilt-glare" aria-hidden="true" />
       </a>
     );
   }
@@ -188,6 +198,7 @@ function ShowCard({ name, line, titleClass, surface, art, href }: ShowCardProps)
     <div className={`${frame} cursor-not-allowed select-none`}>
       <div className="flex flex-1 flex-col opacity-45 saturate-50">{body}</div>
       <CautionTape />
+      <span className="tilt-glare" aria-hidden="true" />
     </div>
   );
 }
@@ -196,39 +207,47 @@ export function Shows() {
   return (
     <section id="shows" aria-labelledby="shows-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="text-xs font-semibold tracking-[0.3em] text-magenta uppercase">Shows</p>
-        <h2 id="shows-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
-          Pick your panel.
-        </h2>
-        <p className="mt-3 max-w-xl text-muted">Dancing with the Stars is live now. Two more are in rehearsal.</p>
+        <div {...reveal()}>
+          <p className="text-xs font-semibold tracking-[0.3em] text-magenta uppercase">Shows</p>
+          <h2 id="shows-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
+            Pick your panel.
+          </h2>
+          <p className="mt-3 max-w-xl text-muted">Dancing with the Stars is live now. Two more are in rehearsal.</p>
+        </div>
         <ul className="mt-12 grid gap-6 lg:grid-cols-3">
-          <li className="flex flex-col">
-            <ShowCard
-              name="Dancing with the Stars"
-              line="Every dance, every week. Get your score up before the panel does."
-              titleClass={`${ballroom.className} bg-linear-to-r from-[#f3d98b] to-[#fff4d6] bg-clip-text text-transparent`}
-              surface="border-[#2b3a7a] bg-linear-to-b from-[#0a1440] to-[#060b26] text-[#f3e6c0] hover:border-[#f3d98b]/70 hover:shadow-[#f3d98b]/10"
-              art={<BallroomArt />}
-              href={DWTS_URL}
-            />
+          <li className="flex flex-col" {...reveal(1)}>
+            <Tilt className="flex flex-1 flex-col">
+              <ShowCard
+                name="Dancing with the Stars"
+                line="Every dance, every week. Get your score up before the panel does."
+                titleClass={`${ballroom.className} bg-linear-to-r from-[#f3d98b] to-[#fff4d6] bg-clip-text text-transparent`}
+                surface="border-[#2b3a7a] bg-linear-to-b from-[#0a1440] to-[#060b26] text-[#f3e6c0] hover:border-[#f3d98b]/70 hover:shadow-[#f3d98b]/10"
+                art={<BallroomArt />}
+                href={DWTS_URL}
+              />
+            </Tilt>
           </li>
-          <li className="flex flex-col">
-            <ShowCard
-              name="The Traitors"
-              line="Candlelit schemes and round-table banishments, scored from the sofa."
-              titleClass={`${castle.className} text-[#e9dcc0] tracking-wide`}
-              surface="border-[#1c3a2a] bg-linear-to-b from-[#0b2418] to-[#040d08] text-[#e9dcc0]"
-              art={<CastleArt />}
-            />
+          <li className="flex flex-col" {...reveal(2)}>
+            <Tilt className="flex flex-1 flex-col">
+              <ShowCard
+                name="The Traitors"
+                line="Candlelit schemes and round-table banishments, scored from the sofa."
+                titleClass={`${castle.className} text-[#e9dcc0] tracking-wide`}
+                surface="border-[#1c3a2a] bg-linear-to-b from-[#0b2418] to-[#040d08] text-[#e9dcc0]"
+                art={<CastleArt />}
+              />
+            </Tilt>
           </li>
-          <li className="flex flex-col">
-            <ShowCard
-              name="Survivor"
-              line="Torches, tribal council and blindsides. Your score before the vote."
-              titleClass={`${brush.className} text-[#ffb070]`}
-              surface="border-[#5a2a10] bg-linear-to-b from-[#3a1606] to-[#140803] text-[#ffe2c4]"
-              art={<IslandArt />}
-            />
+          <li className="flex flex-col" {...reveal(3)}>
+            <Tilt className="flex flex-1 flex-col">
+              <ShowCard
+                name="Survivor"
+                line="Torches, tribal council and blindsides. Your score before the vote."
+                titleClass={`${brush.className} text-[#ffb070]`}
+                surface="border-[#5a2a10] bg-linear-to-b from-[#3a1606] to-[#140803] text-[#ffe2c4]"
+                art={<IslandArt />}
+              />
+            </Tilt>
           </li>
         </ul>
       </div>

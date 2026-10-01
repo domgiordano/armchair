@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { reveal } from "@/lib/reveal";
+
 interface Question {
   q: string;
   a: ReactNode;
@@ -46,13 +48,13 @@ export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
-        <div>
+        <div {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-orange uppercase">FAQ</p>
           <h2 id="faq-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             Before you <span className="text-brand-gradient">pick up a paddle.</span>
           </h2>
         </div>
-        <div className="divide-y divide-line border-y border-line">
+        <div className="divide-y divide-line border-y border-line" {...reveal(1)}>
           {QUESTIONS.map(({ q, a }) => (
             <details key={q} className="faq-item group">
               <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 font-semibold transition-colors group-open:text-gold hover:text-gold motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold [&::-webkit-details-marker]:hidden">
