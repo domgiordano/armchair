@@ -1,6 +1,7 @@
-"""/people/get against moto with season 8 seeded end to end: every dance goes
-through the gate, so a dance the caller hasn't answered never carries a judge's
-value or anyone's score, and a result waits on the episode rule."""
+"""/people/get against moto with season 8 seeded end to end. Replayed as the
+current season, every dance goes through the gate, so a dance the caller hasn't
+answered never carries a judge's value or anyone's score, and a result waits on
+the episode rule. As the past season it is, all of it shows."""
 
 import json
 from datetime import UTC, datetime
@@ -16,6 +17,7 @@ from scripts.seed_season import SEASONS, items, publish_all, write
 from scripts.seed_season import people as person_index
 from tests.conftest import CATALOG_TABLE
 from tests.events import authorized_event
+from tests.seasons import as_current, close
 from tests.social import A, B, accept, ask, call, post
 
 S8 = json.loads((SEASONS / "dwts-8.json").read_text(), parse_float=Decimal)
@@ -29,7 +31,7 @@ DENISE_EP1 = next(p for p in EP1["performances"] if p["contestants"] == ["denise
 @pytest.fixture
 def seeded(aws):
     table = aws.Table(CATALOG_TABLE)
-    write(table, items(S8))
+    write(table, items(as_current(S8)))
     write(table, person_index([S8], {}))
     publish_all(S8)
     return aws
@@ -132,7 +134,28 @@ def test_a_result_waits_for_every_episode_up_to_it(seeded):
     assert data("melissa-rycroft")["seasons"][0]["result"]["locked"] is True
 
     finish(A, *range(6, 16))
+    # Replayed as current, the season isn't over; closed, she made the finale.
+    assert data("melissa-rycroft")["seasons"][0]["result"] == {"status": "dancing"}
+
+
+def test_a_past_season_shows_every_dance_and_result_unanswered(seeded):
+    answer(B, 1, "denise-richards", 9)
+    close(seeded, S8)
+    denise = data("denise-richards")
+    rows = denise["performances"]
+    assert [r["ep"] for r in rows] == DENISE
+    assert not any(r["locked"] for r in rows)
+    values = [float(v) for v in DENISE_EP1["judges"]]
+    assert [j["value"] for j in rows[0]["judges"]] == values
+    assert rows[0]["mine"] is None and rows[0]["everyone"] == {"count": 1, "mean": 9.0}
+    (season,) = denise["seasons"]
+    assert season["result"] == {"status": "out", "ep": 5, "week": 3}
+    assert (season["dances"], season["locked"]) == (4, 0)
+    stats = denise["stats"]["dancer"]
+    assert stats["locked"] == 0 and stats["judges"]["count"] == 4
+    assert stats["mine"]["count"] == 0
     assert data("melissa-rycroft")["seasons"][0]["result"] == {"status": "finalist"}
+    assert all(not r["locked"] for r in data("carrie-ann-inaba")["judged"]["rows"])
 
 
 def test_a_pro_sees_their_partners_dances(seeded):
@@ -216,13 +239,18 @@ def test_a_long_career_reads_only_seasons_the_caller_touched(long_career):
     assert loaded == {5: False, 6: False, 7: False, 8: True}
     assert carrie["judged"]["season"] == "dwts-8"
 
+    # Scored while season 7 was current, then the season closed.
+    write(long_career.Table(CATALOG_TABLE), items(as_current(S7)))
     ep = next(e for e in S7["episodes"] if e["ep"] == 1)
     cid = ep["performances"][0]["contestants"][0]
     body = {"season": "dwts-7", "ep": "01", "contestant": cid, "n": 1, "value": 8}
     assert post(submit_handler, "/scores/submit", A, body)[0] == 200
+    close(long_career, S7)
     carrie = data("carrie-ann-inaba")
     assert {e["number"] for e in carrie["seasons"] if e["loaded"]} == {7, 8}
-    assert carrie["stats"]["judge"]["count"] == 1
+    # Season 7 is open, so every dance she judged in it counts, not only the one scored.
+    assert carrie["stats"]["judge"]["count"] > 1
+    assert carrie["stats"]["judge"]["mine"]["count"] == 1
     # The judged list stays on the latest season; asking for another lists that one.
     assert carrie["judged"]["season"] == "dwts-8"
     assert data("carrie-ann-inaba", season="dwts-5")["judged"]["season"] == "dwts-5"

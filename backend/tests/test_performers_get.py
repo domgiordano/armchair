@@ -16,6 +16,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.seasons import as_current, close
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
 C = "3f1c2b9a-0000-4000-8000-000000000003"
@@ -45,7 +46,8 @@ def put_perf(aws, season: dict, ep: int, cid: str, state: str = "confirmed"):
 
 @pytest.fixture
 def show(aws):
-    for season in (S34, S35):
+    # S34 as it was while current, so it takes answers; a test closes it after.
+    for season in (as_current(S34), S35):
         write(aws.Table(CATALOG_TABLE), items(season))
     for ep in (4, 5):
         for cid in (X, Y, Z):
@@ -179,6 +181,7 @@ def test_pros_and_celebrities_across_seasons(show):
     answer(A, Y, value=8)
     answer(A, W, ep=3, season="dwts-34", value=7)
     answer(A, X, value=8)
+    close(show, S34)
     this = performers()
     assert {p["name"] for p in this["pros"]} == {"Pasha Pashkov", "Sharna Burgess"}
 
@@ -264,12 +267,14 @@ def test_someone_else_covers_only_dances_the_viewer_answered(show):
     assert performers(B)["couples"][0]["weeks"]
 
 
-def test_someone_else_all_seasons_follows_their_scored_seasons(show):
+def test_someone_else_on_a_past_season_covers_every_dance_they_scored(show):
     signed_in(A, B)
     answer(B, W, ep=3, season="dwts-34", value=5)
-    answer(A, W, ep=3, season="dwts-34", value=9)
+    assert of(B, season="all")[1]["data"]["couples"] == []
+
+    close(show, S34)
     data = of(B, season="all")[1]["data"]
-    assert [c["ref"] for c in data["couples"]] == [f"dwts-34/{W}"]
+    assert [(c["ref"], c["you"]) for c in data["couples"]] == [(f"dwts-34/{W}", 5.0)]
 
 
 def test_someone_else_unknown_or_blocked_is_404_and_group_is_400(show):

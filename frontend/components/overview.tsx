@@ -105,7 +105,14 @@ function OverviewView({ o, season, reload }: ViewProps) {
         <h2 id="your-season" className="text-lg font-semibold text-pearl">
           Your season
         </h2>
-        {fresh ? (
+        {fresh && o.open ? (
+          <div className={PANEL}>
+            <p className="font-semibold text-pearl">A past season, open to everyone.</p>
+            <p className="text-sm text-silver-dim">
+              Every score and result is here to browse. Paddles are for the current season.
+            </p>
+          </div>
+        ) : fresh ? (
           <div className={`${PANEL} flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between`}>
             <div className="flex flex-col gap-1">
               <p className="font-semibold text-pearl">Your numbers start with your first paddle.</p>
@@ -266,7 +273,10 @@ function Hero({ o, season, reload }: ViewProps) {
     body = "Every dance so far has your paddle on it. The next episode opens for scoring at showtime.";
   } else {
     headline = "that's a wrap.";
-    body = `${title} is over. You scored ${o.me.scored} ${o.me.scored === 1 ? "dance" : "dances"}.`;
+    body =
+      o.open && o.me.scored === 0
+        ? `${title} is over. Every score and result is open to browse.`
+        : `${title} is over. You scored ${o.me.scored} ${o.me.scored === 1 ? "dance" : "dances"}.`;
     cta = (
       <Link href={withSeason("/leaderboard/", season)} className={OUTLINE}>
         See the leaderboard

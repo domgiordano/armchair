@@ -5,7 +5,8 @@ Body: {"season": "dwts-35", "ep": "05", "contestant": "<cid>", "n": 1, "value": 
 or the same with {"forfeit": true} in place of value ("Reveal without scoring").
 
 Answers are final. A retry with the same answer returns the stored row; a
-different one is 409. Identity is the Cognito sub.
+different one is 409. A past season is view-only (gate.is_open): 403. Identity
+is the Cognito sub.
 """
 
 from __future__ import annotations
@@ -16,6 +17,7 @@ from lambdas.common import board_dynamo
 from lambdas.common.accuracy import judged
 from lambdas.common.api import (
     ConflictError,
+    ForbiddenError,
     NotFoundError,
     ValidationError,
     api_handler,
@@ -26,7 +28,7 @@ from lambdas.common.api import (
     whole,
 )
 from lambdas.common.episodes_dynamo import catalog, create_score, episode_pk, performances, ref
-from lambdas.common.gate import cid, perf_key, rateable
+from lambdas.common.gate import cid, is_open, perf_key, rateable
 
 
 def answer(data: dict) -> dict:
@@ -47,6 +49,8 @@ def handler(event, context):
     given = answer(data)
 
     meta, episode, contestants = catalog(show, season, ep)
+    if is_open(meta):
+        raise ForbiddenError("Past seasons are view-only", season=f"{show}-{season}")
     pk = episode_pk(show, season, ep)
     perfs = performances(pk)
     key = f"{contestant}#{n}"
@@ -55,7 +59,7 @@ def handler(event, context):
             raise NotFoundError("Unknown contestant", contestant=contestant)
         raise ValidationError("That performance can't be scored in this episode", key=key)
 
-    # Judges already confirmed (a late answer, a past season): the dance counts
+    # Judges already confirmed (a late answer): the dance counts
     # toward the leaderboard now. Otherwise the poller counts it on confirm.
     also = []
     perf = next((p for p in perfs if perf_key(p["sk"]) == key), None)

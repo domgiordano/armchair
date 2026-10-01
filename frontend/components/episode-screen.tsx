@@ -51,6 +51,15 @@ function EpisodePicker({ season }: EpisodePickerProps) {
   const episode =
     season.episodes.find((e) => e.ep === asked) ??
     latestAired(season.episodes, season.timezone, now);
+  const view = (
+    <EpisodeView
+      season={season}
+      episode={episode}
+      now={now}
+      group={filter.group}
+      members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
+    />
+  );
 
   return (
     <>
@@ -67,21 +76,19 @@ function EpisodePicker({ season }: EpisodePickerProps) {
         />
         <GroupPicker {...filter} />
       </div>
-      <CatchUp
-        key={episode.ep}
-        season={season.season}
-        episodes={season.episodes}
-        episode={episode}
-        onCatchUp={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
-      >
-        <EpisodeView
-          season={season}
+      {season.open ? (
+        view
+      ) : (
+        <CatchUp
+          key={episode.ep}
+          season={season.season}
+          episodes={season.episodes}
           episode={episode}
-          now={now}
-          group={filter.group}
-          members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
-        />
-      </CatchUp>
+          onCatchUp={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
+        >
+          {view}
+        </CatchUp>
+      )}
       <div className="flex flex-wrap gap-x-6 border-t border-silver/10 pt-2">
         <Link href="/stats/" className={`${TEXT_LINK} inline-flex min-h-11 items-center`}>
           Your accuracy
@@ -150,24 +157,26 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
             </h1>
           </div>
           <p className="shrink-0 pb-0.5 text-sm text-silver-dim tabular-nums">
-            {data.answered} of {data.rateable} answered
+            {data.open ? "Past season · view only" : `${data.answered} of ${data.rateable} answered`}
           </p>
         </div>
-        <div
-          role="progressbar"
-          aria-label="Dances answered"
-          aria-valuemin={0}
-          aria-valuemax={data.rateable}
-          aria-valuenow={data.answered}
-          className="h-1 overflow-hidden rounded-full bg-silver/10"
-        >
+        {!data.open && (
           <div
-            className="grow-x h-full rounded-full bg-gradient-to-r from-gold-deep to-gold-light transition-[width] duration-700"
-            style={{ width: `${data.rateable ? (data.answered / data.rateable) * 100 : 0}%` }}
-          />
-        </div>
+            role="progressbar"
+            aria-label="Dances answered"
+            aria-valuemin={0}
+            aria-valuemax={data.rateable}
+            aria-valuenow={data.answered}
+            className="h-1 overflow-hidden rounded-full bg-silver/10"
+          >
+            <div
+              className="grow-x h-full rounded-full bg-gradient-to-r from-gold-deep to-gold-light transition-[width] duration-700"
+              style={{ width: `${data.rateable ? (data.answered / data.rateable) * 100 : 0}%` }}
+            />
+          </div>
+        )}
       </div>
-      {airsOn === null && data.answered < data.rateable && (
+      {!data.open && airsOn === null && data.answered < data.rateable && (
         <RevealAll open={data.rateable - data.answered} onConfirm={revealRest} />
       )}
       {error !== null && (

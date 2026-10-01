@@ -4,6 +4,7 @@ from lambdas.seasons_get.handler import handler
 from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE
 from tests.events import authorized_event
+from tests.seasons import close
 
 SEASON = json.loads((SEASONS / "dwts-35.json").read_text())
 
@@ -30,6 +31,7 @@ def test_returns_schedule_roster_and_credits(aws):
     assert status == 200, body
     data = body["data"]
     assert data["season"] == "dwts-35" and data["timezone"] == "America/New_York"
+    assert data["open"] is False
     assert [e["ep"] for e in data["episodes"]] == list(range(1, 13))
     assert data["episodes"][5] == {
         "ep": 6,
@@ -75,3 +77,9 @@ def test_unknown_season_is_404(aws):
 def test_bad_season_is_400(aws):
     assert call({"season": "dwts35"})[0] == 400
     assert call(None)[0] == 400
+
+
+def test_a_past_season_is_open(aws):
+    seed(aws)
+    close(aws, SEASON)
+    assert call({"season": "dwts-35"})[1]["data"]["open"] is True

@@ -3,8 +3,9 @@ Per-couple numbers for the Couples screens (performers_get, week_board_get).
 
 Built only from gate.visible_scores, and narrowed further to the performances
 the caller paddled a value on, so a dance they skipped or haven't answered
-never counts for them or for anyone else. Other people reach the caller only
-as a mean over at least MIN_RATERS of them.
+never counts for them or for anyone else. A past season (gate.is_open) can
+take every dance instead. Other people reach the caller only as a mean over at
+least MIN_RATERS of them.
 """
 
 from __future__ import annotations
@@ -40,17 +41,21 @@ def dances(
     perfs: list[dict],
     score_rows: list[dict],
     pool: set[str] | None = None,
+    opened: bool = False,
 ) -> list[dict]:
     """
     One row per performance the caller paddled: their value, the panel's mean
     and total (None until every judge is confirmed), and the other values the
-    gate lets them see, by sub. Team dances are left out: one paddle shared by
-    several couples says nothing about any one of them.
+    gate lets them see, by sub. `opened`, an open season, adds a row for every
+    other dance too, with paddle None. Team dances are left out: one paddle
+    shared by several couples says nothing about any one of them.
     """
     by_key = {perf_key(p["sk"]): p for p in perfs}
-    mine: dict[str, int] = {}
+    mine: dict[str, int | None] = {}
     others: dict[str, dict[str, int]] = defaultdict(dict)
-    for row in visible_scores(sub, score_rows, pool):
+    if opened:
+        mine = dict.fromkeys(by_key)
+    for row in visible_scores(sub, score_rows, pool, opened):
         if "value" not in row:
             continue
         key, owner = score_owner(row)

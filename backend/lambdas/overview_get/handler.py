@@ -7,8 +7,9 @@ Every aired episode is read through gate.episode_view, and everything below is
 built from what it returns: judge values only on performances the caller has
 answered, eliminations only from episodes they have finished, and no other
 user's value. So couples' averages and "couples left" are as of the caller's
-own scorecard, not the broadcast. The schedule is public; seasons_get serves it
-too. The season leaderboard is leaderboard_get's.
+own scorecard, not the broadcast. A past season (gate.is_open) shows all of
+it, and its episodes come back complete. The schedule is public; seasons_get
+serves it too. The season leaderboard is leaderboard_get's.
 """
 
 from __future__ import annotations
@@ -21,7 +22,7 @@ from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, season_ref, season_rows
-from lambdas.common.gate import cid, episode_view, score_owner, visible_scores
+from lambdas.common.gate import cid, episode_view, is_open, score_owner, visible_scores
 
 LATEST = 3
 
@@ -68,7 +69,7 @@ def handler(event, context):
             "startsAt": starts and _iso(starts),
             "endsAt": ends and _iso(ends),
             # A past season's fixture has no start times, and every episode of it has aired.
-            "aired": not meta.get("current") or (starts is not None and starts <= now),
+            "aired": is_open(meta) or (starts is not None and starts <= now),
         }
         schedule.append((n, ep, entry))
     episodes = [entry for _, _, entry in schedule]
@@ -117,6 +118,7 @@ def handler(event, context):
     return ok(
         {
             "season": f"{show}-{season}",
+            "open": is_open(meta),
             "timezone": meta["timezone"],
             "judges": [
                 {"id": j, **{k: r.get(k) for k in ("name", "headshot")}} for j, r in judges.items()
@@ -195,8 +197,9 @@ def _streak(aired: list[dict]) -> int:
     """
     Episodes in a row, back from the latest, with every performance answered.
     The latest doesn't break it while still unfinished, since it can be caught up.
+    Counted from answers, not `complete`, which a past season sets on every episode.
     """
-    done = [e["complete"] for e in aired]
+    done = [bool(e["rateable"]) and e["answered"] == e["rateable"] for e in aired]
     if done and not done[-1]:
         done.pop()
     streak = 0

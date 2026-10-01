@@ -92,7 +92,8 @@ export interface BoardRow {
   members: Member[];
   dances: number;
   styles: (string | null)[];
-  you: number;
+  /** Null on a past season's couple you never paddled. */
+  you: number | null;
   judges: number | null;
   judgesTotal: number | null;
   friends: number | null;
@@ -110,6 +111,7 @@ export interface WeekBoard {
   panel: string[];
   scope: BoardScope;
   group: string | null;
+  open: boolean;
   rateable: number;
   answered: number;
   couples: BoardRow[];

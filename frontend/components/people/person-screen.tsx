@@ -285,7 +285,7 @@ function Timeline({ stints, onLoad }: { stints: Stint[]; onLoad: (season: string
       {unscored.length > 0 && (
         <div className="flex flex-col gap-2 pt-1">
           <p className="text-sm text-silver-dim">
-            Seasons you haven&apos;t scored. Open one to see their dances and how to score them.
+            More seasons. Open one to see their dances and results.
           </p>
           <ul className="flex flex-wrap gap-1.5">
             {unscored.map((s) => (

@@ -10,13 +10,13 @@ style, song, dancers, locked: true} and nothing else, enough to send them to
 every aired episode up to it, the episode rule; until then it is
 {locked: true, season, ep} with the first episode left. Every all-time number
 is over dances the caller has answered; friends are their accepted friends.
+A past season (gate.is_open) has no gate, so its dances and results all show.
 
 A judge or a long-serving pro spans hundreds of nights, so only some seasons
 are read (`loaded`): the person's latest, the current one, `season`, every
 season the caller has a leaderboard row in, and all of them for someone in
-three or fewer. An unread past season holds no dance the caller paddled
-against a confirmed panel, so the numbers lose at most forfeited dances; it
-lists no rows and its result is null. `season` also
+three or fewer. The numbers cover the seasons read. An unread season lists
+no rows and its result is null. `season` also
 narrows the dance lists, never the numbers, and picks which season of judging
 to list, the latest by default. Identity is the Cognito sub.
 """
@@ -32,7 +32,7 @@ from lambdas.common import board_dynamo, people
 from lambdas.common.api import NotFoundError, ValidationError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_partitions
 from lambdas.common.episodes_dynamo import episode_pk, season_index, season_ref
-from lambdas.common.gate import cid, episode_view
+from lambdas.common.gate import cid, episode_view, is_open
 from lambdas.common.social_dynamo import peers, status
 
 SHOW = "dwts"
@@ -164,7 +164,7 @@ def _seasons(numbers: set[int]) -> dict[int, dict]:
 
 def _aired(meta: dict, ep: dict, tz: ZoneInfo, now: datetime) -> bool:
     """overview_get's rule: a past season has no start times, and all of it has aired."""
-    if not meta.get("current"):
+    if is_open(meta):
         return True
     if not (ep.get("airDate") and ep.get("start")):
         return False
@@ -252,7 +252,7 @@ def _result(n: int, couple: str, season: dict, views: dict) -> dict:
         return {"locked": True, "season": f"{SHOW}-{n}", "ep": left[0]}
     if last is not None:
         return {"status": "out", "ep": last, "week": season["episodes"][last].get("week")}
-    if season["meta"].get("current"):
+    if not is_open(season["meta"]):
         return {"status": "dancing"}
     return {"status": "finalist"}
 

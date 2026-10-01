@@ -32,6 +32,7 @@ import { choose } from "./ui/select-test-utils";
 
 const SEASON: Season = {
   season: "dwts-35",
+  open: false,
   timezone: "America/New_York",
   episodes: [],
   judges: [{ id: "derek-hough", name: "Derek Hough", headshot: null }],

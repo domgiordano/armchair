@@ -12,6 +12,16 @@ from __future__ import annotations
 from collections import defaultdict
 
 
+def is_open(meta: dict) -> bool:
+    """
+    A season no longer flagged current has no gate: every judge's score, result
+    and user's value shows to everyone, answered or not. Nobody goes back and
+    scores a finished season blind, so it is view-only (scores_submit). META's
+    `current` is written beside the seasons index's by seed_season.py.
+    """
+    return not meta.get("current")
+
+
 def perf_key(sk: str) -> str:
     return sk.removeprefix("PERF#")
 
@@ -64,17 +74,20 @@ def answered(sub: str, scores: list[dict]) -> set[str]:
     return {key for key, owner in map(score_owner, scores) if owner == sub}
 
 
-def visible_scores(sub: str, scores: list[dict], members: set[str] | None = None) -> list[dict]:
+def visible_scores(
+    sub: str, scores: list[dict], members: set[str] | None = None, opened: bool = False
+) -> list[dict]:
     """
-    Score rows the caller may see: only on performances they have answered, and
-    only the caller's own plus `members` when a group is given. Every stat is
-    computed over this and nothing wider.
+    Score rows the caller may see: only on performances they have answered,
+    unless the season is `opened` (is_open), and only the caller's own plus
+    `members` when a group is given. Every stat is computed over this and
+    nothing wider.
     """
     done = answered(sub, scores)
     out = []
     for row in scores:
         key, owner = score_owner(row)
-        if key not in done:
+        if not opened and key not in done:
             continue
         if members is not None and owner != sub and owner not in members:
             continue
@@ -95,6 +108,7 @@ def episode_view(
     """The whole episode as the caller may see it."""
     perfs = {perf_key(p["sk"]): p for p in performances}
     keys = rateable(ep, episode, contestants, performances)
+    opened = is_open(meta)
     mine = {}
     for row in scores:
         key, owner = score_owner(row)
@@ -102,17 +116,17 @@ def episode_view(
             mine[key] = row
     # An empty roster means bad catalog data; keep results hidden rather than
     # letting all() of nothing reveal them.
-    complete = bool(keys) and all(k in mine for k in keys)
+    complete = opened or (bool(keys) and all(k in mine for k in keys))
     panel = episode.get("panel") or meta["defaultPanel"]
 
     values = defaultdict(list)
-    for row in visible_scores(sub, scores, members):
+    for row in visible_scores(sub, scores, members, opened):
         if "value" in row:
             key, owner = score_owner(row)
             values[key].append((owner, int(row["value"])))
 
     # An unrateable team dance has no answer of its own, so it opens with the episode.
-    cards = [(k, k in mine) for k in keys]
+    cards = [(k, opened or k in mine) for k in keys]
     cards += [(k, complete) for k, p in perfs.items() if p.get("rateable") is False]
 
     view = {
@@ -121,6 +135,7 @@ def episode_view(
         "airDate": episode.get("airDate"),
         "theme": episode.get("theme"),
         "panel": panel,
+        "open": opened,
         "rateable": len(keys),
         "answered": sum(k in mine for k in keys),
         "complete": complete,

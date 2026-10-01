@@ -120,6 +120,7 @@ A performance is keyed `episode + contestant + ordinal`, so a user can score a c
 4. **Order.** Unanswered performances sort alphabetically, matching the pre-show Wikipedia table. They never sort in running order.
 5. **No bypass.** Admin endpoints return no score data. No static or public JSON carries scores. A group filter narrows the visible set and never widens it.
 6. **Final.** Submit uses a conditional put. A retry with the identical value returns 200 with the stored row, so a double tap or network retry is safe. A different value returns 409. There is no update or delete endpoint.
+7. **Current season only.** Rules 1-4 apply only to the season flagged `current` (`gate.is_open`). Any other season is open to everyone: every judge's score, result and user's value, answered or not. Nobody goes back and scores a finished season blind, so it is view-only: submit, reveal-all and skip-before answer 403. Answers made while it was current stay and still count on the leaderboard. A season opens the moment a re-seed moves `current` off it.
 
 ## Affected Files / Components
 

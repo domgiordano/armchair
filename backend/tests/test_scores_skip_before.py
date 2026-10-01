@@ -12,6 +12,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, SCORES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.seasons import as_current
 from tests.test_gate import SEASON, B, score, state
 
 # The morning after episode 5 aired; 6 onward are still to come.
@@ -110,7 +111,8 @@ def test_a_value_after_skipping_is_409(show):
 
 
 def test_one_past_the_end_skips_a_finished_season_in_many_transactions(show):
-    past = json.loads((SEASONS / "dwts-34.json").read_text(), parse_float=Decimal)
+    # Still current after its finale: the catch-up is on until the season is closed.
+    past = as_current(json.loads((SEASONS / "dwts-34.json").read_text(), parse_float=Decimal))
     write(show.Table(CATALOG_TABLE), items(past))
     status, body = skip_before(ep=f"{len(past['episodes']) + 1:02d}", season="dwts-34")
     assert status == 200, body
@@ -119,6 +121,14 @@ def test_one_past_the_end_skips_a_finished_season_in_many_transactions(show):
     assert want > episodes_dynamo.CHUNK
     assert sum(len(r["keys"]) for r in body["data"]["revealed"]) == want
     assert len(rows(show)) == want
+
+
+def test_a_past_season_is_view_only(show):
+    past = json.loads((SEASONS / "dwts-34.json").read_text(), parse_float=Decimal)
+    write(show.Table(CATALOG_TABLE), items(past))
+    status, body = skip_before(ep="02", season="dwts-34")
+    assert status == 403, body
+    assert rows(show) == {}
 
 
 def test_a_row_that_races_in_stands_and_the_rest_are_written(show, monkeypatch):

@@ -42,6 +42,7 @@ import { choose } from "./ui/select-test-utils";
 const person = (name: string) => ({ name, headshot: null });
 const SEASON: Season = {
   season: "dwts-35",
+  open: false,
   timezone: "America/New_York",
   episodes: [
     { ep: 4, week: 3, airDate: "2026-09-29", start: "20:00", end: "22:00", theme: "Yacht Rock" },
@@ -70,6 +71,7 @@ const SEASON: Season = {
 const LOCKED = { contestants: ["amber-glenn"], n: 1, style: null, song: null, locked: true as const };
 const STATE: EpisodeState = {
   season: "dwts-35",
+  open: false,
   ep: 4,
   week: 3,
   airDate: "2026-09-29",
@@ -349,6 +351,27 @@ describe("catching up", () => {
 
     expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
     expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 6);
+  });
+
+  it("opens a past season straight to every score: no catch-up, no paddles", async () => {
+    overview({ 4: 0, 5: 0 });
+    vi.mocked(getSeason).mockResolvedValue({ ...SEASON, season: "dwts-20", open: true });
+    const revealed = STATE.performances[1];
+    const amber = { ...revealed, key: "amber-glenn#1", contestants: ["amber-glenn"], mine: null };
+    episodes({
+      5: { ep: 5, theme: "Mariah Carey", open: true, answered: 0, complete: true, performances: [amber, revealed] },
+    });
+    render(<EpisodeScreen />);
+
+    expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
+    expect(getOverview).not.toHaveBeenCalled();
+    expect(screen.getByText("Past season · view only")).toBeTruthy();
+    expect(screen.queryByRole("progressbar")).toBeNull();
+    expect(screen.queryByRole("button", { name: "Reveal all" })).toBeNull();
+    expect(screen.queryByRole("button", { name: /^Score \d/ })).toBeNull();
+    const card = screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    expect(value(card, "Carrie Ann Inaba")).toBe("8");
+    expect(value(card, "You")).toBe("Not scored");
   });
 
   it("skips the question when week 3 is finished", async () => {

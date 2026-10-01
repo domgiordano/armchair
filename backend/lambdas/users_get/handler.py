@@ -14,8 +14,9 @@ dance's gap, a per-dance value the viewer may never have answered.
 
 `detail` takes the other route: for someone else it covers only the dances the
 viewer has answered too, which the gate already shows the viewer on each
-episode's results, so it needs no floor. It is still means and counts, plus the
-one dance each side of them the owner called best and worst.
+episode's results, so it needs no floor. On a past season (gate.is_open) the
+gate shows every dance, so it covers them all. It is still means and counts,
+plus the one dance each side of them the owner called best and worst.
 
 All-time, places and history are the leaderboard's BOARD rows through
 gate.standing and gate.places, with the same floor. `season=all` sums every
@@ -44,6 +45,7 @@ from lambdas.common.episodes_dynamo import (
 from lambdas.common.gate import (
     answered,
     cid,
+    is_open,
     perf_key,
     places,
     score_owner,
@@ -152,6 +154,7 @@ def _dances(sub: str, show: str, season: int, viewer: str) -> tuple[list, list, 
     if "META" not in rows:
         raise NotFoundError("No such season", season=f"{show}-{season}")
     roster = {cid(r): r["members"] for sk, r in rows.items() if sk.startswith("CONTESTANT#")}
+    opened = is_open(rows["META"])
     out, shared, activity = [], [], []
     for sk, episode in sorted(rows.items()):
         if not sk.startswith("EP#"):
@@ -191,7 +194,7 @@ def _dances(sub: str, show: str, season: int, viewer: str) -> tuple[list, list, 
                 **d,
             }
             out.append(row)
-            if d["key"] in seen:
+            if opened or d["key"] in seen:
                 shared.append(row)
     return out, shared, activity
 
