@@ -125,7 +125,7 @@ locals {
     groups_delete      = ["groups:GetItem", "groups:Query", "groups:BatchWriteItem", "groups:DeleteItem", "social:DeleteItem"]
     groups_leave       = ["groups:GetItem", "groups:DeleteItem"]
     scores_skip_before = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem"]
-    performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem"]
+    performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem", "users:GetItem", "social:GetItem"]
     week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
     people_search      = ["catalog:Query", "social:Query", "users:BatchGetItem"]
     people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query"]
