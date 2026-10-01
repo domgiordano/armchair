@@ -8,8 +8,7 @@ import { Avatar } from "@/components/avatar";
 import { Brand } from "@/components/brand";
 import { NavSheet } from "@/components/nav-sheet";
 import { NotificationsBell } from "@/components/notifications";
-import { SearchBox } from "@/components/search/people-search";
-import { SearchSheet } from "@/components/search/search-sheet";
+import { HeaderSearch } from "@/components/search/header-search";
 import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { Select } from "@/components/ui/select";
@@ -75,9 +74,7 @@ function Shell({ title, wide, children }: AppShellProps) {
   const season = useSeasonId();
   const current = activeTab(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
-  const searchButton = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -110,18 +107,7 @@ function Shell({ title, wide, children }: AppShellProps) {
             <SeasonPicker season={season} />
           </div>
           <div className="ml-auto flex items-center gap-1">
-            <SearchBox variant="popover" className="mr-1 hidden md:block" />
-            <button
-              ref={searchButton}
-              type="button"
-              aria-label="Search"
-              aria-haspopup="dialog"
-              aria-expanded={searchOpen}
-              onClick={() => setSearchOpen(true)}
-              className={`${ICON_BUTTON} md:hidden`}
-            >
-              <SearchGlyph />
-            </button>
+            <HeaderSearch buttonClassName={ICON_BUTTON} />
             <div className="hidden md:block">
               <AppsMenu />
             </div>
@@ -139,13 +125,6 @@ function Shell({ title, wide, children }: AppShellProps) {
           </ul>
         </nav>
       </header>
-      <SearchSheet
-        open={searchOpen}
-        onClose={() => {
-          setSearchOpen(false);
-          searchButton.current?.focus();
-        }}
-      />
       <NavSheet open={menuOpen} onClose={closeMenu}>
         {/* Close sits where the hamburger was, and comes first so the dialog focuses it on open. */}
         <div className="-mx-2 -mt-1.5 flex items-center gap-2">
@@ -341,15 +320,6 @@ function CloseIcon() {
   return (
     <svg {...ICON}>
       <path d="M6 6l12 12M18 6L6 18" />
-    </svg>
-  );
-}
-
-function SearchGlyph() {
-  return (
-    <svg {...ICON}>
-      <circle cx="11" cy="11" r="6.5" />
-      <path d="m16 16 4 4" />
     </svg>
   );
 }

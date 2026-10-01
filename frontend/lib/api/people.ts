@@ -25,8 +25,6 @@ export interface SearchResults {
 export const SEARCH_MIN = 2;
 export const SEARCH_MAX = 40;
 
-export const searchAll = (q: string) => request<SearchResults>(`/people/search?q=${encodeURIComponent(q)}`);
-
 export const profileHref = (sub: string) => `/profile/?u=${encodeURIComponent(sub)}`;
 
 export interface Dancer {
