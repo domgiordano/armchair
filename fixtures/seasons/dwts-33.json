@@ -58,7 +58,12 @@
       "aliases": [
         "Rosie Perez"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Rosie_Perez_2012.jpg",
+        "author": "Joella Marano from Manhattan, NYC",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rosie_Perez_2012.jpg"
+      }
     },
     {
       "id": "gene-simmons",
@@ -66,7 +71,12 @@
       "aliases": [
         "Gene Simmons"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Gene_Simmons_2012.jpg",
+        "author": "Toglenn",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gene_Simmons_2012.jpg"
+      }
     },
     {
       "id": "mark-ballas",
@@ -74,7 +84,12 @@
       "aliases": [
         "Mark Ballas"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Mark_Ballas_(2014)_(cropped).jpg",
+        "author": "Justin Higuchi from Los Angeles, CA, USA",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+      }
     }
   ],
   "episodes": [
@@ -2225,7 +2240,12 @@
         {
           "name": "Anna Delvey",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "AnnaDelvey-byPhilipRomano.jpg",
+            "author": "PhilipRomanoPhoto",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:AnnaDelvey-byPhilipRomano.jpg"
+          }
         },
         {
           "name": "Ezra Sosa",
@@ -2244,12 +2264,22 @@
         {
           "name": "Tori Spelling",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "ToriSpelling2018.jpg",
+            "author": "Gage Skidmore",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:ToriSpelling2018.jpg"
+          }
         },
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "author": "Panache Star Dancesport",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2263,12 +2293,22 @@
         {
           "name": "Eric Roberts",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Eric_Roberts_2025.jpg",
+            "author": "Miguel Discart & Kiri Karma",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Eric_Roberts_2025.jpg"
+          }
         },
         {
           "name": "Britt Stewart",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "author": "CaseyJNewell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2282,12 +2322,22 @@
         {
           "name": "Reginald VelJohnson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Reginald_VelJohnson,_2021_(579134550).jpg",
+            "author": "Sidewalks Entertainment on Vimeo",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Reginald_VelJohnson,_2021_(579134550).jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2301,12 +2351,22 @@
         {
           "name": "Brooks Nader",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Brooks_Nader_2.jpg",
+            "author": "Warren Elgort",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brooks_Nader_2.jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2320,7 +2380,12 @@
         {
           "name": "Phaedra Parks",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "PhaedraParks2018.png",
+            "author": "Sister Circle TV",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:PhaedraParks2018.png"
+          }
         },
         {
           "name": "Val Chmerkovskiy",
@@ -2358,7 +2423,12 @@
         {
           "name": "Dwight Howard",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Dwight_Howard_pre-game_(cropped).jpg",
+            "author": "Erik Drost",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dwight_Howard_pre-game_(cropped).jpg"
+          }
         },
         {
           "name": "Daniella Karagach",
@@ -2377,12 +2447,22 @@
         {
           "name": "Danny Amendola",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Danny_Amendola_Rams.JPG",
+            "author": "Jeffrey Beall",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Danny_Amendola_Rams.JPG"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2396,12 +2476,22 @@
         {
           "name": "Stephen Nedoroscik",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Stephen_Nedoroscik_at_the_2024_Summer_Olympics.jpg",
+            "author": "Jill Biden",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stephen_Nedoroscik_at_the_2024_Summer_Olympics.jpg"
+          }
         },
         {
           "name": "Rylee Arnold",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Rylee_Arnold_at_Press_Play_2026.jpg",
+            "author": "Mikepascoe",
+            "license": "CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rylee_Arnold_at_Press_Play_2026.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2415,7 +2505,12 @@
         {
           "name": "Chandler Kinney",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chandler_Kinney_2022.jpg",
+            "author": "Sidewalks Entertainment",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chandler_Kinney_2022.jpg"
+          }
         },
         {
           "name": "Brandon Armstrong",
@@ -2434,7 +2529,12 @@
         {
           "name": "Ilona Maher",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Ilona_Maher_(cropped).jpg",
+            "author": "The White House",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ilona_Maher_(cropped).jpg"
+          }
         },
         {
           "name": "Alan Bersten",

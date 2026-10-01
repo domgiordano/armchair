@@ -22,20 +22,25 @@ One JSON file per season, loaded by `backend/scripts/seed_season.py` into the
 
 ## Headshots
 
-`headshot.file` is picked by hand from Wikimedia Commons. `author`, `license` and
-`sourceUrl` come from the file's Commons metadata:
+Every person's `headshot` is copied from `fixtures/headshots.json`, which maps each name
+as the fixtures spell it to a free Wikimedia Commons file and its credit, or to `null`
+when none was found. `backend/scripts/find_headshots.py` fills it: Wikidata's image for
+the person's article, the article's free lead image, then the person's Commons category
+and a strict Commons search. It only looks up names the registry doesn't have yet, and
+`test_find_headshots.py` checks every fixture against the registry.
 
 ```bash
-cd backend && python scripts/seed_season.py --credits
+cd backend && python scripts/find_headshots.py           # new names, then every fixture
+cd backend && python scripts/find_headshots.py --apply   # copy the registry into fixtures only
 ```
 
-Set to `null` on purpose, although the article has a page image:
+To retry a `null`, delete its entry and run the script. Hand decisions live in the
+script: `SKIP` keeps a person null (Guillermo Rodriguez, Daniella Karagach), `REJECT`
+rules out a file that passes every check but shows no face. Network and studio
+photos, signatures and graves are refused by rule.
 
-- Guillermo Rodriguez: the Commons description names Guillermo Díaz. Needs an eyeball check.
-- Daniella Karagach: the only free photo is a two-person dance shot.
-
-`seed_season.py --headshots <site-bucket>` copies a 400px Commons thumbnail of each
-file to `s3://<site-bucket>/headshots/<file>`.
+`seed_season.py all --headshots <site-bucket>` copies a 400px Commons thumbnail of each
+file not already under `s3://<site-bucket>/headshots/<file>`.
 
 ## dwts-1.json to dwts-34.json
 
@@ -57,7 +62,7 @@ Beyond the dwts-35 shape:
   says Eliminated or Withdrew; finalists have none.
 - `skipped` lists every row left out and why: "No scores received" group dances,
   couples missing from the Cast table, values that don't fit the panel.
-- Headshots are null except judges already credited in dwts-35.json.
+- Headshots come from `fixtures/headshots.json`, like dwts-35's.
 - S10 and S11 week 4 gave each dance a technical and a performance score; they load
   as dance 1 and dance 2 of the same routine.
 

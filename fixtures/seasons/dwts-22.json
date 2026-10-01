@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -53,7 +58,12 @@
       "aliases": [
         "Zendaya"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Zendaya_2011.jpg",
+        "author": "Mingle MediaTV at https://www.flickr.com/photos/minglemediatv",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zendaya_2011.jpg"
+      }
     },
     {
       "id": "maksim-chmerkovskiy",
@@ -61,7 +71,12 @@
       "aliases": [
         "Maksim Chmerkovskiy"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Maksimchmerkovskiy.jpg",
+        "author": "Albert Domasin from Los Angeles, united states",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+      }
     }
   ],
   "episodes": [
@@ -2074,12 +2089,22 @@
         {
           "name": "Geraldo Rivera",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "GeraldoRiveraSept2010.jpg",
+            "author": "Justin Hoch[dead link] photographing for Hudson Union Society",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:GeraldoRiveraSept2010.jpg"
+          }
         },
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2093,7 +2118,12 @@
         {
           "name": "Mischa Barton",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mischa_barton_london.JPG",
+            "author": "Absinthe",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mischa_barton_london.JPG"
+          }
         },
         {
           "name": "Artem Chigvintsev",
@@ -2112,12 +2142,22 @@
         {
           "name": "Marla Maples",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Marla_Maples_(2014).jpg",
+            "author": "Zakirmithu",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marla_Maples_(2014).jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2131,12 +2171,22 @@
         {
           "name": "Doug Flutie",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "2025,_Alum02,_Doug_Flutie.jpg",
+            "author": "Cmm3",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2025,_Alum02,_Doug_Flutie.jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2150,7 +2200,12 @@
         {
           "name": "Kim Fields",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kim_Fields_2011.jpg",
+            "author": "Dr. Duru",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kim_Fields_2011.jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -2169,12 +2224,22 @@
         {
           "name": "Von Miller",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Commanders_Training_Camp_-_54752497153.jpg",
+            "author": "All-Pro Reels",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Commanders_Training_Camp_-_54752497153.jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2188,12 +2253,22 @@
         {
           "name": "Jodie Sweetin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "WW_Chicago_2015_-_Jodie_Sweetin_01_(21038113562).jpg",
+            "author": "GabboT",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:WW_Chicago_2015_-_Jodie_Sweetin_01_(21038113562).jpg"
+          }
         },
         {
           "name": "Keo Motsepe",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2207,12 +2282,22 @@
         {
           "name": "Antonio Brown",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Antonio_Brown_2015.jpg",
+            "author": "Keith Allison",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Antonio_Brown_2015.jpg"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2226,7 +2311,12 @@
         {
           "name": "Wanyá Morris",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Wanya_Morris_cropped.jpg",
+            "author": "Wanya_Morris.jpg: Luis Avilesortiz from Dublin, Ireland derivative work: Truu (talk)",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wanya_Morris_cropped.jpg"
+          }
         },
         {
           "name": "Lindsay Arnold",
@@ -2264,12 +2354,22 @@
         {
           "name": "Paige VanZant",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Paige_VanZant_180428-D-SW162-1542_(cropped).jpg",
+            "author": "Chairman of the Joint Chiefs of Staff from Washington D.C, United States",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paige_VanZant_180428-D-SW162-1542_(cropped).jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2283,12 +2383,22 @@
         {
           "name": "Nyle DiMarco",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Nyle_DiMarco_Citation_Presentation_(28915940204)_(cropped).jpg",
+            "author": "Maryland GovPics",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nyle_DiMarco_Citation_Presentation_(28915940204)_(cropped).jpg"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": null

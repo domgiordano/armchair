@@ -3,7 +3,8 @@ name: Seed Season
 # Writes fixtures/seasons/ files into the catalog table, and optionally copies
 # their Commons headshots to the site bucket. A finished season's performances
 # and results are published too, confirmed. "all" seeds every fixture, S1-S35.
-# Idempotent: the seed script never overwrites fields the poller or an admin owns.
+# Idempotent: the seed script never overwrites fields the poller or an admin owns,
+# and only copies headshots the bucket doesn't already have.
 
 on:
   workflow_dispatch:
@@ -13,9 +14,9 @@ on:
         required: true
         default: all
       headshots:
-        description: "Also copy headshots to the site bucket"
+        description: "Also copy missing headshots to the site bucket"
         type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: read

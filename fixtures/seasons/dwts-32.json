@@ -58,7 +58,12 @@
       "aliases": [
         "Michael Strahan"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Michael_Strahan_2022_(cropped).jpg",
+        "author": "Airman 1st Class Andrew Britten",
+        "license": "Public domain",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Strahan_2022_(cropped).jpg"
+      }
     },
     {
       "id": "niecy-nash-betts",
@@ -74,7 +79,12 @@
       "aliases": [
         "Paula Abdul"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Paula_Abdul_2007.jpg",
+        "author": "Toglenn",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paula_Abdul_2007.jpg"
+      }
     },
     {
       "id": "billy-porter",
@@ -82,7 +92,12 @@
       "aliases": [
         "Billy Porter"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Billy_Porter_Gershwin_Prize_2024_(cropped).jpg",
+        "author": "UKinUSA",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Billy_Porter_Gershwin_Prize_2024_(cropped).jpg"
+      }
     },
     {
       "id": "mandy-moore",
@@ -2383,7 +2398,12 @@
         {
           "name": "Matt Walsh",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Matt_Walsh_2014.jpg",
+            "author": "Dominick D",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Matt_Walsh_2014.jpg"
+          }
         },
         {
           "name": "Koko Iwasaki",
@@ -2402,7 +2422,12 @@
         {
           "name": "Jamie Lynn Spears",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jamie_Lynn_Spears.jpg",
+            "author": "Jenniferh2525 (photo)Lucas (retouching)",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jamie_Lynn_Spears.jpg"
+          }
         },
         {
           "name": "Alan Bersten",
@@ -2421,7 +2446,12 @@
         {
           "name": "Tyson Beckford",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Tyson_Beckford_(cropped).jpg",
+            "author": "The original uploader was Jgro888 at English Wikipedia.",
+            "license": "CC BY-SA 2.5",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tyson_Beckford_(cropped).jpg"
+          }
         },
         {
           "name": "Jenna Johnson",
@@ -2440,12 +2470,22 @@
         {
           "name": "Adrian Peterson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Adrian_Peterson_(cropped).jpg",
+            "author": "Mike Morbeck",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adrian_Peterson_(cropped).jpg"
+          }
         },
         {
           "name": "Britt Stewart",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "author": "CaseyJNewell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2459,12 +2499,22 @@
         {
           "name": "Mira Sorvino",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mira_Sorvino_Wien_2013_b.jpg",
+            "author": "Manfred Werner (Tsui)",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mira_Sorvino_Wien_2013_b.jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2478,12 +2528,22 @@
         {
           "name": "Mauricio Umansky",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Umansky_family_(cropped)_(cropped).jpg",
+            "author": "Aaa12683",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Umansky_family_(cropped)_(cropped).jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2497,7 +2557,12 @@
         {
           "name": "Lele Pons",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lele_Pons_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lele_Pons_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         },
         {
           "name": "Brandon Armstrong",
@@ -2516,12 +2581,22 @@
         {
           "name": "Barry Williams",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "10.1.10BarryWilliamsByLuigiNovi1.jpg",
+            "author": "Nightscream",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:10.1.10BarryWilliamsByLuigiNovi1.jpg"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2540,7 +2615,12 @@
         {
           "name": "Rylee Arnold",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Rylee_Arnold_at_Press_Play_2026.jpg",
+            "author": "Mikepascoe",
+            "license": "CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rylee_Arnold_at_Press_Play_2026.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2554,7 +2634,12 @@
         {
           "name": "Alyson Hannigan",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Alyson_Hannigan_(9445491655)_(cropped).jpg",
+            "author": "vagueonthehow from Tadcaster, York, England",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alyson_Hannigan_(9445491655)_(cropped).jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -2592,12 +2677,22 @@
         {
           "name": "Ariana Madix",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "NUP_207595_03820.jpg",
+            "author": "Ben Symons/Peacock",
+            "license": "CC0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:NUP_207595_03820.jpg"
+          }
         },
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "author": "Panache Star Dancesport",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2611,7 +2706,12 @@
         {
           "name": "Jason Mraz",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "2020_NAMM_Show_(50784311217)_(cropped).jpg",
+            "author": "Justin Higuchi",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2020_NAMM_Show_(50784311217)_(cropped).jpg"
+          }
         },
         {
           "name": "Daniella Karagach",
@@ -2630,7 +2730,12 @@
         {
           "name": "Xochitl Gomez",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Xochitl_Gomez_-_2024_(cropped).jpg",
+            "author": "The White House",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Xochitl_Gomez_-_2024_(cropped).jpg"
+          }
         },
         {
           "name": "Val Chmerkovskiy",

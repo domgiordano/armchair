@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -2016,12 +2021,22 @@
         {
           "name": "Penn Jillette",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Penn_Jillette_(28681616966).jpg",
+            "author": "Gage Skidmore from Peoria, AZ, United States of America",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Penn_Jillette_(28681616966).jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2035,7 +2050,12 @@
         {
           "name": "Monica Seles",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Monica_Seles_1999.jpg",
+            "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Monica_Seles_1999.jpg"
+          }
         },
         {
           "name": "Jonathan Roberts",
@@ -2054,7 +2074,12 @@
         {
           "name": "Steve Guttenberg",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Steve_Guttenberg_at_Galaxy_Con_Richmond_-_55186310676_(cropped).jpg",
+            "author": "John Manard",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steve_Guttenberg_at_Galaxy_Con_Richmond_-_55186310676_(cropped).jpg"
+          }
         },
         {
           "name": "Anna Trebunskaya",
@@ -2073,12 +2098,22 @@
         {
           "name": "Adam Carolla",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "2012-02-25_Adam_Carolla.jpg",
+            "author": "Rwerner",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2012-02-25_Adam_Carolla.jpg"
+          }
         },
         {
           "name": "Julianne Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+            "author": "https://www.flickr.com/photos/greg2600",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2092,7 +2127,12 @@
         {
           "name": "Priscilla Presley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Priscilla_Presley_2014.jpg",
+            "author": "See Li from London, UK",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Priscilla_Presley_2014.jpg"
+          }
         },
         {
           "name": "Louis van Amstel",
@@ -2111,7 +2151,12 @@
         {
           "name": "Marlee Matlin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Marlee_Matlin_at_the_2025_Sundance_Film_Festival_(cropped).jpg",
+            "author": "Adam Chitayat",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marlee_Matlin_at_the_2025_Sundance_Film_Festival_(cropped).jpg"
+          }
         },
         {
           "name": "Fabian Sanchez",
@@ -2130,12 +2175,22 @@
         {
           "name": "Shannon Elizabeth",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Shannon_Elizabeth_Photo_Op_GalaxyCon_Richmond_2020.jpg",
+            "author": "Super Festivals",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shannon_Elizabeth_Photo_Op_GalaxyCon_Richmond_2020.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2149,12 +2204,22 @@
         {
           "name": "Mario",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mario_at_Essence_Festival_2026.jpg",
+            "author": "Kirby Taylor",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mario_at_Essence_Festival_2026.jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2168,12 +2233,22 @@
         {
           "name": "Marissa Jaret Winokur",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Marissa_Jaret_Winokur.jpg",
+            "author": "Greg Hernandez",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marissa_Jaret_Winokur.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2188,12 +2263,22 @@
         {
           "name": "Cristián de la Fuente",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Cristian_for_Wiki.jpg",
+            "author": "Seketelsen",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cristian_for_Wiki.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2207,12 +2292,22 @@
         {
           "name": "Jason Taylor",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jason_Taylor_Jets-Dolphin_game_Nov_1,_2009.jpg",
+            "author": "Ed Yourdon",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jason_Taylor_Jets-Dolphin_game_Nov_1,_2009.jpg"
+          }
         },
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2226,12 +2321,22 @@
         {
           "name": "Kristi Yamaguchi",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kristi_Yamaguchi_1996.jpg",
+            "author": "John Mathew Smith & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kristi_Yamaguchi_1996.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
