@@ -54,6 +54,16 @@ locals {
       invoke_arn = aws_lambda_function.api["notifications_${l.name}"].invoke_arn
     })
   ]
+  performers_endpoints = [
+    for l in local.performers_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["performers_${l.name}"].invoke_arn
+    })
+  ]
+  week_board_endpoints = [
+    for l in local.week_board_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["week_board_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -88,5 +98,7 @@ module "api" {
     friends       = { path_prefix = "friends", endpoints = local.friends_endpoints }
     leaderboard   = { path_prefix = "leaderboard", endpoints = local.leaderboard_endpoints }
     notifications = { path_prefix = "notifications", endpoints = local.notifications_endpoints }
+    performers    = { path_prefix = "performers", endpoints = local.performers_endpoints }
+    week_board    = { path_prefix = "week-board", endpoints = local.week_board_endpoints }
   }
 }
