@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import type { Bar } from "@/lib/show/stats-summary";
 
 const W = 320;
@@ -40,11 +42,30 @@ export function TrendChart({ points }: { points: { label: string; mae: number }[
           </text>
         </g>
       ))}
-      {points.length > 1 && <polygon points={area} fill="url(#trend-fill)" />}
-      <polyline points={path} fill="none" stroke="var(--color-gold)" strokeWidth={2} strokeLinejoin="round" />
+      {points.length > 1 && (
+        <polygon points={area} fill="url(#trend-fill)" className="animate-fade-in [animation-delay:700ms] [animation-duration:600ms]" />
+      )}
+      <polyline
+        points={path}
+        pathLength={1}
+        fill="none"
+        stroke="var(--color-gold)"
+        strokeWidth={2}
+        strokeLinejoin="round"
+        className="draw"
+      />
       {points.map((p, i) => (
         <g key={p.label}>
-          <circle cx={x(i)} cy={y(p.mae)} r={3} fill="var(--color-gold)" stroke="var(--color-ink)" strokeWidth={1.5}>
+          <circle
+            cx={x(i)}
+            cy={y(p.mae)}
+            r={3}
+            fill="var(--color-gold)"
+            stroke="var(--color-ink)"
+            strokeWidth={1.5}
+            className="pop"
+            style={{ "--d": `${200 + (i / Math.max(1, points.length - 1)) * 900}ms` } as CSSProperties}
+          >
             <title>{`${p.label}: ${p.mae.toFixed(2)} off`}</title>
           </circle>
           <text
@@ -68,7 +89,7 @@ export function BarList({ bars, label }: { bars: Bar[]; label: string }) {
   const best = Math.min(...bars.map((b) => b.value));
   return (
     <ul aria-label={label} className="flex flex-col gap-2.5">
-      {bars.map((b) => (
+      {bars.map((b, i) => (
         <li key={b.label} className="flex flex-col gap-1">
           <span className="flex items-baseline justify-between gap-3 text-sm">
             <span className="truncate text-pearl">{b.label}</span>
@@ -78,8 +99,8 @@ export function BarList({ bars, label }: { bars: Bar[]; label: string }) {
           </span>
           <span aria-hidden="true" className="h-2 overflow-hidden rounded-full bg-silver/10">
             <span
-              className={`block h-full rounded-full ${b.value === best ? "bg-gradient-to-r from-gold-deep to-gold-light" : "bg-silver-dim/70"}`}
-              style={{ width: `${Math.max(2, (b.value / max) * 100)}%` }}
+              className={`grow-x block h-full rounded-full ${b.value === best ? "bg-gradient-to-r from-gold-deep to-gold-light" : "bg-silver-dim/70"}`}
+              style={{ width: `${Math.max(2, (b.value / max) * 100)}%`, "--d": `${i * 60}ms` } as CSSProperties}
             />
           </span>
         </li>
@@ -124,10 +145,28 @@ export function Histogram({ bins }: { bins: { value: number; mine: number; judge
         const base = HH - HPAD.bottom;
         return (
           <g key={b.value}>
-            <rect x={cx - barW - 0.5} y={base - h(b.mine)} width={barW} height={h(b.mine)} rx={1.5} fill="var(--color-gold)">
+            <rect
+              x={cx - barW - 0.5}
+              y={base - h(b.mine)}
+              width={barW}
+              height={h(b.mine)}
+              rx={1.5}
+              fill="var(--color-gold)"
+              className="grow-y"
+              style={{ "--d": `${i * 50}ms` } as CSSProperties}
+            >
               <title>{`${b.value}: you ${pct(b.mine)}`}</title>
             </rect>
-            <rect x={cx + 0.5} y={base - h(b.judges)} width={barW} height={h(b.judges)} rx={1.5} fill="var(--color-silver-dim)">
+            <rect
+              x={cx + 0.5}
+              y={base - h(b.judges)}
+              width={barW}
+              height={h(b.judges)}
+              rx={1.5}
+              fill="var(--color-silver-dim)"
+              className="grow-y"
+              style={{ "--d": `${i * 50 + 120}ms` } as CSSProperties}
+            >
               <title>{`${b.value}: judges ${pct(b.judges)}`}</title>
             </rect>
             <text x={cx} y={HH - 5} fontSize={9} textAnchor="middle" fill="currentColor">

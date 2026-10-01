@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { AppShell } from "@/components/app-shell";
 import { Brand } from "@/components/brand";
 import { PageLoader } from "@/components/disco-loader";
+import { Specks } from "@/components/ui/specks";
 import { rememberReturn } from "@/lib/auth/return-to";
 import { useAuth } from "@/lib/auth/use-auth";
 import { DISPLAY, PRIMARY } from "@/lib/ui";
@@ -29,6 +30,7 @@ export function SignedIn({ title, wide = false, children }: SignedInProps) {
 
   return (
     <div className="relative isolate mx-auto flex min-h-dvh max-w-md flex-col">
+      <Specks />
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 -z-10 h-96 bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgb(59_91_255/0.18),transparent_70%)]"

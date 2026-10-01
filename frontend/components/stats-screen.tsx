@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
 import { PageLoader } from "@/components/disco-loader";
 import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
@@ -9,6 +9,7 @@ import { GroupPicker } from "@/components/group-picker";
 import { formatScore } from "@/components/performance-card";
 import { SignedIn } from "@/components/signed-in";
 import { Card } from "@/components/ui/card";
+import { CountUp } from "@/components/ui/count-up";
 import { PageHeader } from "@/components/ui/page-header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
@@ -128,7 +129,9 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
         <h2 id="overall" className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">
           Against the judges&apos; average
         </h2>
-        <p className="text-4xl font-semibold text-pearl tabular-nums">{off(mine.mae)}</p>
+        <p className="text-4xl font-semibold text-pearl tabular-nums">
+          <CountUp value={mine.mae} format={off} />
+        </p>
         <p className="text-sm text-silver-dim">
           Average gap per dance, over {mine.count} {mine.count === 1 ? "dance" : "dances"}.
           {stats.others.length > 0 && ` You rank ${rank} of ${stats.others.length + 1} on the dances you've scored.`}
@@ -136,7 +139,7 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
       </section>
 
       {/* Columns, not a grid: the cards differ in height and a grid row would pad the short ones. */}
-      <div className="gap-4 lg:columns-2 xl:columns-3 [&>section]:mb-4 [&>section]:break-inside-avoid">
+      <div className="stagger gap-4 lg:columns-2 xl:columns-3 [&>section]:mb-4 [&>section]:break-inside-avoid">
         <Card id="trend" title="Your season" note="Points off per episode. Lower is closer.">
           <TrendChart points={stats.episodes.map((e) => ({ label: short(e.ep), mae: e.mae ?? 0 }))} />
         </Card>
@@ -254,11 +257,27 @@ export function Progression({ dances, label }: { dances: Dance[]; label: (ep: nu
           {label(ep).replace("Week ", "W").replace(", night ", "/")}
         </text>
       ))}
-      <polyline points={line((d) => d.panelMean)} fill="none" stroke="currentColor" strokeWidth={1.5} />
+      <polyline points={line((d) => d.panelMean)} pathLength={1} fill="none" stroke="currentColor" strokeWidth={1.5} className="draw" />
       <g className="text-gold">
-        <polyline points={line((d) => d.paddle)} fill="none" stroke="currentColor" strokeWidth={2} />
+        <polyline
+          points={line((d) => d.paddle)}
+          pathLength={1}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          className="draw"
+          style={{ "--d": "250ms" } as CSSProperties}
+        />
         {dances.map((d, i) => (
-          <circle key={`${d.ep}-${d.key}`} cx={x(i)} cy={y(d.paddle)} r={2.5} fill="currentColor">
+          <circle
+            key={`${d.ep}-${d.key}`}
+            cx={x(i)}
+            cy={y(d.paddle)}
+            r={2.5}
+            fill="currentColor"
+            className="pop"
+            style={{ "--d": `${250 + (i / Math.max(1, dances.length - 1)) * 1100}ms` } as CSSProperties}
+          >
             <title>{`${label(d.ep)}: you ${d.paddle}, judges ${formatScore(d.panelMean)}`}</title>
           </circle>
         ))}

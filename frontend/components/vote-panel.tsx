@@ -83,7 +83,7 @@ function VoteList({ ep, couples }: VoteListProps) {
         </a>
         . The tally is kept on this device.
       </p>
-      <ul className="grid divide-y divide-silver/10 md:grid-cols-2 md:gap-x-8 md:divide-y-0 xl:grid-cols-3">
+      <ul className="stagger grid divide-y divide-silver/10 md:grid-cols-2 md:gap-x-8 md:divide-y-0 xl:grid-cols-3">
         {couples.map((c) => {
           const celebrity = c.members.find((m) => m.role === "celebrity")?.name ?? c.id;
           const pro = c.members.find((m) => m.role === "pro")?.name;

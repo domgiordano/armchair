@@ -10,6 +10,7 @@ import { NavSheet } from "@/components/nav-sheet";
 import { NotificationsBell } from "@/components/notifications";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { Select } from "@/components/ui/select";
+import { Specks } from "@/components/ui/specks";
 import { ToastProvider } from "@/components/ui/toast";
 import { getMe, type Me } from "@/lib/api/client";
 import { useAuth } from "@/lib/auth/use-auth";
@@ -78,7 +79,8 @@ function Shell({ title, wide, children }: AppShellProps) {
   };
 
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="relative isolate flex min-h-dvh flex-col">
+      <Specks />
       <a
         href="#main"
         className={`sr-only z-50 rounded-md bg-gold px-4 py-2 font-medium text-ink focus:not-sr-only focus:fixed focus:top-2 focus:left-2 ${FOCUS}`}
@@ -160,7 +162,7 @@ function Shell({ title, wide, children }: AppShellProps) {
         id="main"
         aria-label={title}
         aria-live="polite"
-        className={`mx-auto flex w-full flex-1 flex-col gap-4 px-4 py-6 sm:px-6 ${wide ? "max-w-6xl lg:py-8" : "max-w-md md:max-w-2xl"}`}
+        className={`mx-auto flex w-full flex-1 animate-page-in flex-col gap-4 px-4 py-6 sm:px-6 ${wide ? "max-w-6xl lg:py-8" : "max-w-md md:max-w-2xl"}`}
       >
         {children}
       </main>

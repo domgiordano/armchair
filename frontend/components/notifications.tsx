@@ -72,7 +72,7 @@ export function NotificationList({ compact = false }: { compact?: boolean }) {
   }
   return (
     <>
-      <ul aria-label="Notifications" className={`flex flex-col ${compact ? "" : "gap-2"}`}>
+      <ul aria-label="Notifications" className={`stagger flex flex-col ${compact ? "" : "gap-2"}`}>
         {items.map((n) => (
           <li key={n.id}>
             <NotificationItem item={n} fresh={fresh?.has(n.id) ?? false} compact={compact} />

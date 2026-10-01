@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
 import { Avatar } from "@/components/avatar";
 import { SignedIn } from "@/components/signed-in";
+import { CountUp } from "@/components/ui/count-up";
 import { PageHeader } from "@/components/ui/page-header";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -213,7 +214,7 @@ export function LeaderboardView({ board, judges }: { board: Leaderboard; judges:
 
         {split && (
           <div className="flex flex-col gap-6">
-            <ol aria-label="Rankings" className="flex flex-col gap-1.5">
+            <ol aria-label="Rankings" className="stagger flex flex-col gap-1.5">
               {ranked.slice(3).map((r) => (
                 <li
                   key={r.sub}
@@ -261,6 +262,8 @@ function Podium({ top, mine }: { top: Ranked[]; mine: (sub: string) => boolean }
     <ol aria-label="Top three" className="grid grid-cols-3 items-end gap-2 pt-2">
       {order.map((r) => {
         const place = PLACES[Math.min(r.rank, 3) as 1 | 2 | 3];
+        // Third rises first, the winner last.
+        const d = { "--d": `${(3 - Math.min(r.rank, 3)) * 180}ms` } as CSSProperties;
         return (
           <li
             key={r.sub}
@@ -268,7 +271,10 @@ function Podium({ top, mine }: { top: Ranked[]; mine: (sub: string) => boolean }
             className="flex flex-col items-center gap-2"
             style={{ gridColumnStart: order.length === 1 ? 2 : undefined }}
           >
-            <span className={`rounded-full ring-2 ring-offset-2 ring-offset-ink ${place.ring}`}>
+            <span
+              style={{ animationDelay: `${(3 - Math.min(r.rank, 3)) * 180 + 350}ms` }}
+              className={`rounded-full ring-2 ring-offset-2 ring-offset-ink animate-rise-in ${place.ring} ${r.rank === 1 ? "shadow-[0_0_28px_-4px_rgb(232_194_104/0.7)]" : ""}`}
+            >
               <Avatar name={r.name ?? "Player"} email="" picture={r.picture} size={place.avatar} />
             </span>
             <span className="flex w-full flex-col items-center text-center">
@@ -279,7 +285,8 @@ function Podium({ top, mine }: { top: Ranked[]; mine: (sub: string) => boolean }
               <span className="text-xs text-silver-dim tabular-nums">{off(r.mae)}</span>
             </span>
             <span
-              className={`relative flex w-full items-start justify-center overflow-hidden rounded-t-lg border-t-2 bg-gradient-to-b from-ballroom to-ink pt-2 shadow-[inset_0_1px_12px_rgb(232_194_104/0.12)] ${place.edge} ${place.height}`}
+              style={d}
+              className={`grow-y relative flex w-full items-start justify-center overflow-hidden rounded-t-lg border-t-2 bg-gradient-to-b from-ballroom to-ink pt-2 shadow-[inset_0_1px_12px_rgb(232_194_104/0.12)] ${place.edge} ${place.height}`}
             >
               <span className={`font-display text-3xl tabular-nums ${place.text}`}>{r.rank}</span>
             </span>
@@ -307,7 +314,7 @@ function YouBar({ me, minDances, judges }: { me: Leaderboard["me"]; minDances: n
         </span>
       </span>
       <span className="flex flex-col items-end">
-        <span className="text-lg font-semibold tabular-nums text-gold">{me.rank === null ? "Unranked" : `#${me.rank}`}</span>
+        <span className="text-lg font-semibold tabular-nums text-gold">{me.rank === null ? "Unranked" : <CountUp value={me.rank} format={(n) => `#${Math.round(n)}`} />}</span>
         {me.mae !== null && <span className="text-xs text-silver-dim tabular-nums">{off(me.mae)}</span>}
       </span>
     </aside>

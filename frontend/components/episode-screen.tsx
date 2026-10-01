@@ -164,7 +164,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
           className="h-1 overflow-hidden rounded-full bg-silver/10"
         >
           <div
-            className="h-full rounded-full bg-gradient-to-r from-gold-deep to-gold-light transition-[width] duration-700"
+            className="grow-x h-full rounded-full bg-gradient-to-r from-gold-deep to-gold-light transition-[width] duration-700"
             style={{ width: `${data.rateable ? (data.answered / data.rateable) * 100 : 0}%` }}
           />
         </div>
@@ -186,7 +186,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
       {data.performances.length === 0 ? (
         <EmptyState title="No dances yet">Performances appear here once the running order is in.</EmptyState>
       ) : (
-        <ul className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="stagger grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {data.performances.map((card) => (
             <li key={card.key}>
               <PerformanceCard

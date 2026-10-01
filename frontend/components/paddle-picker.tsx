@@ -80,7 +80,7 @@ export function PaddlePicker({ label, airsOn, onSubmit }: PaddlePickerProps) {
   if (step.kind === "pick") {
     return (
       <div ref={pickRef} className="flex flex-col gap-3">
-        <div className="grid grid-cols-5 gap-2">
+        <div className="stagger grid grid-cols-5 gap-2">
           {VALUES.map((v) => (
             <Paddle
               key={v}

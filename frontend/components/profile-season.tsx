@@ -1,7 +1,9 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 import { formatScore } from "@/components/performance-card";
 import { DistributionChart, StyleChart, off } from "@/components/profile-charts";
+import { CountUp } from "@/components/ui/count-up";
 import type { Profile, ProfileDance } from "@/lib/api/profile";
 import type { Season } from "@/lib/api/show";
 import { byStyle, calls, closestJudge, distribution } from "@/lib/profile/season-stats";
@@ -34,7 +36,7 @@ export function ProfileSeason({ season, profile, own }: ProfileSeasonProps) {
       </h2>
 
       <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-silver/10 bg-silver/10 md:grid-cols-3">
-        <Stat label="Dances scored" value={String(count)} />
+        <Stat label="Dances scored" value={<CountUp value={count} />} />
         <Stat
           label="Gap to the judges"
           value={mae === null ? "None yet" : off(mae)}
@@ -73,7 +75,7 @@ export function ProfileSeason({ season, profile, own }: ProfileSeasonProps) {
   );
 }
 
-function Stat({ label, value, note }: { label: string; value: string; note?: string }) {
+function Stat({ label, value, note }: { label: string; value: ReactNode; note?: string }) {
   return (
     <div className="flex h-full flex-col gap-1 bg-ballroom/90 p-4">
       <dt className="text-xs font-medium tracking-[0.12em] text-silver-dim uppercase">{label}</dt>

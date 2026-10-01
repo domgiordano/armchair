@@ -41,6 +41,71 @@
   --animate-sheet-up: sheet-up 240ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
   --animate-fade-in: fade-in 200ms ease-out both;
   --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-page-in: page-in 480ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+  --animate-rise-in: rise-in 560ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
+
+  @keyframes grow-y {
+    from {
+      transform: scaleY(0);
+    }
+  }
+
+  @keyframes grow-x {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+  }
+
+  @keyframes pop-scale {
+    0% {
+      transform: scale(0);
+    }
+    70% {
+      transform: scale(1.25);
+    }
+  }
+
+  @keyframes speck {
+    0%,
+    100% {
+      opacity: 0.15;
+      transform: translate(0, 0) scale(0.6);
+    }
+    50% {
+      opacity: 0.9;
+      transform: translate(var(--dx), var(--dy)) scale(1);
+    }
+  }
+
+  @keyframes sweep {
+    0%,
+    100% {
+      transform: translateX(-12%) rotate(-8deg);
+    }
+    50% {
+      transform: translateX(12%) rotate(8deg);
+    }
+  }
 
   @keyframes pop-in {
     from {
@@ -220,6 +285,78 @@
   @media (forced-colors: active) {
     appearance: auto;
   }
+}
+
+/* Children rise in one after another. Past the twelfth they all arrive together. */
+@utility stagger {
+  & > * {
+    animation: var(--animate-rise-in);
+    animation-delay: 540ms;
+  }
+  & > :nth-child(1) {
+    animation-delay: 0ms;
+  }
+  & > :nth-child(2) {
+    animation-delay: 45ms;
+  }
+  & > :nth-child(3) {
+    animation-delay: 90ms;
+  }
+  & > :nth-child(4) {
+    animation-delay: 135ms;
+  }
+  & > :nth-child(5) {
+    animation-delay: 180ms;
+  }
+  & > :nth-child(6) {
+    animation-delay: 225ms;
+  }
+  & > :nth-child(7) {
+    animation-delay: 270ms;
+  }
+  & > :nth-child(8) {
+    animation-delay: 315ms;
+  }
+  & > :nth-child(9) {
+    animation-delay: 360ms;
+  }
+  & > :nth-child(10) {
+    animation-delay: 405ms;
+  }
+  & > :nth-child(11) {
+    animation-delay: 450ms;
+  }
+  & > :nth-child(12) {
+    animation-delay: 495ms;
+  }
+}
+
+/* Chart marks. --d delays one mark after the last; fill-box pivots SVG shapes on their own box. */
+@utility grow-y {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: grow-y 700ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@utility grow-x {
+  transform-origin: left;
+  animation: grow-x 800ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* A line drawn from its start. Needs pathLength="1" on the shape. */
+@utility draw {
+  stroke-dasharray: 1;
+  animation: draw 1.2s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@utility pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pop-scale 420ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+  animation-delay: var(--d, 0ms);
 }
 
 /* A loading placeholder: a sliver of light passes over midnight. */

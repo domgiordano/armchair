@@ -33,7 +33,7 @@ export function MiniDesk({ reveal, couple, judgeName, weekLabel, season }: MiniD
           {[weekLabel, reveal.style, reveal.song].filter(Boolean).join(" · ")}
         </p>
       </header>
-      <ul aria-label="Paddles" className="flex items-end gap-1.5">
+      <ul aria-label="Paddles" className="stagger flex items-end gap-1.5">
         {reveal.judges.map((j) => (
           <Paddle
             key={j.id}

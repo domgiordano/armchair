@@ -3,7 +3,7 @@ export const cn = (...parts: (string | false | null | undefined)[]) => parts.fil
 
 export const FOCUS = "focus-ring";
 
-export const BUTTON = `inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium whitespace-nowrap transition-colors duration-150 select-none ${FOCUS} disabled:cursor-not-allowed disabled:opacity-50`;
+export const BUTTON = `inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium whitespace-nowrap select-none ${FOCUS} disabled:cursor-not-allowed disabled:opacity-50`;
 
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 export type ButtonSize = "md" | "sm";
@@ -11,9 +11,9 @@ export type ButtonSize = "md" | "sm";
 const VARIANTS: Record<ButtonVariant, string> = {
   primary: "sequin text-ink",
   secondary:
-    "border border-silver/30 bg-ballroom/40 text-pearl hover:border-silver/55 hover:bg-silver/10 active:bg-silver/15 aria-expanded:bg-silver/10",
-  ghost: "text-silver hover:bg-silver/10 hover:text-pearl active:bg-silver/15",
-  danger: "border border-red-300/30 bg-red-400/10 text-red-200 hover:bg-red-400/20 active:bg-red-400/25",
+    "transition duration-150 active:scale-[0.98] border border-silver/30 bg-ballroom/40 text-pearl hover:border-silver/55 hover:bg-silver/10 active:bg-silver/15 aria-expanded:bg-silver/10",
+  ghost: "transition duration-150 active:scale-[0.98] text-silver hover:bg-silver/10 hover:text-pearl active:bg-silver/15",
+  danger: "transition duration-150 active:scale-[0.98] border border-red-300/30 bg-red-400/10 text-red-200 hover:bg-red-400/20 active:bg-red-400/25",
 };
 
 const SIZES: Record<ButtonSize, string> = { md: "", sm: "min-h-10 px-3 text-sm" };

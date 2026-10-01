@@ -164,7 +164,7 @@ function FriendsTab({ data, reload }: { data: Friends; reload: () => void }) {
             <Empty>No friends yet. Find someone by name or send your link.</Empty>
           </div>
         ) : (
-          <ul className="divide-y divide-silver/10">
+          <ul className="stagger divide-y divide-silver/10">
             {data.friends.map((f) => (
               <li key={f.sub}>
                 <FriendRow friend={f} reload={reload} />
@@ -332,7 +332,7 @@ function RequestsTab({ data, reload }: { data: Friends; reload: () => void }) {
       {invites.length > 0 && (
         <div className="flex flex-col">
           <h2 className={SECTION_TITLE}>Group invites</h2>
-          <ul className="divide-y divide-silver/10">
+          <ul className="stagger divide-y divide-silver/10">
             {invites.map((n) => (
               <li key={n.id}>
                 <InviteRow
@@ -393,7 +393,7 @@ function RequestList({
       <h2 className={SECTION_TITLE}>
         {title} <span className="text-gold tabular-nums">{people.length}</span>
       </h2>
-      <ul className="divide-y divide-silver/10">
+      <ul className="stagger divide-y divide-silver/10">
         {people.map((p) => (
           <li key={p.sub}>
             <RequestRow person={p}>{children}</RequestRow>

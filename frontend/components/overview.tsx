@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
@@ -11,6 +11,7 @@ import { EmptyState, ErrorState } from "@/components/ui/states";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
 import { Badge } from "@/components/ui/badge";
+import { CountUp } from "@/components/ui/count-up";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   getLeaderboard,
@@ -145,7 +146,7 @@ function OverviewView({ o, season }: ViewProps) {
               )}
             </div>
             {o.reveals.length > 0 ? (
-              <ul className="grid gap-3 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              <ul className="stagger grid gap-3 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
                 {o.reveals.map((r) => (
                   <li key={`${r.ep}-${r.key}`}>
                     <MiniDesk
@@ -310,7 +311,10 @@ function NextEpisode({ o, now }: { o: OverviewData; now: number }) {
           aria-valuenow={aired}
           className="h-1.5 overflow-hidden rounded-full bg-silver/10"
         >
-          <div className="h-full rounded-full bg-gold" style={{ width: `${total ? (aired / total) * 100 : 0}%` }} />
+          <div
+            className="grow-x h-full rounded-full bg-gradient-to-r from-gold-deep to-gold-light"
+            style={{ width: `${total ? (aired / total) * 100 : 0}%`, "--d": "300ms" } as CSSProperties}
+          />
         </div>
         <p className="text-xs text-silver-dim">Eliminations count once you finish that episode.</p>
       </div>
@@ -324,11 +328,11 @@ function StatTiles({ o }: { o: OverviewData }) {
   const judge = me.closestJudge;
 
   return (
-    <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
-      <Tile label="Dances scored" value={String(me.scored)} note={`across ${scoredEps} ${scoredEps === 1 ? "episode" : "episodes"}`} />
+    <dl className="stagger grid grid-cols-2 gap-3 md:grid-cols-4">
+      <Tile label="Dances scored" value={<CountUp value={me.scored} />} note={`across ${scoredEps} ${scoredEps === 1 ? "episode" : "episodes"}`} />
       <Tile
         label="Average gap"
-        value={me.mae === null ? "-" : formatScore(me.mae)}
+        value={me.mae === null ? "-" : <CountUp value={me.mae} format={formatScore} />}
         unit={me.mae === null ? undefined : "off"}
         note={me.mae === null ? "once a judge's score confirms" : `vs the judges, over ${me.count}`}
       />
@@ -339,7 +343,7 @@ function StatTiles({ o }: { o: OverviewData }) {
       />
       <Tile
         label="Streak"
-        value={String(me.streak)}
+        value={<CountUp value={me.streak} />}
         unit={me.streak === 1 ? "episode" : "episodes"}
         note="finished in a row"
       />
@@ -347,7 +351,7 @@ function StatTiles({ o }: { o: OverviewData }) {
   );
 }
 
-function Tile({ label, value, unit, note }: { label: string; value: string; unit?: string; note: string }) {
+function Tile({ label, value, unit, note }: { label: string; value: ReactNode; unit?: string; note: string }) {
   return (
     <div className="flex min-w-0 flex-col gap-1 rounded-xl border border-silver/10 bg-ballroom/45 p-4 transition-colors hover:border-gold/25">
       <dt className="text-xs font-medium tracking-[0.12em] text-silver-dim uppercase">{label}</dt>
@@ -393,7 +397,7 @@ function TopFive({ board }: { board: Leaderboard }) {
   }
   return (
     <>
-      <ol className="flex flex-col">
+      <ol className="stagger flex flex-col">
         {top.map((s) => {
           const you = s.sub === board.me.sub;
           return (
@@ -445,8 +449,8 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
         </h2>
         <p className="text-sm text-silver-dim">Judges&apos; average over the dances you&apos;ve scored.</p>
       </div>
-      <ol id="standings-list" className="flex flex-col">
-        {shown.map((c) => {
+      <ol id="standings-list" className="stagger flex flex-col">
+        {shown.map((c, i) => {
           const celebrity = c.members.find((m) => m.role === "celebrity") ?? c.members[0];
           const pro = c.members.find((m) => m.role === "pro");
           return (
@@ -463,8 +467,8 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
                 {c.average !== null && (
                   <span aria-hidden="true" className="mt-1 block h-1 rounded-full bg-silver/10">
                     <span
-                      className={`block h-full rounded-full ${c.average === top ? "bg-gold-light" : "bg-gold/70"}`}
-                      style={{ width: `${(c.average / 10) * 100}%` }}
+                      className={`grow-x block h-full rounded-full ${c.average === top ? "bg-gold-light" : "bg-gold/70"}`}
+                      style={{ width: `${(c.average / 10) * 100}%`, "--d": `${300 + i * 60}ms` } as CSSProperties}
                     />
                   </span>
                 )}

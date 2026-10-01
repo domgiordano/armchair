@@ -7,6 +7,7 @@ import { Brand } from "@/components/brand";
 import { Intro } from "@/components/intro";
 import { LandingDesk } from "@/components/landing-desk";
 import { LandingSteps } from "@/components/landing-steps";
+import { Specks } from "@/components/ui/specks";
 import { useReducedMotion } from "@/lib/motion";
 import { button, DISPLAY, TEXT_LINK } from "@/lib/ui";
 
@@ -54,6 +55,7 @@ export function Landing({ status, onSignIn }: LandingProps) {
 
   return (
     <div className="relative isolate min-h-dvh overflow-hidden text-silver">
+      <Specks />
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 -z-10 h-[900px] bg-[radial-gradient(ellipse_60%_50%_at_75%_10%,rgb(232_194_104/0.16),transparent_70%),radial-gradient(ellipse_70%_60%_at_10%_0%,rgb(59_91_255/0.22),transparent_70%)]"
@@ -66,7 +68,7 @@ export function Landing({ status, onSignIn }: LandingProps) {
 
       <main>
         <section className="mx-auto grid max-w-6xl gap-10 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16 lg:pt-20 lg:pb-24">
-          <div className="flex flex-col gap-6">
+          <div className="stagger flex flex-col gap-6">
             <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-gold">
               <Sparkle className="size-3.5" />
               DANCING WITH THE STARS · SEASON 35
@@ -94,7 +96,9 @@ export function Landing({ status, onSignIn }: LandingProps) {
               {error && "Could not start sign-in. Try again."}
             </div>
           </div>
-          <LandingDesk />
+          <div className="animate-rise-in [animation-delay:250ms]">
+            <LandingDesk />
+          </div>
         </section>
 
         <section id="how" className="scroll-mt-4 border-t border-silver/10 py-16 lg:py-24">

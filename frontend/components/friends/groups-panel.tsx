@@ -71,7 +71,7 @@ export function GroupsPanel({ friends }: { friends: Contact[] }) {
         {groups.value.length === 0 ? (
           <Empty>You&apos;re not in any groups yet.</Empty>
         ) : (
-          <ul className="flex flex-col gap-2">
+          <ul className="stagger flex flex-col gap-2">
             {groups.value.map((g) => {
               const current = g.id === group?.id;
               return (
@@ -269,7 +269,7 @@ function GroupDetailView({
         {invitable.length === 0 ? (
           <Empty>{friends.length === 0 ? "Add friends first, or share the group link below." : "All your friends are in."}</Empty>
         ) : (
-          <ul className="divide-y divide-silver/10">
+          <ul className="stagger divide-y divide-silver/10">
             {invitable.map((f) => (
               <li key={f.sub}>
                 <Row person={f}>
@@ -387,7 +387,7 @@ function Section({ title, count, children }: { title: string; count: number; chi
       <h3 className={SECTION_TITLE}>
         {title} <span className="text-gold tabular-nums">{count}</span>
       </h3>
-      <ul className="divide-y divide-silver/10">{children}</ul>
+      <ul className="stagger divide-y divide-silver/10">{children}</ul>
     </div>
   );
 }

@@ -36,7 +36,7 @@ function CreditList() {
       <PageHeader title="Photo credits">
         Headshots come from Wikimedia Commons under the licenses below, shown cropped to a circle.
       </PageHeader>
-      <ul className="flex flex-col divide-y divide-silver/10">
+      <ul className="stagger flex flex-col divide-y divide-silver/10">
         {credited(load.season).map((p) => (
           <li key={p.headshot.file} className="flex gap-3 py-3">
             <Headshot person={p} />

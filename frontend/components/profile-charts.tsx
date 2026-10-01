@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import { formatScore } from "@/components/performance-card";
 import type { ScoreCount, StyleAccuracy } from "@/lib/profile/season-stats";
 
@@ -23,8 +25,8 @@ export function StyleChart({ styles }: StyleChartProps) {
           </span>
           <span aria-hidden="true" className="h-2.5 overflow-hidden rounded-full bg-silver/10">
             <span
-              className={`block h-full rounded-full ${i === 0 ? "bg-gold" : "bg-silver-dim"}`}
-              style={{ width: `${Math.max(3, (s.mae / top) * 100)}%` }}
+              className={`grow-x block h-full rounded-full ${i === 0 ? "bg-gradient-to-r from-gold-deep to-gold-light" : "bg-silver-dim"}`}
+              style={{ width: `${Math.max(3, (s.mae / top) * 100)}%`, "--d": `${i * 60}ms` } as CSSProperties}
             />
           </span>
           <span className="text-right text-sm tabular-nums">{off(s.mae)}</span>
@@ -84,7 +86,8 @@ export function DistributionChart({ counts }: DistributionChartProps) {
                 width={bar}
                 height={y(0) - y(c.you)}
                 rx={1.5}
-                className="fill-gold"
+                className="grow-y fill-gold"
+                style={{ "--d": `${i * 50}ms` } as CSSProperties}
               >
                 <title>{`Paddle ${c.score}: you ${c.you}`}</title>
               </rect>
@@ -96,7 +99,8 @@ export function DistributionChart({ counts }: DistributionChartProps) {
                 rx={1.5}
                 fill="none"
                 strokeWidth={1.5}
-                className="stroke-silver"
+                className="grow-y stroke-silver"
+                style={{ "--d": `${i * 50 + 120}ms` } as CSSProperties}
               >
                 <title>{`Paddle ${c.score}: judges' average ${c.judges}`}</title>
               </rect>
