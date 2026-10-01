@@ -12,7 +12,7 @@ A derby-style monorepo copied from `/Users/dom/Code/smirnoff-league`:
 - `frontend/`: Next.js 16 static export (`output: "export"`, `trailingSlash: true`), Tailwind 4, vitest. Mobile-first.
 - `hub/`: the Armchair Judge hub at `armchairjudge.com` (`var.hub_domain_name`), a second static Next app with the same config. Deployed by `deploy-hub.yml`.
 - `backend/`: Python 3.12 Lambdas; shared code in `backend/lambdas/common/`, shipped as the `armchair-shared-packages` layer.
-- `infrastructure/terraform/`: S3 + CloudFront via `domgiordano/web-hosting` v1.4.0 behind the shared CloudFront WAF. State in `s3://xomware-terraform-state/armchair/terraform.tfstate`, locks in `xomware-terraform-locks`.
+- `infrastructure/terraform/`: S3 + CloudFront via `domgiordano/web-hosting` v1.8.0 behind the shared CloudFront WAF. State in `s3://xomware-terraform-state/armchair/terraform.tfstate`, locks in `xomware-terraform-locks`.
 
 `xomware-infrastructure` owns the Terraform plan/apply roles this repo's workflow assumes (`oidc_armchair_terraform.tf`). This stack owns its own deploy role (`oidc_deploy.tf`).
 
@@ -46,3 +46,7 @@ build_commands:
 - No emoji glyphs in the UI. Use SVG or text.
 
 ## Lessons
+- `api_grants` and the API `services` map in Terraform are merge-conflict magnets. When resolving, keep ONE line per key: Terraform silently keeps the last duplicate, which once dropped `scores_submit`'s board grants in prod.
+- The API module answers CORS preflights from a MOCK integration that can't read `Origin`, so `allow_origin` is `"*"`; the Lambdas echo `CORS_ALLOW_ORIGIN` on real responses.
+- Deploys ship only changed `lambdas/<dir>`; a new function can sit on the Terraform stub until `deploy-stub-lambdas` catches it. Invoke new endpoints after merge.
+- Only `_next/static/**` may be cached `immutable`. Anything in `public/` must be imported (hashed) or short-cached, or browsers keep stale files for a year.
