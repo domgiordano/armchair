@@ -26,7 +26,8 @@ export interface CoupleDance {
   judges: number | null;
 }
 
-export interface CoupleStats extends VersusJudges {
+/** A couple's means. Someone else's profile gets only these: never one dance. */
+export interface CoupleSummary extends VersusJudges {
   /** `season/id`: a returning all-star keeps their id across seasons. */
   ref: string;
   id: string;
@@ -34,6 +35,9 @@ export interface CoupleStats extends VersusJudges {
   members: Member[];
   friends: Crowd;
   everyone: Crowd;
+}
+
+export interface CoupleStats extends CoupleSummary {
   best: CoupleDance;
   worst: CoupleDance;
   weeks: CoupleDance[];
@@ -46,12 +50,19 @@ export interface PersonStats extends VersusJudges {
   couples: number;
 }
 
-export interface Performers {
+export interface StyleStats extends VersusJudges {
+  style: string;
+}
+
+export interface Performers<C extends CoupleSummary = CoupleStats> {
+  sub: string;
   season: string;
   group: string | null;
-  couples: CoupleStats[];
+  couples: C[];
   pros: PersonStats[];
   celebrities: PersonStats[];
+  /** Highest average paddle first. */
+  styles: StyleStats[];
   favorites: string[];
   leastFavorites: string[];
   softerOn: string[];
@@ -64,6 +75,13 @@ export const getPerformers = (season: string, group: string | null) => {
   const query = new URLSearchParams({ season });
   if (group) query.set("group", group);
   return request<Performers>(`/performers/get?${query}`);
+};
+
+/** A profile's favorites: the owner's numbers, over only dances the caller scored too. */
+export const getFavorites = (season: string, sub: string | null) => {
+  const query = new URLSearchParams({ season });
+  if (sub) query.set("sub", sub);
+  return request<Performers<CoupleSummary>>(`/performers/get?${query}`);
 };
 
 export type BoardColumn = "judges" | "you" | "friends" | "everyone";
@@ -100,7 +118,11 @@ export interface WeekBoard {
 }
 
 export const getWeekBoard = (season: string, ep: number, group: string | null) => {
-  const query = new URLSearchParams({ season, ep: String(ep).padStart(2, "0"), scope: group ? "group" : "global" });
+  const query = new URLSearchParams({
+    season,
+    ep: String(ep).padStart(2, "0"),
+    scope: group ? "group" : "global",
+  });
   if (group) query.set("group", group);
   return request<WeekBoard>(`/week-board/get?${query}`);
 };

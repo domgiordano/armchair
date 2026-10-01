@@ -1,11 +1,17 @@
 import type { CSSProperties } from "react";
 
 import { formatScore } from "@/components/performance-card";
-import type { ScoreCount, StyleAccuracy } from "@/lib/profile/season-stats";
+import type { ScoreCount } from "@/lib/api/profile";
 
 export const off = (mae: number) => `${formatScore(Math.round(mae * 10) / 10)} off`;
 
 const plural = (n: number, one: string) => `${n} ${n === 1 ? one : `${one}s`}`;
+
+export interface StyleAccuracy {
+  style: string;
+  count: number;
+  mae: number;
+}
 
 interface StyleChartProps {
   styles: StyleAccuracy[];
@@ -49,6 +55,8 @@ function mostCommon(counts: ScoreCount[], pick: (c: ScoreCount) => number): numb
 
 interface DistributionChartProps {
   counts: ScoreCount[];
+  /** Your own paddles, or someone else's. */
+  own: boolean;
 }
 
 /**
@@ -56,7 +64,8 @@ interface DistributionChartProps {
  * average outlined, so the two read apart without colour. A table carries the
  * same numbers for screen readers.
  */
-export function DistributionChart({ counts }: DistributionChartProps) {
+export function DistributionChart({ counts, own }: DistributionChartProps) {
+  const who = own ? "you" : "they";
   const top = Math.max(1, ...counts.map((c) => Math.max(c.you, c.judges)));
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top - PAD.bottom;
@@ -89,7 +98,7 @@ export function DistributionChart({ counts }: DistributionChartProps) {
                 className="grow-y fill-gold"
                 style={{ "--d": `${i * 50}ms` } as CSSProperties}
               >
-                <title>{`Paddle ${c.score}: you ${c.you}`}</title>
+                <title>{`Paddle ${c.score}: ${who} ${c.you}`}</title>
               </rect>
               <rect
                 x={x + 1.5}
@@ -114,25 +123,25 @@ export function DistributionChart({ counts }: DistributionChartProps) {
       <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-silver-dim">
         <span className="flex items-center gap-1.5">
           <span aria-hidden="true" className="inline-block size-2.5 rounded-sm bg-gold" />
-          Your paddle
+          {own ? "Your paddle" : "Their paddle"}
         </span>
         <span className="flex items-center gap-1.5">
           <span aria-hidden="true" className="inline-block size-2.5 rounded-sm border-[1.5px] border-silver" />
           Judges&apos; average, rounded
         </span>
         <span className="w-full text-silver">
-          You raise {withArticle(mostCommon(counts, (c) => c.you))} most often; the judges&apos; average lands on{" "}
-          {mostCommon(counts, (c) => c.judges)} most.
+          {own ? "You raise" : "They raise"} {withArticle(mostCommon(counts, (c) => c.you))} most often; the
+          judges&apos; average lands on {mostCommon(counts, (c) => c.judges)} most.
         </span>
       </figcaption>
       {/* On a div: a table ignores sr-only's 1px width and widens the page. */}
       <div className="sr-only">
         <table>
-          <caption>Paddles you gave and the judges&apos; average, by score</caption>
+          <caption>Paddles {who} gave and the judges&apos; average, by score</caption>
           <thead>
             <tr>
               <th scope="col">Paddle</th>
-              <th scope="col">You</th>
+              <th scope="col">{own ? "You" : "They"}</th>
               <th scope="col">Judges&apos; average</th>
             </tr>
           </thead>

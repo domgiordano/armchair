@@ -1,22 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
-import { Avatar } from "@/components/avatar";
 import { PageLoader } from "@/components/disco-loader";
+import { AccuracyTab } from "@/components/profile/accuracy-tab";
+import { FavoritesTab } from "@/components/profile/favorites-tab";
+import { HistoryTab } from "@/components/profile/history-tab";
+import { OverviewTab } from "@/components/profile/overview-tab";
+import { ProfileHeader } from "@/components/profile/profile-header";
+import { SocialTab } from "@/components/profile/social-tab";
+import { SignedIn } from "@/components/signed-in";
+import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
-import { NameEditor } from "@/components/name-editor";
-import { ProfileAllTime } from "@/components/profile-all-time";
-import { ProfilePhoto } from "@/components/profile-photo";
-import { ProfileSeason } from "@/components/profile-season";
-import { SignedIn } from "@/components/signed-in";
+import { Tabs, tabId, type TabItem } from "@/components/ui/tabs";
 import { ApiError } from "@/lib/api/client";
-import { getMyProfile, getProfile, type MyProfile } from "@/lib/api/profile";
+import { getMyProfile, getProfile, type MyProfile, type Profile } from "@/lib/api/profile";
 import type { Season } from "@/lib/api/show";
-import { useAuth } from "@/lib/auth/use-auth";
+import { seasonLabel } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 import { SECONDARY } from "@/lib/ui";
 
@@ -32,37 +35,39 @@ export function ProfileScreen() {
 }
 
 function ProfileRoute() {
-  const other = useSearchParams().get("u");
+  const sub = useSearchParams().get("u");
   const load = useSeason();
   if (load.kind === "loading") return <PageLoader label="Loading the profile" />;
   if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
-  return other ? <OtherProfile key={other} season={load.season} sub={other} /> : <OwnProfile season={load.season} />;
+  return <ProfileView key={`${sub}|${load.season.season}`} season={load.season} sub={sub} />;
 }
 
 type Load<T> =
   { kind: "loading" } | { kind: "ready"; data: T } | { kind: "error"; message: string; status: number | null };
 
-function useLoad<T>(fetcher: () => Promise<T>, deps: unknown[]): [Load<T>, () => void, (data: T) => void] {
+const failed = (e: unknown) => ({
+  kind: "error" as const,
+  message: e instanceof Error ? e.message : "Request failed",
+  status: e instanceof ApiError ? e.status : null,
+});
+
+/** Runs `fetcher` when `key` changes, or never while it's null. */
+function useLoad<T>(fetcher: () => Promise<T>, key: string | null): [Load<T>, () => void, (data: T) => void] {
   const [load, setLoad] = useState<Load<T>>({ kind: "loading" });
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
+    if (key === null) return;
     let cancelled = false;
     fetcher().then(
       (data) => !cancelled && setLoad({ kind: "ready", data }),
-      (e: unknown) =>
-        !cancelled &&
-        setLoad({
-          kind: "error",
-          message: e instanceof Error ? e.message : "Request failed",
-          status: e instanceof ApiError ? e.status : null,
-        }),
+      (e: unknown) => !cancelled && setLoad(failed(e)),
     );
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- the caller names what the fetch depends on
-  }, [...deps, attempt]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `key` names everything the fetch depends on
+  }, [key, attempt]);
 
   const retry = () => {
     setLoad({ kind: "loading" });
@@ -71,129 +76,137 @@ function useLoad<T>(fetcher: () => Promise<T>, deps: unknown[]): [Load<T>, () =>
   return [load, retry, (data: T) => setLoad({ kind: "ready", data })];
 }
 
-// Phone: one column. Desktop: who they are on the left, their season beside it.
-const PAGE = "flex flex-col gap-8 lg:grid lg:grid-cols-[20rem_minmax(0,1fr)] lg:items-start lg:gap-x-12 lg:gap-y-8";
-
-const memberSince = (iso: string | null) =>
-  iso
-    ? `Member since ${new Date(iso).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })}`
-    : null;
-
-function OwnProfile({ season }: { season: Season }) {
-  const [load, retry, setData] = useLoad(
-    () => Promise.all([getMyProfile(), getProfile(season.season)]),
-    [season.season],
-  );
-  const { signOut } = useAuth();
-  const router = useRouter();
-
-  if (load.kind === "loading") return <ProfileSkeleton />;
-  if (load.kind === "error") return <ErrorState what="your profile" message={load.message} retry={retry} />;
-  const [me, profile] = load.data;
-  const onChange = (next: MyProfile) => setData([next, profile]);
-
-  return (
-    <div className={`${PAGE} lg:grid-rows-[auto_auto_1fr]`}>
-      <header className="flex flex-col gap-3 lg:col-start-1">
-        <ProfilePhoto me={me} onChange={onChange} />
-        <div className="flex flex-col gap-0.5">
-          <NameEditor me={me} onChange={onChange} />
-          <p className="text-sm text-silver-dim">{memberSince(me.createdAt)}</p>
-        </div>
-      </header>
-
-      <nav aria-label="Your people" className="grid grid-cols-2 gap-3 lg:col-start-1">
-        <CountLink href="/friends/" label="Friends" count={profile.friendCount} />
-        <CountLink href="/groups/" label="Groups" count={profile.groupCount} />
-      </nav>
-
-      <div className="flex flex-col gap-10 lg:col-start-2 lg:row-span-3 lg:row-start-1">
-        <ProfileSeason season={season} profile={profile} own />
-        <ProfileAllTime season={season} profile={profile} />
-      </div>
-
-      <button
-        type="button"
-        onClick={() => void signOut().then(() => router.push("/"))}
-        className={`${SECONDARY} self-start lg:col-start-1`}
-      >
-        Sign out
-      </button>
-    </div>
-  );
+interface Base {
+  profile: Profile;
+  /** Set when the profile is the caller's own: the API sends a group count only then. */
+  me: MyProfile | null;
 }
 
-function OtherProfile({ season, sub }: { season: Season; sub: string }) {
-  const [load, retry] = useLoad(() => getProfile(season.season, sub), [season.season, sub]);
+async function loadBase(season: string, sub: string | null): Promise<Base> {
+  const [profile, me] = await Promise.all([getProfile(season, sub), sub ? null : getMyProfile()]);
+  if (profile.groupCount === undefined) return { profile, me: null };
+  return { profile, me: me ?? (await getMyProfile()) };
+}
+
+type Tab = "overview" | "favorites" | "accuracy" | "history" | "social";
+
+const TABS: readonly TabItem<Tab>[] = [
+  { id: "overview", label: "Overview" },
+  { id: "favorites", label: "Favorites" },
+  { id: "accuracy", label: "Accuracy" },
+  { id: "history", label: "History" },
+  { id: "social", label: "Social" },
+];
+
+// Tabs whose numbers follow the season picker; History and Social span everything.
+const SCOPED: Tab[] = ["overview", "favorites", "accuracy"];
+const PANEL = "profile-panel";
+const ALL = "all";
+
+function ProfileView({ season, sub }: { season: Season; sub: string | null }) {
+  const [load, retry, setBase] = useLoad(() => loadBase(season.season, sub), "base");
+  const [tab, setTab] = useState<Tab>("overview");
+  const [range, setRange] = useState<"season" | "all">("season");
+  // All-time is fetched the first time it's picked, then kept.
+  const [wantAll, setWantAll] = useState(false);
+  // Someone else's id, or null on your own.
+  const target = load.kind === "ready" && !load.data.me ? load.data.profile.sub : null;
+  const [allLoad, retryAll] = useLoad(() => getProfile(ALL, target), wantAll && load.kind === "ready" ? ALL : null);
 
   if (load.kind === "loading") return <ProfileSkeleton />;
   if (load.kind === "error") {
-    if (load.status === 404) {
-      return (
-        <>
-          <h1 className="sr-only">No one here</h1>
-          <EmptyState
-            title="No one here"
-            action={
-              <Link href="/profile/" className={SECONDARY}>
-                Your profile
-              </Link>
-            }
-          >
-            That profile link doesn&apos;t match anyone who has signed in.
-          </EmptyState>
-        </>
-      );
-    }
+    if (load.status === 404) return <NoOne />;
     return <ErrorState what="this profile" message={load.message} retry={retry} />;
   }
-  const profile = load.data;
+
+  const { profile, me } = load.data;
+  const own = me !== null;
+  const scoped = range === ALL ? allLoad : ({ kind: "ready", data: profile } as const);
+
+  const panel = () => {
+    if (tab === "history") return <HistoryTab history={profile.history} allTime={profile.allTime} own={own} />;
+    if (tab === "social") return <SocialTab profile={profile} own={own} />;
+    if (tab === "favorites") return <FavoritesTab scope={range === ALL ? ALL : season.season} sub={target} />;
+    if (scoped.kind === "loading") return <PanelSkeleton />;
+    if (scoped.kind === "error")
+      return <ErrorState what="all-time numbers" message={scoped.message} retry={retryAll} />;
+    if (tab === "accuracy") return <AccuracyTab season={season} detail={scoped.data.detail} own={own} />;
+    return <OverviewTab season={season} profile={scoped.data} own={own} />;
+  };
 
   return (
-    <div className={PAGE}>
-      <header className="flex items-center gap-4 lg:flex-col lg:items-start">
-        <div className="rounded-full bg-gradient-to-br from-gold-light via-gold-deep to-gold p-[3px]">
-          <Avatar name={profile.name ?? "Member"} email="" picture={profile.picture} size={88} />
+    <div className="flex flex-col gap-6">
+      <ProfileHeader
+        profile={profile}
+        me={me}
+        onMe={(next) => setBase({ profile, me: next })}
+        onSocial={() => setTab("social")}
+      />
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0 sm:max-w-xl sm:flex-1">
+          <Tabs label="Profile sections" tabs={TABS} value={tab} onChange={setTab} panelId={PANEL} scroll />
         </div>
-        <div className="flex min-w-0 flex-col gap-0.5">
-          <h1 className="truncate text-2xl font-semibold tracking-tight text-pearl">{profile.name ?? "Member"}</h1>
-          <p className="text-sm text-silver-dim">{memberSince(profile.memberSince)}</p>
-          {profile.friendCount !== undefined && (
-            <p className="text-sm text-silver tabular-nums">
-              {profile.friendCount} {profile.friendCount === 1 ? "friend" : "friends"}
-            </p>
-          )}
-        </div>
-      </header>
-      <div className="flex flex-col gap-10">
-        <ProfileSeason season={season} profile={profile} own={false} />
-        <ProfileAllTime season={season} profile={profile} />
+        {SCOPED.includes(tab) && (
+          <Select
+            label="Seasons"
+            hideLabel
+            className="sm:w-44"
+            value={range}
+            options={[
+              { value: "season", label: seasonLabel(season.season) },
+              { value: ALL, label: "All-time" },
+            ]}
+            onChange={(v) => {
+              setRange(v === ALL ? ALL : "season");
+              if (v === ALL) setWantAll(true);
+            }}
+          />
+        )}
+      </div>
+
+      <div
+        key={`${tab}|${range}`}
+        role="tabpanel"
+        id={PANEL}
+        aria-labelledby={tabId(PANEL, tab)}
+        className="animate-fade-in"
+      >
+        {panel()}
       </div>
     </div>
   );
 }
 
-function CountLink({ href, label, count }: { href: string; label: string; count?: number }) {
+function NoOne() {
   return (
-    <Link
-      href={href}
-      className="group flex min-h-16 items-center justify-between gap-2 rounded-xl border border-silver/10 bg-ballroom/45 px-4 py-3 transition-colors hover:border-gold/35 hover:bg-ballroom/70 focus-ring active:bg-ballroom"
-    >
-      <span className="flex flex-col">
-        {count !== undefined && <span className="text-xl font-semibold text-pearl tabular-nums">{count}</span>}
-        <span className="text-sm text-silver-dim group-hover:text-pearl">{label}</span>
-      </span>
-      <svg
-        viewBox="0 0 20 20"
-        aria-hidden="true"
-        className="size-4 text-silver-dim transition-transform group-hover:translate-x-0.5 group-hover:text-gold-light"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.8}
+    <>
+      <h1 className="sr-only">No one here</h1>
+      <EmptyState
+        title="No one here"
+        action={
+          <Link href="/profile/" className={SECONDARY}>
+            Your profile
+          </Link>
+        }
       >
-        <path d="m8 5 5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </Link>
+        That profile link doesn&apos;t match anyone who has signed in.
+      </EmptyState>
+    </>
+  );
+}
+
+function PanelSkeleton() {
+  return (
+    <div role="status" className="flex flex-col gap-4">
+      <span className="sr-only">Loading the numbers...</span>
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {[0, 1, 2, 3].map((i) => (
+          <Skeleton key={i} className="h-28 rounded-xl" />
+        ))}
+      </div>
+      <Skeleton className="h-56 rounded-xl" />
+    </div>
   );
 }
 
@@ -201,13 +214,19 @@ function ProfileSkeleton() {
   return (
     <div role="status" aria-busy="true" className="flex flex-col gap-6">
       <span className="sr-only">Loading the profile...</span>
-      <Skeleton className="size-28 rounded-full" />
-      <Skeleton className="h-7 w-48" />
-      <div className="grid grid-cols-2 gap-3">
-        <Skeleton className="h-16 rounded-xl" />
-        <Skeleton className="h-16 rounded-xl" />
+      <div className="flex flex-col items-center gap-4 rounded-2xl border border-silver/10 p-5 sm:flex-row sm:gap-7 sm:p-7">
+        <Skeleton className="size-[118px] shrink-0 rounded-full" />
+        <div className="flex flex-col items-center gap-3 sm:items-start">
+          <Skeleton className="h-8 w-48" />
+          <Skeleton className="h-4 w-40" />
+          <div className="flex gap-2">
+            <Skeleton className="h-9 w-28 rounded-full" />
+            <Skeleton className="h-9 w-24 rounded-full" />
+          </div>
+        </div>
       </div>
-      <Skeleton className="h-40 rounded-xl" />
+      <Skeleton className="h-12 rounded-lg sm:max-w-xl" />
+      <PanelSkeleton />
     </div>
   );
 }

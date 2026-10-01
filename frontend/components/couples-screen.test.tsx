@@ -73,11 +73,13 @@ const stats = (ref: string, members: Member[], you: number, judges: number, frie
 });
 
 const PERFORMERS: Performers = {
+  sub: "me",
   season: "dwts-35",
   group: null,
   couples: [stats("tyler-cameron", TYLER, 8, 8, 7.5), stats("amber-glenn", AMBER, 9, 6.5, null), stats("jenna-dewan", JENNA, 6, 9, 8.5)],
   pros: [{ name: "Pasha Pashkov", headshot: null, seasons: ["dwts-35"], couples: 1, dances: 2, you: 9, judges: 6.5, judged: 2, gap: 2.5, absGap: 2.5 }],
   celebrities: [],
+  styles: [],
   favorites: ["dwts-35/amber-glenn", "dwts-35/tyler-cameron", "dwts-35/jenna-dewan"],
   leastFavorites: [],
   softerOn: ["dwts-35/amber-glenn"],

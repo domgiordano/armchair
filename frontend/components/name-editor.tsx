@@ -54,7 +54,7 @@ export function NameEditor({ me, onChange }: NameEditorProps) {
   if (!editing) {
     return (
       <div className="flex min-w-0 items-center gap-1">
-        <h1 className="truncate text-2xl font-semibold tracking-tight text-pearl">{me.name ?? "No name yet"}</h1>
+        <h1 className="truncate text-2xl font-semibold tracking-tight text-pearl sm:text-3xl">{me.name ?? "No name yet"}</h1>
         <button
           ref={edit}
           type="button"

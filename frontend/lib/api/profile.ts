@@ -1,4 +1,6 @@
 import { ApiError, request, type AvatarKind, type Me } from "./client";
+import type { Member } from "./show";
+import type { Person } from "./social";
 
 /** /users/me as its owner sees it: the effective name and photo plus what they can switch to. */
 export interface MyProfile extends Me {
@@ -8,7 +10,14 @@ export interface MyProfile extends Me {
   uploadPicture: string | null;
 }
 
-export interface SeasonSummary {
+/** A leaderboard place: null below the five-dance floor; `ranked` is how many have one. */
+export interface Place {
+  rank: number | null;
+  ranked: number;
+}
+
+export interface SeasonSummary extends Place {
+  /** A season id, or "all". */
   season: string;
   count: number;
   // Null until there is something to compare, and for someone else below five dances.
@@ -17,7 +26,7 @@ export interface SeasonSummary {
 }
 
 /** The leaderboard's all-time row; someone else's error stays null below five dances. */
-export interface AllTime {
+export interface AllTime extends Place {
   count: number;
   mae: number | null;
   closestJudge: { id: string; mae: number } | null;
@@ -25,6 +34,7 @@ export interface AllTime {
 
 /** One episode the profile's owner answered something in: counts only. */
 export interface Activity {
+  season: string;
   ep: number;
   week: number | null;
   theme: string | null;
@@ -33,13 +43,67 @@ export interface Activity {
   scored: number;
 }
 
-export interface ProfileDance {
+/** Means over a set of dances: the gap to the judges, the paddle and the judges' average. */
+export interface Averages {
+  count: number;
+  mae: number | null;
+  paddle: number | null;
+  judges: number | null;
+}
+
+export interface StyleDetail extends Averages {
+  style: string;
+}
+
+export interface WeekDetail extends Averages {
+  season: string;
   ep: number;
+  week: number | null;
+}
+
+export interface ScoreCount {
+  score: number;
+  you: number;
+  /** Dances whose judges' average rounds to this score. */
+  judges: number;
+}
+
+/** One dance: the closest or furthest call. A team dance lists every member couple's dancers. */
+export interface Call {
+  season: string;
+  ep: number;
+  week: number | null;
   key: string;
   style: string | null;
+  members: Member[];
   paddle: number;
   panelMean: number;
   error: number;
+}
+
+/**
+ * How the owner scores. On someone else's profile it covers only dances the
+ * viewer has scored too, so `count` can be below their season count.
+ */
+export interface Detail {
+  count: number;
+  mae: number | null;
+  judges: Record<string, { count: number; mae: number }>;
+  /** Paddle minus the judges' average: above zero is more generous. */
+  gap: number | null;
+  /** Closest to the judges first. */
+  styles: StyleDetail[];
+  /** Oldest first. */
+  weeks: WeekDetail[];
+  distribution: ScoreCount[];
+  best: Call | null;
+  worst: Call | null;
+}
+
+export interface HistoryRow extends Place {
+  season: string;
+  count: number;
+  mae: number | null;
 }
 
 export interface Profile {
@@ -48,13 +112,18 @@ export interface Profile {
   picture: string | null;
   avatarKind: AvatarKind | null;
   memberSince: string | null;
+  friendCount: number;
   season: SeasonSummary;
-  allTime?: AllTime;
-  recent?: Activity[];
-  friendCount?: number;
+  allTime: AllTime;
+  /** Newest first. */
+  recent: Activity[];
+  detail: Detail;
+  /** Every season with a dance counted, newest first. */
+  history: HistoryRow[];
   // Only on your own profile.
   groupCount?: number;
-  dances?: ProfileDance[];
+  // Only on someone else's.
+  mutual?: { friends: Person[]; groups: { id: string; name: string }[] };
 }
 
 export interface ProfileChanges {
@@ -79,7 +148,10 @@ export const getProfile = (season: string, sub: string | null = null) => {
 };
 
 export const updateProfile = (changes: ProfileChanges) =>
-  request<MyProfile>("/users/update", { method: "PATCH", body: JSON.stringify(changes) });
+  request<MyProfile>("/users/update", {
+    method: "PATCH",
+    body: JSON.stringify(changes),
+  });
 
 /** Sends the photo straight to S3 under a presigned POST, then makes it the caller's avatar. */
 export async function uploadAvatar(photo: Blob): Promise<MyProfile> {

@@ -4,6 +4,7 @@ import { useRef, useState, type ChangeEvent } from "react";
 
 import { Avatar } from "@/components/avatar";
 import { AvatarCropper } from "@/components/avatar-cropper";
+import { Sheet } from "@/components/ui/sheet";
 import type { AvatarKind } from "@/lib/api/client";
 import { updateProfile, uploadAvatar, type MyProfile } from "@/lib/api/profile";
 import { SECONDARY } from "@/lib/ui";
@@ -14,12 +15,14 @@ const MAX_SOURCE_BYTES = 25 * 1024 * 1024;
 interface ProfilePhotoProps {
   me: MyProfile;
   onChange: (me: MyProfile) => void;
+  /** Pixels on a side. */
+  size: number;
 }
 
 type Status = { kind: "idle" } | { kind: "saving" } | { kind: "saved" } | { kind: "error"; message: string };
 
-/** The big avatar with its editor: pick Google, an upload or initials, or upload and crop a new one. */
-export function ProfilePhoto({ me, onChange }: ProfilePhotoProps) {
+/** Your avatar with a camera badge that opens its editor: Google, an upload or initials, or crop a new one. */
+export function ProfilePhoto({ me, onChange, size }: ProfilePhotoProps) {
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<Status>({ kind: "idle" });
@@ -31,7 +34,10 @@ export function ProfilePhoto({ me, onChange }: ProfilePhotoProps) {
       onChange(await updateProfile({ avatar }));
       setStatus({ kind: "saved" });
     } catch (err) {
-      setStatus({ kind: "error", message: err instanceof Error ? err.message : "Request failed" });
+      setStatus({
+        kind: "error",
+        message: err instanceof Error ? err.message : "Request failed",
+      });
     }
   };
 
@@ -45,7 +51,10 @@ export function ProfilePhoto({ me, onChange }: ProfilePhotoProps) {
       return;
     }
     if (picked.size > MAX_SOURCE_BYTES) {
-      setStatus({ kind: "error", message: "That photo is over 25 MB. Try a smaller one." });
+      setStatus({
+        kind: "error",
+        message: "That photo is over 25 MB. Try a smaller one.",
+      });
       return;
     }
     setStatus({ kind: "idle" });
@@ -66,84 +75,97 @@ export function ProfilePhoto({ me, onChange }: ProfilePhotoProps) {
   };
 
   const options: { kind: AvatarKind; label: string; picture: string | null }[] = [
-    ...(me.googlePicture ? [{ kind: "google" as const, label: "Google photo", picture: me.googlePicture }] : []),
-    ...(me.uploadPicture ? [{ kind: "upload" as const, label: "Your upload", picture: me.uploadPicture }] : []),
+    ...(me.googlePicture
+      ? [
+          {
+            kind: "google" as const,
+            label: "Google photo",
+            picture: me.googlePicture,
+          },
+        ]
+      : []),
+    ...(me.uploadPicture
+      ? [
+          {
+            kind: "upload" as const,
+            label: "Your upload",
+            picture: me.uploadPicture,
+          },
+        ]
+      : []),
     { kind: "initials", label: "Initials", picture: null },
   ];
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-end gap-3">
-        <div className="rounded-full bg-gradient-to-br from-gold-light via-gold-deep to-gold p-[3px] shadow-[0_0_30px_-6px_rgb(232_194_104/0.6)]">
-          <Avatar name={me.name} email={me.email} picture={me.picture} size={104} />
-        </div>
-        <button
-          ref={toggle}
-          type="button"
-          aria-expanded={open}
-          aria-controls="photo-editor"
-          onClick={() => (open ? close() : setOpen(true))}
-          className={`${SECONDARY} text-sm`}
-        >
-          <CameraIcon />
-          <span className="ml-2">{open ? "Close" : "Change photo"}</span>
-        </button>
+    <div className="relative shrink-0">
+      <div className="rounded-full bg-gradient-to-br from-gold-light via-gold-deep to-gold p-[3px] shadow-[0_0_34px_-6px_rgb(232_194_104/0.6)]">
+        <Avatar name={me.name} email={me.email} picture={me.picture} size={size} />
       </div>
-
-      {open && (
-        <section
-          id="photo-editor"
-          aria-label="Profile photo"
-          className="flex flex-col gap-4 rounded-xl border border-silver/15 bg-ballroom/60 p-4 animate-pop-in"
-        >
-          {file ? (
-            <AvatarCropper file={file} onCancel={() => setFile(null)} onCropped={cropped} />
-          ) : (
-            <>
-              <fieldset className="flex flex-col gap-2" disabled={status.kind === "saving"}>
-                <legend className="mb-2 text-xs font-semibold tracking-[0.14em] text-silver-dim uppercase">Show</legend>
-                {options.map((o) => (
-                  <label
-                    key={o.kind}
-                    className="flex min-h-14 cursor-pointer items-center gap-3 rounded-lg border border-silver/15 px-3 transition-colors hover:border-silver/30 hover:bg-silver/5 has-checked:border-gold/60 has-checked:bg-gold/10 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-gold-light"
-                  >
-                    <input
-                      type="radio"
-                      name="avatar"
-                      value={o.kind}
-                      checked={me.avatarKind === o.kind}
-                      onChange={() => void choose(o.kind)}
-                      className="radio-gold"
-                    />
-                    <span aria-hidden="true">
-                      <Avatar name={me.name} email={me.email} picture={o.picture} size={36} />
-                    </span>
-                    <span className="text-sm text-pearl">{o.label}</span>
-                  </label>
-                ))}
-              </fieldset>
-              <div className="flex flex-col gap-1">
-                <label
-                  className={`${SECONDARY} cursor-pointer self-start has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-gold-light`}
-                >
-                  <input type="file" accept="image/*" onChange={pick} className="sr-only" />
-                  Upload a new photo
-                </label>
-                <p className="text-xs text-silver-dim">Any photo. You&apos;ll frame it as a square next.</p>
-              </div>
-            </>
-          )}
-        </section>
-      )}
-
-      <p
-        aria-live="polite"
-        className={`min-h-5 text-sm ${status.kind === "error" ? "text-red-300" : "text-silver-dim"}`}
+      <button
+        ref={toggle}
+        type="button"
+        aria-haspopup="dialog"
+        aria-label="Change photo"
+        onClick={() => setOpen(true)}
+        className="absolute right-0 bottom-0 flex size-9 items-center justify-center rounded-full border border-gold/60 bg-ink text-gold-light shadow-[0_4px_12px_-2px_rgb(2_8_30/0.9)] transition duration-150 after:absolute after:-inset-1 after:content-[''] hover:border-gold-light hover:bg-ballroom hover:text-pearl focus-ring active:scale-95"
       >
-        {status.kind === "saving" && "Saving..."}
-        {status.kind === "saved" && "Photo updated."}
-        {status.kind === "error" && `Couldn't update the photo: ${status.message}`}
-      </p>
+        <CameraIcon />
+      </button>
+
+      <Sheet open={open} onClose={close} label="Profile photo">
+        {/* The header centres its text on a phone and the dialog sits inside it. */}
+        <div className="flex flex-col gap-5 text-left">
+          <h2 className="text-lg font-semibold text-pearl">Profile photo</h2>
+          {open &&
+            (file ? (
+              <AvatarCropper file={file} onCancel={() => setFile(null)} onCropped={cropped} />
+            ) : (
+              <>
+                <fieldset className="flex flex-col gap-2" disabled={status.kind === "saving"}>
+                  <legend className="mb-2 text-xs font-semibold tracking-[0.14em] text-silver-dim uppercase">
+                    Show
+                  </legend>
+                  {options.map((o) => (
+                    <label
+                      key={o.kind}
+                      className="flex min-h-14 cursor-pointer items-center gap-3 rounded-lg border border-silver/15 px-3 transition-colors hover:border-silver/30 hover:bg-silver/5 has-checked:border-gold/60 has-checked:bg-gold/10 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-gold-light"
+                    >
+                      <input
+                        type="radio"
+                        name="avatar"
+                        value={o.kind}
+                        checked={me.avatarKind === o.kind}
+                        onChange={() => void choose(o.kind)}
+                        className="radio-gold"
+                      />
+                      <span aria-hidden="true">
+                        <Avatar name={me.name} email={me.email} picture={o.picture} size={36} />
+                      </span>
+                      <span className="text-sm text-pearl">{o.label}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <div className="flex flex-col gap-1">
+                  <label
+                    className={`${SECONDARY} cursor-pointer self-start has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-gold-light`}
+                  >
+                    <input type="file" accept="image/*" onChange={pick} className="sr-only" />
+                    Upload a new photo
+                  </label>
+                  <p className="text-xs text-silver-dim">Any photo. You&apos;ll frame it as a square next.</p>
+                </div>
+              </>
+            ))}
+          <p
+            aria-live="polite"
+            className={`min-h-5 text-sm ${status.kind === "error" ? "text-red-300" : "text-silver-dim"}`}
+          >
+            {status.kind === "saving" && "Saving..."}
+            {status.kind === "saved" && "Photo updated."}
+            {status.kind === "error" && `Couldn't update the photo: ${status.message}`}
+          </p>
+        </div>
+      </Sheet>
     </div>
   );
 }
