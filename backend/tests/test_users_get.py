@@ -184,3 +184,28 @@ def test_a_block_either_way_hides_the_profile(show):
     assert get(sub=B)[0] == 404
     assert get(B, sub=A)[0] == 404
     assert get(B)[0] == 200
+
+
+def test_all_time_comes_from_the_leaderboard_row_with_the_same_floor(show):
+    for cid in COUPLES[:4]:
+        answer(B, cid, value=10)
+    assert profile(sub=B)["allTime"] == {"count": 4, "mae": None, "closestJudge": None}
+    answer(B, COUPLES[4], value=10)
+    assert profile(sub=B)["allTime"] == {
+        "count": 5,
+        "mae": 2.0,
+        "closestJudge": {"id": BRUNO, "mae": 1.0},
+    }
+    # Your own shows below the floor.
+    answer(A, COUPLES[0], value=6)
+    assert profile()["allTime"]["mae"] == 2.0
+
+
+def test_recent_activity_is_counts_per_episode_newest_first(show):
+    answer(B, COUPLES[0], ep=4, value=9)
+    answer(B, COUPLES[0], value=9)
+    answer(B, COUPLES[1], forfeit=True)
+    recent = profile(sub=B)["recent"]
+    assert [(r["ep"], r["answered"], r["scored"]) for r in recent] == [(5, 2, 1), (4, 1, 1)]
+    assert set(recent[0]) == {"ep", "week", "theme", "airDate", "answered", "scored"}
+    assert profile()["recent"] == []

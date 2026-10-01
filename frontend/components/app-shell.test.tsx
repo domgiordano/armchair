@@ -64,6 +64,7 @@ describe("activeTab", () => {
     ["/join/", "Friends & Groups"],
     ["/friends/", "Friends & Groups"],
     ["/stats/", "Stats"],
+    ["/couples/", "Couples"],
   ])("%s lights %s", (path, label) => {
     expect(activeTab(path)?.label).toBe(label);
   });
@@ -88,6 +89,7 @@ describe("AppShell", () => {
       "Episodes",
       "Leaderboard",
       "Stats",
+      "Couples",
       "Friends & Groups",
       "Profile",
     ]);
@@ -161,6 +163,14 @@ describe("AppShell", () => {
     const apps = screen.getByRole("button", { name: "Apps" });
     fireEvent.click(apps);
     expect(screen.getByRole("menuitem", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
+    const menu = screen.getByRole("menu", { name: "Apps" });
+    const icons = [...menu.querySelectorAll("[data-show]")].map((el) => [el.getAttribute("data-show"), !!el.querySelector("span")]);
+    expect(icons).toEqual([
+      ["dwts", false],
+      ["traitors", true],
+      ["survivor", true],
+    ]);
+    expect(within(menu).getByText("Dancing with the Stars").closest("[aria-current]")?.getAttribute("aria-current")).toBe("page");
 
     fireEvent.pointerDown(screen.getByText("page body"));
     expect(apps.getAttribute("aria-expanded")).toBe("false");
@@ -192,5 +202,20 @@ describe("AppShell", () => {
 
     fireEvent.click(within(sheet).getByRole("link", { name: "Leaderboard" }));
     expect(sheet.hasAttribute("open")).toBe(false);
+  });
+
+  it("opens phone search as a full-screen dialog and returns focus to its button on Cancel", async () => {
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+    const open = screen.getByRole("button", { name: "Search" });
+
+    fireEvent.click(open);
+    const sheet = screen.getByRole("dialog", { name: "Search" });
+    expect(sheet.hasAttribute("open")).toBe(true);
+    expect(within(sheet).getByRole("combobox", { name: /search people/i })).toBeTruthy();
+
+    fireEvent.click(within(sheet).getByRole("button", { name: "Cancel" }));
+    expect(sheet.hasAttribute("open")).toBe(false);
+    expect(document.activeElement).toBe(open);
   });
 });

@@ -4,6 +4,7 @@ name: Seed Season
 # their Commons headshots to face-centred squares in the site bucket. A finished
 # season's performances and results are published too, confirmed. "all" seeds
 # every fixture, S1-S35.
+# Every run also rewrites the cross-season person index, bios from fixtures/bios.json.
 # Idempotent: the seed script never overwrites fields the poller or an admin owns,
 # and only crops headshots the bucket doesn't already have.
 

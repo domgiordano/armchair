@@ -8,6 +8,9 @@ import { Avatar } from "@/components/avatar";
 import { Brand } from "@/components/brand";
 import { NavSheet } from "@/components/nav-sheet";
 import { NotificationsBell } from "@/components/notifications";
+import { SearchBox } from "@/components/search/people-search";
+import { SearchSheet } from "@/components/search/search-sheet";
+import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { Select } from "@/components/ui/select";
 import { Specks } from "@/components/ui/specks";
@@ -31,6 +34,7 @@ export const TABS: Tab[] = [
   { href: "/episode/", label: "Episodes", match: ["/episode"] },
   { href: "/leaderboard/", label: "Leaderboard", match: ["/leaderboard"] },
   { href: "/stats/", label: "Stats", match: ["/stats"] },
+  { href: "/couples/", label: "Couples", match: ["/couples"] },
   { href: "/friends/", label: "Friends & Groups", match: ["/friends", "/groups", "/join"] },
   { href: "/profile/", label: "Profile", match: ["/profile"] },
 ];
@@ -71,7 +75,9 @@ function Shell({ title, wide, children }: AppShellProps) {
   const season = useSeasonId();
   const current = activeTab(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
+  const searchButton = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -104,6 +110,18 @@ function Shell({ title, wide, children }: AppShellProps) {
             <SeasonPicker season={season} />
           </div>
           <div className="ml-auto flex items-center gap-1">
+            <SearchBox variant="popover" className="mr-1 hidden md:block" />
+            <button
+              ref={searchButton}
+              type="button"
+              aria-label="Search"
+              aria-haspopup="dialog"
+              aria-expanded={searchOpen}
+              onClick={() => setSearchOpen(true)}
+              className={`${ICON_BUTTON} md:hidden`}
+            >
+              <SearchGlyph />
+            </button>
             <div className="hidden md:block">
               <AppsMenu />
             </div>
@@ -121,6 +139,13 @@ function Shell({ title, wide, children }: AppShellProps) {
           </ul>
         </nav>
       </header>
+      <SearchSheet
+        open={searchOpen}
+        onClose={() => {
+          setSearchOpen(false);
+          searchButton.current?.focus();
+        }}
+      />
       <NavSheet open={menuOpen} onClose={closeMenu}>
         {/* Close sits where the hamburger was, and comes first so the dialog focuses it on open. */}
         <div className="-mx-2 -mt-1.5 flex items-center gap-2">
@@ -217,15 +242,34 @@ function AppsMenu() {
       triggerClassName={`flex min-h-11 items-center gap-2 rounded-md px-3 text-silver transition-colors hover:bg-silver/10 hover:text-pearl active:bg-silver/15 aria-expanded:bg-silver/10 ${FOCUS}`}
     >
       <p className="px-3 pt-1.5 pb-1 text-xs font-semibold tracking-[0.12em] text-silver-dim uppercase">Armchair Judge</p>
-      <span aria-current="page" className="flex min-h-11 items-center justify-between gap-3 rounded-md px-3 text-sm text-gold-light">
-        Dancing with the Stars
-        <span className="text-xs text-silver-dim">You&apos;re here</span>
-      </span>
+      <AppRow show="dwts" name="Dancing with the Stars" note="You're here" current />
+      <AppRow show="traitors" name="The Traitors" note="Coming soon" />
+      <AppRow show="survivor" name="Survivor" note="Coming soon" />
       <MenuItem href={HUB_URL} className="justify-between">
         All shows
         <ArrowIcon />
       </MenuItem>
     </Menu>
+  );
+}
+
+interface AppRowProps {
+  show: Show;
+  name: string;
+  note: string;
+  current?: boolean;
+}
+
+// Not menu items: this app is where you already are, and the others aren't out yet.
+function AppRow({ show, name, note, current = false }: AppRowProps) {
+  return (
+    <span aria-current={current ? "page" : undefined} className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-1.5`}>
+      <ShowIcon show={show} size={36} locked={!current} />
+      <span className="flex flex-col">
+        <span className={`text-sm font-medium whitespace-nowrap ${current ? "text-gold-light" : "text-silver-dim"}`}>{name}</span>
+        <span className="text-xs text-silver-dim">{note}</span>
+      </span>
+    </span>
   );
 }
 
@@ -297,6 +341,15 @@ function CloseIcon() {
   return (
     <svg {...ICON}>
       <path d="M6 6l12 12M18 6L6 18" />
+    </svg>
+  );
+}
+
+function SearchGlyph() {
+  return (
+    <svg {...ICON}>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4 4" />
     </svg>
   );
 }
