@@ -8,8 +8,9 @@
  *  3.2 - 4.2 s  Armchair / Judge, then DISCOVER / WATCH / JUDGE
  *  4.7 - 5.2 s  fade to the landing
  *
- * Until the 3D stage has drawn (or if it never can), the static mark stands
- * in from 1.1 s. The exit is CSS too, so the stage leaves even without JS.
+ * Until the 3D stage has drawn (or if it never can), the mark stands
+ * in from 1.1 s as the ChairLoader. The exit is CSS too, so the stage leaves
+ * even without JS.
  */
 
 .intro {

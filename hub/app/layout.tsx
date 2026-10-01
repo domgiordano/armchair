@@ -3,6 +3,9 @@ import { Poppins } from "next/font/google";
 
 import "./globals.css";
 import "./intro.css";
+import "./motion.css";
+
+import { Backdrop } from "@/components/backdrop";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,7 +31,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${poppins.variable} h-full antialiased`}>
-      <body className="min-h-full bg-night font-display text-text">{children}</body>
+      <body className="min-h-full bg-night font-display text-text">
+        <Backdrop />
+        {children}
+      </body>
     </html>
   );
 }

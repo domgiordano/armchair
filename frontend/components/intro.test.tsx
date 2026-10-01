@@ -1,13 +1,20 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+const SCENE = "./intro-scene/intro-scene";
+let sceneLoads = 0;
+
 // The stand-in scene "draws its first frame" when clicked.
-vi.mock("./intro-scene/intro-scene", () => ({
-  IntroScene: ({ onReady }: { onReady: () => void }) => <button type="button" data-testid="scene" onClick={onReady} />,
-}));
+function standIn() {
+  sceneLoads += 1;
+  return {
+    IntroScene: ({ onReady }: { onReady: () => void }) => <button type="button" data-testid="scene" onClick={onReady} />,
+  };
+}
 
 // intro.tsx probes WebGL once per page load, so each test loads a fresh copy.
-async function load({ webgl }: { webgl: boolean }) {
+async function load({ webgl, scene = standIn }: { webgl: boolean; scene?: () => object }) {
+  vi.doMock(SCENE, scene);
   const lose = vi.fn();
   if (webgl) {
     vi.stubGlobal("WebGLRenderingContext", class {});
@@ -24,8 +31,14 @@ const region = () => screen.getByRole("region", { name: "Intro" });
 const stage = () => region().getAttribute("data-stage");
 const playing = () => region().hasAttribute("data-playing");
 
+// vitest.setup.ts stubs in jsdom's storage, and unstubAllGlobals would take it away again.
+const storage = localStorage;
+
 afterEach(() => {
+  sceneLoads = 0;
+  storage.clear();
   vi.unstubAllGlobals();
+  vi.stubGlobal("localStorage", storage);
   vi.restoreAllMocks();
   vi.useRealTimers();
 });
@@ -72,12 +85,38 @@ describe("Intro", () => {
     expect(onDone).toHaveBeenCalledTimes(1);
   });
 
-  it("plays the 2D ballroom when the scene never draws", async () => {
+  it("starts downloading the scene before the intro mounts, unless someone is signed in", async () => {
+    await load({ webgl: true });
+    await vi.waitFor(() => expect(sceneLoads).toBe(1));
+
+    localStorage.setItem("CognitoIdentityServiceProvider.client.LastAuthUser", "someone");
+    sceneLoads = 0;
+    await load({ webgl: true });
+    await new Promise((r) => setTimeout(r, 20));
+    expect(sceneLoads).toBe(0);
+  });
+
+  it("holds the poster however long the scene takes to download", async () => {
+    const { Intro } = await load({ webgl: true, scene: () => new Promise(() => {}) });
+    vi.useFakeTimers();
+    const { container } = render(<Intro onDone={() => {}} />);
+    act(() => vi.advanceTimersByTime(30_000));
+    expect(stage()).toBe("3d");
+    expect(playing()).toBe(false);
+    expect(container.querySelector("img")?.getAttribute("src")).toBe("/intro/poster.webp");
+  });
+
+  it("plays the 2D ballroom when the downloaded scene never draws", async () => {
     const { Intro } = await load({ webgl: true });
     vi.useFakeTimers({ shouldAdvanceTime: true });
     render(<Intro onDone={() => {}} />);
     await screen.findByTestId("scene");
-    act(() => vi.advanceTimersByTime(3000));
+    // The patience clock starts from an effect of the resolved chunk, a render after the scene appears.
+    await act(async () => {});
+    // shouldAdvanceTime lets a little real time slip in, so leave slack either side of 8 s.
+    act(() => vi.advanceTimersByTime(7500));
+    expect(stage()).toBe("3d");
+    act(() => vi.advanceTimersByTime(500));
     expect(stage()).toBe("2d");
     expect(playing()).toBe(true);
     expect(screen.queryByTestId("scene")).toBeNull();
@@ -85,16 +124,17 @@ describe("Intro", () => {
   });
 
   it("falls back to the 2D ballroom when the 3D chunk won't load", async () => {
-    vi.doMock("./intro-scene/intro-scene", () => {
-      throw new Error("ChunkLoadError");
+    const { Intro } = await load({
+      webgl: true,
+      scene: () => {
+        throw new Error("ChunkLoadError");
+      },
     });
-    const { Intro } = await load({ webgl: true });
     const { container } = render(<Intro onDone={() => {}} />);
     expect(await screen.findAllByText("10")).toHaveLength(2);
     expect(stage()).toBe("2d");
     expect(container.querySelector("img")).toBeNull();
     expect(screen.queryByTestId("scene")).toBeNull();
-    vi.doUnmock("./intro-scene/intro-scene");
   });
 
   it("server-renders without probing WebGL or picking a backdrop", async () => {

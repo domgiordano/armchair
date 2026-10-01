@@ -1,0 +1,126 @@
+.loader {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--px);
+  height: var(--px);
+  isolation: isolate;
+}
+
+/* A soft halo behind the ball; under reduced motion it breathes instead of the ball spinning. */
+.loader::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(150 160 222 / 0.35), rgb(232 194 104 / 0.08) 55%, transparent 70%);
+}
+
+.ball {
+  display: block;
+  overflow: visible;
+}
+
+.grout {
+  fill: #0a0f28;
+}
+
+.rim {
+  fill: none;
+  stroke: rgb(213 219 234 / 0.3);
+  stroke-width: 1;
+}
+
+.flash {
+  fill: #fff6e0;
+  opacity: 0;
+  animation: flash 1.8s linear infinite;
+}
+
+.glint {
+  fill: #fffaf0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: glint 1.8s ease-in-out infinite;
+}
+
+.speck {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--px) * 0.16);
+  height: calc(var(--px) * 0.16);
+  margin: calc(var(--px) * -0.08) 0 0 calc(var(--px) * -0.08);
+  background: var(--color-silver);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  opacity: 0;
+  animation: throw 2.2s ease-out infinite;
+}
+
+.speck.gold {
+  background: var(--color-gold-light);
+}
+
+@keyframes flash {
+  0%,
+  14%,
+  100% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes glint {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.5) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(45deg);
+  }
+}
+
+@keyframes throw {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--dx) * var(--px)), calc(var(--dy) * var(--px))) scale(0.8) rotate(90deg);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flash,
+  .speck {
+    display: none;
+  }
+
+  .glint {
+    animation: none;
+    opacity: 0.9;
+  }
+
+  .loader::before {
+    animation: breathe 2.4s ease-in-out infinite;
+  }
+}
