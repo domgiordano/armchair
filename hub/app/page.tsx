@@ -1,4 +1,6 @@
 import { About } from "@/components/about";
+import { HomeSwitch } from "@/components/account/home-switch";
+import { ChairLoader } from "@/components/chair-loader";
 import { CatalogStrip } from "@/components/catalog-strip";
 import { Faq } from "@/components/faq";
 import { Features } from "@/components/features";
@@ -15,6 +17,20 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export default function HomePage() {
+  return (
+    <>
+      {/* Shown by CSS only while <html data-account> is set (app/account.css). */}
+      <div className="account-boot" aria-hidden="true">
+        <ChairLoader className="size-24" />
+      </div>
+      <HomeSwitch>
+        <Landing />
+      </HomeSwitch>
+    </>
+  );
+}
+
+function Landing() {
   return (
     <>
       <Intro />
