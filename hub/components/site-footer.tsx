@@ -3,7 +3,10 @@ import Link from "next/link";
 import { ChairMark } from "@/components/chair-mark";
 
 const link =
-  "-ml-2 flex min-h-11 items-center rounded-full px-2 text-muted underline-offset-4 hover:text-text hover:underline focus-visible:outline-2 focus-visible:outline-gold";
+  "-ml-2 flex min-h-11 items-center rounded-full px-2 text-muted underline-offset-4 transition-colors hover:text-gold hover:underline focus-visible:outline-2 focus-visible:outline-gold motion-reduce:transition-none";
+
+// Stamped when the static page is built.
+const YEAR = new Date().getFullYear();
 
 export function SiteFooter() {
   return (
@@ -32,6 +35,11 @@ export function SiteFooter() {
             </Link>
           </nav>
         </div>
+      </div>
+      <div className="border-t border-line/60">
+        <p className="mx-auto max-w-6xl px-6 py-5 text-xs text-muted">
+          &copy; {YEAR} Armchair Judge &middot; An independent fan project
+        </p>
       </div>
     </footer>
   );

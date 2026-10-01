@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type CSSProperties } from "react";
 
+import { useIntroPlaying } from "@/lib/intro-state";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 interface Performance {
@@ -68,14 +69,16 @@ function Seat({ name, value, tone, delay }: SeatProps) {
 
 export function DeskDemo() {
   const reduced = useReducedMotion();
+  // Held while the intro covers it, then remounted so the first reveal plays in view.
+  const covered = useIntroPlaying();
   const [paused, setPaused] = useState(false);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (paused || reduced) return;
+    if (paused || reduced || covered) return;
     const timer = window.setInterval(() => setIndex((i) => (i + 1) % PERFORMANCES.length), CYCLE_MS);
     return () => window.clearInterval(timer);
-  }, [paused, reduced]);
+  }, [paused, reduced, covered]);
 
   const p = PERFORMANCES[index];
   const panel = (p.judges[0] + p.judges[1] + p.judges[2]) / 3;
@@ -92,7 +95,7 @@ export function DeskDemo() {
         <span className="rounded-full border border-line px-3 py-1 text-[11px] text-muted">Illustration · invented scores</span>
       </div>
 
-      <div key={index} className="demo">
+      <div key={`${index}-${covered}`} className="demo">
         <p className="mt-4 text-sm font-semibold text-text sm:text-base">{p.label}</p>
 
         <div role="img" aria-label={spoken} className="mt-2">
@@ -103,7 +106,7 @@ export function DeskDemo() {
             ))}
             <Seat name="Everyone" value={p.everyone} tone="crowd" delay={2100} />
           </div>
-          <div className="-mt-7 h-2 rounded-full bg-linear-to-r from-blue via-magenta to-orange opacity-80" />
+          <div className="demo-bar -mt-7 h-2 rounded-full bg-linear-to-r from-blue via-magenta to-orange opacity-80" />
         </div>
 
         <div className="relative mt-8 h-12 text-sm leading-snug" aria-hidden="true">

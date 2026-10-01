@@ -51,7 +51,7 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
   return (
     <article
       aria-labelledby={headingId}
-      className="flex flex-col gap-4 rounded-lg border border-neutral-800 bg-neutral-900 p-4"
+      className="flex h-full flex-col gap-4 rounded-lg border border-neutral-800 bg-neutral-900 p-4"
     >
       <div className="flex items-center gap-3">
         {team ? (

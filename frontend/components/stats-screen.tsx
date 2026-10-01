@@ -19,7 +19,7 @@ type StatsLoad = { kind: "loading" } | { kind: "ready"; stats: Stats } | { kind:
 
 export function StatsScreen() {
   return (
-    <SignedIn title="Accuracy">
+    <SignedIn title="Accuracy" wide>
       <SeasonLoader />
     </SignedIn>
   );
@@ -36,7 +36,9 @@ function StatsLoader({ season }: { season: Season }) {
   const filter = useGroupFilter();
   return (
     <>
-      <GroupPicker {...filter} />
+      <div className="md:max-w-md">
+        <GroupPicker {...filter} />
+      </div>
       <StatsFetcher season={season} group={filter.group} />
     </>
   );
@@ -112,48 +114,51 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
         </p>
       </section>
 
-      <Card id="trend" title="Your season" note="Points off per episode. Lower is closer.">
-        <TrendChart points={stats.episodes.map((e) => ({ label: short(e.ep), mae: e.mae ?? 0 }))} />
-      </Card>
-
-      {judges.length > 0 && (
-        <Card id="per-judge" title={`Closest to ${judges[0].label}`} note="Points off each judge, and dances counted.">
-          <BarList bars={judges} label="By judge" />
+      {/* Columns, not a grid: the cards differ in height and a grid row would pad the short ones. */}
+      <div className="gap-4 lg:columns-2 xl:columns-3 [&>section]:mb-4 [&>section]:break-inside-avoid">
+        <Card id="trend" title="Your season" note="Points off per episode. Lower is closer.">
+          <TrendChart points={stats.episodes.map((e) => ({ label: short(e.ep), mae: e.mae ?? 0 }))} />
         </Card>
-      )}
 
-      <Card id="by-style" title="By dance style" note="Points off the judges' average, and dances counted.">
-        <BarList bars={byStyle(stats.dances)} label="By dance style" />
-      </Card>
+        {judges.length > 0 && (
+          <Card id="per-judge" title={`Closest to ${judges[0].label}`} note="Points off each judge, and dances counted.">
+            <BarList bars={judges} label="By judge" />
+          </Card>
+        )}
 
-      <Card id="distribution" title="How you score" note="Share of your paddles and the judges' scores at each value.">
-        <Histogram bins={distribution(stats.dances)} />
-        <Legend
-          items={[
-            { label: "You", swatch: "bg-gold" },
-            { label: "Judges", swatch: "bg-silver-dim" },
-          ]}
-        />
-      </Card>
+        <Card id="by-style" title="By dance style" note="Points off the judges' average, and dances counted.">
+          <BarList bars={byStyle(stats.dances)} label="By dance style" />
+        </Card>
 
-      <Card id="progression" title="You vs the judges, dance by dance">
-        <Progression dances={stats.dances} label={label} />
-        <p className="flex gap-4 text-xs text-neutral-400">
-          <span className="flex items-center gap-1">
-            <span aria-hidden="true" className="inline-block h-0.5 w-4 bg-amber-300" />
-            You
-          </span>
-          <span className="flex items-center gap-1">
-            <span aria-hidden="true" className="inline-block h-0.5 w-4 bg-current" />
-            Judges&apos; average
-          </span>
-        </p>
-      </Card>
+        <Card id="distribution" title="How you score" note="Share of your paddles and the judges' scores at each value.">
+          <Histogram bins={distribution(stats.dances)} />
+          <Legend
+            items={[
+              { label: "You", swatch: "bg-gold" },
+              { label: "Judges", swatch: "bg-silver-dim" },
+            ]}
+          />
+        </Card>
 
-      <Card id="calls" title="Best calls and biggest misses">
-        <Calls title="Best calls" dances={closest} couple={couple} short={short} />
-        {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} couple={couple} short={short} />}
-      </Card>
+        <Card id="progression" title="You vs the judges, dance by dance">
+          <Progression dances={stats.dances} label={label} />
+          <p className="flex gap-4 text-xs text-neutral-400">
+            <span className="flex items-center gap-1">
+              <span aria-hidden="true" className="inline-block h-0.5 w-4 bg-amber-300" />
+              You
+            </span>
+            <span className="flex items-center gap-1">
+              <span aria-hidden="true" className="inline-block h-0.5 w-4 bg-current" />
+              Judges&apos; average
+            </span>
+          </p>
+        </Card>
+
+        <Card id="calls" title="Best calls and biggest misses">
+          <Calls title="Best calls" dances={closest} couple={couple} short={short} />
+          {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} couple={couple} short={short} />}
+        </Card>
+      </div>
     </>
   );
 }

@@ -32,7 +32,7 @@ export function judgeName(id: string, judges: Judge[]): string {
 
 export function LeaderboardScreen() {
   return (
-    <SignedIn title="Leaderboard">
+    <SignedIn title="Leaderboard" wide>
       <Controls />
     </SignedIn>
   );
@@ -78,7 +78,7 @@ function Controls() {
             </select>
           </label>
         </div>
-        <div role="tablist" aria-label="Who to rank" className="grid grid-cols-3 gap-1 rounded-lg bg-neutral-900 p-1">
+        <div role="tablist" aria-label="Who to rank" className="grid grid-cols-3 gap-1 rounded-lg bg-neutral-900 p-1 md:max-w-md">
           {(["global", "friends", "group"] as const).map((s) => (
             <button
               key={s}
@@ -95,7 +95,7 @@ function Controls() {
           ))}
         </div>
         {scope === "group" && groups.length > 0 && (
-          <label className="flex flex-col gap-1 text-sm text-neutral-400">
+          <label className="flex flex-col gap-1 text-sm text-neutral-400 md:max-w-md">
             Group
             <select value={group ?? ""} onChange={(e) => go({ group: e.target.value })} className={SELECT}>
               {groups.map((g) => (
@@ -171,61 +171,71 @@ function BoardFetcher({
 export function LeaderboardView({ board, judges }: { board: Leaderboard; judges: Judge[] }) {
   const { ranked, unranked, me, minDances } = board;
   const mine = (sub: string) => sub === me.sub;
+  // Side by side only when there's a table to sit beside the podium.
+  const split = ranked.length > 3;
+  const waiting = unranked.length > 0 && (
+    <section aria-labelledby="unranked" className="flex flex-col gap-2">
+      <h2 id="unranked" className="text-sm font-semibold text-neutral-400">
+        Not ranked yet · {minDances} dances to qualify
+      </h2>
+      <ul className="flex flex-wrap gap-2">
+        {unranked.map((u) => (
+          <li
+            key={u.sub}
+            className="flex items-center gap-2 rounded-full border border-neutral-800 py-1 pr-3 pl-1 text-sm"
+          >
+            <Avatar name={u.name ?? "Player"} email="" picture={u.picture} size={24} />
+            <span>{u.name ?? "Player"}</span>
+            <span className="tabular-nums text-neutral-400">
+              {u.count}/{minDances}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 
   return (
     <>
-      {ranked.length === 0 ? (
-        <p className="text-neutral-400">
-          Nobody has {minDances} scored dances yet. A dance counts once every judge&apos;s score is confirmed.
-        </p>
-      ) : (
-        <Podium top={ranked.slice(0, 3)} mine={mine} />
-      )}
+      <div className={split ? "grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-10" : "contents"}>
+        {ranked.length === 0 ? (
+          <p className="text-neutral-400">
+            Nobody has {minDances} scored dances yet. A dance counts once every judge&apos;s score is confirmed.
+          </p>
+        ) : (
+          <div className={split ? "lg:sticky lg:top-32 lg:rounded-xl lg:border lg:border-neutral-800 lg:bg-ballroom/40 lg:p-6" : ""}>
+            <Podium top={ranked.slice(0, 3)} mine={mine} />
+          </div>
+        )}
 
-      {ranked.length > 3 && (
-        <ol aria-label="Rankings" className="flex flex-col divide-y divide-neutral-800">
-          {ranked.slice(3).map((r) => (
-            <li
-              key={r.sub}
-              aria-current={mine(r.sub) ? "true" : undefined}
-              className={`flex items-center gap-3 py-2.5 ${mine(r.sub) ? "-mx-2 rounded-md bg-gold/10 px-2 ring-1 ring-gold/40" : ""}`}
-            >
-              <span className="w-7 text-right text-sm font-semibold tabular-nums text-neutral-400">{r.rank}</span>
-              <Avatar name={r.name ?? "Player"} email="" picture={r.picture} size={36} />
-              <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate font-medium">{r.name ?? "Player"}</span>
-                <span className="truncate text-xs text-neutral-400">
-                  {r.count} dances
-                  {r.closestJudge && ` · closest to ${judgeName(r.closestJudge.id, judges)}`}
-                </span>
-              </span>
-              <span className="text-sm tabular-nums">{off(r.mae)}</span>
-            </li>
-          ))}
-        </ol>
-      )}
+        {split && (
+          <div className="flex flex-col gap-6">
+            <ol aria-label="Rankings" className="flex flex-col divide-y divide-neutral-800">
+              {ranked.slice(3).map((r) => (
+                <li
+                  key={r.sub}
+                  aria-current={mine(r.sub) ? "true" : undefined}
+                  className={`flex items-center gap-3 py-2.5 ${mine(r.sub) ? "-mx-2 rounded-md bg-gold/10 px-2 ring-1 ring-gold/40" : ""}`}
+                >
+                  <span className="w-7 text-right text-sm font-semibold tabular-nums text-neutral-400">{r.rank}</span>
+                  <Avatar name={r.name ?? "Player"} email="" picture={r.picture} size={36} />
+                  <span className="flex min-w-0 flex-1 flex-col">
+                    <span className="truncate font-medium">{r.name ?? "Player"}</span>
+                    <span className="truncate text-xs text-neutral-400">
+                      {r.count} dances
+                      {r.closestJudge && ` · closest to ${judgeName(r.closestJudge.id, judges)}`}
+                    </span>
+                  </span>
+                  <span className="text-sm tabular-nums">{off(r.mae)}</span>
+                </li>
+              ))}
+            </ol>
+            {waiting}
+          </div>
+        )}
+      </div>
 
-      {unranked.length > 0 && (
-        <section aria-labelledby="unranked" className="flex flex-col gap-2">
-          <h2 id="unranked" className="text-sm font-semibold text-neutral-400">
-            Not ranked yet · {minDances} dances to qualify
-          </h2>
-          <ul className="flex flex-wrap gap-2">
-            {unranked.map((u) => (
-              <li
-                key={u.sub}
-                className="flex items-center gap-2 rounded-full border border-neutral-800 py-1 pr-3 pl-1 text-sm"
-              >
-                <Avatar name={u.name ?? "Player"} email="" picture={u.picture} size={24} />
-                <span>{u.name ?? "Player"}</span>
-                <span className="tabular-nums text-neutral-400">
-                  {u.count}/{minDances}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {!split && waiting}
 
       <YouBar me={me} minDances={minDances} judges={judges} />
     </>
@@ -278,7 +288,7 @@ function YouBar({ me, minDances, judges }: { me: Leaderboard["me"]; minDances: n
   return (
     <aside
       aria-label="Your standing"
-      className="sticky bottom-0 -mx-4 mt-auto flex items-center gap-3 border-t border-gold/30 bg-ballroom/95 px-4 py-3 backdrop-blur"
+      className="sticky bottom-0 -mx-4 mt-auto flex items-center gap-3 border-t border-gold/30 bg-ballroom/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:mx-0 lg:rounded-t-xl lg:border-x"
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
     >
       <Avatar name={me.name ?? "You"} email="" picture={me.picture} size={36} />

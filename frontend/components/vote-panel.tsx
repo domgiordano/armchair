@@ -80,13 +80,13 @@ function VoteList({ ep, couples }: VoteListProps) {
         </a>
         . The tally is kept on this device.
       </p>
-      <ul className="flex flex-col divide-y divide-neutral-800">
+      <ul className="grid divide-y divide-neutral-800 md:grid-cols-2 md:gap-x-8 md:divide-y-0 xl:grid-cols-3">
         {couples.map((c) => {
           const celebrity = c.members.find((m) => m.role === "celebrity")?.name ?? c.id;
           const pro = c.members.find((m) => m.role === "pro")?.name;
           const sent = votes[c.id] ?? 0;
           return (
-            <li key={c.id} className="flex items-center gap-2 py-3">
+            <li key={c.id} className="flex items-center gap-2 border-neutral-800 py-3 md:border-b">
               <CoupleAvatars members={c.members} size={32} />
               <div className="min-w-0 flex-1">
                 <p className="font-medium">{pro ? `${celebrity} & ${pro}` : celebrity}</p>
