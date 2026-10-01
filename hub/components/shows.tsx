@@ -1,6 +1,7 @@
 import { Cinzel, Permanent_Marker, Playfair_Display } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 import { Tilt } from "@/components/tilt";
 import { DWTS_URL } from "@/lib/links";
 import { reveal } from "@/lib/reveal";
@@ -142,6 +143,7 @@ function CautionTape() {
 }
 
 interface ShowCardProps {
+  show: Show;
   name: string;
   line: string;
   titleClass: string;
@@ -150,11 +152,12 @@ interface ShowCardProps {
   href?: string;
 }
 
-function ShowCard({ name, line, titleClass, surface, art, href }: ShowCardProps) {
+function ShowCard({ show, name, line, titleClass, surface, art, href }: ShowCardProps) {
   const body = (
     <>
       <div className="tilt-art relative h-44 overflow-hidden">{art}</div>
       <div className="relative flex flex-1 flex-col p-6">
+        <ShowIcon show={show} size={56} className="mb-4" />
         <p className="text-[11px] font-semibold tracking-[0.25em] uppercase opacity-80">
           {href ? (
             <span className="flex items-center gap-2">
@@ -179,7 +182,7 @@ function ShowCard({ name, line, titleClass, surface, art, href }: ShowCardProps)
     </>
   );
 
-  const frame = `relative flex min-h-96 flex-1 flex-col overflow-hidden rounded-3xl border ${surface}`;
+  const frame = `${ICON_TRIGGER} relative flex min-h-96 flex-1 flex-col overflow-hidden rounded-3xl border ${surface}`;
 
   if (href) {
     return (
@@ -218,6 +221,7 @@ export function Shows() {
           <li className="flex flex-col" {...reveal(1)}>
             <Tilt className="flex flex-1 flex-col">
               <ShowCard
+                show="dwts"
                 name="Dancing with the Stars"
                 line="Every dance, every week. Get your score up before the panel does."
                 titleClass={`${ballroom.className} bg-linear-to-r from-[#f3d98b] to-[#fff4d6] bg-clip-text text-transparent`}
@@ -230,6 +234,7 @@ export function Shows() {
           <li className="flex flex-col" {...reveal(2)}>
             <Tilt className="flex flex-1 flex-col">
               <ShowCard
+                show="traitors"
                 name="The Traitors"
                 line="Candlelit schemes and round-table banishments, scored from the sofa."
                 titleClass={`${castle.className} text-[#e9dcc0] tracking-wide`}
@@ -241,6 +246,7 @@ export function Shows() {
           <li className="flex flex-col" {...reveal(3)}>
             <Tilt className="flex flex-1 flex-col">
               <ShowCard
+                show="survivor"
                 name="Survivor"
                 line="Torches, tribal council and blindsides. Your score before the vote."
                 titleClass={`${brush.className} text-[#ffb070]`}

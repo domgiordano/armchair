@@ -161,6 +161,14 @@ describe("AppShell", () => {
     const apps = screen.getByRole("button", { name: "Apps" });
     fireEvent.click(apps);
     expect(screen.getByRole("menuitem", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
+    const menu = screen.getByRole("menu", { name: "Apps" });
+    const icons = [...menu.querySelectorAll("[data-show]")].map((el) => [el.getAttribute("data-show"), !!el.querySelector("span")]);
+    expect(icons).toEqual([
+      ["dwts", false],
+      ["traitors", true],
+      ["survivor", true],
+    ]);
+    expect(within(menu).getByText("Dancing with the Stars").closest("[aria-current]")?.getAttribute("aria-current")).toBe("page");
 
     fireEvent.pointerDown(screen.getByText("page body"));
     expect(apps.getAttribute("aria-expanded")).toBe("false");
