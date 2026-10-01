@@ -83,6 +83,7 @@ describe("NotificationList", () => {
     expect(card(/Carol Burnett invited you to Family/)).toBeTruthy();
     expect(card(/Eve Arden accepted your friend request/)).toBeTruthy();
     expect(within(card(/Bea Arthur/)).getByText("5m ago")).toBeTruthy();
+    expect(within(card(/Bea Arthur/)).getByRole("link", { name: "Bea Arthur" }).getAttribute("href")).toMatch(/^\/profile\/?\?u=/);
     await vi.waitFor(() => expect(markNotificationsRead).toHaveBeenCalledWith(undefined));
     // Still highlighted as new for this viewing.
     expect(within(card(/Bea Arthur/)).getByText(", new")).toBeTruthy();

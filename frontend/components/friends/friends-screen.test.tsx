@@ -101,7 +101,7 @@ afterEach(() => {
 describe("Friends tab", () => {
   it("lists friends and the invite link, and counts waiting requests on the tab", async () => {
     render(<FriendsScreen />);
-    expect(await screen.findByText("Bea Arthur")).toBeTruthy();
+    expect((await screen.findByRole("link", { name: "Bea Arthur" })).getAttribute("href")).toMatch(/^\/profile\/?\?u=/);
     expect(screen.getByText("Carol Burnett")).toBeTruthy();
     expect((screen.getByLabelText("Or send your invite link") as HTMLInputElement).value).toMatch(
       /\/friends\/\?add=k{16}$/,

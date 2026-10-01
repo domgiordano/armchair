@@ -28,7 +28,7 @@ function memberSeats(card: RevealedCard, members: GroupMember[]): DeskMember[] {
   const values = new Map(card.others.map((o) => [o.sub, o.value]));
   return members.flatMap((m) => {
     const value = values.get(m.sub);
-    return value === undefined ? [] : [{ name: m.name ?? "Member", picture: m.picture, value }];
+    return value === undefined ? [] : [{ sub: m.sub, name: m.name ?? "Member", picture: m.picture, value }];
   });
 }
 
