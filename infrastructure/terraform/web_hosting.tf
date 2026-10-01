@@ -42,7 +42,6 @@ module "hub" {
   spa_error_path          = "/404.html"
   spa_error_response_code = 404
 
-  spa_error_path      = "/index.html"
   enable_cache        = true
   minimum_tls_version = "TLSv1.2_2021"
   retain_on_delete    = false
