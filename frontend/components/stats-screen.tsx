@@ -94,10 +94,13 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
     .sort((a, b) => a.value - b.value);
   const rank = stats.others.filter((o) => o.mae < (mine.mae ?? 0)).length + 1;
   const short = (ep: number) => label(ep).replace("Week ", "W").replace(", night ", "/");
-  const celebrity = (key: string) => {
-    const c = season.contestants.find((x) => x.id === key.split("#")[0]);
-    return c?.members.find((m) => m.role === "celebrity")?.name ?? key.split("#")[0];
-  };
+  // A team dance's key names every member couple: "a+b+c#1".
+  const celebrity = (key: string) =>
+    key
+      .slice(0, key.lastIndexOf("#"))
+      .split("+")
+      .map((id) => season.contestants.find((x) => x.id === id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
+      .join(", ");
   const { closest, furthest } = extremes(stats.dances);
 
   return (

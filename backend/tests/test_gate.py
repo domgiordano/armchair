@@ -192,6 +192,31 @@ def test_team_dance_opens_with_the_episode_and_is_not_scorable(show):
     assert card["judges"][1] == {"id": "derek-hough", "value": 9, "state": "confirmed"}
 
 
+def test_a_scored_team_dance_must_be_answered_like_any_other(show):
+    team = "jenna-dewan+ezra-frech"
+    show.Table(PERFORMANCES_TABLE).put_item(
+        Item={
+            "pk": EP5,
+            "sk": f"PERF#{team}#1",
+            "contestants": team.split("+"),
+            "rateable": True,
+            "judges": {"derek-hough": {"value": Decimal(9), "state": "confirmed"}},
+        }
+    )
+    view = state()
+    assert view["rateable"] == 13
+    assert set(cards(view)[f"{team}#1"]) == LOCKED
+
+    for key in EP5_KEYS:
+        score(A, key, value=5)
+    assert state()["complete"] is False
+    status, body = submit(contestant=team, value=8)
+    assert status == 200, body
+    view = state()
+    assert view["complete"] is True
+    assert cards(view)[f"{team}#1"]["mine"] == {"value": 8}
+
+
 def test_cards_stay_alphabetical_by_celebrity_whatever_is_answered(show):
     score(A, "tyler-cameron#1", value=5)
     score(A, "amber-glenn#1", value=5)

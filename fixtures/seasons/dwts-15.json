@@ -975,7 +975,8 @@
         "kelly-monaco#1",
         "gilles-marini#1",
         "kirstie-alley#1",
-        "emmitt-smith#1"
+        "emmitt-smith#1",
+        "apolo-anton-ohno+melissa-rycroft+sabrina-bryan+shawn-johnson#1"
       ],
       "performances": [
         {
@@ -1054,7 +1055,7 @@
             "shawn-johnson"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 29.5,
           "judges": [
             9.5,
@@ -1086,7 +1087,8 @@
         "melissa-rycroft#1",
         "shawn-johnson#1",
         "apolo-anton-ohno#1",
-        "sabrina-bryan#1"
+        "sabrina-bryan#1",
+        "emmitt-smith+gilles-marini+kelly-monaco+kirstie-alley#1"
       ],
       "performances": [
         {
@@ -1165,7 +1167,7 @@
             "kirstie-alley"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 27,
           "judges": [
             9,

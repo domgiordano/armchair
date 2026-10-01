@@ -1207,7 +1207,9 @@
         "noah-galloway#1",
         "rumer-willis#1",
         "chris-soules#1",
-        "riker-lynch#1"
+        "riker-lynch#1",
+        "nastia-liukin+noah-galloway+robert-herjavec+willow-shields#1",
+        "chris-soules+patti-labelle+riker-lynch+rumer-willis#1"
       ],
       "performances": [
         {
@@ -1362,7 +1364,7 @@
             "willow-shields"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 39,
           "judges": [
             10,
@@ -1383,7 +1385,7 @@
             "rumer-willis"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 39,
           "judges": [
             10,

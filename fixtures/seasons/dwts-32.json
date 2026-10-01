@@ -1496,7 +1496,9 @@
         "alyson-hannigan#1",
         "xochitl-gomez#1",
         "charity-lawson#1",
-        "barry-williams#1"
+        "barry-williams#1",
+        "charity-lawson+harry-jowsey+lele-pons+xochitl-gomez#1",
+        "alyson-hannigan+ariana-madix+barry-williams+jason-mraz#1"
       ],
       "performances": [
         {
@@ -1651,7 +1653,7 @@
             "xochitl-gomez"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 40,
           "judges": [
             10,
@@ -1672,7 +1674,7 @@
             "jason-mraz"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 37,
           "judges": [
             9,

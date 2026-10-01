@@ -1652,7 +1652,9 @@
         "terrell-owens#1",
         "lindsey-stirling#1",
         "frankie-muniz#1",
-        "drew-scott#1"
+        "drew-scott#1",
+        "jordan-fisher+lindsey-stirling+nikki-bella+terrell-owens#1",
+        "drew-scott+frankie-muniz+vanessa-lachey+victoria-arlen#1"
       ],
       "performances": [
         {
@@ -1799,7 +1801,7 @@
             "terrell-owens"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 24,
           "judges": [
             8,
@@ -1819,7 +1821,7 @@
             "victoria-arlen"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 30,
           "judges": [
             10,

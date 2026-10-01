@@ -1195,6 +1195,8 @@
       ],
       "dancesPerCouple": 1,
       "rateableKeys": [
+        "chelsea-kane+ralph-macchio+romeo#1",
+        "hines-ward+kendra-wilkinson+kirstie-alley#1",
         "chelsea-kane#1",
         "kendra-wilkinson#1",
         "kirstie-alley#1",
@@ -1210,7 +1212,7 @@
             "romeo"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 30,
           "judges": [
             8,
@@ -1230,7 +1232,7 @@
             "kirstie-alley"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 30,
           "judges": [
             7,

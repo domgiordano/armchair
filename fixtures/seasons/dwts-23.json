@@ -1468,7 +1468,9 @@
         "maureen-mccormick#1",
         "terra-jole#1",
         "jana-kramer#1",
-        "james-hinchcliffe#1"
+        "james-hinchcliffe#1",
+        "calvin-johnson-jr+james-hinchcliffe+maureen-mccormick+ryan-lochte#1",
+        "jana-kramer+laurie-hernandez+marilu-henner+terra-jole#1"
       ],
       "performances": [
         {
@@ -1623,7 +1625,7 @@
             "ryan-lochte"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 38,
           "judges": [
             10,
@@ -1644,7 +1646,7 @@
             "terra-jole"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 35,
           "judges": [
             8,
@@ -1825,7 +1827,10 @@
         "james-hinchcliffe#1",
         "terra-jole#1",
         "jana-kramer#1",
-        "laurie-hernandez#1"
+        "laurie-hernandez#1",
+        "james-hinchcliffe+calvin-johnson-jr#1",
+        "marilu-henner+terra-jole#1",
+        "laurie-hernandez+jana-kramer#1"
       ],
       "performances": [
         {
@@ -1942,7 +1947,7 @@
             "calvin-johnson-jr"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 37,
           "judges": [
             9,
@@ -1961,7 +1966,7 @@
             "terra-jole"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 36,
           "judges": [
             9,
@@ -1980,7 +1985,7 @@
             "jana-kramer"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 40,
           "judges": [
             10,

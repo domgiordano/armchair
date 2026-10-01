@@ -106,7 +106,7 @@ A performance is keyed `episode + contestant + ordinal`, so a user can score a c
 **Accuracy (`common/accuracy.py`).** It runs per performance, only where the caller answered with a value, the performance is `rateable`, and every panel judge is `confirmed`.
 - vs the mean: `|paddle - mean(panel values)|`. This puts 2-, 3- and 4-judge nights on the same 1-10 scale.
 - vs each judge: `|paddle - value_j|` for each judge on that night's panel. A judge absent that night contributes nothing, and a guest judge counts as their own judge.
-- Aggregates are mean absolute error per episode and per season, overall and per judge. Skips, bonus points and team dances are excluded.
+- Aggregates are mean absolute error per episode and per season, overall and per judge. Skips and bonus points are excluded. Amended 9/30: a team dance the judges scored is rateable and counts like a solo, keyed by every member (`a+b+c#1`); a group dance with no scores never reaches the catalog.
 
 **SMS keyword derivation (`common/keywords.py`).** The keyword is the celebrity's first name. If two celebrities in the same season share a first name (case-insensitive), each gets first name + space + last-name initial, e.g. `John S`. Suffixes like `Jr.` don't count as the last name: `Harry Shum Jr.` → `S`. An admin `keywordOverride` always wins. The rule doesn't catch spelling variants: ABC split `Conner`/`Connor` in the S35 premiere even though the names differ (RESEARCH Q4), so that case needs the override. Casing is **unknown**: past seasons used caps (`JOEY`), and whether caps matter to 21523 is **unknown**. On 10/6, check the derived set against the FAQ list.
 
@@ -214,7 +214,7 @@ Sizes count hand-written logic only; HCL copied from smirnoff with renames count
 | EventStreams trigger, F3 early confirm, WebSockets, Rive | next season | BRAINSTORM Option 3 |
 | ABC widget JSON for the real voting window | later | undocumented, Disney ToS; clock fallback until then |
 | Group management (leave, remove, rename), "closest judge" stat, notifications, second show | later | |
-| Team dances and bonus rounds as rateable | later | |
+| Bonus rounds as rateable | later | Scored team dances became rateable 9/30 |
 
 ## Out of Scope
 - Typing judges' scores by hand as an admin. Dom won't (BRAINSTORM).

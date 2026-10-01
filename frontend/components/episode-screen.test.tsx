@@ -170,6 +170,18 @@ describe("EpisodeScreen", () => {
     expect(submitScore).toHaveBeenCalledWith("dwts-35", 4, STATE.performances[0], { value: 8 });
   });
 
+  it("lets a locked team dance be scored like any couple", async () => {
+    vi.mocked(submitScore).mockResolvedValue({});
+    const team = { ...LOCKED, key: "amber-glenn+tyler-cameron#1", contestants: ["amber-glenn", "tyler-cameron"] };
+    episodes({ 4: { performances: [team] } });
+    render(<EpisodeScreen />);
+
+    const card = await screen.findByRole("article", { name: "Amber Glenn, Tyler Cameron" });
+    fireEvent.click(within(card).getByRole("button", { name: /^Score 7 / }));
+    fireEvent.click(within(card).getByRole("button", { name: "Lock in 7" }));
+    await vi.waitFor(() => expect(submitScore).toHaveBeenCalledWith("dwts-35", 4, team, { value: 7 }));
+  });
+
   it("disables scoring before the picked episode airs", async () => {
     search = new URLSearchParams("ep=5");
     episodes({ 4: { answered: 2 }, 5: { ep: 5, answered: 0, performances: [{ key: "amber-glenn#1", ...LOCKED }] } });

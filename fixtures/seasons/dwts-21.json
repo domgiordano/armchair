@@ -1627,7 +1627,9 @@
         "andy-grammer#1",
         "bindi-irwin#1",
         "alek-skarlatos#1",
-        "carlos-penavega#1"
+        "carlos-penavega#1",
+        "andy-grammer+hayes-grier+nick-carter+tamar-braxton#1",
+        "alek-skarlatos+alexa-penavega+bindi-irwin+carlos-penavega#1"
       ],
       "performances": [
         {
@@ -1774,7 +1776,7 @@
             "tamar-braxton"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 30,
           "judges": [
             10,
@@ -1794,7 +1796,7 @@
             "carlos-penavega"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 28,
           "judges": [
             9,
@@ -1973,7 +1975,10 @@
         "carlos-penavega#1",
         "bindi-irwin#1",
         "tamar-braxton#1",
-        "nick-carter#1"
+        "nick-carter#1",
+        "alek-skarlatos+carlos-penavega#1",
+        "alexa-penavega+bindi-irwin#1",
+        "nick-carter+tamar-braxton#1"
       ],
       "performances": [
         {
@@ -2084,7 +2089,7 @@
             "carlos-penavega"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 24,
           "judges": [
             8,
@@ -2102,7 +2107,7 @@
             "bindi-irwin"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 30,
           "judges": [
             10,
@@ -2120,7 +2125,7 @@
             "tamar-braxton"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 27,
           "judges": [
             9,

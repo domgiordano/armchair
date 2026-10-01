@@ -1681,7 +1681,8 @@
         "chuck-wicks#1",
         "shawn-johnson#1",
         "melissa-rycroft#1",
-        "ty-murray#1"
+        "ty-murray#1",
+        "gilles-marini+lil-kim+ty-murray#1"
       ],
       "performances": [
         {
@@ -1793,7 +1794,7 @@
             "ty-murray"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 28,
           "judges": [
             9,

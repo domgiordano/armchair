@@ -101,7 +101,8 @@ export const submitScore = (season: string, ep: number, card: LockedCard, answer
     body: JSON.stringify({
       season,
       ep: epParam(ep),
-      contestant: card.contestants[0],
+      // A team dance's key names every member couple: "a+b+c#1".
+      contestant: card.key.slice(0, card.key.lastIndexOf("#")),
       n: card.n,
       ...answer,
     }),

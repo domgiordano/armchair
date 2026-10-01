@@ -87,11 +87,13 @@ function Stat({ label, value, note }: { label: string; value: string; note?: str
 function Breakdown({ season, dances }: { season: Season; dances: ProfileDance[] }) {
   const styles = byStyle(dances);
   const pair = calls(dances);
-  const celebrity = (key: string) => {
-    const cid = key.slice(0, key.lastIndexOf("#"));
-    const c = season.contestants.find((x) => x.id === cid);
-    return c?.members.find((m) => m.role === "celebrity")?.name ?? cid;
-  };
+  // A team dance's key names every member couple: "a+b+c#1".
+  const celebrity = (key: string) =>
+    key
+      .slice(0, key.lastIndexOf("#"))
+      .split("+")
+      .map((id) => season.contestants.find((x) => x.id === id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
+      .join(", ");
   const week = (ep: number) => {
     const e = season.episodes.find((x) => x.ep === ep);
     return e ? episodeLabel(e, season.episodes) : `Episode ${ep}`;

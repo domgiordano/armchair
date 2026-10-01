@@ -8,8 +8,8 @@ import pytest
 from lambdas.episodes_state.handler import handler as state_handler
 from lambdas.scores_submit.handler import handler as submit_handler
 from scripts.seed_season import SEASONS, items, publish_all, write
-from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
-from tests.events import authorized_event
+from tests.conftest import BOARD_TABLE, CATALOG_TABLE, PERFORMANCES_TABLE
+from tests.events import SUB, authorized_event
 
 S8 = json.loads((SEASONS / "dwts-8.json").read_text(), parse_float=Decimal)
 PK = "SEASON#dwts#8"
@@ -94,3 +94,32 @@ def test_a_past_episode_is_scorable_behind_the_same_gate(seeded):
     holly = next(c for c in view["performances"] if c["key"] == "holly-madison#2")
     assert holly["locked"] is False and holly["mine"] == {"value": 6}
     assert "results" not in view
+
+
+S34 = json.loads((SEASONS / "dwts-34.json").read_text(), parse_float=Decimal)
+TEAM = "danielle-fishel+whitney-leavitt+jordan-chiles+dylan-efron"
+
+
+def test_a_scored_team_dance_is_answered_and_counted_like_any_other(aws):
+    write(aws.Table(CATALOG_TABLE), items(S34))
+    publish_all(S34)
+    ref = {"season": "dwts-34", "ep": "08"}
+
+    view = call(state_handler, path="/episodes/state", query=ref)[1]["data"]
+    team = next(c for c in view["performances"] if c["key"] == f"{TEAM}#1")
+    assert view["rateable"] == 10 and team["locked"] is True
+
+    status, body = call(
+        submit_handler,
+        path="/scores/submit",
+        method="POST",
+        body={**ref, "contestant": TEAM, "n": 1, "value": 9},
+    )
+    assert status == 200, body
+
+    view = call(state_handler, path="/episodes/state", query=ref)[1]["data"]
+    team = next(c for c in view["performances"] if c["key"] == f"{TEAM}#1")
+    assert team["locked"] is False and team["mine"] == {"value": 9}
+    assert [j["value"] for j in team["judges"]] == [10, 10, 10, 10]
+    board = aws.Table(BOARD_TABLE).get_item(Key={"pk": "BOARD#dwts#34", "sk": f"USER#{SUB}"})
+    assert board["Item"]["n"] == 1 and board["Item"]["err"] == 1

@@ -1223,7 +1223,9 @@
         "normani#1",
         "david-ross#1",
         "rashad-jennings#1",
-        "heather-morris#1"
+        "heather-morris#1",
+        "bonner-bolton+david-ross+nick-viall+rashad-jennings#1",
+        "heather-morris+nancy-kerrigan+normani+simone-biles#1"
       ],
       "performances": [
         {
@@ -1378,7 +1380,7 @@
             "rashad-jennings"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 33,
           "judges": [
             8,
@@ -1399,7 +1401,7 @@
             "simone-biles"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 34,
           "judges": [
             8,

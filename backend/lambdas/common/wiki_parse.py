@@ -329,7 +329,9 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
                     "night": night,
                     "contestants": ids,
                     "n": 1 + sum(p["contestants"] == ids for p in performances),
-                    "rateable": len(ids) == 1,
+                    # Every dance the judges score counts, a team dance included. One the page
+                    # marks "No scores received" went to `unscored` above.
+                    "rateable": True,
                     "panel": seats,
                     "total": total,
                     "judges": judges,

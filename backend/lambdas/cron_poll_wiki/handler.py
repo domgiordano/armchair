@@ -151,10 +151,11 @@ def publish(
         states = [j["state"] for j in item["judges"].values()]
         pending |= "provisional" in states
         final &= p["judges"] is not None and "provisional" not in states
-        final &= settled is not None or not p["rateable"] or p["result"] is not None
+        # A team dance has no Result cell of its own.
+        final &= settled is not None or len(p["contestants"]) > 1 or p["result"] is not None
 
     if final and episode.get("results") is None:
-        solo = [p for p in perfs if p["rateable"]]
+        solo = [p for p in perfs if len(p["contestants"]) == 1]
         out = sorted(
             settled
             if settled is not None

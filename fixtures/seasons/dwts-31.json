@@ -1975,7 +1975,9 @@
         "heidi-damelio#1",
         "gabby-windey#1",
         "wayne-brady#1",
-        "trevor-donovan#1"
+        "trevor-donovan#1",
+        "gabby-windey+heidi-damelio+jordin-sparks+shangela+vinny-guadagnino#1",
+        "charli-damelio+daniel-durant+trevor-donovan+wayne-brady#1"
       ],
       "performances": [
         {
@@ -2149,7 +2151,7 @@
             "vinny-guadagnino"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 33,
           "judges": [
             8,
@@ -2170,7 +2172,7 @@
             "wayne-brady"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 39,
           "judges": [
             10,

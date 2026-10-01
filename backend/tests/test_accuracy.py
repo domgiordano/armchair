@@ -2,8 +2,6 @@
 
 from decimal import Decimal
 
-import pytest
-
 from lambdas.common.accuracy import errors, summary
 
 A = "sub-a"
@@ -92,16 +90,16 @@ def test_bonus_points_never_move_the_error():
     assert row["error"] == 0
 
 
-@pytest.mark.parametrize(
-    "team",
-    [
-        {"rateable": False},
-        {"contestants": ["tyler-cameron", "amber-glenn"]},
-    ],
-)
-def test_team_dance_is_excluded(team):
-    p = {**three(), **team}
+def test_an_unrateable_dance_is_excluded():
+    p = {**three(), "rateable": False}
     assert errors(PANEL, [p], [score(8)]) == {}
+
+
+def test_a_scored_team_dance_counts_like_any_other():
+    team = "tyler-cameron+amber-glenn"
+    p = {**three(), "sk": f"PERF#{team}#1", "contestants": team.split("+")}
+    (row,) = errors(PANEL, [p], [score(9, cid=team)])[A]
+    assert (row["key"], row["error"]) == (f"{team}#1", 1)
 
 
 def test_a_score_with_no_performance_row_yet_is_excluded():

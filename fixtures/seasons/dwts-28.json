@@ -1328,7 +1328,9 @@
         "karamo-brown#1",
         "lauren-alaina#1",
         "sean-spicer#1",
-        "kate-flannery#1"
+        "kate-flannery#1",
+        "ally-brooke+hannah-brown+james-van-der-beek+lauren-alaina#1",
+        "karamo-brown+kate-flannery+kel-mitchell+sean-spicer#1"
       ],
       "performances": [
         {
@@ -1475,7 +1477,7 @@
             "lauren-alaina"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 27,
           "judges": [
             9,
@@ -1495,7 +1497,7 @@
             "sean-spicer"
           ],
           "n": 1,
-          "rateable": false,
+          "rateable": true,
           "total": 24,
           "judges": [
             8,

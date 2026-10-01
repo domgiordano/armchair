@@ -297,3 +297,26 @@ def test_backfill_counts_dances_scored_before_the_judges_confirmed(wiki, db):
     row = board.get_item(Key={"pk": "BOARD#dwts#35", "sk": f"USER#{sub}"})["Item"]
     assert row["n"] == 1 and row["J#bruno-tonioli#err"] == 0
     assert board.get_item(Key={"pk": "BOARD#dwts#all", "sk": f"USER#{sub}"})["Item"]["n"] == 1
+
+
+def test_a_team_dance_is_rateable_and_its_missing_result_holds_nothing_up(db):
+    panel = SEASON["defaultPanel"]
+    solo = {
+        "contestants": ["tyler-cameron"],
+        "n": 1,
+        "rateable": True,
+        "panel": panel,
+        "total": Decimal(24),
+        "judges": [Decimal(8)] * 3,
+        "bonus": None,
+        "style": "Tango",
+        "song": None,
+        "result": "Eliminated",
+    }
+    team = {**solo, "contestants": ["amber-glenn", "jenna-dewan"], "result": None}
+    poller.publish({"sk": "EP#05"}, panel, [solo, team], 1, 0, 0)
+
+    assert perfs(db, "EP#dwts#35#05")["amber-glenn+jenna-dewan#1"]["rateable"] is True
+    results = catalog(db, "EP#05")["results"]
+    assert results["eliminated"] == ["tyler-cameron"]
+    assert results["totals"] == {"tyler-cameron": 24}

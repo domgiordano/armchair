@@ -70,8 +70,6 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
         <Desk card={card} judges={judges} members={members ? memberSeats(card, members) : undefined}>
           <Scores card={card} judges={judges} />
         </Desk>
-      ) : team ? (
-        <p className="text-sm text-neutral-400">Not scored. Opens when you finish the episode.</p>
       ) : (
         <PaddlePicker label={title} airsOn={airsOn} onSubmit={(answer) => onSubmit(card, answer)} />
       )}
