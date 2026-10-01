@@ -82,7 +82,7 @@ const FRIENDS: Friends = {
   blocked: [],
 };
 
-const SEASON: Season = { season: "dwts-35", timezone: "America/New_York", episodes: [], judges: [], contestants: [] };
+const SEASON: Season = { season: "dwts-35", open: false, timezone: "America/New_York", episodes: [], judges: [], contestants: [] };
 
 const BOARD: Leaderboard = {
   season: "dwts-35",
