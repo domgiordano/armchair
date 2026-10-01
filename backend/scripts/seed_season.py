@@ -5,8 +5,7 @@
     python scripts/seed_season.py --dry-run                  # print the items, write nothing
     python scripts/seed_season.py                            # write armchair-catalog
     python scripts/seed_season.py all                        # every fixture, past seasons too
-    python scripts/seed_season.py --headshots <site-bucket>  # also copy headshots from Commons
-    python scripts/seed_season.py --credits                  # refresh credits in the JSON, then stop
+    python scripts/seed_season.py all --headshots <bucket>   # also copy missing headshots from Commons
 
 A finished season's fixture carries its performances: they go to armchair-performances
 through the poller's publish() with every judge's value confirmed, then each episode's
@@ -19,10 +18,8 @@ Writes with the default AWS credentials. Re-running is safe: see write() and pub
 from __future__ import annotations
 
 import argparse
-import html
 import json
 import os
-import re
 import sys
 import time
 import urllib.parse
@@ -135,11 +132,17 @@ def headshots(season: dict) -> list[dict]:
 
 
 def upload(shots: list[dict], bucket: str, dry_run: bool) -> None:
-    """Copies a 400px Commons thumbnail of each file to s3://bucket/headshots/<file>."""
+    """Copies a 400px Commons thumbnail of each file not yet in s3://bucket/headshots/."""
     s3 = boto3.client("s3")
-    for shot in shots:
-        src = f"{COMMONS}/wiki/Special:FilePath/{urllib.parse.quote(shot['file'])}?width=400"
-        key = f"headshots/{shot['file']}"
+    pages = s3.get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix="headshots/")
+    have = {o["Key"] for page in pages for o in page.get("Contents", [])}
+    skipped = 0
+    for file in sorted({s["file"] for s in shots}):
+        key = f"headshots/{file}"
+        if key in have:
+            skipped += 1
+            continue
+        src = f"{COMMONS}/wiki/Special:FilePath/{urllib.parse.quote(file)}?width=400"
         print(f"{src} -> s3://{bucket}/{key}")
         if dry_run:
             continue
@@ -151,38 +154,8 @@ def upload(shots: list[dict], bucket: str, dry_run: bool) -> None:
                 ContentType=resp.headers["Content-Type"],
                 CacheControl="public, max-age=86400",
             )
-
-
-def credits(path: Path) -> None:
-    """Rewrites author, license and sourceUrl of every headshot from Commons file metadata."""
-    season = json.loads(path.read_text())
-    shots = headshots(season)
-    pages = {}
-    for i in range(0, len(shots), 50):
-        query = urllib.parse.urlencode(
-            {
-                "action": "query",
-                "prop": "imageinfo",
-                "iiprop": "url|extmetadata",
-                "titles": "|".join(f"File:{s['file']}" for s in shots[i : i + 50]),
-                "format": "json",
-                "formatversion": 2,
-            }
-        )
-        req = urllib.request.Request(f"{COMMONS}/w/api.php?{query}", headers=UA)
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            pages |= {p["title"]: p for p in json.load(resp)["query"]["pages"]}
-
-    for shot in shots:
-        page = pages[f"File:{shot['file'].replace('_', ' ')}"]
-        if "imageinfo" not in page:
-            raise SystemExit(f"{shot['file']} is not on Commons")
-        info = page["imageinfo"][0]
-        artist = html.unescape(re.sub(r"<[^>]+>", "", info["extmetadata"]["Artist"]["value"]))
-        shot["author"] = " ".join(artist.split())
-        shot["license"] = info["extmetadata"]["LicenseShortName"]["value"]
-        shot["sourceUrl"] = info["descriptionurl"]
-    path.write_text(json.dumps(season, indent=2, ensure_ascii=False) + "\n")
+        time.sleep(0.2)
+    print(f"headshots: {skipped} already in the bucket")
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -192,7 +165,6 @@ def main(argv: list[str] | None = None) -> None:
     )
     parser.add_argument("--dry-run", action="store_true", help="print, write nothing")
     parser.add_argument("--headshots", metavar="BUCKET", help="copy headshots to BUCKET")
-    parser.add_argument("--credits", action="store_true", help="refresh credits from Commons")
     args = parser.parse_args(argv)
     paths = (
         sorted(SEASONS.glob("*.json"))
@@ -200,11 +172,7 @@ def main(argv: list[str] | None = None) -> None:
         else [SEASONS / f"{args.season}.json"]
     )
 
-    if args.credits:
-        for path in paths:
-            credits(path)
-        return
-
+    shots = []
     for path in paths:
         # Scores as Decimal: DynamoDB takes no floats, and half points are real (S15).
         season = json.loads(path.read_text(), parse_float=Decimal)
@@ -215,8 +183,9 @@ def main(argv: list[str] | None = None) -> None:
             write(boto3.resource("dynamodb").Table(os.environ["CATALOG_TABLE"]), rows)
             dances = publish_all(season)
             print(f"{path.stem}: {len(rows)} catalog items, {dances} performances")
-        if args.headshots:
-            upload(headshots(season), args.headshots, args.dry_run)
+        shots += headshots(season)
+    if args.headshots:
+        upload(shots, args.headshots, args.dry_run)
 
 
 if __name__ == "__main__":

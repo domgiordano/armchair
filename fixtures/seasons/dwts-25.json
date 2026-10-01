@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -53,7 +58,12 @@
       "aliases": [
         "Shania Twain"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Shania_Twain_Glaston2024_2806_300624_(33_of_173)_(53838111535)_(cropped).jpg",
+        "author": "Raph_PH",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shania_Twain_Glaston2024_2806_300624_(33_of_173)_(53838111535)_(cropped).jpg"
+      }
     },
     {
       "id": "julianne-hough",
@@ -61,7 +71,12 @@
       "aliases": [
         "Julianne Hough"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "author": "https://www.flickr.com/photos/greg2600",
+        "license": "CC BY-SA 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+      }
     }
   ],
   "episodes": [
@@ -2577,12 +2592,22 @@
         {
           "name": "Barbara Corcoran",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "BarbaraCorcoran2023.jpg",
+            "author": "Philip Romano",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:BarbaraCorcoran2023.jpg"
+          }
         },
         {
           "name": "Keo Motsepe",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2596,7 +2621,12 @@
         {
           "name": "Debbie Gibson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Debbie_Gibson_-_LATFOB_2026-03.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Debbie_Gibson_-_LATFOB_2026-03.jpg"
+          }
         },
         {
           "name": "Alan Bersten",
@@ -2615,12 +2645,22 @@
         {
           "name": "Derek Fisher",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Fisher_Thunder.jpg",
+            "author": "Keith Allison",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Fisher_Thunder.jpg"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2634,12 +2674,22 @@
         {
           "name": "Sasha Pieterse",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Sasha_Pieterse_PaleyFest_2014_(cropped).jpg",
+            "author": "Mingle Media TV",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sasha_Pieterse_PaleyFest_2014_(cropped).jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2653,12 +2703,22 @@
         {
           "name": "Nick Lachey",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Nick_Lachey_3.jpg",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nick_Lachey_3.jpg"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2672,7 +2732,12 @@
         {
           "name": "Nikki Bella",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "John_Cena_and_Nikki_Bella_at_SXSW_Red_Carpet_premiere_of_BLOCKERS_(26876913048)_(cropped).jpg",
+            "author": "Daniel Benavides from Austin, TX",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Cena_and_Nikki_Bella_at_SXSW_Red_Carpet_premiere_of_BLOCKERS_(26876913048)_(cropped).jpg"
+          }
         },
         {
           "name": "Artem Chigvintsev",
@@ -2691,12 +2756,22 @@
         {
           "name": "Vanessa Lachey",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Vanessa_Minillo_(6883560980)_(cropped).jpg",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vanessa_Minillo_(6883560980)_(cropped).jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2710,12 +2785,22 @@
         {
           "name": "Terrell Owens",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Terrell_Owens_2017-05-02_(34255853692)_(cropped).jpg",
+            "author": "Collision Conf from New Orleans, Louisiana, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Terrell_Owens_2017-05-02_(34255853692)_(cropped).jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2729,7 +2814,12 @@
         {
           "name": "Victoria Arlen",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Victoria_Arlen_Project_Walk.jpg",
+            "author": "Bmalkinson",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Victoria_Arlen_Project_Walk.jpg"
+          }
         },
         {
           "name": "Valentin Chmerkovskiy",
@@ -2748,12 +2838,22 @@
         {
           "name": "Drew Scott",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Drew_Scott_-_Let's_Read_Let's_Move.jpg",
+            "author": "Unknown authorUnknown author",
+            "license": "Public domain",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Drew_Scott_-_Let%27s_Read_Let%27s_Move.jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 11
@@ -2767,12 +2867,22 @@
         {
           "name": "Frankie Muniz",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Frankie_Muniz_2011.jpg",
+            "author": "Real TV Films/Carole Lowe Photography",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Frankie_Muniz_2011.jpg"
+          }
         },
         {
           "name": "Witney Carson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2786,12 +2896,22 @@
         {
           "name": "Lindsey Stirling",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Lindsey_Stirling_Portrait.jpg",
+            "author": "Moongroow",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lindsey_Stirling_Portrait.jpg"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2805,7 +2925,12 @@
         {
           "name": "Jordan Fisher",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jordan_Fisher_2016.jpg",
+            "author": "Jathan Wilson",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jordan_Fisher_2016.jpg"
+          }
         },
         {
           "name": "Lindsay Arnold",

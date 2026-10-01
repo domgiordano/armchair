@@ -32,7 +32,12 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": null
+      "headshot": {
+        "file": "Len_Goodman_1.JPG",
+        "author": "alotofmillion",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
+      }
     },
     {
       "id": "bruno-tonioli",
@@ -1998,7 +2003,12 @@
         {
           "name": "Josie Maran",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Josie_Maran_(face).jpg",
+            "author": "jenny cu from bay area, usa",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Josie_Maran_(face).jpg"
+          }
         },
         {
           "name": "Alec Mazo",
@@ -2036,12 +2046,22 @@
         {
           "name": "Wayne Newton",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Wayne_Newton_in_Washington_D.C.jpg",
+            "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wayne_Newton_in_Washington_D.C.jpg"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2055,12 +2075,22 @@
         {
           "name": "Floyd Mayweather Jr.",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Floyd_Mayweather,_Jr._at_DeWalt_event_(5888721735)_(rotated_4).jpg",
+            "author": "DEWALT POWER TOOLS FIGHT NIGHT CLUB 2010",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Floyd_Mayweather,_Jr._at_DeWalt_event_(5888721735)_(rotated_4).jpg"
+          }
         },
         {
           "name": "Karina Smirnoff",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2074,12 +2104,22 @@
         {
           "name": "Mark Cuban",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "MarkCuban2023.jpg",
+            "author": "Philip Romano",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:MarkCuban2023.jpg"
+          }
         },
         {
           "name": "Kym Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Kymjohnson.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2093,12 +2133,22 @@
         {
           "name": "Sabrina Bryan",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "SabrinaDWTSLV.JPG",
+            "author": "Dcimo2",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:SabrinaDWTSLV.JPG"
+          }
         },
         {
           "name": "Mark Ballas",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Mark_Ballas_(2014)_(cropped).jpg",
+            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 7
@@ -2112,12 +2162,22 @@
         {
           "name": "Jane Seymour",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jane_Seymour_2019_by_Glenn_Francis.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jane_Seymour_2019_by_Glenn_Francis.jpg"
+          }
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "TonyDovolaniApr09.jpg",
+            "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2131,12 +2191,22 @@
         {
           "name": "Cameron Mathison",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Cameron_Mathison_Super_soap_weekend_2008_016.JPG",
+            "author": "Graytess",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cameron_Mathison_Super_soap_weekend_2008_016.JPG"
+          }
         },
         {
           "name": "Edyta Śliwińska",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "EdytaŚliwińskaNov09.jpg",
+            "author": "Keith Hinkle",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edyta%C5%9Aliwi%C5%84skaNov09.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2150,12 +2220,22 @@
         {
           "name": "Jennie Garth",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jennie_Garth_at_CCR_Ontario_2026.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jennie_Garth_at_CCR_Ontario_2026.jpg"
+          }
         },
         {
           "name": "Derek Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2169,7 +2249,12 @@
         {
           "name": "Marie Osmond",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Marie_Osmond.jpg",
+            "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marie_Osmond.jpg"
+          }
         },
         {
           "name": "Jonathan Roberts",
@@ -2188,12 +2273,22 @@
         {
           "name": "Mel B",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Mel_B_(6330979387).jpg",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mel_B_(6330979387).jpg"
+          }
         },
         {
           "name": "Maksim Chmerkovskiy",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Maksimchmerkovskiy.jpg",
+            "author": "Albert Domasin from Los Angeles, united states",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2208,12 +2303,22 @@
         {
           "name": "Hélio Castroneves",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Hélio_Castroneves_at_the_2018_Indianapolis_500.jpg",
+            "author": "Zach Catanzareti Photo",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:H%C3%A9lio_Castroneves_at_the_2018_Indianapolis_500.jpg"
+          }
         },
         {
           "name": "Julianne Hough",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+            "author": "https://www.flickr.com/photos/greg2600",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": null
