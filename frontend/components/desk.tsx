@@ -83,7 +83,7 @@ export function Desk({ card, judges, members, children }: DeskProps) {
         j.value === null
           ? `${name} pending`
           : `${name} ${formatScore(j.value)}${provisional ? " unconfirmed" : ""}`,
-      face: { src: judge?.headshot ? headshotUrl(judge.headshot.file) : null, name },
+      face: { src: judge?.headshot?.image ? headshotUrl(judge.headshot.image) : null, name },
       value: j.value,
       provisional,
       caption: j.value === null ? "pending" : null,

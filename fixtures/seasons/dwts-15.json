@@ -20,12 +20,7 @@
         "Carrie Ann Inaba",
         "Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -34,12 +29,7 @@
         "Len Goodman",
         "Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -50,6 +40,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -63,10 +54,11 @@
         "Abdul"
       ],
       "headshot": {
-        "file": "Paula_Abdul_2007.jpg",
-        "author": "Toglenn",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paula_Abdul_2007.jpg"
+        "file": "Paula_Abdul_(53384817755).jpg",
+        "image": "paula-abdul-00ffa70ee2.webp",
+        "author": "Super Festivals from Ft. Lauderdale, USA",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paula_Abdul_(53384817755).jpg"
       }
     }
   ],
@@ -2182,6 +2174,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg",
+            "image": "pamela-anderson-c72c9a8c7c.webp",
             "author": "Norman Wong",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg"
@@ -2206,6 +2199,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Joey_Fatone_(31503991831).jpg",
+            "image": "joey-fatone-7bde94c357.webp",
             "author": "Super Festivals from Ft. Lauderdale, USA",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joey_Fatone_(31503991831).jpg"
@@ -2216,6 +2210,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"
@@ -2233,12 +2228,7 @@
         {
           "name": "Drew Lachey",
           "role": "celebrity",
-          "headshot": {
-            "file": "Drew_Lachey.jpg",
-            "author": "dwightsghost from New York, NY, USA",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Drew_Lachey.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Anna Trebunskaya",
@@ -2259,6 +2249,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Hélio_Castroneves_at_the_2018_Indianapolis_500.jpg",
+            "image": "helio-castroneves-b3c7dfc0cb.webp",
             "author": "Zach Catanzareti Photo",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:H%C3%A9lio_Castroneves_at_the_2018_Indianapolis_500.jpg"
@@ -2269,6 +2260,7 @@
           "role": "pro",
           "headshot": {
             "file": "ChelsieHightowerApr09.jpg",
+            "image": "chelsie-hightower-9a09d28e75.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
@@ -2288,6 +2280,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Bristol_Palin_by_Gage_Skidmore_4.jpg",
+            "image": "bristol-palin-be1b24d031.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bristol_Palin_by_Gage_Skidmore_4.jpg"
@@ -2297,10 +2290,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2317,6 +2311,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "SabrinaDWTSLV.JPG",
+            "image": "sabrina-bryan-de557f8855.webp",
             "author": "Dcimo2",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:SabrinaDWTSLV.JPG"
@@ -2341,6 +2336,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "KirstieAlley1994-close.jpg",
+            "image": "kirstie-alley-d6962d5aa3.webp",
             "author": "Kirstie Alley 1994.jpg: Photo by Alan Light derivative work: Bad Randolph (talk)",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:KirstieAlley1994-close.jpg"
@@ -2351,6 +2347,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2370,6 +2367,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG",
+            "image": "gilles-marini-e3a06de0d1.webp",
             "author": "Frantogian",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG"
@@ -2380,6 +2378,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2399,6 +2398,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Apolo_Anton_Ohno_headshot.jpg",
+            "image": "apolo-anton-ohno-0b5c7b6fb9.webp",
             "author": "OlympicHistorian",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apolo_Anton_Ohno_headshot.jpg"
@@ -2409,6 +2409,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2428,6 +2429,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "EmmittSmith2007.jpg",
+            "image": "emmitt-smith-6b8a679740.webp",
             "author": "John Trainor",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:EmmittSmith2007.jpg"
@@ -2438,6 +2440,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2476,6 +2479,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Johnson_in_2012_-_Portrait.jpg",
+            "image": "shawn-johnson-6f9c1b4b0e.webp",
             "author": "The Ray Center - CHARACTER COUNTS!",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johnson_in_2012_-_Portrait.jpg"
@@ -2486,6 +2490,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -2503,18 +2508,14 @@
         {
           "name": "Melissa Rycroft",
           "role": "celebrity",
-          "headshot": {
-            "file": "Melissa_Rycroft_on_Valder_Beebe_Show.jpg",
-            "author": "Valder Beebe Show",
-            "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melissa_Rycroft_on_Valder_Beebe_Show.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Tony Dovolani",
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"

@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -2280,6 +2271,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Nikki_Glaser_on_Neal_Brennan_Uploaded_James_Tamim_(cropped).png",
+            "image": "nikki-glaser-5205626828.webp",
             "author": "Neal Brennan",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nikki_Glaser_on_Neal_Brennan_Uploaded_James_Tamim_(cropped).png"
@@ -2289,10 +2281,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2328,6 +2321,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "The_Reagans_with_Michael_J._Fox_and_Nancy_McKeon_(cropped)_-_Nancy_McKeon.jpg",
+            "image": "nancy-mckeon-4f2aa95eed.webp",
             "author": "Series: Reagan White House Photographs, 1/20/1981 - 1/20/1989 Collection: White House Photographic Collection, 1/20/1981 - 1/20/1989",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Reagans_with_Michael_J._Fox_and_Nancy_McKeon_(cropped)_-_Nancy_McKeon.jpg"
@@ -2352,6 +2346,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Tinashe_2020_Vogue_1.jpg",
+            "image": "tinashe-a0051c5eb8.webp",
             "author": "Tiffany Frances",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tinashe_2020_Vogue_1.jpg"
@@ -2376,6 +2371,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Retton-m.jpg",
+            "image": "mary-lou-retton-a65bf77c25.webp",
             "author": "US Health and Human Services. No specific photo credit is given by the source.",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Retton-m.jpg"
@@ -2400,6 +2396,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "JohnSchneiderB_yPhilKOnstantinPublicDomainCropped.jpg",
+            "image": "john-schneider-feaa21fd6b.webp",
             "author": "Philkon Phil Konstantin. Cropped and edited by Entheta",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:JohnSchneiderB_yPhilKOnstantinPublicDomainCropped.jpg"
@@ -2409,10 +2406,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2429,6 +2427,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "DeMarcus_Ware.JPG",
+            "image": "demarcus-ware-a873d3fece.webp",
             "author": "Jeffrey Beall",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:DeMarcus_Ware.JPG"
@@ -2477,6 +2476,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2496,6 +2496,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Alexis_Ren.jpg",
+            "image": "alexis-ren-6f15f74c7c.webp",
             "author": "L’Oréal Paris",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alexis_Ren.jpg"
@@ -2520,6 +2521,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Evanna_Lynch_Comic_Con_Cape_Town_2026_02.jpg",
+            "image": "evanna-lynch-fb103f92ae.webp",
             "author": "EGilham",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evanna_Lynch_Comic_Con_Cape_Town_2026_02.jpg"
@@ -2530,6 +2532,7 @@
           "role": "pro",
           "headshot": {
             "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "image": "keo-motsepe-657048226c.webp",
             "author": "RealTVfilms",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
@@ -2549,6 +2552,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Milo_Manheim_2019.jpg",
+            "image": "milo-manheim-0fe35c93e6.webp",
             "author": "Milo&Mason",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Milo_Manheim_2019.jpg"
@@ -2558,10 +2562,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2578,6 +2583,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Bobby_Bones_-_iHeartRadio_Theater.jpg",
+            "image": "bobby-bones-8fb78c8bd6.webp",
             "author": "Lisa Gansky from New York, NY, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bobby_Bones_-_iHeartRadio_Theater.jpg"
@@ -2586,12 +2592,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": null

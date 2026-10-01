@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -66,12 +57,7 @@
       "aliases": [
         "David Ross"
       ],
-      "headshot": {
-        "file": "David_Ross_by_Gage_Skidmore.jpg",
-        "author": "Gage Skidmore",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_Ross_by_Gage_Skidmore.jpg"
-      }
+      "headshot": null
     }
   ],
   "episodes": [
@@ -764,6 +750,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jamie_Anderson_with_campers_(cropped).jpg",
+            "image": "jamie-anderson-a670a6ddfe.webp",
             "author": "The Camp of Champions Snowboard & Ski Summer Camp from Canada",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jamie_Anderson_with_campers_(cropped).jpg"
@@ -788,6 +775,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Johnny_Damon_by_Gage_Skidmore.jpg",
+            "image": "johnny-damon-8e6cc29c98.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johnny_Damon_by_Gage_Skidmore.jpg"
@@ -797,10 +785,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -817,6 +806,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Kareem_Abdul-Jabbar_1975.jpeg",
+            "image": "kareem-abdul-jabbar-42f5645b05.webp",
             "author": "Steve Jenner",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kareem_Abdul-Jabbar_1975.jpeg"
@@ -841,6 +831,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Arike_Ogunbowale_01_(cropped).jpg",
+            "image": "arike-ogunbowale-dade94910e.webp",
             "author": "Lorie Shaull",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arike_Ogunbowale_01_(cropped).jpg"
@@ -850,10 +841,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -875,6 +867,7 @@
           "role": "pro",
           "headshot": {
             "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "image": "keo-motsepe-657048226c.webp",
             "author": "RealTVfilms",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
@@ -894,6 +887,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chris_Mazdzer_2013.jpg",
+            "image": "chris-mazdzer-0db20c8356.webp",
             "author": "Tim Hipps",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chris_Mazdzer_2013.jpg"
@@ -903,10 +897,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -922,10 +917,11 @@
           "name": "Mirai Nagasu",
           "role": "celebrity",
           "headshot": {
-            "file": "Nagasu_2010_TEB.jpg",
+            "file": "Mirai_Nagasu_Podium_2008_Junior_Worlds.jpg",
+            "image": "mirai-nagasu-9ab98aed73.webp",
             "author": "David W. Carmichael",
             "license": "CC BY-SA 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nagasu_2010_TEB.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mirai_Nagasu_Podium_2008_Junior_Worlds.jpg"
           }
         },
         {
@@ -946,10 +942,11 @@
           "name": "Tonya Harding",
           "role": "celebrity",
           "headshot": {
-            "file": "Tonya_harding_mac_club_1994_crop.jpg",
-            "author": "Copy Editor",
-            "license": "CC0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tonya_harding_mac_club_1994_crop.jpg"
+            "file": "Tonya_Harding_2006_crop.png",
+            "image": "tonya-harding-80b639a060.webp",
+            "author": "bobgo29",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tonya_Harding_2006_crop.png"
           }
         },
         {
@@ -971,6 +968,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Josh_Norman.jpg",
+            "image": "josh-norman-0633a0ed17.webp",
             "author": "Keith Allison",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Josh_Norman.jpg"
@@ -979,12 +977,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": null
@@ -1000,6 +993,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Adam_Rippon_2009_TEB.jpg",
+            "image": "adam-rippon-d0c2a60d71.webp",
             "author": "David W.Carmichael",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adam_Rippon_2009_TEB.jpg"
