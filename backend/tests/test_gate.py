@@ -376,3 +376,13 @@ def test_empty_roster_keeps_results_hidden(show):
     meta, episode, _, perfs, scores = _ep5_inputs(show)
     view = episode_view(A, 5, meta, {**episode, "results": {"eliminated": ["x"]}}, [], perfs, scores)
     assert "results" not in view
+
+
+def test_premiere_nights_each_ask_only_for_the_couples_who_danced(show):
+    one, two = state(ep="01"), state(ep="02")
+    assert (one["rateable"], two["rateable"]) == (8, 8)
+    assert "conner-leavitt#1" in cards(one) and "sarah-jane-nader#1" in cards(two)
+    assert not set(cards(one)) & set(cards(two))
+
+    status, body = submit(ep="01", contestant="jenna-dewan", value=7)
+    assert status == 400, body
