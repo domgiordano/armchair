@@ -85,7 +85,7 @@ function useDrawOnScroll() {
 export function ShowNight() {
   const track = useDrawOnScroll();
   return (
-    <section id="night" aria-labelledby="night-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
+    <section id="night" aria-labelledby="night-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Show night</p>

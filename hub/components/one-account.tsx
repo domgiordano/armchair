@@ -47,7 +47,7 @@ function AccountDiagram() {
 
 export function OneAccount() {
   return (
-    <section id="account" aria-labelledby="account-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
+    <section id="account" aria-labelledby="account-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         <div {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-violet uppercase">One account</p>

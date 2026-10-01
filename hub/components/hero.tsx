@@ -15,7 +15,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_15%_10%,rgb(59_91_255/0.16),transparent),radial-gradient(50%_45%_at_90%_40%,rgb(232_63_208/0.14),transparent)]"
         aria-hidden="true"
       />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pt-14 pb-20 sm:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-24 lg:pb-28">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pt-14 pb-16 sm:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-24 lg:pb-24">
         <div>
           <p className="hero-in text-xs font-semibold tracking-[0.3em] text-gold uppercase" style={step(0)}>
             Rate the show like a judge

@@ -73,7 +73,7 @@ function Status({ live }: { live: boolean }) {
 
 export function Features() {
   return (
-    <section id="features" aria-labelledby="features-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
+    <section id="features" aria-labelledby="features-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-4 lg:grid-cols-[1fr_1fr] lg:items-end" {...reveal()}>
           <div>
