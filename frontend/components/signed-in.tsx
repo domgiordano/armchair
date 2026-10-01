@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { GoogleMark } from "@/components/google-mark";
 
 import { AppShell } from "@/components/app-shell";
 import { Brand } from "@/components/brand";
@@ -57,7 +58,10 @@ export function SignedIn({ title, wide = false, children }: SignedInProps) {
               }}
               className={`${PRIMARY} self-start`}
             >
-              Sign in with Google
+              <span className="inline-flex items-center gap-2.5">
+                <GoogleMark />
+                Sign in with Google
+              </span>
             </button>
           </div>
         )}

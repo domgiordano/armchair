@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
+import { GoogleMark } from "@/components/google-mark";
 
 import { Brand } from "@/components/brand";
 import { Intro } from "@/components/intro";
@@ -49,7 +50,10 @@ export function Landing({ status, onSignIn }: LandingProps) {
       disabled={status !== "signedOut" || redirecting}
       className={className}
     >
-      {busy && redirecting ? "Opening Google..." : label}
+      <span className="inline-flex items-center justify-center gap-2.5">
+        <GoogleMark />
+        {busy && redirecting ? "Opening Google..." : label}
+      </span>
     </button>
   );
 
