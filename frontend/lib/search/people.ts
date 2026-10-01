@@ -53,7 +53,9 @@ export async function loadContacts(): Promise<Match[]> {
 // The server's normalize(): case and spacing only, accents kept.
 const serverFold = (s: string) => s.split(/\s+/).filter(Boolean).join(" ").toLowerCase();
 
-const found = new Map<string, Match[]>();
+// Statuses change with friend requests and blocks made elsewhere in the app.
+const MEMBERS_TTL = 60_000;
+const found = new Map<string, { at: number; list: Match[] }>();
 
 export const startsWith = (m: Match, q: string) => serverFold(m.name ?? "").startsWith(serverFold(q));
 
@@ -65,7 +67,8 @@ export function knownMembers(q: string): Match[] | undefined {
   const key = serverFold(q);
   for (let n = key.length; n >= 2; n--) {
     const hit = found.get(key.slice(0, n));
-    if (hit && (n === key.length || hit.length < SERVER_LIMIT)) return hit.filter((m) => startsWith(m, key));
+    if (!hit || Date.now() - hit.at > MEMBERS_TTL) continue;
+    if (n === key.length || hit.list.length < SERVER_LIMIT) return hit.list.filter((m) => startsWith(m, key));
   }
   return undefined;
 }
@@ -76,11 +79,10 @@ export async function searchMembers(q: string): Promise<Match[]> {
   if (known) return known;
   const key = serverFold(q);
   const got = await searchPeople(key);
-  found.set(key, got);
+  found.set(key, { at: Date.now(), list: got });
   return got;
 }
 
-/** Statuses change when a friend request is sent or answered. */
 export const forgetMembers = () => found.clear();
 
 /** Contacts matched here and members from the server, contacts first, one row per person. */
