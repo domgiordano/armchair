@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -60,6 +51,7 @@
       ],
       "headshot": {
         "file": "Leah_Remini_in_2018.jpg",
+        "image": "leah-remini-9bf99d8876.webp",
         "author": "greg2600",
         "license": "CC BY 2.5",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leah_Remini_in_2018.jpg"
@@ -73,6 +65,7 @@
       ],
       "headshot": {
         "file": "Joey_Fatone_(31503991831).jpg",
+        "image": "joey-fatone-7bde94c357.webp",
         "author": "Super Festivals from Ft. Lauderdale, USA",
         "license": "CC BY 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joey_Fatone_(31503991831).jpg"
@@ -2294,6 +2287,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Mary_Wilson_1.jpg",
+            "image": "mary-wilson-003fad708b.webp",
             "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mary_Wilson_1.jpg"
@@ -2317,10 +2311,11 @@
           "name": "Ray Lewis",
           "role": "celebrity",
           "headshot": {
-            "file": "Ray_Lewis_at_Andrews_AFB_070821-F-0000J-002_crop.jpg",
-            "author": "Bobby Jones",
-            "license": "Public domain",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ray_Lewis_at_Andrews_AFB_070821-F-0000J-002_crop.jpg"
+            "file": "Ray_Lewis_2015_(cropped).jpg",
+            "image": "ray-lewis-35258c4658.webp",
+            "author": "Keith Allison",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ray_Lewis_2015_(cropped).jpg"
           }
         },
         {
@@ -2328,6 +2323,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2347,6 +2343,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Lamar_Odom_2012_Shankbone.JPG",
+            "image": "lamar-odom-3e7fa29350.webp",
             "author": "David Shankbone",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lamar_Odom_2012_Shankbone.JPG"
@@ -2357,6 +2354,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2375,10 +2373,11 @@
           "name": "Sailor Brinkley-Cook",
           "role": "celebrity",
           "headshot": {
-            "file": "Sailor_Brinkley_Cook_2013_01.jpg",
+            "file": "Sailor_Brinkley_Cook_2013_02.jpg",
+            "image": "sailor-brinkley-cook-cb9a9ef099.webp",
             "author": "Youth 4 African Wildlife",
             "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sailor_Brinkley_Cook_2013_01.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sailor_Brinkley_Cook_2013_02.jpg"
           }
         },
         {
@@ -2400,6 +2399,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Karamo_Brown,_2018-06_on_MTV_International.jpg",
+            "image": "karamo-brown-1ecb700def.webp",
             "author": "MTV International",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karamo_Brown,_2018-06_on_MTV_International.jpg"
@@ -2424,6 +2424,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "KateFlanneryJune09.jpg",
+            "image": "kate-flannery-c1ff47c165.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:KateFlanneryJune09.jpg"
@@ -2432,12 +2433,7 @@
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": {
-            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
-            "author": "Panache Star Dancesport",
-            "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 8
@@ -2452,10 +2448,11 @@
           "name": "Sean Spicer",
           "role": "celebrity",
           "headshot": {
-            "file": "Sean_Spicer.jpg",
-            "author": "VOA",
-            "license": "Public domain",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sean_Spicer.jpg"
+            "file": "Sean_Spicer_(32293609264)_(cropped).jpg",
+            "image": "sean-spicer-2e09f08b85.webp",
+            "author": "Gage Skidmore from Peoria, AZ, United States of America",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sean_Spicer_(32293609264)_(cropped).jpg"
           }
         },
         {
@@ -2477,6 +2474,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "JamesVanDerBeekSept2013TIFF.jpg",
+            "image": "james-van-der-beek-a936d55d9d.webp",
             "author": "gdcgraphics",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:JamesVanDerBeekSept2013TIFF.jpg"
@@ -2486,10 +2484,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2506,6 +2505,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "2023_Independence_Day_celebration_on_MCB_Camp_Lejeune_(4)_(cropped).jpg",
+            "image": "lauren-alaina-6397b3c0fb.webp",
             "author": "Cpl. Antonino Mazzamuto",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023_Independence_Day_celebration_on_MCB_Camp_Lejeune_(4)_(cropped).jpg"
@@ -2515,10 +2515,11 @@
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2535,6 +2536,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Ally_Brooke_2017_(cropped).jpg",
+            "image": "ally-brooke-f7e39fb238.webp",
             "author": "Natanya Hansen",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ally_Brooke_2017_(cropped).jpg"
@@ -2559,6 +2561,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Kel_Mitchell_at_MultiCon_2025.jpg",
+            "image": "kel-mitchell-19c1bcda16.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kel_Mitchell_at_MultiCon_2025.jpg"
@@ -2568,10 +2571,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg",
+            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
+            "image": "witney-carson-ba7b85273c.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
           }
         }
       ],
@@ -2588,6 +2592,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Hannah_Brown_2018.jpg",
+            "image": "hannah-brown-48a6a80757.webp",
             "author": "United States House of Representatives - Office of Robert Aderholt",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hannah_Brown_2018.jpg"

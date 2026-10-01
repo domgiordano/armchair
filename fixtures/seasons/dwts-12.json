@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -60,6 +51,7 @@
       ],
       "headshot": {
         "file": "Donnie.jpg",
+        "image": "donnie-burns-3466cee780.webp",
         "author": "http://www.wikidancesport.com/Attachments/Instructors/Donnie%20Burns/Donnie.jpg",
         "license": "CC0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Donnie.jpg"
@@ -1940,6 +1932,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Mike_Catherwood.jpg",
+            "image": "mike-catherwood-3a26a2c6c4.webp",
             "author": "rootseven from Anaheim, CA",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mike_Catherwood.jpg"
@@ -1964,6 +1957,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Wendy_Williams_2018_WBLS_Interview_4.png",
+            "image": "wendy-williams-fdff7a8946.webp",
             "author": "WBLS",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wendy_Williams_2018_WBLS_Interview_4.png"
@@ -1974,6 +1968,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -1993,6 +1988,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Sugar_Ray_Leonard.jpg",
+            "image": "sugar-ray-leonard-e3bee6c7bd.webp",
             "author": "Kingkongphoto & www.celebrity-photos.com from Laurel Maryland, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sugar_Ray_Leonard.jpg"
@@ -2017,6 +2013,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Petra_Nemcova_Cannes_2018_2.jpg",
+            "image": "petra-nemcova-a063a0b2c7.webp",
             "author": "Georges Biard",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Petra_Nemcova_Cannes_2018_2.jpg"
@@ -2027,6 +2024,7 @@
           "role": "pro",
           "headshot": {
             "file": "DSC03939_print.jpg",
+            "image": "dmitry-chaplin-54b0e8f1a6.webp",
             "author": "Dmitry Chaplin",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:DSC03939_print.jpg"
@@ -2046,6 +2044,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chris_Jericho_GalaxyCon_Raleigh_July,_25,_2026_681.jpg",
+            "image": "chris-jericho-882fd2c67a.webp",
             "author": "John Manard",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chris_Jericho_GalaxyCon_Raleigh_July,_25,_2026_681.jpg"
@@ -2056,6 +2055,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2075,6 +2075,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Kendra_Wilkinson_2011.jpg",
+            "image": "kendra-wilkinson-ba8a1290a7.webp",
             "author": "Eva Rinaldi",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kendra_Wilkinson_2011.jpg"
@@ -2104,6 +2105,7 @@
           "role": "pro",
           "headshot": {
             "file": "ChelsieHightowerApr09.jpg",
+            "image": "chelsie-hightower-9a09d28e75.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:ChelsieHightowerApr09.jpg"
@@ -2123,6 +2125,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Ralph_Macchio_GalaxyCon_Raleigh_July,_24,_2026_992.jpg",
+            "image": "ralph-macchio-4d73b6da5e.webp",
             "author": "John Manard",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ralph_Macchio_GalaxyCon_Raleigh_July,_24,_2026_992.jpg"
@@ -2133,6 +2136,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2152,6 +2156,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Chelsea_Kane_2010.jpg",
+            "image": "chelsea-kane-504b2f1733.webp",
             "author": "Blake Raab at https://www.flickr.com/photos/bearsonpatrol",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chelsea_Kane_2010.jpg"
@@ -2161,10 +2166,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2181,6 +2187,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "KirstieAlley1994-close.jpg",
+            "image": "kirstie-alley-d6962d5aa3.webp",
             "author": "Kirstie Alley 1994.jpg: Photo by Alan Light derivative work: Bad Randolph (talk)",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:KirstieAlley1994-close.jpg"
@@ -2191,6 +2198,7 @@
           "role": "pro",
           "headshot": {
             "file": "Maksimchmerkovskiy.jpg",
+            "image": "maksim-chmerkovskiy-9e1699554f.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2209,10 +2217,11 @@
           "name": "Hines Ward",
           "role": "celebrity",
           "headshot": {
-            "file": "Hines_Ward_Steelers.jpg",
-            "author": "photo taken by flickr user SteelCityHobbies",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hines_Ward_Steelers.jpg"
+            "file": "Hines_Ward_pregame_2006-11-26.jpg",
+            "image": "hines-ward-cbb2122fc6.webp",
+            "author": "Keith Allison",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hines_Ward_pregame_2006-11-26.jpg"
           }
         },
         {
@@ -2220,6 +2229,7 @@
           "role": "pro",
           "headshot": {
             "file": "Kymjohnson.jpg",
+            "image": "kym-johnson-461b5153ac.webp",
             "author": "Albert Domasin from Los Angeles, united states",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kymjohnson.jpg"

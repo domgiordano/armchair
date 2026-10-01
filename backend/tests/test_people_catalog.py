@@ -68,11 +68,11 @@ def test_bio_and_facts_come_from_the_registry(rows):
     assert person(rows, "conner-leavitt")["bio"] is None
 
 
-def test_search_rows_carry_a_name_roles_file_and_season_numbers(rows):
-    row = rows[("PEOPLE#dwts", "PERSON#carrie-ann-inaba")]
+def test_search_rows_carry_a_name_roles_image_and_season_numbers(rows):
+    row = rows[("PEOPLE#dwts", "PERSON#bruno-tonioli")]
     assert row["roles"] == ["judge"]
     assert row["seasons"] == list(range(1, 36))
-    assert row["headshot"] == "Carrie_Ann_Inaba.jpg"
+    assert row["headshot"] == "bruno-tonioli-e25ea8a395.webp"
     # Exactly one search row per person.
     assert sum(pk == "PEOPLE#dwts" for pk, _ in rows) == sum(sk == "META" for _, sk in rows)
 

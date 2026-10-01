@@ -62,13 +62,13 @@ def test_accents_fold(index):
     assert "edyta-sliwinska" in ids(find("sliwi")[1]["data"], "pros")
 
 
-def test_people_rows_carry_a_headshot_file_and_seasons(index):
-    judge = find("carrie ann")[1]["data"]["judges"][0]
+def test_people_rows_carry_a_headshot_image_and_seasons(index):
+    judge = find("bruno")[1]["data"]["judges"][0]
     assert judge == {
-        "id": "carrie-ann-inaba",
-        "name": "Carrie Ann Inaba",
+        "id": "bruno-tonioli",
+        "name": "Bruno Tonioli",
         "roles": ["judge"],
-        "headshot": "Carrie_Ann_Inaba.jpg",
+        "headshot": "bruno-tonioli-e25ea8a395.webp",
         "seasons": list(range(1, 36)),
     }
 

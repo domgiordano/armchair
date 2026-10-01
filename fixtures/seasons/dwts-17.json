@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "len-goodman",
@@ -32,12 +27,7 @@
       "aliases": [
         "Len Goodman"
       ],
-      "headshot": {
-        "file": "Len_Goodman_1.JPG",
-        "author": "alotofmillion",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG"
-      }
+      "headshot": null
     },
     {
       "id": "bruno-tonioli",
@@ -47,6 +37,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -60,6 +51,7 @@
       ],
       "headshot": {
         "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
+        "image": "julianne-hough-51a37a8917.webp",
         "author": "https://www.flickr.com/photos/greg2600",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julianne_Hough_(25831904580)_(cropped).jpg"
@@ -73,6 +65,7 @@
       ],
       "headshot": {
         "file": "Cher_(50537941963)_(cropped).jpg",
+        "image": "cher-12532bdf6e.webp",
         "author": "Gage Skidmore from Surprise, AZ, United States of America",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cher_(50537941963)_(cropped).jpg"
@@ -86,6 +79,7 @@
       ],
       "headshot": {
         "file": "Maksimchmerkovskiy.jpg",
+        "image": "maksim-chmerkovskiy-9e1699554f.webp",
         "author": "Albert Domasin from Los Angeles, united states",
         "license": "CC BY 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maksimchmerkovskiy.jpg"
@@ -2367,6 +2361,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Keyshawn_Johnson_2006-10-15.jpg",
+            "image": "keyshawn-johnson-c98044f61f.webp",
             "author": "Keith Allison from Baltimore, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keyshawn_Johnson_2006-10-15.jpg"
@@ -2375,12 +2370,7 @@
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": {
-            "file": "Sharna_Burgess_2012_(cropped).jpg",
-            "author": "Michelle Tiu / Neon Tommy",
-            "license": "CC BY-SA 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": 2
@@ -2396,6 +2386,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Bill_Nye_by_Gage_Skidmore.jpg",
+            "image": "bill-nye-4bc948a86f.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bill_Nye_by_Gage_Skidmore.jpg"
@@ -2420,6 +2411,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Valerie_Harper_in_1996_(cropped).jpg",
+            "image": "valerie-harper-ee2f88f981.webp",
             "author": "John Mathew Smith & www.celebrity-photos.com from Laurel Maryland, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Valerie_Harper_in_1996_(cropped).jpg"
@@ -2444,6 +2436,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Christina_Milian_(29975025233)_(cropped).jpg",
+            "image": "christina-milian-a9361a7d24.webp",
             "author": "Greg2600",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christina_Milian_(29975025233)_(cropped).jpg"
@@ -2453,10 +2446,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_(2014)_(cropped).jpg",
-            "author": "Justin Higuchi from Los Angeles, CA, USA",
+            "file": "Mark_Ballas_2013.jpg",
+            "image": "mark-ballas-abad087c60.webp",
+            "author": "Justin Higuchi",
             "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_(2014)_(cropped).jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
           }
         }
       ],
@@ -2473,6 +2467,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Snooki_at_James_Madison_University_(cropped).jpg",
+            "image": "nicole-snooki-polizzi-9640f89779.webp",
             "author": "Amy Nicole Waltney",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Snooki_at_James_Madison_University_(cropped).jpg"
@@ -2502,6 +2497,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2521,6 +2517,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Elizabeth_Berkley_2008.jpg",
+            "image": "elizabeth-berkley-lauren-8222937169.webp",
             "author": "vwilsonroberts; cropped by Spinoziano",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elizabeth_Berkley_2008.jpg"
@@ -2545,6 +2542,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Leah_Remini_in_2018.jpg",
+            "image": "leah-remini-9bf99d8876.webp",
             "author": "greg2600",
             "license": "CC BY 2.5",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leah_Remini_in_2018.jpg"
@@ -2555,6 +2553,7 @@
           "role": "pro",
           "headshot": {
             "file": "TonyDovolaniApr09.jpg",
+            "image": "tony-dovolani-d7f06af775.webp",
             "author": "Angela George at https://www.flickr.com/photos/sharongraphics/",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:TonyDovolaniApr09.jpg"
@@ -2574,6 +2573,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Bill_Engvall_2010.jpg",
+            "image": "bill-engvall-88695fad7e.webp",
             "author": "DOD photo by U.S. Navy Petty Officer 1st Class Chad J. McNeeley",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bill_Engvall_2010.jpg"
@@ -2583,10 +2583,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2603,6 +2604,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jack_Osbourne_2011_Shankbone.JPG",
+            "image": "jack-osbourne-ac2e73377a.webp",
             "author": "David Shankbone",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jack_Osbourne_2011_Shankbone.JPG"
@@ -2613,6 +2615,7 @@
           "role": "pro",
           "headshot": {
             "file": "Cheryl_Burke_2009.jpg",
+            "image": "cheryl-burke-e812ea50ef.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
@@ -2632,6 +2635,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Corbin_Bleu.jpg",
+            "image": "corbin-bleu-f57d9ef920.webp",
             "author": "Barry Mulling from North Hollywood, USA",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corbin_Bleu.jpg"
@@ -2642,6 +2646,7 @@
           "role": "pro",
           "headshot": {
             "file": "Karina_Smirnoff_Get_Smart_premiere_arrival.jpg",
+            "image": "karina-smirnoff-e91466eb38.webp",
             "author": "Fashion photographer Anthony Citrano at https://www.zigzaglens.com/",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karina_Smirnoff_Get_Smart_premiere_arrival.jpg"
@@ -2661,6 +2666,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Amber_Riley_by_Gage_Skidmore.jpg",
+            "image": "amber-riley-a035db9e77.webp",
             "author": "Gage Skidmore",
             "license": "CC BY-SA 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Amber_Riley_by_Gage_Skidmore.jpg"
@@ -2671,6 +2677,7 @@
           "role": "pro",
           "headshot": {
             "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+            "image": "derek-hough-5f221ba9e7.webp",
             "author": "Kevin Paul",
             "license": "CC BY 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"

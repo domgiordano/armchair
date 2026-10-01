@@ -19,12 +19,7 @@
       "aliases": [
         "Carrie Ann Inaba"
       ],
-      "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg"
-      }
+      "headshot": null
     },
     {
       "id": "derek-hough",
@@ -34,6 +29,7 @@
       ],
       "headshot": {
         "file": "Derek_Hough_-_Walk_of_Fame-01.jpg",
+        "image": "derek-hough-5f221ba9e7.webp",
         "author": "Kevin Paul",
         "license": "CC BY 4.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Hough_-_Walk_of_Fame-01.jpg"
@@ -47,6 +43,7 @@
       ],
       "headshot": {
         "file": "Bruno_Tonioli_in_2015.jpg",
+        "image": "bruno-tonioli-e25ea8a395.webp",
         "author": "Beautiful: The Carole King Musical Opening Night Video",
         "license": "CC BY 3.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
@@ -60,6 +57,7 @@
       ],
       "headshot": {
         "file": "Michael_Strahan_2022_(cropped).jpg",
+        "image": "michael-strahan-000a7552ff.webp",
         "author": "Airman 1st Class Andrew Britten",
         "license": "Public domain",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Strahan_2022_(cropped).jpg"
@@ -80,10 +78,11 @@
         "Paula Abdul"
       ],
       "headshot": {
-        "file": "Paula_Abdul_2007.jpg",
-        "author": "Toglenn",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paula_Abdul_2007.jpg"
+        "file": "Paula_Abdul_(53384817755).jpg",
+        "image": "paula-abdul-00ffa70ee2.webp",
+        "author": "Super Festivals from Ft. Lauderdale, USA",
+        "license": "CC BY 2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paula_Abdul_(53384817755).jpg"
       }
     },
     {
@@ -94,6 +93,7 @@
       ],
       "headshot": {
         "file": "Billy_Porter_Gershwin_Prize_2024_(cropped).jpg",
+        "image": "billy-porter-c2b2a2f239.webp",
         "author": "UKinUSA",
         "license": "CC BY-SA 2.0",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Billy_Porter_Gershwin_Prize_2024_(cropped).jpg"
@@ -2402,6 +2402,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Matt_Walsh_2014.jpg",
+            "image": "matt-walsh-6fa1d2c2dd.webp",
             "author": "Dominick D",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Matt_Walsh_2014.jpg"
@@ -2426,6 +2427,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Jamie_Lynn_Spears.jpg",
+            "image": "jamie-lynn-spears-213abb6a2d.webp",
             "author": "Jenniferh2525 (photo)Lucas (retouching)",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jamie_Lynn_Spears.jpg"
@@ -2450,6 +2452,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Tyson_Beckford_(cropped).jpg",
+            "image": "tyson-beckford-6dc52656f4.webp",
             "author": "The original uploader was Jgro888 at English Wikipedia.",
             "license": "CC BY-SA 2.5",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tyson_Beckford_(cropped).jpg"
@@ -2474,6 +2477,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Adrian_Peterson_(cropped).jpg",
+            "image": "adrian-peterson-a6a3a7a57d.webp",
             "author": "Mike Morbeck",
             "license": "CC BY-SA 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adrian_Peterson_(cropped).jpg"
@@ -2484,6 +2488,7 @@
           "role": "pro",
           "headshot": {
             "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "image": "britt-stewart-b3460d77d9.webp",
             "author": "CaseyJNewell",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
@@ -2502,20 +2507,22 @@
           "name": "Mira Sorvino",
           "role": "celebrity",
           "headshot": {
-            "file": "Mira_Sorvino_Wien_2013_b.jpg",
-            "author": "Manfred Werner (Tsui)",
+            "file": "Mira_Sorvino_Seattle.jpg",
+            "image": "mira-sorvino-37eb10ecc3.webp",
+            "author": "Steven Friederich",
             "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mira_Sorvino_Wien_2013_b.jpg"
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mira_Sorvino_Seattle.jpg"
           }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
           "headshot": {
-            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+            "file": "Gleb_Savchenko_(cropped).jpg",
+            "image": "gleb-savchenko-dd8dbffc6d.webp",
+            "author": "Eva Rinaldi",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
           }
         }
       ],
@@ -2532,6 +2539,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Umansky_family_(cropped)_(cropped).jpg",
+            "image": "mauricio-umansky-225b41724f.webp",
             "author": "Aaa12683",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Umansky_family_(cropped)_(cropped).jpg"
@@ -2541,10 +2549,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
-            "author": "UKinUSA",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+            "file": "Emma_Slater_DSC_1005.jpg",
+            "image": "emma-slater-f55b00f615.webp",
+            "author": "Bnbeeyu",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
           }
         }
       ],
@@ -2561,6 +2570,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Lele_Pons_2019_by_Glenn_Francis_(cropped).jpg",
+            "image": "lele-pons-12cca25385.webp",
             "author": "Toglenn",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lele_Pons_2019_by_Glenn_Francis_(cropped).jpg"
@@ -2585,6 +2595,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "10.1.10BarryWilliamsByLuigiNovi1.jpg",
+            "image": "barry-williams-ec6c19dc5a.webp",
             "author": "Nightscream",
             "license": "CC BY 3.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:10.1.10BarryWilliamsByLuigiNovi1.jpg"
@@ -2595,6 +2606,7 @@
           "role": "pro",
           "headshot": {
             "file": "Peta_Murgatroyd_2013.jpg",
+            "image": "peta-murgatroyd-f781035b28.webp",
             "author": "Glenn Francis",
             "license": "CC BY-SA 4.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
@@ -2619,6 +2631,7 @@
           "role": "pro",
           "headshot": {
             "file": "Rylee_Arnold_at_Press_Play_2026.jpg",
+            "image": "rylee-arnold-6c46e03e23.webp",
             "author": "Mikepascoe",
             "license": "CC0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rylee_Arnold_at_Press_Play_2026.jpg"
@@ -2638,6 +2651,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Alyson_Hannigan_(9445491655)_(cropped).jpg",
+            "image": "alyson-hannigan-56ce5c31d8.webp",
             "author": "vagueonthehow from Tadcaster, York, England",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alyson_Hannigan_(9445491655)_(cropped).jpg"
@@ -2679,22 +2693,12 @@
         {
           "name": "Ariana Madix",
           "role": "celebrity",
-          "headshot": {
-            "file": "NUP_207595_03820.jpg",
-            "author": "Ben Symons/Peacock",
-            "license": "CC0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:NUP_207595_03820.jpg"
-          }
+          "headshot": null
         },
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": {
-            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
-            "author": "Panache Star Dancesport",
-            "license": "CC BY 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
-          }
+          "headshot": null
         }
       ],
       "eliminatedEp": null
@@ -2710,6 +2714,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "2020_NAMM_Show_(50784311217)_(cropped).jpg",
+            "image": "jason-mraz-7d3d3c8f13.webp",
             "author": "Justin Higuchi",
             "license": "CC BY 2.0",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:2020_NAMM_Show_(50784311217)_(cropped).jpg"
@@ -2734,6 +2739,7 @@
           "role": "celebrity",
           "headshot": {
             "file": "Xochitl_Gomez_-_2024_(cropped).jpg",
+            "image": "xochitl-gomez-0b15e329e1.webp",
             "author": "The White House",
             "license": "Public domain",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Xochitl_Gomez_-_2024_(cropped).jpg"
