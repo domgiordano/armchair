@@ -46,7 +46,7 @@ const QUESTIONS: Question[] = [
 
 export function Faq() {
   return (
-    <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
+    <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
         <div {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-orange uppercase">FAQ</p>

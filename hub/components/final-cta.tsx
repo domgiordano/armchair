@@ -3,7 +3,7 @@ import { reveal } from "@/lib/reveal";
 
 export function FinalCta() {
   return (
-    <section aria-labelledby="cta-title" className="px-6 pb-20 sm:pb-28">
+    <section aria-labelledby="cta-title" className="px-6 pb-16 lg:pb-24">
       <div
         className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-line bg-night-2 px-6 py-14 sm:px-12 sm:py-16"
         {...reveal()}

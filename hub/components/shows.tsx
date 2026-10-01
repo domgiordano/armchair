@@ -208,7 +208,7 @@ function ShowCard({ show, name, line, titleClass, surface, art, href }: ShowCard
 
 export function Shows() {
   return (
-    <section id="shows" aria-labelledby="shows-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
+    <section id="shows" aria-labelledby="shows-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-magenta uppercase">Shows</p>
