@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 import { AccountButton } from "@/components/account/account-button";
 import { AppsMenu } from "@/components/apps-menu";
@@ -10,9 +11,13 @@ const link =
 interface SiteHeaderProps {
   /** The landing's section links; off on pages that don't have those sections. */
   sections?: boolean;
+  /** Before the brand: the signed-in hamburger on phones. */
+  menu?: ReactNode;
+  /** A row under the bar: the signed-in tabs. */
+  tabs?: ReactNode;
 }
 
-export function SiteHeader({ sections = true }: SiteHeaderProps) {
+export function SiteHeader({ sections = true, menu, tabs }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-20 border-b border-line/60">
       <a
@@ -25,13 +30,16 @@ export function SiteHeader({ sections = true }: SiteHeaderProps) {
           make it the containing block for the apps menu's fixed mobile sheet. */}
       <div className="absolute inset-0 -z-10 bg-night/80 backdrop-blur-md" aria-hidden="true" />
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" className="group flex min-h-11 items-center gap-2 rounded-lg focus-visible:outline-2 focus-visible:outline-gold">
-          <ChairMark className="h-9 w-9 transition-transform duration-300 group-hover:-rotate-6 motion-reduce:transition-none" />
-          <span className="text-base font-bold tracking-tight whitespace-nowrap">
-            Armchair <span className="text-brand-gradient">Judge</span>
-          </span>
-        </Link>
-        <nav aria-label="Main" className="flex items-center gap-1">
+        <div className="flex items-center gap-1">
+          {menu}
+          <Link href="/" className="group flex min-h-11 items-center gap-2 rounded-lg focus-visible:outline-2 focus-visible:outline-gold">
+            <ChairMark className="h-9 w-9 transition-transform duration-300 group-hover:-rotate-6 motion-reduce:transition-none" />
+            <span className="text-base font-bold tracking-tight whitespace-nowrap">
+              Armchair <span className="text-brand-gradient">Judge</span>
+            </span>
+          </Link>
+        </div>
+        <nav aria-label={tabs ? "Apps and account" : "Main"} className="flex items-center gap-1">
           {sections && (
             <>
               <Link href="/#how" className={`${link} hidden md:flex`}>
@@ -42,10 +50,14 @@ export function SiteHeader({ sections = true }: SiteHeaderProps) {
               </Link>
             </>
           )}
-          <AppsMenu />
+          {/* With tabs, phones reach the apps from the menu sheet instead. */}
+          <div className={tabs ? "hidden md:block" : undefined}>
+            <AppsMenu />
+          </div>
           <AccountButton />
         </nav>
       </div>
+      {tabs}
     </header>
   );
 }
