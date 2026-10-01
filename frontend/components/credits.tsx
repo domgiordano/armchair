@@ -34,7 +34,7 @@ function CreditList() {
   return (
     <>
       <PageHeader title="Photo credits">
-        Headshots come from Wikimedia Commons under the licenses below, cropped to the face. Each crop is shared under its photo's license.
+        Headshots come from Wikimedia Commons under the licenses below, cropped to the face. Each crop is shared under its photo&rsquo;s license.
       </PageHeader>
       <ul className="stagger flex flex-col divide-y divide-silver/10">
         {credited(load.season).map((p) => (
