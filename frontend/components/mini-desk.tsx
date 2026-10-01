@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CoupleAvatars, coupleName } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
 import type { CoupleStanding, Reveal } from "@/lib/api/overview";
 import { withSeason } from "@/lib/show/seasons";
@@ -16,17 +17,20 @@ const firstWord = (name: string) => name.trim().split(/\s+/)[0] ?? name;
 
 /** One revealed dance as a row of paddles: the panel, then you, then how far apart. */
 export function MiniDesk({ reveal, couple, judgeName, weekLabel, season }: MiniDeskProps) {
-  const title = couple?.members.map((m) => m.name).join(" & ") ?? reveal.contestants.join(" & ");
+  const title = couple ? coupleName(couple) : reveal.contestants.join(" & ");
   const mine = "value" in reveal.mine ? reveal.mine.value : null;
   const gap = mine !== null && reveal.panelMean !== null ? mine - reveal.panelMean : null;
 
   return (
     <article aria-label={title} className="flex flex-col gap-3 rounded-lg border border-silver/10 bg-ballroom/60 p-4">
-      <header className="flex flex-col gap-0.5">
-        <h3 className="truncate font-semibold text-pearl">{title}</h3>
-        <p className="truncate text-xs text-silver-dim">
-          {[weekLabel, reveal.style, reveal.song].filter(Boolean).join(" · ")}
-        </p>
+      <header className="flex items-center gap-3">
+        {couple && <CoupleAvatars members={couple.members} size={36} />}
+        <div className="flex min-w-0 flex-col gap-0.5">
+          <h3 className="truncate font-semibold text-pearl">{title}</h3>
+          <p className="truncate text-xs text-silver-dim">
+            {[weekLabel, reveal.style, reveal.song].filter(Boolean).join(" · ")}
+          </p>
+        </div>
       </header>
       <ul aria-label="Paddles" className="flex items-end gap-1.5">
         {reveal.judges.map((j) => (

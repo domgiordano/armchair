@@ -2524,12 +2524,22 @@
         {
           "name": "Charles Oakley",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Charles_Oakley,_2007_(cropped).jpg",
+            "author": "Kevin Coles",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charles_Oakley,_2007_(cropped).jpg"
+          }
         },
         {
           "name": "Emma Slater",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Emma_Slater_Better_Together_2026_(cropped).jpg",
+            "author": "UKinUSA",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_Better_Together_2026_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 2
@@ -2543,12 +2553,22 @@
         {
           "name": "Carole Baskin",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Carole_Baskin_September_2019_(cropped).png",
+            "author": "Michael Noonan",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carole_Baskin_September_2019_(cropped).png"
+          }
         },
         {
           "name": "Pasha Pashkov",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+            "author": "Panache Star Dancesport",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg"
+          }
         }
       ],
       "eliminatedEp": 3
@@ -2562,12 +2582,22 @@
         {
           "name": "Anne Heche",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Anne_Heche_July_14,_2014_(cropped).jpg",
+            "author": "Mingle Media TV",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anne_Heche_July_14,_2014_(cropped).jpg"
+          }
         },
         {
           "name": "Keo Motsepe",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Keo_Motsepe_on_RealTVfilms.jpg",
+            "author": "RealTVfilms",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Keo_Motsepe_on_RealTVfilms.jpg"
+          }
         }
       ],
       "eliminatedEp": 4
@@ -2581,12 +2611,22 @@
         {
           "name": "Jesse Metcalfe",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jesse_Metcalfe_at_PaleyFest_2013.jpg",
+            "author": "iDominick",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jesse_Metcalfe_at_PaleyFest_2013.jpg"
+          }
         },
         {
           "name": "Sharna Burgess",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Sharna_Burgess_2012_(cropped).jpg",
+            "author": "Michelle Tiu / Neon Tommy",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sharna_Burgess_2012_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 5
@@ -2600,12 +2640,22 @@
         {
           "name": "Vernon Davis",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Vernon_Davis_2018_(cropped).jpg",
+            "author": "Keith Allison from Hanover, MD, USA",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vernon_Davis_2018_(cropped).jpg"
+          }
         },
         {
           "name": "Peta Murgatroyd",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Peta_Murgatroyd_2013.jpg",
+            "author": "Glenn Francis",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peta_Murgatroyd_2013.jpg"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2638,7 +2688,12 @@
         {
           "name": "Jeannie Mai",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Jeannie_Mai.jpg",
+            "author": "The Paparazzi Gamer [TPG]",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jeannie_Mai.jpg"
+          }
         },
         {
           "name": "Brandon Armstrong",
@@ -2657,12 +2712,22 @@
         {
           "name": "Chrishell Stause",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Chrishell_Stause_at_WWD_Style_Awards_2026-2255.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chrishell_Stause_at_WWD_Style_Awards_2026-2255.jpg"
+          }
         },
         {
           "name": "Gleb Savchenko",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_by_Glenn_Francis_(cropped).jpg"
+          }
         }
       ],
       "eliminatedEp": 8
@@ -2676,12 +2741,22 @@
         {
           "name": "AJ McLean",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "AJStockholm09.JPG",
+            "author": "Meany",
+            "license": "CC BY 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:AJStockholm09.JPG"
+          }
         },
         {
           "name": "Cheryl Burke",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Cheryl_Burke_2009.jpg",
+            "author": "Toglenn",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg"
+          }
         }
       ],
       "eliminatedEp": 9
@@ -2695,12 +2770,22 @@
         {
           "name": "Johnny Weir",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Johnny_WEIR_2008_World_Championships.jpg",
+            "author": "David W. Carmichael",
+            "license": "CC BY-SA 3.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johnny_WEIR_2008_World_Championships.jpg"
+          }
         },
         {
           "name": "Britt Stewart",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
+            "author": "CaseyJNewell",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2714,7 +2799,12 @@
         {
           "name": "Skai Jackson",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Skai_Jackson_at_WWD_Style_Awards_2026.jpg",
+            "author": "Kevin Paul",
+            "license": "CC BY 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Skai_Jackson_at_WWD_Style_Awards_2026.jpg"
+          }
         },
         {
           "name": "Alan Bersten",
@@ -2733,7 +2823,12 @@
         {
           "name": "Justina Machado",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Justina_Machado_at_Queen_of_the_South_at_ATX.jpg",
+            "author": "iDominick",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Justina_Machado_at_Queen_of_the_South_at_ATX.jpg"
+          }
         },
         {
           "name": "Sasha Farber",
@@ -2752,7 +2847,12 @@
         {
           "name": "Nelly",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Iverson_Nelly_2_(cropped)_(2)_(3x4).jpg",
+            "author": "reeb0k2008",
+            "license": "CC BY 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Iverson_Nelly_2_(cropped)_(2)_(3x4).jpg"
+          }
         },
         {
           "name": "Daniella Karagach",
@@ -2771,7 +2871,12 @@
         {
           "name": "Nev Schulman",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Nev_Schulman_Obvious_Child_Premiere_2014_(cropped).jpg",
+            "author": "Mingle Media TV",
+            "license": "CC BY-SA 2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nev_Schulman_Obvious_Child_Premiere_2014_(cropped).jpg"
+          }
         },
         {
           "name": "Jenna Johnson",
@@ -2790,7 +2895,12 @@
         {
           "name": "Kaitlyn Bristowe",
           "role": "celebrity",
-          "headshot": null
+          "headshot": {
+            "file": "Kaitlyn_Bristowe.jpg",
+            "author": "Citygirl21",
+            "license": "CC BY-SA 4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kaitlyn_Bristowe.jpg"
+          }
         },
         {
           "name": "Artem Chigvintsev",
