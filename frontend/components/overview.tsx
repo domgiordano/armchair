@@ -175,7 +175,7 @@ function OverviewView({ o, season, reload }: ViewProps) {
           </section>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="grid items-start gap-8 md:grid-cols-2 lg:flex lg:flex-col lg:items-stretch">
           <LeaderboardTop season={season} />
           <Standings couples={o.couples} />
         </div>
@@ -378,7 +378,7 @@ function StatTiles({ o }: { o: OverviewData }) {
   const judge = me.closestJudge;
 
   return (
-    <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+    <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
       <Tile label="Dances scored" value={String(me.scored)} note={`across ${scoredEps} ${scoredEps === 1 ? "episode" : "episodes"}`} />
       <Tile
         label="Average gap"
@@ -580,7 +580,7 @@ function OverviewSkeleton() {
         </div>
         <div className="h-48 rounded-xl bg-silver/5 motion-safe:animate-pulse" />
       </div>
-      <div aria-hidden="true" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div aria-hidden="true" className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {Array.from({ length: 4 }, (_, i) => (
           <div key={i} className="h-24 rounded-xl bg-silver/5 motion-safe:animate-pulse" />
         ))}

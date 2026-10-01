@@ -19,6 +19,9 @@ One JSON file per season, loaded by `backend/scripts/seed_season.py` into the
   (guest judges and multi-dance weeks are unannounced), and headshots with no
   usable Commons photo.
 - `eliminatedEp` is set for couples already out, by episode number.
+- `rateableKeys` on episodes 1 and 2 splits the premiere by night, from the
+  "Week 1 (Night 1)" and "(Night 2)" score tables. Without it the gate asks for
+  every couple still in on both nights.
 
 ## Headshots
 
