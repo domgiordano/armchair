@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useEffectEvent, useId, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent } from "react";
-import { GoogleMark } from "@/components/google-mark";
 import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 
 import { DWTS_URL } from "@/lib/links";
@@ -222,15 +221,6 @@ export function AppsMenu() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={DWTS_URL}
-                className="mt-2 flex min-h-12 items-center justify-center rounded-full sm:hidden bg-text font-semibold text-night hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold active:scale-[0.98]"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <GoogleMark className="h-4 w-4" />
-                  Sign in
-                </span>
-              </a>
             </div>
           </div>
         </>

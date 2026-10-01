@@ -5,6 +5,8 @@ import { SESSION_HINT_SCRIPT } from "@/lib/auth/session-hint";
 
 import "./globals.css";
 
+import { SsoHandoff } from "@/components/sso-handoff";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
@@ -46,7 +48,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: SESSION_HINT_SCRIPT }} />
       </head>
-      <body className="min-h-full bg-ink font-sans text-pearl">{children}</body>
+      <body className="min-h-full bg-ink font-sans text-pearl">
+        <SsoHandoff />
+        {children}
+      </body>
     </html>
   );
 }
