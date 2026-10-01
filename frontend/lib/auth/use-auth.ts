@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { getCurrentUser, signInWithRedirect, signOut as amplifySignOut } from "aws-amplify/auth";
 import { Hub } from "aws-amplify/utils";
 
+import { clearCache } from "@/lib/api/cache";
+
 import { authConfigured } from "./amplify";
 import { clearWho } from "./who";
 
@@ -60,6 +62,7 @@ export function useAuth() {
     refresh,
     signOut: async () => {
       clearWho();
+      clearCache();
       await amplifySignOut();
       await refresh();
     },

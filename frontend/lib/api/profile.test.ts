@@ -11,7 +11,7 @@ import { getProfile, uploadAvatar } from "./profile";
 const envelope = (data: unknown) => new Response(JSON.stringify({ data, error: null, meta: null }));
 
 beforeEach(() => {
-  fetchAuthSession.mockResolvedValue({ tokens: { idToken: { toString: () => "id-token" } } });
+  fetchAuthSession.mockResolvedValue({ tokens: { idToken: { toString: () => "id-token", payload: { sub: "u1" } } } });
 });
 
 afterEach(() => {

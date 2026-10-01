@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
 import { Avatar } from "@/components/avatar";
@@ -16,6 +16,7 @@ import { Select } from "@/components/ui/select";
 import { Specks } from "@/components/ui/specks";
 import { ToastProvider } from "@/components/ui/toast";
 import { getMe, type Me } from "@/lib/api/client";
+import { prefetchPage } from "@/lib/api/prefetch";
 import { useAuth } from "@/lib/auth/use-auth";
 import { SEASONS, seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
 import { FOCUS } from "@/lib/ui";
@@ -72,12 +73,17 @@ export function AppShell({ title, wide = false, children }: AppShellProps) {
 
 function Shell({ title, wide, children }: AppShellProps) {
   const pathname = usePathname();
+  const search = useSearchParams().toString();
   const season = useSeasonId();
   const current = activeTab(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
   const searchButton = useRef<HTMLButtonElement>(null);
+
+  // Effects run child first, so the page's own first reads are already in
+  // flight and this adds the ones it would only make after its season loads.
+  useEffect(() => prefetchPage(`${pathname}?${search}`, season), [pathname, search, season]);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -161,6 +167,7 @@ function Shell({ title, wide, children }: AppShellProps) {
                 <Link
                   href={withSeason(t.href, season)}
                   aria-current={t === current ? "page" : undefined}
+                  onPointerEnter={() => prefetchPage(t.href, season)}
                   onClick={() => setMenuOpen(false)}
                   className={`flex min-h-12 items-center rounded-md border-l-2 px-3 text-base font-medium transition-colors ${FOCUS} ${
                     t === current
@@ -200,6 +207,8 @@ function TabLink({ tab, season, active }: { tab: Tab; season: string; active: bo
     <Link
       href={withSeason(tab.href, season)}
       aria-current={active ? "page" : undefined}
+      onPointerEnter={() => prefetchPage(tab.href, season)}
+      onFocus={() => prefetchPage(tab.href, season)}
       className={`relative flex min-h-11 items-center rounded-t-md px-3 text-sm font-medium whitespace-nowrap transition-colors ${FOCUS} after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:rounded-full after:transition-transform after:duration-300 ${
         active
           ? "text-gold-light after:scale-x-100 after:bg-gold after:shadow-[0_0_10px_rgb(232_194_104/0.7)]"

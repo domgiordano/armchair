@@ -1,5 +1,7 @@
 import { fetchAuthSession } from "aws-amplify/auth";
 
+import { cached, invalidate } from "./cache";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 interface Envelope<T> {
@@ -32,9 +34,23 @@ export async function requestWithMeta<T>(
   // and picture, which users_me reads from the authorizer's claims. Fetched per
   // call because Amplify caches and refreshes it already.
   const session = await fetchAuthSession();
-  const token = session.tokens?.idToken?.toString();
-  if (!token) throw new ApiError(401, "Not signed in");
+  const idToken = session.tokens?.idToken;
+  const token = idToken?.toString();
+  if (!idToken || !token) throw new ApiError(401, "Not signed in");
 
+  const send = () => sendRequest<T>(path, init, token);
+  if ((init.method ?? "GET") !== "GET") {
+    // Even a refused write may have changed something (a 409 means it was already there).
+    return send().finally(invalidate);
+  }
+  return cached(String(idToken.payload.sub), path, send);
+}
+
+async function sendRequest<T>(
+  path: string,
+  init: RequestInit,
+  token: string,
+): Promise<{ data: T; meta: Record<string, unknown> | null }> {
   const res = await fetch(`${API_URL}${path}`, {
     ...init,
     headers: { "Content-Type": "application/json", Authorization: token },

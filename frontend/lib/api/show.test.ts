@@ -20,7 +20,7 @@ const card = (key: string, contestants: string[]): LockedCard => ({
 let fetchMock: ReturnType<typeof vi.fn>;
 
 beforeEach(() => {
-  fetchAuthSession.mockResolvedValue({ tokens: { idToken: { toString: () => "id-token" } } });
+  fetchAuthSession.mockResolvedValue({ tokens: { idToken: { toString: () => "id-token", payload: { sub: "u1" } } } });
   fetchMock = vi.fn(async () => new Response(JSON.stringify({ data: {}, error: null, meta: null })));
   vi.stubGlobal("fetch", fetchMock);
 });
