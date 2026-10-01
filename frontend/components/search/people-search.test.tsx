@@ -85,14 +85,14 @@ describe("SearchBox", () => {
 
   it("says when no one matches", async () => {
     vi.mocked(searchAll).mockResolvedValue({ users: [], stars: [], pros: [], judges: [] });
-    render(<SearchBox variant="sheet" />);
+    render(<SearchBox variant="inline" />);
     fireEvent.change(field(), { target: { value: "zz" } });
     expect(await screen.findByText(/No one matches/)).toBeTruthy();
   });
 
   it("shows a failed search", async () => {
     vi.mocked(searchAll).mockRejectedValue(new Error("Service unavailable"));
-    render(<SearchBox variant="sheet" />);
+    render(<SearchBox variant="inline" />);
     fireEvent.change(field(), { target: { value: "zz" } });
     expect((await screen.findByRole("alert")).textContent).toContain("Service unavailable");
   });
@@ -100,7 +100,7 @@ describe("SearchBox", () => {
   it("Escape clears the field, then closes", async () => {
     vi.mocked(searchAll).mockResolvedValue(RESULTS);
     const onEscape = vi.fn();
-    render(<SearchBox variant="sheet" onEscape={onEscape} />);
+    render(<SearchBox variant="inline" onEscape={onEscape} />);
     fireEvent.change(field(), { target: { value: "derek" } });
     await screen.findAllByRole("option");
     fireEvent.keyDown(field(), { key: "Escape" });
