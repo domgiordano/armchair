@@ -2,6 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { AppsMenu } from "@/components/apps-menu";
+import { ICON_TRIGGER } from "@/components/show-icon";
 
 const toggle = () => screen.getByRole("button", { name: "Apps" });
 
@@ -36,6 +37,15 @@ describe("AppsMenu", () => {
       expect(row.closest("a")).toBeNull();
       expect(row.parentElement?.parentElement?.textContent).toContain("COMING SOON");
     }
+  });
+
+  it("gives each app its icon, padlocked until the app is live, played by hovering its row", () => {
+    const panel = renderOpen();
+    const rows = within(panel).getAllByRole("listitem").slice(0, 3);
+    expect(rows.map((li) => li.querySelector("[data-show]")?.getAttribute("data-show"))).toEqual(["dwts", "traitors", "survivor"]);
+    for (const li of rows) expect(li.firstElementChild?.classList.contains(ICON_TRIGGER)).toBe(true);
+    const locked = rows.map((li) => li.querySelector("[data-show]")?.querySelector("span") !== null);
+    expect(locked).toEqual([false, true, true]);
   });
 
   it("offers sign-in inside the mobile sheet", () => {
