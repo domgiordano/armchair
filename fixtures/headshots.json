@@ -422,7 +422,18 @@
     "license": "CC BY 3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carole_Baskin_September_2019_(cropped).png"
   },
-  "Carrie Ann Inaba": null,
+  "Carrie Ann Inaba": {
+    "file": "Carrie_Ann_Inaba.jpg",
+    "image": "carrie-ann-inaba-130d90accf.webp",
+    "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
+    "license": "CC BY-SA 3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg",
+    "box": [
+      146,
+      112,
+      104
+    ]
+  },
   "Carson Kressley": {
     "file": "Carson_Kressley_(cropped).jpg",
     "image": "carson-kressley-ec5e9bb7e7.webp",
@@ -659,7 +670,18 @@
     "license": "CC BY-SA 4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Daniel_Durant_-_Being_Heumann_-_TIFF_2026-12.jpg"
   },
-  "Daniella Karagach": null,
+  "Daniella Karagach": {
+    "file": "Daniella_Karagach_on_Panache_Star_Dancesport.jpg",
+    "image": "daniella-karagach-9aba9ec295.webp",
+    "author": "Panache Star Dancesport",
+    "license": "CC BY 3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Daniella_Karagach_on_Panache_Star_Dancesport.jpg",
+    "box": [
+      140,
+      25,
+      150
+    ]
+  },
   "Danielle Fishel": {
     "file": "Danielle_Fishel_Photo_Op_GalaxyCon_Richmond_2023.jpg",
     "image": "danielle-fishel-2fad197f5f.webp",
@@ -1713,7 +1735,18 @@
     "license": "CC BY-SA 4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lele_Pons_2019_by_Glenn_Francis_(cropped).jpg"
   },
-  "Len Goodman": null,
+  "Len Goodman": {
+    "file": "Len_Goodman_1.JPG",
+    "image": "len-goodman-13c71036ad.webp",
+    "author": "alotofmillion",
+    "license": "CC BY-SA 3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Len_Goodman_1.JPG",
+    "box": [
+      340,
+      60,
+      380
+    ]
+  },
   "Lil' Kim": {
     "file": "Kim_OTR_Tour_(1).jpg",
     "image": "lil-kim-f7b08f599e.webp",
@@ -2231,7 +2264,18 @@
     "license": "CC BY-SA 4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg"
   },
-  "Pasha Pashkov": null,
+  "Pasha Pashkov": {
+    "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+    "image": "pasha-pashkov-a5b8ecbbe7.webp",
+    "author": "Panache Star Dancesport",
+    "license": "CC BY 3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
+    "box": [
+      245,
+      0,
+      175
+    ]
+  },
   "Patti LaBelle": {
     "file": "Patti_Labelle_at_Black_Excellence_Brunch_New_Orleans_2026.jpg",
     "image": "patti-labelle-ff1b13088b.webp",
@@ -2561,7 +2605,18 @@
     "license": "CC BY 2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shannon_Elizabeth_Photo_Op_GalaxyCon_Richmond_2020.jpg"
   },
-  "Sharna Burgess": null,
+  "Sharna Burgess": {
+    "file": "2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
+    "image": "sharna-burgess-8323368f60.webp",
+    "author": "NaBUru38",
+    "license": "CC BY-SA 4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
+    "box": [
+      245,
+      130,
+      150
+    ]
+  },
   "Shawn Johnson": {
     "file": "Johnson_in_2012_-_Portrait.jpg",
     "image": "shawn-johnson-6f9c1b4b0e.webp",
