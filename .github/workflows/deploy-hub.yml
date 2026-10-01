@@ -108,8 +108,15 @@ jobs:
           echo "DISTRIBUTION_ID=$ID" >> "$GITHUB_ENV"
 
       - name: Sync to S3
-        # Hashed assets first with a long cache, then HTML, so no HTML lands
-        # before the chunks it references.
+        # Hashed assets first, then the other assets, then HTML, so no HTML
+        # lands before what it references.
+        #
+        # Only _next/static/ is content-hashed, so only it is immutable. Every
+        # other file keeps its name across builds (icons, the OG image, public/),
+        # and a year of immutable on those kept a replaced intro poster in every
+        # browser that had seen the old one. That set goes up with cp, not sync:
+        # sync skips a file whose size and mtime match the object, which would
+        # leave the old Cache-Control on it.
         #
         # No --delete: a tab loaded from the previous build keeps fetching that
         # build's assets and RSC payloads on client navigation. Deleting them
@@ -117,8 +124,11 @@ jobs:
         # Old builds are pruned below instead.
         run: |
           aws s3 sync ./out "s3://${S3_BUCKET}/" \
-            --exclude "*.html" --exclude "*.txt" \
+            --exclude "*" --include "_next/static/*" \
             --cache-control "public, max-age=31536000, immutable"
+          aws s3 cp ./out "s3://${S3_BUCKET}/" --recursive \
+            --exclude "_next/static/*" --exclude "*.html" --exclude "*.txt" \
+            --cache-control "public, max-age=300, must-revalidate"
           aws s3 sync ./out "s3://${S3_BUCKET}/" \
             --exclude "*" --include "*.html" --include "*.txt" \
             --cache-control "no-cache, must-revalidate"
