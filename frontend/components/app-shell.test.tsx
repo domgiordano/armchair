@@ -65,6 +65,8 @@ describe("activeTab", () => {
     ["/friends/", "Friends & Groups"],
     ["/stats/", "Stats"],
     ["/couples/", "Couples"],
+    ["/discover/", "Discover"],
+    ["/people/", "Discover"],
   ])("%s lights %s", (path, label) => {
     expect(activeTab(path)?.label).toBe(label);
   });
@@ -72,6 +74,7 @@ describe("activeTab", () => {
   it("lights nothing on a page outside the tabs", () => {
     expect(activeTab("/notifications/")).toBeUndefined();
     expect(activeTab("/credits/")).toBeUndefined();
+    expect(activeTab("/profile/")).toBeUndefined();
   });
 });
 
@@ -90,8 +93,8 @@ describe("AppShell", () => {
       "Leaderboard",
       "Stats",
       "Couples",
+      "Discover",
       "Friends & Groups",
-      "Profile",
     ]);
     expect(screen.getByRole("main", { name: "Groups" }).textContent).toBe("page body");
   });
@@ -129,7 +132,7 @@ describe("AppShell", () => {
     expect(bell.textContent).toBe("9+");
   });
 
-  it("opens the account menu with Profile and Sign out, and Escape closes it back onto its button", async () => {
+  it("opens the account menu with Your profile and Sign out, and Escape closes it back onto its button", async () => {
     renderShell();
     await screen.findByRole("img", { name: "Ada Lovelace" });
     const account = screen.getByRole("button", { name: "Account" });
@@ -138,7 +141,7 @@ describe("AppShell", () => {
     expect(account.getAttribute("aria-expanded")).toBe("true");
     const menu = screen.getByRole("menu", { name: "Account" });
     expect(menu.id).toBe(account.getAttribute("aria-controls"));
-    const profile = within(menu).getByRole("menuitem", { name: "Profile" });
+    const profile = within(menu).getByRole("menuitem", { name: "Your profile" });
     expect(href(profile)).toBe("/profile");
     expect(document.activeElement).toBe(profile);
 

@@ -35,8 +35,8 @@ export const TABS: Tab[] = [
   { href: "/leaderboard/", label: "Leaderboard", match: ["/leaderboard"] },
   { href: "/stats/", label: "Stats", match: ["/stats"] },
   { href: "/couples/", label: "Couples", match: ["/couples"] },
+  { href: "/discover/", label: "Discover", match: ["/discover", "/people"] },
   { href: "/friends/", label: "Friends & Groups", match: ["/friends", "/groups", "/join"] },
-  { href: "/profile/", label: "Profile", match: ["/profile"] },
 ];
 
 export function activeTab(pathname: string): Tab | undefined {
@@ -295,7 +295,7 @@ function AccountMenu() {
           {me.name ?? me.email}
         </p>
       )}
-      <MenuItem href="/profile/">Profile</MenuItem>
+      <MenuItem href="/profile/">Your profile</MenuItem>
       <MenuItem onSelect={() => void signOut().then(() => router.push("/"))}>Sign out</MenuItem>
     </Menu>
   );
