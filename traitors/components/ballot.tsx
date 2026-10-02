@@ -60,10 +60,12 @@ interface BallotProps {
   seasonTitle?: string;
   /** After a call is sealed, so the season's answered counts catch up. */
   onSealed: () => void;
+  /** A pick tried before the winner bet: the caller asks for it. */
+  onNeedBet?: () => void;
 }
 
 /** One episode's three calls: murder, round table, recruit. Blind and final, each under the wax seal. */
-export function Ballot({ season, episode, group, members, seasonTitle, onSealed }: BallotProps) {
+export function Ballot({ season, episode, group, members, seasonTitle, onSealed, onNeedBet }: BallotProps) {
   const { data, error, reload } = useEpisodePoll(season, episode.ep, episode.releaseAt, group);
   const [tab, setTab] = useState<EventType | null>(null);
 
@@ -117,6 +119,7 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed 
               episode={data}
               event={active}
               members={members}
+              onNeedBet={onNeedBet}
               onSealed={() => {
                 reload();
                 onSealed();
@@ -135,13 +138,16 @@ interface EventPanelProps {
   event: EpisodeEvent;
   members: GroupMember[] | null;
   onSealed: () => void;
+  onNeedBet?: () => void;
 }
 
-function EventPanel({ season, episode, event, members, onSealed }: EventPanelProps) {
+function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: EventPanelProps) {
   const toast = useToast();
   const [picks, setPicks] = useState<string[]>([]);
   const [forfeit, setForfeit] = useState(false);
   const picking = event.locked && !episode.closed;
+  // Before the winner bet the table looks the same, but a tap asks for the bet.
+  const waiting = episode.needsBet ? onNeedBet : undefined;
   const rows = consensusRows(event, Infinity);
 
   const submit = async () => {
@@ -169,12 +175,26 @@ function EventPanel({ season, episode, event, members, onSealed }: EventPanelPro
         roster={episode.roster}
         kind={event.type}
         chosen={picking ? (forfeit ? [] : picks) : (event.mine?.picks ?? [])}
-        onTap={picking && !forfeit ? (id) => setPicks((p) => toggle(p, id, event.picks)) : undefined}
+        onTap={
+          picking && waiting
+            ? () => waiting()
+            : picking && !forfeit
+              ? (id) => setPicks((p) => toggle(p, id, event.picks))
+              : undefined
+        }
         full={event.picks > 1 && picks.length >= event.picks}
         result={picking ? null : event.result}
         tallies={picking ? null : Object.fromEntries(rows.map((r) => [r.id, r.count]))}
       />
-      {picking ? (
+      {picking && waiting ? (
+        <Slate className="flex flex-col items-start gap-3">
+          <p className={EYEBROW}>Your slate</p>
+          <p className="text-parchment">Lock in your winners to start playing. Your calls open once they&apos;re sealed.</p>
+          <Button variant="gold" onClick={waiting}>
+            Lock in your winners
+          </Button>
+        </Slate>
+      ) : picking ? (
         <PickSlate
           event={event}
           roster={episode.roster}

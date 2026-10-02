@@ -29,6 +29,14 @@ vi.mock("@/lib/api/seasons", () => ({
   ),
 }));
 
+// jsdom has <dialog> but not its modal methods.
+HTMLDialogElement.prototype.showModal = function (this: HTMLDialogElement) {
+  this.open = true;
+};
+HTMLDialogElement.prototype.close = function (this: HTMLDialogElement) {
+  this.open = false;
+};
+
 import { AppShell } from "./app-shell";
 import { useSeasonId } from "./season-provider";
 
@@ -91,20 +99,36 @@ it("changes season from the picker", async () => {
   expect(nav.push).toHaveBeenCalledWith("/stats/?season=tus-4");
 });
 
-it("holds a live season behind the winner bet, with no tabs", async () => {
+it("opens a live season before the winner bet, asking for it in a banner until it's sealed", async () => {
+  const now = Date.now();
   traitors.getTraitorsSeason.mockResolvedValue({
     season: "tus-5",
     title: "",
     current: true,
     needsBet: true,
-    episodes: 12,
-    released: 0,
-    players: [{ id: "ava-stone", name: "Ava Stone", headshot: null }],
+    betRoster: [{ id: "ava-stone", name: "Ava Stone", headshot: null }],
+    bet: null,
+    summary: null,
+    cast: [],
+    episodes: [1, 2, 3, 4].map((ep) => ({
+      ep,
+      title: null,
+      releaseAt: new Date(now + (ep - 1.5) * 86_400_000).toISOString(),
+      closed: false,
+      events: 3,
+      answered: 0,
+    })),
   });
   shell();
+  expect(await screen.findByText("Showing tus-5")).toBeTruthy();
+  expect(screen.getAllByRole("navigation", { name: "Main" })[0]).toBeTruthy();
+  const aside = screen.getByRole("complementary", { name: "Winner bet" });
+  const banner = within(aside);
+  // One of four episodes is out.
+  expect(aside.textContent).toContain("Worth 75% now");
+  fireEvent.click(banner.getByRole("button", { name: "Lock in" }));
   expect(await screen.findByRole("heading", { name: "Who takes the pot?" })).toBeTruthy();
-  expect(screen.queryByText("Showing tus-5")).toBeNull();
-  expect(screen.queryByRole("link", { name: "Leaderboard" })).toBeNull();
+  expect(screen.getByRole("button", { name: "Ava Stone" })).toBeTruthy();
 });
 
 it("shows a finished season's history in place of the tabs", async () => {

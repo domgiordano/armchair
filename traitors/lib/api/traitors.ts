@@ -15,15 +15,22 @@ export interface WinnerPick {
   faction: Faction;
 }
 
-/** A current season before the caller's winner bet: nothing else is sent. */
-export interface BetGate {
-  season: string;
-  title: string;
-  current: boolean;
-  needsBet: true;
-  episodes: number;
-  released: number;
-  players: Player[];
+/** How a player left: "banished", "murdered", "winner", or whatever word the page used. */
+export interface Exit {
+  ep: number;
+  how: string;
+}
+
+/** A season's player. Faction and exit are sent only once they're out in an episode you may see. */
+export interface CastMember extends Player {
+  faction: Faction | null;
+  exit: Exit | null;
+}
+
+export interface Writeup {
+  text: string;
+  /** The Wikipedia article it's from: CC BY-SA, so always linked. */
+  sourceUrl: string;
 }
 
 export interface SeasonEpisode {
@@ -36,16 +43,21 @@ export interface SeasonEpisode {
   answered: number;
 }
 
+/** Everything is browsable before the bet; only picks wait for it (403). */
 export interface SeasonView {
   season: string;
   title: string;
   current: boolean;
-  needsBet: false;
+  needsBet: boolean;
+  /** Who the bet may name, sent while it's needed. */
+  betRoster?: Player[];
   bet: { picks: WinnerPick[]; released: number } | null;
   episodes: SeasonEpisode[];
+  summary: Writeup | null;
+  /** A finished season's champions. */
+  winners?: (Player & { faction: Faction | null })[];
+  cast: CastMember[];
 }
-
-export type TraitorsSeason = BetGate | SeasonView;
 
 export interface Mine {
   picks?: string[];
@@ -104,13 +116,17 @@ export interface Episode {
   closed: boolean;
   /** Everyone still in at the start of the episode. */
   roster: Player[];
+  /** Who left before it, with their faction once it's known. */
+  out: (Exit & { id: string; faction: Faction | null })[];
+  /** Picks wait for the winner bet; the episode still shows. */
+  needsBet: boolean;
   events: EpisodeEvent[];
 }
 
 export const epParam = (ep: number) => String(ep).padStart(2, "0");
 
 export const getTraitorsSeason = (season: string) =>
-  request<TraitorsSeason>(`/traitors/season?season=${encodeURIComponent(season)}`);
+  request<SeasonView>(`/traitors/season?season=${encodeURIComponent(season)}`);
 
 export const submitWinner = (season: string, picks: WinnerPick[]) =>
   request<{ picks: WinnerPick[]; released: number }>("/traitors/winner", {
