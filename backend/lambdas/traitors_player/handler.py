@@ -1,8 +1,13 @@
 """
 GET /traitors/player?show=tus&id=<player id> - one Traitors player across an edition's seasons.
 
-    {id, name, headshot, seasons: [{season, number, current,
+    {id, name, headshot, headshotCredit: {source, sourceUrl, author, license} | null,
+     bio: {text, sourceUrl} | null,
+     seasons: [{season, number, current, championship: bool,
       finish: {how, ep} | null, faction: str | null, votes: [{ep, received}] | null}]}
+
+`bio` is the lead of the player's own Wikipedia article, attributed by `sourceUrl`
+(CC BY-SA), written by discovery.
 
 A past season shows everything: the finish, the final faction, and the first-vote count
 the player drew at each round table they sat at with a confirmed result. The current
@@ -20,7 +25,7 @@ from lambdas.common.episodes_dynamo import episode_pk, season_pk
 from lambdas.common.people import person
 from lambdas.common.traitors_catalog import EDITIONS
 from lambdas.common.traitors_dynamo import season_parts
-from lambdas.common.traitors_gate import closed, ep_number, result
+from lambdas.common.traitors_gate import closed, credit, ep_number, result
 
 ID = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 
@@ -75,6 +80,7 @@ def handler(event, context):
                 "season": f"{show}-{n}",
                 "number": n,
                 "current": current,
+                "championship": (exit_ or {}).get("how") == "winner",
                 "finish": exit_,
                 # A running season's faction is only ever written by the banishment that ends it.
                 "faction": me.get("faction") if exit_ or not current else None,
@@ -87,6 +93,8 @@ def handler(event, context):
             "id": pid,
             "name": found["name"],
             "headshot": shot and shot["image"],
+            "headshotCredit": shot and credit(shot),
+            "bio": found.get("bio"),
             "seasons": out,
         }
     )

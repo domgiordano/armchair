@@ -49,6 +49,29 @@ def test_meta_index_and_players():
     assert not any("faction" in r or "exit" in r for r in nb.values())
 
 
+def test_summary_and_bios():
+    parsed = season((WIKI / "traitors-us5-1377883386.wikitext").read_text())
+    lead = {"text": "New Blood.", "sourceUrl": "https://en.wikipedia.org/wiki/New_Blood"}
+    bio = {"text": "A first baseman.", "sourceUrl": "https://en.wikipedia.org/wiki/Xavier_Scruggs"}
+    out = items(
+        "tus",
+        5,
+        {"pageid": 1, "title": "New Blood"},
+        parsed,
+        current=True,
+        open_at="2026-10-15T00:00:00Z",
+        summary=lead,
+        bios={"Xavier Scruggs": bio},
+    )
+    by_sk = {r["sk"]: r for r in out}
+    assert by_sk["META"]["summary"] == lead
+    assert (by_sk["PLAYER#xavier-scruggs"]["article"], by_sk["PLAYER#xavier-scruggs"]["bio"]) == (
+        "Xavier Scruggs",
+        bio,
+    )
+    assert (by_sk["PLAYER#kim-daily"]["article"], by_sk["PLAYER#kim-daily"]["bio"]) == (None, None)
+
+
 def test_release_time_override():
     eps = [{"n": 1, "date": "2027-01-08"}]
     assert release_times(eps, "America/New_York", "21:00") == {1: "2027-01-09T02:00:00Z"}

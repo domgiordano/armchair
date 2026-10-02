@@ -7,7 +7,8 @@
 
 Episodes released before --open-at are closed: results showing, no picks. Without it a
 first seed opens the season now and a re-seed keeps whatever openAt it already has.
-Results, factions and exits are the poller's to write, never this script's.
+Results, factions and exits are the poller's to write, never this script's. The season
+summary and player bios are re-fetched from Wikipedia on every run.
 """
 
 from __future__ import annotations
@@ -26,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lambdas.common.catalog_dynamo import write
 from lambdas.common.traitors_catalog import EDITIONS, items
 from lambdas.common.traitors_parse import season
-from lambdas.common.wiki_fetch import latest
+from lambdas.common.wiki_fetch import latest, leads, summary
 
 HEADSHOTS = Path(__file__).resolve().parents[2] / "fixtures" / "traitors-headshots.json"
 
@@ -56,6 +57,8 @@ def main(argv: list[str] | None = None) -> None:
         open_at=args.open_at or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         release_time=args.release_time,
         headshots=json.loads(HEADSHOTS.read_text()) if HEADSHOTS.exists() else None,
+        summary=summary(args.pageid),
+        bios=leads([p["article"] for p in parsed["contestants"] if p["article"]]),
     )
     if args.dry_run:
         print(json.dumps(rows, indent=2, ensure_ascii=False))

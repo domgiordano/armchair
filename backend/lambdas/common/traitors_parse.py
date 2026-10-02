@@ -15,6 +15,8 @@ from lambdas.common.wiki_parse import expand
 SPAN = re.compile(r'(row|col)span\s*=\s*"?(\d+)')
 TEMPLATE = re.compile(r"\{\{([^{}]*)\}\}")
 LINK = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]]*)\]\]")
+WIKILINK = re.compile(r"\[\[(?!(?:File|Image):)([^\]|#]+)", re.IGNORECASE)
+SORTNAME = re.compile(r"\{\{\s*sortname\s*\|([^{}]*)\}\}", re.IGNORECASE)
 EPISODE = re.compile(r"Episode\s*(\d+)")
 START_DATE = re.compile(r"\{\{\s*Start date\s*\|\s*(\d{4})\s*\|\s*(\d{1,2})\s*\|\s*(\d{1,2})")
 DAGGER = re.compile(r"\{\{\s*efn\s*\|\s*name\s*=\s*\"?Dagger|\(2x\)", re.IGNORECASE)
@@ -177,8 +179,23 @@ def episodes(wikitext: str) -> list[dict]:
     return out
 
 
+def article(raw: str) -> str | None:
+    """The article a Contestants name cell links to: `{{sortname}}` unless `nolink`, else a wikilink."""
+    # Dorinda Medley's cell links her earlier season on a second line.
+    raw = re.split(r"<br", raw)[0]
+    if m := SORTNAME.search(raw):
+        parts = [p.strip() for p in m.group(1).split("|")]
+        if any(p.startswith("nolink") for p in parts):
+            return None
+        named = [p for p in parts if "=" not in p]
+        return named[2] if len(named) > 2 and named[2] else " ".join(named[:2])
+    if m := WIKILINK.search(raw):
+        return m.group(1).strip()
+    return None
+
+
 def contestants(wikitext: str) -> list[dict]:
-    """The Contestants table: name, affiliations in order (a recruit may show two), and finish."""
+    """The Contestants table: name, linked article, affiliations in order (a recruit may show two), and finish."""
     for rows in tables(section(wikitext, "Contestants", "Cast")):
         head = [c["text"] for c in expand(rows[:1])[0]]
         finish_at = next((i for i, h in enumerate(head) if h in ("Finish", "Status")), None)
@@ -186,7 +203,8 @@ def contestants(wikitext: str) -> list[dict]:
             continue
         out = []
         for row in expand(rows)[1:]:
-            name = next((c["text"] for c in row if c["header"]), row[0]["text"]).split("\n")[0]
+            who = next((c for c in row if c["header"]), row[0])
+            name = who["text"].split("\n")[0]
             # "Secret Traitor" is a Traitor; a recruit's row may hold Faithful then Traitor.
             cells = {id(c): c for c in row}.values()
             sides = [f for c in cells for f in FACTIONS if c["text"].endswith(f)]
@@ -195,6 +213,7 @@ def contestants(wikitext: str) -> list[dict]:
             out.append(
                 {
                     "name": name,
+                    "article": article(who["raw"]),
                     "affiliation": sides,
                     "finish": {
                         "how": finish.split("\n")[0].split(" ")[0].lower() if finish else "",

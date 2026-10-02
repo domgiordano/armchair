@@ -73,6 +73,7 @@ locals {
     { name = "history", description = "A finished Traitors season: every episode's confirmed results and the winners", path_part = "history", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "ranks", description = "Users ranked by Traitors points, from per-user sums", path_part = "ranks", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "stats", description = "The caller's own Traitors points by event and episode", path_part = "stats", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "credits", description = "Who made each Traitors headshot in a season, and its license", path_part = "credits", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
 
   all_api_lambdas = merge(
@@ -148,6 +149,7 @@ locals {
     traitors_history   = ["catalog:Query", "performances:Query"]
     traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
+    traitors_credits   = ["catalog:Query"]
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
