@@ -68,7 +68,7 @@ def test_people_rows_carry_a_headshot_image_and_seasons(index):
         "id": "bruno-tonioli",
         "name": "Bruno Tonioli",
         "roles": ["judge"],
-        "headshot": "bruno-tonioli-e25ea8a395.webp",
+        "headshot": "supplied/bruno-tonioli-ffd9a03e76.webp",
         "seasons": list(range(1, 36)),
     }
 

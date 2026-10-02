@@ -7,6 +7,8 @@
 
 fixtures/headshots.json maps each name as the fixtures spell it to a headshot or null.
 A name already there is never looked up again: delete its entry to retry it.
+An entry with "source": "supplied" is a photo we were given, cropped by hand to
+headshots/supplied/ in the site bucket: being in the registry, it beats any Commons pick.
 
 The person's article is the one a season page links the name to, else the article the
 name itself leads to when that links to the show. It only counts when its Wikidata item

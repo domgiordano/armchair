@@ -159,7 +159,7 @@ def test_every_registry_headshot_is_credited_and_free():
     images = [shot["image"] for shot in REG.values() if shot]
     assert len(images) == len(set(images))
     for name, shot in REG.items():
-        if shot is None:
+        if shot is None or shot.get("source") == "supplied":
             continue
         keys = {"file", "image", "author", "license", "sourceUrl"}
         assert set(shot) == keys | ({"box"} if name in MANUAL else set()), name
@@ -167,6 +167,42 @@ def test_every_registry_headshot_is_credited_and_free():
         assert shot["sourceUrl"].startswith("https://commons.wikimedia.org/wiki/File:"), name
         assert re.fullmatch(r"[a-z0-9-]+-[0-9a-f]{10}\.webp", shot["image"]), name
 
+
+
+def test_supplied_headshots_are_credited_as_supplied():
+    supplied = {n: s for n, s in REG.items() if s and s.get("source") == "supplied"}
+    assert "Witney Carson" in supplied
+    for name, shot in supplied.items():
+        assert {k: v for k, v in shot.items() if k != "image"} == {
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": None,
+            "source": "supplied",
+        }, name
+        assert re.fullmatch(r"supplied/[a-z0-9-]+-[0-9a-f]{10}\.webp", shot["image"]), name
+
+
+def test_a_supplied_entry_beats_a_commons_pick(tmp_path, monkeypatch):
+    supplied = REG["Carrie Ann Inaba"]
+    assert "Carrie Ann Inaba" in MANUAL
+    seasons = tmp_path / "seasons"
+    seasons.mkdir()
+    season = {
+        "wikiTitle": "S",
+        "contestants": [],
+        "judges": [{"name": "Carrie Ann Inaba"}, {"name": "Jane Doe"}],
+    }
+    (seasons / "dwts-1.json").write_text(json.dumps(season))
+    registry = tmp_path / "headshots.json"
+    registry.write_text(json.dumps({"Carrie Ann Inaba": supplied}))
+    monkeypatch.setattr(find_headshots, "SEASONS", seasons)
+    monkeypatch.setattr(find_headshots, "REGISTRY", registry)
+    with patch.object(find_headshots, "resolve", return_value={"Jane Doe": None}) as resolve:
+        find_headshots.main([])
+    assert set(resolve.call_args.args[0]) == {"Jane Doe"}
+    assert json.loads(registry.read_text())["Carrie Ann Inaba"] == supplied
+    judges = json.loads((seasons / "dwts-1.json").read_text())["judges"]
+    assert judges[0]["headshot"] == supplied
 
 FACE = (Path(__file__).parent / "fixtures" / "aldrin.jpg").read_bytes()
 
@@ -272,3 +308,30 @@ def test_upload_crops_a_manual_shot_by_its_box_without_a_face(monkeypatch):
             upload([shot], "site", dry_run=False)
         body = s3.get_object(Bucket="site", Key="headshots/judge-1.webp")["Body"].read()
         assert decode(body).shape == (faces.SIZE, faces.SIZE, 3)
+
+
+def test_upload_never_crops_a_supplied_shot(monkeypatch):
+    monkeypatch.setenv("AWS_DEFAULT_REGION", "us-east-1")
+    with mock_aws():
+        s3 = boto3.client("s3")
+        s3.create_bucket(Bucket="site")
+        s3.put_object(Bucket="site", Key="headshots/supplied/jane-1.webp", Body=b"ours")
+        shot = {"image": "supplied/jane-1.webp", "source": "supplied"}
+        with patch.object(faces, "fetch") as fetch:
+            upload([shot], "site", dry_run=False)
+        fetch.assert_not_called()
+        body = s3.get_object(Bucket="site", Key="headshots/supplied/jane-1.webp")["Body"]
+        assert body.read() == b"ours"
+
+
+def test_upload_fails_naming_a_supplied_shot_missing_from_the_bucket(monkeypatch):
+    monkeypatch.setenv("AWS_DEFAULT_REGION", "us-east-1")
+    with mock_aws():
+        boto3.client("s3").create_bucket(Bucket="site")
+        shot = {"image": "supplied/jane-1.webp", "source": "supplied"}
+        with (
+            patch.object(faces, "fetch") as fetch,
+            pytest.raises(SystemExit, match="supplied/jane-1.webp"),
+        ):
+            upload([shot], "site", dry_run=False)
+        fetch.assert_not_called()

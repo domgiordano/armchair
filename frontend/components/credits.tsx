@@ -34,30 +34,42 @@ function CreditList() {
   return (
     <>
       <PageHeader title="Photo credits">
-        Headshots come from Wikimedia Commons under the licenses below, cropped to the face. Each crop is shared under its photo&rsquo;s license.
+        Headshots come from Wikimedia Commons under the licenses below, cropped to the face. Each crop is shared under its photo&rsquo;s license. Supplied photos are used with permission.
       </PageHeader>
       <ul className="stagger flex flex-col divide-y divide-silver/10">
         {credited(load.season).map((p) => (
-          <li key={p.headshot.file} className="flex gap-3 py-3">
-            <Headshot person={p} />
-            <div className="flex min-w-0 flex-col text-sm">
-              <span className="font-medium text-pearl">{p.name}</span>
-              <span className="text-silver-dim">
-                {p.headshot.author} · {p.headshot.license}
-              </span>
-              <a
-                href={p.headshot.sourceUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-                className={`${TEXT_LINK} inline-flex min-h-11 items-center self-start`}
-              >
-                Source on Commons
-                <span className="sr-only"> for {p.name} (opens in a new tab)</span>
-              </a>
-            </div>
-          </li>
+          <Credit key={p.headshot.image} person={p} />
         ))}
       </ul>
     </>
+  );
+}
+
+export function Credit({ person: p }: { person: Credited }) {
+  return (
+    <li className="flex gap-3 py-3">
+      <Headshot person={p} />
+      <div className="flex min-w-0 flex-col text-sm">
+        <span className="font-medium text-pearl">{p.name}</span>
+        {p.headshot.sourceUrl === null ? (
+          <span className="text-silver-dim">Photo supplied</span>
+        ) : (
+          <>
+            <span className="text-silver-dim">
+              {p.headshot.author} · {p.headshot.license}
+            </span>
+            <a
+              href={p.headshot.sourceUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+              className={`${TEXT_LINK} inline-flex min-h-11 items-center self-start`}
+            >
+              Source on Commons
+              <span className="sr-only"> for {p.name} (opens in a new tab)</span>
+            </a>
+          </>
+        )}
+      </div>
+    </li>
   );
 }

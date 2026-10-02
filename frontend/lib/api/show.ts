@@ -1,13 +1,14 @@
 import { request } from "./client";
 
 export interface Headshot {
-  // The Commons file, credited on /credits.
-  file: string;
+  // The Commons file, credited on /credits. A supplied photo has none.
+  file?: string;
   // Our face-centred square crop of it, under /headshots/.
   image: string;
   author: string;
   license: string;
-  sourceUrl: string;
+  sourceUrl: string | null;
+  source?: "supplied";
 }
 
 export interface Person {

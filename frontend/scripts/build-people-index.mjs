@@ -30,7 +30,7 @@ const seasons = readdirSync(SEASONS)
 const found = new Map();
 const add = (id, member, season, role) => {
   const p = found.get(id) ?? { name: member.name, headshot: null, seen: [] };
-  p.headshot ??= member.headshot?.file ?? null;
+  p.headshot ??= member.headshot?.image ?? null;
   p.seen.push({ season, role });
   found.set(id, p);
 };

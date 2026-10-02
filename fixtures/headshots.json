@@ -34,7 +34,13 @@
     "license": "CC BY-SA 3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adam_Rippon_2009_TEB.jpg"
   },
-  "Adele Zaikman": null,
+  "Adele Zaikman": {
+    "image": "supplied/adele-zaikman-ba589efd8e.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Adrian Peterson": {
     "file": "Adrian_Peterson_(cropped).jpg",
     "image": "adrian-peterson-a6a3a7a57d.webp",
@@ -49,7 +55,13 @@
     "license": "CC BY 3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aiden_Turner_Super_soap_weekend_2008_081.JPG"
   },
-  "Alan Bersten": null,
+  "Alan Bersten": {
+    "image": "supplied/alan-bersten-aecfdbb0dd.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Albert Reed": null,
   "Alec Mazo": null,
   "Alek Skarlatos": {
@@ -117,11 +129,11 @@
   },
   "Amanda Kloots": null,
   "Amber Glenn": {
-    "file": "Amber_Glenn_in_2026.jpg",
-    "image": "amber-glenn-41c81d3036.webp",
-    "author": "SpiritedMichelle",
-    "license": "CC BY 4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Amber_Glenn_in_2026.jpg"
+    "image": "supplied/amber-glenn-783d8ef3c7.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Amber Riley": {
     "file": "Amber_Riley_by_Gage_Skidmore.jpg",
@@ -328,7 +340,13 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bobby_Bones_-_iHeartRadio_Theater.jpg"
   },
   "Bonner Bolton": null,
-  "Brandon Armstrong": null,
+  "Brandon Armstrong": {
+    "image": "supplied/brandon-armstrong-1db34609b0.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Brandy": null,
   "Brant Daugherty": null,
   "Brian Austin Green": {
@@ -353,11 +371,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bristol_Palin_by_Gage_Skidmore_4.jpg"
   },
   "Britt Stewart": {
-    "file": "Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg",
-    "image": "britt-stewart-b3460d77d9.webp",
-    "author": "CaseyJNewell",
-    "license": "CC BY-SA 4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Britt_Stewart_at_Tribeca_Film_Festival_2026-1.jpg"
+    "image": "supplied/britt-stewart-1609a4f07c.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Brooke Burke": {
     "file": "Brooke_Burke-D.jpg",
@@ -374,11 +392,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brooks_Nader_2.jpg"
   },
   "Bruno Tonioli": {
-    "file": "Bruno_Tonioli_in_2015.jpg",
-    "image": "bruno-tonioli-e25ea8a395.webp",
-    "author": "Beautiful: The Carole King Musical Opening Night Video",
-    "license": "CC BY 3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+    "image": "supplied/bruno-tonioli-ffd9a03e76.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Buzz Aldrin": {
     "file": "Buzz_Aldrin.jpg",
@@ -423,16 +441,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carole_Baskin_September_2019_(cropped).png"
   },
   "Carrie Ann Inaba": {
-    "file": "Carrie_Ann_Inaba.jpg",
-    "image": "carrie-ann-inaba-130d90accf.webp",
-    "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-    "license": "CC BY-SA 3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg",
-    "box": [
-      146,
-      112,
-      104
-    ]
+    "image": "supplied/carrie-ann-inaba-21ac504799.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Carson Kressley": {
     "file": "Carson_Kressley_(cropped).jpg",
@@ -593,7 +606,13 @@
     "license": "CC BY-SA 2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chynna_Phillips.jpg"
   },
-  "Ciara Miller": null,
+  "Ciara Miller": {
+    "image": "supplied/ciara-miller-375948eba8.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Cloris Leachman": {
     "file": "Cloris_Leachman_2014_crop.jpg",
     "image": "cloris-leachman-df40fc86e3.webp",
@@ -623,8 +642,20 @@
     "license": "CC BY-SA 2.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:CodySimpson2013,2.jpg"
   },
-  "Conner Leavitt": null,
-  "Connor Wood": null,
+  "Conner Leavitt": {
+    "image": "supplied/conner-leavitt-8154492979.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
+  "Connor Wood": {
+    "image": "supplied/connor-wood-96dd070c96.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Corbin Bleu": {
     "file": "Corbin_Bleu.jpg",
     "image": "corbin-bleu-f57d9ef920.webp",
@@ -671,16 +702,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Daniel_Durant_-_Being_Heumann_-_TIFF_2026-12.jpg"
   },
   "Daniella Karagach": {
-    "file": "Daniella_Karagach_on_Panache_Star_Dancesport.jpg",
-    "image": "daniella-karagach-9aba9ec295.webp",
-    "author": "Panache Star Dancesport",
-    "license": "CC BY 3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Daniella_Karagach_on_Panache_Star_Dancesport.jpg",
-    "box": [
-      140,
-      25,
-      150
-    ]
+    "image": "supplied/daniella-karagach-6bae38c539.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Danielle Fishel": {
     "file": "Danielle_Fishel_Photo_Op_GalaxyCon_Richmond_2023.jpg",
@@ -868,11 +894,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elizabeth_Berkley_2008.jpg"
   },
   "Emma Slater": {
-    "file": "Emma_Slater_DSC_1005.jpg",
-    "image": "emma-slater-f55b00f615.webp",
-    "author": "Bnbeeyu",
-    "license": "CC BY-SA 3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
+    "image": "supplied/emma-slater-c0ba71a277.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Emmitt Smith": {
     "file": "EmmittSmith2007.jpg",
@@ -924,13 +950,19 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evanna_Lynch_Comic_Con_Cape_Town_2026_02.jpg"
   },
   "Ezra Frech": {
-    "file": "Ezra_Frech_Milan_2026.jpg",
-    "image": "ezra-frech-b647cc81b7.webp",
-    "author": "US Embassy Italy",
-    "license": "Public domain",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ezra_Frech_Milan_2026.jpg"
+    "image": "supplied/ezra-frech-f260915f2c.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
-  "Ezra Sosa": null,
+  "Ezra Sosa": {
+    "image": "supplied/ezra-sosa-4cc33ee72c.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Fabian Sanchez": null,
   "Flavor Flav": {
     "file": "Flavor_Flav_of_Public_Enemy.jpg",
@@ -997,11 +1029,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:GeraldoRiveraSept2010.jpg"
   },
   "Giada De Laurentiis": {
-    "file": "Giada_De_Laurentiis,_2010_(cropped).jpg",
-    "image": "giada-de-laurentiis-be5349295c.webp",
-    "author": "kennejima",
-    "license": "CC BY 2.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Giada_De_Laurentiis,_2010_(cropped).jpg"
+    "image": "supplied/giada-de-laurentiis-2c1018dd08.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Gilles Marini": {
     "file": "Gilles_Marini_-_Monte-Carlo_Television_Festival.JPG",
@@ -1027,8 +1059,20 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gleb_Savchenko_(cropped).jpg"
   },
   "Guest judge": null,
-  "Guillermo Rodriguez": null,
-  "Hailey Bills": null,
+  "Guillermo Rodriguez": {
+    "image": "supplied/guillermo-rodriguez-da33441990.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
+  "Hailey Bills": {
+    "image": "supplied/hailey-bills-c4befc798c.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Hannah Brown": {
     "file": "Hannah_Brown_2018.jpg",
     "image": "hannah-brown-48a6a80757.webp",
@@ -1045,11 +1089,11 @@
   },
   "Harry Jowsey": null,
   "Harry Shum Jr.": {
-    "file": "Harry_Shum_by_Gage_Skidmore.jpg",
-    "image": "harry-shum-jr-af4b3e6781.webp",
-    "author": "Gage Skidmore",
-    "license": "CC BY-SA 3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Harry_Shum_by_Gage_Skidmore.jpg"
+    "image": "supplied/harry-shum-jr-5eb4235267.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Hayes Grier": null,
   "Heather Mills": {
@@ -1148,7 +1192,13 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jack_Osbourne_2011_Shankbone.JPG"
   },
   "Jack Wagner": null,
-  "Jackson Olson": null,
+  "Jackson Olson": {
+    "image": "supplied/jackson-olson-ca86af28df.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Jacoby Jones": {
     "file": "Jacoby_Jones_(16070179516).jpg",
     "image": "jacoby-jones-900a2d9ed9.webp",
@@ -1213,11 +1263,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jamie_Lynn_Spears.jpg"
   },
   "Jan Ravnik": {
-    "file": "Taylor_Swift_The_Eras_Tour_1989_Era_Set_(53109932195)_(cropped).jpg",
-    "image": "jan-ravnik-a3d6086739.webp",
-    "author": "Paolo V",
-    "license": "CC BY 2.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_The_Eras_Tour_1989_Era_Set_(53109932195)_(cropped).jpg"
+    "image": "supplied/jan-ravnik-8f506fd695.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Jana Kramer": {
     "file": "Jana_Kramer_2019_by_Glenn_Francis_(cropped).jpg",
@@ -1278,7 +1328,13 @@
     "license": "CC BY 4.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jenna_Dewan_at_San_Diego_Comic_Con_2026-2.jpg"
   },
-  "Jenna Johnson": null,
+  "Jenna Johnson": {
+    "image": "supplied/jenna-johnson-5f262b7287.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Jennie Finch Daigle": null,
   "Jennie Garth": {
     "file": "Jennie_Garth_at_CCR_Ontario_2026.jpg",
@@ -1463,11 +1519,11 @@
   },
   "Juan Pablo Di Pace": null,
   "Julia Stiles": {
-    "file": "Julia_Stiles_by_David_Shankbone_cropped.jpg",
-    "image": "julia-stiles-f97591bdab.webp",
-    "author": "David Shankbone",
-    "license": "CC BY-SA 3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julia_Stiles_by_David_Shankbone_cropped.jpg"
+    "image": "supplied/julia-stiles-c1cf2e67be.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Julianne Hough": {
     "file": "Julianne_Hough_(25831904580)_(cropped).jpg",
@@ -1850,11 +1906,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marissa_Jaret_Winokur.jpg"
   },
   "Mark Ballas": {
-    "file": "Mark_Ballas_2013.jpg",
-    "image": "mark-ballas-abad087c60.webp",
-    "author": "Justin Higuchi",
-    "license": "CC BY 2.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
+    "image": "supplied/mark-ballas-1edf1a5670.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Mark Cuban": {
     "file": "MarkCuban2023.jpg",
@@ -1928,11 +1984,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Matt_Walsh_2014.jpg"
   },
   "Maura Higgins": {
-    "file": "Maura_Higgins,_world_premier_of_\"Argylle\"_in_London,_January_2024_(crop).jpg",
-    "image": "maura-higgins-2f41ec8964.webp",
-    "author": "Daltoncitys",
-    "license": "CC BY-SA 4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maura_Higgins,_world_premier_of_%22Argylle%22_in_London,_January_2024_(crop).jpg"
+    "image": "supplied/maura-higgins-c9e0d5edc5.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Maureen McCormick": {
     "file": "Maureen_McCormick_Maui_crop.PNG",
@@ -2265,16 +2321,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pamela_Anderson_2024_Headshot_by_Norman_Wong.jpg"
   },
   "Pasha Pashkov": {
-    "file": "Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
-    "image": "pasha-pashkov-a5b8ecbbe7.webp",
-    "author": "Panache Star Dancesport",
-    "license": "CC BY 3.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pasha_Pashkov_on_Panache_Star_Dancesport.jpg",
-    "box": [
-      245,
-      0,
-      175
-    ]
+    "image": "supplied/pasha-pashkov-8af70af3ed.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Patti LaBelle": {
     "file": "Patti_Labelle_at_Black_Excellence_Brunch_New_Orleans_2026.jpg",
@@ -2484,11 +2535,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:London_2012_200m_backstroke_IMG_5105_(7737962738)_(Lochte).jpg"
   },
   "Rylee Arnold": {
-    "file": "Rylee_Arnold_at_Press_Play_2026.jpg",
-    "image": "rylee-arnold-6c46e03e23.webp",
-    "author": "Mikepascoe",
-    "license": "CC0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rylee_Arnold_at_Press_Play_2026.jpg"
+    "image": "supplied/rylee-arnold-fc99161a42.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Sabrina Bryan": {
     "file": "SabrinaDWTSLV.JPG",
@@ -2525,7 +2576,13 @@
     "license": "Public domain",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sara_Evans_-_June_2018_01.jpg"
   },
-  "Sarah Jane Nader": null,
+  "Sarah Jane Nader": {
+    "image": "supplied/sarah-jane-nader-942df2a7ff.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Sasha Farber": null,
   "Sasha Pieterse": {
     "file": "Sasha_Pieterse_PaleyFest_2014_(cropped).jpg",
@@ -2606,16 +2663,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shannon_Elizabeth_Photo_Op_GalaxyCon_Richmond_2020.jpg"
   },
   "Sharna Burgess": {
-    "file": "2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
-    "image": "sharna-burgess-8323368f60.webp",
-    "author": "NaBUru38",
-    "license": "CC BY-SA 4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
-    "box": [
-      245,
-      130,
-      150
-    ]
+    "image": "supplied/sharna-burgess-e9aa718db2.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Shawn Johnson": {
     "file": "Johnson_in_2012_-_Portrait.jpg",
@@ -2723,11 +2775,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tatum_O%27Neal_in_2019.jpg"
   },
   "Tatyana Ali": {
-    "file": "Streamy_Awards_Photo_1302_(4513297565).jpg",
-    "image": "tatyana-ali-2ac84160c2.webp",
-    "author": "The Bui Brothers",
-    "license": "CC BY-SA 2.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Streamy_Awards_Photo_1302_(4513297565).jpg"
+    "image": "supplied/tatyana-ali-6f583bba48.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Tavis Smiley": {
     "file": "Tavis_Smiley.jpg",
@@ -2737,11 +2789,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tavis_Smiley.jpg"
   },
   "Taylor Hanson": {
-    "file": "Hanson_(33424899242).jpg",
-    "image": "taylor-hanson-dc2655a08c.webp",
-    "author": "friedoxygen",
-    "license": "CC BY 2.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hanson_(33424899242).jpg"
+    "image": "supplied/taylor-hanson-4e636f6c19.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Ted McGinley": {
     "file": "Ted_McGinley_at_PaleyLive_Shrinking_2024.jpg",
@@ -2852,7 +2904,13 @@
     "license": "CC BY-SA 3.0",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:TyMurrayApr09.jpg"
   },
-  "Tyler Cameron": null,
+  "Tyler Cameron": {
+    "image": "supplied/tyler-cameron-44f6b7906a.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Tyne Stecklein": null,
   "Tyson Beckford": {
     "file": "Tyson_Beckford_(cropped).jpg",
@@ -2861,7 +2919,13 @@
     "license": "CC BY-SA 2.5",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tyson_Beckford_(cropped).jpg"
   },
-  "Val Chmerkovskiy": null,
+  "Val Chmerkovskiy": {
+    "image": "supplied/val-chmerkovskiy-34ab6f119d.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
+  },
   "Valentin Chmerkovskiy": null,
   "Valerie Harper": {
     "file": "Valerie_Harper_in_1996_(cropped).jpg",
@@ -2991,11 +3055,11 @@
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:SDCC_2015_-_Willow_Shields_(19033948844).jpg"
   },
   "Witney Carson": {
-    "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
-    "image": "witney-carson-ba7b85273c.webp",
-    "author": "Toglenn",
-    "license": "CC BY-SA 4.0",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
+    "image": "supplied/witney-carson-58fe897bcc.webp",
+    "author": "Supplied",
+    "license": "Used with permission",
+    "sourceUrl": null,
+    "source": "supplied"
   },
   "Wynonna Judd": {
     "file": "Wynonna_Judd_performs_live.jpg",

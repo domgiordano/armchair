@@ -95,7 +95,9 @@ def test_your_average_against_the_judges(show):
     answer(A, X, ep=4, value=10)
     answer(A, X, value=7)
     x = couple(performers(), X)
-    assert x["members"][0] == {"name": "Tyler Cameron", "role": "celebrity", "headshot": None}
+    tyler = x["members"][0]
+    assert (tyler["name"], tyler["role"]) == ("Tyler Cameron", "celebrity")
+    assert tyler["headshot"]["image"] == "supplied/tyler-cameron-44f6b7906a.webp"
     assert (x["dances"], x["you"], x["judges"], x["judged"]) == (2, 8.5, 8, 2)
     assert (x["gap"], x["absGap"]) == (0.5, 1.5)
     assert (x["best"]["ep"], x["best"]["paddle"]) == (4, 10)

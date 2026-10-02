@@ -345,7 +345,7 @@ function Results({ id, labelId, groups, active, optionId, onPick, empty, error, 
 function Option({ id, hit, active, onPick }: { id: string; hit: Hit; active: boolean; onPick: () => void }) {
   let face: ReactNode;
   if (hit.image !== undefined) {
-    const headshot = hit.image ? { file: "", image: hit.image, author: "", license: "", sourceUrl: "" } : null;
+    const headshot = hit.image ? { image: hit.image, author: "", license: "", sourceUrl: null } : null;
     face = <Headshot person={{ name: hit.name, headshot }} size={36} />;
   } else {
     face = <Avatar name={hit.name} email="" picture={hit.picture ?? null} size={36} />;
