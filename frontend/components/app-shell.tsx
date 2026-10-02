@@ -17,6 +17,7 @@ import { ToastProvider } from "@/components/ui/toast";
 import { getMe, type Me } from "@armchair/app-core/api/client";
 import { prefetchPage } from "@/lib/api/prefetch";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
+import { canGoBack, parentOf, trackHistory } from "@/lib/nav/back";
 import { SEASONS, seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
 import { FOCUS } from "@/lib/ui";
 
@@ -36,8 +37,10 @@ export const TABS: Tab[] = [
   { href: "/discover/", label: "Discover", match: ["/discover", "/people"] },
 ];
 
+const bare = (path: string) => path.replace(/\/+$/, "") || "/";
+
 export function activeTab(pathname: string): Tab | undefined {
-  const path = pathname.replace(/\/+$/, "") || "/";
+  const path = bare(pathname);
   return TABS.find((t) =>
     t.match.some((m) => (m === "/" ? path === "/" : path === m || path.startsWith(`${m}/`))),
   );
@@ -69,15 +72,18 @@ export function AppShell({ title, wide = false, children }: AppShellProps) {
 
 function Shell({ title, wide, children }: AppShellProps) {
   const pathname = usePathname();
-  const search = useSearchParams().toString();
+  const params = useSearchParams();
+  const search = params.toString();
   const season = useSeasonId();
   const current = activeTab(pathname);
+  const root = TABS.some((t) => bare(t.href) === bare(pathname));
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
 
   // Effects run child first, so the page's own first reads are already in
   // flight and this adds the ones it would only make after its season loads.
   useEffect(() => prefetchPage(`${pathname}?${search}`, season), [pathname, search, season]);
+  useEffect(trackHistory, [pathname, search]);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -105,7 +111,8 @@ function Shell({ title, wide, children }: AppShellProps) {
           >
             <MenuIcon />
           </button>
-          <Brand />
+          {!root && <BackLink key={pathname} parent={parentOf(pathname, params, season)} />}
+          <Brand compact={!root} />
           <div className="ml-2 hidden md:block">
             <SeasonPicker season={season} />
           </div>
@@ -175,6 +182,26 @@ function Shell({ title, wide, children }: AppShellProps) {
         {children}
       </main>
     </div>
+  );
+}
+
+/** Back through this site's history, or a plain link up to the page's parent when there is none. */
+function BackLink({ parent }: { parent: string }) {
+  return (
+    <Link
+      href={parent}
+      aria-label="Back"
+      onClick={(e) => {
+        if (!canGoBack()) return;
+        e.preventDefault();
+        window.history.back();
+      }}
+      className={`${ICON_BUTTON} group animate-back-in`}
+    >
+      <svg {...ICON} className="transition-transform duration-200 group-hover:-translate-x-0.5 group-active:-translate-x-1">
+        <path d="M15 5l-7 7 7 7" />
+      </svg>
+    </Link>
   );
 }
 

@@ -12,16 +12,10 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { signInWithGoogle, useAuth } from "@/lib/auth/use-auth";
 import { dwtsLink } from "@/lib/links";
+import { TABS } from "@/lib/tabs";
 
 import { NavSheet } from "./nav-sheet";
 import { FOCUS, PRIMARY } from "./ui";
-
-export const TABS = [
-  { href: "/", label: "Home" },
-  { href: "/stats/", label: "Stats" },
-  { href: "/leaderboards/", label: "Leaderboards" },
-  { href: "/social/", label: "Social" },
-];
 
 const isActive = (href: string, pathname: string) => {
   const path = pathname.replace(/\/+$/, "") || "/";

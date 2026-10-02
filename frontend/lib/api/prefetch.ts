@@ -2,6 +2,7 @@ import { getPerformers } from "@/lib/api/couples";
 import { getGroupDetails, getMyGroups } from "@armchair/app-core/api/groups";
 import { ALL_TIME, getLeaderboard } from "@/lib/api/leaderboard";
 import { getOverview } from "@/lib/api/overview";
+import { getPerson } from "@/lib/api/people";
 import { getEpisodeState, getSeason } from "@/lib/api/show";
 import { getFriends } from "@armchair/app-core/api/social";
 import { getStats } from "@/lib/api/stats";
@@ -36,10 +37,16 @@ export function prefetchPage(href: string, season: string): void {
     }
     case "/stats/":
       return start(getSeason(season), getMyGroups(), getStats(season, group));
-    case "/couples/":
+    case "/couples/": {
+      const compare = url.searchParams.get("compare") ?? (url.searchParams.get("view") === "week" ? "week" : null);
       start(getSeason(season), getMyGroups());
-      if (url.searchParams.get("view") !== "week") start(getPerformers(season, group));
+      // The roster reads performers for the caller alone; the season comparison, for the group.
+      if (compare === null) start(getOverview(season), getPerformers(season, null));
+      if (compare === "season") start(getPerformers(season, group));
       return;
+    }
+    case "/couples/couple/":
+      return start(getSeason(season), getPerson(url.searchParams.get("id") ?? "", season));
     case "/discover/":
       return start(getSeason(season), getFriends(), getMyGroups());
     case "/groups/":

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { AccountButton } from "@/components/account/account-button";
 import { AppsMenu } from "@/components/apps-menu";
+import { BackLink } from "@/components/back-link";
 import { ChairMark } from "@/components/chair-mark";
 
 const link =
@@ -32,9 +33,10 @@ export function SiteHeader({ sections = true, menu, tabs }: SiteHeaderProps) {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <div className="flex items-center gap-1">
           {menu}
-          <Link href="/" className="group flex min-h-11 items-center gap-2 rounded-lg focus-visible:outline-2 focus-visible:outline-gold">
+          <BackLink />
+          <Link href="/" aria-label="Armchair Judge" className="group flex min-h-11 items-center gap-2 rounded-lg focus-visible:outline-2 focus-visible:outline-gold">
             <ChairMark className="h-9 w-9 transition-transform duration-300 group-hover:-rotate-6 motion-reduce:transition-none" />
-            <span className="text-base font-bold tracking-tight whitespace-nowrap">
+            <span className="brand-word text-base font-bold tracking-tight whitespace-nowrap">
               Armchair <span className="text-brand-gradient">Judge</span>
             </span>
           </Link>
