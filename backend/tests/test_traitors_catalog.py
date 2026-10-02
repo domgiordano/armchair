@@ -1,7 +1,9 @@
 from pathlib import Path
 
+from lambdas.common.catalog_dynamo import write
 from lambdas.common.traitors_catalog import items, release_times
 from lambdas.common.traitors_parse import season
+from tests.conftest import CATALOG_TABLE
 
 WIKI = Path(__file__).parents[2] / "fixtures" / "wiki"
 
@@ -50,3 +52,16 @@ def test_meta_index_and_players():
 def test_release_time_override():
     eps = [{"n": 1, "date": "2027-01-08"}]
     assert release_times(eps, "America/New_York", "21:00") == {1: "2027-01-09T02:00:00Z"}
+
+
+def test_a_reseed_keeps_a_headshot_written_onto_the_player(aws):
+    catalog = aws.Table(CATALOG_TABLE)
+    shot = {"image": "kim-daily-1.webp", "sourceUrl": "https://f/File:K.webp", "source": "fandom"}
+    nb = rows("tus", 5, "traitors-us5-1377883386", "The Traitors: New Blood")
+    assert "headshot" not in nb["PLAYER#kim-daily"]
+    catalog.put_item(Item={"pk": "SEASON#tus#5", "sk": "PLAYER#kim-daily", "headshot": shot})
+
+    write(catalog, list(nb.values()), keep={"openAt"})
+
+    item = catalog.get_item(Key={"pk": "SEASON#tus#5", "sk": "PLAYER#kim-daily"})["Item"]
+    assert (item["name"], item["headshot"]) == ("Kim Daily", shot)
