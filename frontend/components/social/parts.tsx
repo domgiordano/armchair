@@ -6,7 +6,7 @@ import { Avatar } from "@/components/avatar";
 import { EmptyState } from "@/components/ui/states";
 import { useToast } from "@/components/ui/toast";
 import { UserLink } from "@/components/user-link";
-import type { Friends, Person, Relation } from "@/lib/api/social";
+import type { Friends, Person, Relation } from "@armchair/app-core/api/social";
 import { button, cn, EYEBROW, INPUT } from "@/lib/ui";
 
 export { FOCUS, INPUT } from "@/lib/ui";

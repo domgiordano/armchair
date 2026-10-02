@@ -1,5 +1,5 @@
-import { request } from "./client";
-import type { GroupMember } from "./groups";
+import { request } from "@armchair/app-core/api/client";
+import type { GroupMember } from "@armchair/app-core/api/groups";
 
 export type Scope = "global" | "friends" | "group";
 

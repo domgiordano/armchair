@@ -5,8 +5,8 @@ import { useSyncExternalStore } from "react";
 import { AppShell } from "@/components/app-shell";
 import { Landing } from "@/components/landing";
 import { Overview } from "@/components/overview";
-import { likelySignedIn } from "@/lib/auth/session-hint";
-import { useAuth } from "@/lib/auth/use-auth";
+import { likelySignedIn } from "@armchair/app-core/auth/session-hint";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
 
 const noSubscribe = () => () => {};
 

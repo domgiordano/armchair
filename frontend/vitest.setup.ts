@@ -1,7 +1,7 @@
 import { cleanup } from "@testing-library/react";
 import { afterEach, vi } from "vitest";
 
-import { clearCache } from "@/lib/api/cache";
+import { clearCache } from "@armchair/app-core/api/cache";
 
 // Node 25 defines empty global localStorage/sessionStorage stubs that shadow jsdom's.
 const jsdomWindow = (globalThis as unknown as { jsdom: { window: Window } }).jsdom.window;

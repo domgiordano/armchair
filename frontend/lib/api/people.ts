@@ -1,6 +1,6 @@
-import { request } from "./client";
+import { request } from "@armchair/app-core/api/client";
 import type { Answer, Headshot, JudgeSeat } from "./show";
-import type { Match } from "./social";
+import type { Match } from "@armchair/app-core/api/social";
 
 export type Role = "celebrity" | "pro" | "judge";
 

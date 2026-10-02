@@ -7,7 +7,7 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
   useSearchParams: () => nav.search,
 }));
-vi.mock("@/lib/auth/use-auth", () => ({
+vi.mock("@armchair/app-core/auth/use-auth", () => ({
   useAuth: () => ({ status: "signedIn", signInWithGoogle: vi.fn(), signOut: vi.fn() }),
 }));
 vi.mock("@/lib/api/show", async (importOriginal) => ({
@@ -19,7 +19,7 @@ vi.mock("@/lib/api/people", async (importOriginal) => ({
   getPerson: vi.fn(),
 }));
 
-import { ApiError } from "@/lib/api/client";
+import { ApiError } from "@armchair/app-core/api/client";
 import { getPerson, type OpenRow, type PerformanceRow, type PersonPage, type SeasonResult } from "@/lib/api/people";
 import { getSeason, type Season } from "@/lib/api/show";
 import { CoupleScreen } from "./couple-screen";

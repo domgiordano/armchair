@@ -7,7 +7,7 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: nav.push, replace: nav.replace }),
   useSearchParams: () => nav.search,
 }));
-vi.mock("@/lib/auth/use-auth", () => ({
+vi.mock("@armchair/app-core/auth/use-auth", () => ({
   useAuth: () => ({ status: "signedIn", signInWithGoogle: vi.fn(), signOut: vi.fn() }),
 }));
 vi.mock("@/lib/api/show", async (importOriginal) => ({
@@ -26,13 +26,13 @@ vi.mock("@/lib/api/people", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/people")>()),
   getPerson: vi.fn(),
 }));
-vi.mock("@/lib/api/groups", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/groups")>()),
   getMyGroups: vi.fn(),
 }));
 
 import { getPerformers, type CoupleStats, type Elimination, type Performers } from "@/lib/api/couples";
-import { getMyGroups } from "@/lib/api/groups";
+import { getMyGroups } from "@armchair/app-core/api/groups";
 import { getOverview, type CoupleStanding, type Overview } from "@/lib/api/overview";
 import { getPerson, type PersonPage } from "@/lib/api/people";
 import { getSeason, type Member, type Season } from "@/lib/api/show";

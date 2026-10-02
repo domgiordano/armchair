@@ -12,15 +12,15 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => nav.search,
 }));
 const signOut = vi.hoisted(() => vi.fn(() => Promise.resolve()));
-vi.mock("@/lib/auth/use-auth", () => ({ useAuth: () => ({ signOut }) }));
-vi.mock("@/lib/api/client", () => ({ getMe: vi.fn() }));
+vi.mock("@armchair/app-core/auth/use-auth", () => ({ useAuth: () => ({ signOut }) }));
+vi.mock("@armchair/app-core/api/client", () => ({ getMe: vi.fn() }));
 const unread = vi.hoisted(() => ({ n: 0 }));
-vi.mock("@/lib/social/notifications", () => ({
+vi.mock("@armchair/app-core/social/notifications", () => ({
   useNotifications: () => ({ unread: unread.n, items: [], loaded: true, error: null, more: false }),
   useMarkAllReadOnView: () => {},
 }));
 
-import { getMe } from "@/lib/api/client";
+import { getMe } from "@armchair/app-core/api/client";
 import { parentOf, resetHistory } from "@/lib/nav/back";
 import { activeTab, AppShell } from "./app-shell";
 

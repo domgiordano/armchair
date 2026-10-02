@@ -15,7 +15,7 @@ import { SignedIn } from "@/components/signed-in";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
-import { ApiError } from "@/lib/api/client";
+import { ApiError } from "@armchair/app-core/api/client";
 import { getPerson, type OpenRow, type PersonPage, type SeasonResult } from "@/lib/api/people";
 import { getSeason, type Contestant, type Season } from "@/lib/api/show";
 import { coupleResult, coupleTotals, paddle, type CoupleTotals } from "@/lib/show/couple";

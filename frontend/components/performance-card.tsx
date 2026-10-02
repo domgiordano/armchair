@@ -4,7 +4,7 @@ import { Desk, type DeskMember } from "@/components/desk";
 import { EliminatedStamp } from "@/components/eliminated";
 import { CoupleAvatars, Headshot } from "@/components/headshot";
 import type { Elimination } from "@/lib/api/couples";
-import type { GroupMember } from "@/lib/api/groups";
+import type { GroupMember } from "@armchair/app-core/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { PaddlePicker } from "@/components/paddle-picker";
 

@@ -2,14 +2,14 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 
-import { manageGroup, respondToInvite } from "@/lib/api/groups";
+import { manageGroup, respondToInvite } from "../api/groups";
 import {
   acceptFriend,
   getNotifications,
   markNotificationsRead,
   removeFriend,
   type Notification,
-} from "@/lib/api/social";
+} from "../api/social";
 
 export interface Notifications {
   unread: number;

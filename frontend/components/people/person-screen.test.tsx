@@ -7,7 +7,7 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace }),
   useSearchParams: () => search.value,
 }));
-vi.mock("@/lib/auth/use-auth", () => ({
+vi.mock("@armchair/app-core/auth/use-auth", () => ({
   useAuth: () => ({ status: "signedIn", signInWithGoogle: vi.fn(), signOut: vi.fn() }),
 }));
 vi.mock("@/lib/api/people", async (importOriginal) => ({
@@ -15,7 +15,7 @@ vi.mock("@/lib/api/people", async (importOriginal) => ({
   getPerson: vi.fn(),
 }));
 
-import { ApiError } from "@/lib/api/client";
+import { ApiError } from "@armchair/app-core/api/client";
 import { getPerson, type OpenRow, type PersonPage, type PerformanceRow } from "@/lib/api/people";
 import { nights } from "./person-dances";
 import { PersonScreen } from "./person-screen";

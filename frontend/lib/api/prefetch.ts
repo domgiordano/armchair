@@ -1,16 +1,16 @@
 import { getPerformers } from "@/lib/api/couples";
-import { getGroupDetails, getMyGroups } from "@/lib/api/groups";
+import { getGroupDetails, getMyGroups } from "@armchair/app-core/api/groups";
 import { ALL_TIME, getLeaderboard } from "@/lib/api/leaderboard";
 import { getOverview } from "@/lib/api/overview";
 import { getPerson } from "@/lib/api/people";
 import { getEpisodeState, getSeason } from "@/lib/api/show";
-import { getFriends } from "@/lib/api/social";
+import { getFriends } from "@armchair/app-core/api/social";
 import { getStats } from "@/lib/api/stats";
 import { readGroup } from "@/lib/show/group-filter";
 
 /**
  * Starts the reads a page makes on load, with the same arguments, so the page
- * finds them cached or in flight (lib/api/cache.ts). On a nav hover it warms
+ * finds them cached or in flight (@armchair/app-core/api/cache). On a nav hover it warms
  * the next page; on arrival it starts reads the page would otherwise only
  * make once its season had loaded. Failures surface when the page asks itself.
  */
