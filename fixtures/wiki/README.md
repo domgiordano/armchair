@@ -78,11 +78,18 @@ per-player tally must reproduce those counts, so it can't grade itself.
 | `traitors-us5-1376587573.wikitext` | New Blood | [1376587573][t6] | 2026-09-25 02:29:44 | the first revision where episode 4's round table is complete |
 | `traitors-us5-1376577733-partial.wikitext` | New Blood | [1376577733][t7] | 2026-09-25 01:35:26 | mid-episode: Arisa banished, 7 of 19 votes in, Vote row empty |
 | `traitors-us5-1375764755-redirect.wikitext` | New Blood | [1375764755][t8] | 2026-09-19 22:57:43 | the page blanked to a redirect for 17 hours |
+| `traitors-main-tus-1377133951.wikitext` | The Traitors (American TV series) | [1377133951][t9] | 2026-09-28 01:23:05 | season list: seasons 1-6, season 5 linked by a title that redirects to New Blood |
+| `traitors-main-tuk-1377988096.wikitext` | The Traitors (British TV series) | [1377988096][t10] | 2026-10-02 08:07:32 | season list: series 1-4 |
+| `traitors-main-tukc-1377995051.wikitext` | The Celebrity Traitors | [1377995051][t11] | 2026-10-02 09:46:14 | season list: series 1-2 |
+
+`backend/tests/test_traitors_parse.py` checks the season lists against titles copied by hand
+from each main article's Series overview.
 
 These are text from the English Wikipedia articles "The Traitors (American TV series)
 season 4", "The Traitors (British TV series) series 4", "The Celebrity Traitors series 1",
-"The Celebrity Traitors series 2" and "The Traitors: New Blood", by their contributors (full
-author lists are in each article's history), licensed under
+"The Celebrity Traitors series 2", "The Traitors: New Blood", "The Traitors (American TV
+series)", "The Traitors (British TV series)" and "The Celebrity Traitors", by their
+contributors (full author lists are in each article's history), licensed under
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) and reproduced unmodified at
 the revisions linked.
 
@@ -94,3 +101,6 @@ the revisions linked.
 [t6]: https://en.wikipedia.org/w/index.php?oldid=1376587573
 [t7]: https://en.wikipedia.org/w/index.php?oldid=1376577733
 [t8]: https://en.wikipedia.org/w/index.php?oldid=1375764755
+[t9]: https://en.wikipedia.org/w/index.php?oldid=1377133951
+[t10]: https://en.wikipedia.org/w/index.php?oldid=1377988096
+[t11]: https://en.wikipedia.org/w/index.php?oldid=1377995051

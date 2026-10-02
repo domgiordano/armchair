@@ -7,7 +7,7 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: nav.push, replace: nav.replace }),
   useSearchParams: () => nav.search,
 }));
-vi.mock("@/lib/auth/use-auth", () => ({
+vi.mock("@armchair/app-core/auth/use-auth", () => ({
   useAuth: () => ({ status: "signedIn", signInWithGoogle: vi.fn(), signOut: vi.fn() }),
 }));
 vi.mock("@/lib/api/show", async (importOriginal) => ({
@@ -19,13 +19,13 @@ vi.mock("@/lib/api/couples", async (importOriginal) => ({
   getPerformers: vi.fn(),
   getWeekBoard: vi.fn(),
 }));
-vi.mock("@/lib/api/groups", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/groups")>()),
   getMyGroups: vi.fn(),
 }));
 
 import { getPerformers, getWeekBoard, type BoardRow, type CoupleStats, type Performers, type WeekBoard } from "@/lib/api/couples";
-import { getMyGroups } from "@/lib/api/groups";
+import { getMyGroups } from "@armchair/app-core/api/groups";
 import { getSeason, type Member, type Season } from "@/lib/api/show";
 import { CouplesScreen } from "./couples-screen";
 import { choose } from "./ui/select-test-utils";
@@ -142,6 +142,10 @@ const rowNames = (list: HTMLElement) =>
     .map((li) => li.querySelector("a")?.textContent);
 
 describe("Your couples", () => {
+  beforeEach(() => {
+    nav.search = new URLSearchParams("compare=season");
+  });
+
   it("lists every couple by your average with the gap to the judges", async () => {
     render(<CouplesScreen />);
     const heading = await screen.findByRole("heading", { name: /Every couple you've scored · 3/ });
@@ -181,14 +185,16 @@ describe("Your couples", () => {
     await vi.waitFor(() => expect(getPerformers).toHaveBeenLastCalledWith("all", null));
   });
 
-  it("opens a couple's sheet with their week-by-week chart", async () => {
+  it("links each couple, row and highlight, to the couple's page", async () => {
     render(<CouplesScreen />);
-    fireEvent.click(await screen.findByRole("button", { name: "Details for Amber Glenn & Pasha Pashkov" }));
-    const sheet = screen.getByRole("dialog", { name: "Amber Glenn & Pasha Pashkov" });
-    expect(sheet.textContent).toContain("You overrate them by 2.5 a dance against the judges.");
-    const chart = within(sheet).getByRole("img", { name: /W3 you 9, judges 8; W4 you 7, judges 8/ });
-    expect(chart.querySelectorAll("polyline")).toHaveLength(2);
-    expect(within(sheet).getByText("need 2")).toBeTruthy();
+    const details = await screen.findByRole("link", { name: "Details for Amber Glenn & Pasha Pashkov" });
+    expect(details.getAttribute("href")).toMatch(/^\/couples\/couple\/?\?id=amber-glenn&season=dwts-35$/);
+    const softer = screen.getByRole("region", { name: "You're softer on" });
+    expect(within(softer).getByRole("link").getAttribute("href")).toMatch(/^\/couples\/couple\/?\?id=amber-glenn&season=dwts-35$/);
+
+    fireEvent.click(details.closest("li")!);
+    expect(nav.push).toHaveBeenCalledWith("/couples/couple/?id=amber-glenn&season=dwts-35");
+    expect(screen.queryByRole("dialog")).toBeNull();
   });
 
   describe("with an eliminated couple", () => {
@@ -220,14 +226,11 @@ describe("Your couples", () => {
       expect(window.localStorage.getItem("armchair.showEliminated.performers")).toBe("1");
     });
 
-    it("still opens their sheet, with a way to every dance", async () => {
+    it("still links to their page", async () => {
       window.localStorage.setItem("armchair.showEliminated.performers", "1");
       render(<CouplesScreen />);
-      fireEvent.click(await screen.findByRole("button", { name: "Details for Amber Glenn & Pasha Pashkov" }));
-      const sheet = screen.getByRole("dialog", { name: "Amber Glenn & Pasha Pashkov" });
-      expect(sheet.textContent).toContain("Eliminated · Week 4");
-      const link = within(sheet).getByRole("link", { name: /Every dance/ });
-      expect(link.getAttribute("href")).toMatch(/^\/people\/?\?id=amber-glenn&season=dwts-35$/);
+      const link = await screen.findByRole("link", { name: "Details for Amber Glenn & Pasha Pashkov" });
+      expect(link.getAttribute("href")).toMatch(/^\/couples\/couple\/?\?id=amber-glenn&season=dwts-35$/);
     });
   });
 
@@ -328,7 +331,7 @@ describe("Week board", () => {
     render(<CouplesScreen />);
     await screen.findByRole("list", { name: "Couples" });
     fireEvent.click(within(ranking()).getAllByRole("listitem")[2]);
-    expect(nav.push).toHaveBeenCalledWith("/people/?id=jenna-dewan&season=dwts-35");
+    expect(nav.push).toHaveBeenCalledWith("/couples/couple/?id=jenna-dewan&season=dwts-35");
   });
 
   it("nudges to score an episode with nothing scored", async () => {

@@ -12,7 +12,7 @@ import {
   useAction,
 } from "@/components/social/parts";
 import { Badge } from "@/components/ui/badge";
-import { manageGroup, type GroupDetail, type GroupMember } from "@/lib/api/groups";
+import { manageGroup, type GroupDetail, type GroupMember } from "@armchair/app-core/api/groups";
 import { button } from "@/lib/ui";
 
 interface GroupMembersProps {

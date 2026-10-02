@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 /** The header lockup: chair mark, "Armchair Judge" and the show chip. Links home. */
-export function Brand() {
+export function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <Link
       href="/"
@@ -14,7 +14,8 @@ export function Brand() {
         <span>Armchair</span>
         <span className="text-brand-gradient">Judge</span>
       </span>
-      <span className="rounded-sm border border-crown/40 px-1.5 py-px text-[10px] font-semibold tracking-[0.12em] text-crown">
+      {/* A phone header with Back has no room for the chip. */}
+      <span className={`${compact ? "hidden sm:inline" : ""} rounded-sm border border-crown/40 px-1.5 py-px text-[10px] font-semibold tracking-[0.12em] text-crown`}>
         DWTS
       </span>
     </Link>
