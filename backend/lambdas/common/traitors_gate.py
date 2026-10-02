@@ -52,6 +52,12 @@ def events(episode: dict) -> list[str]:
     return [e for e in EVENTS if not (e == "RT" and episode.get("noRoundTable"))]
 
 
+def card(player: dict) -> dict:
+    """What any caller may see of a player: no faction, no exit."""
+    shot = player.get("headshot")
+    return {"id": player_id(player), "name": player["name"], "headshot": shot and shot["image"]}
+
+
 def roster(ep: int, players: list[dict]) -> list[dict]:
     """
     Players still in at the start of episode `ep`. Someone murdered or banished in `ep`
@@ -59,7 +65,7 @@ def roster(ep: int, players: list[dict]) -> list[dict]:
     leak as DWTS's roster.
     """
     return [
-        {"id": player_id(p), "name": p["name"]}
+        card(p)
         for p in sorted(players, key=lambda p: p["name"])
         if not p.get("exit") or int(p["exit"]["ep"]) >= ep
     ]
@@ -156,7 +162,7 @@ def bet_roster(meta: dict, episodes: list[dict], players: list[dict]) -> list[di
     """
     shut = {ep_number(e) for e in episodes if closed(meta, e)}
     return [
-        {"id": player_id(p), "name": p["name"]}
+        card(p)
         for p in sorted(players, key=lambda p: p["name"])
         if not p.get("exit") or int(p["exit"]["ep"]) not in shut
     ]
