@@ -1,0 +1,38 @@
+name: Discover Traitors
+
+# Runs the daily Traitors discovery now: every season on each edition's main article
+# is seeded or refreshed (with its summary and cast bios), the `current` flag moves,
+# any finished season new to the catalog is published, and every season is merged
+# into the people index that search and player pages read. Idempotent.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # mint the OIDC token traded for the deploy role
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Xomware/github-actions/actions/load-infisical-secrets@v1
+        with:
+          path: /armchair
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Invoke
+        run: |
+          # The first run publishes every past season and can take minutes; the CLI's
+          # default 60 s read timeout would retry, invoking it again.
+          aws lambda invoke --function-name armchair-cron-discover-traitors \
+            --cli-read-timeout 660 --cli-binary-format raw-in-base64-out --payload '{}' \
+            --log-type Tail --query LogResult --output text out.json | base64 -d | tail -c 2000
+          cat out.json
+          # A handler exception still returns 200 from Invoke; the error is in the body.
+          ! grep -q '"errorMessage"' out.json
