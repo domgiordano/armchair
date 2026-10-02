@@ -10,7 +10,7 @@ const POINTS = [
 
 const SHOWS: { show: Show; name: string; tile: string; live: boolean }[] = [
   { show: "dwts", name: "Dancing with the Stars", tile: "border-[#2b3a7a] from-[#16245e] to-[#060b26] text-[#f3e6c0]", live: true },
-  { show: "traitors", name: "The Traitors", tile: "border-[#1c3a2a] from-[#0b2418] to-[#040d08] text-[#e9dcc0]", live: false },
+  { show: "traitors", name: "The Traitors", tile: "border-[#1c3a2a] from-[#0b2418] to-[#040d08] text-[#e9dcc0]", live: true },
   { show: "survivor", name: "Survivor", tile: "border-[#5a2a10] from-[#3a1606] to-[#140803] text-[#ffe2c4]", live: false },
 ];
 

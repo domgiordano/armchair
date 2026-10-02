@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 import { Tilt } from "@/components/tilt";
-import { DWTS_URL } from "@/lib/links";
+import { DWTS_URL, TRAITORS_URL } from "@/lib/links";
 import { reveal } from "@/lib/reveal";
 
 // Each show's card borrows the mood of the show, never its logo or artwork.
@@ -215,7 +215,7 @@ export function Shows() {
           <h2 id="shows-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             Pick your panel.
           </h2>
-          <p className="mt-3 max-w-xl text-muted">Dancing with the Stars is live now. Two more are in rehearsal.</p>
+          <p className="mt-3 max-w-xl text-muted">Dancing with the Stars and The Traitors are live now. Survivor is in rehearsal.</p>
         </div>
         <ul className="mt-12 grid gap-6 lg:grid-cols-3">
           <li className="flex flex-col" {...reveal(1)}>
@@ -236,10 +236,11 @@ export function Shows() {
               <ShowCard
                 show="traitors"
                 name="The Traitors"
-                line="Candlelit schemes and round-table banishments, scored from the sofa."
+                line="Rank the round table's top 3, call the night's murder and recruit, and back up to two winners. Blind until you pick, US and UK."
                 titleClass={`${castle.className} text-[#e9dcc0] tracking-wide`}
-                surface="border-[#1c3a2a] bg-linear-to-b from-[#0b2418] to-[#040d08] text-[#e9dcc0]"
+                surface="border-[#1c3a2a] bg-linear-to-b from-[#0b2418] to-[#040d08] text-[#e9dcc0] hover:border-[#e9dcc0]/60 hover:shadow-[#e9dcc0]/10"
                 art={<CastleArt />}
+                href={TRAITORS_URL}
               />
             </Tilt>
           </li>
