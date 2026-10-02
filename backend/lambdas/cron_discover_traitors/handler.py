@@ -40,12 +40,11 @@ def stamp(t: datetime) -> str:
 def current_season(releases: dict[int, list[datetime]], now: datetime) -> int | None:
     """A season is current from a week before its first episode to a week after its last.
 
-    Between seasons the latest one with an episode out stays current.
+    Between seasons nothing is: a finished season left current would take winner bets
+    on winners everyone already knows.
     """
     live = [n for n, r in releases.items() if r and min(r) - WEEK <= now < max(r) + WEEK]
-    if live:
-        return max(live)
-    return max((n for n, r in releases.items() if r and min(r) <= now), default=None)
+    return max(live, default=None)
 
 
 def seed(
