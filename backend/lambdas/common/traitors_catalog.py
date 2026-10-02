@@ -60,6 +60,7 @@ def items(
     current: bool,
     open_at: str,
     release_time: str | None = None,
+    headshots: dict[str, dict] | None = None,
 ) -> list[dict]:
     """META, the season-picker row, one EP per episode and one PLAYER per contestant.
 
@@ -113,6 +114,7 @@ def items(
             "sk": f"PLAYER#{slug(name)}",
             "name": name,
             "aliases": sorted(a for a, full in short.items() if full == name and a != name.lower()),
+            "headshot": (headshots or {}).get(name),
         }
         for name in names
     ]
