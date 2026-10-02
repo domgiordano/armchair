@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from lambdas.common.traitors_parse import season, seasons
+from lambdas.common.traitors_parse import aliases, season, seasons
 
 WIKI = Path(__file__).parents[2] / "fixtures" / "wiki"
 
@@ -190,3 +190,30 @@ def test_season_list_from_headings_without_overview():
     bare = raw[:start] + raw[raw.index("\n}}\n", start) + 4 :]
     assert "link5" not in bare
     assert seasons(bare) == SEASON_LISTS["traitors-main-tus-1377133951"]
+
+
+SORTED = """== Contestants ==
+{| class="wikitable"
+! Contestant !! Affiliation !! Finish
+|-
+! scope="row" | {{sort|Tamburello, CT|[[CT Tamburello|Chris "CT" Tamburello]]}}
+| Faithful
+| '''Winner'''<br><small>(Episode 11)</small>
+|}
+"""
+
+
+def test_sort_template_keeps_the_display_name():
+    # US season 2 wraps CT's name in {{sort|key|display}}.
+    s = season(SORTED)
+    assert s["contestants"][0]["name"] == 'Chris "CT" Tamburello'
+    assert s["winners"] == ['Chris "CT" Tamburello']
+
+
+def test_aliases_for_initials_and_surnames():
+    # US season 3's table calls Bob the Drag Queen "Bob TDQ" and Chanel Ayan "Ayan".
+    names = aliases(["Bob the Drag Queen", "Bob Harper", "Chanel Ayan"])
+    assert names["bob tdq"] == "Bob the Drag Queen"
+    assert names["bob h."] == "Bob Harper"
+    assert names["ayan"] == "Chanel Ayan"
+    assert "bob" not in names

@@ -48,6 +48,15 @@
   --animate-rise-in: rise-in 560ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
   /* The header search opening out of its icon. */
   --animate-search-open: search-open 300ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+  /* The header's Back button easing in beside the brand on a sub-page. */
+  --animate-back-in: back-in 320ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+
+  @keyframes back-in {
+    from {
+      opacity: 0;
+      transform: translateX(8px);
+    }
+  }
 
   @keyframes search-open {
     from {

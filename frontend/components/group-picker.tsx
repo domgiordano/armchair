@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Select } from "@/components/ui/select";
-import { groupHref } from "@/lib/api/groups";
+import { groupHref } from "@armchair/app-core/api/groups";
 import type { GroupFilter } from "@/lib/show/group-filter";
 import { button, TEXT_LINK } from "@/lib/ui";
 

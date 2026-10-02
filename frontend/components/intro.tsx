@@ -4,7 +4,7 @@ import { getImageProps } from "next/image";
 import { lazy, Suspense, useCallback, useEffect, useRef, useState, useSyncExternalStore, type ComponentType, type CSSProperties } from "react";
 
 import { DiscoLoader } from "@/components/disco-loader";
-import { likelySignedIn } from "@/lib/auth/session-hint";
+import { likelySignedIn } from "@armchair/app-core/auth/session-hint";
 import ball from "./intro-assets/ball.webp";
 import poster from "./intro-assets/poster.webp";
 import posterPortrait from "./intro-assets/poster-portrait.webp";

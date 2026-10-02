@@ -24,8 +24,9 @@ def index(aws, people):
             batch.put_item(Item=row)
 
 
-def find(q, sub=A) -> tuple[int, dict]:
-    return call(handler, authorized_event(path="/people/search", sub=sub, query={"q": q}))
+def find(q, sub=A, **params) -> tuple[int, dict]:
+    query = {"q": q, **params}
+    return call(handler, authorized_event(path="/people/search", sub=sub, query=query))
 
 
 def ids(data, group):
@@ -107,3 +108,17 @@ def test_people_and_users_are_capped_per_group(index):
     data = find("an")[1]["data"]
     assert all(len(data[g]) <= 8 for g in ("users", "stars", "pros", "judges"))
     assert len(data["stars"]) == 8
+
+
+def test_show_picks_whose_index_is_searched(index, aws):
+    row = {**next(r for r in INDEX if r["sk"] == "PERSON#bruno-tonioli"), "pk": "PEOPLE#tus"}
+    aws.Table(CATALOG_TABLE).put_item(Item=row)
+    assert ids(find("bruno", show="tus")[1]["data"], "judges") == ["bruno-tonioli"]
+    assert ids(find("derek", show="tus")[1]["data"], "judges") == []
+    assert ids(find("derek")[1]["data"], "judges") == ["derek-hough"]
+
+
+def test_unknown_show_is_400(index):
+    status, body = find("bruno", show="traitors")
+    assert status == 400
+    assert body["error"]["detail"] == {"field": "show"}

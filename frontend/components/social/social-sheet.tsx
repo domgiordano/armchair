@@ -28,7 +28,7 @@ import { Sheet } from "@/components/ui/sheet";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { tabId, Tabs, type TabItem } from "@/components/ui/tabs";
-import { createGroup, getGroupDetails, groupHref } from "@/lib/api/groups";
+import { createGroup, getGroupDetails, groupHref } from "@armchair/app-core/api/groups";
 import {
   acceptFriend,
   addFriend,
@@ -40,9 +40,9 @@ import {
   type Friends,
   type Match,
   type Person,
-} from "@/lib/api/social";
+} from "@armchair/app-core/api/social";
 import { search } from "@/lib/search/match";
-import { useNotifications } from "@/lib/social/notifications";
+import { useNotifications } from "@armchair/app-core/social/notifications";
 import { cn, FOCUS, PRIMARY, TEXT_LINK } from "@/lib/ui";
 
 export type SocialView = "friends" | "groups" | "requests";

@@ -1,27 +1,27 @@
 import { render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("@/lib/auth/use-auth", () => ({
+vi.mock("@armchair/app-core/auth/use-auth", () => ({
   useAuth: () => ({ status: "signedIn", signInWithGoogle: vi.fn(), signOut: vi.fn() }),
 }));
 vi.mock("@/lib/api/show", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/show")>()),
   getSeason: vi.fn(),
 }));
-vi.mock("@/lib/api/social", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/social")>()),
+vi.mock("@armchair/app-core/api/social", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/social")>()),
   getFriends: vi.fn(),
   mySub: vi.fn(),
 }));
-vi.mock("@/lib/api/groups", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/groups")>()),
   getMyGroups: vi.fn(),
 }));
 
-import type { Group } from "@/lib/api/groups";
-import { getMyGroups } from "@/lib/api/groups";
+import type { Group } from "@armchair/app-core/api/groups";
+import { getMyGroups } from "@armchair/app-core/api/groups";
 import { getSeason, type Season } from "@/lib/api/show";
-import { getFriends, mySub, type Friends, type Person } from "@/lib/api/social";
+import { getFriends, mySub, type Friends, type Person } from "@armchair/app-core/api/social";
 import { DiscoverScreen, suggestions } from "./discover-screen";
 
 const person = (sub: string, name: string): Person => ({ sub, name, picture: null, avatarKind: "initials" });
