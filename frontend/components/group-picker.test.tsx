@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("@/lib/api/groups", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/groups")>()),
   getMyGroups: vi.fn(),
 }));
 
-import { getMyGroups, type Group } from "@/lib/api/groups";
+import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { GroupPicker } from "./group-picker";
 import { choose } from "./ui/select-test-utils";

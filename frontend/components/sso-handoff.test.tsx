@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { AuthCallback } from "@/components/auth-callback";
 import { SsoHandoff } from "@/components/sso-handoff";
-import { takeReturn } from "@/lib/auth/return-to";
+import { takeReturn } from "@armchair/app-core/auth/return-to";
 
 const auth = vi.hoisted(() => ({
   signedIn: false,
@@ -20,7 +20,7 @@ vi.mock("aws-amplify/auth", () => ({
   signInWithRedirect: auth.signInWithRedirect,
   signOut: vi.fn(),
 }));
-vi.mock("@/lib/auth/amplify", () => ({ authConfigured: true }));
+vi.mock("@armchair/app-core/auth/amplify", () => ({ authConfigured: true }));
 vi.mock("next/navigation", () => ({ useRouter: () => ({ replace: vi.fn() }) }));
 
 const who = () => decodeURIComponent(document.cookie.match(/armchair_who=([^;]*)/)?.[1] ?? "");

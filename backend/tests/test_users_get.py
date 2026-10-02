@@ -6,6 +6,7 @@ from decimal import Decimal
 
 import pytest
 
+from lambdas.common import board_dynamo
 from lambdas.common.groups_dynamo import create as create_group
 from lambdas.common.social_dynamo import accept, block, request
 from lambdas.scores_submit.handler import handler as submit_handler
@@ -354,3 +355,18 @@ def test_mutual_friends_and_groups_only_on_someone_else(show):
     assert [(f["sub"], f["name"]) for f in data["mutual"]["friends"]] == [(C, "Cara")]
     assert data["mutual"]["groups"] == [{"id": shared["id"], "name": "Family"}]
     assert "mutual" not in profile()
+
+
+def test_all_seasons_reads_the_shows_boards(show):
+    change = ("someone#1", None, board_dynamo.contribution({CARRIE: 5.0}, 8))
+    assert board_dynamo.transact(board_dynamo.ops(A, "tus", 5, 2, [change]))
+    answer(A, COUPLES[0], value=6)
+    answer(A, COUPLES[1], value=6)
+    assert profile(season="all", show="tus")["allTime"]["count"] == 1
+    assert profile(season="all")["allTime"]["count"] == 2
+
+
+def test_unknown_show_is_400(show):
+    status, body = get(season="all", show="traitors")
+    assert status == 400
+    assert body["error"]["detail"] == {"field": "show"}

@@ -1,4 +1,4 @@
-import { request } from "./client";
+import { request } from "@armchair/app-core/api/client";
 
 export interface Headshot {
   // The Commons file, credited on /credits. A supplied photo has none.
