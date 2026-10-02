@@ -3,13 +3,11 @@
 import { fetchAuthSession } from "aws-amplify/auth";
 import { useEffect, useState, useSyncExternalStore } from "react";
 
-import { GoogleMark } from "@/components/google-mark";
-import { BUTTON } from "@/lib/ui";
+import { Landing } from "@/components/landing";
 import { likelySignedIn } from "@armchair/app-core/auth/session-hint";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
 
 const noSubscribe = () => () => {};
-const onClient = () => true;
 const onServer = () => false;
 
 /**
@@ -17,55 +15,12 @@ const onServer = () => false;
  * bundle. Private data comes only from Cognito-authorized API endpoints.
  */
 export function Home() {
-  const { status, signInWithGoogle } = useAuth();
-  // False on the server, so the static HTML is the landing.
+  const { status } = useAuth();
+  // False on the server, so the static HTML opens on the intro.
   const returning = useSyncExternalStore(noSubscribe, likelySignedIn, onServer);
-  const hydrated = useSyncExternalStore(noSubscribe, onClient, onServer);
   if (status === "signedIn") return <SignedIn />;
   if (status === "loading" && returning) return null;
-  return <Landing status={status} onSignIn={signInWithGoogle} prerendered={!hydrated} />;
-}
-
-interface LandingProps {
-  status: "loading" | "signedOut" | "unconfigured";
-  onSignIn: () => Promise<void>;
-  prerendered: boolean;
-}
-
-function Landing({ status, onSignIn, prerendered }: LandingProps) {
-  const [redirecting, setRedirecting] = useState(false);
-  const [error, setError] = useState(false);
-
-  const start = async () => {
-    setRedirecting(true);
-    setError(false);
-    try {
-      await onSignIn();
-    } catch {
-      setRedirecting(false);
-      setError(true);
-    }
-  };
-
-  return (
-    <div data-prerendered={prerendered ? "" : undefined} className="flex min-h-dvh flex-col">
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col items-center justify-center gap-8 px-6 text-center">
-        <h1 className="font-title text-6xl font-bold text-bone sm:text-7xl">Traitors</h1>
-        <p className="text-lg leading-relaxed">
-          Call the banishments and the murders before the round table does.
-        </p>
-        <button type="button" onClick={() => void start()} disabled={status !== "signedOut" || redirecting} className={BUTTON}>
-          <GoogleMark />
-          {redirecting ? "Opening Google..." : "Sign in with Google"}
-        </button>
-        <div aria-live="polite" className="min-h-6 text-ash">
-          {status === "unconfigured" && "Sign-in is not configured in this build."}
-          {error && "Could not start sign-in. Try again."}
-        </div>
-      </main>
-      <SiteFooter />
-    </div>
-  );
+  return <Landing />;
 }
 
 function SignedIn() {
