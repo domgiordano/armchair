@@ -64,6 +64,14 @@ locals {
     { name = "search", description = "Users, stars, pros and judges whose name matches", path_part = "search", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "get", description = "A celebrity, pro or judge: bio, seasons, dances and numbers, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  traitors_lambdas = [
+    { name = "season", description = "A Traitors season's schedule and the caller's progress, or the winner-bet roster", path_part = "season", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "episode", description = "One Traitors episode as the caller may see it, through the gate", path_part = "episode", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "pick", description = "Record the caller's final pick for one Traitors event", path_part = "pick", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "winner", description = "Record the caller's final season winner bet", path_part = "winner", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "ranks", description = "Users ranked by Traitors points, from per-user sums", path_part = "ranks", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "stats", description = "The caller's own Traitors points by event and episode", path_part = "stats", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -80,6 +88,7 @@ locals {
     { for l in local.performers_lambdas : "performers_${l.name}" => l },
     { for l in local.week_board_lambdas : "week_board_${l.name}" => l },
     { for l in local.people_lambdas : "people_${l.name}" => l },
+    { for l in local.traitors_lambdas : "traitors_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -129,6 +138,12 @@ locals {
     week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
     people_search      = ["catalog:Query", "social:Query", "users:BatchGetItem"]
     people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query"]
+    traitors_season    = ["catalog:Query", "scores:Query", "scores:GetItem"]
+    traitors_episode   = ["catalog:Query", "performances:Query", "scores:Query", "scores:GetItem", "groups:Query"]
+    traitors_pick      = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:Query", "performances:Query", "board:Query", "board:PutItem", "board:UpdateItem", "board:DeleteItem"]
+    traitors_winner    = ["catalog:Query", "scores:GetItem", "scores:PutItem"]
+    traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
+    traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is

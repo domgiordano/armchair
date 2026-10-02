@@ -254,3 +254,19 @@ def test_a_long_career_reads_only_seasons_the_caller_touched(long_career):
     # The judged list stays on the latest season; asking for another lists that one.
     assert carrie["judged"]["season"] == "dwts-8"
     assert data("carrie-ann-inaba", season="dwts-5")["judged"]["season"] == "dwts-5"
+
+
+def test_show_picks_whose_seasons_are_read(seeded):
+    tus = {**S8, "show": "tus"}
+    write(seeded.Table(CATALOG_TABLE), items(tus))
+    write(seeded.Table(CATALOG_TABLE), person_index([tus], {}))
+    denise = data("denise-richards", show="tus")
+    assert [(e["season"], e["loaded"]) for e in denise["seasons"]] == [("tus-8", True)]
+    assert {r["season"] for r in denise["performances"]} == {"tus-8"}
+    assert data("denise-richards")["seasons"][0]["season"] == "dwts-8"
+
+
+def test_unknown_show_is_400(seeded):
+    status, body = get("denise-richards", show="traitors")
+    assert status == 400
+    assert body["error"]["detail"] == {"field": "show"}
