@@ -14,22 +14,22 @@ interface Feature {
 
 const FEATURES: Feature[] = [
   {
-    title: "Blind, final scoring",
-    body: "Hold up a paddle from 1 to 10 for every performance. Nobody else's number shows until yours is in, and once it's in, it stays. No peeking, no second thoughts.",
+    title: "Blind, final calls",
+    body: "A paddle for every dance, or a sealed slate for every round table and night. Nobody else's call shows until yours is in, and once it's in, it stays. No peeking, no second thoughts.",
     art: <BlindArt />,
     live: true,
     span: "two",
   },
   {
-    title: "The reveal desk",
-    body: "The moment your paddle is up, that dance turns over: each judge, your group, and the whole room's average, next to yours.",
+    title: "The reveal",
+    body: "The moment your call is in, it turns over: each judge's paddle or the round table's result, your group, and the whole room, next to yours.",
     art: <RevealArt />,
     live: true,
     span: "one",
   },
   {
-    title: "Accuracy and leaderboards",
-    body: "Every score is measured against the judges' average, so you can watch your gap shrink week by week. Leaderboards for friends, groups and everyone are next.",
+    title: "Points, accuracy and leaderboards",
+    body: "Dancing with the Stars measures your gap to the judges' average; The Traitors scores points for every call that lands. Each show ranks you against friends and everyone.",
     art: <AccuracyArt />,
     live: true,
     span: "one",
@@ -43,7 +43,7 @@ const FEATURES: Feature[] = [
   },
   {
     title: "Vote reminders",
-    body: "While the live East Coast broadcast runs, the episode screen puts the show's text-vote number in front of you and keeps count of your votes per couple.",
+    body: "On Dancing with the Stars, while the live East Coast broadcast runs, the episode screen puts the show's text-vote number in front of you and keeps count of your votes per couple.",
     art: <VoteArt />,
     live: true,
     span: "one",
@@ -79,12 +79,12 @@ export function Features() {
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-blue uppercase">What you get</p>
             <h2 id="features-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
-              A judge&rsquo;s desk <span className="text-brand-gradient">in your pocket.</span>
+              A seat on the panel <span className="text-brand-gradient">in your pocket.</span>
             </h2>
           </div>
           <p className="max-w-lg text-muted lg:justify-self-end">
-            Everything below runs in the Dancing with the Stars app today, except where it says otherwise. The screens
-            are illustrations with invented names and scores.
+            Everything below runs in the live show apps today, except where it says otherwise. The screens are
+            illustrations with invented names and scores.
           </p>
         </div>
         <ul className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

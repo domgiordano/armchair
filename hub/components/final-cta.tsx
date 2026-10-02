@@ -1,4 +1,3 @@
-import { DWTS_URL } from "@/lib/links";
 import { reveal } from "@/lib/reveal";
 
 export function FinalCta() {
@@ -15,16 +14,18 @@ export function FinalCta() {
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-xl">
             <h2 id="cta-title" className="text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
-              Next show night, <span className="text-brand-gradient">bring a paddle.</span>
+              Next show night, <span className="text-brand-gradient">make your call.</span>
             </h2>
-            <p className="mt-3 text-muted">Sign in with Google, start a group, and see who in it has the judges&rsquo; eye.</p>
+            <p className="mt-3 text-muted">
+              Sign in with Google once, start a group, and see who in it calls the show best.
+            </p>
           </div>
           <div className="flex flex-wrap gap-3">
             <a
-              href={DWTS_URL}
+              href="#shows"
               className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-text px-6 font-semibold text-night shadow-lg shadow-violet/20 hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold transition active:scale-[0.98] motion-reduce:transition-none"
             >
-              Start judging
+              Pick a show
               <svg viewBox="0 0 16 16" className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

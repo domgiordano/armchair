@@ -92,7 +92,10 @@ export function ShowNight() {
           <h2 id="night-title" className="mt-3 max-w-2xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             How a show night <span className="text-brand-gradient">plays out.</span>
           </h2>
-          <p className="mt-3 max-w-xl text-muted">Dancing with the Stars airs live on the East Coast, 8 to 10 PM Eastern.</p>
+          <p className="mt-3 max-w-xl text-muted">
+            One example: Dancing with the Stars airs live on the East Coast, 8 to 10 PM Eastern. On The Traitors, picks
+            lock when each episode is released.
+          </p>
         </div>
 
         <div ref={track} className="night-track relative mt-12">

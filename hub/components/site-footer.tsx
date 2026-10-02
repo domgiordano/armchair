@@ -106,7 +106,7 @@ export function SiteFooter() {
             </span>
           </Link>
           <p className="max-w-xs text-sm leading-relaxed text-muted">
-            Score the show from your couch, then see how the real panel and everyone else scored it.
+            Make your call from the couch, then see how the show and everyone else called it.
           </p>
           <a
             href={XOMWARE_URL}

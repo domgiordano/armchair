@@ -30,37 +30,37 @@ const STEPS: Step[] = [
     ),
   },
   {
-    title: "Hold up your paddle",
-    body: "One score per performance, 1 to 10. Once it is up, it is final.",
+    title: "Make your call, blind",
+    body: "A paddle from 1 to 10 for each dance, or your round table top 3 and the night's murder and recruit. Once it's in, it's final.",
     diagram: (
       <svg viewBox="0 0 160 100" className={svg} aria-hidden="true">
-        {[6, 7, 8, 9, 10].map((n, i) => (
-          <g key={n}>
-            <rect
-              x={14 + i * 27}
-              y="66"
-              width="23"
-              height="22"
-              rx="6"
-              className={n === 8 ? "fill-gold" : "fill-night stroke-line"}
-              strokeWidth="2"
-            />
-            <text x={25.5 + i * 27} y="81" textAnchor="middle" fontSize="10" className={n === 8 ? "fill-night" : "fill-muted"} style={label}>
-              {n}
-            </text>
-          </g>
-        ))}
-        <rect x="64" y="8" width="32" height="36" rx="8" className="fill-gold" />
-        <text x="80" y="32" textAnchor="middle" fontSize="18" className="fill-night" style={label}>
+        <rect x="16" y="14" width="34" height="38" rx="8" className="fill-gold" />
+        <text x="33" y="39" textAnchor="middle" fontSize="18" className="fill-night" style={label}>
           8
         </text>
-        <path d="M80 44v14" className="stroke-muted" strokeWidth="3" strokeLinecap="round" />
+        <path d="M33 52v18" className="stroke-muted" strokeWidth="3" strokeLinecap="round" />
+        <rect x="72" y="10" width="74" height="64" rx="8" className="fill-night stroke-line" strokeWidth="2" />
+        {[0, 1, 2].map((i) => (
+          <g key={i}>
+            <circle cx="84" cy={26 + i * 18} r="6" className="fill-text" />
+            <text x="84" y={29 + i * 18} textAnchor="middle" fontSize="8" className="fill-night" style={label}>
+              {i + 1}
+            </text>
+            <rect x="96" y={23 + i * 18} width={40 - i * 8} height="6" rx="3" className="fill-muted/60" />
+          </g>
+        ))}
+        <text x="33" y="90" textAnchor="middle" fontSize="7" className="fill-muted" style={label}>
+          EACH DANCE
+        </text>
+        <text x="109" y="90" textAnchor="middle" fontSize="7" className="fill-muted" style={label}>
+          ROUND TABLE
+        </text>
       </svg>
     ),
   },
   {
-    title: "Then everyone flips",
-    body: "Only after you score: the real judges, your group and the whole crowd's average.",
+    title: "Then the reveal",
+    body: "Only after you call it: the judges' scores or the round table's verdict, beside your group's calls and the whole crowd's.",
     diagram: (
       <svg viewBox="0 0 160 100" className={svg} aria-hidden="true">
         {[
@@ -87,8 +87,8 @@ const STEPS: Step[] = [
     ),
   },
   {
-    title: "See how close you are",
-    body: "Every score is measured against the panel. Watch the gap close as the season goes on.",
+    title: "Climb the board",
+    body: "Dancing with the Stars tracks your gap to the judges; The Traitors scores points for every call that lands. Race your friends all season.",
     diagram: (
       <svg viewBox="0 0 160 100" className={svg} aria-hidden="true">
         <path d="M16 84h130" className="stroke-line" strokeWidth="2" />

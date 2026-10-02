@@ -22,11 +22,12 @@ export function CatalogStrip() {
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">By the numbers</p>
             <h2 id="numbers-title" className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
-              Every season of <span className="text-brand-gradient">Dancing with the Stars.</span>
+              Dancing with the Stars, <span className="text-brand-gradient">every season.</span>
             </h2>
           </div>
           <p className="max-w-xs text-xs leading-relaxed text-muted sm:text-right">
-            Counted from the app&rsquo;s season catalog when this page was built. Live-season scores land as they air.
+            Counted from the Dancing with the Stars catalog when this page was built. Live-season scores land as they
+            air.
           </p>
         </div>
         <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
