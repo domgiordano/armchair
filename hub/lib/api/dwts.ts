@@ -16,6 +16,8 @@ export interface Snapshot {
   rank: number | null;
   ranked: number;
   minDances: number;
+  /** The first episode airing today or later, by its air date. */
+  next: { ep: number; airDate: string } | null;
 }
 
 interface Stats {
@@ -28,10 +30,14 @@ export async function getSnapshot(): Promise<Snapshot | null> {
   const season = seasons.find((s) => s.current) ?? seasons[0];
   if (!season) return null;
   const query = (extra: string) => `season=${encodeURIComponent(season.id)}${extra}`;
-  const [stats, board] = await Promise.all([
+  const [stats, board, schedule] = await Promise.all([
     request<Stats>(`/stats/get?${query("")}`),
     getBoard(season.id, "global"),
+    request<{ episodes: { ep: number; airDate?: string }[] }>(`/seasons/get?${query("")}`),
   ]);
+  // Air dates are local to the show, so compare calendar days rather than instants.
+  const today = new Date().toLocaleDateString("en-CA");
+  const next = schedule.episodes.find((e) => e.airDate && e.airDate >= today);
   return {
     season,
     count: stats.mine.count,
@@ -39,6 +45,7 @@ export async function getSnapshot(): Promise<Snapshot | null> {
     rank: board.me.rank,
     ranked: board.total,
     minDances: board.minDances,
+    next: next?.airDate ? { ep: next.ep, airDate: next.airDate } : null,
   };
 }
 

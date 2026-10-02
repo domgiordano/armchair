@@ -59,7 +59,7 @@ const SHORTCUTS: { href: string; title: string; line: string; icon: ReactNode }[
   {
     href: "/stats/",
     title: "Stats",
-    line: "Accuracy, rank and your weeks",
+    line: "Points, accuracy and rank, by show",
     icon: <path d="M4 19V11M10 19V5M16 19v-6M22 19H2" />,
   },
   {
