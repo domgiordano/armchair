@@ -1,7 +1,9 @@
 from pathlib import Path
 
+from lambdas.common.catalog_dynamo import write
 from lambdas.common.traitors_catalog import items, release_times
 from lambdas.common.traitors_parse import season
+from tests.conftest import CATALOG_TABLE
 
 WIKI = Path(__file__).parents[2] / "fixtures" / "wiki"
 
@@ -47,6 +49,42 @@ def test_meta_index_and_players():
     assert not any("faction" in r or "exit" in r for r in nb.values())
 
 
+def test_summary_and_bios():
+    parsed = season((WIKI / "traitors-us5-1377883386.wikitext").read_text())
+    lead = {"text": "New Blood.", "sourceUrl": "https://en.wikipedia.org/wiki/New_Blood"}
+    bio = {"text": "A first baseman.", "sourceUrl": "https://en.wikipedia.org/wiki/Xavier_Scruggs"}
+    out = items(
+        "tus",
+        5,
+        {"pageid": 1, "title": "New Blood"},
+        parsed,
+        current=True,
+        open_at="2026-10-15T00:00:00Z",
+        summary=lead,
+        bios={"Xavier Scruggs": bio},
+    )
+    by_sk = {r["sk"]: r for r in out}
+    assert by_sk["META"]["summary"] == lead
+    assert (by_sk["PLAYER#xavier-scruggs"]["article"], by_sk["PLAYER#xavier-scruggs"]["bio"]) == (
+        "Xavier Scruggs",
+        bio,
+    )
+    assert (by_sk["PLAYER#kim-daily"]["article"], by_sk["PLAYER#kim-daily"]["bio"]) == (None, None)
+
+
 def test_release_time_override():
     eps = [{"n": 1, "date": "2027-01-08"}]
     assert release_times(eps, "America/New_York", "21:00") == {1: "2027-01-09T02:00:00Z"}
+
+
+def test_a_reseed_keeps_a_headshot_written_onto_the_player(aws):
+    catalog = aws.Table(CATALOG_TABLE)
+    shot = {"image": "kim-daily-1.webp", "sourceUrl": "https://f/File:K.webp", "source": "fandom"}
+    nb = rows("tus", 5, "traitors-us5-1377883386", "The Traitors: New Blood")
+    assert "headshot" not in nb["PLAYER#kim-daily"]
+    catalog.put_item(Item={"pk": "SEASON#tus#5", "sk": "PLAYER#kim-daily", "headshot": shot})
+
+    write(catalog, list(nb.values()), keep={"openAt"})
+
+    item = catalog.get_item(Key={"pk": "SEASON#tus#5", "sk": "PLAYER#kim-daily"})["Item"]
+    assert (item["name"], item["headshot"]) == ("Kim Daily", shot)

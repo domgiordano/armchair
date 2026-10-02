@@ -5,7 +5,7 @@
 **Last updated**: 2026-10-02 (Dom's answers applied)
 
 ## Summary
-Friends predict The Traitors while they watch: the ranked top 3 at each round table, who is murdered and who is recruited each night, and up to two season winners. Predictions are blind and final, exactly like DWTS: no one sees anyone's picks or the results until they lock their own. Points feed global, friends and group leaderboards, per season and all-time. US and UK share one app with an edition toggle. It lives at `traitors.armchairjudge.com` with its own gaudy, fire-lit castle design and a hooded-figure intro, and keeps DWTS's history, people and search pages.
+Friends predict The Traitors while they watch: the ranked top 3 at each round table, who is murdered and who is recruited each night, and up to three season winners. Predictions are blind and final, exactly like DWTS: no one sees anyone's picks or the results until they lock their own. Points feed global, friends and group leaderboards, per season and all-time. US and UK share one app with an edition toggle. It lives at `traitors.armchairjudge.com` with its own gaudy, fire-lit castle design and a hooded-figure intro, and keeps DWTS's history, people and search pages.
 
 **Target.** The poller runs a log-only dry run on Thu 10/8. Picks go live Thu 10/15. Both live shows air every Thursday (New Blood to 11/19, Celebrity S2 Thu+Fri to about 10/30). Future seasons are discovered and seeded without code changes.
 
@@ -17,7 +17,7 @@ Friends predict The Traitors while they watch: the ranked top 3 at each round ta
 | Design | A new frontend design, entirely Traitors-themed: gaudy, fire, castle. Only non-visual code is shared with DWTS. Direction comes from [`DESIGN-RESEARCH.md`](DESIGN-RESEARCH.md) |
 | Name | **Traitors** |
 | Points | As proposed (table below) |
-| Winner bet | Required on entering a current season, **before anything else** |
+| Winner bet | Required before **picking** anything in a current season; browsing is open (Dom, later) |
 | Results | Fully automated from the internet. No hand entry |
 | Headshots | Found through image search, like the DWTS supplied photos. Not limited to Commons |
 | Future seasons | Must work with no code change: catalog-driven poller plus automatic season discovery |
@@ -63,8 +63,8 @@ If the event doesn't happen, the pick voids: 0 points, no penalty. Edge-case rul
 - **End game.** End-game votes are a result, not a pick. The winner bet covers the finale.
 
 ### Winner bet
-- On first entering a current season, before seeing anything else, you pick 1 or 2 winners and, for each, whether they win as a Faithful or a Traitor.
-- The bet is final, and the season stays behind this screen until it's locked.
+- On first entering a current season you are asked to pick 1 to 3 winners and, for each, whether they win as a Faithful or a Traitor.
+- The bet is final. Without it you can browse the season, but every open event stays locked and nothing can be picked.
 - The multiplier is `(E - r) / E`, where `E` is the episode count and `r` the episodes already released when you lock. A bet made before the premiere is worth full points.
 
 ### Points (confirmed)
@@ -75,7 +75,7 @@ If the event doesn't happen, the pick voids: 0 points, no penalty. Edge-case rul
 | RT any pick in top 3, wrong slot | 1 |
 | Murder victim | 4 |
 | Recruit | 4 |
-| Winner, per correct pick | 20 × multiplier |
+| Winner, per correct pick (up to 3) | 20 × multiplier |
 | Winner's faction, per correct pick | +10 × multiplier |
 
 Leaderboards rank by total. Ties go to more correct banishments, then to the earliest first pick. A per-event average is shown beside the total.
@@ -100,7 +100,7 @@ Wikipedia was the fastest structured source measured: about 25 min after the rou
 3. Stats and leaderboards count only events the caller has answered, and show aggregates only.
 4. Submit is a conditional put. An identical retry returns 200; a different pick returns 409.
 5. **Closed** episodes and past seasons are open to everyone and view-only. Submit returns 403.
-6. A current season's episodes return 403 until the caller's winner bet exists.
+6. A current season can be browsed before the caller's winner bet (`needsBet: true`, every open event locked). Submit returns 403 until the bet exists.
 7. The active roster for episode N reveals N-1's exits. This is the same accepted leak as DWTS, with the same catch-up interstitial.
 
 ### Data model
@@ -108,9 +108,9 @@ No new tables.
 
 | Table | pk | sk | Item |
 |---|---|---|---|
-| catalog | `SEASON#{show}#{n}` | `META` | `pageid`, `edition`, `episodes`, `current`, `releaseDefaults` |
+| catalog | `SEASON#{show}#{n}` | `META` | `pageid`, `edition`, `episodes`, `current`, `releaseDefaults`, `summary: {text, sourceUrl}` (article lead, CC BY-SA) |
 | | | `EP#{nn}` | `releaseAt` (UTC), `closed`, `noRoundTable`, gated `results`: `rt: {banished, firstVote: {cid: n}, revote?, fate?}`, `murdered[]`, `recruited[]` |
-| | | `PLAYER#{cid}` | `name`, `aliases[]`, `headshot`; gated `faction`, `exit: {ep, how}` |
+| | | `PLAYER#{cid}` | `name`, `aliases[]`, `headshot`, `article`, `bio: {text, sourceUrl}`; gated `faction`, `exit: {ep, how}` |
 | performances | `EP#{show}#{n}#{nn}` | `EVT#{RT|MURDER|RECRUIT}` | event result plus confirm state (`confirm.py`) |
 | scores | `EP#{show}#{n}#{nn}` | `EVT#{type}#USER#{sub}` | `picks[]` (ordered) or `forfeit`, `submittedAt` |
 | scores | `WIN#{show}#{n}` | `USER#{sub}` | `picks: [{cid, faction}]`, `released` (multiplier basis) |

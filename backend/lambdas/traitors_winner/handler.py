@@ -2,7 +2,7 @@
 POST /traitors/winner - the caller's season-long winner bet, made before anything else.
 
 Body: {"season": "tus-5", "picks": [{"player": "<id>", "faction": "Faithful"|"Traitor"}]},
-one or two picks. Final, like every pick. `released` records how many episodes were out
+one to three picks. Final, like every pick. `released` records how many episodes were out
 when it was made: the points multiplier is (episodes - released) / episodes.
 """
 
@@ -25,12 +25,13 @@ from lambdas.common.traitors_dynamo import bet_key, season_parts, traitors_ref
 from lambdas.common.traitors_gate import bet_roster, released
 
 FACTIONS = {"Faithful", "Traitor"}
+MAX_PICKS = 3
 
 
 def picks(data: dict, allowed: set[str]) -> list[dict]:
     given = data.get("picks")
-    if not isinstance(given, list) or not 1 <= len(given) <= 2:
-        raise ValidationError("Pick one or two winners", field="picks")
+    if not isinstance(given, list) or not 1 <= len(given) <= MAX_PICKS:
+        raise ValidationError(f"Pick 1-{MAX_PICKS} winners", field="picks")
     out = []
     for p in given:
         if (
@@ -43,7 +44,7 @@ def picks(data: dict, allowed: set[str]) -> list[dict]:
             )
         out.append({"player": p["player"], "faction": p["faction"]})
     if len({p["player"] for p in out}) != len(out):
-        raise ValidationError("Pick two different players", field="picks")
+        raise ValidationError("Pick different players", field="picks")
     return out
 
 

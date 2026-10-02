@@ -1,9 +1,18 @@
 """
 GET /traitors/season?season=tus-5 - a Traitors season's schedule and the caller's place in it.
 
+    {season, title, current, summary: {text, sourceUrl} | null,
+     needsBet, bet: {picks, released} | null, released,
+     episodes: [{ep, title, releaseAt, closed, events, answered}],
+     cast: [{id, name, headshot, faction, exit: {ep, how} | null}],
+     winners: [{id, name, headshot, faction}]      past seasons only
+     betRoster: [{id, name, headshot}]}            when needsBet only
+
 Each episode carries how many of its events the caller has answered, which needs no gate:
-it's the caller's own rows. Until the caller bets, a current season answers with
-`needsBet` and the players they may bet on, and nothing else.
+it's the caller's own rows. A current season can be browsed before the winner bet;
+`needsBet` says picking waits for it and `betRoster` is who it may name. `cast` follows
+traitors_gate.wall: in a current season only exits from closed episodes show. `summary`
+is the season article's lead, attributed by `sourceUrl` (CC BY-SA), written by discovery.
 """
 
 from __future__ import annotations
@@ -22,6 +31,7 @@ from lambdas.common.traitors_gate import (
     mine,
     needs_bet,
     released,
+    wall,
 )
 
 
@@ -32,39 +42,35 @@ def handler(event, context):
     rows, *_ = query_many([("CATALOG_TABLE", season_pk(show, number))])
     meta, episodes, players = season_parts(rows, show, number)
     own_bet = bet(show, number, sub)
-    head = {
+    picks = query_many([("SCORES_TABLE", episode_pk(show, number, ep_number(e))) for e in episodes])
+    cast = wall(meta, episodes, players)
+    data = {
         "season": f"{show}-{number}",
         "title": meta["wikiTitle"],
         "current": bool(meta.get("current")),
-    }
-
-    if needs_bet(meta, own_bet):
-        return ok(
+        "summary": meta.get("summary"),
+        "needsBet": needs_bet(meta, own_bet),
+        "bet": own_bet and {k: own_bet[k] for k in ("picks", "released")},
+        "released": released(episodes, int(time.time())),
+        "episodes": [
             {
-                **head,
-                "needsBet": True,
-                "episodes": len(episodes),
-                "released": released(episodes, int(time.time())),
-                "players": bet_roster(meta, episodes, players),
+                "ep": ep_number(e),
+                "title": e.get("title"),
+                "releaseAt": e["releaseAt"],
+                "closed": closed(meta, e),
+                "events": len(events(e)),
+                "answered": len(mine(sub, answers)),
             }
-        )
-
-    picks = query_many([("SCORES_TABLE", episode_pk(show, number, ep_number(e))) for e in episodes])
-    return ok(
-        {
-            **head,
-            "needsBet": False,
-            "bet": own_bet and {k: own_bet[k] for k in ("picks", "released")},
-            "episodes": [
-                {
-                    "ep": ep_number(e),
-                    "title": e.get("title"),
-                    "releaseAt": e["releaseAt"],
-                    "closed": closed(meta, e),
-                    "events": len(events(e)),
-                    "answered": len(mine(sub, answers)),
-                }
-                for e, answers in zip(episodes, picks)
-            ],
-        }
-    )
+            for e, answers in zip(episodes, picks)
+        ],
+        "cast": cast,
+    }
+    if not data["current"]:
+        data["winners"] = [
+            {k: p[k] for k in ("id", "name", "headshot", "faction")}
+            for p in cast
+            if (p["exit"] or {}).get("how") == "winner"
+        ]
+    if data["needsBet"]:
+        data["betRoster"] = bet_roster(meta, episodes, players)
+    return ok(data)

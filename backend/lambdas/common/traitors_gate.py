@@ -58,6 +58,11 @@ def card(player: dict) -> dict:
     return {"id": player_id(player), "name": player["name"], "headshot": shot and shot["image"]}
 
 
+def credit(headshot: dict) -> dict:
+    """A headshot's attribution. Commons gives an author and license; other sources may not."""
+    return {k: headshot.get(k) for k in ("source", "sourceUrl", "author", "license")}
+
+
 def roster(ep: int, players: list[dict]) -> list[dict]:
     """
     Players still in at the start of episode `ep`. Someone murdered or banished in `ep`
@@ -155,14 +160,75 @@ def released(episodes: list[dict], t: int) -> int:
     return sum(e["releaseAt"] <= stamp for e in episodes)
 
 
+def shut(meta: dict, episodes: list[dict]) -> set[int]:
+    return {ep_number(e) for e in episodes if closed(meta, e)}
+
+
 def bet_roster(meta: dict, episodes: list[dict], players: list[dict]) -> list[dict]:
     """
     Who the winner bet may name: everyone not out in a closed episode. Exits in episodes
     the caller can still pick stay hidden, so a late bet may name someone already gone.
     """
-    shut = {ep_number(e) for e in episodes if closed(meta, e)}
+    gone = shut(meta, episodes)
     return [
         card(p)
         for p in sorted(players, key=lambda p: p["name"])
-        if not p.get("exit") or int(p["exit"]["ep"]) not in shut
+        if not p.get("exit") or int(p["exit"]["ep"]) not in gone
+    ]
+
+
+def wall(meta: dict, episodes: list[dict], players: list[dict]) -> list[dict]:
+    """
+    The whole cast with exits crossed out. In a current season an exit, and the faction
+    it revealed, shows only from a closed episode, the same line bet_roster draws. A past
+    season shows every exit and faction.
+    """
+    current = bool(meta.get("current"))
+    gone = shut(meta, episodes)
+    cast = []
+    for p in sorted(players, key=lambda p: p["name"]):
+        left = bool(p.get("exit")) and (not current or int(p["exit"]["ep"]) in gone)
+        cast.append(
+            {
+                **card(p),
+                "faction": p.get("faction") if left or not current else None,
+                "exit": p["exit"] if left else None,
+            }
+        )
+    return cast
+
+
+def answered(sub: str, episode: dict, picks: list[dict]) -> bool:
+    """Every event of the episode picked or forfeited by the caller: gate rule 2."""
+    return set(mine(sub, picks)) >= set(events(episode))
+
+
+def out(
+    sub: str,
+    meta: dict,
+    episodes: list[dict],
+    players: list[dict],
+    ep: int,
+    earlier: dict[int, list[dict]],
+) -> list[dict]:
+    """
+    Exits in episodes before `ep` whose results the caller may see, closed or fully
+    answered, so their seats can be crossed out. `earlier` maps each of those episodes
+    to its scores rows. The roster already drops them; this says how they left.
+    """
+    seen = {
+        ep_number(e)
+        for e in episodes
+        if ep_number(e) < ep
+        and (closed(meta, e) or answered(sub, e, earlier.get(ep_number(e), [])))
+    }
+    return [
+        {
+            "id": player_id(p),
+            "ep": int(p["exit"]["ep"]),
+            "how": p["exit"]["how"],
+            "faction": p.get("faction"),
+        }
+        for p in sorted(players, key=lambda p: p["name"])
+        if p.get("exit") and int(p["exit"]["ep"]) in seen
     ]

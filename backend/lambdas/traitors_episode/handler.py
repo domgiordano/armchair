@@ -1,8 +1,13 @@
 """
 GET /traitors/episode?season=tus-5&ep=05[&group=<gid>] - one Traitors episode as the caller may see it.
 
+    {season, ep, title, releaseAt, closed, needsBet, roster, events,
+     out: [{id, ep, how, faction | null}]}
+
 Everything goes through common/traitors_gate.py: an event stays locked until the caller
-picks or forfeits it. A current season is 403 until the caller locks a winner bet.
+picks or forfeits it. Without a winner bet a current season can still be browsed:
+`needsBet` is true and, since picking needs the bet, every open event stays locked.
+`out` is who left in earlier episodes the caller has fully answered or that are closed.
 `group` narrows the picks shown to that group's members and is 403 unless the caller is one.
 """
 
@@ -13,7 +18,7 @@ from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, ref, season_pk
 from lambdas.common.groups_dynamo import members
 from lambdas.common.traitors_dynamo import bet, episode, season_parts, traitors_ref
-from lambdas.common.traitors_gate import episode_view, needs_bet
+from lambdas.common.traitors_gate import episode_view, needs_bet, out
 
 
 @api_handler("traitors_episode")
@@ -30,17 +35,24 @@ def handler(event, context):
         if sub not in in_group:
             raise ForbiddenError("Not a member of that group")
     pk = episode_pk(show, number, ep)
-    rows, results, picks = query_many(
+    prior = range(1, ep)
+    rows, results, picks, *earlier = query_many(
         [
             ("CATALOG_TABLE", season_pk(show, number)),
             ("PERFORMANCES_TABLE", pk),
             ("SCORES_TABLE", pk),
+            *[("SCORES_TABLE", episode_pk(show, number, n)) for n in prior],
         ]
     )
     meta, episodes, players = season_parts(rows, show, number)
-    if needs_bet(meta, bet(show, number, sub)):
-        raise ForbiddenError("Lock in your winner bet first", needsBet=True)
     view = episode_view(
         sub, meta, episode(episodes, ep, show, number), players, results, picks, in_group
     )
-    return ok({"season": f"{show}-{number}", **view})
+    return ok(
+        {
+            "season": f"{show}-{number}",
+            **view,
+            "needsBet": needs_bet(meta, bet(show, number, sub)),
+            "out": out(sub, meta, episodes, players, ep, dict(zip(prior, earlier))),
+        }
+    )
