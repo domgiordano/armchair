@@ -7,6 +7,8 @@ import { cn, FOCUS } from "@/lib/ui";
 export interface TabItem<T extends string> {
   id: T;
   label: string;
+  /** A candle mark beside the label, read out as "sealed". */
+  done?: boolean;
 }
 
 interface TabsProps<T extends string> {
@@ -61,12 +63,18 @@ export function Tabs<T extends string>({ label, tabs, value, onChange, panelId }
           onClick={() => onChange(t.id)}
           onKeyDown={(e) => onKey(e, i)}
           className={cn(
-            "relative flex min-h-11 items-center justify-center rounded-sm px-2 font-display text-xs font-semibold tracking-[0.12em] uppercase transition-colors",
+            "relative flex min-h-11 items-center justify-center rounded-sm px-2 font-display text-xs font-semibold tracking-[0.06em] uppercase transition-colors",
             i === at ? "text-bone" : "text-ash hover:text-parchment active:text-bone",
             FOCUS,
           )}
         >
           <span className="truncate">{t.label}</span>
+          {t.done && (
+            <>
+              <span aria-hidden="true" className="ml-1.5 size-1.5 shrink-0 rotate-45 bg-candle" />
+              <span className="sr-only">, sealed</span>
+            </>
+          )}
         </button>
       ))}
     </div>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { FactionWord } from "@/components/faction-word";
+import { Outcome } from "@/components/outcome";
 import { errorText, useSeasonView } from "@/components/season-data";
 import { useShellSeason } from "@/components/season-provider";
 import { Card } from "@/components/ui/card";
@@ -156,23 +156,4 @@ function LatestResults({ season, episode }: { season: string; episode: SeasonEpi
       )}
     </Card>
   );
-}
-
-function Outcome({ event, roster }: { event: EpisodeEvent; roster: Player[] }) {
-  if (!event.result) return <span className="text-ash italic">Awaiting the castle</span>;
-  const names = (ids: string[] | undefined) => (ids?.length ? ids.map((id) => nameOf(id, roster)).join(", ") : null);
-  switch (event.type) {
-    case "RT":
-      return event.result.banished ? (
-        <>
-          {nameOf(event.result.banished, roster)} {event.result.faction && <FactionWord faction={event.result.faction} className="ml-1" />}
-        </>
-      ) : (
-        <span className="text-ash">Nobody</span>
-      );
-    case "MURDER":
-      return names(event.result.victims) ?? <span className="text-ash">Nobody</span>;
-    case "RECRUIT":
-      return names(event.result.recruits) ?? <span className="text-ash">Nobody</span>;
-  }
 }

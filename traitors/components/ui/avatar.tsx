@@ -57,12 +57,22 @@ interface HeadshotProps {
   /** The catalog's file name under /headshots/, or null before the photo pass. */
   image: string | null;
   size?: number;
+  /** A round seat at the table rather than a framed portrait. */
+  round?: boolean;
   className?: string;
 }
 
 /** A player's portrait in a gilt frame, or their initials until a photo exists. */
-export function Headshot({ name, image, size = 48, className }: HeadshotProps) {
-  return <Portrait name={name} src={image && `/headshots/${image}`} size={size} shape="frame" className={className} />;
+export function Headshot({ name, image, size = 48, round = false, className }: HeadshotProps) {
+  return (
+    <Portrait
+      name={name}
+      src={image && `/headshots/${image}`}
+      size={size}
+      shape={round ? "round" : "frame"}
+      className={className}
+    />
+  );
 }
 
 interface AvatarProps {
