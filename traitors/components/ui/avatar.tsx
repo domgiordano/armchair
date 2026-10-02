@@ -45,7 +45,7 @@ function Portrait({ name, src, size, shape, className }: PortraitProps) {
       role="img"
       aria-label={name}
       style={{ width: size, height: size, fontSize: Math.round(size * 0.36) }}
-      className={cn(box, "flex items-center justify-center bg-cloak-500 font-display font-semibold text-bone")}
+      className={cn(box, "flex items-center justify-center bg-cloak-500 font-display font-semibold text-bone", shape === "round" && "ring-1 ring-gilt/60")}
     >
       <span aria-hidden="true">{initials(name)}</span>
     </span>
