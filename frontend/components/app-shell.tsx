@@ -5,10 +5,12 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
 import { Avatar } from "@/components/avatar";
-import { AppsMenu, ArrowIcon, HUB_URL } from "@/components/apps-menu";
+import { AppList } from "@/components/app-list";
+import { AppsMenu } from "@/components/apps-menu";
 import { Brand } from "@/components/brand";
 import { NavSheet } from "@/components/nav-sheet";
 import { NotificationsBell } from "@/components/notifications";
+import { SiteFooter } from "@/components/site-footer";
 import { HeaderSearch } from "@/components/search/header-search";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { Select } from "@/components/ui/select";
@@ -165,13 +167,9 @@ function Shell({ title, wide, children }: AppShellProps) {
           </ul>
         </nav>
         <SeasonPicker season={season} />
-        <a
-          href={HUB_URL}
-          className={`mt-auto flex min-h-11 items-center gap-2 rounded-md text-sm text-silver-dim transition-colors hover:text-gold-light ${FOCUS}`}
-        >
-          More shows on Armchair Judge
-          <ArrowIcon />
-        </a>
+        <div className="mt-auto">
+          <AppList />
+        </div>
       </NavSheet>
       <main
         id="main"
@@ -181,6 +179,7 @@ function Shell({ title, wide, children }: AppShellProps) {
       >
         {children}
       </main>
+      <SiteFooter />
     </div>
   );
 }

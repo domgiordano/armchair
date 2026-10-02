@@ -104,12 +104,18 @@ describe("header account button", () => {
     expect(await screen.findByRole("button", { name: "Sign in with Google" })).toBeTruthy();
   });
 
-  it("is the avatar menu once signed in, with Profile and Sign out", async () => {
+  it("is the avatar menu once signed in, with Profile, every app and Sign out", async () => {
     auth.signedIn = true;
     render(<AccountButton />);
     fireEvent.click(await screen.findByRole("button", { name: "Account: Pat Couch" }));
     // next/link drops the trailing slash outside a trailingSlash build.
     expect(screen.getByRole("link", { name: "Profile" }).getAttribute("href")).toMatch(/^\/profile\/?$/);
+    // Every app, not a shortcut to one show; the shows open signed in.
+    expect(screen.queryByRole("link", { name: /Open Dancing with the Stars/ })).toBeNull();
+    expect(screen.getByText("Armchair Judge").closest("a")).toBeNull();
+    expect(screen.getByRole("link", { name: /Dancing with the Stars/ }).getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
+    expect(screen.getByRole("link", { name: /The Traitors/ }).getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
+    expect(screen.getByText("Survivor").closest("a")).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
     await waitFor(() => expect(auth.signOut).toHaveBeenCalled());
     expect(document.cookie).not.toContain("armchair_who=%7B");

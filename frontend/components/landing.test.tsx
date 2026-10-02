@@ -89,10 +89,7 @@ describe("Landing", () => {
     render(<Home />);
     expect(await screen.findByRole("group", { name: /^Judges' desk: Marisol Vega 8/ })).toBeTruthy();
     expect(screen.getByText("Illustration with invented couples, judges and scores.")).toBeTruthy();
-    expect(screen.getByText("Not affiliated with ABC, Disney, BBC, BBC Studios, NBC, Peacock or The Traitors.")).toBeTruthy();
-    expect(screen.getByRole("link", { name: "armchairjudge.com" }).getAttribute("href")).toBe(
-      "https://armchairjudge.com",
-    );
+    expect(screen.getByText(/^Not affiliated with Dancing with the Stars, The Traitors, ABC, Disney, NBC, Peacock, BBC, CBS/)).toBeTruthy();
   });
 
   it("has a top nav with the page links, the apps and Google sign-in", async () => {
@@ -107,7 +104,7 @@ describe("Landing", () => {
     expect(within(apps).getByRole("menuitem", { name: /The Traitors/ }).getAttribute("href")).toBe(
       "https://traitors.armchairjudge.com/?sso=1",
     );
-    expect(within(apps).getByRole("menuitem", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
+    expect(within(apps).getByRole("menuitem", { name: /Armchair Judge/ }).getAttribute("href")).toBe("https://armchairjudge.com/?sso=1");
 
     const header = screen.getByRole("banner");
     expect(within(header).getByRole("button", { name: "Sign in with Google" })).toBeTruthy();
@@ -120,10 +117,15 @@ describe("Landing", () => {
     const href = (name: string) => within(footer).getByRole("link", { name }).getAttribute("href");
     expect(href("GitHub")).toBe("https://github.com/domgiordano/armchair");
     expect(href("A Xomware app")).toBe("https://xomware.com");
-    expect(href("Privacy")).toBe("https://armchairjudge.com/privacy/");
+    expect(href("Privacy")).toBe("https://armchairjudge.com/privacy/?sso=1");
     expect(href("Photo credits")).toMatch(/^\/credits\/?$/);
-    expect(within(footer).getByRole("link", { name: /^The Traitors/ }).getAttribute("href")).toBe("https://traitors.armchairjudge.com");
-    expect(within(footer).getByText("Survivor").closest("a")).toBeNull();
+    const apps = within(footer).getByRole("navigation", { name: "Apps" });
+    expect(within(apps).getAllByRole("link").map((a) => a.getAttribute("href"))).toEqual([
+      "https://armchairjudge.com/?sso=1",
+      "/",
+      "https://traitors.armchairjudge.com/?sso=1",
+    ]);
+    expect(within(apps).getByText("Survivor").closest("a")).toBeNull();
   });
 
   it("keeps signed-in users on their home, with no intro or landing", async () => {

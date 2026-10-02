@@ -1,13 +1,13 @@
 "use client";
 
-import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
+import { APPS, appLink, type App } from "@armchair/app-core/apps";
+
+import { AppIcon, appNote } from "@/components/app-icon";
+import { ICON_TRIGGER } from "@/components/show-icon";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { FOCUS } from "@/lib/ui";
 
-export const HUB_URL = "https://armchairjudge.com";
-export const TRAITORS_URL = "https://traitors.armchairjudge.com";
-
-/** The header's app switcher: this show, the other live ones, the ones coming, and the hub. */
+/** The header's app switcher: every Armchair app, this one marked, the others opening signed in. */
 export function AppsMenu() {
   return (
     <Menu
@@ -20,41 +20,38 @@ export function AppsMenu() {
       }
       triggerClassName={`flex min-h-11 items-center gap-2 rounded-md px-3 text-silver transition-colors hover:bg-silver/10 hover:text-pearl active:bg-silver/15 aria-expanded:bg-silver/10 ${FOCUS}`}
     >
-      <p className="px-3 pt-1.5 pb-1 text-xs font-semibold tracking-[0.12em] text-silver-dim uppercase">Armchair Judge</p>
-      <AppRow show="dwts" name="Dancing with the Stars" note="You're here" current />
-      {/* sso=1 resumes the Armchair session there, so a signed-in judge lands signed in. */}
-      <MenuItem href={`${TRAITORS_URL}/?sso=1`} className={`${ICON_TRIGGER} py-1.5`}>
-        <ShowIcon show="traitors" size={36} />
-        <span className="flex flex-col">
-          <span className="text-sm font-medium whitespace-nowrap">The Traitors</span>
-          <span className="text-xs text-silver-dim">Live now</span>
-        </span>
-      </MenuItem>
-      <AppRow show="survivor" name="Survivor" note="Coming soon" />
-      <MenuItem href={HUB_URL} className="justify-between">
-        All shows
-        <ArrowIcon />
-      </MenuItem>
+      <p className="px-3 pt-1.5 pb-1 text-xs font-semibold tracking-[0.12em] text-silver-dim uppercase">Armchair Judge apps</p>
+      {APPS.map((app) => {
+        const href = app.id === "dwts" ? null : appLink(app.id);
+        if (!href) return <AppRow key={app.id} app={app} />;
+        return (
+          <MenuItem key={app.id} href={href} className={`${ICON_TRIGGER} py-1.5`}>
+            <AppIcon id={app.id} size={36} />
+            <AppText app={app} />
+          </MenuItem>
+        );
+      })}
     </Menu>
   );
 }
 
-interface AppRowProps {
-  show: Show;
-  name: string;
-  note: string;
-  current?: boolean;
+function AppText({ app }: { app: App }) {
+  const here = app.id === "dwts";
+  return (
+    <span className="flex flex-col">
+      <span className={`text-sm font-medium whitespace-nowrap ${here ? "text-gold-light" : app.url ? "" : "text-silver-dim"}`}>{app.name}</span>
+      <span className="text-xs text-silver-dim">{appNote(app)}</span>
+    </span>
+  );
 }
 
-// Not menu items: this app is where you already are, and Survivor isn't out yet.
-function AppRow({ show, name, note, current = false }: AppRowProps) {
+// Not menu items: this app is where you already are, and a coming-soon app has nowhere to go.
+function AppRow({ app }: { app: App }) {
+  const here = app.id === "dwts";
   return (
-    <span aria-current={current ? "page" : undefined} className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-1.5`}>
-      <ShowIcon show={show} size={36} locked={!current} />
-      <span className="flex flex-col">
-        <span className={`text-sm font-medium whitespace-nowrap ${current ? "text-gold-light" : "text-silver-dim"}`}>{name}</span>
-        <span className="text-xs text-silver-dim">{note}</span>
-      </span>
+    <span aria-current={here ? "page" : undefined} className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-1.5`}>
+      <AppIcon id={app.id} size={36} locked={!here} />
+      <AppText app={app} />
     </span>
   );
 }

@@ -4,19 +4,17 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 
 import { CloseIcon, MenuIcon } from "@/components/app-shell";
-import { AppsMenu, ArrowIcon, HUB_URL, TRAITORS_URL } from "@/components/apps-menu";
+import { AppList } from "@/components/app-list";
+import { AppsMenu } from "@/components/apps-menu";
 import { Brand } from "@/components/brand";
 import { GoogleMark } from "@/components/google-mark";
 import { NavSheet } from "@/components/nav-sheet";
-import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 import { button, FOCUS } from "@/lib/ui";
 
 const LINKS = [
   { href: "#how", label: "How it works" },
   { href: "/discover/", label: "Discover" },
 ];
-
-const SOON: { show: Show; name: string }[] = [{ show: "survivor", name: "Survivor" }];
 
 const ICON_BUTTON = `flex size-11 shrink-0 items-center justify-center rounded-full text-silver transition-colors hover:bg-silver/10 hover:text-pearl active:bg-silver/15 ${FOCUS}`;
 
@@ -94,41 +92,7 @@ export function LandingNav({ disabled, onSignIn }: LandingNavProps) {
             ))}
           </ul>
         </nav>
-        <section aria-labelledby="sheet-apps" className="flex flex-col gap-1">
-          <h2 id="sheet-apps" className="px-3 text-xs font-semibold tracking-[0.12em] text-silver-dim uppercase">
-            Armchair Judge apps
-          </h2>
-          <ul className="flex flex-col">
-            <li className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-2`}>
-              <ShowIcon show="dwts" size={40} />
-              <span className="flex flex-col">
-                <span className="text-sm font-medium text-gold-light">Dancing with the Stars</span>
-                <span className="text-xs text-silver-dim">You&rsquo;re here</span>
-              </span>
-            </li>
-            <li>
-              <a
-                href={TRAITORS_URL}
-                className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-2 transition-colors hover:bg-ballroom/60 active:bg-ballroom ${FOCUS}`}
-              >
-                <ShowIcon show="traitors" size={40} />
-                <span className="flex flex-col">
-                  <span className="text-sm font-medium text-silver">The Traitors</span>
-                  <span className="text-xs text-silver-dim">Live now</span>
-                </span>
-              </a>
-            </li>
-            {SOON.map((s) => (
-              <li key={s.show} className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-2`}>
-                <ShowIcon show={s.show} size={40} locked />
-                <span className="flex flex-col">
-                  <span className="text-sm font-medium text-silver-dim">{s.name}</span>
-                  <span className="text-xs text-silver-dim">Coming soon</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <AppList />
         <div className="mt-auto flex flex-col gap-3">
           <button
             type="button"
@@ -139,13 +103,6 @@ export function LandingNav({ disabled, onSignIn }: LandingNavProps) {
             <GoogleMark />
             Sign in with Google
           </button>
-          <a
-            href={HUB_URL}
-            className={`flex min-h-11 items-center gap-2 rounded-md text-sm text-silver-dim transition-colors hover:text-gold-light ${FOCUS}`}
-          >
-            More shows on Armchair Judge
-            <ArrowIcon />
-          </a>
         </div>
       </NavSheet>
     </header>

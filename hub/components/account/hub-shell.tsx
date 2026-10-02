@@ -10,12 +10,11 @@ import { useAuth } from "@armchair/app-core/auth/use-auth";
 import { ChairLoader } from "@/components/chair-loader";
 import { ChairMark } from "@/components/chair-mark";
 import { GoogleMark } from "@/components/google-mark";
-import { ICON_TRIGGER, ShowIcon } from "@/components/show-icon";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { dwtsLink } from "@/lib/links";
 import { TABS } from "@/lib/tabs";
 
+import { AppLinks } from "./app-links";
 import { NavSheet } from "./nav-sheet";
 import { FOCUS, PRIMARY } from "./ui";
 
@@ -103,14 +102,8 @@ export function HubShell({ children }: HubShellProps) {
             </ul>
           </nav>
           <div className="mt-auto flex flex-col gap-1">
-            <p className="px-1 text-[11px] font-semibold tracking-[0.25em] text-muted uppercase">Your apps</p>
-            <a
-              href={dwtsLink()}
-              className={`${ICON_TRIGGER} flex min-h-14 items-center gap-3 rounded-2xl px-2 text-sm font-semibold text-text hover:bg-line/50 ${FOCUS}`}
-            >
-              <ShowIcon show="dwts" size={40} />
-              Dancing with the Stars
-            </a>
+            <p className="px-1 text-[11px] font-semibold tracking-[0.25em] text-muted uppercase">Apps</p>
+            <AppLinks />
           </div>
         </NavSheet>
       )}

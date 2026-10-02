@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { DWTS_URL } from "@/lib/links";
+import { dwtsLink } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Page not found · Armchair Judge",
@@ -55,7 +55,7 @@ export default function NotFound() {
               Back to the hub
             </Link>
             <a
-              href={DWTS_URL}
+              href={dwtsLink()}
               className="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-semibold text-text transition-colors hover:border-muted hover:bg-night-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold active:scale-[0.98] motion-reduce:transition-none"
             >
               Judge Dancing with the Stars

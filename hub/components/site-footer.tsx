@@ -1,11 +1,14 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { ChairMark } from "@/components/chair-mark";
-import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
-import { DWTS_URL, GITHUB_URL, TRAITORS_URL, XOMWARE_URL } from "@/lib/links";
+import { APPS, appLink, type App } from "@armchair/app-core/apps";
 
-// Kept in step with frontend/components/site-footer.tsx by hand: the two apps share no package.
+import { AppIcon } from "@/components/app-icon";
+import { ChairMark } from "@/components/chair-mark";
+import { ICON_TRIGGER } from "@/components/show-icon";
+import { dwtsLink, GITHUB_URL, XOMWARE_URL } from "@/lib/links";
+
+// The same columns as frontend/components/site-footer.tsx; the app list comes from app-core.
 
 const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
 
@@ -17,18 +20,6 @@ const UNDERLINE =
 
 // Stamped when the static page is built.
 const YEAR = new Date().getFullYear();
-
-interface App {
-  show: Show;
-  name: string;
-  href?: string;
-}
-
-const APPS: App[] = [
-  { show: "dwts", name: "Dancing with the Stars", href: DWTS_URL },
-  { show: "traitors", name: "The Traitors", href: TRAITORS_URL },
-  { show: "survivor", name: "Survivor" },
-];
 
 function FooterLink({ href, children }: { href: string; children: ReactNode }) {
   const body = (
@@ -61,8 +52,10 @@ function Column({ title, children }: { title: string; children: ReactNode }) {
 }
 
 function AppItem({ app }: { app: App }) {
-  const icon = <ShowIcon show={app.show} size={28} locked={!app.href} />;
-  if (!app.href) {
+  // The hub's own entry goes home; the shows open signed in.
+  const href = app.id === "hub" ? "/" : appLink(app.id);
+  const icon = <AppIcon id={app.id} size={28} locked={!href} />;
+  if (!href) {
     return (
       <li className={`${ICON_TRIGGER} flex min-h-11 items-center gap-2.5 text-sm text-muted/70`}>
         {icon}
@@ -73,19 +66,33 @@ function AppItem({ app }: { app: App }) {
       </li>
     );
   }
-  return (
-    <li>
-      <a href={app.href} className={`${LINK} ${ICON_TRIGGER} gap-2.5`}>
-        {icon}
-        <span className="relative">
-          {app.name}
-          <span aria-hidden="true" className={`${UNDERLINE} bottom-0`} />
-        </span>
+  const body = (
+    <>
+      {icon}
+      <span className="relative">
+        {app.name}
+        <span aria-hidden="true" className={`${UNDERLINE} bottom-0`} />
+      </span>
+      {app.id !== "hub" && (
         <span className="flex items-center gap-1 rounded-full bg-magenta/15 px-2 py-0.5 text-[9px] font-bold tracking-[0.15em] text-magenta">
           <span className="size-1 rounded-full bg-current motion-safe:animate-pulse" aria-hidden="true" />
           LIVE
         </span>
-      </a>
+      )}
+    </>
+  );
+  const className = `${LINK} ${ICON_TRIGGER} gap-2.5`;
+  return (
+    <li>
+      {href === "/" ? (
+        <Link href={href} className={className}>
+          {body}
+        </Link>
+      ) : (
+        <a href={href} className={className}>
+          {body}
+        </a>
+      )}
     </li>
   );
 }
@@ -121,11 +128,8 @@ export function SiteFooter() {
           <div className="col-span-2 sm:col-span-1">
             <Column title="Apps">
               {APPS.map((app) => (
-                <AppItem key={app.show} app={app} />
+                <AppItem key={app.id} app={app} />
               ))}
-              <li>
-                <FooterLink href="https://armchairjudge.com">armchairjudge.com</FooterLink>
-              </li>
             </Column>
           </div>
           <Column title="Product">
@@ -136,7 +140,7 @@ export function SiteFooter() {
               <FooterLink href="/#faq">FAQ</FooterLink>
             </li>
             <li>
-              <FooterLink href={`${DWTS_URL}/discover/`}>Discover</FooterLink>
+              <FooterLink href={dwtsLink("/discover/")}>Discover</FooterLink>
             </li>
           </Column>
           <Column title="Legal">
@@ -147,7 +151,7 @@ export function SiteFooter() {
               <FooterLink href="/terms/">Terms</FooterLink>
             </li>
             <li>
-              <FooterLink href={`${DWTS_URL}/credits/`}>Photo credits</FooterLink>
+              <FooterLink href={dwtsLink("/credits/")}>Photo credits</FooterLink>
             </li>
           </Column>
           <Column title="Open source">

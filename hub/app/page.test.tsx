@@ -26,8 +26,8 @@ describe("landing", () => {
   it("leads with both live shows, each with its own way in", () => {
     render(<HomePage />);
     expect(screen.getByText("Play along with the shows you watch")).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Judge Dancing with the Stars" }).getAttribute("href")).toBe("https://dwts.armchairjudge.com");
-    expect(screen.getByRole("link", { name: "Play The Traitors" }).getAttribute("href")).toBe("https://traitors.armchairjudge.com");
+    expect(screen.getByRole("link", { name: "Judge Dancing with the Stars" }).getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
+    expect(screen.getByRole("link", { name: "Play The Traitors" }).getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
     expect(screen.getByRole("heading", { level: 1 }).textContent).toContain("Now it counts.");
     // The show cards come straight after the hero.
     const sections = [...document.querySelectorAll("main > section[id]")].map((s) => s.id);
@@ -45,8 +45,8 @@ describe("landing", () => {
     const shows = screen.getByRole("region", { name: "Pick your panel." });
     const links = within(shows).getAllByRole("link");
     expect(links.map((a) => a.getAttribute("href"))).toEqual([
-      "https://dwts.armchairjudge.com",
-      "https://traitors.armchairjudge.com",
+      "https://dwts.armchairjudge.com/?sso=1",
+      "https://traitors.armchairjudge.com/?sso=1",
     ]);
     expect(within(shows).getByRole("heading", { name: "Survivor" }).closest("a")).toBeNull();
   });
@@ -86,12 +86,14 @@ describe("landing", () => {
     render(<HomePage />);
     const footer = screen.getByRole("contentinfo");
     const href = (name: string) => within(footer).getByRole("link", { name }).getAttribute("href");
-    expect(within(footer).getByRole("link", { name: /^Dancing with the Stars/ }).getAttribute("href")).toBe("https://dwts.armchairjudge.com");
-    expect(within(footer).getByRole("link", { name: /^The Traitors/ }).getAttribute("href")).toBe("https://traitors.armchairjudge.com");
+    expect(within(footer).getByRole("link", { name: /^Dancing with the Stars/ }).getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
+    expect(within(footer).getByRole("link", { name: /^The Traitors/ }).getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
+    const apps = within(footer).getByRole("navigation", { name: "Apps" });
+    expect(apps.textContent).toMatch(/Armchair Judge.*Dancing with the Stars.*The Traitors.*Survivor/);
     expect(within(footer).getByText("Survivor").closest("a")).toBeNull();
     expect(href("GitHub")).toBe("https://github.com/domgiordano/armchair");
     expect(href("A Xomware app")).toBe("https://xomware.com");
-    expect(href("Photo credits")).toBe("https://dwts.armchairjudge.com/credits/");
+    expect(href("Photo credits")).toBe("https://dwts.armchairjudge.com/credits/?sso=1");
     expect(href("FAQ")).toBe("/#faq");
   });
 
