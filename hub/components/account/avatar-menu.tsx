@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type FocusEvent } from "react";
 
-import { useAuth } from "@/lib/auth/use-auth";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
 import { dwtsLink } from "@/lib/links";
 import { useMe } from "@/lib/me";
 

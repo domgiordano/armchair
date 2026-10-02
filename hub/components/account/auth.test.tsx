@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { Hub } from "aws-amplify/utils";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { rememberReturn, takeReturn } from "@/lib/auth/return-to";
+import { rememberReturn, takeReturn } from "@armchair/app-core/auth/return-to";
 import { resetMe } from "@/lib/me";
 import { resetNotifications } from "@/lib/notifications";
 
@@ -26,7 +26,7 @@ vi.mock("aws-amplify/auth", () => ({
   signInWithRedirect: auth.signInWithRedirect,
   signOut: auth.signOut,
 }));
-vi.mock("@/lib/auth/amplify", () => ({ authConfigured: true }));
+vi.mock("@armchair/app-core/auth/amplify", () => ({ authConfigured: true }));
 
 const replace = vi.fn();
 vi.mock("next/navigation", () => ({ useRouter: () => ({ replace }), usePathname: () => "/" }));
@@ -126,12 +126,12 @@ describe("auth callback", () => {
   });
 
   it("refuses a return path pointing off-site", () => {
-    sessionStorage.setItem("armchair-hub.returnTo", "//evil.example/");
+    sessionStorage.setItem("armchair.returnTo", "//evil.example/");
     expect(takeReturn()).toBe("/");
   });
 
   it("falls through to Google when a silent continue finds no session", async () => {
-    sessionStorage.setItem("armchair-hub.silent", "1");
+    sessionStorage.setItem("armchair.silent", "1");
     render(<AuthCallback />);
     await screen.findByRole("status");
     act(() => Hub.dispatch("auth", { event: "signInWithRedirect_failure", data: { error: new Error("login_required") } }));

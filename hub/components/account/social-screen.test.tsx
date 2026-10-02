@@ -13,7 +13,7 @@ vi.mock("aws-amplify/auth", () => ({
   signInWithRedirect: vi.fn(),
   signOut: vi.fn(),
 }));
-vi.mock("@/lib/auth/amplify", () => ({ authConfigured: true }));
+vi.mock("@armchair/app-core/auth/amplify", () => ({ authConfigured: true }));
 
 describe("social tab", () => {
   let fetchMock: ReturnType<typeof stubApi>;

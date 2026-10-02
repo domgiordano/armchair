@@ -3,7 +3,7 @@
 import { useEffect, type ReactNode } from "react";
 
 import { clearAccountHint, useAccountHint } from "@/lib/account-hint";
-import { useAuth } from "@/lib/auth/use-auth";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
 
 import { Dashboard } from "./dashboard";
 

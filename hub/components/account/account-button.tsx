@@ -1,12 +1,15 @@
 "use client";
 
+import { signInWithRedirect } from "aws-amplify/auth";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+
+import { rememberReturn } from "@armchair/app-core/auth/return-to";
+import { markSilent } from "@armchair/app-core/auth/silent";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
+import { parseWho, rawWho } from "@armchair/app-core/auth/who";
 
 import { GoogleMark } from "@/components/google-mark";
 import { useAccountHint } from "@/lib/account-hint";
-import { continueSignedIn, signInWithGoogle, useAuth } from "@/lib/auth/use-auth";
-import { parseWho, rawWho } from "@/lib/auth/who";
-import { DWTS_URL } from "@/lib/links";
 
 import { AvatarMenu } from "./avatar-menu";
 import { Avatar, FOCUS } from "./ui";
@@ -15,9 +18,16 @@ const PILL = `flex min-h-11 items-center gap-2 rounded-full bg-text text-sm font
 
 const noSubscribe = () => () => {};
 
+// Resumes the session a show app already opened, with prompt=none so nobody sees a
+// sign-in page. With none left, the callback falls through to Google.
+const continueSignedIn = () => {
+  markSilent();
+  return signInWithRedirect({ options: { prompt: "NONE" } });
+};
+
 /** The header's account slot: sign in, continue as someone, or their avatar menu. */
 export function AccountButton() {
-  const { status } = useAuth();
+  const { status, signInWithGoogle } = useAuth();
   const hinted = useAccountHint();
   const raw = useSyncExternalStore(noSubscribe, rawWho, () => null);
   const who = useMemo(() => parseWho(raw), [raw]);
@@ -32,15 +42,15 @@ export function AccountButton() {
 
   if (status === "signedIn") return <AvatarMenu />;
 
-  // A build without Cognito config keeps the old hand-off to DWTS.
+  // A build without Cognito config (local, PR previews) has nowhere to send anyone.
   if (status === "unconfigured") {
     return (
-      <a href={DWTS_URL} aria-label="Sign in" className={`${PILL} ml-1 px-3 sm:px-4`}>
+      <button type="button" disabled aria-label="Sign in" title="Sign-in is not configured in this build" className={`${PILL} ml-1 px-3 sm:px-4`}>
         <GoogleMark className="h-5 w-5 sm:h-4 sm:w-4" />
         <span className="hidden sm:inline" aria-hidden="true">
           Sign in
         </span>
-      </a>
+      </button>
     );
   }
 
@@ -50,6 +60,7 @@ export function AccountButton() {
 
   const go = (fn: () => Promise<void>) => {
     setLeaving(true);
+    rememberReturn();
     fn().catch(() => setLeaving(false));
   };
 
