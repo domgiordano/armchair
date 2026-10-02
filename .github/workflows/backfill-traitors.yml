@@ -1,0 +1,35 @@
+name: Backfill Traitors
+
+# Invokes the Traitors poller with {"backfill": true}: every released episode of
+# every current season is published with its results confirmed at once. Run it
+# after seeding a season mid-run. Idempotent, so re-running is safe.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # mint the OIDC token traded for the deploy role
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Xomware/github-actions/actions/load-infisical-secrets@v1
+        with:
+          path: /armchair
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Invoke
+        run: |
+          aws lambda invoke --function-name armchair-cron-poll-traitors \
+            --cli-binary-format raw-in-base64-out --payload '{"backfill": true}' \
+            --log-type Tail --query LogResult --output text out.json | base64 -d | tail -c 2000
+          cat out.json
+          # A handler exception still returns 200 from Invoke; the error is in the body.
+          ! grep -q '"errorMessage"' out.json

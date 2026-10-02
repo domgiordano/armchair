@@ -1,7 +1,6 @@
-# Traitors poller: reads each edition's current season page while an episode is
-# fresh. Every minute, all week: which ticks fetch is decided from catalog
-# release times, so new seasons and schedules need no cron edit. Log-only until
-# publishing lands (docs/features/traitors/PLAN.md PR 9).
+# Traitors poller: publishes each edition's current season results while an
+# episode is fresh. Every minute, all week: which ticks fetch is decided from
+# catalog release times, so new seasons and schedules need no cron edit.
 
 locals {
   poll_traitors_name = "${var.app_name}-cron-poll-traitors"
@@ -24,15 +23,29 @@ data "aws_iam_policy_document" "poll_traitors" {
     resources = ["${aws_cloudwatch_log_group.poll_traitors.arn}:*"]
   }
 
+  # Results and exits: conditional-free UpdateItem only. No Put, no Delete.
   statement {
-    sid       = "ReadCatalog"
+    sid       = "Tables"
+    actions   = ["dynamodb:Query", "dynamodb:UpdateItem"]
+    resources = [aws_dynamodb_table.catalog.arn, aws_dynamodb_table.performances.arn]
+  }
+
+  # Scoring picks into the board: reads picks, never writes them.
+  statement {
+    sid       = "ReadScores"
     actions   = ["dynamodb:Query"]
-    resources = [aws_dynamodb_table.catalog.arn]
+    resources = [aws_dynamodb_table.scores.arn]
+  }
+
+  statement {
+    sid       = "Board"
+    actions   = ["dynamodb:Query", "dynamodb:PutItem", "dynamodb:UpdateItem", "dynamodb:DeleteItem"]
+    resources = [aws_dynamodb_table.board.arn]
   }
 
   statement {
     sid       = "UseKey"
-    actions   = ["kms:Decrypt"]
+    actions   = ["kms:Decrypt", "kms:Encrypt", "kms:GenerateDataKey"]
     resources = [aws_kms_key.app.arn]
   }
 }
@@ -46,7 +59,7 @@ resource "aws_iam_role_policy" "poll_traitors" {
 resource "aws_lambda_function" "poll_traitors" {
   # Folder lambdas/cron_poll_traitors: deploy-backend.yml maps underscores to dashes.
   function_name = local.poll_traitors_name
-  description   = "Read current Traitors season pages while an episode is fresh"
+  description   = "Publish Traitors results from current season pages while an episode is fresh"
   role          = aws_iam_role.poll_traitors.arn
   handler       = "handler.handler"
   runtime       = var.lambda_runtime
@@ -59,7 +72,10 @@ resource "aws_lambda_function" "poll_traitors" {
 
   environment {
     variables = {
-      CATALOG_TABLE = aws_dynamodb_table.catalog.id
+      CATALOG_TABLE      = aws_dynamodb_table.catalog.id
+      PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
+      SCORES_TABLE       = aws_dynamodb_table.scores.id
+      BOARD_TABLE        = aws_dynamodb_table.board.id
     }
   }
 
