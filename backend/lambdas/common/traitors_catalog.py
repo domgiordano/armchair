@@ -108,13 +108,16 @@ def items(
         }
         for e in parsed["episodes"]
     ]
+    # A player with no registry headshot gets no `headshot` key, so a re-seed or discovery
+    # leaves one that find_traitors_headshots.py wrote straight onto the PLAYER.
+    shots = headshots or {}
     rows += [
         {
             "pk": pk,
             "sk": f"PLAYER#{slug(name)}",
             "name": name,
             "aliases": sorted(a for a, full in short.items() if full == name and a != name.lower()),
-            "headshot": (headshots or {}).get(name),
+            **({"headshot": shots[name]} if shots.get(name) else {}),
         }
         for name in names
     ]

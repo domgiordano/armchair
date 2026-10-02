@@ -195,11 +195,11 @@ def linked(title: str, names: set[str]) -> dict[str, list[dict]]:
     return candidates(query_all(WIKIPEDIA, {**params, "redirects": 1, **PROPS}), names)
 
 
-def direct(names: set[str]) -> dict[str, list[dict]]:
-    """Candidates among the articles the names themselves lead to, if they link to the show."""
+def direct(names: set[str], shows: tuple[str, ...]) -> dict[str, list[dict]]:
+    """Candidates among the articles the names themselves lead to, if they link to a show."""
     found = {}
     for chunk in (sorted(names)[i : i + 50] for i in range(0, len(names), 50)):
-        params = {**PROPS, "prop": "pageprops|links", "pltitles": SHOW, "redirects": 1}
+        params = {**PROPS, "prop": "pageprops|links", "pltitles": "|".join(shows), "redirects": 1}
         rows = query_all(WIKIPEDIA, {**params, "titles": "|".join(chunk)})
         found |= candidates([r for r in rows if "redirect" in r or r.get("links")], set(chunk))
     return found
@@ -363,8 +363,11 @@ def pick(name: str, files: list[str], infos: dict[str, dict]) -> dict | None:
     return None
 
 
-def articles(people: dict[str, set[str]]) -> dict[str, tuple[dict, dict]]:
-    """{name: (article page, Wikidata item)} for the people with an article."""
+def articles(
+    people: dict[str, set[str]], shows: tuple[str, ...] = (SHOW,)
+) -> dict[str, tuple[dict, dict]]:
+    """{name: (article page, Wikidata item)} for the people with an article.
+    A name with no link from its season page counts if its own article links to one of `shows`."""
     found: dict[str, list[dict]] = {}
     for title in sorted({t for titles in people.values() for t in titles}):
         want = {n for n, titles in people.items() if title in titles}
@@ -386,7 +389,7 @@ def articles(people: dict[str, set[str]]) -> dict[str, tuple[dict, dict]]:
         return out
 
     out = settle(found)
-    return out | settle(direct(set(people) - set(out)))
+    return out | settle(direct(set(people) - set(out), shows))
 
 
 def resolve(people: dict[str, set[str]]) -> dict[str, dict | None]:
@@ -402,16 +405,20 @@ def resolve(people: dict[str, set[str]]) -> dict[str, dict | None]:
             out[name] = None
             print(f"{name}: no article", flush=True)
             continue
-        page, item = known[name]
-        p18, lead = claim(item, "P18"), page["pageprops"].get("page_image_free")
-        files = [f.replace(" ", "_") for f in (p18, lead, *depicting(item["id"])) if f]
-        infos = file_info(list(dict.fromkeys(files)))
-        p18 = p18 and p18.replace(" ", "_")
-        tries = order(item["id"], p18, files, depicts(infos), [name, *labels(item)])
-        out[name] = pick(name, tries, infos)
-        print(f"{name}: {out[name]['file'] if out[name] else '-'} of {len(tries)}", flush=True)
+        out[name] = commons(name, *known[name])
+        print(f"{name}: {out[name]['file'] if out[name] else '-'}", flush=True)
         time.sleep(0.2)
     return out
+
+
+def commons(name: str, page: dict, item: dict) -> dict | None:
+    """The person's best Commons headshot, credited, or None."""
+    p18, lead = claim(item, "P18"), page["pageprops"].get("page_image_free")
+    files = [f.replace(" ", "_") for f in (p18, lead, *depicting(item["id"])) if f]
+    infos = file_info(list(dict.fromkeys(files)))
+    p18 = p18 and p18.replace(" ", "_")
+    tries = order(item["id"], p18, files, depicts(infos), [name, *labels(item)])
+    return pick(name, tries, infos)
 
 
 def fixtures() -> list[Path]:
