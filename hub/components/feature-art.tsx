@@ -146,7 +146,7 @@ export function GroupArt() {
       <div className="flex flex-wrap gap-1.5">
         {[
           { show: "Dancing with the Stars", live: true },
-          { show: "The Traitors", live: false },
+          { show: "The Traitors", live: true },
           { show: "Survivor", live: false },
         ].map((s) => (
           <span

@@ -30,16 +30,15 @@ describe("landing", () => {
     expect(screen.getByRole("heading", { level: 1 }).textContent).toContain("Now it counts.");
   });
 
-  it("links only the live show; coming-soon shows are not clickable", () => {
+  it("links the live shows; the coming-soon show is not clickable", () => {
     render(<HomePage />);
     const shows = screen.getByRole("region", { name: "Pick your panel." });
     const links = within(shows).getAllByRole("link");
-    expect(links).toHaveLength(1);
-    expect(links[0].getAttribute("href")).toBe("https://dwts.armchairjudge.com");
-    for (const name of ["The Traitors", "Survivor"]) {
-      const heading = within(shows).getByRole("heading", { name });
-      expect(heading.closest("a")).toBeNull();
-    }
+    expect(links.map((a) => a.getAttribute("href"))).toEqual([
+      "https://dwts.armchairjudge.com",
+      "https://traitors.armchairjudge.com",
+    ]);
+    expect(within(shows).getByRole("heading", { name: "Survivor" }).closest("a")).toBeNull();
   });
 
   it("labels the desk as invented data", () => {
@@ -78,7 +77,8 @@ describe("landing", () => {
     const footer = screen.getByRole("contentinfo");
     const href = (name: string) => within(footer).getByRole("link", { name }).getAttribute("href");
     expect(within(footer).getByRole("link", { name: /^Dancing with the Stars/ }).getAttribute("href")).toBe("https://dwts.armchairjudge.com");
-    expect(within(footer).getByText("The Traitors").closest("a")).toBeNull();
+    expect(within(footer).getByRole("link", { name: /^The Traitors/ }).getAttribute("href")).toBe("https://traitors.armchairjudge.com");
+    expect(within(footer).getByText("Survivor").closest("a")).toBeNull();
     expect(href("GitHub")).toBe("https://github.com/domgiordano/armchair");
     expect(href("A Xomware app")).toBe("https://xomware.com");
     expect(href("Photo credits")).toBe("https://dwts.armchairjudge.com/credits/");
@@ -87,6 +87,6 @@ describe("landing", () => {
 
   it("carries the not-affiliated line", () => {
     render(<HomePage />);
-    expect(screen.getByText(/Not affiliated with ABC, Disney, BBC, Peacock, CBS/)).toBeTruthy();
+    expect(screen.getByText(/Not affiliated with .*The Traitors, ABC, Disney, NBC, Peacock, BBC, CBS/)).toBeTruthy();
   });
 });

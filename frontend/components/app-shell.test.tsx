@@ -174,7 +174,7 @@ describe("AppShell", () => {
     const icons = [...menu.querySelectorAll("[data-show]")].map((el) => [el.getAttribute("data-show"), !!el.querySelector("span")]);
     expect(icons).toEqual([
       ["dwts", false],
-      ["traitors", true],
+      ["traitors", false],
       ["survivor", true],
     ]);
     expect(within(menu).getByText("Dancing with the Stars").closest("[aria-current]")?.getAttribute("aria-current")).toBe("page");

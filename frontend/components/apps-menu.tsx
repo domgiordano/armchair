@@ -5,8 +5,9 @@ import { Menu, MenuItem } from "@/components/ui/menu";
 import { FOCUS } from "@/lib/ui";
 
 export const HUB_URL = "https://armchairjudge.com";
+export const TRAITORS_URL = "https://traitors.armchairjudge.com";
 
-/** The header's app switcher: this show, the ones coming, and the hub. */
+/** The header's app switcher: this show, the other live ones, the ones coming, and the hub. */
 export function AppsMenu() {
   return (
     <Menu
@@ -21,7 +22,14 @@ export function AppsMenu() {
     >
       <p className="px-3 pt-1.5 pb-1 text-xs font-semibold tracking-[0.12em] text-silver-dim uppercase">Armchair Judge</p>
       <AppRow show="dwts" name="Dancing with the Stars" note="You're here" current />
-      <AppRow show="traitors" name="The Traitors" note="Coming soon" />
+      {/* sso=1 resumes the Armchair session there, so a signed-in judge lands signed in. */}
+      <MenuItem href={`${TRAITORS_URL}/?sso=1`} className={`${ICON_TRIGGER} py-1.5`}>
+        <ShowIcon show="traitors" size={36} />
+        <span className="flex flex-col">
+          <span className="text-sm font-medium whitespace-nowrap">The Traitors</span>
+          <span className="text-xs text-silver-dim">Live now</span>
+        </span>
+      </MenuItem>
       <AppRow show="survivor" name="Survivor" note="Coming soon" />
       <MenuItem href={HUB_URL} className="justify-between">
         All shows
@@ -38,7 +46,7 @@ interface AppRowProps {
   current?: boolean;
 }
 
-// Not menu items: this app is where you already are, and the others aren't out yet.
+// Not menu items: this app is where you already are, and Survivor isn't out yet.
 function AppRow({ show, name, note, current = false }: AppRowProps) {
   return (
     <span aria-current={current ? "page" : undefined} className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-1.5`}>

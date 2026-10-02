@@ -89,7 +89,7 @@ describe("Landing", () => {
     render(<Home />);
     expect(await screen.findByRole("group", { name: /^Judges' desk: Marisol Vega 8/ })).toBeTruthy();
     expect(screen.getByText("Illustration with invented couples, judges and scores.")).toBeTruthy();
-    expect(screen.getByText("Not affiliated with ABC, Disney or BBC Studios.")).toBeTruthy();
+    expect(screen.getByText("Not affiliated with ABC, Disney, BBC, BBC Studios, NBC, Peacock or The Traitors.")).toBeTruthy();
     expect(screen.getByRole("link", { name: "armchairjudge.com" }).getAttribute("href")).toBe(
       "https://armchairjudge.com",
     );
@@ -104,7 +104,9 @@ describe("Landing", () => {
 
     fireEvent.click(within(nav).getByRole("button", { name: "Apps" }));
     const apps = screen.getByRole("menu", { name: "Apps" });
-    expect(within(apps).getByText("The Traitors")).toBeTruthy();
+    expect(within(apps).getByRole("menuitem", { name: /The Traitors/ }).getAttribute("href")).toBe(
+      "https://traitors.armchairjudge.com/?sso=1",
+    );
     expect(within(apps).getByRole("menuitem", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
 
     const header = screen.getByRole("banner");
@@ -120,6 +122,7 @@ describe("Landing", () => {
     expect(href("A Xomware app")).toBe("https://xomware.com");
     expect(href("Privacy")).toBe("https://armchairjudge.com/privacy/");
     expect(href("Photo credits")).toMatch(/^\/credits\/?$/);
+    expect(within(footer).getByRole("link", { name: /^The Traitors/ }).getAttribute("href")).toBe("https://traitors.armchairjudge.com");
     expect(within(footer).getByText("Survivor").closest("a")).toBeNull();
   });
 

@@ -37,6 +37,53 @@ describe("leaderboards tab", () => {
     expect(screen.getByText(/Showing the top 2 of 7/)).toBeTruthy();
   });
 
+  it("switches to the Traitors board, ranked by points, and to all-time for that edition", async () => {
+    const pts = (sub: string, name: string, rank: number, points: number) => ({
+      sub, name, picture: null, avatarKind: "initials", rank, points, events: 6, banishHits: 2, average: points / 6,
+    });
+    const fetchMock = stubApi({
+      "/leaderboard/get": () => ({ data: { minDances: 5, ranked: [ME], unranked: [], me: ME }, meta: { ranked: 1 } }),
+      "/traitors/ranks": () => ({
+        data: {
+          season: "tus-5",
+          scope: "global",
+          group: null,
+          ranked: [pts("u-1", "Alex Recliner", 1, 24), pts("me-1", "Pat Couch", 2, 18)],
+          me: pts("me-1", "Pat Couch", 2, 18),
+        },
+        meta: { ranked: 2 },
+      }),
+    });
+    render(<LeaderboardsScreen />);
+    fireEvent.click(within(await screen.findByRole("group", { name: "Show" })).getByRole("button", { name: "Traitors US" }));
+
+    const alex = await screen.findByRole("link", { name: /Alex Recliner/ }, { timeout: 5000 });
+    expect(alex.closest("li")?.textContent).toContain("24pts");
+    expect(alex.textContent).toContain("6 calls · 2 banishments");
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toContain("Sharpest at the table.");
+
+    const season = screen.getByRole("group", { name: "Season" });
+    expect(within(season).getByRole("button", { name: "US · Season 5" }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(within(season).getByRole("button", { name: "All-time" }));
+    await waitFor(() => expect(calls(fetchMock, "/traitors/ranks")).toHaveLength(2));
+    const last = new URL(calls(fetchMock, "/traitors/ranks")[1][0], "http://api.test").searchParams;
+    expect([last.get("season"), last.get("show"), last.get("scope")]).toEqual(["all", "tus", "global"]);
+    expect(calls(fetchMock, "/leaderboard/get")).toHaveLength(0);
+  });
+
+  it("says when nobody has a Traitors call scored yet", async () => {
+    stubApi({
+      "/traitors/ranks": () => ({
+        data: { ranked: [{ ...ME, avatarKind: "initials", rank: 1, points: 0, events: 0, banishHits: 0, average: null }], me: { ...ME, rank: 1, points: 0, events: 0, banishHits: 0 } },
+        meta: { ranked: 1 },
+      }),
+    });
+    render(<LeaderboardsScreen />);
+    fireEvent.click(within(await screen.findByRole("group", { name: "Show" })).getByRole("button", { name: "Traitors UK" }));
+    expect(await screen.findByText(/No calls are scored yet/)).toBeTruthy();
+    expect(within(screen.getByRole("group", { name: "Season" })).getByRole("button", { name: "Celebrity UK · Season 2" })).toBeTruthy();
+  });
+
   it("switches to all-time and to friends", async () => {
     const fetchMock = stubApi({
       "/leaderboard/get": () => ({ data: { minDances: 5, ranked: [ME], unranked: [], me: ME }, meta: { ranked: 1 } }),
