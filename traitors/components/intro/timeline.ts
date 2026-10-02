@@ -4,17 +4,24 @@ import { Vector3 } from "three";
 // function of this, so a posed frame and a live one are the same picture.
 // intro.module.css times the DOM half (the title, the fade out) against the
 // same clock.
+//
+// The set is one long stone hall running down -z to an arched door, with a
+// fire beyond it. Shot one: the procession walks out of the fog towards a low
+// camera until the lead's cloak fills the lens. Shot two picks up on the lead's
+// chest in the same black, cranes up to the hood against the fire, and the
+// hood slides back onto the shoulders to leave only darkness.
 
 /** The whole intro, in seconds. intro.tsx ends it after this. */
 export const LENGTH = 7;
-/** The cut from the corridor to the hall, hidden in a dip to black. */
-export const CUT = 2.4;
-/** The lead's hood falls back over these seconds. */
-export const HOOD_FALL = [4.2, 5.0] as const;
-/** The title fades in once the hood is down. intro.module.css uses the same beats. */
-export const TITLE_IN = [5.0, 5.6] as const;
+/** The cut, hidden in the black of the lead's cloak filling the lens. */
+export const CUT = 3.25;
+/** The lead's hood slides back over these seconds. */
+export const HOOD = [4.35, 5.55] as const;
+/** The title burns in, letter by letter, over these seconds. intro.module.css uses the same beats. */
+export const TITLE = [5.1, 6.3] as const;
 
 export const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
+const mix = (a: number, b: number, k: number) => a + (b - a) * k;
 
 /** 0 before `from`, 1 after `to`, smoothstepped between. */
 export const phase = (t: number, from: number, to: number) => {
@@ -22,61 +29,41 @@ export const phase = (t: number, from: number, to: number) => {
   return x * x * (3 - 2 * x);
 };
 
-/** Up over `rise`, held, down over `fall`: the envelope of a move that comes and goes. */
-export const envelope = (t: number, from: number, to: number, rise: number, fall: number) =>
-  phase(t, from, from + rise) * (1 - phase(t, to - fall, to));
+/** Like phase, but with no acceleration at either end either: a camera move that settles. */
+export const glide = (t: number, from: number, to: number) => {
+  const x = clamp01((t - from) / (to - from));
+  return x * x * x * (x * (x * 6 - 15) + 10);
+};
 
-export type Shot = "corridor" | "hall";
-export const shot = (t: number): Shot => (t < CUT ? "corridor" : "hall");
+export type Shot = "procession" | "reveal";
+export const shot = (t: number): Shot => (t < CUT ? "procession" : "reveal");
 
-/** How black the frame is, peaking on the cut. */
-export const dip = (t: number) => envelope(t, CUT - 0.3, CUT + 0.35, 0.3, 0.35);
+/** Half the hall's width, where the vault springs, and its door and back walls along z. */
+export const HALL = { halfWidth: 2.3, spring: 4.4, door: -16, back: 2.4 } as const;
+/** Where the door's fire sits, beyond the arch. */
+export const FIRE = new Vector3(0, 1.2, HALL.door - 2.4);
 
-// The hall is built well clear of the corridor, so neither shows in the other.
-export const TABLE = new Vector3(0, 0, 30);
-export const TABLE_RADIUS = 1.9;
-export const TABLE_TOP = 0.8;
-/** Where the void opens: the lead's head, once they've stopped behind the table. */
-export const VOID = new Vector3(0, 1.6, 27.6);
-
-/** How far the hood has fallen, 0 up to 1 down, settling with a little overshoot. */
-export function hoodFall(t: number) {
-  const x = clamp01((t - HOOD_FALL[0]) / (HOOD_FALL[1] - HOOD_FALL[0]));
-  // Slow to start, as cloth peels off a head, then a soft bounce on the shoulders.
-  const c = 1.4;
-  const e = x * x;
-  return x === 0 ? 0 : 1 + (c + 1) * (e - 1) ** 3 + c * (e - 1) ** 2;
-}
-
-/** How wide the void has opened around the head, 0 to 1. */
-export const voidOpen = (t: number) => phase(t, 4.5, 5.3);
-
-/** The title's opacity. */
-export const titleIn = (t: number) => phase(t, TITLE_IN[0], TITLE_IN[1]);
-
-// The procession. In the corridor they come in column, two by two behind the
-// lead; in the hall they fan out behind the table. x, then z (behind the lead
-// in the corridor, absolute in the hall).
+// The procession, in column: the lead, then two pairs. x and z behind the lead.
 const COLUMN = [
   [0, 0],
-  [-0.55, -1.5],
-  [0.55, -1.75],
-  [-0.5, -3.3],
-  [0.5, -3.55],
-] as const;
-const PLACES = [
-  [0, VOID.z],
-  [-1.3, 27.05],
-  [1.3, 26.95],
-  [-2.4, 26.2],
-  [2.45, 26.1],
+  [-0.78, -1.7],
+  [0.74, -1.95],
+  [-0.66, -3.6],
+  [0.7, -3.85],
 ] as const;
 export const FIGURES = COLUMN.length;
 
-/** Metres per second down the corridor. */
+/** Metres per second. */
 const PACE = 1.3;
 /** One footfall every this many metres. */
-export const STRIDE = 0.7;
+export const STRIDE = 0.72;
+const LEAD_START = -5.15;
+const LEAD_STOP = LEAD_START + PACE * CUT;
+
+/** The head's centre, above the feet. */
+export const HEAD_Y = 1.63;
+/** Where the void is: the lead's head, once they've stopped. */
+export const VOID = new Vector3(0, HEAD_Y, LEAD_STOP);
 
 export interface Pose {
   position: Vector3;
@@ -86,50 +73,75 @@ export interface Pose {
 }
 
 export function pose(i: number, t: number, out: Pose) {
-  if (shot(t) === "corridor") {
-    const [x, dz] = COLUMN[i];
-    const z = -8.6 + PACE * t + dz;
-    out.position.set(x, bob(z, 1), z);
-    out.yaw = Math.sin(z * 1.3 + i) * 0.04;
-    out.walk = 1;
-    return out;
-  }
-  const [x, z] = PLACES[i];
-  // Each comes through the door a beat after the one ahead, and slows to a stop.
-  const arrive = CUT + 1.0 + i * 0.15;
-  const k = phase(t, CUT - 0.4, arrive);
-  const along = z - 1.7 * (1 - k);
-  const walk = 1 - phase(t, arrive - 0.4, arrive);
-  out.position.set(x * (0.55 + 0.45 * k), bob(along, walk), along);
-  // The lead faces the camera's side of the table; the rest turn in towards it.
-  out.yaw = i === 0 ? 0 : Math.atan2(TABLE.x - x, TABLE.z - z) * 0.7;
+  const [x, dz] = COLUMN[i];
+  // In the second shot the column has come to a stop and closed up a little.
+  const walking = shot(t) === "procession";
+  const z = walking ? LEAD_START + PACE * t + dz : LEAD_STOP + dz * 1.1;
+  const walk = walking ? 1 : 0;
   out.walk = walk;
+  // A small sway over each step, and a body that rises a little at mid-stride.
+  const step = (z / STRIDE) * Math.PI;
+  out.position.set(x + 0.012 * Math.sin(step) * walk, 0.014 * Math.abs(Math.sin(step)) * walk, z);
+  out.yaw = 0.025 * Math.sin(step * 0.5 + i) * walk + (walking ? 0 : x * -0.12);
   return out;
 }
 
-const bob = (z: number, walk: number) => 0.025 * Math.abs(Math.sin((z / STRIDE) * Math.PI)) * walk;
+const scratch: Pose = { position: new Vector3(), yaw: 0, walk: 0 };
+const dir = new Vector3();
+const toward = new Vector3();
+const chest = new Vector3();
 
-// Corridor: dolly back ahead of the procession. Hall: low across the table, then
-// push in on the lead until their head fills the middle of the frame.
-const EYE_HALL = [new Vector3(2.1, 1.3, 34.2), new Vector3(0.08, 1.62, 29.05)] as const;
-const LOOK_HALL = new Vector3(0, 1.32, 27.6);
-
-export function camera(t: number, eye: Vector3, look: Vector3) {
-  if (shot(t) === "corridor") {
-    const k = t / CUT;
-    eye.set(0.36 - 0.16 * k, 1.5 - 0.12 * k, -2.2 + 1.3 * k);
-    look.set(0.02, 1.42, -12 + 2 * k);
-  } else {
-    const k = phase(t, CUT + 0.2, LENGTH - 0.2);
-    eye.lerpVectors(EYE_HALL[0], EYE_HALL[1], k);
-    look.lerpVectors(LOOK_HALL, VOID, phase(t, CUT + 0.2, 4.4));
-  }
-  // A little operator sway, so it reads as a camera and not a render.
-  eye.x += Math.sin(t * 0.7) * 0.03;
-  eye.y += Math.sin(t * 1.1 + 1.3) * 0.015;
+// Blend headings, not points: a near target and a far one lerped as points
+// would swing the frame off both.
+function aim(eye: Vector3, a: Vector3, b: Vector3, k: number, look: Vector3) {
+  dir.subVectors(a, eye).normalize();
+  toward.subVectors(b, eye).normalize();
+  look.copy(eye).add(dir.lerp(toward, k).normalize());
 }
 
-// Fire. Each light runs its own phase through the same summed sines and noise.
+const DOOR_LOOK = new Vector3(0, 2.1, HALL.door);
+
+/** Where the camera is, and a point it looks through. */
+export function camera(t: number, eye: Vector3, look: Vector3) {
+  if (shot(t) === "procession") {
+    // Low and slow, pushing in a little as they come; the lead walks into the lens.
+    const k = glide(t, 0, CUT);
+    eye.set(mix(0.16, 0.04, k), mix(1.02, 1.2, k), mix(0, -0.3, k));
+    pose(0, t, scratch);
+    chest.set(scratch.position.x, 1.22, scratch.position.z);
+    aim(eye, DOOR_LOOK, chest, phase(t, 1.2, CUT - 0.15), look);
+  } else {
+    // Out of the cloak's black, up to the hood, then a slow push on the void.
+    const rise = glide(t, CUT, CUT + 0.9);
+    const push = glide(t, CUT + 0.7, LENGTH);
+    const dist = mix(mix(0.75, 1.35, rise), 0.48, push);
+    // Level with the head, so the door's fire sits right behind the hood.
+    eye.set(0.02, mix(1.22, VOID.y - 0.03, rise), VOID.z + dist);
+    chest.set(VOID.x, 1.2, VOID.z);
+    aim(eye, chest, VOID, glide(t, CUT, CUT + 0.8), look);
+  }
+  // Handheld breath: slow and small, so it reads as an operator and not a shake.
+  eye.x += Math.sin(t * 0.63 + 0.4) * 0.008 + Math.sin(t * 1.37) * 0.004;
+  eye.y += Math.sin(t * 0.91 + 1.3) * 0.006;
+}
+
+/** Where the lens focuses: the lead throughout. */
+export function focus(t: number, out: Vector3) {
+  pose(0, t, scratch);
+  if (shot(t) === "procession") return out.set(scratch.position.x, 1.45, scratch.position.z + 0.15);
+  return out.set(VOID.x, mix(1.25, VOID.y, glide(t, CUT, CUT + 1.0)), VOID.z + 0.12);
+}
+
+/** How far back the hood has slid, 0 up to 1 down on the shoulders. */
+export const hoodSlide = (t: number) => glide(t, HOOD[0], HOOD[1]);
+
+/** How far the darkness has spread over the head as the hood leaves it, 0 to 1. */
+export const voidOpen = (t: number) => glide(t, HOOD[0], HOOD[1] + 0.3);
+
+/** The title's progress, 0 to 1. */
+export const titleIn = (t: number) => phase(t, TITLE[0], TITLE[1]);
+
+// Fire. Each flame runs its own phase through the same summed sines and noise.
 function hash(n: number) {
   const s = Math.sin(n * 127.1) * 43758.5453;
   return s - Math.floor(s);
@@ -150,42 +162,41 @@ export function flicker(t: number, seed: number) {
 
 const v = (x: number, y: number, z: number) => new Vector3(x, y, z);
 
-/** Every torch on the corridor walls. The first four nearest the camera carry the lights. */
-export const CORRIDOR_TORCHES = [
-  v(1.42, 2.1, -0.4),
-  v(-1.42, 2.1, -3.4),
-  v(1.42, 2.1, -6.8),
-  v(-1.42, 2.1, -10.2),
-  v(1.42, 2.1, -13.6),
-  v(-1.42, 2.1, -17),
-  v(1.42, 2.1, -20.4),
-];
-export const HALL_TORCHES = [v(-1.55, 2.25, 23.35), v(1.55, 2.25, 23.35)];
-/** Candles on the table: a candelabra at the centre, a cluster at the lead's edge. */
-export const CANDLES = [
-  // [x, z, height]; the first five stand in the candelabra, off to one side of the camera's line.
-  [-0.75, 30.6, 0.34],
-  [-1.07, 30.68, 0.26],
-  [-0.43, 30.54, 0.26],
-  [-1.37, 30.75, 0.2],
-  [-0.15, 30.5, 0.2],
-  [0.72, 28.6, 0.22],
-  [0.92, 28.78, 0.14],
-  [-0.78, 28.62, 0.18],
-] as const;
+/** The torches, in brackets on the hall's walls. */
+export const TORCHES = [v(-2.12, 2.35, -3.4), v(2.12, 2.35, -3.4), v(-2.12, 2.35, -10.2), v(2.12, 2.35, -10.2)];
 
-const HALL_LIGHTS = [v(0.15, 1.15, 28.55), v(-0.75, 1.45, 30.4), HALL_TORCHES[0], HALL_TORCHES[1]];
 /** The light colour of every flame. */
-export const FIRE = "#ff9a3c";
-/** The four point lights: where they are and how bright, per shot. */
-export function light(i: number, t: number, at: Vector3) {
-  const hall = shot(t) === "hall";
-  at.copy(hall ? HALL_LIGHTS[i] : CORRIDOR_TORCHES[i]);
-  if (!hall) at.x *= 0.88;
-  else if (i >= 2) at.z += 0.25;
-  const base = hall ? [5.5, 4, 7, 7][i] : 9;
-  return base * flicker(t, i * 2.7 + (hall ? 9 : 0));
+export const FLAME = "#ff9f5a";
+
+export interface Light {
+  at: Vector3;
+  intensity: number;
 }
+
+// In the second shot the lead is a silhouette against the door's fire, so the
+// hood's outline carries the move. A fire just behind and above them puts a
+// rim on that outline; a faint torch off to the right keeps the cloth from
+// going flat black.
+const REVEAL_LIGHTS = [
+  { at: new Vector3(0.05, 1.8, VOID.z - 0.85), power: 7 },
+  { at: new Vector3(0.7, 1.7, VOID.z + 0.8), power: 1.2 },
+  { at: TORCHES[2], power: 3 },
+];
+
+/** Three point lights: the torches nearest the lens, or the close-up's rim and key. The door's own light is separate. */
+export function light(i: number, t: number, out: Light) {
+  if (shot(t) === "reveal") {
+    out.at.copy(REVEAL_LIGHTS[i].at);
+    out.intensity = REVEAL_LIGHTS[i].power * flicker(t, 4.4 + i * 1.9);
+  } else {
+    out.at.copy(TORCHES[i]).setX(TORCHES[i].x * 0.9);
+    out.intensity = 9 * flicker(t, i * 2.7);
+  }
+  return out;
+}
+
+/** The door's fire, a slower, bigger flicker than a torch's. */
+export const doorGlow = (t: number) => 1 + 0.5 * (flicker(t * 0.6, 12) - 0.85);
 
 /** A vertical field of view that crops like `object-fit: cover` around a reference aspect, so the poster lines up. */
 export function coverFov(aspect: number) {

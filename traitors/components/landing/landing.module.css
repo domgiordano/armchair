@@ -66,40 +66,6 @@
     0 0 36px rgb(242 102 42 / 0.28);
 }
 
-/* A slate in a gilt frame, with a chalky bloom over its face. */
-.slate {
-  position: relative;
-  padding: 24px 24px 32px;
-  border: 6px solid var(--gilt);
-  border-radius: 4px;
-  outline: 1px solid rgb(0 0 0 / 0.6);
-  outline-offset: -7px;
-  background:
-    radial-gradient(ellipse 80% 60% at 30% 20%, rgb(244 236 218 / 0.06), transparent 70%),
-    repeating-linear-gradient(170deg, rgb(244 236 218 / 0.025) 0 2px, transparent 2px 7px),
-    linear-gradient(160deg, #26302b, #1a211d 60%, var(--stone));
-  box-shadow:
-    inset 0 0 40px rgb(0 0 0 / 0.55),
-    0 24px 60px rgb(0 0 0 / 0.5),
-    0 0 50px rgb(242 102 42 / 0.12);
-}
-
-.chalk {
-  color: var(--bone);
-  opacity: 0.92;
-  text-shadow: 0 0 1px rgb(244 236 218 / 0.6);
-}
-
-.seal {
-  position: absolute;
-  right: -18px;
-  bottom: -22px;
-  width: 84px;
-  height: 84px;
-  rotate: -12deg;
-  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.55));
-}
-
 .ledger {
   padding: 24px;
   border: 1px solid rgb(199 154 58 / 0.45);
@@ -131,8 +97,334 @@
   }
 }
 
+
+
+/* Scroll reveal: rises into place once. Reduced motion shows it where it is. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--delay, 0ms),
+    transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--delay, 0ms);
+}
+
+.reveal[data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* The hero settles in as the intro hands over: copy first, then the table. */
+.heroCopy {
+  animation: settle 900ms 100ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.heroArt {
+  animation: settle 1100ms 350ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* The table illustration, in a gilt frame with the hall's dark round it. */
+.scene {
+  overflow: hidden;
+  border: 1px solid var(--gilt);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 3px var(--night),
+    inset 0 0 0 4px rgb(199 154 58 / 0.4),
+    0 30px 60px -20px rgb(0 0 0 / 0.8),
+    0 0 60px rgb(242 102 42 / 0.12);
+}
+
+.flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: lick 1.4s linear infinite;
+}
+
+.glowFlicker {
+  animation: burn 2.1s linear infinite;
+}
+
+/* The slate the votes are chalked on, propped against the table's corner. */
+.tallyBoard {
+  position: absolute;
+  right: -8px;
+  bottom: -40px;
+  padding: 14px 18px 16px;
+  border: 5px solid var(--gilt);
+  border-radius: 3px;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 20%, rgb(244 236 218 / 0.06), transparent 70%),
+    linear-gradient(160deg, #26302b, #1a211d 60%, var(--stone));
+  box-shadow:
+    inset 0 0 26px rgb(0 0 0 / 0.6),
+    0 18px 40px rgb(0 0 0 / 0.6);
+  rotate: 2deg;
+}
+
+.tallyStroke {
+  fill: none;
+  stroke: var(--bone);
+  stroke-opacity: 0.88;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 260ms ease-out;
+}
+
+.tallyStroke[data-drawn] {
+  stroke-dashoffset: 0;
+}
+
+/* The leader, ringed in chalk once the last vote is read. */
+.circled {
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgb(244 236 218 / 0.75);
+  animation: fade-in 400ms ease-out both;
+}
+
+.slateCard {
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 0%, rgb(233 185 73 / 0.08), transparent 70%),
+    var(--stone);
+}
+
+/* A name chalked left to right once its card is in view. */
+.chalkIn {
+  clip-path: inset(0 100% 0 0);
+}
+
+[data-shown] .chalkIn {
+  animation: chalk 600ms ease-out both;
+}
+
+.ledgerBand {
+  background:
+    radial-gradient(ellipse 50% 60% at 85% 40%, rgb(242 102 42 / 0.1), transparent 70%),
+    linear-gradient(to bottom, rgb(19 40 29 / 0.35), transparent);
+}
+
+/* A candle, burned down to how much of the season is left. */
+.candle {
+  position: relative;
+  display: block;
+  width: 14px;
+  margin-top: 26px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(to right, #c9b994, var(--parchment) 40%, #b9a47c);
+  box-shadow: 0 -10px 30px rgb(255 154 60 / 0.25);
+}
+
+.candleFlame {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 14px;
+  height: 24px;
+  margin-left: -7px;
+  border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%;
+  background: radial-gradient(ellipse at 50% 75%, #fff4d6 0 15%, var(--flame) 35%, var(--ember) 70%, transparent 72%);
+  transform-origin: 50% 100%;
+  animation: lick 1.3s linear infinite;
+}
+
+/* Blind until you call it: yours is stamped, then the rest turn over. */
+.pickCard {
+  position: relative;
+  display: flex;
+  min-height: 132px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 12px 18px;
+  border: 1px solid rgb(199 154 58 / 0.45);
+  border-radius: 3px;
+  background: linear-gradient(170deg, var(--stone), var(--night));
+  text-align: center;
+}
+
+.mine {
+  border-color: var(--gilt);
+  box-shadow: 0 0 40px rgb(242 102 42 / 0.15);
+}
+
+.stamp {
+  filter: drop-shadow(0 6px 8px rgb(0 0 0 / 0.6));
+  opacity: 0;
+}
+
+[data-shown] .stamp {
+  animation: stamp 520ms 600ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.flip {
+  display: grid;
+  perspective: 700px;
+}
+
+.flip > * {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  transition: transform 700ms cubic-bezier(0.3, 0.7, 0.2, 1) var(--flip, 0ms);
+}
+
+.back {
+  background:
+    repeating-linear-gradient(45deg, rgb(199 154 58 / 0.05) 0 2px, transparent 2px 8px),
+    linear-gradient(170deg, var(--oxblood), #1d070a);
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+[data-shown] .flip > .back {
+  transform: rotateY(-180deg);
+}
+
+[data-shown] .flip > .front {
+  transform: none;
+}
+
+.board {
+  padding: 24px;
+  border: 1px solid rgb(199 154 58 / 0.45);
+  border-radius: 4px;
+  background: linear-gradient(170deg, var(--stone), var(--night));
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.9);
+}
+
+.bar {
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+[data-shown] .bar {
+  animation: grow 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.edition {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid var(--gilt);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--cloak-500), var(--cloak));
+  color: var(--candle);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.faq[open] summary {
+  color: var(--candle);
+}
+
+.finale {
+  background:
+    radial-gradient(ellipse 50% 70% at 50% 100%, rgb(242 102 42 / 0.18), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgb(19 40 29 / 0.7), transparent 75%);
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes lick {
+  0%,
+  100% {
+    transform: scale(1, 1) skewX(0deg);
+  }
+  21% {
+    transform: scale(0.92, 1.1) skewX(-4deg);
+  }
+  43% {
+    transform: scale(1.05, 0.93) skewX(3deg);
+  }
+  67% {
+    transform: scale(0.96, 1.08) skewX(-2deg);
+  }
+  84% {
+    transform: scale(1.03, 0.96) skewX(2deg);
+  }
+}
+
+@keyframes chalk {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.7) rotate(-14deg);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.94) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
+}
+
+@keyframes grow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .title {
+  .title,
+  .flame,
+  .glowFlicker,
+  .candleFlame,
+  .heroCopy,
+  .heroArt {
     animation: none;
+  }
+
+  .reveal,
+  .tallyStroke,
+  .flip > * {
+    transition: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .chalkIn {
+    clip-path: none;
+  }
+
+  [data-shown] .chalkIn,
+  [data-shown] .bar,
+  [data-shown] .stamp {
+    animation: none;
+  }
+
+  .bar {
+    transform: none;
+  }
+
+  .stamp {
+    opacity: 1;
+    rotate: -8deg;
   }
 }

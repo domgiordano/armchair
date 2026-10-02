@@ -1,35 +1,34 @@
 "use client";
 
-import { Sparkles } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { type RefObject, useLayoutEffect, useMemo, useRef } from "react";
 import {
   BoxGeometry,
   type BufferGeometry,
   CylinderGeometry,
+  type DataTexture,
+  InstancedBufferGeometry,
   type InstancedMesh,
   Matrix4,
+  type Mesh,
   MeshStandardMaterial,
   Object3D,
   type PointLight,
+  type SpotLight,
   Vector3,
 } from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
-import { flameMaterial, quad, seeds, smokeMaterial } from "./billboard";
-import { CANDLES, CORRIDOR_TORCHES, FIRE, HALL_TORCHES, light, TABLE_TOP } from "./timeline";
+import { beyondMaterial, emberBases, emberMaterial, flameMaterial, fogMaterial, quad, seeds } from "./billboard";
+import { doorGlow, FIRE, FLAME, HALL, type Light, light, shot, TORCHES } from "./timeline";
 
 interface Clocked {
   now: () => number;
-  low: boolean;
 }
 
-// Shared by every flame and smoke quad; written once a frame.
-const fire = { uTime: { value: 0 } };
-const smoke = { uTime: { value: 0 }, uOpacity: { value: 0.34 } };
-
-/** Where the candelabra holds its candles above the table. */
-const STAND = 0.26;
+// Shared by every flame, fog sheet and ember; written once a frame.
+const clock = { value: 0 };
+const glow = { value: 1 };
 
 function merge(parts: BufferGeometry[]) {
   const merged = mergeGeometries(parts.map((p) => (p.index ? p.toNonIndexed() : p)));
@@ -38,193 +37,196 @@ function merge(parts: BufferGeometry[]) {
   return merged;
 }
 
-// A wall torch for a wall at +x, with the top of its cup at the origin.
+// A wall torch for a wall at -x, with the top of its cup at the origin: an
+// iron bracket, a pitch-wrapped head in a cage.
 function torch() {
-  const stick = new CylinderGeometry(0.03, 0.035, 0.55, 8);
-  stick.rotateZ(0.42);
-  stick.translate(0.1, -0.36, 0);
-  const cup = new CylinderGeometry(0.085, 0.045, 0.13, 10, 1, true);
-  cup.translate(0, -0.065, 0);
-  const plate = new BoxGeometry(0.04, 0.3, 0.16);
-  plate.translate(0.19, -0.6, 0);
-  return merge([stick, cup, plate]);
+  const stick = new CylinderGeometry(0.028, 0.034, 0.6, 10);
+  stick.rotateZ(-0.38);
+  stick.translate(-0.11, -0.36, 0);
+  const cup = new CylinderGeometry(0.085, 0.05, 0.16, 12, 1, true);
+  cup.translate(0, -0.08, 0);
+  const ring = new CylinderGeometry(0.09, 0.09, 0.02, 12);
+  ring.translate(0, -0.005, 0);
+  const plate = new BoxGeometry(0.03, 0.34, 0.14);
+  plate.translate(-0.22, -0.64, 0);
+  return merge([stick, cup, ring, plate]);
 }
 
-function candelabra() {
-  const stem = new CylinderGeometry(0.03, 0.09, STAND, 12);
-  stem.translate(0, STAND / 2, 0);
-  const bar = new CylinderGeometry(0.018, 0.018, 1.32, 8);
-  bar.rotateZ(Math.PI / 2);
-  bar.translate(0, STAND - 0.02, 0.0);
-  const dishes = [-0.62, -0.32, 0, 0.32, 0.6].map((x) => {
-    const d = new CylinderGeometry(0.06, 0.03, 0.03, 12);
-    d.translate(x, STAND, 0);
-    return d;
-  });
-  return merge([stem, bar, ...dishes]);
-}
-
-interface Flame {
-  at: Vector3;
-  w: number;
-  h: number;
-}
-
-const FLAMES: Flame[] = [
-  ...[...CORRIDOR_TORCHES, ...HALL_TORCHES].map((at) => ({ at, w: 0.24, h: 0.5 })),
-  ...CANDLES.map(([x, z, h], i) => ({
-    at: new Vector3(x, TABLE_TOP + h + (i < 5 ? STAND : 0) + 0.005, z),
-    w: 0.05,
-    h: 0.13,
-  })),
-];
-
-/** Every flame in both shots, one draw call. */
-function Flames() {
-  const mesh = useRef<InstancedMesh>(null);
-  const geometry = useMemo(() => {
-    const g = quad(0.5);
-    g.setAttribute("aSeed", seeds(FLAMES.length));
-    return g;
-  }, []);
-  const material = useMemo(() => flameMaterial(fire), []);
-
-  useLayoutEffect(() => {
-    const m = new Matrix4();
-    FLAMES.forEach((f, i) => mesh.current?.setMatrixAt(i, m.makeScale(f.w, f.h, 1).setPosition(f.at)));
-    if (mesh.current) mesh.current.instanceMatrix.needsUpdate = true;
-  }, []);
-
-  return <instancedMesh ref={mesh} args={[geometry, material, FLAMES.length]} frustumCulled={false} renderOrder={2} />;
-}
-
-const iron = new MeshStandardMaterial({ color: "#1c1916", roughness: 0.55, metalness: 0.7 });
-const gilt = new MeshStandardMaterial({ color: "#c79a3a", roughness: 0.32, metalness: 1, emissive: "#3a2408" });
-const wax = new MeshStandardMaterial({ color: "#e6d8b8", roughness: 0.6, emissive: "#4a2a10", emissiveIntensity: 0.6 });
+const iron = new MeshStandardMaterial({ color: "#16130f", roughness: 0.5, metalness: 0.8 });
 
 function Torches() {
   const mesh = useRef<InstancedMesh>(null);
   const geometry = useMemo(() => torch(), []);
-  const all = useMemo(() => [...CORRIDOR_TORCHES, ...HALL_TORCHES], []);
-
   useLayoutEffect(() => {
     const o = new Object3D();
-    all.forEach((at, i) => {
+    TORCHES.forEach((at, i) => {
       o.position.copy(at);
-      // Corridor torches hang on the side walls; the hall's on the wall behind the procession.
-      o.rotation.set(0, i >= CORRIDOR_TORCHES.length ? Math.PI / 2 : at.x > 0 ? 0 : Math.PI, 0);
+      o.rotation.set(0, at.x < 0 ? 0 : Math.PI, 0);
       o.updateMatrix();
       mesh.current?.setMatrixAt(i, o.matrix);
     });
     if (mesh.current) mesh.current.instanceMatrix.needsUpdate = true;
-  }, [all]);
-
-  return <instancedMesh ref={mesh} args={[geometry, iron, all.length]} />;
+  }, []);
+  return <instancedMesh ref={mesh} args={[geometry, iron, TORCHES.length]} castShadow />;
 }
 
-function Candles() {
+/** Every torch's flame, one draw call. */
+function Flames() {
   const mesh = useRef<InstancedMesh>(null);
   const geometry = useMemo(() => {
-    const g = new CylinderGeometry(0.032, 0.036, 1, 12);
-    g.translate(0, 0.5, 0);
+    const g = quad(0.5);
+    g.setAttribute("aSeed", seeds(TORCHES.length));
     return g;
   }, []);
-  const stand = useMemo(() => candelabra(), []);
-
+  const material = useMemo(() => flameMaterial({ uTime: clock }), []);
   useLayoutEffect(() => {
     const m = new Matrix4();
-    CANDLES.forEach(([x, z, h], i) =>
-      mesh.current?.setMatrixAt(i, m.makeScale(1, h, 1).setPosition(x, TABLE_TOP + (i < 5 ? STAND : 0), z)),
-    );
+    TORCHES.forEach((at, i) => mesh.current?.setMatrixAt(i, m.makeScale(0.34, 0.72, 1).setPosition(at.x, at.y - 0.06, at.z)));
     if (mesh.current) mesh.current.instanceMatrix.needsUpdate = true;
   }, []);
+  return <instancedMesh ref={mesh} args={[geometry, material, TORCHES.length]} frustumCulled={false} renderOrder={3} />;
+}
 
+// Fog sheets across the hall, front to back: none nearer than the lead stands
+// in the second shot, so nothing veils the hood in the close-up.
+const SHEETS = [-1.7, -2.6, -3.6, -4.7, -5.9, -7.2, -8.6, -10.1, -11.7, -13.3, -14.9];
+
+function Fog({ low, noise }: { low: boolean; noise: DataTexture }) {
+  const mesh = useRef<InstancedMesh>(null);
+  const sheets = useMemo(() => (low ? SHEETS.filter((_, i) => i % 2 === 0) : SHEETS), [low]);
+  const geometry = useMemo(() => {
+    const g = quad(0.5);
+    g.setAttribute("aSeed", seeds(sheets.length));
+    return g;
+  }, [sheets]);
+  const material = useMemo(
+    () =>
+      fogMaterial({
+        uTime: clock,
+        uGlow: glow,
+        uTorch: { value: 0.55 },
+        uDensity: { value: low ? 0.5 : 0.28 },
+        uNoise: { value: noise },
+      }),
+    [low, noise],
+  );
+  useLayoutEffect(() => {
+    const m = new Matrix4();
+    sheets.forEach((z, i) => mesh.current?.setMatrixAt(i, m.makeScale(2 * HALL.halfWidth + 0.2, 6.2, 1).setPosition(0, -0.05, z)));
+    if (mesh.current) mesh.current.instanceMatrix.needsUpdate = true;
+  }, [sheets]);
+  return <instancedMesh key={sheets.length} ref={mesh} args={[geometry, material, sheets.length]} frustumCulled={false} renderOrder={2} />;
+}
+
+function Embers({ low }: { low: boolean }) {
+  const geometry = useMemo(() => {
+    const q = quad();
+    const g = new InstancedBufferGeometry();
+    g.setIndex(q.getIndex());
+    g.setAttribute("position", q.getAttribute("position"));
+    g.setAttribute("uv", q.getAttribute("uv"));
+    const per = low ? 10 : 22;
+    const torches = TORCHES.map((v) => new Vector3(v.x * 0.92, v.y + 0.25, v.z));
+    const bases = emberBases(
+      [...torches, new Vector3(0, 0.6, HALL.door + 0.6), new Vector3(0, 0.4, -4.5), new Vector3(0, 0.4, -1.4)],
+      per,
+      [0.5, 0.4, 1.4],
+    );
+    g.setAttribute("aBase", bases);
+    g.setAttribute("aSeed", seeds(bases.count));
+    g.instanceCount = bases.count;
+    return g;
+  }, [low]);
+  const material = useMemo(() => emberMaterial({ uTime: clock }), []);
+  return <mesh geometry={geometry} material={material} frustumCulled={false} renderOrder={4} />;
+}
+
+interface BeyondProps extends Clocked {
+  sun: RefObject<Mesh | null>;
+}
+
+/** The fire beyond the door: the scene's brightest thing, and the source of its light shafts. */
+function Beyond({ sun }: BeyondProps) {
+  const material = useMemo(() => beyondMaterial({ uTime: clock, uGlow: glow }), []);
   return (
-    <>
-      <instancedMesh ref={mesh} args={[geometry, wax, CANDLES.length]} />
-      <mesh geometry={stand} material={gilt} position={[-0.75, TABLE_TOP, 30.6]} rotation={[0, -0.08, 0]} />
-    </>
+    <mesh ref={sun} material={material} position={[0, 3, FIRE.z]}>
+      <planeGeometry args={[9, 7]} />
+    </mesh>
   );
 }
 
-/** Four lights at most, each flickering on its own phase, moved to wherever the shot is. */
-function Lights({ now }: Pick<Clocked, "now">) {
-  const lights = useRef<(PointLight | null)[]>([]);
+/** Three flickering point lights, and the door's spot that throws the procession's shadows down the hall. */
+function Lights({ now, low }: Clocked & { low: boolean }) {
+  const points = useRef<(PointLight | null)[]>([]);
+  const spot = useRef<SpotLight>(null);
+  const scratch = useMemo<Light>(() => ({ at: new Vector3(), intensity: 0 }), []);
+  useLayoutEffect(() => {
+    const s = spot.current;
+    if (!s) return;
+    s.target.position.set(0, 0, -1);
+    s.target.updateMatrixWorld();
+  }, []);
   useFrame(() => {
     const t = now();
-    fire.uTime.value = t;
-    smoke.uTime.value = t;
-    lights.current.forEach((l, i) => {
-      if (l) l.intensity = light(i, t, l.position);
+    clock.value = t;
+    glow.value = doorGlow(t);
+    points.current.forEach((l, i) => {
+      if (!l) return;
+      light(i, t, scratch);
+      l.position.copy(scratch.at);
+      l.intensity = scratch.intensity;
     });
+    if (spot.current) spot.current.intensity = (shot(t) === "reveal" ? 500 : 1100) * glow.value;
   });
   return (
     <>
-      {[0, 1, 2, 3].map((i) => (
+      {[0, 1, 2].map((i) => (
         <pointLight
           key={i}
           ref={(l) => {
-            lights.current[i] = l;
+            points.current[i] = l;
           }}
-          color={FIRE}
+          color={FLAME}
           decay={2}
           intensity={0}
         />
       ))}
+      <spotLight
+        ref={spot}
+        color="#ff9a4a"
+        position={[0, 2.9, HALL.door - 0.6]}
+        angle={0.62}
+        penumbra={0.9}
+        decay={2}
+        castShadow
+        shadow-mapSize={low ? [512, 512] : [1024, 1024]}
+        shadow-bias={-0.0004}
+        shadow-normalBias={0.02}
+        shadow-radius={6}
+        shadow-blurSamples={12}
+        shadow-camera-near={0.5}
+        shadow-camera-far={24}
+      />
     </>
   );
 }
 
-const HAZE = [
-  // x, y, z, size
-  [0.3, 2.9, -4.5, 3.2],
-  [-0.4, 3.1, -9, 3.6],
-  [0.2, 2.8, -14, 4],
-  [-0.2, 0.35, -7, 3],
-  [0.5, 0.3, -12, 3.4],
-  [-1.6, 3.4, 25.5, 5],
-  [2.2, 3.6, 26.5, 5],
-  [0, 4.2, 30, 6],
-] as const;
-
-function Haze() {
-  const mesh = useRef<InstancedMesh>(null);
-  const geometry = useMemo(() => {
-    const g = quad();
-    g.setAttribute("aSeed", seeds(HAZE.length));
-    return g;
-  }, []);
-  const material = useMemo(() => smokeMaterial(smoke), []);
-
-  useLayoutEffect(() => {
-    const m = new Matrix4();
-    HAZE.forEach(([x, y, z, s], i) => mesh.current?.setMatrixAt(i, m.makeScale(s, s * 0.6, 1).setPosition(x, y, z)));
-    if (mesh.current) mesh.current.instanceMatrix.needsUpdate = true;
-  }, []);
-
-  return <instancedMesh ref={mesh} args={[geometry, material, HAZE.length]} frustumCulled={false} renderOrder={1} />;
+interface FireProps extends Clocked {
+  low: boolean;
+  noise: DataTexture;
+  sun: RefObject<Mesh | null>;
 }
 
-/** Torches, candles, their light, embers and smoke, for both shots. */
-export function Fire({ now, low }: Clocked) {
+/** Torches, the door's fire, their light, the fog that carries it, and embers. */
+export function Fire({ now, low, noise, sun }: FireProps) {
   return (
     <>
-      <Lights now={now} />
+      <Lights now={now} low={low} />
       <Torches />
-      <Candles />
       <Flames />
-      {!low && <Haze />}
-      <Sparkles
-        count={low ? 30 : 70}
-        position={[0, 2, -7.5]}
-        scale={[2.6, 2.6, 13]}
-        size={3}
-        speed={0.45}
-        noise={1.5}
-        color="#f2662a"
-        opacity={0.9}
-      />
-      <Sparkles count={low ? 20 : 45} position={[0, 1.7, 28.5]} scale={[5, 2.2, 4]} size={2.4} speed={0.3} color="#ffd27a" opacity={0.8} />
+      <Beyond now={now} sun={sun} />
+      <Fog low={low} noise={noise} />
+      <Embers low={low} />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
 const nav = vi.hoisted(() => ({ path: "/stats/", search: "", push: vi.fn() }));
@@ -137,7 +137,7 @@ it("shows a finished season's history in place of the tabs", async () => {
   history.getHistory.mockResolvedValue({ season: "tus-4", title: null, winners: [], players: [], episodes: [] });
   shell();
   expect(await screen.findByRole("heading", { name: "Season 4" })).toBeTruthy();
-  expect(history.getHistory).toHaveBeenCalledWith("tus-4");
+  await waitFor(() => expect(history.getHistory).toHaveBeenCalledWith("tus-4"));
   expect(screen.queryByText("Showing tus-4")).toBeNull();
   expect(screen.queryByRole("navigation", { name: "Main" })).toBeNull();
   expect(screen.getByRole("main").getAttribute("aria-label")).toBe("Season history");
