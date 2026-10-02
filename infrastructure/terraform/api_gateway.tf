@@ -64,6 +64,11 @@ locals {
       invoke_arn = aws_lambda_function.api["week_board_${l.name}"].invoke_arn
     })
   ]
+  traitors_endpoints = [
+    for l in local.traitors_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["traitors_${l.name}"].invoke_arn
+    })
+  ]
   people_endpoints = [
     for l in local.people_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["people_${l.name}"].invoke_arn
@@ -111,5 +116,6 @@ module "api" {
     performers    = { path_prefix = "performers", endpoints = local.performers_endpoints }
     week_board    = { path_prefix = "week-board", endpoints = local.week_board_endpoints }
     people        = { path_prefix = "people", endpoints = local.people_endpoints }
+    traitors      = { path_prefix = "traitors", endpoints = local.traitors_endpoints }
   }
 }
