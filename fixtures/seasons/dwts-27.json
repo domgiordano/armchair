@@ -20,16 +20,11 @@
         "Carrie Ann Inaba"
       ],
       "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "image": "carrie-ann-inaba-130d90accf.webp",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg",
-        "box": [
-          146,
-          112,
-          104
-        ]
+        "image": "supplied/carrie-ann-inaba-21ac504799.webp",
+        "author": "Supplied",
+        "license": "Used with permission",
+        "sourceUrl": null,
+        "source": "supplied"
       }
     },
     {
@@ -58,11 +53,11 @@
         "Bruno Tonioli"
       ],
       "headshot": {
-        "file": "Bruno_Tonioli_in_2015.jpg",
-        "image": "bruno-tonioli-e25ea8a395.webp",
-        "author": "Beautiful: The Carole King Musical Opening Night Video",
-        "license": "CC BY 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+        "image": "supplied/bruno-tonioli-ffd9a03e76.webp",
+        "author": "Supplied",
+        "license": "Used with permission",
+        "sourceUrl": null,
+        "source": "supplied"
       }
     }
   ],
@@ -2377,7 +2372,13 @@
         {
           "name": "Brandon Armstrong",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "image": "supplied/brandon-armstrong-1db34609b0.webp",
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": null,
+            "source": "supplied"
+          }
         }
       ],
       "eliminatedEp": 6
@@ -2428,11 +2429,11 @@
           "name": "Emma Slater",
           "role": "pro",
           "headshot": {
-            "file": "Emma_Slater_DSC_1005.jpg",
-            "image": "emma-slater-f55b00f615.webp",
-            "author": "Bnbeeyu",
-            "license": "CC BY-SA 3.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emma_Slater_DSC_1005.jpg"
+            "image": "supplied/emma-slater-c0ba71a277.webp",
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": null,
+            "source": "supplied"
           }
         }
       ],
@@ -2477,7 +2478,13 @@
         {
           "name": "Jenna Johnson",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "image": "supplied/jenna-johnson-5f262b7287.webp",
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": null,
+            "source": "supplied"
+          }
         }
       ],
       "eliminatedEp": 10
@@ -2527,7 +2534,13 @@
         {
           "name": "Alan Bersten",
           "role": "pro",
-          "headshot": null
+          "headshot": {
+            "image": "supplied/alan-bersten-aecfdbb0dd.webp",
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": null,
+            "source": "supplied"
+          }
         }
       ],
       "eliminatedEp": null
@@ -2584,11 +2597,11 @@
           "name": "Witney Carson",
           "role": "pro",
           "headshot": {
-            "file": "Witney_Carson_2019_by_Glenn_Francis.jpg",
-            "image": "witney-carson-ba7b85273c.webp",
-            "author": "Toglenn",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Witney_Carson_2019_by_Glenn_Francis.jpg"
+            "image": "supplied/witney-carson-58fe897bcc.webp",
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": null,
+            "source": "supplied"
           }
         }
       ],
@@ -2615,16 +2628,11 @@
           "name": "Sharna Burgess",
           "role": "pro",
           "headshot": {
-            "file": "2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
-            "image": "sharna-burgess-8323368f60.webp",
-            "author": "NaBUru38",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
-            "box": [
-              245,
-              130,
-              150
-            ]
+            "image": "supplied/sharna-burgess-e9aa718db2.webp",
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": null,
+            "source": "supplied"
           }
         }
       ],

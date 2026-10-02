@@ -12,7 +12,8 @@ interface HeadshotProps {
   size?: number;
 }
 
-export const headshotUrl = (image: string) => `/headshots/${encodeURIComponent(image)}`;
+// Supplied photos sit in headshots/supplied/: the slash is a path, not part of a name.
+export const headshotUrl = (image: string) => `/headshots/${image.split("/").map(encodeURIComponent).join("/")}`;
 
 /** Decorative: every use sits beside the person's name. */
 export function Headshot({ person, size = 48 }: HeadshotProps) {
