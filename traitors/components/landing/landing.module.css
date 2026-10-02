@@ -1,0 +1,138 @@
+/* Our own sett, not a registered one (DESIGN-RESEARCH.md, Palette): a cloak
+   green ground, an oxblood overcheck, a navy band, thin gilt and bone lines.
+   The navy isn't a site token; it lives only in the tartan. */
+.tartan {
+  --navy: rgb(28 42 68 / 0.8);
+  --over: rgb(74 14 22 / 0.85);
+  --sett: 96px;
+  background-color: var(--cloak-500);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--over) 0 24px,
+      transparent 24px 30px,
+      rgb(199 154 58 / 0.9) 30px 31px,
+      transparent 31px 36px,
+      var(--navy) 36px 50px,
+      transparent 50px 56px,
+      rgb(179 34 46 / 0.75) 56px 60px,
+      transparent 60px 66px,
+      rgb(10 13 11 / 0.6) 66px 81px,
+      transparent 81px 87px,
+      rgb(244 236 218 / 0.6) 87px 88px,
+      transparent 88px var(--sett)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--over) 0 24px,
+      transparent 24px 30px,
+      rgb(199 154 58 / 0.9) 30px 31px,
+      transparent 31px 36px,
+      var(--navy) 36px 50px,
+      transparent 50px 56px,
+      rgb(179 34 46 / 0.75) 56px 60px,
+      transparent 60px 66px,
+      rgb(10 13 11 / 0.6) 66px 81px,
+      transparent 81px 87px,
+      rgb(244 236 218 / 0.6) 87px 88px,
+      transparent 88px var(--sett)
+    ),
+    /* The twill. */
+    repeating-linear-gradient(45deg, rgb(0 0 0 / 0.2) 0 1px, transparent 1px 3px);
+}
+
+/* The hero's fire: low and warm on the left, a candle glow up by the slate. */
+.hearth {
+  background:
+    radial-gradient(ellipse 60% 45% at 15% 100%, rgb(242 102 42 / 0.2), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 80% 25%, rgb(233 185 73 / 0.12), transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgb(19 40 29 / 0.9), transparent 75%);
+}
+
+/* The title card, as the intro left it: candle gold with an ember glow. */
+.title {
+  color: var(--candle);
+  background: linear-gradient(to bottom, var(--flame) 15%, var(--candle) 55%, var(--gilt) 85%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgb(242 102 42 / 0.6)) drop-shadow(0 0 30px rgb(242 102 42 / 0.25));
+  animation: burn 2.3s linear infinite;
+}
+
+.cta {
+  box-shadow:
+    0 0 0 1px rgb(199 154 58 / 0.35),
+    0 0 36px rgb(242 102 42 / 0.28);
+}
+
+/* A slate in a gilt frame, with a chalky bloom over its face. */
+.slate {
+  position: relative;
+  padding: 24px 24px 32px;
+  border: 6px solid var(--gilt);
+  border-radius: 4px;
+  outline: 1px solid rgb(0 0 0 / 0.6);
+  outline-offset: -7px;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 20%, rgb(244 236 218 / 0.06), transparent 70%),
+    repeating-linear-gradient(170deg, rgb(244 236 218 / 0.025) 0 2px, transparent 2px 7px),
+    linear-gradient(160deg, #26302b, #1a211d 60%, var(--stone));
+  box-shadow:
+    inset 0 0 40px rgb(0 0 0 / 0.55),
+    0 24px 60px rgb(0 0 0 / 0.5),
+    0 0 50px rgb(242 102 42 / 0.12);
+}
+
+.chalk {
+  color: var(--bone);
+  opacity: 0.92;
+  text-shadow: 0 0 1px rgb(244 236 218 / 0.6);
+}
+
+.seal {
+  position: absolute;
+  right: -18px;
+  bottom: -22px;
+  width: 84px;
+  height: 84px;
+  rotate: -12deg;
+  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.55));
+}
+
+.ledger {
+  padding: 24px;
+  border: 1px solid rgb(199 154 58 / 0.45);
+  border-radius: 4px;
+  background: linear-gradient(170deg, var(--stone), var(--night));
+  box-shadow: inset 0 1px 0 rgb(244 236 218 / 0.05);
+}
+
+.numeral {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--gilt);
+  text-shadow: 0 0 18px rgb(242 102 42 / 0.35);
+}
+
+@keyframes burn {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  31% {
+    opacity: 0.92;
+  }
+  58% {
+    opacity: 0.98;
+  }
+  77% {
+    opacity: 0.88;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title {
+    animation: none;
+  }
+}

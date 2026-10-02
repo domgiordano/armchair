@@ -1,0 +1,79 @@
+.loader {
+  display: grid;
+  place-items: center;
+}
+
+/* The hood edge breathes, slowly. */
+.hood {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: breathe 3.6s ease-in-out infinite;
+}
+
+.flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 0 3px var(--ember));
+  animation: flicker 1.7s linear infinite;
+}
+
+.glow {
+  animation: glow 1.7s linear infinite;
+}
+
+@keyframes breathe {
+  50% {
+    transform: scale(1.012, 1.02);
+  }
+}
+
+/* Irregular stops, so it never reads as a loop. */
+@keyframes flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) skewX(0deg);
+    opacity: 1;
+  }
+  13% {
+    transform: scale(0.94, 1.08) skewX(-3deg);
+  }
+  27% {
+    transform: scale(1.04, 0.92) skewX(2deg);
+    opacity: 0.88;
+  }
+  41% {
+    transform: scale(0.97, 1.12) skewX(-1deg);
+  }
+  58% {
+    transform: scale(1.02, 0.95) skewX(3deg);
+    opacity: 0.95;
+  }
+  76% {
+    transform: scale(0.95, 1.06) skewX(-2deg);
+    opacity: 0.85;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  27% {
+    opacity: 0.8;
+  }
+  58% {
+    opacity: 0.92;
+  }
+  76% {
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hood,
+  .flame,
+  .glow {
+    animation: none;
+  }
+}
