@@ -62,19 +62,50 @@ export async function getRanks(season: string, show: Edition, scope: Scope): Pro
   return { ...data, total: typeof meta?.ranked === "number" ? meta.ranked : data.ranked.length };
 }
 
-/** Points in each current season. A season the API won't show (403, 404) is left out. */
-export async function getCurrentPoints(): Promise<{ season: TraitorsSeason; points: number; events: number }[]> {
+/** Until the caller bets on a current season, the API hides its schedule. */
+type SeasonView =
+  | { needsBet: true }
+  | { needsBet: false; episodes: { ep: number; releaseAt: string }[] };
+
+export const getTraitorsSeason = (season: string) =>
+  request<SeasonView>(`/traitors/season?season=${encodeURIComponent(season)}`);
+
+export interface SeasonCard {
+  season: TraitorsSeason;
+  points: number;
+  /** Null until the caller has a scored call. */
+  rank: number | null;
+  total: number;
+  needsBet: boolean;
+  next: { ep: number; releaseAt: string } | null;
+}
+
+/** The dashboard's view of each current season. A season the API won't show (403, 404) is left out. */
+export async function getSeasonCards(): Promise<SeasonCard[]> {
   const seasons = await currentSeasons(["tus", "tuk", "tukc"]);
-  const rows = await Promise.all(
+  const cards = await Promise.all(
     seasons.map(async (season) => {
       try {
-        const { points, events } = await getTraitorsStats(season.id);
-        return { season, points, events };
+        const [view, stats, ranks] = await Promise.all([
+          getTraitorsSeason(season.id),
+          getTraitorsStats(season.id),
+          getRanks(season.id, season.show, "global"),
+        ]);
+        const now = Date.now();
+        const next = view.needsBet ? undefined : view.episodes.find((e) => Date.parse(e.releaseAt) > now);
+        return {
+          season,
+          points: stats.points,
+          rank: stats.events > 0 || stats.points > 0 ? ranks.me.rank : null,
+          total: ranks.total,
+          needsBet: view.needsBet,
+          next: next ? { ep: next.ep, releaseAt: next.releaseAt } : null,
+        };
       } catch (e) {
         if (e instanceof ApiError && (e.status === 403 || e.status === 404)) return null;
         throw e;
       }
     }),
   );
-  return rows.filter((r) => r !== null);
+  return cards.filter((c) => c !== null);
 }

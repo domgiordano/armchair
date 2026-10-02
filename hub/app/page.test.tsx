@@ -23,11 +23,21 @@ describe("landing", () => {
     sessionStorage.setItem("armchair-hub:intro-seen", "1");
   });
 
-  it("sends the primary CTA to the Dancing with the Stars app", () => {
+  it("leads with both live shows, each with its own way in", () => {
     render(<HomePage />);
-    const cta = screen.getByRole("link", { name: "Judge Dancing with the Stars" });
-    expect(cta.getAttribute("href")).toBe("https://dwts.armchairjudge.com");
+    expect(screen.getByText("Play along with the shows you watch")).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Judge Dancing with the Stars" }).getAttribute("href")).toBe("https://dwts.armchairjudge.com");
+    expect(screen.getByRole("link", { name: "Play The Traitors" }).getAttribute("href")).toBe("https://traitors.armchairjudge.com");
     expect(screen.getByRole("heading", { level: 1 }).textContent).toContain("Now it counts.");
+    // The show cards come straight after the hero.
+    const sections = [...document.querySelectorAll("main > section[id]")].map((s) => s.id);
+    expect(sections.slice(0, 2)).toEqual(["top", "shows"]);
+  });
+
+  it("shows a Traitors slate beside the desk, with invented names", () => {
+    render(<HomePage />);
+    expect(screen.getByRole("img", { name: /^The Traitors, episode 4\. Your round table top 3: Wren, Otis, Mara/ })).toBeTruthy();
+    expect(screen.getByText("Illustration · invented names")).toBeTruthy();
   });
 
   it("links the live shows; the coming-soon show is not clickable", () => {
@@ -65,7 +75,7 @@ describe("landing", () => {
 
   it("counts the catalog it was built from", () => {
     render(<HomePage />);
-    const numbers = screen.getByRole("region", { name: /Every season of Dancing with the Stars/ });
+    const numbers = screen.getByRole("region", { name: /Dancing with the Stars, every season/ });
     const seasons = readdirSync(path.join(process.cwd(), "..", "fixtures", "seasons")).filter((f) => f.endsWith(".json"));
     const value = (label: string) => within(numbers).getByText(label).parentElement?.querySelector(".sr-only")?.textContent;
     expect(value("Seasons covered")).toBe(String(seasons.length));

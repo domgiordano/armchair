@@ -63,7 +63,33 @@ export const ROUTES: Record<string, Route> = {
     const show = url.searchParams.get("show") ?? "dwts";
     return { data: { show, seasons: SEASONS[show] ?? [] } };
   },
+  "/seasons/get": () => ({
+    data: {
+      judges: [],
+      episodes: [
+        { ep: 1, airDate: "2026-09-15" },
+        { ep: 9, airDate: "2999-11-10" },
+      ],
+    },
+  }),
   "/traitors/stats": (_, __, url) => ({ data: { season: url.searchParams.get("season"), ...traitorsStats(12) } }),
+  "/traitors/season": (_, __, url) =>
+    url.searchParams.get("season") === "tukc-2"
+      ? { data: { season: "tukc-2", needsBet: true, episodes: 9, players: [] } }
+      : {
+          data: {
+            season: url.searchParams.get("season"),
+            needsBet: false,
+            episodes: [
+              { ep: 1, releaseAt: "2026-01-08T02:00:00Z" },
+              { ep: 6, releaseAt: "2999-01-15T02:00:00Z" },
+            ],
+          },
+        },
+  "/traitors/ranks": () => ({
+    data: { ranked: [], me: { sub: "me-1", rank: 3, points: 12, events: 6, banishHits: 1 } },
+    meta: { ranked: 25 },
+  }),
   "/stats/get": () => ({ data: { mine: { count: 14, mae: 0.87 } } }),
   "/leaderboard/get": () => ({ data: { minDances: 5, ranked: [{}, {}, {}, {}], me: { rank: 2 } }, meta: { ranked: 4 } }),
   "/friends/list": () => ({

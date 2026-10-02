@@ -40,12 +40,12 @@ function Landing() {
         <SectionRail />
         <main id="main" tabIndex={-1} className="outline-none">
           <Hero />
-          <CatalogStrip />
+          <Shows />
           <HowItWorks />
           <Features />
           <ShowNight />
           <OneAccount />
-          <Shows />
+          <CatalogStrip />
           <Faq />
           <About />
           <FinalCta />

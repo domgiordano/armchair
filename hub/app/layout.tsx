@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   // Resolves the OG image to an absolute URL. Change with the hub's domain_name.
   metadataBase: new URL("https://armchairjudge.com"),
   title: "Armchair Judge",
-  description: "Score the show like a judge from your couch, then see how the real panel and everyone else scored it.",
+  description: "Play along with the shows you watch: make your call blind, then see how the show and everyone else called it.",
 };
 
 export const viewport: Viewport = {

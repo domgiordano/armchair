@@ -30,34 +30,47 @@ describe("signed-in dashboard", () => {
     render(<Dashboard />);
     expect(await screen.findByRole("heading", { level: 1, name: /Welcome back, Pat\./ })).toBeTruthy();
 
-    const apps = screen.getByRole("region", { name: "Your apps" });
-    await within(apps).findByText("Season 35 · 2026");
-    const stat = (label: string) => within(apps).getByText(label).parentElement?.textContent;
-    expect(stat("Dances scored")).toContain("14");
+    const shows = screen.getByRole("region", { name: "Your shows" });
+    const dwts = within(shows).getByRole("article", { name: "Dancing with the Stars" });
+    await within(dwts).findByText("Season 35 · 2026");
+    const stat = (label: string) => within(dwts).getByText(label).parentElement?.textContent;
     expect(stat("Accuracy")).toContain("0.87");
+    expect(stat("Accuracy")).toContain("over 14 dances");
     expect(stat("Rank")).toContain("#2");
     expect(stat("Rank")).toContain("of 4");
-    const [dwts, traitors] = within(apps).getAllByRole("link", { name: "Open" });
-    expect(dwts.getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
-    expect(traitors.getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
-    expect(within(apps).getByText("Survivor").closest("a")).toBeNull();
+    // Episode 1 has aired; the next is the first air date from today on.
+    expect(stat("Next episode")).toContain("E9");
+    expect(within(dwts).getByRole("link", { name: "Open" }).getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
+    expect(within(shows).getByText("Survivor").closest("a")).toBeNull();
   });
 
-  it("shows Traitors points for each current season", async () => {
+  it("gives each current Traitors season a card: points, rank and next episode, or the winner bet first", async () => {
     render(<Dashboard />);
-    const apps = await screen.findByRole("region", { name: "Your apps" });
-    expect((await within(apps).findByText("US · Season 5")).parentElement?.textContent).toContain("12 pts");
-    expect(within(apps).getByText("Celebrity UK · Season 2")).toBeTruthy();
+    const shows = await screen.findByRole("region", { name: "Your shows" });
+    const us = await within(shows).findByRole("article", { name: "The Traitors US" });
+    const stat = (label: string) => within(us).getByText(label).parentElement?.textContent;
+    expect(stat("Points")).toContain("12");
+    expect(stat("Rank")).toContain("#3");
+    expect(stat("Rank")).toContain("of 25");
+    expect(stat("Next episode")).toContain("E6");
+    expect(within(us).getByRole("link", { name: "Open" }).getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
+
+    const celeb = within(shows).getByRole("article", { name: "The Traitors Celebrity UK" });
+    expect(within(celeb).getByRole("link", { name: "Lock in your winners" }).getAttribute("href")).toBe(
+      "https://traitors.armchairjudge.com/?sso=1",
+    );
+    expect(within(celeb).queryByText("Points")).toBeNull();
   });
 
-  it("leaves the Traitors tile as just a link when the API won't show the season", async () => {
+  it("leaves one Traitors card as just a link when the API won't show any season", async () => {
     stubApi({ "/traitors/stats": () => ({ status: 404 }) });
     render(<Dashboard />);
-    const apps = await screen.findByRole("region", { name: "Your apps" });
-    await within(apps).findByText("Season 35 · 2026");
-    await waitFor(() => expect(within(apps).queryByText("Loading your points...")).toBeNull());
-    expect(within(apps).queryByText(/pts/)).toBeNull();
-    expect(within(apps).getAllByRole("link", { name: "Open" })).toHaveLength(2);
+    const shows = await screen.findByRole("region", { name: "Your shows" });
+    await waitFor(() => expect(within(shows).queryByText("Loading your Traitors seasons...")).toBeNull());
+    const card = within(shows).getByRole("article", { name: "The Traitors" });
+    expect(within(card).getByText("US and UK")).toBeTruthy();
+    expect(within(card).queryByText("Points")).toBeNull();
+    expect(within(card).getByRole("link", { name: "Open" }).getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
   });
 
   it("remembers who signed in, for the one-tap button next time", async () => {

@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { calls, stubApi, traitorsStats } from "@/components/account/test-api";
 
-import { currentSeasons, getCurrentPoints, getRanks, seasonLabel } from "./traitors";
+import { currentSeasons, getRanks, getSeasonCards, seasonLabel } from "./traitors";
 
 vi.mock("aws-amplify/auth", () => ({
   fetchAuthSession: async () => ({ tokens: { idToken: { toString: () => "id-token" } } }),
@@ -36,25 +36,30 @@ describe("traitors api", () => {
     expect((await getRanks("tus-5", "tus", "global")).total).toBe(2);
   });
 
-  it("gets points for every current season", async () => {
+  it("builds a card per current season: points, rank, the bet and the next release", async () => {
     const fetchMock = stubApi({
       "/traitors/stats": (_, __, url) => ({ data: traitorsStats(url.searchParams.get("season") === "tus-5" ? 12 : 7) }),
     });
-    const rows = await getCurrentPoints();
-    expect(rows.map((r) => [r.season.id, r.points])).toEqual([
-      ["tus-5", 12],
-      ["tukc-2", 7],
+    const cards = await getSeasonCards();
+    expect(cards.map((c) => [c.season.id, c.points, c.rank, c.total, c.needsBet, c.next])).toEqual([
+      ["tus-5", 12, 3, 25, false, { ep: 6, releaseAt: "2999-01-15T02:00:00Z" }],
+      ["tukc-2", 7, 3, 25, true, null],
     ]);
-    expect(calls(fetchMock, "/traitors/stats").map(([u]) => params(u).get("season"))).toEqual(["tus-5", "tukc-2"]);
+    expect(calls(fetchMock, "/traitors/season").map(([u]) => params(u).get("season"))).toEqual(["tus-5", "tukc-2"]);
+  });
+
+  it("has no rank before the first scored call", async () => {
+    stubApi({ "/traitors/stats": () => ({ data: { ...traitorsStats(0), events: 0 } }) });
+    expect((await getSeasonCards()).map((c) => c.rank)).toEqual([null, null]);
   });
 
   it("leaves out a season the API won't show, and still fails on anything else", async () => {
     stubApi({
       "/traitors/stats": (_, __, url) => (url.searchParams.get("season") === "tus-5" ? { status: 403 } : { data: traitorsStats(7) }),
     });
-    expect((await getCurrentPoints()).map((r) => r.season.id)).toEqual(["tukc-2"]);
+    expect((await getSeasonCards()).map((c) => c.season.id)).toEqual(["tukc-2"]);
 
-    stubApi({ "/traitors/stats": () => ({ status: 500 }) });
-    await expect(getCurrentPoints()).rejects.toThrow("Nope");
+    stubApi({ "/traitors/season": () => ({ status: 500 }) });
+    await expect(getSeasonCards()).rejects.toThrow("Nope");
   });
 });

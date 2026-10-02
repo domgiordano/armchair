@@ -150,9 +150,10 @@ interface ShowCardProps {
   surface: string;
   art: ReactNode;
   href?: string;
+  cta?: string;
 }
 
-function ShowCard({ show, name, line, titleClass, surface, art, href }: ShowCardProps) {
+function ShowCard({ show, name, line, titleClass, surface, art, href, cta = "Start judging" }: ShowCardProps) {
   const body = (
     <>
       <div className="tilt-art relative h-44 overflow-hidden">{art}</div>
@@ -172,7 +173,7 @@ function ShowCard({ show, name, line, titleClass, surface, art, href }: ShowCard
         <p className="mt-2 text-sm leading-relaxed opacity-80">{line}</p>
         {href && (
           <span className="mt-auto flex items-center gap-2 pt-6 text-sm font-semibold">
-            Start judging
+            {cta}
             <svg viewBox="0 0 16 16" className="size-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -188,7 +189,7 @@ function ShowCard({ show, name, line, titleClass, surface, art, href }: ShowCard
     return (
       <a
         href={href}
-        aria-label={`${name}, start judging`}
+        aria-label={`${name}, ${cta.toLowerCase()}`}
         className={`group ${frame} transition hover:-translate-y-1 hover:shadow-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold active:translate-y-0 motion-reduce:transition-none`}
       >
         {body}
@@ -215,7 +216,9 @@ export function Shows() {
           <h2 id="shows-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             Pick your panel.
           </h2>
-          <p className="mt-3 max-w-xl text-muted">Dancing with the Stars and The Traitors are live now. Survivor is in rehearsal.</p>
+          <p className="mt-3 max-w-xl text-muted">
+            Two shows are live, each its own app with its own game. Survivor is in rehearsal.
+          </p>
         </div>
         <ul className="mt-12 grid gap-6 lg:grid-cols-3">
           <li className="flex flex-col" {...reveal(1)}>
@@ -223,7 +226,7 @@ export function Shows() {
               <ShowCard
                 show="dwts"
                 name="Dancing with the Stars"
-                line="Every dance, every week. Get your score up before the panel does."
+                line="Score each dance 1 to 10, then see how close you came to the judges."
                 titleClass={`${ballroom.className} bg-linear-to-r from-[#f3d98b] to-[#fff4d6] bg-clip-text text-transparent`}
                 surface="border-[#2b3a7a] bg-linear-to-b from-[#0a1440] to-[#060b26] text-[#f3e6c0] hover:border-[#f3d98b]/70 hover:shadow-[#f3d98b]/10"
                 art={<BallroomArt />}
@@ -236,11 +239,12 @@ export function Shows() {
               <ShowCard
                 show="traitors"
                 name="The Traitors"
-                line="Rank the round table's top 3, call the night's murder and recruit, and back up to two winners. Blind until you pick, US and UK."
+                line="Predict the round table's top 3 and the night's murder and recruit, and lock in your winners. US and UK."
                 titleClass={`${castle.className} text-[#e9dcc0] tracking-wide`}
                 surface="border-[#1c3a2a] bg-linear-to-b from-[#0b2418] to-[#040d08] text-[#e9dcc0] hover:border-[#e9dcc0]/60 hover:shadow-[#e9dcc0]/10"
                 art={<CastleArt />}
                 href={TRAITORS_URL}
+                cta="Start predicting"
               />
             </Tilt>
           </li>

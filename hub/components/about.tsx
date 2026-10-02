@@ -18,9 +18,9 @@ export function About() {
         <div className="space-y-4 leading-relaxed text-muted">
           <p>
             Armchair Judge is a free companion for TV competition shows. While an episode airs, or whenever you watch
-            it, you score each performance from 1 to 10. Your score stays private until you submit it; then you see the
-            real judges&rsquo; scores, other viewers&rsquo; scores, and how close you were over the season. Dancing with
-            the Stars and The Traitors are available now; more shows are coming.
+            it, you make your call: a score from 1 to 10 for each dance on Dancing with the Stars, or your predictions
+            for each episode of The Traitors. Your call stays private until you submit it; then you see the result,
+            other viewers&rsquo; calls, and how you did over the season. More shows are coming.
           </p>
           <p>
             We use Google Sign-In only to create your account. We receive your name, email address and profile photo

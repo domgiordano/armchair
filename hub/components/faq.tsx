@@ -18,7 +18,7 @@ const QUESTIONS: Question[] = [
   },
   {
     q: "Do I need to watch live?",
-    a: "No. Score on replay whenever you get to it. Nothing about a dance is shown until you score it or choose to reveal it, so you stay unspoiled. Already seen a week? Reveal all and move on.",
+    a: "No. Play along on replay whenever you get to it. Nothing about a dance or an episode is shown until you make your call or choose to reveal it, so you stay unspoiled.",
   },
   {
     q: "Does my score count as a vote on the show?",
@@ -31,8 +31,8 @@ const QUESTIONS: Question[] = [
     ),
   },
   {
-    q: "Who can see my scores?",
-    a: "Someone sees your score for a dance only after they've scored that dance themselves. Your name and photo appear beside your scores; your email never does.",
+    q: "Who can see my calls?",
+    a: "Someone sees your score for a dance, or your picks for an episode, only after they've made their own. Your name and photo appear beside your calls; your email never does.",
   },
   {
     q: "What do you get from my Google account?",
@@ -40,7 +40,7 @@ const QUESTIONS: Question[] = [
   },
   {
     q: "Is this made by the shows?",
-    a: "No. Armchair Judge is an independent fan project, not affiliated with the networks or producers. The judges' scores it compares you with are published after each dance.",
+    a: "No. Armchair Judge is an independent fan project, not affiliated with the networks or producers. The judges' scores and the results it compares you with are what the shows air.",
   },
 ];
 
@@ -51,7 +51,7 @@ export function Faq() {
         <div {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-orange uppercase">FAQ</p>
           <h2 id="faq-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
-            Before you <span className="text-brand-gradient">pick up a paddle.</span>
+            Before you <span className="text-brand-gradient">make your first call.</span>
           </h2>
         </div>
         <div className="divide-y divide-line border-y border-line" {...reveal(1)}>
