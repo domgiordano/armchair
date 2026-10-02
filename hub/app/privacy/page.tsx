@@ -134,8 +134,8 @@ export default function PrivacyPage() {
 
       <h2>Show data</h2>
       <p>
-        Judges&rsquo; scores are sourced from Wikipedia. Headshots come from Wikimedia Commons and are used under their
-        respective licenses. Armchair Judge is not affiliated with ABC, Disney, BBC, Peacock, CBS or the shows&rsquo;
+        Judges&rsquo; scores are sourced from Wikipedia. Headshots are either from Wikimedia Commons, used under their
+        respective licenses, or used with permission. Armchair Judge is not affiliated with ABC, Disney, BBC, Peacock, CBS or the shows&rsquo;
         producers.
       </p>
 

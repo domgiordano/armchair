@@ -41,8 +41,8 @@ export default function TermsPage() {
       <h2>The shows</h2>
       <p>
         Armchair Judge is not affiliated with ABC, Disney, BBC, Peacock, CBS or the shows&rsquo; producers. Show names are
-        used to describe what you can rate. Judges&rsquo; scores are sourced from Wikipedia and headshots from Wikimedia
-        Commons under their respective licenses.
+        used to describe what you can rate. Judges&rsquo; scores are sourced from Wikipedia. Headshots are either from Wikimedia
+        Commons under their respective licenses or used with permission.
       </p>
 
       <h2>Privacy</h2>
