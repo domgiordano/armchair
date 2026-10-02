@@ -45,3 +45,15 @@ def test_winner():
     assert winner([{"player": "stephen", "faction": "Faithful"}], winners, 12, 0) == 20
     assert winner(bet, winners, 12, 6) == 15
     assert winner(bet, winners, 12, 11) == round(30 / 12)
+
+
+def test_winner_bet_of_three():
+    # UK series 4 had joint winners; each correct pick scores on its own.
+    winners = {"rachel": "Traitor", "stephen": "Traitor"}
+    bet = [
+        {"player": "rachel", "faction": "Traitor"},
+        {"player": "stephen", "faction": "Faithful"},
+        {"player": "jack", "faction": "Faithful"},
+    ]
+    assert winner(bet, winners, 12, 0) == 30 + 20
+    assert winner(bet, winners, 12, 6) == 25
