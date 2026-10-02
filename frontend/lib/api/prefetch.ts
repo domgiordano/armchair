@@ -2,6 +2,7 @@ import { getPerformers } from "@/lib/api/couples";
 import { getGroupDetails, getMyGroups } from "@/lib/api/groups";
 import { ALL_TIME, getLeaderboard } from "@/lib/api/leaderboard";
 import { getOverview } from "@/lib/api/overview";
+import { getPerson } from "@/lib/api/people";
 import { getEpisodeState, getSeason } from "@/lib/api/show";
 import { getFriends } from "@/lib/api/social";
 import { getStats } from "@/lib/api/stats";
@@ -40,6 +41,8 @@ export function prefetchPage(href: string, season: string): void {
       start(getSeason(season), getMyGroups());
       if (url.searchParams.get("view") !== "week") start(getPerformers(season, group));
       return;
+    case "/couples/couple/":
+      return start(getSeason(season), getPerson(url.searchParams.get("id") ?? "", season));
     case "/discover/":
       return start(getSeason(season), getFriends(), getMyGroups());
     case "/groups/":
