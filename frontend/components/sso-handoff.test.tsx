@@ -3,7 +3,7 @@ import { Hub } from "aws-amplify/utils";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { AuthCallback } from "@/components/auth-callback";
-import { SsoHandoff } from "@/components/sso-handoff";
+import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
 import { takeReturn } from "@armchair/app-core/auth/return-to";
 
 const auth = vi.hoisted(() => ({
@@ -28,6 +28,7 @@ const who = () => decodeURIComponent(document.cookie.match(/armchair_who=([^;]*)
 beforeEach(() => {
   auth.signedIn = false;
   sessionStorage.clear();
+  document.cookie = "armchair_signed_in=; Path=/; Max-Age=0";
 });
 
 afterEach(() => {
@@ -65,5 +66,21 @@ describe("hub hand-off", () => {
     render(<AuthCallback />);
     act(() => Hub.dispatch("auth", { event: "signInWithRedirect_failure", data: { error: new Error("login_required") } }));
     expect(auth.signInWithRedirect).toHaveBeenCalledWith({ provider: "Google" });
+  });
+});
+
+describe("signed in on another Armchair site", () => {
+  it("signs in silently once when the family cookie says so, with no param", async () => {
+    document.cookie = "armchair_signed_in=1; Path=/";
+    render(<SsoHandoff />);
+    await waitFor(() => expect(auth.signInWithRedirect).toHaveBeenCalledWith({ options: { prompt: "NONE" } }));
+  });
+
+  it("doesn't try again in the same browser session, so a failure can't loop", async () => {
+    document.cookie = "armchair_signed_in=1; Path=/";
+    sessionStorage.setItem("armchair.sso-tried", "1");
+    render(<SsoHandoff />);
+    await act(async () => {});
+    expect(auth.signInWithRedirect).not.toHaveBeenCalled();
   });
 });
