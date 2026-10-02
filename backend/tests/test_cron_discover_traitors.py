@@ -8,7 +8,7 @@ import pytest
 
 from lambdas.common import wiki_fetch
 from lambdas.cron_discover_traitors import handler as discover
-from tests.conftest import CATALOG_TABLE
+from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 
 WIKI = Path(__file__).parents[2] / "fixtures" / "wiki"
 MAIN = {
@@ -104,6 +104,7 @@ def test_renamed_season_found_and_no_cast_skipped(aws, run):
         "refreshed": [],
         "skipped": [1, 3, 6],
         "failed": [{"season": 2, "error": "IndexError('list index out of range')"}],
+        "published": [4],
         "current": "tus-5",
     }
     meta = item(aws, "SEASON#tus#5", "META")
@@ -166,6 +167,46 @@ def test_refresh_keeps_season_settings_and_poller_writes(aws, run):
     # 9 pm EDT on 2026-09-17 is 01:00 UTC.
     assert item(aws, "SEASON#tus#5", "EP#01")["releaseAt"] == "2026-09-18T01:00:00Z"
     assert item(aws, "SEASON#tus#5", "PLAYER#arisa-thomas")["faction"] == "Faithful"
+
+
+def rt(aws, season: str, ep: int) -> dict | None:
+    show, number = season.split("-")
+    return (
+        aws.Table(PERFORMANCES_TABLE)
+        .get_item(Key={"pk": f"EP#{show}#{number}#{ep:02d}", "sk": "EVT#RT"})
+        .get("Item")
+    )
+
+
+def test_new_past_season_is_published_and_indexed(aws, run):
+    run("2026-10-02T06:00:00Z")
+    assert rt(aws, "tus-4", 2)["state"] == "confirmed"
+    rob = item(aws, "SEASON#tus#4", "PLAYER#rob-rausch")
+    assert (rob["exit"], rob["faction"]) == ({"ep": 11, "how": "winner"}, "Traitor")
+    assert item(aws, "PERSON#tus#rob-rausch", "META")["seasons"] == [
+        {"season": 4, "faction": "Traitor", "finish": {"how": "winner", "ep": 11}}
+    ]
+    # The current season is the poller's: nothing published here, and listed bare.
+    assert rt(aws, "tus-5", 2) is None
+    assert item(aws, "PERSON#tus#abbey-benjamin", "META")["seasons"] == [{"season": 5}]
+    assert item(aws, "PEOPLE#tus", "PERSON#abbey-benjamin")["seasons"] == [5]
+    assert item(aws, "PERSON#tukc#alan-carr", "META")["seasons"][0]["finish"] == {
+        "how": "winner",
+        "ep": 9,
+    }
+
+
+def test_season_closed_by_the_flip_is_published(aws, run):
+    logs = run("2026-09-10T06:00:00Z")
+    assert logs["tus"]["published"] == []
+    assert rt(aws, "tus-4", 2) is None
+    assert item(aws, "PERSON#tus#rob-rausch", "META")["seasons"] == [{"season": 4}]
+
+    logs = run("2026-09-11T06:00:00Z")
+    assert logs["tus"]["published"] == [4]
+    assert rt(aws, "tus-4", 2)["state"] == "confirmed"
+    assert item(aws, "PERSON#tus#rob-rausch", "META")["seasons"][0]["faction"] == "Traitor"
+    assert run("2026-09-12T06:00:00Z")["tus"]["published"] == []
 
 
 def d(day: str) -> datetime:

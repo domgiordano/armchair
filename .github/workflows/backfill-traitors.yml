@@ -2,10 +2,16 @@ name: Backfill Traitors
 
 # Invokes the Traitors poller with {"backfill": true}: every released episode of
 # every current season is published with its results confirmed at once. Run it
-# after seeding a season mid-run. Idempotent, so re-running is safe.
+# after seeding a season mid-run. With `season` (e.g. tus-3) it publishes that one
+# season, current or not, plus every player's final faction and exit once it's
+# finished. Idempotent, so re-running is safe.
 
 on:
   workflow_dispatch:
+    inputs:
+      season:
+        description: One season to publish, e.g. tus-3. Empty publishes every current season.
+        default: ''
 
 permissions:
   contents: read
@@ -26,9 +32,12 @@ jobs:
           role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
       - name: Invoke
+        env:
+          SEASON: ${{ inputs.season }}
         run: |
+          payload=$(jq -cn --arg s "$SEASON" '{backfill: true} + (if $s == "" then {} else {season: $s} end)')
           aws lambda invoke --function-name armchair-cron-poll-traitors \
-            --cli-binary-format raw-in-base64-out --payload '{"backfill": true}' \
+            --cli-binary-format raw-in-base64-out --payload "$payload" \
             --log-type Tail --query LogResult --output text out.json | base64 -d | tail -c 2000
           cat out.json
           # A handler exception still returns 200 from Invoke; the error is in the body.

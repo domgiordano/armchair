@@ -23,10 +23,30 @@ data "aws_iam_policy_document" "discover_traitors" {
     resources = ["${aws_cloudwatch_log_group.discover_traitors.arn}:*"]
   }
 
+  # GetItem merges a season into an existing PERSON item.
   statement {
     sid       = "SeedCatalog"
-    actions   = ["dynamodb:Query", "dynamodb:UpdateItem"]
+    actions   = ["dynamodb:Query", "dynamodb:GetItem", "dynamodb:UpdateItem"]
     resources = [aws_dynamodb_table.catalog.arn]
+  }
+
+  # Publishing a past season in-process: the poller's grants (lambda_poll_traitors.tf).
+  statement {
+    sid       = "PublishResults"
+    actions   = ["dynamodb:Query", "dynamodb:UpdateItem"]
+    resources = [aws_dynamodb_table.performances.arn]
+  }
+
+  statement {
+    sid       = "ReadScores"
+    actions   = ["dynamodb:Query"]
+    resources = [aws_dynamodb_table.scores.arn]
+  }
+
+  statement {
+    sid       = "Board"
+    actions   = ["dynamodb:Query", "dynamodb:PutItem", "dynamodb:UpdateItem", "dynamodb:DeleteItem"]
+    resources = [aws_dynamodb_table.board.arn]
   }
 
   statement {
@@ -44,14 +64,15 @@ resource "aws_iam_role_policy" "discover_traitors" {
 
 resource "aws_lambda_function" "discover_traitors" {
   # Folder lambdas/cron_discover_traitors: deploy-backend.yml maps underscores to dashes.
-  # The timeout covers about 15 sequential Wikipedia fetches, each allowed 10 s.
+  # The timeout covers about 15 sequential Wikipedia fetches, each allowed 10 s, plus
+  # publishing every past season on the first run (about 120 episodes).
   function_name = local.discover_traitors_name
   description   = "Find and seed Traitors seasons, and move the current flag"
   role          = aws_iam_role.discover_traitors.arn
   handler       = "handler.handler"
   runtime       = var.lambda_runtime
   memory_size   = 256
-  timeout       = 180
+  timeout       = 600
   layers        = [aws_lambda_layer_version.lambda_layer.arn]
 
   filename         = "./templates/lambda_stub.zip"
@@ -59,7 +80,10 @@ resource "aws_lambda_function" "discover_traitors" {
 
   environment {
     variables = {
-      CATALOG_TABLE = aws_dynamodb_table.catalog.id
+      CATALOG_TABLE      = aws_dynamodb_table.catalog.id
+      PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
+      SCORES_TABLE       = aws_dynamodb_table.scores.id
+      BOARD_TABLE        = aws_dynamodb_table.board.id
     }
   }
 

@@ -69,6 +69,8 @@ locals {
     { name = "episode", description = "One Traitors episode as the caller may see it, through the gate", path_part = "episode", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "pick", description = "Record the caller's final pick for one Traitors event", path_part = "pick", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "winner", description = "Record the caller's final season winner bet", path_part = "winner", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "player", description = "A Traitors player across seasons: finishes, factions and votes received, through the gate", path_part = "player", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "history", description = "A finished Traitors season: every episode's confirmed results and the winners", path_part = "history", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "ranks", description = "Users ranked by Traitors points, from per-user sums", path_part = "ranks", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "stats", description = "The caller's own Traitors points by event and episode", path_part = "stats", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
@@ -142,6 +144,8 @@ locals {
     traitors_episode   = ["catalog:Query", "performances:Query", "scores:Query", "scores:GetItem", "groups:Query"]
     traitors_pick      = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:Query", "performances:Query", "board:Query", "board:PutItem", "board:UpdateItem", "board:DeleteItem"]
     traitors_winner    = ["catalog:Query", "scores:GetItem", "scores:PutItem"]
+    traitors_player    = ["catalog:GetItem", "catalog:Query", "performances:Query"]
+    traitors_history   = ["catalog:Query", "performances:Query"]
     traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
   }

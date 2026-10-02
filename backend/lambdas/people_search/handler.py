@@ -6,7 +6,7 @@ Each group ranks names that start with `q`, then names with a word that does,
 then names holding it anywhere; ties go to the most recent season, then the name.
 
     {users: [{sub, name, picture, avatarKind, status}],
-     stars | pros | judges: [{id, name, roles, headshot, seasons}]}
+     stars | pros | judges | players: [{id, name, roles, headshot, seasons}]}
 
 Users are anyone whose display name starts with `q` (the friends search index)
 plus the caller's friends matched anywhere in theirs. Never the caller, never
@@ -24,7 +24,8 @@ from lambdas.common.users_dynamo import cards
 
 Q_MAX = 40
 LIMIT = 8
-GROUPS = {"celebrity": "stars", "pro": "pros", "judge": "judges"}
+SHOW = "dwts"
+GROUPS = {"celebrity": "stars", "pro": "pros", "judge": "judges", "player": "players"}
 
 
 @api_handler("people_search")
