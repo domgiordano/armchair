@@ -26,12 +26,29 @@ describe("landing", () => {
   it("leads with both live shows, each with its own way in", () => {
     render(<HomePage />);
     expect(screen.getByText("Play along with the shows you watch")).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Judge Dancing with the Stars" }).getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
-    expect(screen.getByRole("link", { name: "Play The Traitors" }).getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
+    expect(screen.getAllByRole("link", { name: "Judge Dancing with the Stars" })[0].getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
+    expect(screen.getAllByRole("link", { name: "Play The Traitors" })[0].getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
     expect(screen.getByRole("heading", { level: 1 }).textContent).toContain("Now it counts.");
     // The show cards come straight after the hero.
     const sections = [...document.querySelectorAll("main > section[id]")].map((s) => s.id);
     expect(sections.slice(0, 2)).toEqual(["top", "shows"]);
+  });
+
+  it("explains how each live show plays and scores, with its own demo", () => {
+    render(<HomePage />);
+    const play = screen.getByRole("region", { name: /call it before you see it/ });
+    const dwts = within(play).getByRole("article", { name: "Dancing with the Stars" });
+    expect(within(dwts).getByRole("img", { name: /^Week 3 · Foxtrot\. You held up 7\. Rhea 7, Marco 8, Dee 6\. Closest to Rhea\./ })).toBeTruthy();
+    expect(dwts.textContent).toContain("judge by judge");
+    const traitors = within(play).getByRole("article", { name: "The Traitors" });
+    expect(within(traitors).getByRole("img", { name: /Wren banished\. Your slate scores 10 points\./ })).toBeTruthy();
+    expect(traitors.textContent).toContain("Exact slots score 5, 3 and 2");
+  });
+
+  it("shows one group ranked on each show's own board", () => {
+    render(<HomePage />);
+    const friends = screen.getByRole("region", { name: "One crew, every show." });
+    expect(within(friends).getByRole("img", { name: /Dancing with the Stars, Points off the judges: 1 Priya ±0\.42, 2 You ±0\.55/ })).toBeTruthy();
   });
 
   it("shows a Traitors slate beside the desk, with invented names", () => {

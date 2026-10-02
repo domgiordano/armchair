@@ -21,6 +21,14 @@ const QUESTIONS: Question[] = [
     a: "No. Play along on replay whenever you get to it. Nothing about a dance or an episode is shown until you make your call or choose to reveal it, so you stay unspoiled.",
   },
   {
+    q: "Do I need a separate account for each show?",
+    a: "No. One Google sign-in covers every Armchair Judge app. Sign in on any of them and the others open signed in, with the same profile, friends and groups.",
+  },
+  {
+    q: "How do groups and leaderboards work across shows?",
+    a: "A group belongs to your account, so it appears on every show. Each show keeps its own season leaderboard, by accuracy on Dancing with the Stars and by points on The Traitors, and any of them can be narrowed to your friends or one group.",
+  },
+  {
     q: "Does my score count as a vote on the show?",
     a: (
       <>

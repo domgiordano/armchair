@@ -4,6 +4,7 @@ import { ChairLoader } from "@/components/chair-loader";
 import { CatalogStrip } from "@/components/catalog-strip";
 import { Faq } from "@/components/faq";
 import { Features } from "@/components/features";
+import { FriendsLeague } from "@/components/friends-league";
 import { FinalCta } from "@/components/final-cta";
 import { Hero } from "@/components/hero";
 import { HowItWorks } from "@/components/how-it-works";
@@ -12,6 +13,7 @@ import { OneAccount } from "@/components/one-account";
 import { ScrollReveals } from "@/components/scroll-reveals";
 import { SectionRail } from "@/components/section-rail";
 import { ShowNight } from "@/components/show-night";
+import { ShowPlaybook } from "@/components/show-playbook";
 import { Shows } from "@/components/shows";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -41,8 +43,10 @@ function Landing() {
         <main id="main" tabIndex={-1} className="outline-none">
           <Hero />
           <Shows />
+          <ShowPlaybook />
           <HowItWorks />
           <Features />
+          <FriendsLeague />
           <ShowNight />
           <OneAccount />
           <CatalogStrip />

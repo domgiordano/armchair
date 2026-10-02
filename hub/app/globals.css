@@ -477,3 +477,77 @@ body {
     display: none;
   }
 }
+
+/*
+ * Show demos (paddle-flip-demo, chalk-tally-demo). Each sits inside .demo, so the
+ * reduced-motion rule above drops these animations and leaves the end state.
+ */
+.flip {
+  perspective: 600px;
+}
+
+.flip-inner {
+  transform-style: preserve-3d;
+  animation: flip-turn 760ms cubic-bezier(0.3, 0.7, 0.2, 1.15) var(--delay) backwards;
+}
+
+.flip-face {
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+@keyframes flip-turn {
+  from {
+    transform: rotateY(180deg);
+  }
+}
+
+.flip-gap,
+.chalk-in {
+  animation: demo-after 420ms ease calc(var(--delay) + 500ms) backwards;
+}
+
+.chalk-in {
+  animation-delay: var(--delay);
+}
+
+/* Slate: a dark green board, faint chalk dust, and lettering with a rough edge. */
+.chalk-board {
+  background:
+    radial-gradient(60% 50% at 20% 15%, rgb(236 232 220 / 0.07), transparent),
+    radial-gradient(50% 40% at 85% 80%, rgb(236 232 220 / 0.05), transparent),
+    linear-gradient(160deg, #1d2b24, #121c17);
+}
+
+.chalk-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-shadow:
+    0 0 1px rgb(236 232 220 / 0.6),
+    0.5px 0.5px 0 rgb(236 232 220 / 0.25);
+}
+
+.chalk-stroke {
+  fill: none;
+  stroke: #ece8dc;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  filter: drop-shadow(0 0 0.6px rgb(236 232 220 / 0.7));
+  animation: chalk-draw 260ms ease-out var(--delay) backwards;
+}
+
+.chalk-circle {
+  stroke: #f2b8a8;
+  stroke-width: 2;
+  animation-duration: 700ms;
+}
+
+@keyframes chalk-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
