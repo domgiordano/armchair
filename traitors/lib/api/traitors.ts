@@ -124,6 +124,18 @@ export const getEpisode = (season: string, ep: number, group: string | null = nu
   return request<Episode>(`/traitors/episode?${query}`);
 };
 
+/** Final: the same call again is 200, a different one 409, a closed episode 403. */
+export const submitPick = (
+  season: string,
+  ep: number,
+  event: EventType,
+  answer: { picks: string[] } | { forfeit: true },
+) =>
+  request<Mine & { event: EventType }>("/traitors/pick", {
+    method: "POST",
+    body: JSON.stringify({ season, ep: epParam(ep), event, ...answer }),
+  });
+
 export interface EventStats {
   scored: number;
   hits: number;
