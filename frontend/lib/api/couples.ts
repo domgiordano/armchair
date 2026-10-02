@@ -26,6 +26,12 @@ export interface CoupleDance {
   judges: number | null;
 }
 
+/** The night a couple went home. Sent only once the caller has finished that episode. */
+export interface Elimination {
+  ep: number;
+  week: number | null;
+}
+
 /** A couple's means. Someone else's profile gets only these: never one dance. */
 export interface CoupleSummary extends VersusJudges {
   /** `season/id`: a returning all-star keeps their id across seasons. */
@@ -35,6 +41,7 @@ export interface CoupleSummary extends VersusJudges {
   members: Member[];
   friends: Crowd;
   everyone: Crowd;
+  eliminated: Elimination | null;
 }
 
 export interface CoupleStats extends CoupleSummary {
@@ -117,6 +124,8 @@ export interface WeekBoard {
   couples: BoardRow[];
   locked: { id: string; members: Member[] }[];
   disagreements: string[];
+  /** Who went home this episode, once the caller has finished it. */
+  eliminated: string[];
 }
 
 export const getWeekBoard = (season: string, ep: number, group: string | null) => {

@@ -46,7 +46,7 @@ const couples = Array.from({ length: 16 }, (_, i) => ({
   ],
   dances: 0,
   average: null,
-  out: false,
+  eliminated: null,
 }));
 
 function data(over: Partial<Data> = {}): Data {
@@ -252,7 +252,12 @@ describe("Overview", () => {
   });
 
   it("shows six couples and expands to the whole cast", async () => {
-    const ranked = couples.map((c, i) => ({ ...c, average: i < 3 ? 9 - i : null, dances: i < 3 ? 2 : 0, out: i === 15 }));
+    const ranked = couples.map((c, i) => ({
+      ...c,
+      average: i < 3 ? 9 - i : null,
+      dances: i < 3 ? 2 : 0,
+      eliminated: i === 15 ? { ep: 4, week: 3 } : null,
+    }));
     vi.mocked(getOverview).mockResolvedValue(data({ couples: ranked }));
     render(<Overview />);
 
@@ -262,7 +267,23 @@ describe("Overview", () => {
     fireEvent.click(section.getByRole("button", { name: "Show all 16 couples" }));
     const all = section.getAllByRole("listitem");
     expect(all).toHaveLength(16);
-    expect(all[15].textContent).toContain("Out");
+    expect(all[15].textContent).toContain("Eliminated · Week 3");
+  });
+
+  it("keeps eliminated couples at the end and hides them on request", async () => {
+    // Celeb 0 has the best average and went home.
+    const ranked = couples.map((c, i) => ({ ...c, average: 9 - i * 0.1, dances: 2, eliminated: i === 0 ? { ep: 2, week: 1 } : null }));
+    vi.mocked(getOverview).mockResolvedValue(data({ couples: ranked }));
+    render(<Overview />);
+
+    const section = within(await screen.findByRole("region", { name: "Couples" }));
+    fireEvent.click(section.getByRole("button", { name: "Show all 16 couples" }));
+    expect(section.getAllByRole("listitem")[0].textContent).toContain("Celeb 1");
+    expect(section.getAllByRole("listitem")[15].textContent).toContain("Eliminated · Week 1");
+
+    fireEvent.click(section.getByRole("switch", { name: "Show eliminated" }));
+    expect(section.getAllByRole("listitem")).toHaveLength(15);
+    expect(section.queryByText("Eliminated")).toBeNull();
   });
 
   it("offers a retry when the overview fails", async () => {

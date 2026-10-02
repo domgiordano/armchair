@@ -1,10 +1,10 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const nav = vi.hoisted(() => ({ search: new URLSearchParams(), replace: vi.fn() }));
+const nav = vi.hoisted(() => ({ search: new URLSearchParams(), replace: vi.fn(), push: vi.fn() }));
 vi.mock("next/navigation", () => ({
   usePathname: () => "/couples/",
-  useRouter: () => ({ push: vi.fn(), replace: nav.replace }),
+  useRouter: () => ({ push: nav.push, replace: nav.replace }),
   useSearchParams: () => nav.search,
 }));
 vi.mock("@/lib/auth/use-auth", () => ({
@@ -68,6 +68,7 @@ const stats = (ref: string, members: Member[], you: number, judges: number, frie
   absGap: Math.abs(you - judges),
   friends: { mean: friends, raters: friends === null ? 1 : 3 },
   everyone: { mean: 7.4, raters: 5 },
+  eliminated: null,
   best: dance(4, 9, 8),
   worst: dance(5, 7, 8),
   weeks: [dance(4, 9, 8), dance(5, 7, 8)],
@@ -119,6 +120,7 @@ const BOARD: WeekBoard = {
   ],
   locked: [{ id: "ezra-frech", members: pair("Ezra Frech", "Daniella Karagach") }],
   disagreements: ["amber-glenn", "jenna-dewan"],
+  eliminated: [],
 };
 
 beforeEach(() => {
@@ -189,6 +191,46 @@ describe("Your couples", () => {
     expect(within(sheet).getByText("need 2")).toBeTruthy();
   });
 
+  describe("with an eliminated couple", () => {
+    const OUT = { ep: 5, week: 4 };
+    beforeEach(() => {
+      vi.mocked(getPerformers).mockResolvedValue({
+        ...PERFORMERS,
+        couples: PERFORMERS.couples.map((c) => (c.id === "amber-glenn" ? { ...c, eliminated: OUT } : c)),
+      });
+    });
+
+    it("leaves them out of your stats by default, highlights refilled from who's left", async () => {
+      render(<CouplesScreen />);
+      const heading = await screen.findByRole("heading", { name: /Every couple you've scored · 2/ });
+      expect(rowNames(heading.parentElement!.querySelector("ol")!)).toEqual(["Tyler Cameron", "Jenna Dewan"]);
+      expect(screen.getByRole("switch", { name: "Show eliminated" }).getAttribute("aria-checked")).toBe("false");
+      expect(screen.getByRole("region", { name: "You're softer on" }).textContent).toContain("Nobody yet");
+      expect(screen.queryByText("Eliminated")).toBeNull();
+    });
+
+    it("shows them last, stamped, once switched on, and remembers it", async () => {
+      render(<CouplesScreen />);
+      fireEvent.click(await screen.findByRole("switch", { name: "Show eliminated" }));
+      // Amber is first on your average and still goes to the bottom.
+      const heading = screen.getByRole("heading", { name: /Every couple you've scored · 3/ });
+      const rows = within(heading.parentElement!.querySelector("ol")!).getAllByRole("listitem");
+      expect(rows.map((li) => li.querySelector("a")?.textContent)).toEqual(["Tyler Cameron", "Jenna Dewan", "Amber Glenn"]);
+      expect(rows[2].textContent).toContain("Eliminated · Week 4");
+      expect(window.localStorage.getItem("armchair.showEliminated.performers")).toBe("1");
+    });
+
+    it("still opens their sheet, with a way to every dance", async () => {
+      window.localStorage.setItem("armchair.showEliminated.performers", "1");
+      render(<CouplesScreen />);
+      fireEvent.click(await screen.findByRole("button", { name: "Details for Amber Glenn & Pasha Pashkov" }));
+      const sheet = screen.getByRole("dialog", { name: "Amber Glenn & Pasha Pashkov" });
+      expect(sheet.textContent).toContain("Eliminated · Week 4");
+      const link = within(sheet).getByRole("link", { name: /Every dance/ });
+      expect(link.getAttribute("href")).toMatch(/^\/people\/?\?id=amber-glenn&season=dwts-35$/);
+    });
+  });
+
   it("nudges to score when there's nothing yet", async () => {
     vi.mocked(getPerformers).mockResolvedValue({ ...PERFORMERS, couples: [], pros: [], favorites: [], softerOn: [], tougherOn: [] });
     render(<CouplesScreen />);
@@ -256,6 +298,37 @@ describe("Week board", () => {
     await screen.findByRole("list", { name: "Couples" });
     expect(screen.queryByRole("heading", { name: /still to score/ })).toBeNull();
     expect(screen.queryByRole("link", { name: "Score them" })).toBeNull();
+  });
+
+  it("lists the couple sent home last and stamped, and the switch hides them", async () => {
+    // Jenna topped the judges and still went home.
+    vi.mocked(getWeekBoard).mockResolvedValue({ ...BOARD, eliminated: ["jenna-dewan"] });
+    render(<CouplesScreen />);
+    await screen.findByRole("list", { name: "Couples" });
+    expect(rowNames(ranking())).toEqual(["Tyler Cameron", "Amber Glenn", "Jenna Dewan"]);
+    const last = within(ranking()).getAllByRole("listitem")[2];
+    expect(last.textContent).toContain("Eliminated · Week 3");
+
+    const toggle = screen.getByRole("switch", { name: "Show eliminated" });
+    expect(toggle.getAttribute("aria-checked")).toBe("true");
+    fireEvent.click(toggle);
+    expect(rowNames(ranking())).toEqual(["Tyler Cameron", "Amber Glenn"]);
+    expect(window.localStorage.getItem("armchair.showEliminated.week-board")).toBe("0");
+  });
+
+  it("stamps nobody before the caller may know", async () => {
+    render(<CouplesScreen />);
+    await screen.findByRole("list", { name: "Couples" });
+    expect(screen.queryByText("Eliminated")).toBeNull();
+    expect(screen.queryByRole("switch", { name: "Show eliminated" })).toBeNull();
+  });
+
+  it("opens a couple's every dance from their row", async () => {
+    vi.mocked(getWeekBoard).mockResolvedValue({ ...BOARD, eliminated: ["jenna-dewan"] });
+    render(<CouplesScreen />);
+    await screen.findByRole("list", { name: "Couples" });
+    fireEvent.click(within(ranking()).getAllByRole("listitem")[2]);
+    expect(nav.push).toHaveBeenCalledWith("/people/?id=jenna-dewan&season=dwts-35");
   });
 
   it("nudges to score an episode with nothing scored", async () => {

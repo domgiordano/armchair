@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
 
 import { PersonLink } from "@/components/couple-names";
+import { EliminatedStamp, ShowEliminated } from "@/components/eliminated";
 import { Headshot } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
 import { Dancers, Heading, plural } from "@/components/profile/parts";
@@ -18,6 +19,7 @@ import {
   type StyleStats,
 } from "@/lib/api/couples";
 import { gapTone, signed } from "@/lib/show/couples";
+import { highlights, useShowEliminated } from "@/lib/show/eliminated";
 import { personSlug } from "@/lib/show/people";
 import { seasonLabel } from "@/lib/show/seasons";
 import { button, cn } from "@/lib/ui";
@@ -85,24 +87,34 @@ export function FavoritesTab({ scope, sub }: FavoritesTabProps) {
     );
   }
 
-  const byRef = new Map(data.couples.map((c) => [c.ref, c]));
-  const pick = (refs: string[]) => refs.flatMap((r) => byRef.get(r) ?? []);
+  return <Favorites data={data} own={own} />;
+}
+
+function Favorites({ data, own }: { data: Performers<CoupleSummary>; own: boolean }) {
+  const [showOut, setShowOut] = useShowEliminated("favorites");
+  const top = highlights(showOut ? data.couples : data.couples.filter((c) => !c.eliminated));
   const multi = data.season === "all";
   const dances = data.couples.reduce((n, c) => n + c.dances, 0);
 
   return (
     <div className="flex flex-col gap-6">
       {!own && <p className="text-sm text-silver-dim">From the {plural(dances, "dance")} you&apos;ve both scored.</p>}
+      <ShowEliminated checked={showOut} onChange={setShowOut} count={data.couples.filter((c) => c.eliminated).length} />
 
       <section aria-labelledby="fav-couples" className="flex flex-col gap-3">
         <Heading id="fav-couples" title="Favorite couples" note="Highest average paddle." />
+        {top.favorites.length === 0 && (
+          <p className="text-sm text-silver-dim">Every couple here has gone home. Switch on Show eliminated to see them.</p>
+        )}
         <ol className="stagger grid gap-3 md:grid-cols-3">
-          {pick(data.favorites).map((c, i) => (
+          {top.favorites.map((c, i) => (
             <li
               key={c.ref}
               className={cn(
-                "flex flex-col gap-3 rounded-xl border p-4",
-                i === 0
+                "relative flex flex-col gap-3 rounded-xl border p-4",
+                c.eliminated
+                  ? "border-dashed border-silver/15 bg-ink/40"
+                  : i === 0
                   ? "border-gold/40 bg-gradient-to-br from-gold/[0.14] via-ballroom/70 to-ballroom/40 shadow-[0_10px_30px_-18px_rgb(232_194_104/0.8)]"
                   : "border-silver/10 bg-ballroom/45",
               )}
@@ -118,7 +130,8 @@ export function FavoritesTab({ scope, sub }: FavoritesTabProps) {
                   {multi && ` · ${seasonLabel(c.season)}`}
                 </span>
               </div>
-              <Dancers members={c.members} size={40} />
+              <Dancers members={c.members} size={40} out={Boolean(c.eliminated)} />
+              {c.eliminated && <EliminatedStamp out={c.eliminated} className="absolute right-4 bottom-4" />}
               <p className="flex items-baseline gap-3 text-sm tabular-nums">
                 <span className="text-silver-dim">
                   Avg <span className="text-2xl font-semibold text-pearl">{formatScore(c.you)}</span>
@@ -137,13 +150,13 @@ export function FavoritesTab({ scope, sub }: FavoritesTabProps) {
           id="overrated"
           title="Most overrated"
           note={own ? "You score them higher than the judges do." : "They score them higher than the judges do."}
-          couples={pick(data.softerOn)}
+          couples={top.softerOn}
         />
         <GapCard
           id="underrated"
           title="Most underrated"
           note={own ? "You score them lower than the judges do." : "They score them lower than the judges do."}
-          couples={pick(data.tougherOn)}
+          couples={top.tougherOn}
         />
       </div>
 
@@ -208,7 +221,8 @@ function GapCard({ id, title, note, couples }: { id: string; title: string; note
         <ol className="stagger flex flex-col gap-3">
           {couples.map((c) => (
             <li key={c.ref} className="flex items-center justify-between gap-3">
-              <Dancers members={c.members} size={32} />
+              <Dancers members={c.members} size={32} out={Boolean(c.eliminated)} />
+              {c.eliminated && <span className="sr-only">Eliminated.</span>}
               <GapChip gap={c.gap} />
             </li>
           ))}

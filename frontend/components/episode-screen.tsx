@@ -140,6 +140,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
   const couples = [...new Set(data.performances.flatMap((card) => card.contestants))].flatMap(
     (id) => contestants.get(id) ?? [],
   );
+  const gone = new Set(data.eliminated);
   const out = (data.eliminated ?? []).map(
     (id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id,
   );
@@ -198,6 +199,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
             <li key={card.key}>
               <PerformanceCard
                 card={card}
+                out={card.contestants.length === 1 && gone.has(card.contestants[0]) ? { ep: episode.ep, week: episode.week } : undefined}
                 contestants={contestants}
                 judges={judges}
                 airsOn={airsOn}

@@ -9,6 +9,7 @@ import pytest
 from lambdas.common.groups_dynamo import create as create_group
 from lambdas.common.groups_dynamo import join as join_group
 from lambdas.common.social_dynamo import accept, request
+from lambdas.scores_reveal_all.handler import handler as reveal_all_handler
 from lambdas.scores_submit.handler import handler as submit_handler
 from lambdas.week_board_get.handler import handler
 from scripts.seed_season import SEASONS, items, write
@@ -105,6 +106,31 @@ def test_a_past_season_ranks_every_couple_unanswered(show):
     assert row(data, X)["everyone"] == 7.0
     assert row(data, Z)["ranks"] == {"judges": 1, "you": None, "friends": None, "everyone": None}
     assert data["disagreements"] == []
+
+
+def finish(sub, ep):
+    event = authorized_event(
+        path="/scores/reveal-all",
+        method="POST",
+        sub=sub,
+        body={"season": "dwts-35", "ep": ep},
+    )
+    assert reveal_all_handler(event, None)["statusCode"] == 200
+
+
+def test_eliminated_only_once_the_caller_finishes_the_episode(show):
+    # Conner Leavitt went out in episode 1.
+    finish(B, "01")
+    assert board(ep="01")["eliminated"] == []
+    finish(A, "01")
+    assert board(ep="01")["eliminated"] == ["conner-leavitt"]
+    # Only that night's: episode 5 sent nobody home before the caller finished it.
+    assert board()["eliminated"] == []
+
+
+def test_a_past_season_shows_eliminations_unanswered(show):
+    close(show, SEASON)
+    assert board(ep="01")["eliminated"] == ["conner-leavitt"]
 
 
 def test_ranks_four_ways(show):

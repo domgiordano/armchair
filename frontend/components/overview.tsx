@@ -1,17 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
 import { UserLink } from "@/components/user-link";
+import { PersonLink } from "@/components/couple-names";
+import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { PageLoader } from "@/components/disco-loader";
 import { CoupleAvatars } from "@/components/headshot";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
 import { SkipConfirm } from "@/components/skip-confirm";
-import { Badge } from "@/components/ui/badge";
 import { CountUp } from "@/components/ui/count-up";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
@@ -25,11 +27,13 @@ import {
 } from "@/lib/api/overview";
 import { skipBefore } from "@/lib/api/show";
 import { skipTarget, unfinishedBefore } from "@/lib/show/catch-up";
+import { eliminatedLast, useShowEliminated } from "@/lib/show/eliminated";
 import { countdown, hero, showTime } from "@/lib/show/overview";
+import { coupleHref, personSlug } from "@/lib/show/people";
 import { formatAirDate } from "@/lib/show/schedule";
 import { seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
 import { useNow } from "@/lib/show/use-now";
-import { button, DISPLAY, TEXT_LINK as LINK } from "@/lib/ui";
+import { button, cn, DISPLAY, TEXT_LINK as LINK } from "@/lib/ui";
 
 const GOLD = button("primary");
 const OUTLINE = button("secondary");
@@ -182,7 +186,7 @@ function OverviewView({ o, season, reload }: ViewProps) {
 
         <div className="grid items-start gap-8 md:grid-cols-2 lg:flex lg:flex-col lg:items-stretch">
           <LeaderboardTop season={season} />
-          <Standings couples={o.couples} />
+          <Standings couples={o.couples} season={season} />
         </div>
       </div>
     </div>
@@ -497,10 +501,14 @@ function TopFive({ board }: { board: Leaderboard }) {
 
 const STANDINGS_SHOWN = 6;
 
-function Standings({ couples }: { couples: CoupleStanding[] }) {
+function Standings({ couples: every, season }: { couples: CoupleStanding[]; season: string }) {
+  const router = useRouter();
   const [all, setAll] = useState(false);
+  const [showOut, setShowOut] = useShowEliminated("standings");
+  const couples = eliminatedLast(every, (c) => Boolean(c.eliminated), showOut);
+  const gone = every.filter((c) => c.eliminated).length;
   const shown = all ? couples : couples.slice(0, STANDINGS_SHOWN);
-  const top = Math.max(...couples.map((c) => c.average ?? 0));
+  const top = Math.max(...couples.map((c) => (c.eliminated ? 0 : (c.average ?? 0))));
 
   return (
     <section aria-labelledby="standings" className={`${PANEL} flex flex-col gap-3`}>
@@ -510,31 +518,43 @@ function Standings({ couples }: { couples: CoupleStanding[] }) {
         </h2>
         <p className="text-sm text-silver-dim">Judges&apos; average over the dances you&apos;ve scored.</p>
       </div>
+      <ShowEliminated checked={showOut} onChange={setShowOut} count={gone} />
       <ol id="standings-list" className="stagger flex flex-col">
         {shown.map((c, i) => {
           const celebrity = c.members.find((m) => m.role === "celebrity") ?? c.members[0];
           const pro = c.members.find((m) => m.role === "pro");
           return (
-            <li key={c.id} className={`flex items-center gap-3 py-2 ${c.out ? "opacity-60" : ""}`}>
-              <CoupleAvatars members={c.members} size={36} />
+            <li
+              key={c.id}
+              onClick={() => router.push(coupleHref(c.members, season))}
+              className={cn(
+                "relative -mx-2 flex cursor-pointer items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-silver/5",
+                c.eliminated && "my-1 border border-dashed border-silver/15 bg-ink/40 py-2.5 pl-6",
+              )}
+            >
+              <span className={cn("shrink-0", c.eliminated && OUT_FADE)}>
+                <CoupleAvatars members={c.members} size={36} />
+              </span>
               <span className="min-w-0 flex-1">
-                <span className="flex items-center gap-2">
-                  <span className="truncate text-sm font-medium text-pearl">{celebrity.name}</span>
-                  {c.out && (
-                    <Badge tone="muted">Out</Badge>
-                  )}
-                </span>
-                {pro && <span className="block truncate text-xs text-silver-dim">with {pro.name}</span>}
+                <PersonLink
+                  id={personSlug(celebrity.name)}
+                  name={celebrity.name}
+                  className={cn("block truncate text-sm font-medium", c.eliminated ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")}
+                />
+                {pro && (
+                  <span className={cn("block truncate text-xs text-silver-dim", c.eliminated && OUT_STRIKE)}>with {pro.name}</span>
+                )}
                 {c.average !== null && (
-                  <span aria-hidden="true" className="mt-1 block h-1 rounded-full bg-silver/10">
+                  <span aria-hidden="true" className={cn("mt-1 block h-1 rounded-full bg-silver/10", c.eliminated && "opacity-40")}>
                     <span
-                      className={`grow-x block h-full rounded-full ${c.average === top ? "bg-gold-light" : "bg-gold/70"}`}
+                      className={`grow-x block h-full rounded-full ${c.eliminated ? "bg-silver-dim" : c.average === top ? "bg-gold-light" : "bg-gold/70"}`}
                       style={{ width: `${(c.average / 10) * 100}%`, "--d": `${300 + i * 60}ms` } as CSSProperties}
                     />
                   </span>
                 )}
               </span>
-              <span className="shrink-0 text-right text-sm tabular-nums">
+              {c.eliminated && <EliminatedStamp out={c.eliminated} size="sm" className="absolute top-1/2 left-0 -translate-y-1/2" />}
+              <span className={cn("shrink-0 text-right text-sm tabular-nums", c.eliminated && "opacity-55")}>
                 {c.average === null ? (
                   <span className="text-silver-dim">
                     -<span className="sr-only">no scored dances yet</span>

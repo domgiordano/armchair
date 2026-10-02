@@ -10,6 +10,7 @@ from lambdas.common.groups_dynamo import create as create_group
 from lambdas.common.groups_dynamo import join as join_group
 from lambdas.common.social_dynamo import accept, block, request
 from lambdas.performers_get.handler import handler
+from lambdas.scores_reveal_all.handler import handler as reveal_all_handler
 from lambdas.scores_submit.handler import handler as submit_handler
 from lambdas.users_me.handler import handler as me_handler
 from scripts.seed_season import SEASONS, items, write
@@ -25,7 +26,8 @@ S35 = json.loads((SEASONS / "dwts-35.json").read_text())
 S34 = json.loads((SEASONS / "dwts-34.json").read_text())
 # Panel means: X 8, Y 6, Z 9. Y's pro, Pasha Pashkov, also partnered W in S34.
 X, Y, Z, W = "tyler-cameron", "amber-glenn", "jenna-dewan", "danielle-fishel"
-VALUES = {X: (7, 8, 9), Y: (6, 6, 6), Z: (9, 9, 9), W: (5, 5, 5)}
+T = "taylor-hanson"
+VALUES = {X: (7, 8, 9), Y: (6, 6, 6), Z: (9, 9, 9), W: (5, 5, 5), T: (7, 7, 7)}
 
 
 def put_perf(aws, season: dict, ep: int, cid: str, state: str = "confirmed"):
@@ -286,3 +288,36 @@ def test_someone_else_unknown_or_blocked_is_404_and_group_is_400(show):
     block(B, A)
     assert of(B)[0] == 404
     assert of(A, viewer=B)[0] == 404
+
+
+def finish(sub, ep, season="dwts-35"):
+    event = authorized_event(
+        path="/scores/reveal-all",
+        method="POST",
+        sub=sub,
+        body={"season": season, "ep": f"{ep:02d}"},
+    )
+    assert reveal_all_handler(event, None)["statusCode"] == 200
+
+
+def test_eliminated_once_the_caller_finishes_that_episode(show):
+    # Taylor Hanson went out in episode 4, week 3.
+    put_perf(show, S35, 4, T)
+    signed_in(A, B)
+    answer(A, T, ep=4, value=8)
+    answer(B, T, ep=4, value=6)
+    finish(B, 4)
+    assert couple(performers(), T)["eliminated"] is None
+    # The owner finishing doesn't tell the viewer either.
+    assert of(B)[1]["data"]["couples"][0]["eliminated"] is None
+
+    finish(A, 4)
+    assert couple(performers(), T)["eliminated"] == {"ep": 4, "week": 3}
+    assert of(B)[1]["data"]["couples"][0]["eliminated"] == {"ep": 4, "week": 3}
+
+
+def test_a_past_season_shows_eliminations_unfinished(show):
+    answer(A, W, ep=3, season="dwts-34", value=7)
+    assert couple(performers(season="dwts-34"), W, "dwts-34")["eliminated"] is None
+    close(show, S34)
+    assert couple(performers(season="all"), W, "dwts-34")["eliminated"] == {"ep": 8, "week": 8}

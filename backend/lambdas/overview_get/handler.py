@@ -82,7 +82,7 @@ def handler(event, context):
     mine = []
     reveals = []
     judged = defaultdict(list)
-    out: set[str] = set()
+    out: dict[str, dict] = {}
     for i, (n, ep, entry) in enumerate(past):
         perfs, score_rows = found[2 * i], found[2 * i + 1]
         view = episode_view(sub, n, meta, ep, contestants, perfs, score_rows)
@@ -97,7 +97,8 @@ def handler(event, context):
             scored=sum("value" in r for r in own),
             mae=summary(errs)["mae"],
         )
-        out |= set(view.get("eliminated") or [])
+        for c in view.get("eliminated") or []:
+            out[c] = {"ep": n, "week": ep.get("week")}
 
         submitted = {score_owner(r)[0]: r.get("submittedAt", "") for r in own}
         for card in view["performances"]:
@@ -166,7 +167,7 @@ def _confirmed(card: dict) -> bool:
     return bool(card["judges"]) and all(j["state"] == "confirmed" for j in card["judges"])
 
 
-def _standings(contestants: list[dict], judged: dict, out: set[str]) -> list[dict]:
+def _standings(contestants: list[dict], judged: dict, out: dict[str, dict]) -> list[dict]:
     """Every couple, by the judges' average over the dances the caller has seen scored."""
     couples = []
     for c in contestants:
@@ -179,13 +180,13 @@ def _standings(contestants: list[dict], judged: dict, out: set[str]) -> list[dic
                 ],
                 "dances": len(means),
                 "average": round(sum(means) / len(means), 2) if means else None,
-                "out": cid(c) in out,
+                "eliminated": out.get(cid(c)),
             }
         )
     return sorted(
         couples,
         key=lambda c: (
-            c["out"],
+            c["eliminated"] is not None,
             c["average"] is None,
             -(c["average"] or 0),
             c["members"][0]["name"],

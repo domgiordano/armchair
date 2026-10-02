@@ -28,6 +28,9 @@
   --color-lacquer: #6b4d22;
   --color-lacquer-deep: #3a2a14;
 
+  /* Rubber-stamp red for eliminations: bright enough to hold 3:1 on ballroom through the ink texture. */
+  --color-stamp: #ff4d5e;
+
   /* The desk's paddle raise: up from behind the desk, a small overshoot, settle. */
   --animate-raise: raise 560ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
 
@@ -377,6 +380,51 @@
   transform-origin: center;
   animation: pop-scale 420ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
   animation-delay: var(--d, 0ms);
+}
+
+/*
+ * A rubber stamp in red ink: a heavy rule with a thin one inside, uneven
+ * pressure from a fractal-noise mask, struck once at an angle. --tilt sets the
+ * angle so the strike keeps it.
+ */
+@utility ink-stamp {
+  --tilt: -8deg;
+  color: var(--color-stamp);
+  border: 2.5px solid currentColor;
+  border-radius: 6px;
+  outline: 1px solid currentColor;
+  outline-offset: -5.5px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 0 1px currentColor;
+  white-space: nowrap;
+  transform: rotate(var(--tilt));
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='70'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.6 2.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-size: 150px 70px;
+  animation: stamp 420ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+  animation-delay: var(--d, 0ms);
+
+  @media (forced-colors: active) {
+    color: CanvasText;
+    mask-image: none;
+  }
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: rotate(calc(var(--tilt) - 6deg)) scale(1.9);
+  }
+  55% {
+    opacity: 1;
+    transform: rotate(var(--tilt)) scale(0.94);
+  }
+  100% {
+    transform: rotate(var(--tilt)) scale(1);
+  }
 }
 
 /* A loading placeholder: a sliver of light passes over midnight. */

@@ -74,6 +74,33 @@ def answered(sub: str, scores: list[dict]) -> set[str]:
     return {key for key, owner in map(score_owner, scores) if owner == sub}
 
 
+def results_open(
+    sub: str,
+    ep: int,
+    meta: dict,
+    episode: dict,
+    contestants: list[dict],
+    performances: list[dict],
+    scores: list[dict],
+) -> bool:
+    """
+    Whether the caller may see the episode's results, eliminations among them:
+    an open season, or every rateable performance answered.
+    """
+    if is_open(meta):
+        return True
+    keys = rateable(ep, episode, contestants, performances)
+    done = answered(sub, scores)
+    # An empty roster means bad catalog data; keep results hidden rather than
+    # letting all() of nothing reveal them.
+    return bool(keys) and all(k in done for k in keys)
+
+
+def eliminated(ep: int, contestants: list[dict]) -> list[str]:
+    """Couples who went out on episode `ep`. Only for a caller results_open allows."""
+    return sorted(cid(c) for c in contestants if c.get("eliminatedEp") == ep)
+
+
 def visible_scores(
     sub: str, scores: list[dict], members: set[str] | None = None, opened: bool = False
 ) -> list[dict]:
@@ -114,9 +141,7 @@ def episode_view(
         key, owner = score_owner(row)
         if owner == sub:
             mine[key] = row
-    # An empty roster means bad catalog data; keep results hidden rather than
-    # letting all() of nothing reveal them.
-    complete = opened or (bool(keys) and all(k in mine for k in keys))
+    complete = results_open(sub, ep, meta, episode, contestants, performances, scores)
     panel = episode.get("panel") or meta["defaultPanel"]
 
     values = defaultdict(list)
@@ -148,7 +173,7 @@ def episode_view(
     }
     if complete:
         view["results"] = episode.get("results")
-        view["eliminated"] = sorted(cid(c) for c in contestants if c.get("eliminatedEp") == ep)
+        view["eliminated"] = eliminated(ep, contestants)
     return view
 
 

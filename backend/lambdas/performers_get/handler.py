@@ -6,9 +6,10 @@ caller's friends and everyone else scored the same dances.
 Per couple: the caller's average paddle, the judges' average, the signed and
 absolute gap (paddle minus panel mean), dances, best and worst dance by the
 caller's paddle, each dance for a chart, and friends' and everyone else's
-averages. Then the same per pro and per celebrity, and the caller's favorites,
-least favorites, the couples they're softest and toughest on, and their
-average paddle per dance style.
+averages, and `eliminated` ({ep, week}) once the caller has finished that
+episode (gate.results_open). Then the same per pro and per celebrity, and
+the caller's favorites, least favorites, the couples they're softest and
+toughest on, and their average paddle per dance style.
 
 Every number comes from common/couples.py over performances the caller
 paddled, so an unanswered or skipped dance never counts, for anyone. Other
@@ -48,7 +49,7 @@ from lambdas.common.episodes_dynamo import (
     season_ref,
     season_rows,
 )
-from lambdas.common.gate import answered, cid, is_open, visible_scores
+from lambdas.common.gate import answered, cid, eliminated, is_open, results_open, visible_scores
 from lambdas.common.social_dynamo import peer, status
 
 HIGHLIGHTS = 3
@@ -89,24 +90,38 @@ def handler(event, context):
         if "META" not in rows:
             raise NotFoundError("No such season", season=f"{show}-{season}")
         roster = {cid(r): r for sk, r in rows.items() if sk.startswith("CONTESTANT#")}
-        opened = is_open(rows["META"])
+        contestants = list(roster.values())
+        meta = rows["META"]
+        opened = is_open(meta)
         by_couple = defaultdict(list)
+        out = {}
         for sk, episode in sorted(rows.items()):
             if not sk.startswith("EP#"):
                 continue
-            pk = episode_pk(show, season, int(sk.removeprefix("EP#")))
+            n = int(sk.removeprefix("EP#"))
+            pk = episode_pk(show, season, n)
             score_rows = scores(pk)
+            perfs = None
+            gone = eliminated(n, contestants)
+            # The caller's results, not the owner's: someone else having finished
+            # an episode tells the caller nothing.
+            if gone and (opened or answered(caller, score_rows)):
+                perfs = performances(pk)
+                if results_open(caller, n, meta, episode, contestants, perfs, score_rows):
+                    out.update({c: {"ep": n, "week": episode.get("week")} for c in gone})
             if not own:
                 # Members None: every row on what the caller answered, the owner's among them.
                 score_rows = visible_scores(caller, score_rows, opened=opened)
             if not answered(sub, score_rows):
                 continue
-            panel = episode.get("panel") or rows["META"]["defaultPanel"]
-            for d in dances(sub, episode, panel, performances(pk), score_rows, pool):
+            panel = episode.get("panel") or meta["defaultPanel"]
+            perfs = perfs if perfs is not None else performances(pk)
+            for d in dances(sub, episode, panel, perfs, score_rows, pool):
                 by_couple[d["couple"]].append(d)
         for c, ds in by_couple.items():
             if c in roster:
                 couple = _couple(f"{show}-{season}", roster[c], ds, mates, own)
+                couple["eliminated"] = out.get(c)
                 couples.append(couple)
                 raw[couple["ref"]] = ds
 
