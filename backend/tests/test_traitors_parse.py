@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from lambdas.common.traitors_parse import season
+from lambdas.common.traitors_parse import season, seasons
 
 WIKI = Path(__file__).parents[2] / "fixtures" / "wiki"
 
@@ -154,3 +154,39 @@ def test_episodes():
         "2026-10-09",
     ]
     assert len(celeb["contestants"]) == 21
+
+
+# Hand-copied from each main article's Series overview `linkN` lines.
+SEASON_LISTS = {
+    "traitors-main-tus-1377133951": {
+        1: "The Traitors (American TV series) season 1",
+        2: "The Traitors (American TV series) season 2",
+        3: "The Traitors (American TV series) season 3",
+        4: "The Traitors (American TV series) season 4",
+        5: "The Traitors (American TV series) season 5",
+        6: "The Traitors (American TV series) season 6",
+    },
+    "traitors-main-tuk-1377988096": {
+        1: "The Traitors (British TV series) series 1",
+        2: "The Traitors (British TV series) series 2",
+        3: "The Traitors (British TV series) series 3",
+        4: "The Traitors (British TV series) series 4",
+    },
+    "traitors-main-tukc-1377995051": {
+        1: "The Celebrity Traitors series 1",
+        2: "The Celebrity Traitors series 2",
+    },
+}
+
+
+@pytest.mark.parametrize("fixture", SEASON_LISTS)
+def test_season_list(fixture):
+    assert seasons((WIKI / f"{fixture}.wikitext").read_text()) == SEASON_LISTS[fixture]
+
+
+def test_season_list_from_headings_without_overview():
+    raw = (WIKI / "traitors-main-tus-1377133951.wikitext").read_text()
+    start = raw.index("{{Series overview")
+    bare = raw[:start] + raw[raw.index("\n}}\n", start) + 4 :]
+    assert "link5" not in bare
+    assert seasons(bare) == SEASON_LISTS["traitors-main-tus-1377133951"]

@@ -1,4 +1,5 @@
 """Parses a Traitors season page's wikitext: episodes, contestants, round tables, recruits.
+Also an edition's main article, for its list of season pages.
 
 Pure functions, no network. Real-revision fixtures live in fixtures/wiki/traitors-*.
 Layout and special cases: docs/features/traitors/RESEARCH.md Q2.
@@ -330,6 +331,29 @@ def recruits(wikitext: str, names: dict[str, str]) -> list[dict]:
             if person := resolve(names, name):
                 out.append({"name": person, "ep": int(ep.group()) if ep else None})
     return out
+
+
+OVERVIEW = re.compile(r"\{\{\s*Series overview(.*?)^\}\}", re.DOTALL | re.MULTILINE | re.IGNORECASE)
+OVERVIEW_LINK = re.compile(r"^\|\s*link(\d+)\s*=([^\n]*)", re.MULTILINE)
+MAIN_UNDER_HEADING = re.compile(
+    r"^===\s*(?:Season|Series)\s+(\d+)\b[^\n]*===\s*\n\{\{\s*main\s*\|([^}|]+)",
+    re.MULTILINE | re.IGNORECASE,
+)
+
+
+def seasons(wikitext: str) -> dict[int, str]:
+    """An edition's main article: season number to season page title.
+
+    From the `{{Series overview}}` links, or for a number missing there, the `{{main}}`
+    link under a `===Season N===` heading.
+    """
+    out = {int(n): t.strip() for n, t in MAIN_UNDER_HEADING.findall(wikitext)}
+    if m := OVERVIEW.search(wikitext):
+        for n, raw in OVERVIEW_LINK.findall(m.group(1)):
+            title = re.sub(r"<!--.*?-->|\[\[|\]\]", "", raw).split("#")[0].strip()
+            if title:
+                out[int(n)] = title
+    return dict(sorted(out.items()))
 
 
 def season(wikitext: str) -> dict:
