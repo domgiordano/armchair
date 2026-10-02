@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { HUB_URL } from "@/components/apps-menu";
+import { HUB_URL, TRAITORS_URL } from "@/components/apps-menu";
 import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 import { FOCUS } from "@/lib/ui";
 
@@ -28,7 +28,7 @@ interface App {
 
 const APPS: App[] = [
   { show: "dwts", name: "Dancing with the Stars", href: "/" },
-  { show: "traitors", name: "The Traitors" },
+  { show: "traitors", name: "The Traitors", href: TRAITORS_URL },
   { show: "survivor", name: "Survivor" },
 ];
 
@@ -77,7 +77,7 @@ function AppItem({ app }: { app: App }) {
   }
   return (
     <li>
-      <Link href={app.href} className={`${LINK} ${ICON_TRIGGER} gap-2.5`}>
+      <AppLink href={app.href}>
         {icon}
         <span className="relative">
           {app.name}
@@ -87,8 +87,24 @@ function AppItem({ app }: { app: App }) {
           <span className="size-1 rounded-full bg-current motion-safe:animate-pulse" aria-hidden="true" />
           LIVE
         </span>
-      </Link>
+      </AppLink>
     </li>
+  );
+}
+
+function AppLink({ href, children }: { href: string; children: ReactNode }) {
+  const className = `${LINK} ${ICON_TRIGGER} gap-2.5`;
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <a href={href} className={className}>
+      {children}
+    </a>
   );
 }
 
@@ -173,7 +189,7 @@ export function SiteFooter() {
       <div className="border-t border-silver/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs leading-relaxed text-silver-dim sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6">
           <p className="shrink-0">&copy; {YEAR} Armchair Judge &middot; An independent fan project</p>
-          <p className="sm:text-right">Not affiliated with ABC, Disney or BBC Studios.</p>
+          <p className="sm:text-right">Not affiliated with ABC, Disney, BBC, BBC Studios, NBC, Peacock or The Traitors.</p>
         </div>
       </div>
     </footer>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 
 import { CloseIcon, MenuIcon } from "@/components/app-shell";
-import { AppsMenu, ArrowIcon, HUB_URL } from "@/components/apps-menu";
+import { AppsMenu, ArrowIcon, HUB_URL, TRAITORS_URL } from "@/components/apps-menu";
 import { Brand } from "@/components/brand";
 import { GoogleMark } from "@/components/google-mark";
 import { NavSheet } from "@/components/nav-sheet";
@@ -16,10 +16,7 @@ const LINKS = [
   { href: "/discover/", label: "Discover" },
 ];
 
-const SOON: { show: Show; name: string }[] = [
-  { show: "traitors", name: "The Traitors" },
-  { show: "survivor", name: "Survivor" },
-];
+const SOON: { show: Show; name: string }[] = [{ show: "survivor", name: "Survivor" }];
 
 const ICON_BUTTON = `flex size-11 shrink-0 items-center justify-center rounded-full text-silver transition-colors hover:bg-silver/10 hover:text-pearl active:bg-silver/15 ${FOCUS}`;
 
@@ -108,6 +105,18 @@ export function LandingNav({ disabled, onSignIn }: LandingNavProps) {
                 <span className="text-sm font-medium text-gold-light">Dancing with the Stars</span>
                 <span className="text-xs text-silver-dim">You&rsquo;re here</span>
               </span>
+            </li>
+            <li>
+              <a
+                href={TRAITORS_URL}
+                className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-2 transition-colors hover:bg-ballroom/60 active:bg-ballroom ${FOCUS}`}
+              >
+                <ShowIcon show="traitors" size={40} />
+                <span className="flex flex-col">
+                  <span className="text-sm font-medium text-silver">The Traitors</span>
+                  <span className="text-xs text-silver-dim">Live now</span>
+                </span>
+              </a>
             </li>
             {SOON.map((s) => (
               <li key={s.show} className={`${ICON_TRIGGER} flex items-center gap-3 rounded-md px-3 py-2`}>

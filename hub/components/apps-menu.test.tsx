@@ -24,7 +24,7 @@ describe("AppsMenu", () => {
     expect(screen.queryByText("Dancing with the Stars")).toBeNull();
   });
 
-  it("links the live app and leaves coming-soon apps unclickable", () => {
+  it("links the live apps and leaves coming-soon apps unclickable", () => {
     const panel = renderOpen();
     expect(toggle().getAttribute("aria-expanded")).toBe("true");
 
@@ -32,11 +32,13 @@ describe("AppsMenu", () => {
     expect(dwts.getAttribute("href")).toBe("https://dwts.armchairjudge.com");
     expect(dwts.textContent).toContain("LIVE");
 
-    for (const name of ["The Traitors", "Survivor"]) {
-      const row = within(panel).getByText(name);
-      expect(row.closest("a")).toBeNull();
-      expect(row.parentElement?.parentElement?.textContent).toContain("COMING SOON");
-    }
+    const traitors = within(panel).getByRole("link", { name: /The Traitors/ });
+    expect(traitors.getAttribute("href")).toBe("https://traitors.armchairjudge.com");
+    expect(traitors.textContent).toContain("LIVE");
+
+    const survivor = within(panel).getByText("Survivor");
+    expect(survivor.closest("a")).toBeNull();
+    expect(survivor.parentElement?.parentElement?.textContent).toContain("COMING SOON");
   });
 
   it("gives each app its icon, padlocked until the app is live, played by hovering its row", () => {
@@ -45,7 +47,7 @@ describe("AppsMenu", () => {
     expect(rows.map((li) => li.querySelector("[data-show]")?.getAttribute("data-show"))).toEqual(["dwts", "traitors", "survivor"]);
     for (const li of rows) expect(li.firstElementChild?.classList.contains(ICON_TRIGGER)).toBe(true);
     const locked = rows.map((li) => li.querySelector("[data-show]")?.querySelector("span") !== null);
-    expect(locked).toEqual([false, true, true]);
+    expect(locked).toEqual([false, false, true]);
   });
 
   it("closes on Escape and hands focus back to the button", () => {

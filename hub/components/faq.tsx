@@ -14,7 +14,7 @@ const QUESTIONS: Question[] = [
   },
   {
     q: "Which shows can I judge?",
-    a: "Dancing with the Stars, live now for the current season. The Traitors and Survivor are on the way, each as its own app under the same account.",
+    a: "Dancing with the Stars and The Traitors (US and UK), live now for the current seasons. Survivor is on the way. Each show is its own app under the same account.",
   },
   {
     q: "Do I need to watch live?",

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { ChairMark } from "@/components/chair-mark";
 import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
-import { DWTS_URL, GITHUB_URL, XOMWARE_URL } from "@/lib/links";
+import { DWTS_URL, GITHUB_URL, TRAITORS_URL, XOMWARE_URL } from "@/lib/links";
 
 // Kept in step with frontend/components/site-footer.tsx by hand: the two apps share no package.
 
@@ -26,7 +26,7 @@ interface App {
 
 const APPS: App[] = [
   { show: "dwts", name: "Dancing with the Stars", href: DWTS_URL },
-  { show: "traitors", name: "The Traitors" },
+  { show: "traitors", name: "The Traitors", href: TRAITORS_URL },
   { show: "survivor", name: "Survivor" },
 ];
 
@@ -165,7 +165,7 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-5 text-xs leading-relaxed text-muted sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <p className="shrink-0">&copy; {YEAR} Armchair Judge &middot; An independent fan project</p>
           <p className="sm:text-right">
-            Not affiliated with ABC, Disney, BBC, Peacock, CBS or the shows&rsquo; producers.
+            Not affiliated with Dancing with the Stars, The Traitors, ABC, Disney, NBC, Peacock, BBC, CBS or the shows&rsquo; producers.
           </p>
         </div>
       </div>

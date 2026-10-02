@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useEffectEvent, useId, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent } from "react";
 import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 
-import { DWTS_URL } from "@/lib/links";
+import { DWTS_URL, TRAITORS_URL } from "@/lib/links";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 interface ShowApp {
@@ -17,7 +17,12 @@ interface ShowApp {
 
 const APPS: ShowApp[] = [
   { name: "Dancing with the Stars", line: "Score every dance before the judges' paddles go up.", href: DWTS_URL, show: "dwts" },
-  { name: "The Traitors", line: "Call the banishment before the round table does.", show: "traitors" },
+  {
+    name: "The Traitors",
+    line: "Call the round table's top 3, the murder and the recruit before they happen.",
+    href: TRAITORS_URL,
+    show: "traitors",
+  },
   { name: "Survivor", line: "Rate the blindside before the tribe has spoken.", show: "survivor" },
 ];
 

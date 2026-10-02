@@ -193,3 +193,35 @@ export function PersonRow({ person, detail, error, children }: PersonRowProps) {
     </div>
   );
 }
+
+interface Option<T extends string> {
+  value: T;
+  label: string;
+}
+
+interface SegmentedProps<T extends string> {
+  label: string;
+  options: Option<T>[];
+  value: T;
+  onChange: (value: T) => void;
+}
+
+export function Segmented<T extends string>({ label, options, value, onChange }: SegmentedProps<T>) {
+  return (
+    <div role="group" aria-label={label} className="inline-flex rounded-full border border-line bg-night-2/70 p-1">
+      {options.map((o) => (
+        <button
+          key={o.value}
+          type="button"
+          aria-pressed={o.value === value}
+          onClick={() => onChange(o.value)}
+          className={`min-h-10 rounded-full px-3 text-sm font-semibold whitespace-nowrap transition-colors sm:px-4 motion-reduce:transition-none ${FOCUS} ${
+            o.value === value ? "bg-text text-night" : "text-muted hover:text-text active:bg-line/60"
+          }`}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
