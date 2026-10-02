@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { getMyGroups, type Group } from "@/lib/api/groups";
+import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
 
 const KEY = "armchair.group";
 

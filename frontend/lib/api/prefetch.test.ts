@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.unmock("@/lib/api/prefetch");
 const request = vi.hoisted(() => vi.fn(async (path: string) => ({ path })));
-vi.mock("@/lib/api/client", () => ({ request }));
+vi.mock("@armchair/app-core/api/client", () => ({ request }));
 
 import { prefetchPage } from "./prefetch";
 

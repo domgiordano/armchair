@@ -8,7 +8,7 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
   useSearchParams: () => search.value,
 }));
-vi.mock("@/lib/auth/use-auth", () => ({
+vi.mock("@armchair/app-core/auth/use-auth", () => ({
   useAuth: () => ({ status: "signedIn", signInWithGoogle: vi.fn(), signOut: vi.fn() }),
 }));
 vi.mock("@/lib/api/show", async (importOriginal) => ({
@@ -22,8 +22,8 @@ vi.mock("@/lib/api/profile", () => ({
   uploadAvatar: vi.fn(),
 }));
 vi.mock("@/lib/api/couples", () => ({ getFavorites: vi.fn() }));
-vi.mock("@/lib/api/social", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/social")>()),
+vi.mock("@armchair/app-core/api/social", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/social")>()),
   getFriends: vi.fn(),
   addFriend: vi.fn(),
   acceptFriend: vi.fn(),
@@ -33,19 +33,19 @@ vi.mock("@/lib/api/social", async (importOriginal) => ({
   getNotifications: vi.fn(),
   markNotificationsRead: vi.fn(),
 }));
-vi.mock("@/lib/api/groups", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/groups")>()),
   getMyGroups: vi.fn(),
   getGroupDetails: vi.fn(),
 }));
 
-import { ApiError } from "@/lib/api/client";
+import { ApiError } from "@armchair/app-core/api/client";
 import { getFavorites, type CoupleSummary, type Performers } from "@/lib/api/couples";
-import { getGroupDetails, getMyGroups } from "@/lib/api/groups";
+import { getGroupDetails, getMyGroups } from "@armchair/app-core/api/groups";
 import { getMyProfile, getProfile, updateProfile, uploadAvatar, type Detail, type MyProfile, type Profile } from "@/lib/api/profile";
 import { getSeason, type Member, type Season } from "@/lib/api/show";
-import { acceptFriend, addFriend, getFriends, getNotifications, mySub, removeFriend } from "@/lib/api/social";
-import { resetNotifications } from "@/lib/social/notifications";
+import { acceptFriend, addFriend, getFriends, getNotifications, mySub, removeFriend } from "@armchair/app-core/api/social";
+import { resetNotifications } from "@armchair/app-core/social/notifications";
 import { choose } from "./ui/select-test-utils";
 import { ProfileScreen } from "./profile-screen";
 

@@ -10,12 +10,12 @@ vi.mock("next/navigation", () => ({
 vi.mock("@/components/signed-in", () => ({
   SignedIn: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
-vi.mock("@/lib/api/social", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/social")>()),
+vi.mock("@armchair/app-core/api/social", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/social")>()),
   addFriend: vi.fn(),
 }));
 
-import { addFriend } from "@/lib/api/social";
+import { addFriend } from "@armchair/app-core/api/social";
 import { FriendsRoute, legacyTarget } from "./friend-link";
 
 beforeEach(() => {

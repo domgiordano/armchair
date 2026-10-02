@@ -1,5 +1,5 @@
 """
-GET /performers/get?season=dwts-35|all[&group=<gid>|&sub=<sub>] - how the
+GET /performers/get?season=dwts-35|all[&show=dwts][&group=<gid>|&sub=<sub>] - how the
 caller, or the user `sub`, scored each couple against the judges, and how the
 caller's friends and everyone else scored the same dances.
 
@@ -15,8 +15,8 @@ Every number comes from common/couples.py over performances the caller
 paddled, so an unanswered or skipped dance never counts, for anyone. Other
 people appear only as means over at least couples.MIN_RATERS of them. `group`
 narrows friends and everyone to that group's members and is 403 unless the
-caller is one. `season=all` covers every DWTS season where the caller has a
-dance counted on the leaderboard.
+caller is one. `season=all` covers every season of `show`, dwts by default,
+where the caller has a dance counted on the leaderboard.
 
 With someone else's `sub` it is that user's numbers, over only the dances the
 caller has answered too, so nothing comes from a performance the gate keeps
@@ -48,13 +48,12 @@ from lambdas.common.episodes_dynamo import (
     season_index,
     season_ref,
     season_rows,
+    show_ref,
 )
 from lambdas.common.gate import answered, cid, eliminated, is_open, results_open, visible_scores
 from lambdas.common.social_dynamo import peer, status
 
 HIGHLIGHTS = 3
-# The only show with past seasons to sum across.
-SHOW = "dwts"
 
 
 @api_handler("performers_get")
@@ -75,7 +74,7 @@ def handler(event, context):
         mates &= pool
 
     if params.get("season") == board_dynamo.ALL:
-        show, label = SHOW, board_dynamo.ALL
+        show, label = show_ref(params), board_dynamo.ALL
         numbers = sorted(int(s["number"]) for s in season_index(show))
         seasons = board_dynamo.seasons_with(sub, show, numbers)
     else:

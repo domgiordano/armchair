@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
-import { ApiError } from "@/lib/api/client";
+import { ApiError } from "@armchair/app-core/api/client";
 import { getPerson, type PersonPage, type Role, type SeasonResult, type Stint } from "@/lib/api/people";
 import { seasonLabel } from "@/lib/show/seasons";
 import { button, EYEBROW, SECONDARY, TEXT_LINK } from "@/lib/ui";

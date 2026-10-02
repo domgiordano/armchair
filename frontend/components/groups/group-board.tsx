@@ -9,7 +9,7 @@ import { displayName } from "@/components/social/parts";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
-import type { GroupDetail } from "@/lib/api/groups";
+import type { GroupDetail } from "@armchair/app-core/api/groups";
 import { ALL_TIME, getLeaderboard, type Leaderboard } from "@/lib/api/leaderboard";
 import { saveGroup } from "@/lib/show/group-filter";
 import { useSeasonId } from "@/lib/show/seasons";

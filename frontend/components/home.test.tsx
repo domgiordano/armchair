@@ -17,14 +17,14 @@ vi.mock("aws-amplify/auth", () => ({
 }));
 vi.mock("aws-amplify/utils", () => ({ Hub: { listen: vi.fn(() => () => {}) } }));
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn(), getLeaderboard: vi.fn(() => new Promise(() => {})) }));
-vi.mock("@/lib/api/client", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/client")>()),
+vi.mock("@armchair/app-core/api/client", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/client")>()),
   getMe: vi.fn(),
 }));
 
 import { getCurrentUser, signInWithRedirect, signOut } from "aws-amplify/auth";
 
-import { ApiError, getMe } from "@/lib/api/client";
+import { ApiError, getMe } from "@armchair/app-core/api/client";
 import { getOverview } from "@/lib/api/overview";
 import { Home } from "./home";
 
