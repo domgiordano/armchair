@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { expect, it, vi } from "vitest";
 
 vi.hoisted(() => {
@@ -20,9 +20,12 @@ vi.mock("aws-amplify/utils", () => ({ Hub: { listen: vi.fn(() => () => {}) } }))
 
 import { Home } from "./home";
 
-it("shows the title and Google sign-in when signed out", async () => {
+vi.mock("./intro/scene", () => new Promise(() => {}));
+
+it("opens on the intro when signed out, then the landing with Google sign-in", async () => {
   render(<Home />);
-  expect(screen.getByRole("heading", { name: "Traitors" })).toBeTruthy();
-  const button = await screen.findByRole("button", { name: "Sign in with Google" });
+  fireEvent.click(screen.getByRole("button", { name: "Skip intro" }));
+  expect(screen.getByText("Traitors")).toBeTruthy();
+  const [button] = await screen.findAllByRole("button", { name: "Sign in with Google" });
   await vi.waitFor(() => expect((button as HTMLButtonElement).disabled).toBe(false));
 });
