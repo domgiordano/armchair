@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* Palette from docs/features/traitors/DESIGN-RESEARCH.md, with its contrast table.
+   Red text is blood-hi, never blood; ash-dim never carries copy. */
+:root {
+  --night: #0a0d0b;
+  --stone: #151a17;
+  --cloak: #13281d;
+  --cloak-500: #1e4a33;
+  --moss: #5db683;
+  --parchment: #eadbb8;
+  --bone: #f4ecda;
+  --ash: #9a9c92;
+  --ash-dim: #6e7169;
+  --candle: #e9b949;
+  --gilt: #c79a3a;
+  --flame: #ffd27a;
+  --ember: #f2662a;
+  --oxblood: #4a0e16;
+  --blood: #b3222e;
+  --blood-hi: #e0464f;
+}
+
+@theme inline {
+  --color-night: var(--night);
+  --color-stone: var(--stone);
+  --color-cloak: var(--cloak);
+  --color-cloak-500: var(--cloak-500);
+  --color-moss: var(--moss);
+  --color-parchment: var(--parchment);
+  --color-bone: var(--bone);
+  --color-ash: var(--ash);
+  --color-ash-dim: var(--ash-dim);
+  --color-candle: var(--candle);
+  --color-gilt: var(--gilt);
+  --color-flame: var(--flame);
+  --color-ember: var(--ember);
+  --color-oxblood: var(--oxblood);
+  --color-blood: var(--blood);
+  --color-blood-hi: var(--blood-hi);
+
+  --font-serif: var(--font-garamond), Georgia, serif;
+  --font-display: var(--font-cinzel), Georgia, serif;
+  /* The title card and the Faithful/Traitor reveal word only. */
+  --font-title: var(--font-cinzel-decorative), var(--font-cinzel), Georgia, serif;
+  /* Names chalked on the slate. */
+  --font-hand: var(--font-caveat), cursive;
+}
+
+@utility focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+
+  &:focus-visible {
+    outline-color: var(--candle);
+  }
+}
+
+/* data-session is set before first paint by SESSION_HINT_SCRIPT: someone likely
+   signed in shouldn't see the prerendered landing flash while Amplify confirms
+   it. Home drops data-prerendered once hydrated. */
+html[data-session] [data-prerendered] {
+  visibility: hidden;
+}
