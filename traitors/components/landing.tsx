@@ -7,6 +7,7 @@ import { Intro } from "@/components/intro";
 import { Ledger } from "@/components/landing/ledger";
 import { Slate } from "@/components/landing/slate";
 import { BUTTON } from "@/lib/ui";
+import { rememberReturn } from "@armchair/app-core/auth/return-to";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
 
 import styles from "./landing/landing.module.css";
@@ -56,6 +57,7 @@ export function Landing() {
     setRedirecting(true);
     setError(false);
     try {
+      rememberReturn();
       await signInWithGoogle();
     } catch {
       setRedirecting(false);
