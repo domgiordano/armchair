@@ -8,9 +8,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { Brand } from "@/components/brand";
 import { DiscoLoader } from "@/components/disco-loader";
-import { takeReturn } from "@/lib/auth/return-to";
-import { takeSilent } from "@/lib/auth/silent";
-import { useAuth } from "@/lib/auth/use-auth";
+import { takeReturn } from "@armchair/app-core/auth/return-to";
+import { takeSilent } from "@armchair/app-core/auth/silent";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
 import { SECONDARY } from "@/lib/ui";
 
 // A Hosted UI round trip can fail without the browser reporting it (revoked

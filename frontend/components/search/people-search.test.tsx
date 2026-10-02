@@ -7,8 +7,8 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push, replace: vi.fn() }),
   useSearchParams: () => new URLSearchParams(),
 }));
-vi.mock("@/lib/api/social", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/social")>()),
+vi.mock("@armchair/app-core/api/social", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/social")>()),
   getFriends: vi.fn(),
   searchPeople: vi.fn(),
 }));
@@ -22,7 +22,7 @@ vi.mock("@/lib/search/people-index.json", () => ({
 }));
 
 import type { SearchResults } from "@/lib/api/people";
-import { getFriends, searchPeople, type Friends, type Match } from "@/lib/api/social";
+import { getFriends, searchPeople, type Friends, type Match } from "@armchair/app-core/api/social";
 import { forgetMembers } from "@/lib/search/people";
 import { rolesText, SearchBox, seasonsText, sections } from "./people-search";
 

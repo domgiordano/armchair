@@ -7,7 +7,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { initials } from "@/components/avatar";
 import { headshotUrl } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
-import { getMe, type Me } from "@/lib/api/client";
+import { getMe, type Me } from "@armchair/app-core/api/client";
 import { profileHref } from "@/lib/api/people";
 import type { Judge, RevealedCard } from "@/lib/api/show";
 import { personHref } from "@/lib/show/people";

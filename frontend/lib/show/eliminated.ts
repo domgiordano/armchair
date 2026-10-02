@@ -4,10 +4,11 @@ import { useState } from "react";
 
 import type { CoupleSummary, Elimination } from "@/lib/api/couples";
 
-export type EliminatedView = "week-board" | "standings" | "performers" | "favorites";
+export type EliminatedView = "couples" | "week-board" | "standings" | "performers" | "favorites";
 
-/** Leaderboards keep the eliminated couples, at the end; stats leave them out until asked. */
+/** The roster and leaderboards keep the eliminated couples, at the end; stats leave them out until asked. */
 export const SHOW_ELIMINATED: Record<EliminatedView, boolean> = {
+  couples: true,
   "week-board": true,
   standings: true,
   performers: false,

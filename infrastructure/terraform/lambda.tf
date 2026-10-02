@@ -71,6 +71,8 @@ locals {
     { name = "winner", description = "Record the caller's final season winner bet", path_part = "winner", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "player", description = "A Traitors player across seasons: finishes, factions and votes received, through the gate", path_part = "player", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "history", description = "A finished Traitors season: every episode's confirmed results and the winners", path_part = "history", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "ranks", description = "Users ranked by Traitors points, from per-user sums", path_part = "ranks", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "stats", description = "The caller's own Traitors points by event and episode", path_part = "stats", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
 
   all_api_lambdas = merge(
@@ -144,6 +146,8 @@ locals {
     traitors_winner    = ["catalog:Query", "scores:GetItem", "scores:PutItem"]
     traitors_player    = ["catalog:GetItem", "catalog:Query", "performances:Query"]
     traitors_history   = ["catalog:Query", "performances:Query"]
+    traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
+    traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is

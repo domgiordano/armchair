@@ -6,7 +6,7 @@ import { CheckIcon, displayName, message } from "@/components/social/parts";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { Sheet } from "@/components/ui/sheet";
 import { useToast } from "@/components/ui/toast";
-import { acceptFriend, addFriend, removeFriend, setBlocked, type Person, type Relation } from "@/lib/api/social";
+import { acceptFriend, addFriend, removeFriend, setBlocked, type Person, type Relation } from "@armchair/app-core/api/social";
 import { button, cn } from "@/lib/ui";
 
 interface FriendButtonProps {

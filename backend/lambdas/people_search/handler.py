@@ -1,5 +1,5 @@
 """
-GET /people/search?q=<text> - users, stars, pros and judges whose name matches.
+GET /people/search?q=<text>[&show=dwts] - users, stars, pros and judges whose name matches.
 
 `q` is 2-40 characters, matched with case, accents and apostrophes folded away.
 Each group ranks names that start with `q`, then names with a word that does,
@@ -17,6 +17,7 @@ role they held most recently. Identity is the Cognito sub.
 from __future__ import annotations
 
 from lambdas.common.api import ValidationError, api_handler, caller_sub, ok, query
+from lambdas.common.episodes_dynamo import show_ref
 from lambdas.common.people import fold, index, rank
 from lambdas.common.social_dynamo import normalize, peers, search, status
 from lambdas.common.users_dynamo import cards
@@ -30,14 +31,16 @@ GROUPS = {"celebrity": "stars", "pro": "pros", "judge": "judges", "player": "pla
 @api_handler("people_search")
 def handler(event, context):
     sub = caller_sub(event)
-    raw = str(query(event).get("q") or "")
+    params = query(event)
+    show = show_ref(params)
+    raw = str(params.get("q") or "")
     q = fold(raw)
     if not 2 <= len(q) <= Q_MAX:
         raise ValidationError(f"q must be 2-{Q_MAX} characters", field="q")
 
     out: dict[str, list] = {"users": _users(sub, normalize(raw), q)}
     groups: dict[str, list] = {g: [] for g in GROUPS.values()}
-    for row in index(SHOW):
+    for row in index(show):
         r = rank(row["name"], q)
         if r is not None:
             groups[GROUPS[row["roles"][0]]].append((r, -max(row["seasons"]), row))

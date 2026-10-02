@@ -16,6 +16,7 @@ from lambdas.common.api import NotFoundError, ValidationError, require
 from lambdas.common.dynamo import query_all, resource, table
 
 SEASON = re.compile(r"([a-z]+)-(\d{1,3})")
+SHOWS = ("dwts", "tus", "tuk", "tukc")
 EP = re.compile(r"\d{1,2}")
 # TransactWriteItems takes at most 100 items.
 CHUNK = 100
@@ -29,6 +30,14 @@ def season_ref(source: dict) -> tuple[str, int]:
     if not m:
         raise ValidationError("season must look like dwts-35", field="season")
     return m[1], int(m[2])
+
+
+def show_ref(source: dict) -> str:
+    """`show` from a query string, dwts when absent."""
+    show = source.get("show") or "dwts"
+    if show not in SHOWS:
+        raise ValidationError(f"show must be one of {', '.join(SHOWS)}", field="show")
+    return show
 
 
 def ref(source: dict) -> tuple[str, int, int]:
