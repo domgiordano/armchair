@@ -124,13 +124,15 @@ function Couple({ couple, season, person }: { couple: Contestant; season: Season
         <Tile label="Everyone" value={totals.everyone.count ? avg(totals.everyone.mean) : "–"} note={plural(totals.everyone.count, "paddle")} />
       </div>
 
-      <Notes totals={totals} />
-
-      {open.length > 1 && (
-        <Card id="couple-chart" title="You and the judges, week by week" note="Gold is your paddle, silver the judges' average.">
-          <ScoreChart rows={open} />
-        </Card>
-      )}
+      {/* The chart's viewBox scales its type with its width, so on desktop it shares the row with the notes. */}
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start">
+        {open.length > 1 && (
+          <Card id="couple-chart" title="You and the judges, week by week" note="Gold is your paddle, silver the judges' average.">
+            <ScoreChart rows={open} />
+          </Card>
+        )}
+        <Notes totals={totals} />
+      </div>
 
       <section aria-labelledby="dances" className="flex flex-col gap-4">
         <h2 id="dances" className="text-lg font-semibold text-pearl">
@@ -238,7 +240,7 @@ function Notes({ totals }: { totals: CoupleTotals }) {
       <h2 id="notes" className={EYEBROW}>
         Notes
       </h2>
-      <ul className="stagger grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="stagger grid grid-cols-2 gap-2">
         {notes.map((n) => (
           <li key={n.title} className="flex flex-col gap-1 rounded-xl border border-silver/10 bg-gradient-to-br from-ballroom/70 to-ink/40 p-3.5">
             <p className="text-xs font-semibold tracking-[0.14em] text-gold uppercase">{n.title}</p>
