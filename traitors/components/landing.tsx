@@ -19,6 +19,7 @@ import { rememberReturn } from "@armchair/app-core/auth/return-to";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
 
 import styles from "./landing/landing.module.css";
+import { SiteFooter } from "@/components/site-footer";
 
 const LINK =
   "focus-ring inline-flex min-h-11 items-center justify-center rounded-sm px-2 font-display text-sm font-semibold tracking-[0.12em] text-parchment uppercase underline decoration-gilt/60 underline-offset-8 transition-colors hover:text-candle hover:decoration-candle active:text-flame motion-reduce:transition-none";
@@ -238,13 +239,8 @@ export function Landing() {
         </section>
       </main>
 
-      <footer className="border-t border-gilt/25">
-        <div aria-hidden="true" className={`${styles.tartan} h-3`} />
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 text-sm text-ash sm:flex-row sm:justify-between sm:px-8">
-          <p className="font-display tracking-[0.14em] uppercase">Armchair Judge</p>
-          <p>Not affiliated with The Traitors, BBC, NBC or Peacock.</p>
-        </div>
-      </footer>
+      <div aria-hidden="true" className={`${styles.tartan} h-3`} />
+      <SiteFooter />
     </div>
   );
 }
