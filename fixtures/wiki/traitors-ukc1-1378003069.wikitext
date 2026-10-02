@@ -1,0 +1,950 @@
+{{Short description|2025 series of The Celebrity Traitors}}
+{{Use British English|date=May 2026}}
+{{Use dmy dates|date=May 2026}}
+{{Infobox television season
+| bgcolour             = #311500
+| series_number        = 1
+| image                = CelebrityTraitors1.jpg
+| caption              = Promotional poster for series 1
+| module1              = {{Infobox reality competition season
+ | presenter           = [[Claudia Winkleman]]
+ | num_days            = 
+ | num_contestants     = 19
+ | location            = [[Ardross, Highland]]
+ | companion_show      = ''The Celebrity Traitors: Uncloaked''
+ | winner              = [[Alan Carr]]
+ | runner_up           = {{plainlist|
+*[[David Olusoga]]
+*[[Nick Mohammed]]
+}}
+}}
+| num_episodes         = 9
+| network              = [[BBC One]]
+| first_aired          = {{Start date|2025|10|8|df=yes}}
+| last_aired           = {{End date|2025|11|6|df=yes}}
+}}
+The first series of ''[[The Celebrity Traitors]]'' began airing on 8 October 2025 on [[BBC One]]. It was presented by [[Claudia Winkleman]], with [[Ed Gamble]] fronting the companion show ''[[The Traitors: Uncloaked|The Celebrity Traitors: Uncloaked]]''.
+
+The series concluded on 6 November 2025, when [[Alan Carr]] won the series as the last remaining Traitor, ultimately winning £87,500 for his chosen charity Neuroblastoma UK.
+
+The series was the most watched show of the year on UK television,<ref>{{Cite web |last=Kanter |first=Jake |date=2026-01-05 |title=British TV’s Most-Watched In 2025: ‘Celebrity Traitors’ Imperious; ‘Adolescence’ Tops Streaming; Plus ‘KPop Demon Hunters’ Monster Success |url=https://deadline.com/2026/01/2025-most-watched-celebrity-traitors-kpop-demon-hunters-1236663712/ |access-date=2026-09-18 |website=Deadline |language=en-US}}</ref> and the series finale was [[List of most watched television broadcasts in the United Kingdom|the most watched UK television broadcast of 2025]].<ref>{{Cite web |title=Weekly top 50 programmes – As Viewed (Jan 2024 – Dec 2025) Barb |url=https://www.barb.co.uk/viewing-data/as-viewed-top-50/ |access-date=2026-05-08 |language=en-GB}}</ref> It is widely considered to be one of the best television shows of the year.<ref>{{Cite news |last=Samadder |first=Rhik |date=2025-12-19 |title=The 50 best TV shows of 2025: No 3 – The Celebrity Traitors |url=https://www.theguardian.com/tv-and-radio/2025/dec/19/the-50-best-tv-shows-of-2025-no-3-the-celebrity-traitors |access-date=2026-09-18 |work=The Guardian |language=en-GB |issn=0261-3077}}</ref><ref>{{Cite web |last=Bryan |first=Scott |date=2025-11-07 |title=‘Celebrity Traitors U.K.’: Why the British Show’s First Star-Studded Season Made for the Best Reality TV of the Year |url=https://variety.com/2025/tv/columns/celebrity-traitors-uk-review-star-spinoff-best-reality-tv-year-1236572303/ |access-date=2026-09-19 |website=Variety |language=en-US}}</ref> The series received various awards, most notably two [[British Academy Television Awards]] (including one for Alan Carr winning), two [[British Academy Television Craft Awards]], and one [[National Television Award]] (and contributed to Alan Carr winning the [[National Television Award for Special Recognition]] in 2026).<ref>{{Cite web |date=2026-09-08 |title=Alan Carr gets tearful at NTAs as he's honoured with Special Recognition by Celebrity Traitors stars |url=https://www.digitalspy.com/tv/a73644620/special-recognition-ntas-2026-alan-carr/ |access-date=2026-09-18 |website=Digital Spy |language=en-GB}}</ref>
+
+==Production==
+In August 2024, the [[BBC]] confirmed that ''The Celebrity Traitors'' had been commissioned, along with two more series of ''The Traitors'', [[The Traitors (British TV series) series 3|the first of which]] aired in January 2025.<ref>{{cite web |title=The Traitors: First UK celebrity series announced |url=https://www.bbc.co.uk/news/articles/c70j84rvg91o |website=[[BBC News]] |accessdate=13 May 2025 |language=en-gb |date=22 August 2024}}</ref> Speaking at the [[Edinburgh International Television Festival]], Kalpna Patel-Knight, the BBC's head of entertainment, said: "''The Traitors'' has well and truly established itself as an unmissable highlight of the year and the news of a fourth outing, alongside a brand new celebrity version coming to the BBC, will take the series to a whole new level.<ref>{{cite web |last1=Creamer |first1=Jon |title=Traitors confirmed for S4 plus celeb version |url=https://www.televisual.com/news/traitors-confirmed-for-s4-plus-celeb-version/ |website=Televisual |accessdate=13 May 2025 |date=22 August 2024 |archive-date=15 May 2025 |archive-url=https://web.archive.org/web/20250515170306/https://www.televisual.com/news/traitors-confirmed-for-s4-plus-celeb-version/ |url-status=live }}</ref> In April 2025, it was confirmed that the show would air in the autumn of that year,<ref>{{cite web |title=BBC's Celebrity Traitors gets exciting update ahead of its 2025 release |url=https://www.digitalspy.com/tv/reality-tv/a64349830/celebrity-traitors-release-window/ |website=[[Digital Spy]] |accessdate=14 May 2025 |date=1 April 2025 |archive-date=15 May 2025 |archive-url=https://web.archive.org/web/20250515170305/https://www.digitalspy.com/tv/reality-tv/a64349830/celebrity-traitors-release-window/ |url-status=live }}</ref> with October 2025 later specified.<ref>{{Cite web |title=The Celebrity Traitors - Everything you need to know |url=https://www.bbc.co.uk/mediacentre/articles/2025/the-celebrity-traitors |access-date=2025-08-21 |website=www.bbc.co.uk |language=en-GB |archive-date=14 May 2025 |archive-url=https://web.archive.org/web/20250514221454/https://www.bbc.co.uk/mediacentre/articles/2025/the-celebrity-traitors |url-status=live }}</ref>
+
+Filming for the series began on 22 April 2025 at [[Ardross, Highland|Ardross Castle]] and concluded the following month, consisting of 9 episodes due to air over four weeks from 8 October to 6 November 2025.<ref>{{cite web |title=The Celebrity Traitors launch date confirmed and fans will be treated to an extra-long opening episode |url=https://www.bbc.co.uk/mediacentre/2025/celebrity-traitors-launch-date-confirmed |website=BBC |format=press release |access-date=21 September 2025 |archive-date=21 September 2025 |archive-url=https://web.archive.org/web/20250921002202/https://www.bbc.co.uk/mediacentre/2025/celebrity-traitors-launch-date-confirmed |url-status=live }}</ref><ref>{{cite web |last1=Ross |first1=Charley |title=When does Celebrity Traitors start? Here's what we know |url=https://www.glamourmagazine.co.uk/article/when-does-celebrity-traitors-start |website=Glamour UK |accessdate=14 May 2025 |date=25 April 2025 |archive-date=27 April 2025 |archive-url=https://web.archive.org/web/20250427202318/https://www.glamourmagazine.co.uk/article/when-does-celebrity-traitors-start |url-status=live }}</ref><ref>{{cite web |title=Celebrity Traitors latest: Release date, cast and filming revealed |url=https://www.heart.co.uk/showbiz/celebrity-traitors-start-date-line-up/ |website=[[Heart (radio network)|Heart]] |accessdate=14 May 2025 |language=en |archive-date=15 May 2025 |archive-url=https://web.archive.org/web/20250515170305/https://www.heart.co.uk/showbiz/celebrity-traitors-start-date-line-up/ |url-status=live }}</ref> Following the cast announcement, host [[Claudia Winkleman]] said "We're incredibly lucky these brilliant people have said yes. I’d love to say we'll take it easy on them, and they'll just wander round the castle and eat toast for a couple of weeks - but that would be a lie."<ref>{{cite web |title=The BBC's 'Celebrity Traitors' Cast Pits an Olympian Against a 'Ted Lasso' Star |url=https://www.cosmopolitan.com/entertainment/tv/g64759984/celebrity-traitors-cast-line-up-contestants-bbc/ |website=Cosmopolitan |accessdate=14 May 2025 |date=13 May 2025 |archive-date=14 May 2025 |archive-url=https://web.archive.org/web/20250514120833/https://www.cosmopolitan.com/entertainment/tv/g64759984/celebrity-traitors-cast-line-up-contestants-bbc/ |url-status=live }}</ref><ref>{{cite web |title=The Celebrity Traitors' "brilliant" cast has officially been confirmed – along with a release date window |url=https://www.digitalspy.com/tv/reality-tv/a64757349/the-celebrity-traitors-cast-release-window/ |website=[[Digital Spy]] |accessdate=14 May 2025 |date=13 May 2025 |archive-date=13 May 2025 |archive-url=https://web.archive.org/web/20250513182707/https://www.digitalspy.com/tv/reality-tv/a64757349/the-celebrity-traitors-cast-release-window/ |url-status=live }}</ref>
+
+The final episode of the series was mistakenly released early online in Canada and New Zealand as the episode was mistakenly made available on the [[Crave (streaming service)|Crave]] and [[ThreeNow]] streaming services 24 hours in advance of its broadcast on BBC One, due to a miscommunication between [[All3Media|All3Media International]] and its international partners.<ref>{{Cite web|url=https://deadline.com/2025/11/celebrity-traitors-uk-leak-canada-all3media-reviewing-processes-1236610470/|title='Celebrity Traitors UK' Distributor All3Media International “Urgently Reviewing Our Processes” After Dramatic Finale Leaks A Day Early In Canada & New Zealand|first=Max|last=Goldbart|date=7 November 2025|accessdate=18 November 2025|archive-date=9 November 2025|archive-url=https://web.archive.org/web/20251109123601/https://deadline.com/2025/11/celebrity-traitors-uk-leak-canada-all3media-reviewing-processes-1236610470/|url-status=live}}</ref>
+
+== Contestants ==
+The 19 celebrities competing in the series were revealed on 13 May 2025.<ref>{{cite web |title=Celebrity Traitors line-up confirmed: Stephen Fry, Paloma Faith, Alan Carr and more |url=https://www.bbc.com/news/articles/cx2enyjk407o |website=[[BBC News]] |accessdate=14 May 2025 |date=13 May 2025 |archive-date=14 May 2025 |archive-url=https://web.archive.org/web/20250514032720/https://www.bbc.com/news/articles/cx2enyjk407o |url-status=live }}</ref><ref>{{cite web |title=Celebrity Traitors line-up officially confirmed – including Taskmaster and Thursday Murder Club stars {{!}} Radio Times |url=https://www.radiotimes.com/tv/entertainment/reality-tv/celebrity-traitors-line-up-officially-confirmed-newsupdate/ |website=[[Radio Times]] |accessdate=14 May 2025}}</ref> Their chosen charities were not revealed until after the show had concluded, with the winner's charity named in the final.<ref>{{Cite web|url=https://goss.ie/realitytv/bbc-reveals-names-of-19-charities-that-stars-were-playing-for-during-the-celebrity-traitors-443331|title=BBC reveals names of 19 charities that stars were playing for during The Celebrity Traitors|date=14 November 2025|accessdate=18 November 2025}}</ref>
+
+<div style="overflow: auto;">{{multiple image
+| align             = center
+| direction         = horizontal
+| total_width       = 900
+| perrow            = 7/8
+| footer_align      = left
+| image1            = Alan Carr at BAFTA 2026 (cropped).jpg
+| image2            = Nick Mohammed & Celia Imrie at BAFTA 2026 (cropped).jpg
+| image3            = Charlotte Church Focus Wales 2013.jpg
+| image4            = Award of clare balding (cropped).jpg
+| image5            = David olusoga 2022 1.jpg
+| image6            = Joe Marler Feb 2024.jpg
+| image7            = Joe Wilkinson in 2020.jpg
+| image8            = Jonathan Ross by Gage Skidmore 2.jpg
+| image9            = Kate Garraway 2013.jpg
+| image10           = Nick Mohammed at BAFTAs 2026 01.jpg
+| image11           = Niko Omilana Soccer Aid 2023 Penalty Shootout.jpg
+| image12           = Glaston2024 2806 300624 (6 of 173) (53837667576) (cropped).jpg
+| image13           = Stephen Fry at Berlinale 2024 Ausschnitt.jpg
+| image14           = Tameka Empson 2022.jpg
+| image15           = Tom Daley London (cropped).jpg|
+| caption1          = [[Alan Carr]]
+| caption2          = [[Celia Imrie]]
+| caption3          = [[Charlotte Church]]
+| caption4          = [[Clare Balding]]
+| caption5          = [[David Olusoga]]
+| caption6          = [[Joe Marler]]
+| caption7          = [[Joe Wilkinson]]
+| caption8          = [[Jonathan Ross]]
+| caption9          = [[Kate Garraway]]
+| caption10         = [[Nick Mohammed]]
+| caption11         = [[Niko Omilana]]
+| caption12         = [[Paloma Faith]]
+| caption13         = [[Stephen Fry]]
+| caption14         = [[Tameka Empson]]
+| caption15         = [[Tom Daley]]
+| footer            = Not pictured: [[Cat Burns]], [[Lucy Beaumont (comedian)|Lucy Beaumont]], [[Mark Bonnar]] and [[Ruth Codd]].
+}}
+</div>
+
+{| class="wikitable sortable mw-collapsible" style="text-align:center"
+|+List of ''The Celebrity Traitors'' contestants
+! Contestant
+! Age
+! Notability
+! Chosen charity<ref>{{Cite web |title=The Celebrity Traitors Final - Everything you need to know |url=https://www.bbc.co.uk/mediacentre/articles/2025/the-celebrity-traitors |access-date=2025-11-17 |website=www.bbc.co.uk |language=en-GB |archive-date=14 May 2025 |archive-url=https://web.archive.org/web/20250514221454/https://www.bbc.co.uk/mediacentre/articles/2025/the-celebrity-traitors |url-status=live }}</ref>
+! Affiliation
+! Finish
+|-
+! [[Paloma Faith]]
+| 44
+| Singer-songwriter & actress
+| [[Save the Children]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+| style="background:darkred; color:white;"|Murdered<br><small>{{nowrap|(Episode 2)}}</small>
+|-
+! [[Niko Omilana]]  
+| 27
+| Content creator
+| Under One Sky
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:salmon"| Banished<br><small>(Episode 3)</small>
+|-
+! [[Tom Daley]]
+| 31
+| Olympian & entrepreneur
+| [[The Brain Tumour Charity]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:darkred; color:white;"|Murdered<br><small>{{nowrap|(Episode 3)}}</small>
+|-
+! [[Tameka Empson]]
+| 48
+| ''[[EastEnders]]'' actress & comedian
+| [[Parkinson's UK]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:salmon"| Banished<br><small>(Episode 3)</small>
+|-
+! [[Ruth Codd]]
+| 29
+| Actress
+| Almost Home Animal Rescue NI
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:darkred; color:white;"|Murdered<br><small>{{nowrap|(Episode 4)}}</small>
+|-
+! [[Clare Balding]]
+| 54
+| Broadcaster & author
+| [[Cancer Research UK]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:salmon"| Banished<br><small>(Episode 4)</small>
+|-
+! [[Charlotte Church]]
+| 39
+| Singer & activist
+| The Awen Project
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:darkred; color:white;"|Murdered<br><small>{{nowrap|(Episode 5)}}</small>
+|-
+! [[Mark Bonnar]]
+| 56
+| Stage & screen actor
+| [[Action for ME]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful 
+|style="background:salmon"| Banished<br><small>(Episode 6)</small>
+|-
+! [[Joe Wilkinson]]
+| 50
+| Comedian
+| Wolo Foundation
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:darkred; color:white;"|Murdered<br><small>{{nowrap|(Episode 6)}}</small>
+|-
+! [[Stephen Fry]]
+| 68
+| Actor, writer & presenter
+| [[Mind (charity)|Mind]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:salmon"| Banished<br><small>(Episode 6)</small>
+|-
+! [[Lucy Beaumont (comedian)|Lucy Beaumont]]
+| 41
+| Comedian
+| [[Zoe's Place Baby Hospice|Zoe's Place]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:darkred; color:white;"|Murdered<br><small>{{nowrap|(Episode 7)}}</small>
+|-
+! [[Jonathan Ross]]
+| 64
+| Presenter
+| Cancer Research UK
+| align="center" bgcolor="#67002f" style="color:#FFFFFF;" span |Traitor
+|style="background:salmon"| Banished<br><small>(Episode 7)</small>
+|-
+! [[Celia Imrie]]
+| 73
+| Actress
+| [[Beat (charity)|Beat]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:darkred; color:white;"|Murdered<br><small>{{nowrap|(Episode 8)}}</small>
+|-
+! [[Kate Garraway]]
+| 58
+| Broadcaster
+| Carers First
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:salmon"| Banished<br><small>(Episode 8)</small>
+|-
+! [[Cat Burns]]
+| 25
+| Singer-songwriter
+| [[National Autistic Society]]
+| align="center" bgcolor="#67002f" style="color:#FFFFFF;" span |Traitor
+|style="background:salmon"| Banished<br><small>(Episode 9)</small>
+|-
+! [[Joe Marler]]
+| 35
+| Former [[England national rugby union team|England]] rugby player
+| [[Campaign Against Living Miserably|CALM]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:salmon"| Banished<br><small>(Episode 9)</small>
+|-
+! [[David Olusoga]]
+| 55
+| Historian & film-maker
+| Bristol Dog Action Welfare Group<br />Greyhound & Lurcher Rescue
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:silver"|Runner-up<br><small>(Episode 9)</small>
+|-
+! {{nowrap|[[Nick Mohammed]]}}
+| 45
+| Actor & comedian
+| [[Blood Cancer UK]]
+| bgcolor="#0047AB" style="color:#FFFFFF;" |Faithful
+|style="background:silver"|Runner-up<br><small>(Episode 9)</small>
+|-
+! [[Alan Carr]]
+| 49
+| Comedian
+| Neuroblastoma UK
+| align="center" bgcolor="#67002f" style="color:#FFFFFF;" span |Traitor
+|style="background:gold"|'''Winner'''<br><small>(Episode 9)</small>
+|-
+|}
+
+{{notelist}}
+
+==Elimination history==
+'''Key'''
+: {{Color box|0047AB|border=silver}} The contestant was a Faithful.
+: {{Color box|67002F|border=silver}} The contestant was a Traitor.
+: {{Color box|lightgrey|border=silver}} The contestant was ineligible to vote.
+: {{Color box|DarkRed|border=silver}} The contestant was murdered by the traitors.
+: {{Color box|salmon|border=silver}} The contestant was banished at the round table.
+
+{|  class="wikitable" style="text-align:center; width:100%; font-size:90%; line-height:13px"
+! colspan="3"|Episode
+!1
+!2
+! colspan="2" |3
+!4
+! colspan="2" |5
+! colspan="2" |6
+!7
+!8
+!9
+|-
+! colspan="3" rowspan="2" |Traitors'<br/>Decision
+|rowspan="2 {{N/A|''None''}}
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Paloma{{efn|The Traitors were tasked to murder someone in plain sight, by touching the victim's face with their fingers after having touched a "poisoned" lily to gather its pollen. The Traitors were told that the victim would be present at breakfast the following morning. Alan chose to poison Paloma. The following morning, the players were told that the victim's identity would be revealed as part of that day's mission.}}
+| colspan="2" bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Tom
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Ruth
+| colspan="2" align="center" bgcolor="#0047AB" style="color:#FFFFFF;" span |Charlotte
+| colspan="2" bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"| {{nowrap|Joe W.}}
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Lucy
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Celia
+| rowspan="3" {{N/A|''None''}}
+|-
+| colspan="10" |''Murder''
+|-
+!colspan="3"|Immune
+|Celia,<br>{{nowrap|<s>Charlotte,</s>{{efn|Charlotte sacrificed her shield in the Trojan horse mission in Episode 1 to open a gate.}}}}<br>Joe M.,<br>Joe W.,<br>Jonathan,<br>Kate
+|{{N/A|''None''}}
+| colspan="2" |Clare,<br>Mark
+|Cat,<br>Stephen
+| colspan="2" |David,<br>Jonathan,<br>Lucy,<br>Nick
+| colspan="2" |Alan,<br>Cat,<br>Celia,<br>David,<br>Joe M.
+|Joe M.
+|{{N/A|''None''}}
+|-
+! colspan="3" |Banishment
+|rowspan="2" colspan="2" {{N/A|''None''}}
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Niko
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Tameka
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Clare
+|bgcolor="lightgrey" align="center"|''Tie''
+|bgcolor="lightgrey" align="center"|''Tie''
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Mark
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Stephen
+|bgcolor="#67002F" align="center" span style="color:#FFFFFF;"|Jonathan
+|bgcolor="#0047AB" align="center" span style="color:#FFFFFF;"|Kate
+|bgcolor="#67002F" align="center" span style="color:#FFFFFF;"|Cat
+|-
+! colspan="3" |Vote
+| {{nowrap|10–3–<br>2–2–1
+| {{nowrap|4–2–2–2–1–}}<br>1–1–1–1–1
+| 7–2–2–<br>1–1–1
+| 4–4–2–<br>1–1
+| 5–5 {{efn|The first round of voting resulted in a tie. Per the rules, a second vote was held where the players involved in the tie would not vote and the remaining players could only vote for those who tied.}}
+| ''Fate''{{efn|As David and Mark remained tied, they were presented with two chests, only one of which contained a shield. The player who selected the chest without a shield was banished.}}
+| 4–2–2–<br>1–1
+| 6–1–1
+| {{nowrap|3–2–1}}
+| 3–2
+|- style="border-top:5px solid"
+| colspan="2" bgcolor="67002F" |
+!style="height:25px" scope="row"|Alan
+| bgcolor="lightgrey" rowspan="19" colspan="2"|''No<br>vote''
+| Niko
+| Celia 
+| David
+| Mark
+| Mark
+| bgcolor="lightgrey" rowspan="12"|''No<br>vote''
+| Joe M.
+| Jonathan
+| David
+| David
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|David
+| Niko
+| Stephen 
+| Clare
+| Stephen
+|bgcolor="lightgrey"| ''No vote''
+| Stephen
+| Nick
+| Kate
+| Cat
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|Nick
+| Niko
+| Tameka
+| Celia
+| Kate
+| Mark
+| Stephen 
+| Jonathan
+| Cat
+| Cat
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|Joe M.
+| Niko
+| Kate
+| Jonathan
+| Mark
+| Mark
+| Jonathan
+| Jonathan
+| Kate
+| Cat
+|-
+| colspan="2" bgcolor="67002F" |
+!style="height:25px" scope="row"|Cat
+| Kate
+| Stephen 
+| Stephen
+| David
+| David
+| Stephen 
+| Jonathan
+| Kate
+| David
+|-
+| colspan="2" bgcolor="0047AB" |
+! Kate
+| Tameka
+| Tameka
+| Clare
+| Mark
+| Mark
+| Nick
+| Jonathan
+| David
+|colspan="4" align="center" style="background:salmon" |''Banished'' <br><small>{{nowrap|(Episode 8)}}</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Celia
+| Charlotte 
+| Cat
+| David
+| Jonathan
+| David
+| Joe M.
+| Jonathan
+| colspan="5" align="center" style="background:darkred; color:white;" |''Murdered'' <br><small>{{nowrap|(Episode 8)}}</small>
+|-
+|colspan=2 bgcolor="67002F" |
+! Jonathan
+| Niko
+| Ruth
+| Clare
+| David
+| David
+| Stephen 
+| David
+| colspan="5" align="center" style="background:salmon" |''Banished'' <br><small>{{nowrap|(Episode 7)}}</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Lucy
+| Niko
+| David
+| Clare
+| Mark
+| Mark
+| Jonathan 
+| colspan="6" align="center" style="background:darkred; color:white;" |''Murdered'' <br><small>(Episode 7)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Stephen
+| Niko
+| Charlotte
+| Clare
+| David
+| David
+| David
+| colspan="6" align="center" style="background:salmon" |''Banished'' <br><small>{{nowrap|(Episode 6)}}</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Joe W.
+| Tom
+| Jonathan
+| Clare
+| David
+| David
+| colspan="6" align="center" style="background:darkred; color:white;" |''Murdered'' <br><small>(Episode 6)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Mark
+| Tameka
+| Tameka
+| Charlotte
+| Kate
+|bgcolor="lightgrey"| ''No vote''
+| colspan="6" align="center" style="background:salmon" |''Banished'' <br><small>(Episode 6)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Charlotte
+| Niko
+| Tameka
+| Clare
+| colspan="7" align="center" style="background:darkred; color:white;" |''Murdered'' <br><small>(Episode 5)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Clare
+| Niko
+| Alan
+| Charlotte
+| colspan="7" align="center" style="background:salmon" |''Banished'' <br><small>(Episode 4)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Ruth
+| Kate
+| Jonathan 
+| colspan="8" align="center" style="background:darkred; color:white;" |''Murdered'' <br><small>(Episode 4)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Tameka
+| Kate
+| Celia
+| colspan="8" align="center" style="background:salmon" |''Banished'' <br><small>(Episode 3)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Tom
+| Niko
+| colspan="9" align="center" style="background:darkred; color:white;" |''Murdered'' <br><small>(Episode 3)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Niko
+| Tom
+| colspan="10" align="center" style="background:salmon" |''Banished'' <br><small>(Episode 3)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! Paloma
+| colspan="10" align="center" style="background:darkred; color:white;" |''Murdered'' <br><small>(Episode 2)</small>
+|}
+
+===End game===
+{| class="wikitable" style="text-align:center; width:100%; font-size:90%; line-height:13px"
+|-
+! colspan="2"|Episode
+! colspan="5"|9
+|-
+! colspan="2" |Decision
+| ''Banish''
+|bgcolor="#0047AB" style="color:#FFFFFF"|Joe M.
+|''End Game''
+| rowspan="2" bgcolor="#67002F" span style="color:#FFFFFF;"|''Game Over<br>Traitor Win''
+|-
+! colspan="2" |Vote
+| 4–0
+| 3–1
+| 3–0
+|- style="border-top:5px solid"
+|bgcolor="#67002F"|
+!Alan
+|''Banish''
+|Joe M.
+|''End Game''
+|bgcolor="gold"|'''Winner'''
+|-
+|bgcolor="#0047AB"|
+!David
+|''Banish''
+|Joe M.
+|''End Game''
+|rowspan="2" bgcolor="silver"|{{nowrap|Runners-up}}
+|-
+|bgcolor="#0047AB"|
+!Nick
+|''Banish''
+|Joe M.
+|''End Game''
+|-
+|bgcolor="#0047AB"|
+!Joe M.
+|''Banish''
+|Alan
+|colspan="2" style="background:salmon"|''Banished''
+|-
+|}
+;Notes
+{{notelist}}
+
+==Missions==
+{| class="wikitable" style="margin:auto; text-align:center"
+!Episode
+!Task description
+!Time limit
+!Money earned
+!Money available
+!Running total
+!Shield winner(s)
+|-
+|rowspan=7|1
+|rowspan=6|Players were taken to a simulated 'graveyard' with tombstones bearing their names. Buried inside each grave was a shield. The first six players to dig out their shield received protection from being murdered.
+|rowspan=6 {{N/A|No time limit}}
+|rowspan=6 {{N/A}}
+|rowspan=6 {{N/A}}
+|rowspan=6 {{N/A}}
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Celia
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Charlotte
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Joe M.
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Joe W.
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Jonathan
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Kate
+|-
+|A 2.5-ton wooden [[Trojan Horse|Trojan horse]] had to be pulled along a path through four locked gates to a fire pit in order to be set alight. At each gate, players had to solve a puzzle or sacrifice a shield in order to move forward. The first gate required players to answer the question "How many people died in [[William Shakespeare|Shakespeare]]'s ''[[Romeo and Juliet|Romeo & Juliet]]'' and ''[[Hamlet]]'' combined?" and enter the result into a numeric lock. The second required solving a [[Klotski]] puzzle to release a key. The third gate presented players with 16 words and required them to choose the 4 words that were unlike the others. The fourth and final gate, which could only be bypassed by forfeiting two shields, presented players with 18 symbols and required them to remember the 3 symbols that had unknowingly been visible on the previous gates and place them in the correct order.
+| 30 minutes
+|style="background:#B7E1CD" align="center"| {{green|£15,000}}
+|£15,000
+|'''£15,000'''<br>(of £15,000)
+|rowspan="2"{{n/a|No Shield on offer}}
+|-
+|2
+|Players had to identify who amongst them was unknowingly poisoned the night before through a series of clues. They were presented with 3 coffins meant for 3 players the Traitors had chosen: the murder victim (Paloma) and two decoys (Niko & Lucy). For each coffin, up to 3 clues were offered based on the celebrity's past, with £3,000 awarded for a correct identification after only 1 clue, and £500 deduced for each additional clue. After the coffins were filled, another £4,000 were awarded if the murder victim was then correctly identified. 
+|{{N/A|No time limit}}
+|style="background:#FFC2BD" align="center"| {{red|£4,500}}
+|£13,000
+|'''£19,500'''<br>(of £28,000)
+|-
+|rowspan=2|3
+|rowspan=2|Players were locked and chained to a ring located at the centre of a cabin. Keys were required to release each individual, with £500 awarded for every successful release. Each key was accompanied by a clue intended to guide players to the next. Two shields were also obtainable during the mission.
+|rowspan=2|25 minutes 
+|style="background:#B7E1CD" align="center" rowspan=2| {{green|£8,000}}
+|rowspan=2|£8,000
+|rowspan=2|'''£27,500'''<br>(of £36,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Clare
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Mark
+|-
+|rowspan=2|4
+|rowspan=2|Players were divided into two teams. The forest team had to find banshees, memorize their wails, and recreate the wail into a water well. The garden team heard these recreations by submerging their heads underwater in another well, and had to match each melody to one in a named locket to identify the banshee. £1,000 were awarded for each correct match. Two shields were on offer, hidden in the garden. 
+|rowspan=2|30 minutes 
+|style="background:#FFC2BD" align="center" rowspan=2| {{red|£4,000}}
+|rowspan=2|£5,000
+|rowspan=2|'''£31,500'''<br>(of £41,000)
+|bgcolor="#67002F" span style="color:#FFFFFF"|Cat
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Stephen
+|-
+|rowspan=4|5
+|rowspan=4|At four traps, each worth £2,500, players faced questions about eliminated contestants. They could allocate funds across multiple answer options. The player positioned at the correct answer received a shield and added their money to the prize fund. Those trapped at incorrect answers were eliminated from the mission. 
+|rowspan=10 {{N/A|No time limit}}
+|style="background:#FFC2BD" align="center" rowspan=4| {{red|£7,000}}
+|rowspan=4|£10,000
+|rowspan=4|'''£38,500'''<br>(of £51,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|David
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Jonathan
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Lucy
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Nick
+|-
+|rowspan=5|6
+|rowspan=5|The players faced an giant chess board featuring their names. The celebrities split into two teams. Each team was required to respond to questions that the Traitors had been asked the previous night and position a headstone on the name of the player they thought the Traitors had chosen. After a series of rounds, the team with the most correct answers were granted a shield.
+|rowspan=5 style="background:#B7E1CD" align="center"| {{green|£5,000}}
+|rowspan=5|£5,000
+|rowspan=5|'''£43,500'''<br>(of £56,000)
+|bgcolor="#67002F" span style="color:#FFFFFF"|Alan
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Cat
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Celia
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|David
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Joe M.
+|-
+|7
+|Players worked in pairs to cross an unstable and incomplete wooden bridge, with one player attempting the crossing, and the other guiding from the opposite end. The crossing player earned money by safely walking past the four £500 markers along the way. Midway, a shield bag hanging overhead had to be retrieved, carried to the gap at the end of the bridge, and successfully thrown to their teammate for an additional £500. If the crossing player fell along the way, only the earnings accumulated from the passed markers were banked. Guiding players who caught the bag then chose a player's portrait to place in a single shield-shaped frame. After all the pairs had completed the mission, the portrait that remained in the frame was awarded the shield.
+| style="background:#B7E1CD" align="center"| {{green|£10,000}}
+|£10,000
+|'''£53,500'''<br>(of £66,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Joe M.
+|-
+|8
+|Players had to carry six of 19 mannequin heads modelled after the show participants from one end of the room to the six mannequin bodies lacking heads at the other, while avoiding laser beams that crisscrossed the room. If a player broke a beam, an alarm triggered and the player had to discard their head and start over with another. Certain lasers could be deactivated via buttons located along the route. £2,000 were awarded for each successful match, with an additional £2,000 awarded if all six statues received heads.
+|20 minutes
+|style="background:#B7E1CD" align="center"| {{green|£14,000}}
+|£14,000
+|'''£67,500'''<br>(of £80,000)
+|rowspan="2" {{n/a|No Shield on offer}}
+|-
+|Finale
+|The Traitors Express was boarded by the five finalists, who were required to progress through the carriages in search of keys. Four locked crates were located in the fifth and final carriage, each containing £5,000 worth of gold. Prior to the train's arrival at the end of the line, the crates needed to be successfully unlocked and the gold collected. Claudia needed to be reached before the crates, also containing explosives, were detonated.
+|20 minutes
+|style="background:#B7E1CD" align="center"| {{green|£20,000}}
+|£20,000
+|'''£87,500'''<br>(of £100,000)
+|}
+
+==Episodes==
+<onlyinclude>{{Episode table|background=#311500|overall=|series=|title=|titleR=|airdate=|airdateR=<ref>{{Cite web |last=Warner |first=Sam |date=8 October 2025 |title=Celebrity Traitors release schedule: When is the next episode on the BBC? |url=https://www.digitalspy.com/tv/reality-tv/a68903543/celebrity-traitors-release-schedule-bbc/ |access-date=8 October 2025 |website=[[Digital Spy]] |language=en-GB |archive-date=8 October 2025 |archive-url=https://web.archive.org/web/20251008203754/https://www.digitalspy.com/tv/reality-tv/a68903543/celebrity-traitors-release-schedule-bbc/ |url-status=live }}</ref><ref>{{Cite web |title=The Celebrity Traitors has over 11.7 million faithful viewers so far plus highly anticipated finale date confirmed for BBC One and iPlayer |url=https://www.bbc.co.uk/mediacentre/2025/the-celebrity-traitors-viewers-so-far-finale-date-confirmed/ |access-date=2025-10-16 |website=www.bbc.co.uk |language=en |archive-date=20 October 2025 |archive-url=https://web.archive.org/web/20251020140452/https://www.bbc.co.uk/mediacentre/2025/the-celebrity-traitors-viewers-so-far-finale-date-confirmed |url-status=live }}</ref>|viewers=|viewersR=<ref>{{#invoke:cite|web|url=https://www.barb.co.uk/viewing-data/as-viewed-top-50/|title=As Viewed Top 50|publisher=[[Broadcasters' Audience Research Board]]|language=en-GB|access-date=9 October 2025}}</ref>|country=UK|episodes={{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 1
+ |EpisodeNumber2 = 1
+ |Title = Episode 1
+ |OriginalAirDate = {{Start date|2025|10|08|df=yes}}
+ |Viewers = 12.46
+ |ShortSummary = Nineteen celebrities arrived at the castle, but were turned around and taken to a 'graveyard' with headstones bearing each of the players' names. The players were instructed to physically dig their own grave to try and find the shield buried within. The first six players to find shields would be safe from the first murder.  Jonathan Ross, Joe Marler, Joe Wilkinson, Kate Garraway, Charlotte Church and Celia Imrie got shields.
+
+At the round table, Jonathan Ross, Cat Burns and Alan Carr were chosen as traitors.  For the next mission, the players had to drag a Trojan Horse a great distance.  Each checkpoint featured a gate at which they had to solve a puzzle or answer a question to unlock it.  Failing that, a player could give up their shield to open the door.  After Clare Balding accidentally locked in a wrong answer, Charlotte Church gave up her shield.  They passed the other gates without sacrificing any more shields and banked £15,000.  The Traitors were later told they had to commit their first murder in plain sight, with Alan Carr electing to do so.
+ |LineColor = 311500
+}}
+{{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 2
+ |EpisodeNumber2 = 2
+ |Title = Episode 2
+ |OriginalAirDate = {{Start date|2025|10|09|df=yes}}
+ |Viewers = 11.87
+ |ShortSummary = It was revealed that Alan Carr had chosen to murder Paloma Faith in plain sight, but that her murder would be revealed at the upcoming mission.
+
+The mission had the players identify three potential victims based on clues before guessing the true victim's identity.  The players could get more hints by sacrificing money.  The previous night, the Traitors selected two other players as potential victims, choosing Lucy Beaumont and Niko Omilana.  Due to needing many hints, making several incorrect guesses, and incorrectly guessing that Lucy Beaumont had been murdered, they only banked £4,500 out of a possible £13,000.  Paloma's death shocked most of the remaining players.
+
+At the round table, Niko Omilana, Tameka Empson and Kate Garraway came under the most scrutiny.  The episode ended on a cliffhanger of who would be eliminated.
+ |LineColor = 311500
+}}
+{{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 3
+ |EpisodeNumber2 = 3
+ |Title = Episode 3
+ |OriginalAirDate = {{Start date|2025|10|15|df=yes}}
+ |Viewers = 13.23
+ |ShortSummary = Niko Omilana was the first person to be banished from the round table.  Clare Balding reminded everyone that Jonathan Ross talked about an alliance between him, Niko, Clare & Ruth Codd in the car.
+
+The Traitors murdered Tom Daley.  Ruth challenged Jonathan about breaking the car alliance and turning on Niko.
+
+In the mission, the players were chained up in Claudia’s Cabin and would earn £500 for every player who was freed.  Four keys were inside the cabin, the rest were outside.  Nick Mohammed, Mark Bonnar, Stephen Fry, and Cat Burns were the first to be freed.  Their actions outside the cabin changed the conditions inside.  Water sprayed from the ceiling, the electric box sparked and smelly feathers were blasted.  All the players escaped and the full £8,000 was banked.  Clare Balding and Mark Bonnar got shields.  Joe Marler and Joe Wilkinson theorised that a “Big Dog” - likely Jonathan Ross - was a Traitor.
+
+At the Round Table, the vote was extremely split, with 10 players receiving votes. Alan Carr, Kate Garraway, Cat Burns, Charlotte Church, David Olusoga and Ruth Codd all received one vote.  Jonathan Ross, Stephen Fry and Celia Imrie received two votes, but Tameka Empson was banished after receiving just four out of sixteen votes.  The Traitors met up to debate who to murder next.
+ |LineColor = 311500
+}}
+{{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 4
+ |EpisodeNumber2 = 4
+ |Title = Episode 4
+ |OriginalAirDate = {{Start date|2025|10|16|df=yes}}
+ |Viewers = 12.85
+ |ShortSummary = The Traitors decided to murder Ruth Codd.  They hoped the Faithfuls would think that Jonathan was being set up.  In the mission, the players were split into two teams.  One team would run through the forest to find screaming banshees and then mimic their screams down a well.  The other team would dunk their heads in a well in the garden to hear their mimicking.  They would then try and match the sound to a locket with a name on it.  
+
+The Forest Team consisted of Alan Carr, Lucy Beaumont, Celia Imrie, Joe Wilkinson, Joe Marler, Nick Mohammed and Cat Burns.  
+
+The Garden Team consisted of  Stephen Fry, Charlotte Church, Mark Bonnar, Clare Balding, David Olusoga, Jonathan Ross and Kate Garraway.  
+
+They banked £4,000 out of a total £5,000.  There were two shields available, with Cat Burns and Stephen Fry finding them.  However, the Forest Team decided not to tell the Garden Team who got the shield in their group.
+
+At the round table, suspicion was directed onto Clare Balding by Jonathan.  Charlotte Church and David Olusoga received two votes; Jonathan Ross, Celia Imrie and Stephen Fry received one vote; Clare Balding was banished with seven votes.  The Traitors met up again to debate who to murder; they discussed Charlotte Church, Kate Garraway, and David Olusoga as possible victims.
+ |LineColor = 311500
+}}
+{{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 5
+ |EpisodeNumber2 = 5
+ |Title = Episode 5
+ |OriginalAirDate = {{Start date|2025|10|22|df=yes}}
+ |Viewers = 13.27
+ |ShortSummary = It was revealed that the Traitors had murdered Charlotte Church.
+
+During the mission, the players won £7,000 out of a possible £10,000 by answering questions about the life or career of some of the players who had previously been banished or murdered. Four players won shields: Nick Mohammed, Lucy Beaumont, David Olusoga, and Jonathan Ross.
+ 
+The episode ended on a cliffhanger as David Olusoga and Mark Bonnar were tied on 5 votes each after two rounds of voting. Claudia announced that the person to be banished would be decided by "the hands of fate".
+ |LineColor = 311500
+}}
+{{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 6
+ |EpisodeNumber2 = 6
+ |Title = Episode 6
+ |OriginalAirDate = {{Start date|2025|10|23|df=yes}}
+ |Viewers = 13.61
+ |ShortSummary = Mark Bonnar was banished after losing the tie-break. The traitors later murder Joe Wilkinson.
+
+Prior to the mission, the traitors had to answer three questions about the contestants. Then during the mission, the contestants had to divide into two groups and guess the traitors' answers. The team consisting of Joe Marler, Alan Carr, Cat Burns, David Olusoga and Celia Imrie answered the most questions correctly, winning shields. Nick Mohammed deliberately sabotaged the final round as he believed there were more traitors in his team. 
+
+At the round table, the group vote to banish Stephen Fry. 
+
+The faithfuls without shields - Nick Mohammed, Kate Garraway and Lucy Beaumont - are informed that one of them will be murdered face to face by the traitors. The episode ends on a cliffhanger as to who would be murdered.
+ |LineColor = 311500
+}}
+{{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 7
+ |EpisodeNumber2 = 7
+ |Title = Episode 7
+ |OriginalAirDate = {{Start date|2025|10|29|df=yes}}
+ |Viewers = 13.79
+ |ShortSummary = Lucy Beaumont was murdered face to face by the traitors.  
+
+In the mission, the players were paired up.  One of them would cross a rickety bridge earning money as they reached checkpoints.  They would then throw a shield bag to the other player who was guiding them.  The second player could then choose another player to be shielded.  Whoever ended up in the shield at the end would win.
+
+The pairs were;
+
+- Alan Carr and Kate Garraway
+
+- Nick Mohammed and Jonathan Ross
+
+- Cat Burns and Celia Imrie
+
+- Joe Marler and David Olusoga
+
+Joe Marler ended up getting the shield.  
+
+With a lot of heat on Jonathan, Alan Carr and Cat Burns debated the risks of sticking with him or throwing him under the bus.  
+
+At the Round Table, a lot of attention was called to Jonathan Ross.  He was eliminated by a nearly unanimous vote (with only David Olusoga voting for Nick Mohammed and both Alan Carr and Cat Burns voting for Jonathan) making him the first traitor to be eliminated from the game.
+
+Claudia announced that, in the final, the players would not reveal their identities as they exited the game.  Also, to celebrate there would be a dinner party held for the surviving players. The remaining Traitors were told they would have to murder in plain sight one more time, but this time around, they have to do it at the dinner party by toasting a faithful and saying “parting is such sweet sorrow”.
+
+ |LineColor = 311500
+}}
+{{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 8
+ |EpisodeNumber2 = 8
+ |Title = Episode 8
+ |OriginalAirDate = {{Start date|2025|10|30|df=yes}}
+ |Viewers = 14.10
+ |ShortSummary = At the dinner party, the players discussed how much they had enjoyed and been changed by the experience of the game.  Alan Carr decided to murder Celia Imrie claiming the quote was something he’d heard from Stephen Fry (at Cat’s suggestion). 
+
+The next morning, the faithfuls tried to work out how the murder in plain sight was done.  
+
+In the mission, the players had to take the mannequin heads of the players and place them on six statues across the room.  They had to avoid a laser grid.  If one of them hit a laser, they would have to discard the head and pick a new one.
+
+The players succeeded and added the full £14,000 to the prize pot.
+
+Suspicions fell on Kate Garraway and David Olusoga at the Round Table with Nick Mohammed also bringing up his theory about Cat Burns being a traitor.
+
+Kate Garraway and Alan Carr voted for David Olusoga; Nick Mohammed voted for Cat Burns; Cat Burns, Joe Marler & David Olusoga voted for Kate Garraway and she was banished.
+
+Afterwards, Joe Marler was convinced that Alan Carr and Cat Burns were traitors and tried to get David Olusoga and Nick Mohammed on side ahead of the final.
+
+Claudia summoned all five players down to the fire pit and announced there would be no murder and that they were the finalists.  She had each of them declare that they were a faithful.
+
+ |LineColor = 311500
+}}
+
+{{Episode list/sublist|The Celebrity Traitors series 1
+ |EpisodeNumber = 9
+ |EpisodeNumber2 = 9
+ |Title = Finale
+ |RTitle = <ref>{{Cite web |date=2025-11-06 |title=BBC One - The Celebrity Traitors, Series 1, Finale |url=https://www.bbc.co.uk/programmes/m002ltcc |access-date=2025-11-01 |website=BBC |language=en-GB |archive-date=31 October 2025 |archive-url=https://web.archive.org/web/20251031150911/https://www.bbc.co.uk/programmes/m002ltcc |url-status=live }}</ref>
+ |OriginalAirDate = {{Start date|2025|11|06|df=yes}}
+ |Viewers = 14.94
+ |ShortSummary = With no murder, all players met at breakfast and discussed the journey they had in the show.
+
+Convinced that Alan Carr and Cat Burns were Traitors, Joe Marler formed a plan with Nick Mohammed - who was convinced Cat was a traitor - to get David Olusoga on side ahead of the round table.
+
+The mission was on board the Traitors steam train. The players had twenty minutes to go through four carriages and solve puzzles for keys to crates with £5,000 worth of gold in them. At the end of the time, the crates on final carriage would explode.
+
+The total amount to win was £20,000 which the players managed to get.
+
+This brought the final prize total to £87,500.
+
+Joe Marler convinced Alan Carr and Cat Burns that he would vote for David at the final Round Table to keep them unsuspecting.  Meanwhile, Nick Mohammed spoke to David who also voiced concerns about Joe being a possible traitor.
+
+At the final round table the players were reminded that banished players would no longer reveal their identity.
+
+Alan Carr and Cat Burns voted for David Olusoga; David Olusoga, Nick Mohammed and Joe Marler voted for Cat Burns.  Cat Burns was banished ending the show in 5th place.
+
+At the endgame, Alan explained how Joe had convinced him and Cat that they would vote for David. Nick was also suspicious that Joe’s final words to Cat were “I’m sorry”.  
+
+All four players voted to Banish Again. Joe Marler voted for Alan Carr. Alan Carr, Nick Mohammed and David Olusoga voted for Joe Marler. Joe was banished ending the game in 4th place.
+
+The remaining three players unanimously voted to end the game. Nick and David revealed they were Faithfuls and Alan revealed he was a Traitor winning the game and the entire prize pot.
+
+The finalists all met by the fire pit to congratulate Alan on his victory.
+
+|LineColor = 311500
+}}}}</onlyinclude>
+{{notelist}}
+
+==Ratings==
+Weekly ratings for each show on [[BBC One]]. All ratings are provided by [[Barb Audiences|BARB]].<ref>{{cite web |url=https://www.barb.co.uk/viewing-data/as-viewed-top-50 |title=Weekly top 50 shows |publisher=[[BARB]] |access-date=12 October 2025 |archive-date=8 October 2025 |archive-url=https://web.archive.org/web/20251008171246/https://www.barb.co.uk/viewing-data/as-viewed-top-50/ |url-status=live }}</ref>
+{|class="wikitable sortable" style="text-align:center"
+!scope="col"|Episode
+!scope="col"|Date
+!scope="col"|Official rating<br>(millions)
+!scope="col"|Weekly rank<br>for BBC One
+!scope="col"|Weekly rank<br>for all UK TV
+|-
+!scope="row"|Episode 1
+|{{dts|8 October}}||12.46||1||1
+|-
+!scope="row"|Episode 2
+|{{dts|9 October}}||11.87||2||2
+|-
+!scope="row"|Episode 3
+|{{dts|15 October}}||13.23||1||1
+|-
+!scope="row"|Episode 4
+|{{dts|16 October}}||12.85||2||2
+|-
+!scope="row"|Episode 5
+|{{dts|22 October}}||13.27||2||2
+|-
+!scope="row"|Episode 6
+|{{dts|23 October}}||13.61||1||1
+|-
+!scope="row"|Episode 7
+|{{dts|29 October}}||13.79||2||2
+|-
+!scope="row"|Episode 8
+|{{dts|30 October}}||14.10||1||1
+|-
+!scope="row"|Episode 9
+|{{dts|6 November}}||14.94||1||1
+|-
+!Series average
+!2025
+!13.35
+!{{N/A}}
+!{{N/A}}
+|}
+
+==Reception==
+===Critical reception===
+
+The series received critical acclaim. It was praised for its casting of “actually recognisable names” by ''[[The Independent]]'',<ref>{{Cite web |date=2025-10-09 |title=Celebrity Traitors viewers hail nervous contestant highlight of new series |url=https://www.the-independent.com/arts-entertainment/tv/news/celebrity-traitors-alan-carr-bbc-b2842142.html |access-date=2026-05-08 |website=The Independent |language=en}}</ref> with particular praise for its casting of Alan Carr with ''[[HuffPost]]'' saying that he “stole the show”. Alan Carr winning was dubbed the “TV moment of the year” by ''[[The i Paper]]'',<ref>{{Cite web |last=Baker |first=Emily |date=2025-11-07 |title=The Celebrity Traitors final delivered the TV moment of the year |url=https://inews.co.uk/culture/television/celebrity-traitors-final-best-tv-ever-seen-4021061 |access-date=2026-05-08 |website=The i Paper |language=en-US}}</ref> and one of the “most unifying cultural moments” of the century in the UK.<ref>{{Cite web 
+|last=Edwards |first=Laura |last2=Swain |first2=Izzy
+|date=2026-09-18 |title=Alan Carr's Celebrity Traitors win ranks among Britain's top unifying cultural moments   |url=https://www.lincolnshirelive.co.uk/news/uk-world-news/celebrity-traitors-finale-queen-tendendo-11160876 |access-date=2026-09-18 |website=www.lincolnshirelive.co.uk}}</ref> 
+
+===Awards and nominations===
+{|class="wikitable sortable"
+!scope="col"|Year
+!scope="col"|Award
+!scope="col"|Category
+!scope="col"|Result
+|-
+| rowspan="19" style="text-align:center" |2026
+| rowspan="3" |[[2026 British Academy Television Awards|British Academy Television Awards]]
+|[[British Academy Television Award for P&O Cruises Memorable Moment|Memorable Moment]] (Alan Carr wins)<ref name=":0">{{Cite web |last=Knight |first=Lewis |title=BAFTA TV Awards 2026 nominations revealed: Full list of nominees including Celebrity Traitors {{!}} Radio Times |url=https://www.radiotimes.com/tv/drama/bafta-tv-awards-2026-nominations-full-list-nominees-newsupdate/ |access-date=2026-05-08 |website=www.radiotimes.com |language=en-GB}}</ref>
+|{{won}}
+|-
+|[[British Academy Television Award for Best Reality and Constructed Factual|Best Reality]]<ref name=":0" />
+|{{won}}
+|-
+|[[British Academy Television Award for Best Entertainment Performance|Best Entertainment Performance]] (Claudia Winkleman)<ref name=":0" />
+|{{nom}}
+|-
+| rowspan="2" |[[2026 British Academy Television Craft Awards|British Academy Television Craft Awards]]
+|[[British Academy Television Craft Award for Best Sound: Factual|Sound: Factual Award]]
+|{{won}}<ref name=":1">{{Cite web |title=TV Craft |url=https://www.bafta.org/awards/tv-craft/ |access-date=2026-05-08 |website=Bafta |language=en}}</ref>
+|-
+|[[British Academy Television Craft Award for Best Entertainment Craft Team|Entertainment Craft Team Award]] 
+|{{won}}<ref name=":1" />
+|-
+|rowspan="2" |[[31st National Television Awards|National Television Awards]]
+| Reality Competition<ref>{{Cite web |last=Hibbs |first=James |title=National Television Awards 2026 nominations longlist revealed {{!}} Radio Times |url=https://www.radiotimes.com/tv/entertainment/ntas-national-television-awards-2026-nominations-longlist-revealed-newsupdate/ |access-date=2026-05-19 |website=www.radiotimes.com |language=en-GB}}</ref>
+|{{won}}<ref name=":4">{{Cite web |last=Hibbs |first=James |title=National Television Awards 2026 winners {{!}} Full list {{!}} Radio Times |url=https://www.radiotimes.com/tv/entertainment/national-television-awards-2026-winners-full-list-newsupdate/ |access-date=2026-09-08 |website=www.radiotimes.com |language=en-GB}}</ref>
+|-
+| Television Presenter (Claudia Winkleman)
+|{{shortlisted}}<ref name=":4" />
+|-
+| rowspan="2" |[[Television and Radio Industries Club|Television and Radio Industries Club Awards]]
+| Game Show
+| {{won}}<ref name=":2">{{Cite web |date=2026-06-23 |title=The Celebrity Traitors, Clarkson's Farm and Emmerdale among the big winners at The TRIC Awards 2026 |url=https://www.digitalspy.com/tv/a71681503/tric-awards-2026-winners-celebrity-traitors-emmerdale/ |access-date=2026-06-24 |website=Digital Spy |language=en-GB}}</ref>
+|-
+| Podcast (Uncloaked)
+| {{nominated}}<ref name=":2" />
+|-
+|[[Royal Television Society Programme Awards]]
+|Entertainment & Reality 
+|{{won}}<ref>{{Cite web |last=Knight |first=Lewis |title=Royal Television Society Awards 2026 winners: From Adolescence to EastEnders {{!}} Radio Times |url=https://www.radiotimes.com/tv/drama/royal-television-society-awards-2026-winners-list-newsupdate/ |access-date=2026-05-08 |website=www.radiotimes.com |language=en-GB}}</ref>
+|-
+| rowspan="2" |[[Edinburgh Television Festival|Edinburgh Television Festival Awards]]
+|Best Entertainment or Reality Series 
+|{{won}}<ref name=":5">{{Cite web |last=Kanter |first=Jake |date=2026-08-27 |title='The Pitt' & 'The Traitors' Win Prizes At Edinburgh TV Festival Awards |url=https://deadline.com/2026/08/the-pitt-the-traitors-edinburgh-tv-festival-awards-1237061059/ |access-date=2026-08-28 |website=Deadline |language=en-US}}</ref>
+|-
+|Best Television Presenter - Entertainment (Claudia Winkleman)
+|{{won}}<ref name=":5" />
+|-
+|[[Broadcast Digital Awards]]
+|Best Digital Support for a Programme
+|{{won}}<ref>{{Cite web |title=Best Digital Support for a Programme: The Celebrity Traitors Digital Support Campaign |url=https://www.broadcastnow.co.uk/winners/best-digital-support-for-a-programme-the-celebrity-traitors-digital-support-campaign/5218166.article |access-date=2026-07-02 |website=Broadcast |language=en}}</ref>
+|-
+| rowspan="6" |[[National Reality Television Awards]]
+| Celebrity Personality of the Year (Alan Carr)<ref name=":3">{{Cite web |date=2026-06-26 |title=The Traitors dominates 2026 National Reality TV Awards nominations |url=https://www.femalefirst.co.uk/tv/news/traitors-dominates-2026-national-reality-awards-nominations-1446589.html |access-date=2026-06-26 |language=en}}</ref>
+| {{nom}}
+|-
+| Best Male Personality (Alan Carr)<ref name=":3" />
+| {{nom}}
+|-
+| Celebrity Personality of the Year (Tom Daley)<ref name=":3" />
+| {{nom}}
+|-
+| Best Reality Competition Show<ref name=":3" />
+| {{nom}}
+|-
+| Best New Show<ref name=":3" />
+| {{nom}}
+|-
+| Best Social Experiment Show<ref name=":3" />
+| {{nom}}
+|- 
+|}
+
+==Home media==
+
+The series was officially released on DVD in region two on 4 May 2026, as a three-disc DVD box set.{{cn|date=May 2026}}
+
+==References==
+{{Reflist}}
+
+== External links ==
+* {{BBC programme|m002csnh}}
+
+{{The Traitors in the United Kingdom}}
+{{The Traitors}}
+
+{{DEFAULTSORT:Celebrity Traitors, The}}
+[[Category:The Traitors]]
+[[Category:2025 British television seasons]]
+[[Category:Television shows shot in Scotland]]
+[[Category:Television shows set in Scotland]]
+[[Category:Stephen Fry]]
