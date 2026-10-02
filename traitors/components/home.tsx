@@ -15,8 +15,8 @@ const noSubscribe = () => () => {};
  * bundle. Private data comes only from Cognito-authorized API endpoints.
  */
 export function Home() {
-  const { status, signInWithGoogle } = useAuth();
-  // False on the server, so the static HTML is the landing.
+  const { status } = useAuth();
+  // False on the server, so the static HTML opens on the intro.
   const returning = useSyncExternalStore(noSubscribe, likelySignedIn, () => false);
   if (status === "signedIn") {
     return (
@@ -26,5 +26,5 @@ export function Home() {
     );
   }
   if (status === "loading" && returning) return null;
-  return <Landing status={status} onSignIn={signInWithGoogle} />;
+  return <Landing />;
 }

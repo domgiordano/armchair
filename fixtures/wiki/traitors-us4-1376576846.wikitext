@@ -1,0 +1,904 @@
+{{Use American English|date=March 2026}}
+{{Use mdy dates|date=June 2025}}
+{{Infobox television season
+| bgcolor              = #00A6A6
+| image                = The Traitors US (season 4 poster).png
+| caption              = Promotional poster
+| starring             = 
+| module1              = {{Infobox reality competition season
+| presenter            = [[Alan Cumming]]
+| num_contestants      = 23
+| location             = [[Ardross, Highland|Ardross Castle]], [[Scottish Highlands]]
+| winner               = [[Rob Rausch]]
+| runner_up            = [[Maura Higgins]]
+}}
+| num_episodes         = 12
+| network              = [[Peacock (streaming service)|Peacock]]
+| first_aired          = {{Start date|2026|1|8}}
+| last_aired           = {{End date|2026|2|26}}
+| next_season          = [[The Traitors (American TV series) season 5|''New Blood'']]
+}}
+
+The '''fourth season''' of the American television series '''''[[The Traitors (American TV series)|The Traitors]]''''' was announced on August 14, 2024.<ref>{{cite web |last1=Dodge |first1=Jeff |title=The Traitors Seasons 4 & 5 Renewed Amid Growing Concerns Over Controversial Season 3 Cast Member |url=https://screenrant.com/the-traitors-seasons-4-and-5-renewed-amid-concerns/ |website=Screen Rant |date=August 14, 2024 |access-date=13 June 2025}}</ref> The season premiered on January 8, 2026.<ref name=NBC>{{cite web |last1=Jean-Philipee |first1=McKenzie |title=The Traitors Season 4 Has a Release Date on Peacock — and It's Sooner Than You Think |url=https://www.nbc.com/nbc-insider/the-traitors-season-4-release-date-cast-trailer-details |publisher=NBC |date=10 November 2025 |access-date=10 November 2025}}</ref> The season concluded on February 26, 2026, where [[Rob Rausch]] won as a Traitor, while [[Maura Higgins]] placed as the runner-up, as a Faithful.
+
+==Format==
+The show retained the same [[The Traitors (American TV series)#Format|format]] and challenges as the ''The Traitors UK''. The arrived contestants at the castle are referred to as the "Faithful," and among them are the "Traitors," a group of contestants secretly selected by the host, [[Alan Cumming]]. Each night, the Traitors would decide who to "murder," and that same contestant would leave the game. After the end of each day, where the contestants participated in various challenges to add money to the prize fund, they would participate in the Round Table, where they must decide who to banish from the game, trying to identify the Traitor.
+
+If all the remaining players are Faithful, then the prize money is divided evenly among them. However, if any Traitors remain, they win the entire pot.<ref>{{Cite web |last=SYFY Wire |date=April 29, 2022 |title=Peacock nabs psychological thriller competition 'The Traitors' hosted by 'Bond' vet Alan Cumming |url=https://www.syfy.com/syfy-wire/peacock-the-traitors-alan-cumming |access-date=January 13, 2023 |website=SYFY Wire |language=en}}</ref><ref>{{Cite web |last=USA |date=December 7, 2022 |title=Alan Cumming Hosts Peacock's 'The Traitors' In Remote Scottish Castle – What To Know |url=https://www.usanetwork.com/usa-insider/alan-cumming-hosts-peacock-the-traitors-gameshow |access-date=January 13, 2023 |website=USA Network |language=en}}</ref>
+
+== Contestants ==
+<div style="overflow: auto;">{{multiple image
+| align             = center
+| direction         = horizontal
+| total_width       = 800
+| perrow = 9/9
+| footer            = Top row (L-R): [[Ian Terry]], [[Porsha Williams]], [[Caroline Stanbury]], [[Monét X Change]], [[Michael Rapaport]], [[Ron Funches]], [[Lisa Rinna]], [[Colton Underwood]], and [[Candiace Dillard Bassett]] Bottom row (L-R): [[Dorinda Medley]], [[Stephen Colletti]], [[Kristen Kish]], [[Mark Ballas]], [[Johnny Weir]], [[Tara Lipinski]], [[Eric Nam]], [[Maura Higgins]], and [[Rob Rausch]]
+| footer_align      = center
+| image1            = IanTerryBeach.jpg
+| image2            = Porsha Williams 2014.jpg 
+| image3            = Caroline Stanbury.jpg
+| image4            = RuPaul with All Stars 7 Contestants at LA DragCon 2022 by dvsross (cropped - Monet X Change) (cropped).jpg
+| image5            = Michael Rapaport (2013) 2.JPG
+| image6            = Ron Funches SXSW 2015.jpg
+| image7            = Lisa Rinna at WWD Style Awards 2026.jpg
+| image8            = Colton Underwood 2023 (cropped).png
+| image9            = Miss United States 2013.jpg
+| image10           = DorindaMedley-byPhilipRomano.jpg
+| image11           = Stephen Colletti at the 2012 Comic-Con.jpg
+| image12           = Kristen Kish at Floriditas.jpg
+| image13           = Mark Ballas (2014) (cropped).jpg
+| image14           = JohnnyWeir2010.jpg
+| image15           = Tara Lipinski in Sochi.jpg
+| image16           = Eric Nam (2021).jpg
+| image17           = Maura Higgins attending the World premier of "Argylle" in London , January 2024 (cropped).jpg
+| image18           = Rob Rausch 2024.png
+}}
+</div>
+Similar to the second and third seasons, this season's cast was composed entirely of reality show participants and public figures. Peacock announced the 23 cast members via social media on June 13, 2025.<ref>{{cite web|title=All About The Traitors Season 4 Cast: The 23 Celeb Players (DETAILS)|url=https://www.peacocktv.com/blog/the-traitors-season-4-cast|website=Peacock |date=2026-01-05|accessdate=2026-01-08}}</ref>
+
+In the first episode, Cumming revealed that one contestant would be selected as a "Secret Traitor", whose identity would be hidden from both the audience and the regular Traitors. Each night, they would provide the Traitors with a shortlist of Faithful to murder. Contestants were therefore only initially identified as Faithful by appearing on murder shortlists selected by the Secret Traitor, or after being banished.
+
+{| class="wikitable sortable" style="margin:auto; text-align:center;" <!--Order as announced by Peacock-->
+|+List of ''The Traitors'' contestants
+! scope="col" |Contestant
+! scope="col" |Age
+! scope="col" class="unsortable" |From
+! scope="col" class="sortable" |Notability/Debut series
+! scope="col" class="unsortable" |Affiliation
+! scope="col" class="unsortable" |Finish
+|-
+! scope="row" style="text-align:left" | {{sortname|Ian|Terry|Ian Terry}}
+| 34
+| [[Houston, Texas]]
+| ''[[Big Brother 14 (American season)|Big Brother 14]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 2)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Porsha|Williams|Porsha Williams}}
+| 43
+| [[Atlanta, Georgia]]
+| ''[[The Real Housewives of Atlanta]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 2)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Rob|Cesternino|Rob Cesternino}}
+| 46
+| [[Wake Forest, North Carolina]]
+| ''[[Survivor: The Amazon]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 3)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Donna|Kelce|Donna Kelce}}
+| 72
+| [[Orlando, Florida]]
+| Mother of [[Jason Kelce|Jason]] and [[Travis Kelce]]
+| bgcolor="#67002F" span style="color:#FFFFFF"|Secret Traitor{{efn|In Episode 1, Kelce was selected as the Secret Traitor. This was hidden from both the Traitors and the viewers until Episode 3, when she was banished.}}
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 3)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Caroline|Stanbury|Caroline Stanbury}}
+| 49
+| [[Dubai|Dubai, United Arab Emirates]]
+| ''[[The Real Housewives of Dubai]]'' / ''[[Ladies of London]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 4)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Tiffany|Mitchell|nolink=1}}
+| 44
+| [[Detroit, Michigan]]
+| ''[[Big Brother 23 (American season)|Big Brother 23]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful 
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 4)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Monét|X Change|Monét X Change}}
+| 35
+| [[New York, New York]]
+| ''[[RuPaul's Drag Race season 10|RuPaul's Drag Race 10]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 5)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Michael|Rapaport|Michael Rapaport}}
+| 55
+| [[Los Angeles, California]]
+| Actor / Comedian  
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 5)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Ron|Funches|Ron Funches}}
+| 42
+| [[Portland, Oregon]]
+| Actor / Comedian
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 6)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Yamil "Yam Yam"|Arocho|nolink=1}}
+| 38
+| [[San Juan, Puerto Rico]]
+| ''[[Survivor 44]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 7)</small> 
+|-
+! scope="row" style="text-align:left" | {{sortname|Lisa|Rinna|Lisa Rinna}}
+| 61
+| [[Beverly Hills, California]]
+| ''[[The Real Housewives of Beverly Hills]]''
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 7)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Colton|Underwood|Colton Underwood}}
+| 33
+| [[Sherman Oaks, California]]
+| ''[[The Bachelorette (American TV series) season 14|The Bachelorette 14]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful 
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 8)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Candiace|Dillard Bassett|Candiace Dillard Bassett}}
+| 38
+| [[Washington, D.C.]]
+| ''[[The Real Housewives of Potomac]]''
+| bgcolor="#67002F" style="color:#FFFFFF" span |Traitor 
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 8)</small>}}
+|-
+! scope="row" style="text-align:left;font-weight:normal" | '''{{sortname|Dorinda|Medley|Dorinda Medley}}'''<br/>''[[The Traitors (American TV series) season 3|The Traitors 3]]''
+| 60
+| [[New York, New York]]
+| ''[[The Real Housewives of New York City|The Real Housewives of New York City]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 9)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Stephen|Colletti|Stephen Colletti}}
+| 39
+| [[Los Angeles, California]]
+| ''[[Laguna Beach: The Real Orange County]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful 
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 9)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Kristen|Kish|Kristen Kish}}
+| 41
+| [[Austin, Texas]]
+| ''[[Top Chef: Seattle]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 10)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Natalie|Anderson|Natalie Anderson (television personality)}}
+| 39
+| [[Edgewater, New Jersey]]
+| ''[[The Amazing Race 21]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful 
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 10)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Mark|Ballas|Mark Ballas}}
+| 39
+| [[Los Angeles, California]]
+| ''[[Dancing with the Stars (American TV series)|Dancing with the Stars]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 11)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Johnny|Weir|Johnny Weir}}
+| 40
+| [[Greenville, Delaware]]
+| [[Olympic Games|Olympic]] [[Figure skating|figure skater]]
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 11)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Tara|Lipinski|Tara Lipinski}}
+| 43
+| [[Los Angeles, California]]
+| [[Olympic Games|Olympic]] [[Figure skating|figure skater]]
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful 
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 11)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Eric|Nam|Eric Nam}}
+| 36
+| [[Atlanta, Georgia]]
+| Musician / Actor
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor{{efn|Nam was recruited as a Traitor in Episode 9 following an ultimatum.}}
+| style="background:salmon;"|Banished<br>{{nowrap|<small>(Episode 11)</small>}}
+|-
+! scope="row" style="text-align:left" | {{sortname|Maura|Higgins|Maura Higgins}}
+| 34
+| [[County Longford|Longford]], [[Ireland]]
+| ''[[Love Island (2015 TV series) series 5|Love Island UK 5]]''
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| bgcolor="silver"| Runner-up<br><small>(Episode 11)</small>
+|-
+! scope="row" style="text-align:left" | {{sortname|Rob|Rausch|Rob Rausch}}
+| 26
+| [[Florence, Alabama]]
+| ''[[Love Island (American TV series) season 5|Love Island USA 5]]''
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor
+| style="background:gold; color:black;"|'''Winner'''<br><small>(Episode 11)</small>
+|-
+|}
+;Notes
+;
+
+{{notelist}}
+
+=== Future appearances ===
+In 2026, [[Maura Higgins]] competed on [[Dancing with the Stars (American TV series) season 35|season 35]] of ''[[Dancing with the Stars (American TV series)|Dancing with the Stars]]''.<ref>{{Cite web |last=Strause |first=Jackie |date=April 22, 2026 |title=''Summer House'' Star Ciara Miller Cast in ''Dancing With the Stars'' Season 35 |url=https://www.hollywoodreporter.com/tv/tv-news/summer-house-ciara-miller-dwts-1236571929/ |access-date=April 27, 2026 |website=[[The Hollywood Reporter]] |language=en-US}}</ref> Later, it was revealed that Higgins would be paired with fellow faithful [[Mark Ballas]].<ref>{{Cite web |last=Bernabe |first=Angeline Jade |date=September 2, 2026 |title=''Dancing with the Stars'' season 35: Meet the celebrity cast and their pro dance partners |url=https://abcnews.com/GMA/Culture/dancing-with-the-stars-season-35-celebrity-cast/story?id=136095657 |access-date=September 2, 2026 |website=[[Good Morning America]] |publisher=[[ABC News (United States)|ABC News]] |language=en}}</ref>
+
+== Episodes ==
+<onlyinclude>{{Episode table |background=#00A6A6 |caption=''The Traitors'' season 4 episodes |show_caption=y |overall=5 |season=5 |title=53 |airdate=37 |episodes=
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 36
+ | EpisodeNumber2  = 1
+ | Title           = Let the Cards Fall As They Will
+ | OriginalAirDate = {{Start date|2026|01|08}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 37
+ | EpisodeNumber2  = 2
+ | Title           = The Death Conga
+ | OriginalAirDate = {{Start date|2026|01|08}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 38
+ | EpisodeNumber2  = 3
+ | Title           = Show Me Your Faces
+ | OriginalAirDate = {{Start date|2026|01|08}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 39
+ | EpisodeNumber2  = 4
+ | Title           = Cut the Head off the Snake
+ | OriginalAirDate = {{Start date|2026|01|15}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 40
+ | EpisodeNumber2  = 5
+ | Title           = If You're Gonna Come for Me, I'll Finish You
+ | OriginalAirDate = {{Start date|2026|01|15}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 41
+ | EpisodeNumber2  = 6
+ | Title           = Planning a Coup
+ | OriginalAirDate = {{Start date|2026|01|22}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 42
+ | EpisodeNumber2  = 7
+ | Title           = The Black Banquet
+ | OriginalAirDate = {{Start date|2026|01|29}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 43
+ | EpisodeNumber2  = 8
+ | Title           = A Queen Never Comes Off Her Throne
+ | OriginalAirDate = {{Start date|2026|02|05}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 44
+ | EpisodeNumber2  = 9
+ | Title           = Think Outside the Box
+ | OriginalAirDate = {{Start date|2026|02|12}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 45
+ | EpisodeNumber2  = 10
+ | Title           = Do You Know the Enemy?
+ | OriginalAirDate = {{Start date|2026|02|19}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 46
+ | EpisodeNumber2  = 11
+ | Title           = Leap of Faith
+ | OriginalAirDate = {{Start date|2026|02|26}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+{{Episode list/sublist|The Traitors season 4
+ | EpisodeNumber   = 47
+ | EpisodeNumber2  = 12
+ | Title           = Reunion
+ | OriginalAirDate = {{Start date|2026|02|26}}
+ | ShortSummary    = 
+ | LineColor       = 00A6A6
+}}
+}}</onlyinclude>
+
+==Voting history==
+;Key
+: {{Color box|0047AB|border=silver}} The contestant was a Faithful
+: {{Color box|67002f|border=silver}} The contestant was a Traitor<!--
+: {{Color box|lightgrey|border=silver}} The contestant was ineligible to vote
+: {{Color box|lightgreen|border=silver}} The contestant was immune at this Banishment and Murder-->
+
+{| class="wikitable" style="text-align:center; width:100%; font-size:90%; line-height:13px"
+! colspan="3" width="10% | Episode 
+!1
+!2
+!3
+!4
+!5
+!6
+!7
+!8
+!colspan="2"|9
+!10
+!11
+|-
+! colspan="3" |Murder Shortlist
+| rowspan="3" {{N/A|''None''}}
+|style="background-image: linear-gradient(to bottom, #0047AB 0% 65%, #67002f 65% 100%);" | {{font color|white|{{unbulleted list|list_style=text-align:center|Eric|Ian|Mark|{{nowrap|Rob R.}}{{efn|name=secret|The Secret Traitor shortlisted these contestants for murder. The other Traitors could only choose a Faithful from this shortlist to be murdered that night.}}}}}}
+| style="background:#0047AB; color:#FFFFFF"| {{unbulleted list|list_style=text-align:center|Kristen|Monét|{{nowrap|Rob C.}}|Tara{{efn|name=secret}}}}
+|style="background-image: linear-gradient(to bottom, #0047AB 0% 55%, #67002f 55% 75%, #0047AB 75% 100%);" | {{font color|white|{{unbulleted list| list_style=text-align:center|Caroline|Eric|Kristen|Lisa|Ron{{efn|In the daily mission, the contestants paired up and had to choose one to be caged while the other attempted to free them. Any remaining caged contestant was shortlisted for murder. As Ron did not have a partner, he was shortlisted by default.}}}}}}
+| colspan="6" {{N/A|''None''}}
+| style="background:#0047AB; color:#FFFFFF"| {{unbulleted list|list_style=text-align:center|Johnny|Kristen|Natalie|Tara{{efn|In the daily mission, the Traitors were tasked to shortlist four players for possible murder. At night, the shortlisted players were summoned to the dungeon where each were given a jack-in-a-box. The player who had a Traitor inside meant they were murdered by the Traitors.}}}}
+| {{N/A|''None''}}
+|-
+! colspan="3" rowspan="2" |Traitors'<br/>Decision
+| style="background:#0047AB; color:#FFFFFF;"|Ian
+| style="background:#0047AB; color:#FFFFFF;"|{{nowrap|Rob C.{{efn|The Traitors were tasked to murder one of the Secret Traitor's shortlist in plain sight, by burning one of the faithful's cards in the fireplace inside the breakfast room. If successful, they would be able to meet the Secret Traitor face-to-face the following night. Although the Traitors were successful in their mission, Donna was banished and revealed as the Secret Traitor before their appointed meeting.}}}}
+| style="background:#0047AB; color:#FFFFFF;"|Caroline
+| style="background:#0047AB; color:#FFFFFF;"|Monét
+| style="background:#67002F; color:#FFFFFF;"|Lisa
+| style="background:#0047AB; color:#FFFFFF;"|{{nowrap|Yam Yam}}{{efn|The Traitors were tasked to murder in plain sight, by selecting a Traitor to wear a cursed amulet. At the banquet, the first faithful to touch the amulet would be murdered. Yam Yam was the first faithful to touch the amulet and was cursed for death. The players were presented with two antidotes to save the cursed player. As Kristen and Natalie were chosen, they were unsuccessful and Yam Yam was still murdered.}}
+| style="background:#0047AB; color:#FFFFFF;"|Colton
+| style="background:#67002F; color:#FFFFFF;"|Eric
+| style="background:#0047AB; color:#FFFFFF;"|Dorinda
+| style="background:#0047AB; color:#FFFFFF;"|Kristen
+| style="background:#0047AB; color:#FFFFFF;"|Mark
+|-
+| colspan="4"|''Murder''
+| colspan="1"|''Amulet''
+| colspan="2"|''Murder''
+| ''Ultimatum''{{efn|Following Candiace's banishment, Rob R. was offered the chance to meet a Faithful face-to-face and offer them an ultimatum: become a Traitor or be Murdered. He chose Eric, who accepted the offer.}}
+| colspan="3"|''Murder''
+|-
+! colspan="3"|Shield
+| {{unbulleted list|list_style=text-align:center|Candiace|Caroline|Colton|Johnny|Kristen|Lisa|Maura|Monét|Natalie|Porsha|Stephen|Tara|Tiffany|{{nowrap|Yam Yam}}}}
+| {{unbulleted list|list_style=text-align:center|Caroline|Colton|{{nowrap|Yam Yam}}}}
+| {{N/A|''None''}}
+| {{unbulleted list|list_style=text-align:center|Candiace|Colton|Dorinda|Eric|Kristen|Mark|Natalie|Rob R.}}
+| {{N/A|''All''{{Efn|name=NoMurder|The players successfully completed the mission without obtaining a shield, preventing the Traitors from committing a murder. However, the Traitors still met to discuss who should wear a cursed amulet.}}}}
+| Kristen<br>Natalie{{efn|Kristen and Natalie received antidotes during the Banquet.}}
+| colspan="1" {{N/A|''None''}}
+| Kristen
+| colspan="2" {{N/A|''None''}}
+| Eric
+| {{N/A|''None''}}
+|-
+! colspan="3" |Banishment
+| rowspan="2" {{N/A|''None''}}
+| style="background:#0047AB; color:#FFFFFF;"|Porsha
+| style="background:#67002F; color:#FFFFFF;"|Donna
+| style="background:#0047AB; color:#FFFFFF;"|Tiffany
+| style="background:#0047AB; color:#FFFFFF;"|Michael
+| style="background:#0047AB; color:#FFFFFF;"|Ron
+| style="background:#67002F; color:#FFFFFF;"|Lisa
+| style="background:#67002F; color:#FFFFFF;"|Candiace
+| colspan="2" style="background:#0047AB; color:#FFFFFF;"|Stephen
+| style="background:#0047AB; color:#FFFFFF;"|Natalie
+| style="background:#0047AB; color:#FFFFFF;"|Johnny
+|-
+! colspan="3" |Vote
+| 10–8–4
+| 18–1–1
+| 15–2–1
+| 11–5
+| 6–5–4
+| {{nowrap|9–2–1–1}}
+| 9–1–1
+| colspan="2"| 5–2–2
+| 7–1
+| 3–2
+|-style="border-top:5px solid"
+| colspan="2" style="background:#67002f" |
+!style="height:25px" scope="row"|Rob R.
+| rowspan="23" style="background:lightgrey"|''No<br>Vote''
+| Porsha
+| Donna
+| Tiffany
+| Michael
+| Lisa
+| Lisa
+| Candiace
+| colspan="2"|Stephen
+| Natalie (2x){{efn|Rob R. won the Dagger in a daily challenge, making his vote count twice at one of the next four roundtables. He used it at the roundtable in Episode 10.}}
+| Johnny
+|-
+| colspan="2" style="background:#0047AB" |
+!style="height:25px" scope="row"|Maura
+| Porsha
+| Donna
+| Tiffany
+| Michael
+| Ron
+| Lisa
+| Candiace
+| colspan="2"|Johnny
+| Natalie
+| Johnny
+|-
+| style="background:#0047AB" | 
+| style="background:#67002f" |
+!style="height:25px" scope="row"|Eric
+| Porsha
+| Donna
+| Tiffany
+| Michael
+| Lisa
+| Lisa
+| Candiace
+| colspan="2"|Stephen
+| Natalie
+| Johnny
+|-
+| colspan="2" style="background:#0047AB" |
+!style="height:25px" scope="row"|Tara
+| Donna
+| Donna
+| Tiffany
+| Michael
+| Colton
+| Natalie
+| Candiace
+| colspan="2"| Stephen
+| Natalie
+| Eric
+|-
+| colspan="2" style="background:#0047AB" |
+!style="height:25px" scope="row"|Johnny
+| Donna
+| Donna
+| Tiffany
+| Michael
+| Colton
+| Lisa
+| Candiace
+| colspan="2"|Stephen
+| Natalie
+| Eric
+|-
+| colspan="2" style="background:#0047AB" | 
+!style="height:25px" scope="row"|Mark
+| Porsha
+| Donna
+| Tiffany
+| Michael
+| Ron
+| Lisa
+| Candiace
+| colspan="2"|Tara
+| Natalie
+| style="background:darkred; color:white;" |''Murdered''<br><small>{{nowrap|(Episode 11)}}</small>
+|-
+| colspan="2" style="background:#0047AB" |
+! Natalie
+| Donna
+| Donna
+| Tiffany
+| Michael
+| Lisa
+| Lisa
+| Tara
+| colspan="2"|Stephen
+| Tara
+|style="background:salmon" |''Banished''<br><small>{{nowrap|(Episode 10)}}</small>
+|- 
+|-
+| colspan="2" style="background:#0047AB" | 
+! Kristen
+| Donna
+| Donna
+| Tiffany
+| Michael
+| Colton
+| Lisa
+| Candiace
+| colspan="2"|Tara
+| colspan="2" style="background:darkred; color:white;" |''Murdered''<br><small>{{nowrap|(Episode 10)}}</small>
+|-
+| colspan="2" style="background:#0047AB" |
+! Stephen
+| Porsha
+| Donna
+| Tiffany
+| Ron
+| Ron
+| Lisa
+| Candiace
+| colspan="2"|Johnny
+| colspan="3" style="background:salmon" |''Banished''<br><small>{{nowrap|(Episode 9)}}</small>
+|- 
+| colspan="2" style="background:#0047AB" |
+! Dorinda
+| Donna
+| Donna
+| Tiffany
+| Ron
+| Ron
+| Maura
+| Candiace
+| colspan="4" style="background:darkred; color:white;" |''Murdered''<br><small>{{nowrap|(Episode 9)}}</small>
+|-
+| colspan="2" style="background:#67002f" |
+! Candiace
+| Donna
+| Donna
+| Ron
+| Ron
+| Ron
+| Rob R.
+| Rob R.
+| colspan="5" style="background:salmon" |''Banished''<br><small>(Episode 8)</small>
+|-
+| colspan="2" style="background:#0047AB" |
+! Colton
+| Porsha
+| Donna
+| Tiffany
+| Michael
+| Lisa
+| Lisa
+| colspan="6" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 8)</small>
+|-
+| colspan="2" style="background:#67002f" |
+! Lisa
+| Porsha
+| Donna
+| Tiffany
+| Ron
+| Colton
+| Natalie
+| colspan="6" style="background:salmon" |''Banished''<br><small>(Episode 7)</small>
+|-
+| colspan="2" style="background:#0047AB" |
+! Yam Yam
+| Michael
+| Donna
+| Tiffany
+| Michael
+| Ron
+| colspan="7" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 7)</small>
+|-
+| colspan="2" style="background:#0047AB" |
+! Ron
+| Porsha
+| Donna
+| Tiffany
+| Michael
+| Lisa
+| colspan="7" style="background:salmon" |''Banished''<br><small>(Episode 6)</small>
+|-
+| colspan="2" style="background:#0047AB" |
+! Michael
+| Porsha
+| {{nowrap|Yam Yam}}
+| Ron
+| Ron
+| colspan="8" style="background:salmon" |''Banished''<br><small>(Episode 5)</small>
+|-
+| colspan="2" style="background:#0047AB" | 
+! Monét
+| Michael
+| Donna
+| Tiffany
+| colspan="9" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 5)</small>
+|-
+| colspan="2" style="background:#0047AB" |
+! Tiffany
+| Michael
+| Donna
+| {{nowrap|Yam Yam}}
+| colspan="9" style="background:salmon" |''Banished''<br><small>(Episode 4)</small>
+|-
+| colspan="2" style="background:#0047AB" |
+! Caroline
+| Donna 
+| Donna 
+| colspan="10" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 4)</small>
+|-
+| colspan="2" style="background:#67002F" | 
+! Donna
+| Porsha
+| Michael
+| colspan="10" style="background:salmon" |''Banished''<br><small>(Episode 3)</small>
+|-
+| colspan="2" style="background:#0047AB" | 
+! Rob C.
+| Michael
+| colspan="11" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 3)</small>
+|-
+| colspan="2" style="background:#0047AB" | 
+! Porsha
+| Donna
+| colspan="11" style="background:salmon" |''Banished''<br><small>(Episode 2)</small>
+|-
+| colspan="2" style="background:#0047AB" | 
+! Ian
+| colspan="12" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 2)</small>
+|}
+
+===End game===
+{| class="wikitable" style="text-align:center; width:100%; font-size:90%; line-height:13px"
+|-
+! colspan="2" |Episode
+! colspan="6" |11
+|-
+! colspan="2" |Decision
+|''Banish'' 
+|style="background:#0047AB; color:#FFFFFF;"|Tara
+|''Banish''
+|style="background:#67002f; color:#FFFFFF;"|Eric
+| rowspan="2" bgcolor="#67002F" span style="color:#FFFFFF;"|''Game Over<br>Traitor Win''
+|-
+!colspan="2"|Vote
+|4–0
+|3–1
+|2–1
+|{{nowrap|2–1}}
+|- style="border-top:5px solid"
+|style="background:#67002F" |
+!{{nowrap|Rob R.}}
+|''Banish'' 
+|Tara
+|''Banish''
+|Eric
+|style="background:gold"|'''Winner'''
+|-
+|style="background:#0047AB" |
+!Maura
+|''Banish'' 
+|Tara
+|''Banish''
+|Eric
+|bgcolor="silver" | Runner-up
+|-
+|style="background:#67002F" |
+!Eric
+|''Banish'' 
+|Tara
+|''End Game''
+|{{nowrap|Rob R.}}
+|colspan="2" style="background:salmon" |''Banished''
+|-
+|style="background:#0047AB" |
+!Tara
+|''Banish'' 
+|Eric
+|colspan="4" style="background:salmon" |''Banished''
+|}
+;Notes
+{{notelist}}
+
+== Missions ==
+{| class="wikitable" style="margin:auto; text-align:center"
+!Episode
+!Title
+!Money<br/>available
+!Money<br/>earned
+!Total<br/>pot
+!Shield winner
+|-
+|rowspan="14"| 1
+|rowspan="14"| "Let the Cards Fall As They Will"
+|rowspan="14"| $30,000
+|rowspan="14"| $22,500
+|rowspan="14"| '''$22,500'''
+|style="text-align:center; background:#67002F; color:#FFFFFF"|Candiace
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Caroline
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Colton
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Johnny
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Kristen
+|-
+|style="text-align:center; background:#67002F; color:#FFFFFF"|Lisa
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Maura
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Monét
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Natalie
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Porsha
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Stephen
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Tara
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Tiffany
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Yam Yam
+|-
+| colspan="6" style="text-align:left"| 
+|-
+|rowspan="3"| 2
+|rowspan="3"| "The Death Conga"
+|rowspan="3"| $24,000
+|rowspan="3"| $22,500
+|rowspan="3"| '''$45,000'''
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Caroline
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Colton
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|{{nowrap|Yam Yam}}
+|-
+| colspan="6" style="text-align:left"| 
+|-
+| 3
+| "Show Me Your Faces"
+| $45,000
+| $25,000
+| '''$70,000'''
+| {{N/A}}
+|-
+| colspan="6" style="text-align:left"| 
+|-
+|rowspan="8"| 4
+|rowspan="8"| "Cut the Head off the Snake"
+|rowspan="8"| $20,000
+|rowspan="8"| $20,000
+|rowspan="8"| '''$90,000'''
+|style="text-align:center; background:#67002F; color:#FFFFFF"|Candiace
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Colton
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Dorinda
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Eric
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Kristen
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Mark
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Natalie
+|-
+|style="text-align:center; background:#67002F; color:#FFFFFF"|Rob R
+|-
+|-
+| colspan="6" style="text-align:left"| 
+|-
+|rowspan="15"| 5
+|rowspan="15"| "If You're Gonna Come for Me, I'll Finish You"
+|rowspan="15"| $16,000
+|rowspan="15"| $16,000
+|rowspan="15"| '''$106,000'''
+|style="text-align:center; background:#67002F; color:#FFFFFF"|Candiace
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Colton
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Dorinda
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Eric
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Johnny
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Kristen
+|-
+|style="text-align:center; background:#67002F; color:#FFFFFF"|Lisa
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Mark
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Maura
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Natalie
+|-
+|style="text-align:center; background:#67002F; color:#FFFFFF"|Rob R.
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Ron
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Stephen
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Tara
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Yam Yam
+|-
+| colspan="6" style="text-align:left"| 
+|-
+|6
+|"Planning a Coup"
+|$18,000
+|$15,000
+|'''$121,000'''
+| {{N/A}}
+|-
+| colspan="6" style="text-align:left"| 
+|-
+|7
+|"The Black Banquet"
+|$25,000
+|$17,800
+|'''$138,800'''
+| {{N/A}}
+|-
+| colspan="6" style="text-align:left"| 
+|-
+|8
+|"A Queen Never Comes Off Her Throne"
+|$18,000
+|$12,000
+|'''$150,800'''
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Kristen
+|-
+| colspan="6" style="text-align:left"|
+|-
+|9
+|"Think Outside the Box"
+|$18,000
+|$5,500
+|'''$156,300'''
+| {{N/A}}
+|-
+| colspan="6" style="text-align:left"|
+|-
+|10
+|"Do You Know the Enemy?"
+|$30,000
+|$24,500
+|'''$180,800'''
+|style="text-align:center; background:#67002F; color:#FFFFFF"|Eric
+|-
+| colspan="6" style="text-align:left"|
+|-
+|11
+|"Leap of Faith"
+|$40,000
+|$40,000
+|'''$220,800'''
+| {{N/A}}
+|-
+| colspan="6" style="text-align:left"|
+|}
+
+== Production ==
+Similar to the [[The Traitors (American TV series) season 3|previous seasons]], this season was primary filmed in [[Ardross, Highland|Ardross Castle]] in the [[Scottish Highlands]].<ref>{{cite web |title=Where Is The Traitors Filmed?|url=https://www.cntraveler.com/story/where-is-the-traitors-filmed|website=Condé Nast Traveler|date=2025-11-11|access-date=2026-01-08}}</ref>
+
+== References ==
+{{reflist}}
+
+== External links ==
+* {{Official website|https://www.peacocktv.com/watch/asset/tv/the-traitors/7658497932373259112}}
+* {{IMDb episodes|15557874}}
+
+{{The Traitors in the United States}}
+{{The Traitors}}
+{{Primetime Emmy Award for Outstanding Reality Competition Program}}
+
+{{DEFAULTSORT:Traitors, The (American season 4)}}
+[[Category:The Traitors (American TV series)|04]]
+[[Category:2026 American television seasons]]
