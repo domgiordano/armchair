@@ -1,28 +1,28 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("@/lib/api/social", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/social")>()),
+vi.mock("@armchair/app-core/api/social", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/social")>()),
   getNotifications: vi.fn(),
   markNotificationsRead: vi.fn(),
   acceptFriend: vi.fn(),
   removeFriend: vi.fn(),
 }));
-vi.mock("@/lib/api/groups", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/groups")>()),
   respondToInvite: vi.fn(),
   manageGroup: vi.fn(),
 }));
 
-import { manageGroup, respondToInvite } from "@/lib/api/groups";
+import { manageGroup, respondToInvite } from "@armchair/app-core/api/groups";
 import {
   acceptFriend,
   getNotifications,
   markNotificationsRead,
   removeFriend,
   type Notification,
-} from "@/lib/api/social";
-import { resetNotifications } from "@/lib/social/notifications";
+} from "@armchair/app-core/api/social";
+import { resetNotifications } from "@armchair/app-core/social/notifications";
 import { NotificationList, NotificationsBell, timeAgo } from "./notifications";
 
 const person = (sub: string, name: string) => ({ sub, name, picture: null, avatarKind: "initials" as const });

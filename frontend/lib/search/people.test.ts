@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("@/lib/api/social", () => ({ getFriends: vi.fn(), searchPeople: vi.fn() }));
+vi.mock("@armchair/app-core/api/social", () => ({ getFriends: vi.fn(), searchPeople: vi.fn() }));
 
-import { searchPeople, type Match } from "@/lib/api/social";
+import { searchPeople, type Match } from "@armchair/app-core/api/social";
 
 import { forgetMembers, knownMembers, searchMembers } from "./people";
 

@@ -7,11 +7,11 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ replace: nav.replace, push: nav.push }),
   useSearchParams: () => nav.params,
 }));
-vi.mock("@/lib/auth/use-auth", () => ({
+vi.mock("@armchair/app-core/auth/use-auth", () => ({
   useAuth: () => ({ status: "signedIn", signInWithGoogle: vi.fn(), signOut: vi.fn() }),
 }));
-vi.mock("@/lib/api/client", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/client")>()),
+vi.mock("@armchair/app-core/api/client", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/client")>()),
   getMe: vi.fn(() => new Promise(() => {})),
 }));
 vi.mock("@/lib/api/show", async (importOriginal) => ({
@@ -22,15 +22,15 @@ vi.mock("@/lib/api/leaderboard", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/leaderboard")>()),
   getLeaderboard: vi.fn(),
 }));
-vi.mock("@/lib/api/social", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/social")>()),
+vi.mock("@armchair/app-core/api/social", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/social")>()),
   getFriends: vi.fn(),
   mySub: vi.fn(),
   getNotifications: vi.fn(),
   markNotificationsRead: vi.fn(),
 }));
-vi.mock("@/lib/api/groups", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@/lib/api/groups")>()),
+vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@armchair/app-core/api/groups")>()),
   getGroupDetails: vi.fn(),
   inviteToGroup: vi.fn(),
   manageGroup: vi.fn(),
@@ -47,11 +47,11 @@ import {
   manageGroup,
   respondToInvite,
   type GroupDetail,
-} from "@/lib/api/groups";
+} from "@armchair/app-core/api/groups";
 import { getLeaderboard, type Leaderboard } from "@/lib/api/leaderboard";
 import { getSeason, type Season } from "@/lib/api/show";
-import { getFriends, getNotifications, mySub, type Friends, type Notification } from "@/lib/api/social";
-import { resetNotifications } from "@/lib/social/notifications";
+import { getFriends, getNotifications, mySub, type Friends, type Notification } from "@armchair/app-core/api/social";
+import { resetNotifications } from "@armchair/app-core/social/notifications";
 import { readGroup } from "@/lib/show/group-filter";
 import { GroupRoute } from "./group-screen";
 

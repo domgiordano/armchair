@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn(), getLeaderboard: vi.fn() }));
 vi.mock("@/lib/api/show", () => ({ skipBefore: vi.fn() }));
 
-import { ApiError } from "@/lib/api/client";
+import { ApiError } from "@armchair/app-core/api/client";
 import { getLeaderboard, getOverview, type Leaderboard, type Overview as Data } from "@/lib/api/overview";
 import { skipBefore } from "@/lib/api/show";
 import { Overview } from "./overview";

@@ -10,7 +10,7 @@ import { AvatarStack, displayName } from "@/components/social/parts";
 import type { SocialView } from "@/components/social/social-sheet";
 import { CountUp } from "@/components/ui/count-up";
 import type { MyProfile, Profile } from "@/lib/api/profile";
-import type { Person, Relation } from "@/lib/api/social";
+import type { Person, Relation } from "@armchair/app-core/api/social";
 import { cn, FOCUS } from "@/lib/ui";
 
 const AVATAR = 112;

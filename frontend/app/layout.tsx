@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Poppins } from "next/font/google";
 
-import { SESSION_HINT_SCRIPT } from "@/lib/auth/session-hint";
+import { SESSION_HINT_SCRIPT } from "@armchair/app-core/auth/session-hint";
 
 import "./globals.css";
 

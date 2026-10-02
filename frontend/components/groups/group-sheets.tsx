@@ -19,8 +19,8 @@ import { Sheet } from "@/components/ui/sheet";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { useToast } from "@/components/ui/toast";
-import { deleteGroup, inviteLink, inviteToGroup, leaveGroup, manageGroup, type GroupDetail } from "@/lib/api/groups";
-import type { Friends, Person } from "@/lib/api/social";
+import { deleteGroup, inviteLink, inviteToGroup, leaveGroup, manageGroup, type GroupDetail } from "@armchair/app-core/api/groups";
+import type { Friends, Person } from "@armchair/app-core/api/social";
 import { search } from "@/lib/search/match";
 import { button, EYEBROW, PRIMARY } from "@/lib/ui";
 

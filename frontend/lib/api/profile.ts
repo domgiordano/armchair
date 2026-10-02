@@ -1,6 +1,6 @@
-import { ApiError, request, type AvatarKind, type Me } from "./client";
+import { ApiError, request, type AvatarKind, type Me } from "@armchair/app-core/api/client";
 import type { Member } from "./show";
-import type { Person } from "./social";
+import type { Person } from "@armchair/app-core/api/social";
 
 /** /users/me as its owner sees it: the effective name and photo plus what they can switch to. */
 export interface MyProfile extends Me {

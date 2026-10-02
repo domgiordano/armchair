@@ -1,5 +1,5 @@
 """
-GET /users/get?season=dwts-35|all[&sub=<sub>] - a profile: display name, photo,
+GET /users/get?season=dwts-35|all[&show=dwts][&sub=<sub>] - a profile: display name, photo,
 member since, a season summary with its leaderboard place, an all-time summary,
 recent activity, a breakdown of how they score (`detail`) and every season
 they've scored (`history`). Without `sub`, or with the caller's own, it also
@@ -20,8 +20,9 @@ plus the one dance each side of them the owner called best and worst.
 
 All-time, places and history are the leaderboard's BOARD rows through
 gate.standing and gate.places, with the same floor. `season=all` sums every
-DWTS season the owner has a dance counted in. Recent activity is how many
-dances they answered and scored per episode: counts, never a value.
+season of `show`, dwts by default, the owner has a dance counted in. Recent
+activity is how many dances they answered and scored per episode: counts,
+never a value.
 """
 
 from __future__ import annotations
@@ -41,6 +42,7 @@ from lambdas.common.episodes_dynamo import (
     season_index,
     season_ref,
     season_rows,
+    show_ref,
 )
 from lambdas.common.gate import (
     answered,
@@ -57,8 +59,6 @@ from lambdas.common.users_dynamo import cards
 
 MIN_DANCES = 5
 RECENT = 5
-# The only show with past seasons to sum across.
-SHOW = "dwts"
 
 
 @api_handler("users_get")
@@ -68,7 +68,7 @@ def handler(event, context):
     sub = params.get("sub") or caller
     own = sub == caller
     every = params.get("season") == board_dynamo.ALL
-    show, season = (SHOW, None) if every else season_ref(params)
+    show, season = (show_ref(params), None) if every else season_ref(params)
 
     user = table("USERS_TABLE").get_item(Key={"sub": sub}).get("Item")
     # A block either way hides the profile, answering like a sub that doesn't exist.
