@@ -2,6 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
 const nav = vi.hoisted(() => ({ path: "/stats/", search: "", push: vi.fn() }));
+const traitors = vi.hoisted(() => ({ getTraitorsSeason: vi.fn(), submitWinner: vi.fn() }));
 
 vi.mock("next/navigation", () => ({
   usePathname: () => nav.path,
@@ -12,6 +13,7 @@ vi.mock("@armchair/app-core/auth/use-auth", () => ({ useAuth: () => ({ signOut: 
 vi.mock("@armchair/app-core/api/client", () => ({
   getMe: vi.fn(async () => ({ sub: "me", email: "me@example.com", name: "Me Myself", picture: null })),
 }));
+vi.mock("@/lib/api/traitors", () => traitors);
 vi.mock("@/lib/api/seasons", () => ({
   getSeasons: vi.fn(async (show: string) =>
     ({
@@ -36,6 +38,14 @@ beforeEach(() => {
   nav.path = "/stats/";
   nav.search = "";
   localStorage.clear();
+  traitors.getTraitorsSeason.mockImplementation(async (season: string) => ({
+    season,
+    title: "",
+    current: true,
+    needsBet: false,
+    bet: null,
+    episodes: [],
+  }));
 });
 afterEach(() => vi.clearAllMocks());
 
@@ -77,4 +87,20 @@ it("changes season from the picker", async () => {
   fireEvent.click(picker);
   fireEvent.click(await screen.findByRole("option", { name: "Season 4" }));
   expect(nav.push).toHaveBeenCalledWith("/stats/?season=tus-4");
+});
+
+it("holds a live season behind the winner bet, with no tabs", async () => {
+  traitors.getTraitorsSeason.mockResolvedValue({
+    season: "tus-5",
+    title: "",
+    current: true,
+    needsBet: true,
+    episodes: 12,
+    released: 0,
+    players: [{ id: "ava-stone", name: "Ava Stone", headshot: null }],
+  });
+  shell();
+  expect(await screen.findByRole("heading", { name: "Who takes the pot?" })).toBeTruthy();
+  expect(screen.queryByText("Showing tus-5")).toBeNull();
+  expect(screen.queryByRole("link", { name: "Leaderboard" })).toBeNull();
 });

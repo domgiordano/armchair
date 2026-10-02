@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
+import { SeasonDataContext, useSeasonLoad } from "@/components/season-data";
 import { SeasonProvider, useShellSeason } from "@/components/season-provider";
 import { Avatar } from "@/components/ui/avatar";
 import { EmberGlow } from "@/components/ui/ember-glow";
@@ -13,6 +14,7 @@ import { SkeletonList } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { TartanBand } from "@/components/ui/tartan-band";
 import { ToastProvider } from "@/components/ui/toast";
+import { WinnerBet } from "@/components/winner-bet";
 import { seasonLabel, withSeason, type Edition } from "@/lib/seasons";
 import { cn, FOCUS } from "@/lib/ui";
 import { getMe, type Me } from "@armchair/app-core/api/client";
@@ -64,7 +66,10 @@ export function AppShell({ title, children }: AppShellProps) {
 
 function Shell({ title, children }: AppShellProps) {
   const pathname = usePathname();
-  const { season, failed, retry } = useShellSeason();
+  const { season } = useShellSeason();
+  const load = useSeasonLoad(season);
+  // The winner bet comes before anything else in a live season, tabs included.
+  const gated = load.data?.needsBet === true;
   const current = activeTab(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
@@ -96,7 +101,10 @@ function Shell({ title, children }: AppShellProps) {
           >
             <MenuIcon />
           </button>
-          <Link href={href("/")} className={`${FOCUS} rounded-sm px-1 font-title text-2xl font-bold text-bone sm:text-3xl`}>
+          <Link
+            href={href("/")}
+            className={`${FOCUS} rounded-sm px-1 font-title text-2xl font-bold text-bone sm:text-3xl`}
+          >
             Traitors
           </Link>
           <div className="ml-4 hidden w-56 md:block">
@@ -107,27 +115,29 @@ function Shell({ title, children }: AppShellProps) {
             <AccountMenu />
           </div>
         </div>
-        <nav aria-label="Main" className="mx-auto hidden max-w-5xl px-2 md:block lg:px-4">
-          <ul className="flex gap-1">
-            {TABS.map((t) => (
-              <li key={t.href}>
-                <Link
-                  href={href(t.href)}
-                  aria-current={t === current ? "page" : undefined}
-                  className={cn(
-                    FOCUS,
-                    "relative flex min-h-11 items-center px-3 font-display text-sm font-semibold tracking-[0.12em] uppercase transition-colors after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:transition-transform after:duration-300",
-                    t === current
-                      ? "text-candle after:scale-x-100 after:bg-candle after:shadow-[0_0_10px_rgb(233_185_73/0.8)]"
-                      : "text-ash after:scale-x-0 after:bg-gilt hover:text-bone hover:after:scale-x-100 active:text-parchment",
-                  )}
-                >
-                  {t.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {!gated && (
+          <nav aria-label="Main" className="mx-auto hidden max-w-5xl px-2 md:block lg:px-4">
+            <ul className="flex gap-1">
+              {TABS.map((t) => (
+                <li key={t.href}>
+                  <Link
+                    href={href(t.href)}
+                    aria-current={t === current ? "page" : undefined}
+                    className={cn(
+                      FOCUS,
+                      "relative flex min-h-11 items-center px-3 font-display text-sm font-semibold tracking-[0.12em] uppercase transition-colors after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:transition-transform after:duration-300",
+                      t === current
+                        ? "text-candle after:scale-x-100 after:bg-candle after:shadow-[0_0_10px_rgb(233_185_73/0.8)]"
+                        : "text-ash after:scale-x-0 after:bg-gilt hover:text-bone hover:after:scale-x-100 active:text-parchment",
+                    )}
+                  >
+                    {t.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
         <TartanBand />
       </header>
 
@@ -139,28 +149,30 @@ function Shell({ title, children }: AppShellProps) {
           </button>
           <span className="font-title text-2xl font-bold text-bone">Traitors</span>
         </div>
-        <nav aria-label="Main">
-          <ul className="flex flex-col gap-1">
-            {TABS.map((t) => (
-              <li key={t.href}>
-                <Link
-                  href={href(t.href)}
-                  aria-current={t === current ? "page" : undefined}
-                  onClick={() => setMenuOpen(false)}
-                  className={cn(
-                    FOCUS,
-                    "flex min-h-12 items-center rounded-sm border-l-2 px-3 font-display text-sm font-semibold tracking-[0.12em] uppercase transition-colors",
-                    t === current
-                      ? "border-candle bg-cloak text-candle"
-                      : "border-transparent text-parchment hover:bg-cloak/60 hover:text-bone active:bg-cloak",
-                  )}
-                >
-                  {t.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {!gated && (
+          <nav aria-label="Main">
+            <ul className="flex flex-col gap-1">
+              {TABS.map((t) => (
+                <li key={t.href}>
+                  <Link
+                    href={href(t.href)}
+                    aria-current={t === current ? "page" : undefined}
+                    onClick={() => setMenuOpen(false)}
+                    className={cn(
+                      FOCUS,
+                      "flex min-h-12 items-center rounded-sm border-l-2 px-3 font-display text-sm font-semibold tracking-[0.12em] uppercase transition-colors",
+                      t === current
+                        ? "border-candle bg-cloak text-candle"
+                        : "border-transparent text-parchment hover:bg-cloak/60 hover:text-bone active:bg-cloak",
+                    )}
+                  >
+                    {t.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
         <SeasonPicker />
         <TartanBand className="mt-auto" />
       </Sheet>
@@ -170,19 +182,24 @@ function Shell({ title, children }: AppShellProps) {
         aria-label={title}
         className="mx-auto flex w-full max-w-md flex-1 animate-page-in flex-col gap-5 px-4 py-6 sm:px-6 md:max-w-3xl"
       >
-        {season !== null ? (
-          children
-        ) : failed ? (
-          <ErrorState what="the seasons" message="the castle didn't answer" retry={retry} />
-        ) : (
-          <SkeletonList label="Finding the season" rows={3} row="h-20" />
-        )}
+        <Content load={load}>{children}</Content>
       </main>
       <footer className="border-t border-gilt/20 px-6 py-5 text-center text-sm text-ash">
         Not affiliated with The Traitors, BBC, NBC or Peacock.
       </footer>
     </div>
   );
+}
+
+function Content({ load, children }: { load: ReturnType<typeof useSeasonLoad>; children: ReactNode }) {
+  const { season, failed, retry } = useShellSeason();
+  const { data, error, reload } = load;
+  if (season === null && failed)
+    return <ErrorState what="the seasons" message="the castle didn't answer" retry={retry} />;
+  if (data === null && error !== null) return <ErrorState what="this season" message={error} retry={reload} />;
+  if (data === null) return <SkeletonList label="Opening the season" rows={3} row="h-20" />;
+  if (data.needsBet) return <WinnerBet key={data.season} gate={data} onSealed={reload} />;
+  return <SeasonDataContext value={{ view: data, reload }}>{children}</SeasonDataContext>;
 }
 
 const EDITION_LABELS: [Edition, string][] = [
@@ -259,7 +276,11 @@ function AccountMenu() {
         onClick={() => setOpen((o) => !o)}
         className={cn(ICON_BUTTON, "rounded-full")}
       >
-        {me ? <Avatar name={me.name ?? me.email} picture={me.picture} size={34} /> : <span className="size-[34px] skeleton rounded-full" />}
+        {me ? (
+          <Avatar name={me.name ?? me.email} picture={me.picture} size={34} />
+        ) : (
+          <span className="size-[34px] skeleton rounded-full" />
+        )}
       </button>
       {open && (
         <div className="absolute top-full right-0 z-40 mt-2 flex w-56 flex-col gap-1 rounded-sm border border-gilt/50 bg-stone p-1.5 shadow-xl shadow-night/70 animate-pop-in">

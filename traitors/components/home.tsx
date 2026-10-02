@@ -3,8 +3,8 @@
 import { useSyncExternalStore } from "react";
 
 import { AppShell } from "@/components/app-shell";
-import { ComingSoon } from "@/components/coming-soon";
 import { Landing } from "@/components/landing";
+import { Overview } from "@/components/overview";
 import { likelySignedIn } from "@armchair/app-core/auth/session-hint";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
 
@@ -21,7 +21,7 @@ export function Home() {
   if (status === "signedIn") {
     return (
       <AppShell title="Overview">
-        <ComingSoon what="Your overview" />
+        <Overview />
       </AppShell>
     );
   }
