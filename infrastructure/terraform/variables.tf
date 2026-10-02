@@ -22,6 +22,12 @@ variable "hub_domain_name" {
   default     = "armchairjudge.com"
 }
 
+variable "traitors_domain_name" {
+  description = "Public hostname for the Traitors companion. Also its bucket's name; lives in the hub's zone."
+  type        = string
+  default     = "traitors.armchairjudge.com"
+}
+
 variable "route53_zone_name" {
   description = "Hosted zone that domain_name lives in."
   type        = string

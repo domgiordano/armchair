@@ -32,3 +32,13 @@ output "hub_bucket" {
   description = "Bucket the hub deploy syncs to."
   value       = module.hub.s3_bucket_id
 }
+
+output "traitors_url" {
+  description = "Traitors companion."
+  value       = "https://${var.traitors_domain_name}"
+}
+
+output "traitors_bucket" {
+  description = "Bucket the Traitors deploy syncs to."
+  value       = module.traitors.s3_bucket_id
+}

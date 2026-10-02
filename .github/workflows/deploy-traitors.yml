@@ -1,0 +1,38 @@
+name: Deploy Traitors
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "traitors/**"
+      - "packages/app-core/**"
+      - ".github/workflows/deploy-traitors.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  actions: read # wait-for-terraform finds the Terraform run on this commit
+
+jobs:
+  wait-for-terraform:
+    uses: ./.github/workflows/wait-for-terraform.yml
+
+  deploy:
+    needs: wait-for-terraform
+    uses: Xomware/github-actions/.github/workflows/deploy-frontend-s3.yml@v1
+    with:
+      app: armchair
+      role-key: AWS_DEPLOY_ROLE_ARN
+      node-version: '22'
+      root: traitors
+      ssm: |
+        NEXT_PUBLIC_COGNITO_USER_POOL_ID=/armchair/shared/cognito/user-pool-id
+        NEXT_PUBLIC_COGNITO_CLIENT_ID=/armchair/shared/cognito/clients/traitors-id
+        NEXT_PUBLIC_COGNITO_DOMAIN=/armchair/shared/cognito/hosted-ui-domain
+      # postbuild's verify-build fails unless the values above reached the bundle.
+      build-command: REQUIRE_AUTH_ENV=1 npm run build
+      dist-dir: out
+      bucket: traitors.armchairjudge.com
+      domain: traitors.armchairjudge.com
+      nextjs: true
