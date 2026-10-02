@@ -210,6 +210,22 @@ def test_sort_template_keeps_the_display_name():
     assert s["winners"] == ['Chris "CT" Tamburello']
 
 
+def test_sort_template_keeps_the_link():
+    assert season(SORTED)["contestants"][0]["article"] == "CT Tamburello"
+
+
+def test_name_cell_articles():
+    us4 = {p["name"]: p["article"] for p in parse("traitors-us4-1376576846")["contestants"]}
+    assert us4["Ian Terry"] == "Ian Terry"
+    # {{sortname}}'s third parameter is the link target; nolink=1 means none.
+    assert us4["Natalie Anderson"] == "Natalie Anderson (television personality)"
+    assert us4["Tiffany Mitchell"] is None
+    # Dorinda's cell links her earlier season on a second line: that's not her.
+    assert us4["Dorinda Medley"] == "Dorinda Medley"
+    nb = {p["name"]: p["article"] for p in parse("traitors-us5-1377883386")["contestants"]}
+    assert (nb["Xavier Scruggs"], nb["Kim Daily"]) == ("Xavier Scruggs", None)
+
+
 def test_aliases_for_initials_and_surnames():
     # US season 3's table calls Bob the Drag Queen "Bob TDQ" and Chanel Ayan "Ayan".
     names = aliases(["Bob the Drag Queen", "Bob Harper", "Chanel Ayan"])

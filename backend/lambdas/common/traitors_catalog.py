@@ -61,11 +61,15 @@ def items(
     open_at: str,
     release_time: str | None = None,
     headshots: dict[str, dict] | None = None,
+    summary: dict | None = None,
+    bios: dict[str, dict | None] | None = None,
 ) -> list[dict]:
     """META, the season-picker row, one EP per episode and one PLAYER per contestant.
 
     Nothing gated is written here: factions, exits and results come from the poller.
     `open_at` (UTC) closes every episode released before it: those show results and take no picks.
+    `summary` is the season article's lead and `bios` each linked article's, both from
+    wiki_fetch, fetched by the caller so this stays pure.
     """
     edition = EDITIONS[show]
     pk = f"SEASON#{show}#{number}"
@@ -86,6 +90,7 @@ def items(
             "episodes": len(parsed["episodes"]),
             "openAt": open_at,
             "current": current,
+            "summary": summary,
         },
         {
             "pk": f"SEASONS#{show}",
@@ -108,14 +113,21 @@ def items(
         }
         for e in parsed["episodes"]
     ]
+    # A player with no registry headshot gets no `headshot` key, so a re-seed or discovery
+    # leaves one that find_traitors_headshots.py wrote straight onto the PLAYER.
+    shots = headshots or {}
     rows += [
         {
             "pk": pk,
-            "sk": f"PLAYER#{slug(name)}",
-            "name": name,
-            "aliases": sorted(a for a, full in short.items() if full == name and a != name.lower()),
-            "headshot": (headshots or {}).get(name),
+            "sk": f"PLAYER#{slug(p['name'])}",
+            "name": p["name"],
+            "aliases": sorted(
+                a for a, full in short.items() if full == p["name"] and a != p["name"].lower()
+            ),
+            **({"headshot": shots[p["name"]]} if shots.get(p["name"]) else {}),
+            "article": p.get("article"),
+            "bio": (bios or {}).get(p.get("article") or ""),
         }
-        for name in names
+        for p in parsed["contestants"]
     ]
     return rows

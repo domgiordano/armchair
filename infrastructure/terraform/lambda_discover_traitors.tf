@@ -64,8 +64,9 @@ resource "aws_iam_role_policy" "discover_traitors" {
 
 resource "aws_lambda_function" "discover_traitors" {
   # Folder lambdas/cron_discover_traitors: deploy-backend.yml maps underscores to dashes.
-  # The timeout covers about 15 sequential Wikipedia fetches, each allowed 10 s, plus
-  # publishing every past season on the first run (about 120 episodes).
+  # The timeout covers about 40 sequential Wikipedia fetches (season pages, then each
+  # season's lead and cast bios), each allowed 10 s, plus publishing every past season
+  # on the first run (about 120 episodes).
   function_name = local.discover_traitors_name
   description   = "Find and seed Traitors seasons, and move the current flag"
   role          = aws_iam_role.discover_traitors.arn

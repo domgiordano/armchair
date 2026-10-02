@@ -8,8 +8,10 @@ from lambdas.common.traitors_catalog import items
 from lambdas.common.traitors_parse import season
 from lambdas.cron_poll_traitors import handler as poller
 from lambdas.people_search import handler as search
+from lambdas.traitors_credits.handler import handler as credits_handler
 from lambdas.traitors_history.handler import handler as history_handler
 from lambdas.traitors_player.handler import handler as player_handler
+from lambdas.traitors_season.handler import handler as season_handler
 from scripts.seed_traitors_season import write
 from tests.conftest import BOARD_TABLE, CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
 from tests.events import authorized_event
@@ -22,6 +24,7 @@ PAGES = {4: US4, 5: NB}
 # Every US season 4 episode is out; New Blood episode 5 releases 2026-10-09T00:00:00Z.
 NOW = poller.epoch("2026-10-10T00:00:00Z")
 ROB = {"image": "rob.jpg", "sourceUrl": "https://example.com/rob", "source": "search"}
+ROB_BIO = {"text": "Rob Rausch is a snake handler.", "sourceUrl": "https://example.com/rob-wiki"}
 
 
 @pytest.fixture
@@ -40,8 +43,8 @@ def db(aws, monkeypatch):
         write(catalog, rows, keep=set())
     catalog.update_item(
         Key={"pk": "SEASON#tus#4", "sk": "PLAYER#rob-rausch"},
-        UpdateExpression="SET headshot = :h",
-        ExpressionAttributeValues={":h": ROB},
+        UpdateExpression="SET headshot = :h, bio = :b",
+        ExpressionAttributeValues={":h": ROB, ":b": ROB_BIO},
     )
     monkeypatch.setattr(poller.time, "time", lambda: NOW)
     monkeypatch.setattr(
@@ -166,11 +169,19 @@ def test_player_past_season(db):
         "id": "rob-rausch",
         "name": "Rob Rausch",
         "headshot": "rob.jpg",
+        "headshotCredit": {
+            "source": "search",
+            "sourceUrl": "https://example.com/rob",
+            "author": None,
+            "license": None,
+        },
+        "bio": ROB_BIO,
         "seasons": [
             {
                 "season": "tus-4",
                 "number": 4,
                 "current": False,
+                "championship": True,
                 "finish": {"ep": 11, "how": "winner"},
                 "faction": "Traitor",
                 "votes": [{"ep": ep, "received": 1 if ep in (7, 8) else 0} for ep in range(2, 12)],
@@ -201,6 +212,7 @@ def test_player_current_season_shows_only_closed_exits(db):
             "season": "tus-5",
             "number": 5,
             "current": True,
+            "championship": False,
             "finish": None,
             "faction": None,
             "votes": None,
@@ -267,3 +279,92 @@ def test_history_refuses_the_current_season(db):
 def test_history_bad_season(db):
     assert get(history_handler, "/traitors/history", season="dwts-3")[0] == 400
     assert get(history_handler, "/traitors/history", season="tus-9")[0] == 404
+
+
+def test_player_without_a_headshot_has_no_credit(db):
+    backfill("tus-4")
+    index(db)
+    _, body = get(player_handler, "/traitors/player", show="tus", id="maura-higgins")
+    assert (body["data"]["headshot"], body["data"]["headshotCredit"]) == (None, None)
+
+
+def test_credits(db):
+    commons = {
+        "image": "ian.webp",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:IanTerryBeach.jpg",
+        "source": "commons",
+        "author": "Someone",
+        "license": "CC BY-SA 4.0",
+    }
+    db.Table(CATALOG_TABLE).update_item(
+        Key={"pk": "SEASON#tus#4", "sk": "PLAYER#ian-terry"},
+        UpdateExpression="SET headshot = :h",
+        ExpressionAttributeValues={":h": commons},
+    )
+    status, body = get(credits_handler, "/traitors/credits", season="tus-4")
+    assert status == 200
+    assert body["data"] == [
+        {
+            "id": "ian-terry",
+            "name": "Ian Terry",
+            "image": "ian.webp",
+            "source": "commons",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:IanTerryBeach.jpg",
+            "author": "Someone",
+            "license": "CC BY-SA 4.0",
+        },
+        {
+            "id": "rob-rausch",
+            "name": "Rob Rausch",
+            "image": "rob.jpg",
+            "source": "search",
+            "sourceUrl": "https://example.com/rob",
+            "author": None,
+            "license": None,
+        },
+    ]
+    assert get(credits_handler, "/traitors/credits", season="tus-5")[1]["data"] == []
+
+
+def test_credits_bad_season(db):
+    assert get(credits_handler, "/traitors/credits", season="dwts-3")[0] == 400
+    assert get(credits_handler, "/traitors/credits", season="tus-9")[0] == 404
+
+
+def test_season_overview_of_a_past_season(db):
+    backfill("tus-4")
+    status, body = get(season_handler, "/traitors/season", season="tus-4")
+    assert status == 200
+    data = body["data"]
+    assert data["needsBet"] is False and "betRoster" not in data
+    assert data["winners"] == [
+        {"id": "rob-rausch", "name": "Rob Rausch", "headshot": "rob.jpg", "faction": "Traitor"}
+    ]
+    cast = {p["id"]: p for p in data["cast"]}
+    assert len(cast) == 23
+    assert cast["maura-higgins"]["exit"] == {"ep": 11, "how": "runner-up"}
+    assert (cast["ian-terry"]["faction"], cast["ian-terry"]["exit"]) == (
+        "Faithful",
+        {"ep": 2, "how": "murdered"},
+    )
+
+
+def test_season_cast_of_the_current_season_shows_closed_exits_only(db):
+    backfill()
+    _, body = get(season_handler, "/traitors/season", season="tus-5")
+    cast = {p["id"]: p for p in body["data"]["cast"]}
+    assert "winners" not in body["data"]
+    # Madeline's banishment is in episode 2, still open to picks: no X, no faction.
+    assert (cast["madeline-kostopulos"]["exit"], cast["madeline-kostopulos"]["faction"]) == (
+        None,
+        None,
+    )
+    assert not any(p["exit"] or p["faction"] for p in cast.values())
+    db.Table(CATALOG_TABLE).update_item(
+        Key={"pk": "SEASON#tus#5", "sk": "META"},
+        UpdateExpression="SET openAt = :o",
+        ExpressionAttributeValues={":o": "2026-10-01T00:00:00Z"},
+    )
+    _, body = get(season_handler, "/traitors/season", season="tus-5")
+    madeline = next(p for p in body["data"]["cast"] if p["id"] == "madeline-kostopulos")
+    assert (madeline["exit"], madeline["faction"]) == ({"ep": 2, "how": "banished"}, "Faithful")
