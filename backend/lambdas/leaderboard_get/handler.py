@@ -1,14 +1,14 @@
 """
-GET /leaderboard/get?season=dwts-35|all&scope=global|friends|group[&group=<gid>] - users
-ranked by mean absolute error against the judges' panel mean.
+GET /leaderboard/get?season=dwts-35|all[&show=dwts]&scope=global|friends|group[&group=<gid>]
+- users ranked by mean absolute error against the judges' panel mean.
 
 Reads only the per-user sums common/board_dynamo.py keeps, never a score row,
 and shapes each through gate.standing, so no per-dance value leaves. A user
 ranks after MIN_DANCES scored dances; below that they are listed unranked with
 a count. Ties go to more dances, then share a rank. `season=all` is all-time
-across DWTS seasons. `scope=friends` is the caller and their accepted friends;
-`scope=group` is 403 unless the caller is a member. The caller's own standing
-is always in `me`. Identity is the Cognito sub.
+across every season of `show`, dwts by default. `scope=friends` is the caller
+and their accepted friends; `scope=group` is 403 unless the caller is a member.
+The caller's own standing is always in `me`. Identity is the Cognito sub.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ from lambdas.common.api import (
     query,
     require,
 )
-from lambdas.common.episodes_dynamo import season_ref, season_rows
+from lambdas.common.episodes_dynamo import season_ref, season_rows, show_ref
 from lambdas.common.gate import places, standing
 from lambdas.common.groups_dynamo import members
 from lambdas.common.social_dynamo import peers, status
@@ -32,8 +32,6 @@ from lambdas.common.users_dynamo import cards
 
 MIN_DANCES = 5
 LIMIT = 100
-# The only show with a leaderboard; `all` needs one to know which boards to sum.
-SHOW = "dwts"
 
 
 @api_handler("leaderboard_get")
@@ -41,7 +39,7 @@ def handler(event, context):
     sub = caller_sub(event)
     params = query(event)
     if params.get("season") == board_dynamo.ALL:
-        show, season, label = SHOW, board_dynamo.ALL, board_dynamo.ALL
+        show, season, label = show_ref(params), board_dynamo.ALL, board_dynamo.ALL
     else:
         show, season = season_ref(params)
         label = f"{show}-{season}"
