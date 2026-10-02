@@ -54,6 +54,8 @@ data "aws_iam_policy_document" "deploy" {
       "${module.web.s3_bucket_arn}/*",
       module.hub.s3_bucket_arn,
       "${module.hub.s3_bucket_arn}/*",
+      module.traitors.s3_bucket_arn,
+      "${module.traitors.s3_bucket_arn}/*",
     ]
   }
 
@@ -70,10 +72,14 @@ data "aws_iam_policy_document" "deploy" {
     sid       = "InvalidateCache"
     effect    = "Allow"
     actions   = ["cloudfront:CreateInvalidation", "cloudfront:GetInvalidation"]
-    resources = [module.web.cloudfront_distribution_arn, module.hub.cloudfront_distribution_arn]
+    resources = [
+      module.web.cloudfront_distribution_arn,
+      module.hub.cloudfront_distribution_arn,
+      module.traitors.cloudfront_distribution_arn,
+    ]
   }
 
-  # The frontend and hub builds bake these into the bundle. xomware-infrastructure
+  # The frontend, hub and Traitors builds bake these into the bundle. xomware-infrastructure
   # owns the Cognito ones (cognito_armchair.tf, cognito_armchair_google.tf).
   statement {
     sid     = "ReadCognitoConfig"
@@ -85,7 +91,8 @@ data "aws_iam_policy_document" "deploy" {
         "hosted-ui-domain",
         "clients/dwts-id",
         "clients/hub-id",
-      ] : "arn:aws:ssm:${var.aws_region}:${local.account_id}:parameter/armchair/shared/cognito/${name}"
+        "clients/traitors-id",
+      ]: "arn:aws:ssm:${var.aws_region}:${local.account_id}:parameter/armchair/shared/cognito/${name}"
     ]
   }
 
@@ -167,13 +174,13 @@ resource "aws_iam_role_policy" "deploy_seed" {
   policy = data.aws_iam_policy_document.deploy_seed.json
 }
 
-# The Backfill Scores workflow invokes the poller with {"backfill": true}.
+# The Backfill Scores and Backfill Traitors workflows invoke the pollers with {"backfill": true}.
 data "aws_iam_policy_document" "deploy_backfill" {
   statement {
     sid       = "InvokePoller"
     effect    = "Allow"
     actions   = ["lambda:InvokeFunction"]
-    resources = [aws_lambda_function.poll_wiki.arn]
+    resources = [aws_lambda_function.poll_wiki.arn, aws_lambda_function.poll_traitors.arn]
   }
 }
 

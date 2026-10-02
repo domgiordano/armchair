@@ -1,0 +1,448 @@
+{{Short description|British reality television series}}
+{{For-multi|the British miniseries|Traitors (TV series)|other uses|The Traitors (disambiguation)|the celebrity spin-off|The Celebrity Traitors}}
+{{Use dmy dates|date=October 2025}}
+{{Infobox television
+| image                = The Traitors UK logo.png
+| image_alt            =
+| caption              = 
+| alt_name             = ''The Traitors UK''
+| genre                = {{Plainlist|
+* Reality
+* Game show
+}}
+| creator              = 
+| based_on             = {{Based on|''[[De Verraders]]''|[[Marc Pos]]|Jasper Hoogendoorn}}
+| developer            = 
+| writer               = 
+| story                = 
+| director             = 
+| creative_director    = 
+| presenter            = [[Claudia Winkleman]]
+| starring             = 
+| theme_music_composer = Sam Watts<ref name="auto">{{Cite web |title=Sam Watts {{!}} Composer – Film and television composer |url=https://samwatts.com/ |access-date=23 December 2022 |language=en-US |archive-date=23 December 2022 |archive-url=https://web.archive.org/web/20221223202128/https://samwatts.com/ |url-status=live }}</ref>
+| open_theme           = 
+| end_theme            = 
+| country              = United Kingdom
+| language             = English
+| num_series           = 4<!-- Increment when new series begin. -->
+| num_episodes         = 48<!-- as of 23 January 2026-->
+| list_episodes        = 
+| executive_producer   = 
+| producer             = 
+| location             = [[Ardross, Highland]], Scotland
+| cinematography       = 
+| camera               = Multi-camera
+| runtime              = 59 minutes
+| company              = [[Studio Lambert]]
+| budget               = 
+| network              = [[BBC One]]
+| first_aired          = {{Start date|2022|11|29|df=yes}}
+| last_aired           = present
+| related              = ''[[The Celebrity Traitors]]''
+}}
+
+'''''The Traitors''''' (also known as '''''The Traitors UK''''') is a British reality television series broadcast on [[BBC One]], based on the Dutch series ''[[De Verraders]]''. It was first broadcast on 29 November 2022 and is hosted by [[Claudia Winkleman]].
+
+Following the premise of ''De Verraders'', the show features a group of contestants participating in a [[social deduction game]] similar to [[Mafia (party game)|Mafia or Werewolf]], set in and among the grounds of [[Ardross, Highland|Ardross Castle]] in Scotland. During the game, a small group of contestants become the titular "Traitors," and must work together to eliminate the other contestants to win a grand prize, while the remaining contestants become "Faithful" and are tasked to discover and banish the Traitors by voting them out to win the grand prize.<ref>{{Cite web |last=Dubey |first=Shivani |date=11 November 2022 |title=Strictly's Claudia Winkleman to host BBC's psychological reality competition The Traitors |url=https://www.digitalspy.com/tv/reality-tv/a41938181/strictly-claudia-winkleman-bbc-the-traitors/ |access-date=8 December 2022 |website=[[Digital Spy]] |language=en-GB |archive-date=18 November 2022 |archive-url=https://web.archive.org/web/20221118030247/https://www.digitalspy.com/tv/reality-tv/a41938181/strictly-claudia-winkleman-bbc-the-traitors/ |url-status=live }}</ref><ref>{{Cite web |last=Duke |first=Simon |date=8 December 2022 |title=The Traitors remaining episodes dates confirmed by BBC |url=https://www.chroniclelive.co.uk/news/tv/when-the-traitors-on-bbc-25688883 |access-date=8 December 2022 |website=ChronicleLive |language=en |archive-date=7 December 2022 |archive-url=https://web.archive.org/web/20221207225657/https://www.chroniclelive.co.uk/news/tv/when-the-traitors-on-bbc-25688883 |url-status=live }}</ref><ref>{{Cite news |date=22 December 2022 |title=The Traitors: Why viewers became so loyal to the BBC reality series |language=en-GB |work=BBC News |url=https://www.bbc.com/news/entertainment-arts-63970819 |access-date=22 December 2022 |first1=Steven |last1=McIntosh |archive-date=22 December 2022 |archive-url=https://web.archive.org/web/20221222001204/https://www.bbc.com/news/entertainment-arts-63970819 |url-status=live }}</ref>
+
+Since the show launched, it has become a huge success for the [[BBC]], with viewing figures reaching 11 million by 2026. It has become one of the most watched British reality gameshows of all time. The show has gained a [[cult following]].<ref>{{cite web |last1=Dray |first1=Kayleigh |title=The Traitors isn't just addictive; it's a pop culture phenomenon. Here's why. |url=https://www.stylist.co.uk/entertainment/tv/the-traitors-season-3-cultural-impact/950298 |website=stylist.co.uk |publisher=Stylist magazine |access-date=29 January 2025 |archive-date=30 October 2025 |archive-url=https://web.archive.org/web/20251030074918/https://www.stylist.co.uk/entertainment/tv/the-traitors-season-3-cultural-impact/950298 |url-status=live }}</ref><ref>{{cite web |last1=Evans |first1=Greg |title=The Traitors finale viewing figures set new record |url=https://www.independent.co.uk/arts-entertainment/tv/news/the-traitors-finale-viewing-figures-b2686779.html |website=The independent |date=27 January 2025 |access-date=29 January 2025 |archive-date=27 January 2025 |archive-url=https://web.archive.org/web/20250127121136/https://www.independent.co.uk/arts-entertainment/tv/news/the-traitors-finale-viewing-figures-b2686779.html |url-status=live }}</ref> In 2025, a celebrity spin-off titled ''[[The Celebrity Traitors]]'' was created.
+
+The British show also acts as a sister show to the [[The Traitors (American TV series)|American version]], with both being produced by [[Studio Lambert]] for the BBC and [[Peacock (streaming service)|Peacock]]. They share the same location, props, and missions, with the main difference being the hosts.<ref>{{Cite news |last=Bryan |first=Scott |date=January 12, 2023 |title='The Traitors' Was a Sensation in Britain. Can It Conquer the U.S.? |language=en-US |work=The New York Times |url=https://www.nytimes.com/2023/01/12/arts/television/the-traitors-us-show.html |access-date=July 12, 2023 |issn=0362-4331}}</ref>
+
+==Format==
+
+Over twenty contestants arrive at a castle in the [[Scottish Highlands]] where they will spend their entire time for the duration of the game. On the arrival day, host Claudia Winkleman picks at least three contestants to be called "Traitors" and the rest are automatically called "Faithful". The television audience can see who have been chosen as Traitors, but the Faithful do not know their number or identity. Should the Faithful contestants eliminate all the Traitors, they will share the prize fund. If a Traitor makes it to the end, they receive the money.
+
+Each night, the Traitors come together and decide upon one Faithful contestant to "murder" – and that person will leave the game immediately. The remaining Faithful contestants will not know who has been eliminated until the following day, when they do not arrive for breakfast. 
+
+Each day, the group participates in missions to win money for the prize fund, which can reach up to £120,000 by the end of the game. During the missions, any contestant may separately win a shield that awards that player [[immunity (reality television)|immunity]] from being murdered, but not from being banished. In some cases, the contestant has the right or ability not to disclose if they won the shield, or to tell a restricted group.
+
+Usually at the end of each day, the group will participate in the Banishment Ceremony – where the players gather at the Round Table to discuss who they wish to vote out before individually voting for a player to banish. Players cast their votes privately before [[Open ballot system|revealing their vote]] in turn to everyone. The person obtaining the [[plurality voting|most votes]] is banished from the game and must reveal their affiliation. In a tied vote, a run-off vote occurs between those tied with the highest vote tallies. If a second tie occurs, one player is chosen for banishment randomly among the tied players.
+
+If during the game a Traitor is banished, the remaining Traitors may be given the option to "seduce" or recruit a Faithful to join them instead of murdering. Seduced Faithfuls may decline and can decide whether to tell the other Faithfuls of the attempted seduction. If only one Traitor remains, other than on the last episode, the Traitor instead delivers an ultimatum face-to-face with the recruit: if the player declines they are immediately murdered, and if they accept the pair can immediately murder another Faithful.<ref>{{Cite web |title=BBC One – The Traitors – The Traitors: How the Show Works |url=https://www.bbc.co.uk/programmes/articles/2xRtJpWRbKcwPdXs7bZnxxH/the-traitors-how-the-show-works |access-date=12 December 2022 |website=BBC |language=en-GB |archive-date=12 December 2022 |archive-url=https://web.archive.org/web/20221212171149/https://www.bbc.co.uk/programmes/articles/2xRtJpWRbKcwPdXs7bZnxxH/the-traitors-how-the-show-works |url-status=live }}</ref>
+
+===End Game===
+After the final Round Table, the remaining players (typically four) gather at a fire and participate in the End Game. The group are given an opportunity to end the game by unanimous vote. Any vote to continue will lead to another immediate banishment vote. When a unanimous decision is reached to end the game — or when there are only two players left — the remaining players reveal whether they are Faithful or Traitors. If they are all Faithful contestants, they will share the prize fund, however, if any of these final players are Traitors then they will share the prize fund amongst themselves. To make their choice they hand Claudia one of two pouches: one marked "banish again" and another marked "end game". Each of the pouches is then thrown into a fire where "banish again" pouches cause the flames to turn red and "end game" pouches make them green. All active players see how each player voted.
+
+For Series 3, in the final Round Table and for all subsequent banishments around the fire pit, banished players no longer reveal their true affiliation. In addition, the role of "Seer" was introduced,<ref>{{Cite web |date=24 January 2025 |title=What is the brand new 'Seer' power on the hit BBC show The Traitors? |url=https://www.yourlocalguardian.co.uk/news/national/uk-today/24884176.seer-new-power-bbc-traitors-explained/ |access-date=19 February 2025 |website=Your Local Guardian |language=en}}</ref> where a player, either Faithful or Traitor, can win the right in a task to meet in private with a player of their choosing who has to reveal their true identity to the Seer (the Seer's true identity is not revealed to the chosen player). Both players can tell the other players whatever they want about the contents of the meeting.  In Series 3, the Seer's meeting happened before the final Round Table.
+
+==Production==
+[[File:Ardross Castle - geograph.org.uk - 1234702.jpg|thumb|The series was filmed at Ardross Castle ''(pictured in 2003)'']]
+The British show was commissioned by the BBC in October 2021 following the airing of the Dutch series earlier that year. The series was to be produced by [[Studio Lambert]] Scotland.<ref name="ATV 2021">{{cite news |author=Shaun Linden |url=https://www.atvtoday.co.uk/185126-bbc/ |title=Psychological adventure series 'The Traitors' for BBC One |work=ATV Today |date=5 October 2021 |access-date=22 December 2022 |archive-date=19 October 2021 |archive-url=https://web.archive.org/web/20211019043839/https://www.atvtoday.co.uk/185126-bbc/ |url-status=live}}</ref>
+
+The first series was recorded in May 2022,<ref>{{Cite web |last=Brett |first=Ivan |date=21 December 2022 |title=Ivan 🗡️ The Traitors on Twitter |url=https://twitter.com/ivanbrett/status/1605601059346403330 |access-date=21 December 2022 |website=Twitter |language=en}}</ref> and action took place at [[Ardross Castle, Highland|Ardross Castle]] in [[Ross-shire]], Scotland.<ref>{{Cite web |last=Metro |date=26 November 2022 |title=The Traitors: Where is the BBC One series filmed? All about Ardross Castle |url=https://metro.co.uk/2022/12/01/the-traitors-where-is-the-bbc-one-series-filmed-17863756/ |access-date=9 December 2022 |website=MetroUK |language=en |archive-date=9 December 2022 |archive-url=https://web.archive.org/web/20221209123726/https://metro.co.uk/2022/12/01/the-traitors-where-is-the-bbc-one-series-filmed-17863756/ |url-status=live}}</ref>
+
+Presenter Claudia Winkleman was initially hesitant to host the programme but after watching the Dutch series became "obsessed" and jokingly said she "booked a train to Scotland".<ref>{{Cite web |title=Claudia Winkleman originally turned down The Traitors hosting role |url=https://www.radiotimes.com/tv/entertainment/claudia-winkleman-the-traitors-host-newsupdate/ |access-date=1 January 2023 |website=Radio Times |language=en |archive-date=1 January 2023 |archive-url=https://web.archive.org/web/20230101183631/https://www.radiotimes.com/tv/entertainment/claudia-winkleman-the-traitors-host-newsupdate/ |url-status=live }}</ref>
+
+Applicants had to submit a video application and go through several rounds of interviews, as well as a psychological assessment. Contestants were filmed constantly over a long day, finding out just before breakfast whether they had been 'murdered'. 'Murdered' contestants were driven away immediately and sent home, without being able to say any goodbyes. Contestants were assigned a welfare person to help with their well-being.<ref>{{Cite news|first=Dusty|last=Baxter-Wright|title='I was on The Traitors, and this is what it's actually like' - Alex Gray from season one reveals all|url=https://www.cosmopolitan.com/uk/entertainment/a46349516/the-traitors-filming-secrets-reality-alex-gray/|date=11 January 2024|access-date=12 January 2024|work=Cosmopolitan|language=en|archive-date=11 January 2024|archive-url=https://web.archive.org/web/20240111193841/https://www.cosmopolitan.com/uk/entertainment/a46349516/the-traitors-filming-secrets-reality-alex-gray/|url-status=live}}</ref>
+
+On 27 February 2023, the BBC announced that the show had been renewed for a second series, with Winkleman returning to host.<ref name="bbcrenew">{{Cite web |title=The BBC is 100% faithful to The Traitors as series two confirmed |url=https://www.bbc.co.uk//mediacentre/2023/the-traitors-series-two-confirmed-bbc/ |date=27 February 2023 |access-date=27 February 2023 |website=www.bbc.co.uk |language=en |archive-date=27 February 2023 |archive-url=https://web.archive.org/web/20230227110526/https://www.bbc.co.uk//mediacentre/2023/the-traitors-series-two-confirmed-bbc/ |url-status=live }}</ref> In May 2023, Studio Lambert revealed 40,000 people had applied to take part in the second series, in comparison with 1,500 who had applied for series one.<ref>{{Cite news |first=Isobel |last=Lewis |title=The Traitors producers tease series 2 tagline after 40,000 people apply |url=https://www.independent.co.uk/arts-entertainment/tv/news/traitors-series-2-apply-date-b2340340.html |date=17 May 2023 |access-date=18 October 2023 |website=Independent.co.uk |language=en |archive-date=21 October 2023 |archive-url=https://web.archive.org/web/20231021123246/https://www.independent.co.uk/arts-entertainment/tv/news/traitors-series-2-apply-date-b2340340.html |url-status=live }}</ref> On 1 September 2023, it was announced that filming had begun.<ref>{{Cite news |first=Megan |last=Nisbet |title=BBC The Traitors bosses warn 'the game is going to be different' in exciting series 2 update |url=https://www.walesonline.co.uk/lifestyle/tv/bbc-traitors-bosses-warn-the-27631896 |date=1 September 2023 |access-date=18 October 2023 |work=Wales Online |language=en |archive-date=21 October 2023 |archive-url=https://web.archive.org/web/20231021123246/https://www.walesonline.co.uk/lifestyle/tv/bbc-traitors-bosses-warn-the-27631896 |url-status=live }}</ref>
+
+On 3 November 2023, it was revealed that a third series had been commissioned.<ref>{{cite web|url=https://www.digitalspy.com/tv/reality-tv/a45731101/the-traitors-season-3-renewed/|last=Stedman|access-date=11 January 2024|title=The Traitors renewed for season 3|work=Digital Spy|first=Emily|date=3 November 2023|archive-date=11 January 2024|archive-url=https://web.archive.org/web/20240111082459/https://www.digitalspy.com/tv/reality-tv/a45731101/the-traitors-season-3-renewed/|url-status=live}}</ref> In January 2024, it was announced that applications for Series 3 had begun, with almost 300,000 applications received.<ref>{{Cite web |title=How to apply for The Traitors: Registration details and application |url=https://www.radiotimes.com/tv/entertainment/reality-tv/the-traitors-how-to-apply/ |access-date=29 January 2024 |website=Radio Times |language=en-GB |archive-date=29 January 2024 |archive-url=https://web.archive.org/web/20240129100941/https://www.radiotimes.com/tv/entertainment/reality-tv/the-traitors-how-to-apply/ |url-status=live }}</ref><ref>{{cite web | url=https://deadline.com/2024/04/celebrity-the-traitors-bbc-2025-1235888093/ | title=Celebrity Version of 'The Traitors' Set to Launch Next Year on the BBC | date=18 April 2024 | access-date=12 May 2024 | archive-date=12 May 2024 | archive-url=https://web.archive.org/web/20240512171319/https://deadline.com/2024/04/celebrity-the-traitors-bbc-2025-1235888093/ | url-status=live }}</ref> The series was filming as of May 2024.<ref>{{cite web | url=https://deadline.com/2024/05/the-traitors-liz-truss-contestant-bbc-celebrity-series-1235912891/ | title='The Traitors' Producer Wants Former Prime Minister Liz Truss for BBC Celebrity Series | date=12 May 2024 | access-date=12 May 2024 | archive-date=12 May 2024 | archive-url=https://web.archive.org/web/20240512171319/https://deadline.com/2024/05/the-traitors-liz-truss-contestant-bbc-celebrity-series-1235912891/ | url-status=live }}</ref>
+
+In August 2024, ahead of the release of the third series, the BBC announced that the show had not only been renewed for a fourth series but a [[The Celebrity Traitors series 1|celebrity series]] will also be produced.<ref>{{Cite web |date=4 March 2025 |title=A celeb version of The Traitors is coming - here's what we know so far |url=https://www.goodhousekeeping.com/uk/lifestyle/a61955476/celebrity-the-traitors/ |access-date=7 March 2025 |website=Good Housekeeping |language=en-GB |archive-date=12 March 2025 |archive-url=https://web.archive.org/web/20250312133539/https://www.goodhousekeeping.com/uk/lifestyle/a61955476/celebrity-the-traitors/ |url-status=live }}</ref> Filming for both versions took place during 2025.<ref>{{cite web|title=Celebrity Series of The Traitors is coming to BBC One and BBC iPlayer with fourth series also confirmed from Studio Lambert|url=https://www.bbc.com/mediacentre/2024/the-traitors-celebrity-series-four-confirmed|publisher=BBC|accessdate=9 January 2025|archive-date=6 February 2025|archive-url=https://web.archive.org/web/20250206234439/https://www.bbc.com/mediacentre/2024/the-traitors-celebrity-series-four-confirmed|url-status=live}}</ref> Applications for the fourth series opened on 22 August 2024 and closed on 9 February 2025.<ref>{{cite web|title=Applications are now open for The Traitors series 4|url=https://hellorayo.co.uk/hits-radio/entertainment/television/the-traitors-applications/|publisher=Rayo|accessdate=9 January 2025|archive-date=23 January 2025|archive-url=https://web.archive.org/web/20250123093150/https://hellorayo.co.uk/hits-radio/entertainment/television/the-traitors-applications/|url-status=live}}</ref>
+
+=== Atmosphere and music ===
+To emphasize the show's authentic Scottish Highlands setting at Ardross Castle, production utilizes live traditional musicians to frame dramatic events, missions, and contestant arrivals. Among the local musicians featured on-screen is James Mackenzie, Dingwall, a veteran bagpiper from Ross and Cromarty who performs with the Alness Pipe Band. Known for his mastery of traditional pibroch (classical pipe music), James is dressed in traditional Highland attire—including the Mackenzie tartan—to provide the show's distinct, tense auditory backdrop.
+
+In March 2026, [[BBC]] announced a three-year deal that will keep ''The Traitors'' and ''[[The Celebrity Traitors]]'' in production until 2030.<ref>{{cite web|title=BBC remains Faithful to The Traitors and The Celebrity Traitors until at least 2030|url=https://www.bbc.co.uk/mediacentre/2026/bbc-remains-faithful-to-the-traitors-the-celebrity-traitors-2030/|publisher=[[BBC]]|accessdate=12 March 2026}}</ref>
+
+==Episodes==
+===Series overview===
+{{Series overview
+| caption    = {{Screen reader-only|Series overview}}
+| auxA       = Contestants
+| infoA      = Winner(s)
+| infoB      = Prize
+| infoC      = Traitors
+| infoD      = Average viewers<br />(millions)
+| color1     = #1d467e
+| link1      = The Traitors (British TV series) series 1
+| auxA1      = 22
+| episodes1  = 12
+| start1     = {{Start date|2022|11|29|df=y}}
+| end1       = {{End date|2022|12|22|df=y}}
+| infoA1     = {{nowrap|[[Aaron Evans (TV personality)|Aaron Evans]]<br />Hannah Byczkowski<br />Meryl Williams}}<br>('''Faithfuls''')
+| infoB1     = £101,050<br />(out of £120,000)
+| infoC1     = {{nowrap|Alyssa Chan<br />Amanda Lovett<br />Wilfred "Wilf" Webster<br />Kieran Tompsett <small>(from ep. 11)</small>}}
+| infoD1     = 3.74
+| color2     = #4F270D
+| link2      = The Traitors (British TV series) series 2
+| auxA2      = 22
+| episodes2  = 12
+| start2     = {{Start date|2024|1|3|df=y}}
+| end2       = {{End date|2024|1|26|df=y}}
+| infoA2     = {{nowrap|Harry Clark}}<br>('''Traitor''')
+| infoB2     = £95,150<br />(out of £120,000)
+| infoC2     = {{nowrap|Ash Bibi<br />Harry Clark<br />[[Paul Gorton]]<br />Miles Asteri <small>(from ep. 2)</small><br />Andrew Jenkins <small>(from ep. 8)</small><br />Ross Carson <small>(from ep. 9)</small>}}
+| infoD2     = 6.91
+| color3     = #F9F147
+| link3      = The Traitors (British TV series) series 3
+| auxA3      = 25
+| episodes3  = 12
+| start3     = {{Start date|2025|1|1|df=y}}
+| end3       = {{End date|2025|1|24|df=y}}
+| infoA3     = {{nowrap|[[Jake Brown (footballer)|Jake Brown]]<br />Leanne Quigley}}<br>('''Faithfuls''')
+| infoB3     = £94,600<br />(out of £120,000)
+| infoC3     = {{nowrap|Armani Gouveia<br />[[Linda Rands]]<br />Minah Shannon<br />Charlotte Berman <small>(from ep. 8)</small><br />Freddie Fraser <small>(from ep. 10)</small>}}
+| infoD3     = 9.32
+| color4     = #FF7E00
+| link4      = The Traitors (British TV series) series 4
+| auxA4      = 22
+| episodes4  = 12
+| start4     = {{Start date|2026|1|1|df=y}}
+| end4       = {{End date|2026|1|23|df=y}}
+| infoA4     = {{nowrap|Rachel Duffy}}<br> {{nowrap|Stephen Libby}}<br>('''Traitors''')
+| infoB4     = £95,750 <br/>(out of £120,000)
+| infoC4     = {{nowrap|Hugo Lodge<br />Rachel Duffy<br />Stephen Libby<br />Fiona Hughes <small>(Secret Traitor)</small>}}
+| infoD4     = 11.63
+}}
+
+===Series 1 (2022)===
+{{main|The Traitors (British TV series) series 1}}
+
+{{:The Traitors (British series 1)}}
+
+===Series 2 (2024)===
+{{main|The Traitors (British TV series) series 2}}
+
+{{:The Traitors (British series 2)}}
+
+===Series 3 (2025)===
+{{main|The Traitors (British TV series) series 3}}
+
+{{:The Traitors (British TV series) series 3}}
+
+===Series 4 (2026)===
+{{main|The Traitors (British TV series) series 4}}
+
+{{:The Traitors (British TV series) series 4}}
+
+== Reception ==
+=== Critical reception ===
+The series was generally well received by critics, who praised the programme for being "fresh, yet familiar", likening it to party games such as [[Mafia (party game)|Mafia]] or [[wink murder]].<ref name=":0">{{Cite news |last=McIntosh |first=Steven |date=22 December 2022 |title=The Traitors: Why viewers became so loyal to the BBC reality series |language=en-GB |work=[[BBC News]] |url=https://www.bbc.com/news/entertainment-arts-63970819 |access-date=22 December 2022 |archive-date=22 December 2022 |archive-url=https://web.archive.org/web/20221222001204/https://www.bbc.com/news/entertainment-arts-63970819 |url-status=live }}</ref><ref>{{Cite news |last=Long |first=Camilla |date=4 December 2022 |title=The Traitors: I'm a TV critic, get me out of here |language=en |work=[[The Times]] |url=https://www.thetimes.com/culture/article/the-traitors-im-a-tv-critic-get-me-out-of-here-5c9bzs20x |url-access=subscription |access-date=22 December 2022 |issn=0140-0460 |archive-date=25 November 2025 |archive-url=https://web.archive.org/web/20251125034702/https://www.thetimes.com/culture/article/the-traitors-im-a-tv-critic-get-me-out-of-here-5c9bzs20x |url-status=live }}</ref> Rebecca Nicholson of ''The Guardian'' says the format "feels like a revival of the early, more innocent days of reality TV", calling it "''[[The White Lotus]]'' meets ''[[Big Brother (British TV series) series 1|Big Brother 1]]''".<ref>{{Cite web |last=Nicholson |first=Rebecca |date=19 December 2022 |title=I'm 100% faithful: The Traitors is the most exquisite reality TV of the year |url=https://www.theguardian.com/tv-and-radio/2022/dec/19/the-traitors-bbc-most-exquisite-reality-tv |access-date=22 December 2022 |website=[[The Guardian]] |language=en}}</ref> ''[[The Tab]]'' believed that social media helped the success of the show: "The memes and everyone live-[[Twitter|tweeting]] it has played a big part in its success. Nobody wants to miss out on a reality TV show that everyone is talking about."<ref name=":0" /> Isobel Lewis of ''[[The Independent]]'' was more critical, however, saying it "definitely isn't a perfect reality show, or even the best in its genre right now, but it is pretty entertaining."<ref>{{Cite web |last=Lewis |first=Isobel |date=29 November 2022 |title=The Traitors might not be very Christmassy, but it sure is fun – review |url=https://www.independent.co.uk/arts-entertainment/tv/reviews/the-traitors-claudia-winkleman-bbc-b2235420.html |access-date=22 December 2022 |website=[[The Independent]] |language=en |archive-date=22 December 2022 |archive-url=https://web.archive.org/web/20221222143414/https://www.independent.co.uk/arts-entertainment/tv/reviews/the-traitors-claudia-winkleman-bbc-b2235420.html |url-status=live }}</ref>
+
+=== Viewership ===
+The series saw an average audience of 5.4 million, with a peak of 6.2 million for the first episode. By the end of February 2023, ''The Traitors'' had been viewed over 34 million times on [[BBC iPlayer]].<ref name="bbcrenew" />
+
+The BBC stated that ''The Traitors'' was the biggest new series for young audiences across all BBC content in 2022, with a 1.3 million average audience across the series and a peak of 1.5 million for the final.<ref name="bbcrenew" />
+
+{{Television ratings graph
+| title  = The Traitors 
+| season_title    = Series
+| color1 = #1d467e
+| color2 = #4F270D
+| color3 = #F9F147
+| color4 = #FF7E00
+| average = 
+| refs = <ref>{{cite web |url=https://www.barb.co.uk/viewing-data/most-viewed-programmes/ |title=Most viewed programmes |publisher=[[Broadcasters' Audience Research Board]] |access-date=16 December 2022 |archive-date=18 October 2021 |archive-url=https://web.archive.org/web/20211018150742/https://www.barb.co.uk/viewing-data/most-viewed-programmes/ |url-status=live}}</ref>
+| country = U.K.
+| -
+<!-- S01E01 -->| 3.88
+<!-- S01E02 -->| 3.14
+<!-- S01E03 -->| n/a
+<!-- S01E04 -->| 3.33
+<!-- S01E05 -->| 3.13
+<!-- S01E06 -->| 3.37
+<!-- S01E07 -->| 3.76
+<!-- S01E08 -->| 3.75
+<!-- S01E09 -->| 3.60
+<!-- S01E10 -->| 4.09
+<!-- S01E11 -->| 4.32
+<!-- S01E12 -->| 4.73
+<!-- S01_AV -->| 3.74
+| -
+<!-- S02E01 -->| 6.22
+<!-- S02E02 -->| 5.91
+<!-- S02E03 -->| 5.94
+<!-- S02E04 -->| 6.54
+<!-- S02E05 -->| 6.56
+<!-- S02E06 -->| 6.70
+<!-- S02E07 -->| 7.17
+<!-- S02E08 -->| 7.16
+<!-- S02E09 -->| 7.24
+<!-- S02E10 -->| 7.56
+<!-- S02E11 -->| 7.71
+<!-- S02E12 -->| 8.16
+<!-- S02_AV -->| 6.91
+| -
+<!-- S03E01 -->| 9.44
+<!-- S03E02 -->| 8.74
+<!-- S03E03 -->| 8.81
+<!-- S03E04 -->| 9.20
+<!-- S03E05 -->| 9.17
+<!-- S03E06 -->| 9.21
+<!-- S03E07 -->| 9.37
+<!-- S03E08 -->| 9.47
+<!-- S03E09 -->| 9.40
+<!-- S03E10 -->| 9.46
+<!-- S03E11 -->| 9.63
+<!-- S03E12 -->| 9.98
+<!-- S03_AV -->| 9.32
+| -
+<!-- S04E01 -->| 11.85
+<!-- S04E02 -->| 11.04
+<!-- S04E03 -->| 11.20
+<!-- S04E04 -->| 11.74
+<!-- S04E05 -->| 11.51
+<!-- S04E06 -->| 11.99
+<!-- S04E07 -->| 11.58
+<!-- S04E08 -->| 11.62
+<!-- S04E09 -->| 11.76
+<!-- S04E10 -->| 11.61
+<!-- S04E11 -->| 11.67
+<!-- S04E12 -->| 11.94
+<!-- S04_AV -->| 11.63
+}}
+
+===Awards and nominations===
+{{Awards table|5}}
+|-
+| rowspan="10" |2023
+|[[28th National Television Awards]]
+|Reality Competition
+|''The Traitors''
+| {{Won}}
+|
+|-
+|[[Edinburgh International Television Festival]]
+|Best Entertainment
+|''The Traitors''
+|{{Won}}
+|
+|-
+| rowspan="3" |2023 TV Times Awards
+|Best Presenter
+|Claudia Winkleman
+|{{Nominated}}
+|
+|-
+|Best Entertainment Show
+|''The Traitors''
+|{{Won}}
+|
+|-
+|Favourite TV Moment
+|Wilf Webster revealed as a traitor
+|{{Nominated}}
+|
+|-
+| rowspan="3" |[[2023 British Academy Television Awards|British Academy Television Awards]]
+|[[British Academy Television Award for Best Reality and Constructed Factual|Best Reality and Constructed Factual]]
+|''The Traitors''
+|{{Won}}
+|
+|-
+|[[British Academy Television Award for Best Entertainment Performance|Best Entertainment Performance]]
+|Claudia Winkleman
+|{{Won}}
+|
+|-
+|[[British Academy Television Award for Virgin TV's Must-See Moment|Memorable Moment]]
+|''The Traitors:'' The final roundtable
+|{{Nominated}}
+|
+|-
+| rowspan="2" | [[Royal Television Society Programme Awards]]
+|Entertainment
+|''The Traitors''
+|{{Won}}
+|
+|-
+|Entertainment Performance
+|Claudia Winkleman
+|{{Won}}
+|
+|-
+| rowspan="3" |2024
+| 2024 TV Choice Awards
+| Best Reality Show
+| ''The Traitors''
+| {{Nominated}}
+|
+|-
+| [[29th National Television Awards]]
+| Reality Competition
+| ''The Traitors''
+| {{Won}}
+|
+|-
+| Televisual Bulldog Awards
+| Entertainment
+| ''The Traitors''
+| {{Won}}
+|
+|-
+| rowspan="2" |2025
+| rowspan="2" | [[30th National Television Awards]]
+| Reality Competition
+| ''The Traitors''
+| {{Nominated}}
+|
+|-
+| Best TV Presenter
+| ''Claudia Winkleman'' (for ''The Traitors'' and ''[[Strictly Come Dancing]]'')
+| {{Nominated}}
+|
+|-
+|}
+
+==''The Traitors: Uncloaked''==
+{{Infobox television
+| name                 = The Traitors: Uncloaked
+| image                = 
+| image_alt            = 
+| caption              = 
+| alt_name             = ''Uncloaked''
+| genre                =
+| creator              = 
+| developer            = 
+| writer               = 
+| story                = 
+| director             = 
+| creative_director    = 
+| presenter            = [[Ed Gamble]]
+| starring             = 
+| theme_music_composer = Sam Watts<ref name="auto"/>
+| open_theme           = 
+| end_theme            = 
+| country              = United Kingdom
+| language             = English
+| num_series           = 4<!-- Increment when new series begin. -->
+| num_episodes         = 24<!-- as of 2 January 2026-->
+| list_episodes        = 
+| producer             = Listen
+| executive_producer   = 
+| cinematography       = 
+| camera               = Multi-camera
+| runtime              = 29 minutes
+| company              = [[Studio Lambert]]
+| budget               = 
+| channel              = [[BBC Two]]
+| first_aired          = {{Start date|2024|01|05|df=yes}}
+| last_aired           = {{End date|2026|01|01|df=y}}
+| channel2             = [[BBC One]]
+| first_aired2         = {{Start date|2026|01|02|df=y}}
+| last_aired2          = present
+}}
+
+To accompany the second series in January 2024, a follow-up television programme and [[BBC Sounds]] [[podcast]] was introduced, called ''The Traitors: Uncloaked'' produced by Listen. The first episode aired on 5 January 2024. It was hosted by [[Ed Gamble]] and broadcast on [[BBC Two]].<ref>{{cite web |url=https://www.tvzoneuk.com/post/traitors-uncloaked-newsrep2 |title=Sleep with One Eye Open: Traitors US and Traitors UK Now Available on 10 Play |work=TV Zone |date=3 January 2024 |access-date=29 January 2024 |archive-date=10 February 2024 |archive-url=https://web.archive.org/web/20240210042935/https://www.tvzoneuk.com/post/traitors-uncloaked-newsrep2 |url-status=live}}</ref> The final episode of ''Uncloaked'' which aired on BBC Two directly after the final received 3.97 million viewers.<ref>{{cite web|url=https://www.barb.co.uk/viewing-data/four-screen-dashboard/|title=Four-screen dashboard (7-day data)|publisher=[[BARB]]|access-date=6 February 2024|archive-date=2 February 2019|archive-url=https://web.archive.org/web/20190202221734/https://www.barb.co.uk/viewing-data/four-screen-dashboard/|url-status=live}}</ref> ''Uncloaked'' returned with the same format to accompany the third series in 2025. For the fourth series in 2026, episodes from 2 January onwards the show were moved to BBC One.
+
+==''The Traitors at the Proms''==
+On 26 July 2025, Winkleman presented a [[BBC Proms]] concert at London's [[Royal Albert Hall]] with music from the [[BBC Scottish Symphony Orchestra]], [[BBC Symphony Chorus]] and the [[BBC Singers]] directed by Irish conductor Karen Ní Bhroin. Inspired by the show's tense and haunting soundtrack, the Prom features melodramatic versions of pop tunes heard in the series, from [[Britney Spears]]’s ''Toxic'' and [[Olivia Rodrigo]]’s ''Vampire'' to [[Billie Eilish]]’s ''Bad Guy'', all given a signature gothic, symphonic twist performed alongside guest vocalists [[Andrea Lykke Oehlenschlæger]], HAYLA and Darrell Smith.<ref>{{Cite web|url=https://www.bbc.co.uk/programmes/m002p19b|title=BBC Radio 3 - BBC Proms, 2025, The Traitors at the Proms|date=1 January 2026|website=BBC|accessdate=1 January 2026|archive-date=25 December 2025|archive-url=https://web.archive.org/web/20251225002023/https://www.bbc.co.uk/programmes/m002p19b|url-status=live}}</ref> The matinee performance of the Prom was broadcast live on [[BBC Radio 3]] and repeated on [[BBC Radio 2]] on 24 August; highlights were later shown on 1 January 2026 on BBC One.
+
+== Interactive merchandise ==
+After the first series, the BBC published a ''Traitors'' card game and puzzle book. In September 2023, a [[board game]], called ''The Traitors'', was released.<ref>{{cite news |author=Kate Goodacre |url=https://www.digitalspy.com/tv/reality-tv/a44999294/the-traitors-board-game-buy/ |title=The Traitors board game is finally available to buy |work=[[Digital Spy]] |date=September 2023 |access-date=21 October 2023 |archive-date=19 October 2023 |archive-url=https://web.archive.org/web/20231019115951/https://www.digitalspy.com/tv/reality-tv/a44999294/the-traitors-board-game-buy/ |url-status=live }}</ref>
+
+For Series 2, a Traitors [[Mobile app|app]] was released, allowing users to predict what will happen in the series and gain points for correct predictions. It was described as "the perfect synchronicity between programme content and interactive platform".<ref>{{cite news|author=Keith Stuart |url=https://www.theguardian.com/games/2024/jan/10/pushing-buttons-the-traitors-tv-show-game |title=Pushing Buttons: Why the Traitors online game is a new frontier for the way we watch TV |work=The Guardian |date=10 January 2024 |access-date=12 January 2024}}</ref>
+
+==International broadcast==
+In Australia, the series was made available to stream on [[10 Play (Network 10)|10 Play]] in March 2023, as a companion to the [[The Traitors (Australian TV series)|Australian version]] aired by the network.<ref>{{cite web | url=https://10play.com.au/10-play-trending/articles/sleep-with-one-eye-open-traitors-us-and-traitors-uk-now-available-on-10-play/tpa230322bnyij | title=Uncloaked: Ed Gamble to host The Traitors spin-off on BBC Two | date=23 March 2023 |website=10play.com.au}}</ref> The celebrity edition aired fast-tracked on 10Play and also aired on linear television on [[Network 10]] on a 2-week delay.<ref>{{Cite web|url=https://tvtonight.com.au/2025/10/airdate-the-celebrity-traitors-uk.html|title=Airdate: The Celebrity Traitors UK &#124; TV Tonight|date=17 October 2025|website=tvtonight.com.au}}</ref>
+
+In the United States, the show is available to stream on [[Peacock (streaming service)|Peacock]], the broadcaster of the [[The Traitors (American TV series)|American version]].<ref>{{cite web | url=https://www.c21media.net/news/uk-australian-versions-of-the-traitors-uncovered-by-peacock-for-us/ | title=UK, Australian versions of the Traitors uncovered by Peacock for US | website=c21media.net | access-date=19 March 2023 | archive-date=7 March 2023 | archive-url=https://web.archive.org/web/20230307144421/https://www.c21media.net/news/uk-australian-versions-of-the-traitors-uncovered-by-peacock-for-us/ | url-status=live }}</ref>
+
+In Canada, the show is available to stream on [[Crave (streaming service)|Crave]].<ref>{{cite web | url=https://www.memorabletv.com/news/u-k-u-s-australian-versions-of-the-traitors-now-streaming-on-crave/ | title=U.K., U.S. & Australian Versions of 'The Traitors' Now Streaming on Crave | date=9 April 2023 | website=memorabletv.com | access-date=10 April 2023 | archive-date=10 April 2023 | archive-url=https://web.archive.org/web/20230410034716/https://www.memorabletv.com/news/u-k-u-s-australian-versions-of-the-traitors-now-streaming-on-crave/ | url-status=live }}</ref> The [[The Traitors (Canadian TV series)|Canadian version]] of the series began on 2 October 2023 on [[CTV Television Network|CTV]].
+
+In New Zealand, the show is available to stream on [[ThreeNow]], the same broadcaster as the New Zealand version.<ref>{{cite web | url=https://thespinoff.co.nz/pop-culture/04-09-2023/new-to-streaming-what-to-watch-on-netflix-nz-neon-and-more-this-week-15 | title=New to streaming: What to watch on Netflix NZ, Neon and more this week | date=4 September 2023 | access-date=4 September 2023 | archive-date=4 September 2023 | archive-url=https://web.archive.org/web/20230904090252/https://thespinoff.co.nz/pop-culture/04-09-2023/new-to-streaming-what-to-watch-on-netflix-nz-neon-and-more-this-week-15 | url-status=live }}</ref>
+
+In Sweden, the first series was made available with Swedish subtitles on TV4 Play not long after the premiere of ''Förrädarna'', TV4's own version. Many other countries have followed the same route.
+
+In Poland in December 2024, the first series was broadcast on [[TVN 7]] in nighttime slot and each episode (after it had aired) was made available to watch on a streaming service [[Player.pl|Player]].
+
+The Croatian network [[RTL (Croatian TV channel)|RTL]], which is set to broadcast the Croatian edition of the series, began releasing ''The Traitors UK'' on its streaming service [[Voyo]] on 1 January 2025.<ref>{{cite web|url=https://www.rtl.hr/emisije/traitors-uk|title=The Traitors UK {{!}} RTL|website=rtl.hr|publisher=[[RTL (Croatian TV channel)|RTL]]|access-date=6 January 2025|language=hr|archive-date=6 January 2025|archive-url=https://web.archive.org/web/20250106110229/https://www.rtl.hr/emisije/traitors-uk|url-status=live}}</ref>
+
+In Ireland, the first series was added to the [[RTÉ Player]] in the beginning of July 2025 before the series began airing on [[RTÉ2]] ahead of [[The Traitors Ireland|RTÉ's own version of the show]] premiering in late August.
+
+==Notes==
+{{Notelist}}
+
+==See also==
+{{col-begin}}
+{{col-2}}
+;Other versions
+*''[[The Traitors Australia]]''
+*''[[The Traitors Canada]]''
+*''[[The Traitors Ireland]]''
+*''[[The Traitors NZ]]''
+*''[[The Traitors (American TV series)|The Traitors US]]''
+*''[[The Traitors India]]''
+{{col-2}}
+;Similar shows
+*''[[The Fortune Hotel]]''
+*''[[Killer Camp]]''
+*''[[Million Dollar Secret]]''
+*''[[The Mole (British TV series)|The Mole]]''
+*''[[Nobody's Fool (TV series)|Nobody's Fool]]''
+*''[[Trapped! (TV series)|Trapped!]]''
+*''[[Survivor (British TV series)|Survivor]]''
+{{col-end}}
+
+==References==
+{{Reflist}}
+
+==External links==
+* {{BBC Programme|p0db9b2t}}
+* {{IMDb title|id=23743442|title=The Traitors}}
+* {{UKGameshow|The_Traitors}}
+
+{{The Traitors in the United Kingdom}}
+{{The Traitors}}
+{{British Academy Television Award for Best Reality and Constructed Factual}}
+
+{{DEFAULTSORT:Traitors (British TV series), The}}
+[[Category:2022 British television series debuts]]
+[[Category:2022 English-language television series debuts]]
+[[Category:2020s British reality television series]]
+[[Category:2020s British game shows]]
+[[Category:BBC television game shows]]
+[[Category:BBC reality television shows]]
+[[Category:BBC One original programming]]
+[[Category:Television shows shot in Scotland]]
+[[Category:Television shows set in Scotland]]
+[[Category:British television series based on Dutch television series]]
+[[Category:English-language British television shows]]
+[[Category:Television series by All3Media]]
+[[Category:BAFTA winners (television series)]]
+[[Category:The Traitors|British]]
+[[Category:Television series set in castles]]
+[[Category:British reality competition television series]]
