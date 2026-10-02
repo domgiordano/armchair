@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState, type FocusEvent } from "react";
 
 import { useAuth } from "@armchair/app-core/auth/use-auth";
-import { dwtsLink } from "@/lib/links";
 import { useMe } from "@/lib/me";
 
+import { AppLinks } from "./app-links";
 import { Avatar, FOCUS } from "./ui";
 
 const ITEM = `flex min-h-11 w-full items-center gap-3 rounded-2xl px-3 text-left text-sm font-medium text-text hover:bg-line/60 active:bg-line ${FOCUS}`;
 
-/** The signed-in header's avatar, opening Profile and Sign out. */
+/** The signed-in header's avatar, opening Profile, every Armchair app and Sign out. */
 export function AvatarMenu() {
   const load = useMe();
   const { signOut } = useAuth();
@@ -67,7 +67,7 @@ export function AvatarMenu() {
       {open && (
         <div
           id={id}
-          className="account-menu absolute top-full right-0 z-50 mt-2 w-64 rounded-3xl border border-line bg-night-2 p-2 shadow-2xl shadow-night"
+          className="account-menu absolute top-full right-0 z-50 mt-2 w-72 rounded-3xl border border-line bg-night-2 p-2 shadow-2xl shadow-night"
         >
           {me && (
             <div className="px-3 pt-2 pb-3">
@@ -81,11 +81,12 @@ export function AvatarMenu() {
                 Profile
               </Link>
             </li>
-            <li>
-              <a href={dwtsLink()} className={ITEM}>
-                Open Dancing with the Stars
-              </a>
-            </li>
+          </ul>
+          <div className="mt-2 border-t border-line pt-2">
+            <p className="px-3 pt-1 pb-1 text-[11px] font-semibold tracking-[0.25em] text-muted uppercase">Apps</p>
+            <AppLinks />
+          </div>
+          <ul className="mt-2 border-t border-line pt-2">
             <li>
               <button
                 type="button"

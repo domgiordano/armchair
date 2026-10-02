@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
 import { Tilt } from "@/components/tilt";
-import { DWTS_URL, TRAITORS_URL } from "@/lib/links";
+import { dwtsLink, traitorsLink } from "@/lib/links";
 import { reveal } from "@/lib/reveal";
 
 // Each show's card borrows the mood of the show, never its logo or artwork.
@@ -230,7 +230,7 @@ export function Shows() {
                 titleClass={`${ballroom.className} bg-linear-to-r from-[#f3d98b] to-[#fff4d6] bg-clip-text text-transparent`}
                 surface="border-[#2b3a7a] bg-linear-to-b from-[#0a1440] to-[#060b26] text-[#f3e6c0] hover:border-[#f3d98b]/70 hover:shadow-[#f3d98b]/10"
                 art={<BallroomArt />}
-                href={DWTS_URL}
+                href={dwtsLink()}
               />
             </Tilt>
           </li>
@@ -243,7 +243,7 @@ export function Shows() {
                 titleClass={`${castle.className} text-[#e9dcc0] tracking-wide`}
                 surface="border-[#1c3a2a] bg-linear-to-b from-[#0b2418] to-[#040d08] text-[#e9dcc0] hover:border-[#e9dcc0]/60 hover:shadow-[#e9dcc0]/10"
                 art={<CastleArt />}
-                href={TRAITORS_URL}
+                href={traitorsLink()}
                 cta="Start predicting"
               />
             </Tilt>

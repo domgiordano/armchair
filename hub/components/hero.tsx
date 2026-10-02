@@ -2,7 +2,7 @@ import { Fragment, type CSSProperties } from "react";
 
 import { DeskDemo } from "@/components/desk-demo";
 import { SlateDemo } from "@/components/slate-demo";
-import { DWTS_URL, TRAITORS_URL } from "@/lib/links";
+import { dwtsLink, traitorsLink } from "@/lib/links";
 
 const LINE = ["You’ve", "always", "judged", "from", "the", "couch."];
 
@@ -40,7 +40,7 @@ export function Hero() {
           </p>
           <div className="hero-in mt-8 flex flex-wrap items-center gap-3" style={step(12)}>
             <a
-              href={DWTS_URL}
+              href={dwtsLink()}
               className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-text px-6 font-semibold text-night shadow-lg shadow-violet/20 hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold transition active:scale-[0.98] motion-reduce:transition-none"
             >
               Judge Dancing with the Stars
@@ -49,7 +49,7 @@ export function Hero() {
               </svg>
             </a>
             <a
-              href={TRAITORS_URL}
+              href={traitorsLink()}
               className="group inline-flex min-h-12 items-center gap-2 rounded-full border border-[#e9dcc0]/40 bg-[#0b2418] px-6 font-semibold text-[#e9dcc0] hover:border-[#e9dcc0] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold transition active:scale-[0.98] motion-reduce:transition-none"
             >
               Play The Traitors
