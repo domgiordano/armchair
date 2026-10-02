@@ -7,6 +7,7 @@ import { Ballot } from "@/components/ballot";
 import { CatchUp } from "@/components/catch-up";
 import { GroupPicker } from "@/components/group-picker";
 import { useSeasonView } from "@/components/season-data";
+import { useSeasonName } from "@/components/season-provider";
 import { Select } from "@/components/ui/select";
 import { EmptyState } from "@/components/ui/states";
 import { useGroupFilter } from "@/lib/group-filter";
@@ -16,6 +17,7 @@ import { useNow } from "@armchair/app-core/show/use-now";
 
 export function EpisodeScreen() {
   const { view, reload } = useSeasonView();
+  const name = useSeasonName(view.season, view.title);
   const filter = useGroupFilter();
   const router = useRouter();
   const now = useNow();
@@ -50,6 +52,7 @@ export function EpisodeScreen() {
           episode={episode}
           group={filter.group}
           members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
+          seasonTitle={name.title}
           onSealed={reload}
         />
       </CatchUp>

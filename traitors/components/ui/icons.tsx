@@ -26,6 +26,14 @@ export function CloseIcon() {
   );
 }
 
+export function AppsIcon() {
+  return (
+    <svg {...ICON}>
+      <path d="M5 5h3v3H5zM10.5 5h3v3h-3zM16 5h3v3h-3zM5 10.5h3v3H5zM10.5 10.5h3v3h-3zM16 10.5h3v3h-3zM5 16h3v3H5zM10.5 16h3v3h-3zM16 16h3v3h-3z" />
+    </svg>
+  );
+}
+
 export function SearchIcon() {
   return (
     <svg {...ICON}>

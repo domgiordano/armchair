@@ -72,7 +72,7 @@ it("seats each round table with its first votes in chalk and marks the banished 
 
   const table = within(await screen.findByRole("group", { name: "Episode 2 round table" }));
   // That morning's murder isn't at the table; nobody left before it is.
-  const seats = table.getAllByRole("img").filter((el) => el.tagName === "DIV");
+  const seats = table.getAllByRole("link");
   expect(seats.map((seat) => seat.getAttribute("aria-label"))).toEqual([
     "Ann Avery",
     "Bo Banks, banished, Traitor, 3 votes",
@@ -89,6 +89,20 @@ it("seats each round table with its first votes in chalk and marks the banished 
   const first = within(screen.getByRole("listitem", { name: "Arrival" }));
   expect(first.getByText("No round table this episode.")).toBeTruthy();
   expect(first.getByText("No one murdered")).toBeTruthy();
+});
+
+it("links every past-season player to their profile: cast wall, round-table seat and timeline", async () => {
+  api.getHistory.mockResolvedValue(HISTORY);
+  render(<HistoryScreen season="tus-3" />);
+  const profile = /^\/players\/player\/?\?show=tus&id=cy-cole&season=tus-3$/;
+
+  const cast = within(await screen.findByRole("region", { name: "The cast" }));
+  expect(cast.getByRole("link", { name: /^Cy Cole/ }).getAttribute("href")).toMatch(profile);
+
+  const night = within(screen.getByRole("listitem", { name: "Episode 2" }));
+  expect(night.getByRole("link", { name: "Cy Cole" }).getAttribute("href")).toMatch(profile);
+  const seat = within(night.getByRole("group", { name: "Episode 2 round table" })).getByRole("link", { name: /^Di Dunn/ });
+  expect(seat.getAttribute("href")).toMatch(/id=di-dunn&season=tus-3$/);
 });
 
 it("shows a gold banner for a Faithful win", async () => {

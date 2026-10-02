@@ -82,9 +82,13 @@ it("retries a failed load", async () => {
   expect(await screen.findByRole("heading", { name: "Ann Avery" })).toBeTruthy();
 });
 
-it("searches both UK series from the header and links each player to their page", async () => {
+it("searches every edition from the header, this one first, and links each player to their page", async () => {
   api.searchPlayers.mockImplementation(async (show: string) =>
-    show === "tukc" ? [{ id: "ann-avery", name: "Ann Avery", headshot: null, seasons: [1, 2] }] : [],
+    show === "tukc"
+      ? [{ id: "ann-avery", name: "Ann Avery", headshot: null, seasons: [1, 2] }]
+      : show === "tus"
+        ? [{ id: "anna-bly", name: "Anna Bly", headshot: null, seasons: [3] }]
+        : [],
   );
   render(<PlayerSearch />);
   fireEvent.click(screen.getByRole("button", { name: "Search players" }));
@@ -97,7 +101,11 @@ it("searches both UK series from the header and links each player to their page"
   expect(api.searchPlayers.mock.calls).toEqual([
     ["tukc", "ann"],
     ["tuk", "ann"],
+    ["tus", "ann"],
   ]);
-  expect(hit.textContent).toContain("Celebrity series 1 and 2");
+  expect(hit.textContent).toContain("UK · Celebrity series 1 and 2");
   expect(hit.getAttribute("href")).toMatch(/^\/players\/player\/?\?show=tukc&id=ann-avery&season=tukc-2$/);
+  const us = screen.getByRole("link", { name: /Anna Bly/ });
+  expect(us.textContent).toContain("US · Season 3");
+  expect(us.getAttribute("href")).toMatch(/show=tus&id=anna-bly/);
 });

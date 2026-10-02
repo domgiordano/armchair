@@ -15,7 +15,7 @@ import { EmptyState, ErrorState } from "@/components/ui/states";
 import { getHistory, type History, type HistoryEpisode, type HistoryPlayer } from "@/lib/api/history";
 import { byFinish, finishText, playerHref, seatedAt } from "@/lib/history";
 import { roman } from "@/lib/players";
-import { seasonLabel, showOf } from "@/lib/seasons";
+import { seasonName, seasonNumber, showOf } from "@/lib/seasons";
 import { cn, EYEBROW, FOCUS, HEADING, TEXT_LINK } from "@/lib/ui";
 
 type Load = { kind: "loading" } | { kind: "ready"; history: History } | { kind: "error"; message: string };
@@ -36,14 +36,15 @@ export function HistoryScreen({ season }: { season: string }) {
     };
   }, [season, attempt]);
 
-  const title = (name: string | null) =>
-    seasonLabel({ id: season, number: Number(season.split("-")[1]), title: name });
-  const heading = (name: string | null) => (
-    <div className="flex flex-col gap-1">
-      <p className={EYEBROW}>Finished · view only</p>
-      <h1 className={cn(HEADING, "text-2xl leading-tight")}>{title(name)}</h1>
-    </div>
-  );
+  const heading = (title: string | null) => {
+    const name = seasonName({ id: season, number: seasonNumber(season), title });
+    return (
+      <div className="flex flex-col gap-1">
+        <p className={EYEBROW}>{name.eyebrow} · Finished</p>
+        <h1 className={cn(HEADING, "text-2xl leading-tight")}>{name.title}</h1>
+      </div>
+    );
+  };
 
   if (load.kind === "loading") {
     return (
@@ -113,7 +114,7 @@ export function HistoryScreen({ season }: { season: string }) {
         ) : (
           <ol className="flex flex-col gap-4">
             {h.episodes.map((e) => (
-              <Night key={e.ep} episode={e} players={h.players} names={names} />
+              <Night key={e.ep} episode={e} players={h.players} names={names} link={link} />
             ))}
           </ol>
         )}
@@ -206,9 +207,10 @@ interface NightProps {
   episode: HistoryEpisode;
   players: HistoryPlayer[];
   names: (ids: string[]) => ReactNode;
+  link: (id: string) => string;
 }
 
-function Night({ episode: e, players, names }: NightProps) {
+function Night({ episode: e, players, names, link }: NightProps) {
   const rt = e.roundTable;
   return (
     <Card as="li" aria-labelledby={`ep-${e.ep}`} className="flex flex-col gap-3">
@@ -243,6 +245,7 @@ function Night({ episode: e, players, names }: NightProps) {
             result={{ banished: rt.banished, faction: rt.faction ?? undefined }}
             tallies={rt.firstVote}
             tallyLabel={(n) => `${n} ${n === 1 ? "vote" : "votes"}`}
+            hrefOf={link}
           />
           <p className="text-parchment">
             Banished: {names([rt.banished])}

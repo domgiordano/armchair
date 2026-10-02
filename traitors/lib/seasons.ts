@@ -22,18 +22,36 @@ export const isShow = (s: string | null): s is Show => s === "tus" || s === "tuk
 
 export const editionOf = (id: string): Edition => (showOf(id) === "tus" ? "us" : "uk");
 
-const NAMES: Record<Show, string> = { tus: "Season", tuk: "Series", tukc: "Celebrity" };
+const EDITION: Record<Show, string> = { tus: "US", tuk: "UK", tukc: "UK" };
+const UNIT: Record<Show, string> = { tus: "Season", tuk: "Series", tukc: "Series" };
 
 // Titles are Wikipedia page titles. Only a name of its own, like "The Traitors:
 // New Blood", says more than the number; "...(American TV series) season 3" doesn't.
 const PAGE_PREFIX = /^The (Celebrity )?Traitors\b(\s*\([^)]*\))?[:\s]*/;
 const NUMBERED = /^(season|series)\s+\d+$/i;
 
-export function seasonLabel(s: Pick<SeasonSummary, "id" | "number" | "title">): string {
-  const base = `${NAMES[showOf(s.id)]} ${s.number}`;
-  const name = s.title?.replace(PAGE_PREFIX, "").trim();
-  return name && !NUMBERED.test(name) ? `${base} · ${name}` : base;
+export interface SeasonName {
+  /** "New Blood", "Season 3", "Celebrity Traitors · Series 2". */
+  title: string;
+  /** What the title leaves out: "US · Season 5", or just "UK". */
+  eyebrow: string;
+  /** "Season 5" when the title is a name that doesn't say it, else null. */
+  numbered: string | null;
 }
+
+export function seasonName(s: Pick<SeasonSummary, "id" | "number" | "title">): SeasonName {
+  const show = showOf(s.id);
+  const numbered = `${UNIT[show]} ${s.number}`;
+  const name = s.title?.replace(PAGE_PREFIX, "").trim();
+  if (name && !NUMBERED.test(name)) return { title: name, eyebrow: `${EDITION[show]} · ${numbered}`, numbered };
+  return { title: show === "tukc" ? `Celebrity Traitors · ${numbered}` : numbered, eyebrow: EDITION[show], numbered: null };
+}
+
+/** The season's title on one line, for pickers and labels. */
+export const seasonLabel = (s: Pick<SeasonSummary, "id" | "number" | "title">) => seasonName(s).title;
+
+/** A season id's number: "tukc-2" is 2. */
+export const seasonNumber = (id: string) => Number(id.split("-")[1]);
 
 /** An edition's seasons, live ones first, then newest. */
 export function mergeSeasons(lists: SeasonSummary[][]): SeasonSummary[] {

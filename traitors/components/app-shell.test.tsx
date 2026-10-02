@@ -70,13 +70,13 @@ it("keeps a season from the URL and lights its edition", async () => {
   nav.search = "season=tukc-2";
   shell();
   expect(await screen.findByText("Showing tukc-2")).toBeTruthy();
-  expect(screen.getByRole("button", { name: "UK" }).getAttribute("aria-pressed")).toBe("true");
+  expect(screen.getByRole("button", { name: "United Kingdom edition" }).getAttribute("aria-pressed")).toBe("true");
 });
 
 it("switches edition by dropping the old season and remembering the choice", async () => {
   shell();
   await screen.findByText("Showing tus-5");
-  fireEvent.click(screen.getByRole("button", { name: "UK" }));
+  fireEvent.click(screen.getByRole("button", { name: "United Kingdom edition" }));
   expect(nav.push).toHaveBeenCalledWith("/stats/");
   expect(localStorage.getItem("armchair.traitors.edition")).toBe("uk");
   expect(await screen.findByText("Showing tukc-2")).toBeTruthy();
@@ -132,4 +132,22 @@ it("renders a seasonless page without loading a season, and leaves it for the ov
   fireEvent.click(await screen.findByRole("option", { name: "Season 4" }));
   expect(nav.push).toHaveBeenCalledWith("/?season=tus-4");
   expect(traitors.getTraitorsSeason).not.toHaveBeenCalled();
+});
+
+it("lists every Armchair Judge app in the header menu and the footer, the others opening signed in", async () => {
+  shell();
+  await screen.findByText("Showing tus-5");
+  const button = screen.getByRole("button", { name: "Armchair Judge apps" });
+  fireEvent.click(button);
+  const menu = button.parentElement as HTMLElement;
+  expect(within(menu).getByRole("link", { name: /Dancing with the Stars/ }).getAttribute("href")).toBe(
+    "https://dwts.armchairjudge.com/?sso=1",
+  );
+  expect(within(menu).getByRole("link", { name: /The Traitors/ }).getAttribute("aria-current")).toBe("page");
+  expect(within(menu).queryByRole("link", { name: /Survivor/ })).toBeNull();
+
+  const footer = within(screen.getByRole("contentinfo"));
+  expect(footer.getByRole("link", { name: "Armchair Judge" }).getAttribute("href")).toBe("https://armchairjudge.com/?sso=1");
+  expect(footer.getByText(/coming soon/)).toBeTruthy();
+  expect(screen.getByText(/Not affiliated with The Traitors/)).toBeTruthy();
 });

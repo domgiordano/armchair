@@ -56,12 +56,14 @@ interface BallotProps {
   episode: SeasonEpisode;
   group: string | null;
   members: GroupMember[] | null;
+  /** The season's title for the header, when the page knows it. */
+  seasonTitle?: string;
   /** After a call is sealed, so the season's answered counts catch up. */
   onSealed: () => void;
 }
 
 /** One episode's three calls: murder, round table, recruit. Blind and final, each under the wax seal. */
-export function Ballot({ season, episode, group, members, onSealed }: BallotProps) {
+export function Ballot({ season, episode, group, members, seasonTitle, onSealed }: BallotProps) {
   const { data, error, reload } = useEpisodePoll(season, episode.ep, episode.releaseAt, group);
   const [tab, setTab] = useState<EventType | null>(null);
 
@@ -78,7 +80,7 @@ export function Ballot({ season, episode, group, members, onSealed }: BallotProp
       <div className="flex items-end justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-1">
           <p className={EYEBROW}>
-            Episode {roman(data.ep)} · {formatRelease(data.releaseAt)}
+            {seasonTitle && `${seasonTitle} · `}Episode {roman(data.ep)} · {formatRelease(data.releaseAt)}
           </p>
           <h1 id="episode-title" className={cn(HEADING, "text-2xl leading-tight")}>
             {data.title ?? `Episode ${data.ep}`}

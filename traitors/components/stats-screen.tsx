@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { errorText, useSeasonView } from "@/components/season-data";
+import { useSeasonName } from "@/components/season-provider";
 import { Card } from "@/components/ui/card";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
@@ -20,6 +21,7 @@ type Load = { kind: "loading" } | { kind: "ready"; stats: Stats } | { kind: "err
 
 export function StatsScreen() {
   const { view } = useSeasonView();
+  const name = useSeasonName(view.season, view.title);
   const [load, setLoad] = useState<Load>({ kind: "loading" });
   const [attempt, setAttempt] = useState(0);
 
@@ -34,7 +36,12 @@ export function StatsScreen() {
     };
   }, [view.season, attempt]);
 
-  const heading = <h1 className={cn(HEADING, "text-2xl")}>Your ledger</h1>;
+  const heading = (
+    <div className="flex flex-col gap-1">
+      <p className={EYEBROW}>{name.title}</p>
+      <h1 className={cn(HEADING, "text-2xl")}>Your ledger</h1>
+    </div>
+  );
   if (load.kind === "loading") {
     return (
       <>
