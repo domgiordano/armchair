@@ -61,3 +61,36 @@ reproduced unmodified at the revisions linked above.
 [wp15]: https://en.wikipedia.org/w/index.php?title=Dancing_with_the_Stars_(American_TV_series)_season_15&action=history
 [wp20]: https://en.wikipedia.org/w/index.php?title=Dancing_with_the_Stars_(American_TV_series)_season_20&action=history
 [wp31]: https://en.wikipedia.org/w/index.php?title=Dancing_with_the_Stars_(American_TV_series)_season_31&action=history
+
+## Traitors
+
+`backend/tests/test_traitors_parse.py` parses these. Its expectations are written by hand in
+the test: the banished player and Finish-cell episode, and the Vote row's counts. The parser's
+per-player tally must reproduce those counts, so it can't grade itself.
+
+| File | Page | Revision | Timestamp (UTC) | Cases |
+|---|---|---|---|---|
+| `traitors-us4-1376576846.wikitext` | US season 4 | [1376576846][t1] | 2026-09-25 01:25:49 | finished season, `(2x)` dagger, Secret Traitor, Ultimatum recruit, nicknames |
+| `traitors-uk4-1374211799.wikitext` | UK series 4 | [1374211799][t2] | 2026-09-10 15:06:59 | footnote-only dagger, tie + revote + Fate (twice), one carried into the next episode |
+| `traitors-ukc1-1378003069.wikitext` | Celebrity series 1 | [1378003069][t3] | 2026-10-02 11:06:02 | two round tables in one episode, solo winner |
+| `traitors-ukc2-1378006453.wikitext` | Celebrity series 2 | [1378006453][t4] | 2026-10-02 11:35:18 | live season, no round table yet |
+| `traitors-us5-1377883386.wikitext` | New Blood | [1377883386][t5] | 2026-10-01 18:55:42 | live season, `3/4` and `4/5` columns, pending round table, `{{void}}` episodes |
+| `traitors-us5-1376587573.wikitext` | New Blood | [1376587573][t6] | 2026-09-25 02:29:44 | the first revision where episode 4's round table is complete |
+| `traitors-us5-1376577733-partial.wikitext` | New Blood | [1376577733][t7] | 2026-09-25 01:35:26 | mid-episode: Arisa banished, 7 of 19 votes in, Vote row empty |
+| `traitors-us5-1375764755-redirect.wikitext` | New Blood | [1375764755][t8] | 2026-09-19 22:57:43 | the page blanked to a redirect for 17 hours |
+
+These are text from the English Wikipedia articles "The Traitors (American TV series)
+season 4", "The Traitors (British TV series) series 4", "The Celebrity Traitors series 1",
+"The Celebrity Traitors series 2" and "The Traitors: New Blood", by their contributors (full
+author lists are in each article's history), licensed under
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) and reproduced unmodified at
+the revisions linked.
+
+[t1]: https://en.wikipedia.org/w/index.php?oldid=1376576846
+[t2]: https://en.wikipedia.org/w/index.php?oldid=1374211799
+[t3]: https://en.wikipedia.org/w/index.php?oldid=1378003069
+[t4]: https://en.wikipedia.org/w/index.php?oldid=1378006453
+[t5]: https://en.wikipedia.org/w/index.php?oldid=1377883386
+[t6]: https://en.wikipedia.org/w/index.php?oldid=1376587573
+[t7]: https://en.wikipedia.org/w/index.php?oldid=1376577733
+[t8]: https://en.wikipedia.org/w/index.php?oldid=1375764755
