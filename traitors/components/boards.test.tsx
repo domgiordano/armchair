@@ -23,6 +23,8 @@ const VIEW: SeasonView = {
   current: true,
   needsBet: false,
   bet: null,
+  summary: null,
+  cast: [],
   episodes: [1, 2, 3].map((ep) => ({ ep, title: null, releaseAt: "2026-10-01T00:00:00Z", closed: false, events: 3, answered: 3 })),
 };
 const wrap = (ui: ReactNode) =>

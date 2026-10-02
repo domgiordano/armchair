@@ -1,13 +1,9 @@
 import { request } from "@armchair/app-core/api/client";
 
-import type { Faction } from "@/lib/api/traitors";
+import type { Exit, Faction } from "@/lib/api/traitors";
 import type { Show } from "@/lib/seasons";
 
-/** How a player left: "banished", "murdered", "winner", or whatever word the page used. */
-export interface Exit {
-  ep: number;
-  how: string;
-}
+export type { Exit };
 
 export interface HistoryPlayer {
   id: string;

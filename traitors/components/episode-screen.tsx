@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { Ballot } from "@/components/ballot";
+import { PICK_PROMPT, useBet } from "@/components/bet";
 import { CatchUp } from "@/components/catch-up";
 import { GroupPicker } from "@/components/group-picker";
 import { useSeasonView } from "@/components/season-data";
@@ -18,6 +19,7 @@ import { useNow } from "@armchair/app-core/show/use-now";
 export function EpisodeScreen() {
   const { view, reload } = useSeasonView();
   const name = useSeasonName(view.season, view.title);
+  const bet = useBet();
   const filter = useGroupFilter();
   const router = useRouter();
   const now = useNow();
@@ -53,6 +55,7 @@ export function EpisodeScreen() {
           group={filter.group}
           members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
           seasonTitle={name.title}
+          onNeedBet={() => bet.open(PICK_PROMPT)}
           onSealed={reload}
         />
       </CatchUp>

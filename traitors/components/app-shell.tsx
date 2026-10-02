@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
 import { AppList, AppsMenu } from "@/components/apps-menu";
+import { BetProvider } from "@/components/bet";
 import { HistoryScreen } from "@/components/history-screen";
 import { PlayerSearch } from "@/components/player-search";
 import { SeasonDataContext, useSeasonLoad } from "@/components/season-data";
@@ -20,7 +21,6 @@ import { SkeletonList } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { TartanBand } from "@/components/ui/tartan-band";
 import { ToastProvider } from "@/components/ui/toast";
-import { WinnerBet } from "@/components/winner-bet";
 import { seasonName, seasonNumber, withSeason, type Edition } from "@/lib/seasons";
 import { cn, EYEBROW, FOCUS, ICON_BUTTON } from "@/lib/ui";
 import { getMe, type Me } from "@armchair/app-core/api/client";
@@ -80,9 +80,7 @@ function Shell({ title, seasonless = false, children }: AppShellProps) {
   const load = useSeasonLoad(seasonless || summary?.current === false ? null : season);
   // A finished season has nothing to call: its history stands in for every tab.
   const finished = !seasonless && (summary ? !summary.current : load.data?.current === false);
-  // The winner bet comes before anything else in a live season, tabs included.
-  const gated = load.data?.needsBet === true;
-  const tabs = !gated && !finished;
+  const tabs = !finished;
   const current = activeTab(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
@@ -227,8 +225,13 @@ function Content({ load, finished, seasonless, children }: ContentProps) {
   if (season !== null && finished) return <HistoryScreen key={season} season={season} />;
   if (data === null && error !== null) return <ErrorState what="this season" message={error} retry={reload} />;
   if (data === null) return <SkeletonList label="Opening the season" rows={3} row="h-20" />;
-  if (data.needsBet) return <WinnerBet key={data.season} gate={data} onSealed={reload} />;
-  return <SeasonDataContext value={{ view: data, reload }}>{children}</SeasonDataContext>;
+  return (
+    <SeasonDataContext value={{ view: data, reload }}>
+      <BetProvider key={data.season} view={data} onSealed={reload}>
+        {children}
+      </BetProvider>
+    </SeasonDataContext>
+  );
 }
 
 const EDITION_LABELS: { id: Edition; short: string; name: string; Flag: typeof UsFlag }[] = [

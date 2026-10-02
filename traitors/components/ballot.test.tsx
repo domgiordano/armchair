@@ -23,6 +23,8 @@ const episode = (events: EpisodeEvent[]): Episode => ({
   releaseAt: SEASON_EP.releaseAt,
   closed: false,
   roster: ROSTER,
+  out: [],
+  needsBet: false,
   events,
 });
 
@@ -37,6 +39,19 @@ const ballot = (onSealed = vi.fn()) =>
 const seat = (name: string) => screen.getByRole("button", { name: new RegExp(`^${name}`) });
 const para = (text: string) => (_: string, el: Element | null) => el?.tagName === "P" && el.textContent === text;
 const seal = () => screen.getByRole("button", { name: /^Seal/ }) as HTMLButtonElement;
+
+it("shows the table before the winner bet, and asks for the bet instead of taking a pick", async () => {
+  api.getEpisode.mockResolvedValue({ ...episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]), needsBet: true });
+  const onNeedBet = vi.fn();
+  render(<Ballot season="tus-5" episode={SEASON_EP} group={null} members={null} onSealed={vi.fn()} onNeedBet={onNeedBet} />);
+  fireEvent.click(await screen.findByRole("button", { name: /^Cal Reyes/ }));
+  expect(onNeedBet).toHaveBeenCalledOnce();
+  expect(screen.getByRole("button", { name: /^Cal Reyes/ }).getAttribute("aria-pressed")).toBe("false");
+  expect(screen.queryByRole("button", { name: /^Seal/ })).toBeNull();
+  fireEvent.click(screen.getByRole("button", { name: "Lock in your winners" }));
+  expect(onNeedBet).toHaveBeenCalledTimes(2);
+  expect(api.submitPick).not.toHaveBeenCalled();
+});
 
 it("ranks three heads at the round table, reorders them on the slate, and seals the slate", async () => {
   const onSealed = vi.fn();
