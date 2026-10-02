@@ -1,7 +1,7 @@
 """
 GET /seasons/list[?show=dwts] - every season of a show for the season picker, newest first.
 
-Each is {id, number, year, current}; `current` marks the default season. Read from the
+Each is {id, number, year, current, title?}; `current` marks the default season. Read from the
 SEASONS#<show> index partition that seed_season.py writes beside each season.
 """
 
@@ -22,7 +22,14 @@ def handler(event, context):
     if not SHOW.fullmatch(show):
         raise ValidationError("show must look like dwts", field="show")
     seasons = [
-        {"id": s["id"], "number": int(s["number"]), "year": int(s["year"]), "current": s["current"]}
+        {
+            "id": s["id"],
+            "number": int(s["number"]),
+            "year": int(s["year"]),
+            "current": s["current"],
+            # Traitors index rows carry the season's Wikipedia page title; DWTS rows have none.
+            **({"title": s["title"]} if s.get("title") else {}),
+        }
         for s in season_index(show)
     ]
     return ok({"show": show, "seasons": sorted(seasons, key=lambda s: -s["number"])})

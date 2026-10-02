@@ -30,6 +30,23 @@ def test_lists_seasons_newest_first_with_the_current_one_flagged(aws):
     }
 
 
+def test_keeps_the_page_title_a_traitors_index_row_carries(aws):
+    aws.Table(CATALOG_TABLE).put_item(
+        Item={
+            "pk": "SEASONS#tus",
+            "sk": "SEASON#005",
+            "id": "tus-5",
+            "number": 5,
+            "title": "The Traitors: New Blood",
+            "year": 2026,
+            "current": True,
+        }
+    )
+    assert call({"show": "tus"})[1]["data"]["seasons"] == [
+        {"id": "tus-5", "number": 5, "year": 2026, "current": True, "title": "The Traitors: New Blood"}
+    ]
+
+
 def test_a_show_with_no_seasons_is_an_empty_list(aws):
     assert call({"show": "traitors"})[1]["data"] == {"show": "traitors", "seasons": []}
 

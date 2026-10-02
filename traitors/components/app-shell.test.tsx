@@ -3,6 +3,7 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
 const nav = vi.hoisted(() => ({ path: "/stats/", search: "", push: vi.fn() }));
 const traitors = vi.hoisted(() => ({ getTraitorsSeason: vi.fn(), submitWinner: vi.fn() }));
+const history = vi.hoisted(() => ({ getHistory: vi.fn(), searchPlayers: vi.fn(), SEARCH_MIN: 2 }));
 
 vi.mock("next/navigation", () => ({
   usePathname: () => nav.path,
@@ -14,6 +15,7 @@ vi.mock("@armchair/app-core/api/client", () => ({
   getMe: vi.fn(async () => ({ sub: "me", email: "me@example.com", name: "Me Myself", picture: null })),
 }));
 vi.mock("@/lib/api/traitors", () => traitors);
+vi.mock("@/lib/api/history", () => history);
 vi.mock("@/lib/api/seasons", () => ({
   getSeasons: vi.fn(async (show: string) =>
     ({
@@ -103,4 +105,31 @@ it("holds a live season behind the winner bet, with no tabs", async () => {
   expect(await screen.findByRole("heading", { name: "Who takes the pot?" })).toBeTruthy();
   expect(screen.queryByText("Showing tus-5")).toBeNull();
   expect(screen.queryByRole("link", { name: "Leaderboard" })).toBeNull();
+});
+
+it("shows a finished season's history in place of the tabs", async () => {
+  nav.search = "season=tus-4";
+  traitors.getTraitorsSeason.mockImplementation(async (season: string) => ({ season, title: "", current: false, needsBet: false, bet: null, episodes: [] }));
+  history.getHistory.mockResolvedValue({ season: "tus-4", title: null, winners: [], players: [], episodes: [] });
+  shell();
+  expect(await screen.findByRole("heading", { name: "Season 4" })).toBeTruthy();
+  expect(history.getHistory).toHaveBeenCalledWith("tus-4");
+  expect(screen.queryByText("Showing tus-4")).toBeNull();
+  expect(screen.queryByRole("navigation", { name: "Main" })).toBeNull();
+  expect(screen.getByRole("main").getAttribute("aria-label")).toBe("Season history");
+});
+
+it("renders a seasonless page without loading a season, and leaves it for the overview", async () => {
+  nav.path = "/players/player/";
+  nav.search = "show=tus&id=ava-stone";
+  render(
+    <AppShell title="Player" seasonless>
+      <p>A player</p>
+    </AppShell>,
+  );
+  expect(screen.getByText("A player")).toBeTruthy();
+  fireEvent.click((await screen.findAllByRole("combobox", { name: "Season" }))[0]);
+  fireEvent.click(await screen.findByRole("option", { name: "Season 4" }));
+  expect(nav.push).toHaveBeenCalledWith("/?season=tus-4");
+  expect(traitors.getTraitorsSeason).not.toHaveBeenCalled();
 });
