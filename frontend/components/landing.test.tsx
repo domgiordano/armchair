@@ -92,6 +92,16 @@ describe("Landing", () => {
     expect(screen.getByText(/^Not affiliated with Dancing with the Stars, The Traitors, ABC, Disney, NBC, Peacock, BBC, CBS/)).toBeTruthy();
   });
 
+  it("explains scoring judge by judge, catching up, and the leaderboards", async () => {
+    reduceMotion(true);
+    render(<Home />);
+    expect(await screen.findByRole("region", { name: "you vs every judge." })).toBeTruthy();
+    expect(screen.getByRole("img", { name: /^Points off each judge this season: Marisol 0\.48/ })).toBeTruthy();
+    expect(screen.getByRole("list", { name: /week 5 has 3 dances waiting/ })).toBeTruthy();
+    expect(screen.getByRole("region", { name: "settle it on the board." }).textContent).toContain("once they have scored 5 dances");
+    expect(screen.getByRole("region", { name: "the floor is yours." })).toBeTruthy();
+  });
+
   it("has a top nav with the page links, the apps and Google sign-in", async () => {
     reduceMotion(true);
     render(<Home />);

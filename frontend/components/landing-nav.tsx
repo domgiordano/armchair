@@ -13,6 +13,7 @@ import { button, FOCUS } from "@/lib/ui";
 
 const LINKS = [
   { href: "#how", label: "How it works" },
+  { href: "#accuracy", label: "Scoring" },
   { href: "/discover/", label: "Discover" },
 ];
 
