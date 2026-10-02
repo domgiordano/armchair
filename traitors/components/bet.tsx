@@ -94,7 +94,7 @@ function BetBanner({ worth, onOpen }: { worth: number; onOpen: () => void }) {
       <p className="flex min-w-0 flex-1 flex-col leading-snug">
         <span className="font-display font-semibold tracking-[0.04em] text-bone">Lock in your winners</span>
         <span className="text-sm text-flame">
-          Worth <span className="nums">{Math.round(worth * 100)}%</span> now, less after every episode
+          Worth <span className="nums">{Math.round(worth * 100)}%</span> now<span className="max-sm:hidden">, less after every episode</span>
         </span>
       </p>
       <button type="button" onClick={onOpen} className={button("gold", "sm")}>
