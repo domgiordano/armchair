@@ -1,0 +1,1142 @@
+{{short description|2026 series of The Traitors}}
+{{Use British English|date=December 2025}}
+{{Use dmy dates|date=December 2025}}
+{{Infobox television season
+| bgcolour             = #FF7E00
+| series_number        = 4
+| image                = Traitors UK 4.png
+| caption              = Promotional poster
+| module1              = {{Infobox reality competition season
+ | presenter           = [[Claudia Winkleman]]
+ | num_days            = 
+ | num_contestants     = 22
+ | location            = [[Ardross, Highland]]
+ |companion_show = ''The Traitors: Uncloaked''
+| winner               = {{plainlist|
+*Rachel Duffy
+*Stephen Libby
+}}
+| runner_up            = Jack Butler
+}}
+| num_episodes         = 12
+| network              = [[BBC One]]
+| first_aired          = {{Start date|2026|1|1|df=yes}}
+| last_aired           ={{End date|2026|1|23|df=yes}}
+}}
+
+The '''fourth series''' of ''[[The Traitors (British TV series)|The Traitors]]'' was first broadcast on [[BBC One]] on 1 January 2026.<ref>{{cite web |title=The Traitors Series 4 launch date confirmed |url=https://www.bbc.co.uk/mediacentre/2025/the-traitors-series-4-launch-date-confirmed |website=[[BBC]] |accessdate=12 December 2025}}</ref><ref>{{cite web |last1=Mensah |first1=Katelyn |title=The Traitors season 4: Release date and latest news {{!}} Radio Times |url=https://www.radiotimes.com/tv/entertainment/reality-tv/the-traitors-season-4-release-date/ |website=[[Radio Times]] |accessdate=12 December 2025}}</ref> [[Claudia Winkleman]] returned to present the series, which was accompanied by the spin-off show ''The Traitors: Uncloaked'', presented by [[Ed Gamble]].<ref name="Traitors4">{{cite web |title=The Traitors Series 4 – Everything you need to know |url=https://www.bbc.co.uk/mediacentre/articles/2026/the-traitors-series-4 |website=[[BBC]] |accessdate=12 December 2025}}</ref> The series concluded on 23 January 2026 when Rachel Duffy and Stephen Libby won, becoming the first pair of Traitors to win the British version.<ref>{{cite news|last=Youngs|first=Ian|title=The Traitors stars serve up drama in nail-biting final|url=https://www.bbc.co.uk/news/articles/c301jg2dlmdo|date=24 January 2026|work=[[BBC News]]|access-date=24 January 2026}}</ref>
+
+==Production==
+In August 2024, prior to the beginning of the [[The Traitors (British TV series) series 3|previous series]], it was announced that ''The Traitors'' had been renewed for a fourth series. Applications for the series opened on 22 August 2024, before closing on 28 March 2025.<ref>{{cite web |title=How to apply for The Traitors season 4 |url=https://www.cosmopolitan.com/uk/entertainment/a63391282/the-traitors-season-4/ |website=[[Cosmopolitan (magazine)|Cosmopolitan]] |accessdate=12 December 2025 |date=21 January 2025}}</ref> Filming for the series began in June 2025.<ref>{{cite web |title=Your ultimate guide to The Traitors series 4 as start date is announced |url=https://www.hellorayo.co.uk/kiss/entertainment/television/the-traitors-series-4 |website=[[Rayo (streaming)|Rayo]] |accessdate=12 December 2025}}</ref> The first teaser for the fourth series aired at the end of the final of ''[[The Celebrity Traitors]]'', which featured a figure wearing a Traitors' cloak carrying a lantern walking through a forest at night, whilst "[[Heart of Glass (song)|Heart of Glass]]" played in the background.<ref>{{cite web |last1=Kanter |first1=Jake |title='The Traitors' Season 4 BBC Premiere Date Revealed |url=https://deadline.com/2025/12/the-traitors-season-4-bbc-premiere-date-1236633012/ |website=[[Deadline Hollywood]] |accessdate=12 December 2025 |date=2 December 2025}}</ref> The series began on 1 January 2026.<ref>{{cite web |title=The Traitors season four air date confirmed by the BBC |url=https://www.independent.co.uk/arts-entertainment/tv/news/the-traitors-series-four-bbc-b2876524.html |website=[[The Independent]] |accessdate=12 December 2025 |language=en |date=2 December 2025}}</ref>
+
+==Contestants==
+The 22 contestants competing in the series were revealed at midnight on 1 January 2026, the day of the show's launch.<ref>{{cite web |title=The Traitors Series 4 Contestants – Meet the players joining Claudia Winkleman in the castle |url=https://www.bbc.co.uk/mediacentre/mediapacks/the-traitors-series-4-contestants |website=[[BBC]] |access-date=1 January 2026 |language=en}}</ref> Amongst the contestants were a mother and daughter, Judy and Roxy, and a couple, Ellie and Ross, none of whom revealed their relationships to the other players; Judy and Roxy's connection was revealed to the audience in the first episode, while Ellie and Ross's relationship was revealed to viewers only after Ross's banishment.<ref>{{cite news|last=Sarrubba|first=Stefania|title= Who are Roxy and Judy from The Traitors? Here's what we know about the new parent/child twist|url= https://www.digitalspy.com/tv/reality-tv/a69902819/traitors-season-4-roxy-judy/|date=2 January 2026|work=[[Digital Spy]]|access-date=3 January 2026}}</ref><ref>{{cite web|title=Traitors' Ross gives update on relationship with Ellie after his dramatic exit from the show|first=Sam|last=Warner|work=[[Digital Spy]]|url=https://www.digitalspy.com/tv/reality-tv/a69943855/traitors-uk-ross-ellie-now/|date=8 January 2026|access-date=10 January 2026}}</ref> Additionally, Netty and Ross were old acquaintances, who did not know each other would be present and were selected for the series independently; Netty exposed their connection to the other players upon their arrival.<ref>{{cite news|last=Morris|first=Nicky|title=The Traitors stars Netty and Ross's connection explained – despite extensive 'background checks'|url=https://www.hellomagazine.com/film/873198/the-traitors-season-4-netty-ross-connection-explained/|work=[[Hello! (magazine)|Hello! Magazine]]|date=2 January 2026|access-date=2 January 2026}}</ref>
+
+In the first episode, Winkleman revealed that one contestant would be selected as a "Secret Traitor", whose identity would be hidden from both the audience and the regular Traitors. Each night, they would provide the Traitors with a shortlist of Faithful to murder. Contestants were therefore only initially identified as Faithful by appearing on murder shortlists selected by the Secret Traitor, or after being banished. In episode 4, the Secret Traitor was revealed to be Fiona to Traitors Stephen and Rachel after Hugo was banished. Prior to this, the Secret Traitor was visually represented on screen as an unidentified figure dressed in a red cloak.<ref>{{cite web|title=The Traitors Red Cloak Secret Traitor twist explained|url=https://www.bbc.co.uk/mediacentre/articles/2026/the-traitors-secret-traitor-red-cloak-explained|date=1 January 2026|website=[[BBC]]|access-date=1 January 2026}}</ref>
+
+<div style="overflow: auto;">
+{{multiple image
+| align             = center
+| direction         = horizontal
+| perrow = 4/4
+| footer       = (L-R): Fiona Hughes, [[Harriet Tyce]], Rachel Duffy and Stephen Libby
+| image1       = Fiona Hughes at BAFTAs 2026 02.jpg
+| image2       = Harriet Tyce 2025.jpg
+| image3       = Rachel Duffy at BAFTA 2026 09.jpg 
+| image4       = Stephen Libby at BAFTA 2026 08.jpg
+}} 
+</div>
+
+{| class="wikitable sortable" style="margin:auto; text-align:center"
+|+List of ''The Traitors'' contestants
+! scope="col" |Contestant
+! scope="col" |Age
+! scope="col" |Residence
+! scope="col" |Occupation
+! Affiliation
+! Finish
+! {{Abbr|Ref.|Reference(s)}}
+
+|-
+! style="text-align:left" | Netty Österberg
+| 42
+| [[Glasgow]], Scotland
+| Nursery school teacher
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:darkred; color:white"|Murdered<br /><small>(Episode 2)</small>
+| align="center"| <ref name="surnames"/>
+|-
+! style="text-align:left"| Judy Wilson
+| 60
+| [[Doncaster]], England
+| Child liaison officer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 2)</small>
+| align="center"|<ref name="surnames">{{cite web |title=The Traitors fans share verdict on "excellent" episode one twists |url=https://www.digitalspy.com/tv/reality-tv/a69898455/the-traitors-fans-share-verdict-excellent-first-episode-twists/ |website=[[Digital Spy]] |access-date=3 January 2026 |date=1 January 2026}}</ref>
+|-
+! style="text-align:left"| David "Ben" Benassi
+| 66
+| [[Hampshire]], England
+| Royal Navy veteran
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:darkred; color:white"|Murdered<br /><small>(Episode 3)</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| Hugo Lodge
+| 51
+| [[London]], England
+| Barrister
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 3)</small>
+| align="center"| <ref name="surnames"/>
+|-
+! style="text-align:left" | Ross Garshong
+| 37
+| [[London]], England
+| Sales executive & personal trainer 
+| bgcolor="#0047AB" style="color:#FFFFFF" span |Faithful
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 4)</small>
+| align="center" | <ref name="surnames"/>
+|-
+! style="text-align:left"| {{nowrap|Marzook "Maz" Bana}}
+| 59
+| [[Preston, Lancashire|Preston]], England
+| Civil servant
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:darkred; color:white"|Murdered<br /><small>{{nowrap|(Episode 5)}}</small>
+| align="center"| <ref name="surnames"/>
+|-
+! style="text-align:left"| Amanda Collier
+| 57
+| [[Brighton]], England
+| Retired police detective
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 5)</small>
+| align="center"| <ref name="surnames3">{{cite web |title=How to watch The Traitors UK season 4 — free streams from anywhere |url=https://www.techradar.com/how-to-watch/tv-shows/traitors-uk-season-4-free |website=TechRadar |access-date=3 January 2026 |language=en |date=1 January 2026}}</ref>
+|-
+! style="text-align:left"| Reece Ward
+| 27
+| [[Sheffield]], England
+| Sweet shop assistant 
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:darkred; color:white"|Murdered<br /><small>{{nowrap|(Episode 6)}}</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| Fiona Hughes
+| 62
+| [[Swansea]], Wales
+| Local government officer
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor{{efn|In episode 1, Fiona was selected as the Secret Traitor. This was hidden from both the Traitors and viewers until episode 4, when she became a normal Traitor.}}
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 6)</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| [[Harriet Tyce]]
+| 52
+| [[London]], England
+| Crime writer & former barrister
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 7)</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| Adam Waughman
+| 34
+| [[Romford]], England
+| Builder
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:darkred; color:white"|Murdered<br /><small>{{nowrap|(Episode 8)}}</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| Sam Little
+| 34
+| [[Yarm]], England
+| Account manager
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 8)</small>
+| align="center"| <ref name="surnames3"/><ref>{{Cite web|url=https://www.thenorthernecho.co.uk/news/25774146.yarm-bbc-traitors-star-sam-little-talks-surreal-time-show/|title=Yarm BBC The Traitors star Sam Little talks 'surreal' time on show|first=Alex|last=O'Leary|date=18 January 2026|access-date=2026-01-26|website=[[The Northern Echo]]}}</ref>
+|-
+! style="text-align:left"| Jessie Stride
+| 28
+| [[Kingston upon Hull|Hull]], England
+| Hairstylist
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:darkred; color:white"|Murdered<br /><small>{{nowrap|(Episode 9)}}</small>
+| align="center"| <ref>{{cite web |last1=Grove |first1=Alex |title=Inspirational Hull stammer sufferer to make TV debut in documentary |url=https://www.hulldailymail.co.uk/news/hull-east-yorkshire-news/inspirational-hull-stammer-sufferer-jessie-996630 |website=Hull Live |access-date=3 January 2026 |language=en |date=1 January 2018}}</ref>
+|-
+! style="text-align:left"| Ellie Buckley
+| 33
+| [[London]], England
+| Psychologist
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 9)</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| Matthew Hyndman
+| 35
+| [[Edinburgh]], Scotland
+| Creative director
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>(Episode 10)</small>
+| align="center"| <ref>{{cite web |last1=Sugg |first1=Aaron |title=The Traitors 2026 star Matthew Hyndman's nude modelling career might surprise fans |url=https://www.attitude.co.uk/culture/traitors-matthew-hyndmans-nude-model-career-507856/ |website=[[Attitude (magazine)|Attitude]] |access-date=3 January 2026 |date=2 January 2026}}</ref>
+|-
+! style="text-align:left"| Roxy Wilson
+| 32
+| [[Amsterdam]], Netherlands
+| Recruiter
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:darkred; color:white"|Murdered<br /><small>{{nowrap|(Episode 11)}}</small>
+| align="center"| <ref>{{cite news|work=[[The Times]]|url=https://www.thetimes.com/life-style/parenting/article/the-traitors-roxy-mum-judy-adoption-tjhmk2z7t|date=4 February 2026|first=Toby|title=The Traitors’ Roxy: Mum had to choose to adopt me or my sister|access-date=4 February 2026|last=Shepheard|url-access=subscription}}</ref>
+|-
+! style="text-align:left"| James Baker
+| 38
+| [[Weymouth, Dorset|Weymouth]], England
+| Gardener
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>{{nowrap|(Episode 12)}}</small>
+| align="center"| <ref name="surnames"/>
+|-
+! style="text-align:left"| Jade Scott
+| 25
+| [[Warwick]], England
+| PhD student
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>{{nowrap|(Episode 12)}}</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| Faraaz Noor
+| 22
+| [[Middlesbrough]], England
+| Internal auditor
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>{{nowrap|(Episode 12)}}</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| Jack Butler
+| 29
+| [[Hatfield Heath]], England
+| Personal trainer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon; color:black"|Banished<br /><small>{{nowrap|(Episode 12)}}</small>
+| align="center"| <ref name="surnames3"/>
+|-
+! style="text-align:left"| Rachel Duffy
+| 42
+| [[Newry]], Northern Ireland
+| Head of communications
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor
+| style="background:gold"|'''Winner'''<br /><small>{{nowrap|(Episode 12)}}</small>
+| align="center"| <ref name="surnames"/>
+|-
+! style="text-align:left"| Stephen Libby
+| 32
+| [[London]], England
+| Cyber security consultant 
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor
+| style="background:gold"|'''Winner'''<br /><small>{{nowrap|(Episode 12)}}</small>
+| align="center"| <ref name="surnames"/>
+|}
+{{notelist}}
+
+==Elimination history==
+
+'''Key'''
+: {{Color box|0047AB|border=silver}} The contestant was a Faithful.
+: {{Color box|67002f|border=silver}} The contestant was a Traitor.
+: {{Color box|DarkRed|border=silver}} The contestant was murdered by the Traitors.
+: {{Color box|salmon|border=silver}} The contestant was banished at the round table.
+
+{| class="wikitable" style="text-align:center; width:100%; font-size:90%; line-height:13px"
+! colspan="3"|Episode
+!1
+!2
+!colspan="2"|3
+!4
+!colspan="3"|5
+!6
+!7
+!8
+!9
+!colspan="2"|10
+!colspan="2"|11
+!colspan="2"|12
+|-
+! colspan="3" |Secret Traitor<br />Shortlist
+| rowspan="3" {{N/A|''None''}} 
+|bgcolor="#0047AB" style="color:#FFFFFF"| {{unbulleted list|list_style=text-align:center|James|Maz|Netty}}
+|bgcolor="#0047AB" style="color:#FFFFFF"| {{unbulleted list|list_style=text-align:center|Ben|Maz|Reece}}
+| colspan="15" {{N/A|''None''}}
+|-
+! colspan="3" rowspan="2" |Traitors'<br />Decision 
+|bgcolor="#0047AB" style="color:#FFFFFF"|Netty 
+|bgcolor="#0047AB" style="color:#FFFFFF"|Ben
+|style="background-image: linear-gradient(to bottom, #0047AB 0% 88%, #67002f 88% 100%);" | {{font color|white| {{unbulleted list| list_style=text-align:center|Amanda|Faraaz|Jack|Jade|James|Maz|Reece|Sam|Stephen}}}}
+| rowspan="2" {{N/A|''None''}}
+|colspan="3" bgcolor="#0047AB" style="color:#FFFFFF"|Maz
+| bgcolor="#0047AB" style="color:#FFFFFF"|Reece
+| rowspan="2" {{N/A|''None''}}{{efn|No murder took place; having won the opportunity in the preceding mission, Matt, and Harriet attended a Confessional to speak to the Traitors.}}
+| bgcolor="#0047AB" style="color:#FFFFFF"|Adam
+| bgcolor="#0047AB" style="color:#FFFFFF"|Jessie
+| colspan="2" bgcolor="#0047AB" style="color:#FFFFFF"|James
+|colspan="2" bgcolor="#0047AB" style="color:#FFFFFF"| Roxy
+| colspan="2" rowspan="3" {{N/A|''None''}}
+|-
+| ''Murder''
+| ''Murder''
+| ''Shortlist''{{efn|Rachel and Stephen were given the mission to shortlist nine players for murder the following night by marking them with a red fingerprint on the family tree in the castle's entrance hall. As they were successful, they took control from the Secret Traitor and revealed their identity.}}
+| colspan="3"|''Murder''{{efn|Stephen remained captive following the previous mission, so did not participate in the decision.}}
+| ''Murder''
+| ''Murder''
+| ''Murder''
+| colspan="2"|''Dagger''{{efn|name=Dagger|The Traitors selected a player to be awarded The Dagger, making their vote count twice at the next round table. They granted the Dagger to James.}}
+|colspan="2"| ''Murder''
+|-
+! colspan="3"| Shield  
+|{{unbulleted list|list_style=text-align:center|Amanda|Ben|Ellie|Harriet|Hugo|Jack|Jade|Jessie|Matthew|Roxy|Sam|Stephen}}
+|{{unbulleted list|list_style=text-align:center|Amanda|Faraaz|Jade}}
+|colspan="2"|Adam
+|{{unbulleted list|list_style=text-align:center|Amanda|Faraaz|Jack|Jade|James{{efn|The players previously shortlisted by the Traitors were able to win immunity in the mission, which five did successfully. As Stephen was a Traitor, only Marzook, Reece and Sam remained eligible for the next murder.}}}}
+|colspan="3"|{{unbulleted list|list_style=text-align:center|Adam|Harriet|Jack|James|Jessie|Rachel|Roxy}}
+|{{N/A|''None''}}
+|{{unbulleted list|list_style=text-align:center|Faraaz|Jack|Jade|James|Jessie|Rachel|Stephen}}
+|Sam
+| {{N/A|''None''}}
+| colspan="2"| Jack
+| colspan="2" {{N/A|''All''{{Efn|The players successfully completed the mission, preventing the Traitors from committing a murder.}}}}
+|-
+! colspan="3" |Banishment
+| rowspan="2" {{N/A|''None''}}
+| bgcolor="#0047AB" style="color:#FFFFFF"|Judy
+| colspan="2" bgcolor="#67002F" style="color:#FFFFFF"|Hugo
+| bgcolor="#0047AB" style="color:#FFFFFF"|Ross
+| bgcolor="lightgrey"|''Tie''
+| bgcolor="lightgrey"|''Tie''
+| bgcolor="#0047AB" style="color:#FFFFFF"|Amanda
+| bgcolor="#67002F" style="color:#FFFFFF"|Fiona
+| bgcolor="#0047AB" style="color:#FFFFFF"|Harriet
+| bgcolor="#0047AB" style="color:#FFFFFF"|Sam
+| bgcolor="#0047AB" style="color:#FFFFFF"|Ellie
+| colspan="2" bgcolor="#0047AB" style="color:#FFFFFF"|Matthew
+| bgcolor="lightgrey"|''Tie''
+| bgcolor="lightgrey"|''Tie''
+| bgcolor="#0047AB" style="color:#FFFFFF"|James
+| bgcolor="#0047AB" style="color:#FFFFFF"|Jade
+|-
+! colspan="3" |Vote
+|{{nowrap|16–1–1–<br />1–1–1}}
+|colspan="2"|{{nowrap|10–3–2–1–1–1–1}}
+|{{nowrap|6–5–3–<br />2–1–1}}
+|{{nowrap|5–5–3–<br />1–1–1}}
+|7–7
+|Fate{{efn|As Amanda and Reece remained tied, they were presented with two chests, only one of which contained a shield. The player who selected the chest without a shield was banished.}}
+|{{nowrap|9–4–1}}
+|{{nowrap|10–1–1–1}}
+|{{nowrap|6–2–1–<br />1–1}}
+|{{nowrap|4–2–2–1}}
+|colspan="2"|5–3–1
+|3–3
+|2–2
+|Fate{{efn|As James and Rachel remained tied, they were presented with two chests, only one of which contained a shield. The player who selected the chest without a shield was banished.}}
+|3-1-1
+|- style="border-top:5px solid"
+| colspan="2" bgcolor="#67002F" |
+!style="height:25px" scope="row"|Rachel
+| bgcolor="lightgrey" rowspan="22"|''No<br />vote''
+|Ross
+| colspan="2" |Ross
+|Ross
+|Sam
+|Reece
+| bgcolor="lightgrey" rowspan="16"|''No<br>vote''
+|Fiona
+|Harriet
+|Sam
+|Ellie
+| colspan="2" |Matthew
+|James
+|bgcolor="lightgrey"|''No<br />vote''{{efn|name=Tied}}
+| bgcolor="lightgrey" rowspan="6"|''No<br>vote''
+|Jade
+|-
+| colspan="2" bgcolor="#67002F" |
+!style="height:25px" scope="row"|Stephen
+|Judy
+| colspan="2" |Hugo
+|Maz
+|Amanda
+|Amanda
+|Fiona
+|Harriet
+|Sam
+|Ellie
+| colspan="2" |Matthew
+|James
+|James
+|Jade
+|-
+| colspan="2" bgcolor="0047AB" | 
+!style="height:25px" scope="row"|Jack
+|Judy
+|colspan="2"|Reece
+|Reece
+|Reece
+|Reece
+|Fiona
+|Harriet
+|Matthew
+|Matthew
+| colspan="2"|Matthew
+|Rachel
+|James
+|Rachel
+|-
+| colspan="2" bgcolor="0047AB" | 
+!style="height:25px" scope="row"|Faraaz
+|Judy
+|colspan="2"|Sam
+|Sam
+|Stephen
+|Reece
+|Sam
+|Harriet
+|Sam
+|Ellie
+|colspan="2"|Jade
+|Rachel
+|Rachel
+|Jade
+|-
+| colspan="2" bgcolor="0047AB" | 
+!style="height:25px" scope="row"|Jade
+|Judy
+|colspan="2"|Amanda
+|Ross
+|Amanda
+|Amanda
+|Fiona
+|Harriet
+|Sam
+|Ellie
+|colspan="2"|James
+|James
+|Rachel
+|Faraaz
+|-
+| colspan="2" bgcolor="#0047AB" | 
+! James
+|Judy
+|colspan="2"|Reece
+|Reece
+|Reece
+|Reece
+|Fiona
+|Harriet
+|Matthew
+|Matthew
+|colspan="2"|Matthew{{efn|name=Dagger|The Traitors selected a player to be awarded The Dagger, making their vote count twice at the next round table. They granted the Dagger to James.}}
+|Rachel
+|bgcolor="lightgrey"|''No<br />vote''{{efn|name=Tied|The first round of voting resulted in a tie. Per the rules, a second vote was held where the players involved in the tie would not vote and the remaining players could only vote for those who tied.}}
+| style="background:salmon"|''Banished'' <br /><small>{{nowrap|(Episode 12)}}</small>
+|-
+| colspan="2" bgcolor="0047AB" |
+! Roxy
+|James
+| colspan="2" |James
+|Ross
+|Reece
+|Reece
+|Fiona
+|Harriet
+|James
+|James
+| colspan="2" |James
+| colspan="4" style="background:darkred; color:white"|''Murdered'' <br /><small>(Episode 11)</small>
+|-
+| colspan="2" bgcolor="0047AB" | 
+! Matthew
+|Judy
+|colspan="2"|Hugo
+|Sam
+|Amanda
+|Amanda
+|Sam
+|Harriet
+|Sam
+|Jade
+|colspan="2"|James
+| colspan="4" style="background:salmon"|''Banished'' <br /><small>{{nowrap|(Episode 10)}}</small>
+|-
+| colspan="2" bgcolor="0047AB" | 
+! Ellie
+|Judy
+|colspan="2"|Hugo
+|Reece
+|Amanda
+|Amanda
+|Sam
+|Jade
+|Sam
+|Jade
+| colspan="6" style="background:salmon"|''Banished'' <br /><small>{{nowrap|(Episode 9)}}</small>
+|-
+| colspan="2" bgcolor="0047AB" | 
+! Jessie
+|Judy
+|colspan="2"|Amanda
+|Reece
+|Stephen
+|Amanda
+|Fiona
+|Harriet
+|Stephen
+| colspan="7" style="background:darkred; color:white"|''Murdered'' <br /><small>(Episode 9)</small>
+|-
+| colspan="2" bgcolor="0047AB" | 
+! Sam
+|Judy
+|colspan="2"|Hugo
+|Reece
+|Amanda
+|Amanda
+|Fiona
+|Harriet
+|Ellie
+| colspan="7" style="background:salmon"|''Banished'' <br /><small>(Episode 8)</small>
+|-
+| colspan="2" bgcolor="0047AB" |
+! Adam
+|Judy
+|colspan="2"|Hugo
+|Jade
+|Reece
+|Reece
+|Jade
+|Matthew
+| colspan="8" style="background:darkred; color:white"|''Murdered'' <br /><small>(Episode 8)</small>
+|-
+| colspan="2" bgcolor="0047AB" |
+! Harriet
+|Judy
+|colspan="2"|Hugo
+|Ross
+|Stephen
+|Amanda
+|Fiona
+|Rachel
+| colspan="8" style="background:salmon"|''Banished'' <br /><small>(Episode 7)</small>
+|-
+| colspan="2" bgcolor="67002f" | 
+! Fiona
+|Judy
+|colspan="2"|Hugo
+|Ross
+|Reece
+|Reece
+|Sam
+| colspan="9" style="background:salmon"|''Banished'' <br /><small>(Episode 6)</small>
+|-
+| colspan="2" bgcolor="0047AB" |
+! Reece
+|Adam
+|colspan="2"|Hugo
+|Ross
+|Ellie
+|bgcolor="lightgrey"|''No<br />vote''{{efn|name=Tied}}
+| colspan="10" style="background:darkred; color:white"|''Murdered'' <br /><small>(Episode 6)</small>
+|-
+| colspan="2" bgcolor="0047AB" | 
+! Amanda
+|Jade
+|colspan="2"|Jade
+|Jade
+|Jade
+|bgcolor="lightgrey"|''No<br />vote''{{efn|name=Tied}}
+| colspan="10" style="background:salmon"|''Banished'' <br /><small>(Episode 5)</small>
+|-
+| colspan="2" bgcolor="#0047AB" | 
+! Maz
+|Judy
+|colspan="2"|Hugo
+|Jade
+| colspan="13" style="background:darkred; color:white"|''Murdered'' <br /><small>(Episode 5)</small>
+|-
+| colspan="2" bgcolor="0047AB" |
+! Ross
+|Judy
+| colspan="2" |Hugo
+|Stephen
+| colspan="13" style="background:salmon"|''Banished'' <br /><small>(Episode 4)</small>
+|-
+| colspan="2" bgcolor="#67002F" | 
+! Hugo
+|Judy
+|colspan="2"|Amanda
+| colspan="15" style="background:salmon"|''Banished'' <br /><small>(Episode 3)</small>
+|-
+| colspan="2" bgcolor="0047AB" | 
+! Ben
+|Judy
+| colspan="16" style="background:darkred; color:white"|''Murdered'' <br /><small>(Episode 3)</small>
+|-
+| colspan="2" bgcolor="#0047AB" | 
+! Judy
+|Sam
+| colspan="16" style="background:salmon"|''Banished'' <br /><small>(Episode 2)</small>
+|-
+| colspan="2" bgcolor="#0047AB" |
+! Netty 
+| colspan="17" style="background:darkred; color:white"|''Murdered'' <br /><small>(Episode 2)</small>
+|}
+===End game===
+{| class="wikitable" style="text-align:center; width:100%; font-size:90%; line-height:13px"
+|-
+! colspan="2"|Episode
+! colspan="5"|12
+|-
+! colspan="2" |Decision
+| ''Banish''
+| bgcolor="#0047AB" style="color:#FFFFFF"|Faraaz
+| ''Banish''
+| bgcolor="#0047AB" style="color:#FFFFFF"|Jack
+| rowspan="2" bgcolor="#67002F" style="color:#FFFFFF"align="center" span style="color:#FFFFFF;"|''Game Over<br />Traitors Win''
+|-
+! colspan="2" |Vote
+| {{nowrap|4–0}}
+| {{nowrap|2–1–1}}
+| {{nowrap|3–0}}
+| {{nowrap|2–1}}
+|-
+| colspan="24" bgcolor="#000000" |
+|-
+| bgcolor="#67002F" |
+! Rachel
+| ''Banish''
+| Faraaz
+| ''Banish''
+| Jack
+| rowspan="2" style="background:gold"|'''Winners'''
+|-
+| bgcolor="#67002F" |
+! Stephen
+| ''Banish''
+| Faraaz
+| ''Banish''
+| Jack
+|-
+| bgcolor="#0047AB" |
+! Jack
+| ''Banish''
+| Rachel
+| ''Banish''
+| Rachel
+| style="background:salmon"|''Banished''
+|-
+| bgcolor="#0047AB" |
+! Faraaz
+| ''Banish''
+| Stephen
+| colspan="3" style="background:salmon"|''Banished''
+|-
+|}
+'''Notes'''
+{{notelist}}
+
+== Missions ==
+{| class="wikitable" style="margin:auto; text-align:center"
+!Episode
+!Task description
+!Time limit
+!Money earned
+!Money available
+!Running total
+!Shield winner(s)
+|-
+|rowspan="12"|1
+|rowspan="12"|In rowboats, three teams of players searched for coffins floating on Loch Glass with gold in them, transported them to shore and placed them in any of the graves named after contestants to add £1,000 to the prize fund. The players whose named graves remained empty were shielded from murder. 
+|rowspan="12"|45 minutes
+|style="background:#FFC2BD" align="center" rowspan="12"| {{red|£10,000}}
+|rowspan="12"|£12,000
+|rowspan="12"|'''£10,000'''<br />(of £12,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Amanda
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Ben
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Ellie
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Harriet
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Hugo
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jack
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jade
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jessie
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Matthew
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Roxy
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Sam
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Stephen
+|-
+|rowspan="3"|2
+|rowspan="3"|Three throne-bearing chariots were pushed to the castle from the hills above, stopping three times to collect gold or shield tokens. Players seated on thrones at the castle were protected from murder, but those with a shield token could swap places to claim immunity.
+|rowspan="3"|45 minutes
+| style="background:#FFC2BD" align="center" rowspan="3"| {{red|£8,750}}
+|rowspan="3"|£9,000
+|rowspan="3"|'''£18,750'''<br />(of £21,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Amanda
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Faraaz
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jade
+|-
+|3
+|The players were divided into two groups; twelve remained at the castle, with the remaining seven visiting the Old Gallery to compete for a shield. The castle featured six empty portrait frames, each with a descriptive plaque. The castle team had to recreate the scenes described, enabling the gallery team to identify the correct portraits. £1,000 was added to the prize fund for each correct match with one portrait concealing a shield.
+|60 minutes 
+|style="background:#FFC2BD" align="center" rowspan=""| {{red|£5,000}}
+|£6,000
+|'''£23,750'''<br />(of £27,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Adam
+|-
+|rowspan="5"|4
+|rowspan="5"|The players who were shortlisted for murder were placed in cages, with the remaining players choosing who they wanted to save. One shortlisted player did not have anyone trying to save them. The players outside the cages had to find ten skulls hidden around the area, and then stack them on a pedestal in order to save their player from murder, and to add £2,000 to the prize fund. Up to five players could be saved.
+|rowspan="5"|30 minutes 
+|rowspan="5" style="background:#B7E1CD" align="center" | {{green|£10,000}}
+|rowspan="5"|£10,000
+|rowspan="5"|'''£33,750'''<br />(of £37,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Amanda
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Faraaz
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jack
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jade
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|James
+|-
+|-
+|rowspan="7"|5
+|rowspan="7"|All players had to search the forest for spears and use them to set fire to one of ten statues. When setting fire to a statue, the player doing so had to name a player who would then become eligible for murder that night. Players could name themselves but could not repeat a name. Each statue set on fire added £1,000 to the prize fund.
+|rowspan="7"|30 minutes 
+|rowspan="7" style="background:#FFC2BD" align="center"| {{red|£9,000}}
+|rowspan="7"|£10,000
+|rowspan="7"|'''£42,750'''<br />(of £47,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Adam
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Harriet
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jack
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|James
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jessie
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Rachel
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Roxy
+|-
+|6
+|The players split into three teams; each team had to go through a forest and answer questions on mirrors that were based on questionnaires they had filled out the previous night. Correct answers added £500 to the prize fund. The team that got the most questions correct (if there was a tie, then the fastest answering team) won access to the walled garden, where each player selected a mirror to smash. Three of the mirrors would blow smoke after being smashed; the players who smashed the smoking mirrors won the opportunity to ask the traitors two questions each.
+|{{N/A|No time limit}}
+|style="background:#FFC2BD" align="center" rowspan=""| {{red|£4,500}}
+|£6,000
+|'''£47,250'''<br />(of £53,000)
+|{{N/A|No Shield on offer}}
+|-
+|rowspan="7"|7
+|rowspan="7"|In teams, players had to find eight cherub statues and place them around the edge of a fountain. Cherub coins in the water revealed the location of the statues. Each statue came with a shield which could be taken, but doing so deducted £1,000 each time from the winnings. All eight cherubs had to be found, otherwise no money or shields would be awarded.
+|rowspan="7"|30 minutes
+|style="background:#FFC2BD" align="center" rowspan="7"| {{red|£3,000}}
+|rowspan="7"|£10,000
+|rowspan="7"|'''£50,250'''<br />(of £63,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Faraaz
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jack
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jade
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|James
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jessie
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Rachel
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Stephen
+|-
+|8
+|The contestants were taken to a cabin in the wood, where they were tasked with solving cryptic clues while they were subjected to various jump scares. After the team had solved the puzzle, revealing a name, one player would leave the cabin and had one minute to search a nearby graveyard for the grave with that name. If they found the correct grave, £1,000 would be added to the prize fund. There was also a single shield on offer, which a player could look for instead of finding the grave. Having left the cabin, the player would not return for the remainder of the mission. 
+|{{N/A|No time limit}}
+|style="background:#FFC2BD" align="center" | {{red|£4,000}}
+|£6,000
+|'''£54,250'''<br />(of £69,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Sam
+|-
+|9
+|The contestants were placed in boxes and asked questions about what the traitors thought about their fellow players. The traitors would have to get out of the boxes to decide the correct answer before returning to their box to answer as individuals. Each player who answered the questions correctly added £250 to the prize fund.
+|{{N/A|No time limit}}
+|style="background:#FFC2BD" align="center"| {{red|£3,250}}
+|£9,000
+|'''£57,500'''<br />(of £78,000)
+|{{N/A|No Shield on offer}}
+|-
+|10
+|Contestants were faced with the Carous-hell funfair, where they were spun on a carousel, then released to search for gold hidden in cuddly toys. Gold bags ranged from £250 to £2,000. Each successful return earned another spin, but seats were removed after every round, eliminating players. The last player seated was awarded a shield.
+|{{N/A|No time limit}}
+| style="background:#FFC2BD" align="center"| {{red|£9,250}}
+|£12,000
+| '''£66,750'''<br />(of £90,000)
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Jack
+|-
+|rowspan="6"|11
+|rowspan="6"|Contestants ascended a hill to the [[Fyrish Monument]], collecting gold rocks from shrines honouring the murdered faithful along the way. At the summit, they had to fill the Shield of Fyrish with the gold. If completed in time with all players present, £10,000 would be added to the prize fund and the traitors would be blocked from committing a final murder.
+|rowspan="6"|45 minutes 
+|style="background:#B7E1CD" align="center" rowspan="6" | {{green|£10,000}}
+|rowspan="6"|£10,000
+|rowspan="6"| '''£76,750'''<br />(of £100,000)
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Faraaz
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jack
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|Jade
+|-
+|bgcolor="#0047AB" span style="color:#FFFFFF"|James
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Rachel
+|-
+|bgcolor="#67002F" span style="color:#FFFFFF"|Stephen
+|-
+|12
+|The players split into two teams and were tasked with crossing a loch using speedboats to collect gold from a series of pontoons. A flare emitting green smoke indicated that gold was available, but if the smoke turned red before the players arrived, the gold became inaccessible. After collecting the gold, they had to return to Claudia by climbing a ladder to the top of a dam. An additional £10,000 was offered if they could descend the front of the dam and reach a waiting helicopter within five minutes.
+|45 minutes
+|style="background:#FFC2BD" align="center"| {{red|£19,000}}
+|£20,000
+|'''£95,750'''<br />(of £120,000)
+|{{N/A|No Shield on offer}}
+|}
+
+==Episodes==
+<onlyinclude>{{Episode table |background = #FF7E00|overall= |series= |title= |titleR=<ref>{{cite web|url=https://www.bbc.co.uk/programmes/m002nzpr|title=The Traitors – Series 4 |website=[[BBC]] |access-date=1 January 2026 |at=Choose appropriate episode}}</ref>
+|airdate = |airdateR=<ref>{{cite news|last=Mensah|first=Katelyn|title=The Traitors release schedule {{!}} What time is it on and when is the next episode out? {{!}} Radio Times|url=https://www.radiotimes.com/tv/entertainment/reality-tv/the-traitors-release-schedule/|work=[[Radio Times]]|date=1 January 2026|access-date=1 January 2026}}</ref>|viewers = |viewersR=<ref>{{#invoke:cite|web|url=https://www.barb.co.uk/viewing-data/as-viewed-top-50/|title=As Viewed Top 50|publisher=[[Broadcasters' Audience Research Board]]|language=en-GB|access-date=1 January 2026}}</ref> |country = UK |episodes =
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 37
+ |EpisodeNumber2 = 1
+ |Title = Episode 1
+ |OriginalAirDate = {{Start date|2026|1|1|df=yes}}
+ |Viewers = 11.85
+ |ShortSummary = 22 people arrive at the castle. Claudia reveals to the audience that she will select a fourth "Secret Traitor" alongside the three regular Traitors, unknown to viewers, players, and the other Traitors. Each night, the Secret Traitor will create a shortlist from which the regular Traitors must choose a murder victim; however, the Secret Traitor could not put their own name forward.
+
+Rachel, Stephen and Hugo are chosen as the Traitors and after learning of the Secret Traitor, decide to try to uncover and banish that person as fast as possible.
+
+* '''Shield Mission:''' In rowboats, three teams of players search for coffins floating on a lake with gold in them, transport them to shore and place them in any of the graves named after the players to add £1,000 to the prize fund. The players whose named graves remained empty are shielded from murder.
+
+The group wins £10,000. Ross, Netty, Maz, Judy, Rachel, Adam, Reece, Faraaz, James and Fiona end up with coffins in their named graves.
+
+Netty and Ross announce that they know each other, but had not been in contact for over ten years, whilst Roxy reveals to the audience that Judy is her mother.
+
+The Secret Traitor shortlists Netty, Maz and James for Murder.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 38
+ |EpisodeNumber2 = 2
+ |Title = Episode 2
+ |OriginalAirDate = {{Start date|2026|1|2|df=yes}}
+ |Viewers = 11.04
+ |ShortSummary = The Traitors murder Netty. At breakfast, players interrogate Ross for his connection to Netty.
+
+* '''Shield Mission:''' The players push three throne-bearing chariots to the castle from the hills above, stopping three times to collect gold or shield tokens. Players seated on thrones at the castle are protected from murder, but anyone who picks up a shield token can force someone currently on a throne to swap places with them.
+
+The group wins £8,750. Jade, Amanda and Faraaz remain on the chariots at the end of the mission and are awarded shields.
+
+Suspicion falls on Ross due to Netty's murder, and Judy for her attitude changing and for admitting that she turned at the word "Traitors" during Claudia's speech after the Traitors were initially chosen. At the Round table, Judy is targeted for being a big personality and is banished. She is revealed as Faithful. Ben tells Jessie, Ellie, James, Fiona, and Stephen he now suspects Ross.
+
+In the turret, the Traitors discuss theories about the identity of the Secret Traitor, focusing on Ellie and Fiona as likely candidates.
+
+The Secret Traitor shortlists Maz, Ben and Reece for murder.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 39
+ |EpisodeNumber2 = 3
+ |Title = Episode 3 
+ |OriginalAirDate = {{Start date|2026|1|3|df=yes}}
+ |Viewers = 11.20
+ |ShortSummary = The Traitors murder Ben. Hugo loudly denounces the decision at breakfast, drawing attention. Ross surmises that Ben's parting words might have put a target on him.
+
+* '''Shield Mission:''' In teams, the players recreate paintings from written descriptions for others to match to the real paintings in a room full of them.
+
+The group wins £5,000. One of the paintings also features a shield necklace, and the first player to find that painting is granted a Shield. Adam finds it and is protected.  
+
+Jessie theorised that one of the five in the library with Ben must be a traitor.
+
+At the Round table, Harriet interrogates Hugo for his unusual behaviour and formally accuses him. Others speak about Reece's urgency in looking for a Shield as being suspicious. Ultimately the players, including Stephen, vote to banish Hugo, who subsequently reveals that he is indeed a Traitor.
+
+The remaining Traitors are secretly told there would be no murder that night, and are given a task asking them to mark nine players on the family tree with red paint to nominate them for murder. Rachel successfully does so. The Traitors' prize for this is that the Secret Traitor's identity is revealed to them that night, and from that point on they will become a regular Traitor.
+
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 40
+ |EpisodeNumber2 = 4
+ |Title = Episode 4
+ |OriginalAirDate = {{Start date|2026|1|7|df=yes}}
+ |Viewers = 11.74
+ |ShortSummary = Fiona is revealed as the Secret Traitor. Nobody is murdered, and Claudia announces that the round table will take place before the challenge instead of after. The group discovers the red paint on the family tree, and Stephen regrets placing himself on the shortlist. 
+
+At the round table, James accuses Reece of being a Traitor due to his interrogation of James at the prior round table. Ross is again brought under scrutiny due to his friendship with Netty, and Ben's final words. Ross is voted out over Reece by one vote, and announces that he was a faithful. Ellie reveals to the audience that she is Ross's girlfriend.
+
+* '''Mission:''' Those shortlisted for murder are placed in cages, whilst those not in danger pick a player and save them by finding and stacking ten skulls. The first five successful players have their partners released.
+
+The group wins £10,000 and frees Amanda, Faraaz, Jack, Jade, and James, leaving Sam, Reece, Maz, and Stephen in cages. Fiona appears to purposefully stall so not to free Reece, whilst Sam is not chosen by any of the uncaged players and so is automatically selected as a candidate for murder. Fiona and Rachel are forced to meet in the turret without Stephen, and debate which one to murder.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 41
+ |EpisodeNumber2 = 5
+ |Title = Episode 5
+ |OriginalAirDate = {{Start date|2026|1|8|df=yes}}
+ |Viewers = 11.51
+ |ShortSummary = The players theorise that Stephen will be the one murdered. Maz is murdered face-to-face by the Traitors.
+
+* '''Mission:''' The players are each allocated a shield. They have to find ten spears in the woods and set them alight; however, with each burned spear they must choose a player whose shield will also be burned, making that player eligible for the next murder.
+
+The group wins £9,000. Amanda tells Rachel that she is a former detective.
+
+At the round table, Jessie accuses Stephen of being a Traitor as he was in the library for Ben's final words. Amanda is placed under suspicion for accusing Reece of being a Traitor and stating that she would vote for Jade, despite previously stating that she was voting for Sam. James and Jack continue to accuse Reece. The votes are tied between Reece and Amanda, and then tied a second time, taking it to a random draw. The pair choose a chest each; Amanda selects the empty chest and is therefore banished, subsequently revealing herself to be a Faithful.
+
+After the round table, Rachel informs everyone that Amanda had told her in confidence that she was a police detective. Fiona privately accuses her of lying, and then publicly accuses Rachel of being a Traitor. Rachel then accuses Fiona of being a Traitor. Rachel, Fiona and Stephen meet in the turret to decide who to murder.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 42
+ |EpisodeNumber2 = 6
+ |Title = Episode 6
+ |OriginalAirDate = {{Start date|2026|1|9|df=yes}}
+ |Viewers = 11.99
+ |ShortSummary = Rachel and Fiona continue to argue in the turret. The Traitors choose to murder Reece, shocking the faithfuls.
+
+* '''Mission:''' The players split into three teams and make their way through the woods answering questions about the other players. The team with the most correct answers wins a prize. In the event of a tie, the team with the fastest time wins.
+
+Faraaz, Rachel, Harriet, Roxy, and Matthew win. In a subsequent elimination game, Rachel, Harriet, and Matthew are given the opportunity to speak with the Traitors that evening and ask two questions each.
+
+At the round table, Fiona and Rachel continue to accuse each other. Jade comes under suspicion due to Amanda's accusations before banishment. Sam continues to be accused of being a Traitor. Stephen and Jessie bring up that Fiona was in the room for Ben's final words. Ultimately, Fiona is banished and revealed as a Traitor, with her voting for Sam and both Stephen and Rachel voting for her. 
+
+Stephen and Rachel meet up in a confession-type room for their individual meetings with Matthew and Harriet. Matthew arrives first and asks who they planned to murder next.
+
+Rachel and Stephen answered Jessie for being too obviously a faithful. Matthew agrees with this assessment. For his second question, he requests that they murder Jessie, and then recruit him as a Traitor and asks if they had a deal. The episode ends with the Traitors' written reply to him as yet unopened.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 43
+ |EpisodeNumber2 = 7
+ |Title = Episode 7
+ |OriginalAirDate = {{Start date|2026|1|14|df=yes}}
+ |Viewers = 11.58
+ |ShortSummary = The Traitors agree to the deal with Matthew. Harriet then enters and reveals her true job as an author of psychological thrillers and a former barrister. She first asks who they plan to recruit.
+
+The Traitors reply Harriet, Sam and Jessie. Harriet accused them of lying and then directly calls Rachel out by name as being in the confessional, shocking both Stephen and Rachel. She asked if the traitors will protect Rachel.
+
+Stephen and Rachel reply "No. Take her."
+
+At breakfast, Matthew refuses to reveal his questions and Harriet directly calls out Rachel.
+
+* '''Shield Mission:''' Place eight cherub statues around the Faithful Fountain. In the Fountain itself, players find cherub coins with the location of a statue. The coins then free the statue from the plinth. Players can decide whether to take a shield which will forfeit any money the statue was worth. All statues must be found or neither the money nor the shields count. 
+
+The players divide into teams and run to get the statues. On finishing the mission, seven shields are taken and they bank £3,000.
+
+Stephen, Rachel, Faraaz, Jessie, Jade and Jack all get shields and James also secretly takes one without his team realising – though later admitted it to his team.
+
+Since the initial plan was for Jessie's shield to cover James, Adam, Sam and Harriet, Sam is very annoyed at James since seven shields meant the odds of being murdered were very high for those without. He publicly reveals to several players, including Stephen, that he is not the one with the shield.
+
+At the round table, Harriet accuses Rachel but other players are suspicious that her evidence is not substantial. Rachel also defends herself by revealing that she had undergone training prior to the start of the game with a former FBI agent, who had instructed her in body language and the study of micro expressions. Harriet also accuses Roxy and Matthew of being traitors and tells everyone to vote her out to prove she is a Faithful to give her argument legitimacy. 
+
+Harriet is voted out and reveals herself as a Faithful.
+
+In the turret, Stephen and Rachel debate recruitment or murder. They do not wish to murder someone in either of their teams and are unsure who didn't have a shield in the remaining team. In the end, they decide to take a gamble and murder.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 44
+ |EpisodeNumber2 = 8
+ |Title = Episode 8
+ |OriginalAirDate = {{Start date|2026|1|15|df=yes}}
+ |Viewers = 11.62
+ |ShortSummary = 
+At breakfast, it is revealed that the traitors have successfully murdered Adam - Rachel and Stephen correctly deduced that: it would be too risky to try and murder Sam because he might have been bluffing about not having a shield; Jessie was the most likely to have taken one shield for herself with the agreement of her team, being the most liked; and James was more likely than Adam to have taken a shield without his team's knowledge. James taking a shield and not telling his team is viewed as potentially traitorous behaviour.
+
+Suspicion falls on Sam after he claims that everyone knew he and Adam did not have the shields based on their reactions. However most players had only known Sam didn't. 
+
+*'''Shield Mission:''' Set in Claudia's Cabin, players must correctly identify names cryptically given to them that match a headstone in the graveyard outside. Players can also choose to take the shield headstone instead of banking money. 
+
+After working out the first name, Sam immediately goes out first, declaring that he is going to get the shield; this immediately causes suspicion among the remaining players. The players successfully bank £4,000. 
+
+At the round table, several players are accused: Sam for both previous suspicions and how only someone in Adam's team could have known that he didn't have a shield; James for taking a shield sneakily and also being in Adam's team; Stephen is accused by Jessie who had come back around to the cage theory; Jade for Amanda's suspicions and having a link to Adam as he had voted for her previously; Matthew for being accused by Harriet and also having been voted for by Adam.
+
+Sam is eventually banished with six votes and reveals that he was a Faithful.
+
+After the round table, Jessie pushes her Stephen theory while Stephen and Jade suggest that Jessie could be a traitor trying to waste round tables by checking off people from the cage mission. Rachel also puts suspicion on Faraaz.
+
+In the turret, Stephen and Rachel agree that they are never going to recruit Matthew but worry that alerting him to this would cause him to reveal any hidden suspicions he might have about them. They debate the risks of murdering Jessie. They also consider Faraaz since neither of them want to have too many "definite faithfuls" in the final. 
+
+The episode ends with them deciding to murder one of the three.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 45
+ |EpisodeNumber2 = 9
+ |Title = Episode 9
+ |OriginalAirDate = {{Start date|2026|1|16|df=yes}}
+ |Viewers = 11.76
+ |ShortSummary = The Traitors decide to murder Jessie, with Stephen hoping to spin it as him being framed. At breakfast, Rachel says she had an idea of a traitor.
+
+* '''Mission:''' Players hide inside giant boxes and have to answer questions about themselves that match the answers of the traitors. However, the traitors have not given their answers yet. Rachel and Stephen have to climb out of the boxes and quietly answer the questions before getting back in and voting with the group.
+
+They bank £3,250.
+
+At the Round Table: Jade comes under scrutiny for Amanda's accusations, how many murdered players have voted for her, and, during that day's challenge, answering her own name for who didn’t deserve to be in the final; James for hiding his shield; Ellie for her answers in the mission being largely aligned with the traitors' and Rachel implies she had been hanging around her to get information after her announcement that morning.
+
+Ellie is banished with four votes. She reveals that she was a faithful and that Ross is her boyfriend.
+
+Claudia announces that there will be no murder that night and instead hosts a dinner party. The eight players all talk about what they would do with the money if they win.
+
+Towards the end of dinner, Claudia arrives and shows them a dagger. Instead of a murder, the traitors will decide who to give the dagger to as it will entitle them to an extra vote at the next round table.
+
+Stephen and Rachel meet up in the wine cellar to decide who will receive the dagger.
+
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 46
+ |EpisodeNumber2 = 10
+ |Title = Episode 10
+ |OriginalAirDate = {{Start date|2026|1|21|df=yes}}
+ |Viewers = 11.61
+ |ShortSummary = 
+James is given the dagger. This casts suspicion on Matthew, with James believing he and Roxy are traitors attempting to divert suspicion. Roxy meanwhile believes James is a traitor who gave the power to himself. Jade continues to be accused. Matthew tells several others that he believes the traitors will vote for him. 
+
+*'''Shield Mission:''' The players spin on a carousel and then find gold bags hidden within toys. However, with every round, chairs are removed and the last person seated wins a shield.
+
+Jack wins the shield. On the car ride back, Faraaz discloses to Matthew and Roxy his suspicions about Rachel and Stephen, which he was keeping hidden to avoid being murdered. 
+
+At the round table, Matthew accuses Jade as he believes she is too defensive. James accuses Matthew of attempting to cause confusion. Stephen calls out how Matthew had said traitors would vote for him as being suspicious. Roxy is placed under suspicion for being seen at the family tree before the shortlist by Jade, and Faraaz for being too quiet. Roxy and Jade both accuse James. In the subsequent confusion that left everyone torn on who to vote for, Matthew is banished and subsequently revealed as faithful. James is left in absolute shock that his suspicions had been so wrong, and believes that he has sealed his own fate by drawing so much attention onto himself.
+
+After the round table, James is placed under further suspicion for his emotional response to the banishment. Faraaz informs everyone of his belief that Rachel is a traitor before accusing her directly. His theory is based on how Fiona’s outburst could have been traitor vs traitor.
+
+At the turret, Stephen and Rachel discuss whether to murder Roxy or Faraaz. Rachel tells Stephen that she may have to accuse him, causing him to doubt their alliance.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 47
+ |EpisodeNumber2 = 11
+ |Title = Episode 11
+ |OriginalAirDate = {{Start date|2026|1|22|df=yes}}
+ |Viewers = 11.67
+ |ShortSummary = Rachel and Stephen choose to murder Roxy. Jack and James are newly suspicious of Rachel because of Faraaz's prior comments, with Stephen agreeing. Rachel continues to accuse James. Faraaz asserts his suspicions about Rachel, Jade, and Stephen. 
+
+*'''Mission:''' The players hike up to the [[Fyrish Monument]] whilst collecting gold and doing challenges to pay respects at the graves of the contestants. If enough gold is collected, the traitors are prevented from murdering. 
+
+The players successfully collect £10,000 and prevent the murder. Both Jack and Faraaz agree that they are going to accuse Rachel. Stephen tells the faithfuls he thinks either James or Rachel is a traitor. The players worry that the round table will be the last time the banished roles would be revealed.
+
+At the round table, Jack opens by accusing Rachel due to Fiona and Harriet's prior comments. James, Faraaz and Jade all lay out their suspicions of Rachel as well. Stephen attempts to divert attention by accusing James due to his erraticism at the previous round table. Jack and James are further placed under suspicion due to always voting for the same person. Stephen then accuses Jade as she voted for James, despite being suspicious of Matthew. Faraaz brings the conversation back to accusing Rachel. Rachel then accuses Stephen as he survived the cage murder and he retaliates by accusing her of copying Harriet to seem less suspicious. 
+
+The votes are tied, with Stephen voting for James instead of Rachel. James and Rachel both plead their case before a second vote takes place. To many players' astonishment, both Jade and Jack change their votes, leaving the tie in place and the banishment to be decided by the chests of chance.
+ |LineColor = FF7E00
+}}
+{{Episode list/sublist|The Traitors (British TV series) series 4
+ |EpisodeNumber = 48
+ |EpisodeNumber2 = 12
+ |Title = The Final
+ |OriginalAirDate = {{Start date|2026|1|23|df=yes}}
+ |Viewers = 11.94
+ |ShortSummary = Rachel wins the game of chance and James is banished. He reveals that he is a faithful, devastating Jack in particular.
+
+Stephen admitted he isn't sure if he can win now that Rachel has survived. Rachel attempts to convince Faraaz that she isn't a traitor by claiming she believes it is Jade. In the turret, Rachel and Stephen reaffirm their alliance but separately doubt its security in their confessionals. Jade suspects Faraaz and Rachel, whilst Jack entirely suspects Rachel. Rachel and Stephen plan to banish Jade at the round table.
+
+*'''Final Mission:''' The players have 45 minutes to drive speed boats to get gold off of pontoons before their flares run out and then reach the top of Loch Orrin dam. They collect £9,000. The players are then told they can add another £10,000 to the prize pot by running face-first down the side of the dam to reach a helicopter in five minutes. 
+
+The players successfully add £19,000 to the prize pot. Going into the final, the total is £95,750.
+
+Jack tells Jade that he feels that Rachel had tried to guilt trip them during her final plea. Jade points out to Jack that Faraaz has never voted for either of the successfully banished traitors and that seemingly backing down from Rachel after the round table was suspicious. Faraaz tries to convince Jack that they should go to endgame together by banishing Jade first, then Rachel, and Stephen. Jade tells Stephen all of her suspicions about Rachel.
+
+At the round table: Faraaz accuses Jade based on Amanda's suspicions; Jack accuses Rachel of guilt tripping while Stephen points out that Rachel's demeanour after the previous round table was different. Jade is banished at the round table with three votes. 
+
+Because Stephen voted for Jade, to whom he had been very close, Jack wonders if he is a traitor. Rachel and Stephen confirm their decision to vote for Faraaz next. Rachel and Faraaz discuss voting for Stephen, and Jack and Stephen discuss voting between Rachel and Faraaz. Stephen privately weighs up the pros and cons of trying to eliminate Rachel. 
+
+At the endgame, everyone chooses to banish again. Faraaz votes for Stephen, Jack votes for Rachel, and Stephen and Rachel vote for Faraaz. Faraaz is banished, meaning the Traitors have won the game.
+
+All three remaining players choose to banish again. Rachel votes for Jack. Jack votes for Rachel. Stephen votes for Jack, choosing to stay loyal to Rachel over winning alone. Jack is banished.
+
+Rachel and Stephen become the first traitor duo to win The Traitors, each taking away £47,875.
+
+ |LineColor = FF7E00
+}}
+}}</onlyinclude>
+{{notelist}}
+
+==Ratings==
+Weekly ratings for each show on [[BBC One]]. All ratings are provided by [[Barb Audiences|BARB]].<ref>{{cite web |url=https://www.barb.co.uk/viewing-data/as-viewed-top-50 |title=Weekly top 50 shows |publisher=[[BARB]] |access-date=12 October 2025}}</ref> The final episode of ''Uncloaked'' on [[BBC One]] achieved a rating of 8.06 million viewers.
+{|class="wikitable sortable" style="text-align:center"
+!scope="col"|Episode
+!scope="col"|Date
+!scope="col"|Official rating<br />(millions)
+!scope="col"|Weekly rank<br />for BBC One
+!scope="col"|Weekly rank<br />for all UK TV
+|-
+!scope="row"|Episode 1
+|{{dts|1 January}}||11.85||1||1
+|-
+!scope="row"|Episode 2
+|{{dts|2 January}}||11.04||3||3
+|-
+!scope="row"|Episode 3
+|{{dts|3 January}}||11.20||2||2
+|-
+!scope="row"|Episode 4
+|{{dts|7 January}}||11.74||2||2
+|-
+!scope="row"|Episode 5
+|{{dts|8 January}}||11.51||3||3
+|-
+!scope="row"|Episode 6
+|{{dts|9 January}}||11.99||1||1
+|-
+!scope="row"|Episode 7
+|{{dts|14 January}}||11.58||3||3
+|-
+!scope="row"|Episode 8
+|{{dts|15 January}}||11.62||2||2
+|-
+!scope="row"|Episode 9
+|{{dts|16 January}}||11.76||1||1
+|-
+!scope="row"|Episode 10
+|{{dts|21 January}}||11.61||3||3
+|-
+!scope="row"|Episode 11
+|{{dts|22 January}}||11.67||2||2
+|-
+!scope="row"|The Final
+|{{dts|23 January}}||11.94||1||1
+|-
+!Series average
+!2026
+!11.63
+!{{N/A}}
+!{{N/A}}
+|}
+
+==References==
+{{Reflist}}
+
+== External links ==
+* {{IMDb episodes|23743442}}
+
+{{The Traitors in the United Kingdom}}
+{{The Traitors}}
+
+{{DEFAULTSORT:Traitors, The (British series 4)}}
+[[Category:The Traitors|British]]
+[[Category:2026 British television seasons]]
+[[Category:Television shows shot in Scotland]]
+[[Category:Television shows set in Scotland]]

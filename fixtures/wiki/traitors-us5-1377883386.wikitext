@@ -1,0 +1,715 @@
+<noinclude>{{Requested move notice|1=The Traitors (American TV series) season 5|2=Talk:The Traitors: New Blood#Requested move 21 September 2026}}
+</noinclude>{{Use American English|date=August 2026}}
+{{Use mdy dates|date=August 2026}}
+{{Infobox television season
+| bgcolor              = #4F270D
+| season_number        = 5
+| image                = The Traitors New Blood.png
+| caption              = Promotional poster
+| starring             = 
+| module1              = {{Infobox reality competition season
+| presenter            = [[Alan Cumming]]
+| num_contestants      = 22
+| location             = [[Ardross, Highland|Ardross Castle]], [[Scottish Highlands]]
+| winner               =
+| runner_up            = 
+}}
+| num_episodes         = 4
+| network              = [[NBC]]
+| first_aired          = {{Start date|2026|9|17}}
+| last_aired           = present
+| prev_season          = [[The Traitors (American TV series) season 4|Season 4]]
+| next_season          = [[The Traitors (American TV series) season 6|Season 6]]
+}}
+
+The '''fifth season''' (also known as '''''The Traitors: New Blood''''') of the American television series '''''[[The Traitors (American TV series)|The Traitors]]''''' was announced on June 18, 2026.<ref>{{cite web | url=https://deadline.com/2026/06/the-traitors-new-blood-premiere-date-nbc-civilian-series-1236959387/ | title='The Traitors: New Blood' Sets September Premiere Date On NBC For Civilian Series|date=June 18, 2026|access-date=12 August 2026}}</ref> The season premiered on September 17, 2026 on [[NBC]] with episodes releasing the next day on [[Peacock (streaming service)|Peacock]].
+
+==Format==
+The show retains the same [[The Traitors (American TV series)#Format|format]] and missions as the ''[[The Traitors UK]]'' and its US Celebrity counterpart. The contestants, all ordinary people from all across the US, are invited to the same castle in the Scottish Highlands to play this all-civilian version of the game. They are split into two particular Groups: the "Faithful," who are tasked with playing the game and trying to avoid banishment and/or murder to make it to the end of the game and win the final prize pot, and the "Traitors," a group of contestants secretly selected by host [[Alan Cumming]] who will work with the Faithful to build up the pot but are secretly working to earn the prize themselves. Most nights, the Traitors decide who to eliminate from the game via a "murder" while working to remain undetected and avoid suspicion from the other players. Each day the contestants participate in various missions to add money to the prize fund which can reach a maximum of $250,000. 
+
+In this version there is an additional incentive: for every Traitor that is successfully banished from the game, the team will add an additional $15,000 to the prize fund. At the end of each day, the players participate in the Round Table, where they must decide who to banish from the game in the hope of identifying the Traitors.
+
+If all remaining players are Faithful, the prize money is divided evenly among them. However, if even one Traitor remains, they win the entire pot.<ref>{{Cite web |last=SYFY Wire |date=April 29, 2022 |title=Peacock nabs psychological thriller competition 'The Traitors' hosted by 'Bond' vet Alan Cumming |url=https://www.syfy.com/syfy-wire/peacock-the-traitors-alan-cumming |access-date=January 13, 2023 |website=SYFY Wire |language=en}}</ref><ref>{{Cite web |last=USA |date=December 7, 2022 |title=Alan Cumming Hosts Peacock's 'The Traitors' In Remote Scottish Castle – What To Know |url=https://www.usanetwork.com/usa-insider/alan-cumming-hosts-peacock-the-traitors-gameshow |access-date=January 13, 2023 |website=USA Network |language=en}}</ref>
+
+== Contestants ==
+[[File:Xavier Scruggs batting for the Memphis Redbirds in 2015 (Cropped).jpg|right|thumb|200px|[[Xavier Scruggs]]]]
+
+Unlike the [[The Traitors (American TV series) season 4|previous seasons]], this seasons cast was composed entirely of civilian (not celebrity) participants. ''[[Entertainment Weekly]]'' announced the 22 cast members via social media on August 12, 2026.<ref name=Cast>{{cite web |title=The Traitors: New Blood first ever all-civilian cast revealed (exclusive) |url=https://ew.com/the-traitors-new-blood-first-ever-all-civilian-cast-revealed-exclusive-12056293|publisher=Entertainment Weekly |date=12 August 2026 |access-date=12 August 2026}}</ref>
+
+In the first episode, Cumming revealed that two contestants would be recruited as "Accomplices". They would have to complete a series of tasks before the original Traitors would make a final decision on who would join them in the turret.
+
+{| class="wikitable sortable" style="margin:auto; text-align:center;" <!--Order as announced by Peacock-->
+|+List of ''The Traitors'' contestants
+! scope="col" |Contestant
+! scope="col" |Age
+! scope="col" class="unsortable" |Hometown
+! scope="col" class="unsortable" |Occupation
+! scope="col" class="unsortable" |Affiliation
+! scope="col" class="unsortable" |Finish
+|-
+! scope="row" style="text-align:left" | Kim Daily
+| 37
+| [[Houston, Texas]]
+| Lawyer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 2)</small>
+|-
+! scope="row" style="text-align:left" | Madeline Kostopulos
+| 26
+| [[San Diego, California]]
+| Construction manager
+| bgcolor="#0047AB" style="color:#FFFFFF" span |Faithful
+| style="background:salmon;" |Banished<br>{{nowrap|<small>(Episode 2)</small>}}
+|-
+! scope="row" style="text-align:left" | [[Xavier Scruggs]]
+| 38
+| [[Wesley Chapel, Florida]]
+| MLB analyst
+| bgcolor="#D4BA79" span style="color:#FFFFFF"| Accomplice{{efn|name=Accomplice}}
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 3)</small>
+|-
+! scope="row" style="text-align:left" | Arisa Thomas
+| 36
+| [[Los Angeles, California]]
+| Dog groomer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style="background:salmon;" |Banished<br>{{nowrap|<small>(Episode 4)</small>}}
+|-
+! scope="row" style="text-align:left" | Logan Smith
+| 26
+| [[Gatlinburg, Tennessee]]
+| Realtor
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| style ="background:darkred; color:white;"|Murdered<br><small>(Episode 4)</small>
+|-
+! scope="row" style="text-align:left" | Tomica Adams
+| 54
+| [[Boston, Massachusetts]]
+| Pilot
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor
+|{{TBA}}
+|-
+! scope="row" style="text-align:left" | Shane Beatty
+| 32
+| [[Staten Island, New York]]
+| Ironworker
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Abbey Benjamin
+| 37
+| [[Mangham, Louisiana]]
+| Nurse
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Morgan Cook
+| 30
+| [[Midland, Michigan]]
+| Content creator
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Katie Fites
+| 23
+| [[Jacksonville, Florida]]
+| Marketing manager
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor{{efn|name=Accomplice|Katie and Xavier were selected as potential Traitors but had to complete a series of tests before earning their cloak. Katie was selected to join the Traitors while Xavier was murdered.}}
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Michael Foote
+| 38
+| [[New York, New York]]
+| Lawyer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Wyatt Gillespie
+| 26
+| [[Ligonier, Pennsylvania]]
+| Designer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Niyyah Hayes
+| 29
+| [[Indianapolis, Indiana]]
+| Therapist
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Sherry Kuehl
+| 65
+| [[Leawood, Kansas]]
+| Writer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Abby Lee
+| 29
+| [[Saint Paul, Minnesota]]
+| Astrophysicist
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Kriste Lewis
+| 52
+| [[Hattiesburg, Mississippi]]
+| Realtor
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Ben McDonnell
+| 34
+| [[Granbury, Texas]]
+| Barrel racer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Clyde Moser
+| 32
+| [[Charleston, South Carolina]]
+| Teacher
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Joe Vanella
+| 44
+| [[Wantagh, New York]]
+| Funeral director
+| bgcolor="#67002F" span style="color:#FFFFFF"|Traitor
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Jay Vinnedge
+| 36
+| [[Oklahoma City, Oklahoma]]
+| Physician
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Victor Vollbrechthausen
+| 26
+| [[New York, New York]]
+| Business executive
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|-
+! scope="row" style="text-align:left" | Mark Zgoda
+| 26
+| [[Phillipsburg, New Jersey]]
+| Personal trainer
+| bgcolor="#0047AB" span style="color:#FFFFFF"|Faithful
+| {{TBA}}
+|}
+;Notes
+{{notelist}}
+
+== Episodes ==
+<onlyinclude>{{Episode table |background=#4F270D |caption=''The Traitors: New Blood'' episodes |show_caption=y |overall=5 |season=5 |title=53 |titleR=<ref name="TFC"/> |airdate=37 |airdateR=<ref name="TFC">{{cite web|url=http://www.thefutoncritic.com/showatch/traitors-new-blood/listings|title=Shows A-Z - The Traitors: New Blood on NBC|access-date=October 1, 2026|work=[[The Futon Critic]]}}</ref> |episodes=
+{{Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 1
+ | EpisodeNumber2  = 1
+ | Title           = A New Dawn Is Rising
+ | OriginalAirDate = {{Start date|2026|09|17}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 2
+ | EpisodeNumber2  = 2
+ | Title           = I'm a Sweaty Boy
+ | OriginalAirDate = {{Start date|2026|09|17}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 3
+ | EpisodeNumber2  = 3
+ | Title           = The Traitors Are Watching
+ | OriginalAirDate = {{Start date|2026|09|24}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 4
+ | EpisodeNumber2  = 4
+ | Title           = The Death Parade
+ | OriginalAirDate = {{Start date|2026|09|24}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 5
+ | EpisodeNumber2  = 5
+ | Title           = Wake of the Living Dead
+ | OriginalAirDate = {{Start date|2026|10|08}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 6
+ | EpisodeNumber2  = 6
+ | Title           = A Murder of Necessity
+ | OriginalAirDate = {{Start date|2026|10|15}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{void|Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 7
+ | EpisodeNumber2  = 7
+ | Title           = TBA
+ | OriginalAirDate = {{Start date|2026|10|22}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{void|Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 8
+ | EpisodeNumber2  = 8
+ | Title           = TBA
+ | OriginalAirDate = {{Start date|2026|10|29}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{void|Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 9
+ | EpisodeNumber2  = 9
+ | Title           = TBA
+ | OriginalAirDate = {{Start date|2026|11|05}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{void|Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 10
+ | EpisodeNumber2  = 10
+ | Title           = TBA
+ | OriginalAirDate = {{Start date|2026|11|12}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{void|Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 11
+ | EpisodeNumber2  = 11
+ | Title           = TBA
+ | OriginalAirDate = {{Start date|2026|11|19}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+{{void|Episode list/sublist|The Traitors: New Blood
+ | EpisodeNumber   = 12
+ | EpisodeNumber2  = 12
+ | Title           = TBA
+ | OriginalAirDate = {{Start date|2026|11|19}}
+ | ShortSummary    = 
+ | LineColor       = #4F270D
+}}
+}}</onlyinclude>
+
+==Elimination history==
+;Key
+: {{Color box|0047AB|border=silver}} The contestant was a Faithful
+: {{Color box|67002f|border=silver}} The contestant was a Traitor
+: {{Color box|D4BA79|border=silver}} The contestant was an Accomplice
+: {{Color box|lightgrey|border=silver}} The contestant was ineligible to vote
+
+{| class="wikitable" style="text-align:center; width:100%; font-size:90%; line-height:13px"
+! colspan="3" width="10% | Episode 
+! width="10% |1
+! width="10% |2
+! colspan="2" width="10% |3/4
+! width="10% |4/5
+! width="10% |5
+! width="10% |6
+! width="10% |7
+! width="10% |8
+! width="10% |9
+! width="10% |10
+! width="10% |11
+|-
+! colspan="3" rowspan="2" |Traitors'<br/>decision
+| bgcolor="#D4BA79" style="color:#FFFFFF;"| Katie<br />Xavier
+| bgcolor="#0047AB" style="color:#FFFFFF;"| Kim
+| style="background:#67002f; color:#FFFFFF;"|Katie
+| bgcolor="#D4BA79" style="color:#FFFFFF;"|Xavier
+| bgcolor="#0047AB" style="color:#FFFFFF;"|Logan
+| 
+|
+|
+|
+|
+|
+|
+|-
+| ''Accomplice''
+| ''Murder''
+| ''Recruit''
+| ''Murder''
+| ''Murder''
+|
+| 
+|
+|
+|
+|
+|
+|-
+! colspan="3"|Shield
+| {{unbulleted list|list_style=text-align:center|Abby L.|Madeline|Victor}}
+| {{N/A|''None''}}
+| colspan="2"|Clyde
+| {{unbulleted list|list_style=text-align:center|{{nowrap|Abbey B.}}|Ben|Jay|Katie|Michael|Shane|Wyatt{{efn|In Episode 4, during the challenge, the contestants had to leave others behind causing those players to be shortlisted for possible murder. These players finished the mission without being shortlisted.}}}}
+|
+| 
+|
+|
+|
+|
+|
+|-
+! colspan="3"|Banishment 
+| rowspan="2" {{N/A|''None''}}
+| bgcolor="#0047AB" style="color:#FFFFFF;"| Madeline
+| colspan="2" bgcolor="#0047AB" style="color:#FFFFFF;"|Arisa 
+| {{TBA}}
+|
+| 
+|
+|
+|
+|
+|
+|-
+! colspan="3"|Vote
+| 13–7–1
+| colspan="2"|13–5–1
+| {{TBA}}
+|
+| 
+|
+|
+|
+|
+|
+|- style="border-top:5px solid"
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|{{nowrap|Abbey B.}}
+|rowspan="23" style="background:lightgrey"|''No<br>Vote''
+| Madeline
+| colspan="2"|Arisa
+| {{TBA}}
+|
+| 
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|Abby L.
+| Madeline
+| colspan="2"| Arisa
+| {{TBA}}
+|
+|
+| 
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|Ben
+| Victor
+| colspan="2"|Arisa
+| {{TBA}}
+|
+|
+| 
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|Clyde
+| Victor
+| colspan="2"|Arisa
+| {{TBA}}
+|
+|
+| 
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|Jay
+| Madeline
+| colspan="2"|Victor
+| {{TBA}}
+|
+|
+| 
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="67002F" |
+!style="height:25px" scope="row"|Joe
+| Victor
+| colspan="2"| Victor
+| {{TBA}}
+|
+|
+| 
+|
+|
+|
+|
+|-
+| bgcolor="D4BA79" |
+| bgcolor="67002F" |
+!style="height:25px" scope="row"|Katie
+| Victor
+| colspan="2"|Arisa
+| {{TBA}}
+|
+|
+| 
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Kriste
+| Madeline
+| colspan="2"| Arisa
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Mark
+| Madeline
+| colspan="2"|Arisa
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Michael
+| Victor
+| colspan="2"|Arisa
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Morgan
+| Madeline
+| colspan="2"|Victor
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Niyyah
+| Madeline
+| colspan="2"|Arisa
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Shane
+| Madeline
+| colspan="2"|Victor
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Sherry
+| Madeline
+| colspan="2"|Arisa
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="67002F" |
+! style="height:25px" scope="row" |Tomica
+| Madeline
+| colspan="2"|Victor
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Victor
+| Kriste
+| colspan="2"|Arisa
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Wyatt
+| Victor
+| colspan="2"| Arisa
+| {{TBA}}
+|
+|
+|
+|
+|
+|
+|
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Logan
+| Madeline
+| colspan="2"| Arisa
+| colspan="10" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 4)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|Arisa
+| Madeline
+| colspan="2"|Michael
+| colspan="9" style="background:salmon" |''Banished''<br><small>(Episode 4)</small>
+|-
+|colspan=2 bgcolor="D4BA79" |
+! style="height:25px" scope="row" |Xavier
+| Madeline
+| colspan="11" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 3)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+! style="height:25px" scope="row" |Madeline
+| Victor
+| colspan="10" style="background:salmon" |''Banished''<br><small>(Episode 2)</small>
+|-
+|colspan=2 bgcolor="0047AB" |
+!style="height:25px" scope="row"|Kim
+| colspan="11" style="background:darkred; color:white;" |''Murdered''<br><small>(Episode 2)</small>
+|}
+
+== Missions ==
+{| class="wikitable" style="margin:auto; text-align:center"
+!Episode
+!Title
+!Time Limit
+!Money<br/>available
+!Money<br/>earned
+!Total<br/>pot
+!Shield winner
+|-
+|rowspan="3"| 1
+|rowspan="3"| "A New Dawn is Rising"
+|rowspan="3"|
+|rowspan="3"| $50,000
+|rowspan="3"| $50,000
+|rowspan="3"| '''$50,000'''
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Abby L.
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Madeline
+|-
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Victor
+|-
+| colspan="7" style="text-align:left"| The competitors are tasked with finding treasure chests on a ship in a time limit. Once the time ended, the ship would explode. The treasure chests could only be opened by clues around the ship.  
+|-
+|3
+|"The Traitors Are Watching"
+|30 Minutes
+| $30,000
+| $15,000
+| '''$65,000'''
+|style="text-align:center; background:#0047AB; color:#FFFFFF"|Clyde
+|-
+| colspan="7" style="text-align:left"| The competitors are tasked with running through the grounds to three crypt locations. With a battering ram, they would open the crypts. They would then have to decide who to send in, depending on what the crypt said. At each crypt, only two players could enter. While the first crypt held no shield, the second crypt held a shield while the third held information on a traitor. 
+|-
+|4
+|"The Death Parade"
+| {{N/A}}
+| $24,000
+| $12,000
+| '''$77,000'''
+|{{N/A}}
+|-
+|colspan="7" style="text-align:left"|  The competitors are tasked with taking barrels of gold up the hill without being caught by the death parade. Upon reaching the end, they must set a fire barrier which would stop the parade in its path. Those the parade catches would be up for a shortlist for murder. The first gate forced them to leave four players behind; those four are caught by the death parade. The second gate forced them to leave two players behind. The third gate forced them to leave four players behind.
+|}
+
+== Production ==
+Similar to the [[The Traitors (American TV series) season 4|previous seasons]], this season was primary filmed in [[Ardross, Highland|Ardross Castle]] in the [[Scottish Highlands]].<ref>{{cite web |title=Where Is The Traitors Filmed?|url=https://www.cntraveler.com/story/where-is-the-traitors-filmed|website=Condé Nast Traveler|date=2025-11-11|access-date=2026-01-08}}</ref>
+
+== Notes==
+{{notelist}}
+
+== References ==
+{{reflist}}
+
+== External links ==
+* {{IMDb title|43723246}}
+
+{{The Traitors in the United States}}
+{{The Traitors}}
+{{NBC programming (current and upcoming)}}
+
+{{DEFAULTSORT:Traitors: New Blood, The}}
+[[Category:2020s American reality television series]]
+[[Category:2026 American television series debuts]]
+[[Category:2026 English-language television series debuts]]
+[[Category:American reality competition television series]]
+[[Category:American television series based on Dutch television series]]
+[[Category:English-language American television shows]]
+[[Category:NBC reality television shows]]
+[[Category:Television series by All3Media]]
+[[Category:The Traitors|American]]
+[[Category:The Traitors (American TV series)|New Blood]]
+[[Category:English-language television series]]

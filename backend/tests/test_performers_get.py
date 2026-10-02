@@ -33,7 +33,7 @@ VALUES = {X: (7, 8, 9), Y: (6, 6, 6), Z: (9, 9, 9), W: (5, 5, 5), T: (7, 7, 7)}
 def put_perf(aws, season: dict, ep: int, cid: str, state: str = "confirmed"):
     aws.Table(PERFORMANCES_TABLE).put_item(
         Item={
-            "pk": f"EP#dwts#{season['season']}#{ep:02d}",
+            "pk": f"EP#{season['show']}#{season['season']}#{ep:02d}",
             "sk": f"PERF#{cid}#1",
             "contestants": [cid],
             "rateable": True,
@@ -321,3 +321,19 @@ def test_a_past_season_shows_eliminations_unfinished(show):
     assert couple(performers(season="dwts-34"), W, "dwts-34")["eliminated"] is None
     close(show, S34)
     assert couple(performers(season="all"), W, "dwts-34")["eliminated"] == {"ep": 8, "week": 8}
+
+
+def test_all_seasons_reads_the_shows_seasons(show):
+    tus = {**S35, "show": "tus"}
+    write(show.Table(CATALOG_TABLE), items(tus))
+    put_perf(show, tus, 5, X)
+    answer(A, X, season="tus-35", value=8)
+    answer(A, Y, value=8)
+    assert [c["ref"] for c in performers(season="all", show="tus")["couples"]] == [f"tus-35/{X}"]
+    assert [c["ref"] for c in performers(season="all")["couples"]] == [f"dwts-35/{Y}"]
+
+
+def test_unknown_show_is_400(show):
+    status, body = get(season="all", show="traitors")
+    assert status == 400
+    assert body["error"]["detail"] == {"field": "show"}
