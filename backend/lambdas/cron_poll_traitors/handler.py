@@ -13,29 +13,26 @@ points board. Once the page names the winners, the winner bets are settled.
 
 Invoke with {"backfill": true} to publish every released episode of every current season
 at once, confirmed with no window: for episodes that aired before the season was seeded.
+{"backfill": true, "season": "tus-3"} does the same for that one season, current or not;
+a finished season also gets every player's final faction and exit.
 """
 
 from __future__ import annotations
 
 import json
 import time
-from datetime import UTC, datetime
 
-from lambdas.common import confirm, traitors_board
-from lambdas.common.dynamo import query_all, query_many, table
-from lambdas.common.episodes_dynamo import episode_pk
+from lambdas.common import confirm
+from lambdas.common.dynamo import query_all, table
+from lambdas.common.traitors_dynamo import season_parts, traitors_ref
 from lambdas.common.traitors_parse import season, voting_grid
-from lambdas.common.traitors_publish import exits, outcomes, publish, winners
+from lambdas.common.traitors_publish import epoch, publish_season
 from lambdas.common.wiki_fetch import latest
 
 SHOWS = ("tus", "tuk", "tukc")
 LIVE, SWEEP = 6 * 3600, 72 * 3600
 # A redirect left by a page move is ~150 bytes; a real season page is 20 KB and up.
 MIN_PAGE = 5000
-
-
-def epoch(stamp: str) -> int:
-    return int(datetime.strptime(stamp, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC).timestamp())
 
 
 def due(episodes: list[dict], t: int) -> bool:
@@ -64,30 +61,34 @@ def summary(parsed: dict) -> dict:
     }
 
 
-def run(
-    show: str, number: int, rows: list[dict], parsed: dict, rev: int, t: int, window: int
-) -> dict:
+def poll(show: str, number: int, rows: list[dict], t: int, window: int) -> bool:
+    """Fetches, parses and publishes one season. False when the page is no season page."""
     meta = next(r for r in rows if r["sk"] == "META")
-    episodes = [r for r in rows if r["sk"].startswith("EP#")]
-    out = [int(e["sk"][3:]) for e in episodes if epoch(e["releaseAt"]) <= t]
-    stored = query_many([("PERFORMANCES_TABLE", episode_pk(show, number, ep)) for ep in out])
-    results = outcomes(parsed, out)
-    pending = False
-    for ep, have in zip(out, stored):
-        waiting, confirmed = publish(show, number, ep, results[ep], have, t, rev, window)
-        pending |= waiting
-        exits(show, number, ep, confirmed)
-        traitors_board.reconcile(show, number, ep)
-    won = winners(parsed)
-    if won and len(out) == len(episodes):
-        traitors_board.reconcile_winners(show, number, won, int(meta["episodes"]))
-    return {"published": out, "pending": pending, "winners": sorted(won)}
+    page = latest(int(meta["pageid"]))
+    line = {"season": f"{show}-{number}", "revid": page["revid"], "timestamp": page["timestamp"]}
+    if len(page["content"]) < MIN_PAGE or voting_grid(page["content"]) is None:
+        # A bare JSON line, so Logs Insights discovers the fields without a parse step.
+        print(
+            json.dumps({**line, "skipped": "no elimination table", "bytes": len(page["content"])})
+        )
+        return False
+    parsed = season(page["content"])
+    done = publish_season(show, number, rows, parsed, page["revid"], t, window)
+    print(json.dumps({**line, **done, **summary(parsed)}, ensure_ascii=False))
+    return True
 
 
 def handler(event, context):
-    backfill = (event or {}).get("backfill") is True
+    event = event or {}
+    backfill = event.get("backfill") is True
     t = int(time.time())
     catalog = table("CATALOG_TABLE")
+    if backfill and event.get("season"):
+        show, number = traitors_ref(event)
+        rows = query_all(catalog, f"SEASON#{show}#{number}")
+        season_parts(rows, show, number)
+        return {"polled": [f"{show}-{number}"] if poll(show, number, rows, t, 0) else []}
+
     polled = []
     for show in SHOWS:
         for index in query_all(catalog, f"SEASONS#{show}"):
@@ -97,21 +98,6 @@ def handler(event, context):
             rows = query_all(catalog, f"SEASON#{show}#{number}")
             if not backfill and not due([r for r in rows if r["sk"].startswith("EP#")], t):
                 continue
-            meta = next(r for r in rows if r["sk"] == "META")
-            page = latest(int(meta["pageid"]))
-            line = {"season": index["id"], "revid": page["revid"], "timestamp": page["timestamp"]}
-            if len(page["content"]) < MIN_PAGE or voting_grid(page["content"]) is None:
-                # A bare JSON line, so Logs Insights discovers the fields without a parse step.
-                print(
-                    json.dumps(
-                        {**line, "skipped": "no elimination table", "bytes": len(page["content"])}
-                    )
-                )
-                continue
-            parsed = season(page["content"])
-            done = run(
-                show, number, rows, parsed, page["revid"], t, 0 if backfill else confirm.WINDOW
-            )
-            print(json.dumps({**line, **done, **summary(parsed)}, ensure_ascii=False))
-            polled.append(index["id"])
+            if poll(show, number, rows, t, 0 if backfill else confirm.WINDOW):
+                polled.append(index["id"])
     return {"polled": polled}

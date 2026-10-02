@@ -12,12 +12,31 @@ own fields, which are what the gate shows.
 
 from __future__ import annotations
 
-from lambdas.common import confirm
-from lambdas.common.dynamo import update
+from datetime import UTC, datetime
+
+from lambdas.common import confirm, traitors_board
+from lambdas.common.dynamo import query_many, update
 from lambdas.common.episodes_dynamo import episode_pk
 from lambdas.common.people import slug
 
 STEP = ("value", "state", "firstSeenAt", "rev")
+
+
+def epoch(stamp: str) -> int:
+    return int(datetime.strptime(stamp, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC).timestamp())
+
+
+def finished(meta: dict, episodes: list[dict], t: int) -> bool:
+    """Not current and every episode out: a non-current season may also be one not yet begun."""
+    return not meta.get("current") and all(epoch(e["releaseAt"]) <= t for e in episodes)
+
+
+def final(contestant: dict) -> tuple[str | None, dict | None]:
+    """A contestant's (last faction, finish) from the Contestants table."""
+    how, ep = contestant["finish"]["how"], contestant["finish"]["ep"]
+    # Joint winners' Finish cells read "Winners".
+    finish = {"how": "winner" if how == "winners" else how, "ep": ep} if how else None
+    return (contestant["affiliation"] or [None])[-1], finish
 
 
 def outcomes(parsed: dict, episodes: list[int]) -> dict[int, dict[str, dict | None]]:
@@ -122,3 +141,55 @@ def exits(show: str, season: int, ep: int, confirmed: list[dict]) -> None:
                     {"pk": pk, "sk": f"PLAYER#{v}"},
                     {"exit": {"ep": ep, "how": "murdered"}},
                 )
+
+
+def standings(show: str, season: int, parsed: dict) -> None:
+    """
+    Every PLAYER's faction and exit from the Contestants table, for a finished season. A
+    quit, a runner-up or a winner has no round table or murder to reveal them, and
+    nothing in a finished season is gated.
+    """
+    pk = f"SEASON#{show}#{season}"
+    for p in parsed["contestants"]:
+        faction, finish = final(p)
+        fields = {}
+        if faction:
+            fields["faction"] = faction
+        if finish and finish["ep"] is not None:
+            fields["exit"] = finish
+        if fields:
+            # A name respelled on the page since seeding has no PLAYER: don't create a nameless one.
+            update(
+                "CATALOG_TABLE",
+                {"pk": pk, "sk": f"PLAYER#{slug(p['name'])}"},
+                fields,
+                "attribute_exists(sk)",
+            )
+
+
+def publish_season(
+    show: str, number: int, rows: list[dict], parsed: dict, rev: int, t: int, window: int
+) -> dict:
+    """
+    Publishes every released episode of one season, reconciles the board, and settles
+    winner bets once the page names the winners. `rows` is the season's catalog
+    partition. Shared by the poller and by discovery, which publishes a past season as
+    it seeds it.
+    """
+    meta = next(r for r in rows if r["sk"] == "META")
+    episodes = [r for r in rows if r["sk"].startswith("EP#")]
+    out = [int(e["sk"][3:]) for e in episodes if epoch(e["releaseAt"]) <= t]
+    stored = query_many([("PERFORMANCES_TABLE", episode_pk(show, number, ep)) for ep in out])
+    results = outcomes(parsed, out)
+    pending = False
+    for ep, have in zip(out, stored):
+        waiting, confirmed = publish(show, number, ep, results[ep], have, t, rev, window)
+        pending |= waiting
+        exits(show, number, ep, confirmed)
+        traitors_board.reconcile(show, number, ep)
+    won = winners(parsed)
+    if won and len(out) == len(episodes):
+        traitors_board.reconcile_winners(show, number, won, int(meta["episodes"]))
+    if finished(meta, episodes, t):
+        standings(show, number, parsed)
+    return {"published": out, "pending": pending, "winners": sorted(won)}
