@@ -4,6 +4,10 @@ seed any season page with a cast and dated episodes, and move the `current` flag
 
 A season already in the catalog only gets its episodes and players refreshed, keeping its
 openAt and any per-season releaseTime. docs/features/traitors/PLAN.md "Future seasons".
+
+History fills itself: a finished season new to the catalog, or one the flip just closed,
+is published in-process from the page already fetched, the poller's backfill path. Every
+seeded season is merged into the people index (common/traitors_people.py).
 """
 
 from __future__ import annotations
@@ -14,10 +18,13 @@ from datetime import UTC, datetime, timedelta
 
 from boto3.dynamodb.conditions import Key
 
+from lambdas.common import traitors_people
 from lambdas.common.catalog_dynamo import write
 from lambdas.common.dynamo import query_all, table
 from lambdas.common.traitors_catalog import EDITIONS, items
+from lambdas.common.traitors_dynamo import season_parts
 from lambdas.common.traitors_parse import season, seasons
+from lambdas.common.traitors_publish import finished, publish_season
 from lambdas.common.wiki_fetch import latest, pageids
 
 WEEK = timedelta(days=7)
@@ -59,8 +66,9 @@ def seed(catalog, show: str, number: int, page: dict, parsed: dict, now: datetim
     return meta is None
 
 
-def flip(catalog, show: str, now: datetime) -> int | None:
-    """Sets `current` on META and the season-picker row of exactly one season, if any."""
+def flip(catalog, show: str, now: datetime) -> tuple[int | None, list[int]]:
+    """Sets `current` on META and the season-picker row of exactly one season, if any.
+    Returns that season and any it took the flag from."""
     index = query_all(catalog, f"SEASONS#{show}")
     releases = {}
     for row in index:
@@ -72,26 +80,32 @@ def flip(catalog, show: str, now: datetime) -> int | None:
             if e["sk"].startswith("EP#")
         ]
     pick = current_season(releases, now)
+    closed = []
     for row in index:
         on = int(row["number"]) == pick
         if bool(row.get("current")) == on:
             continue
+        if not on:
+            closed.append(int(row["number"]))
         keys = [(f"SEASON#{show}#{int(row['number'])}", "META"), (row["pk"], row["sk"])]
         write(catalog, [{"pk": pk, "sk": sk, "current": on} for pk, sk in keys], keep=set())
-    return pick
+    return pick, closed
 
 
 def handler(event, context):
-    now = datetime.fromtimestamp(time.time(), UTC)
+    t = int(time.time())
+    now = datetime.fromtimestamp(t, UTC)
     catalog = table("CATALOG_TABLE")
     for show, edition in EDITIONS.items():
         titles = seasons(latest(edition["article"])["content"])
         pages = pageids(list(titles.values()))
-        seeded, refreshed, skipped, failed = [], [], [], []
+        seeded, refreshed, skipped, failed, published = [], [], [], [], []
+        found = {}
         for number, title in titles.items():
             page = pages.get(title)
             try:
-                parsed = season(latest(page["pageid"])["content"]) if page else None
+                fetched = latest(page["pageid"]) if page else None
+                parsed = season(fetched["content"]) if fetched else None
             except Exception as e:  # noqa: BLE001 -- any parse bug, logged and skipped
                 # One bad page must not stop the other seasons; US season 2's cast table
                 # crashed the parser on 2026-10-02 (rev 1376555148). Retried tomorrow.
@@ -102,7 +116,21 @@ def handler(event, context):
                 continue
             new = seed(catalog, show, number, page, parsed, now)
             (seeded if new else refreshed).append(number)
-        pick = flip(catalog, show, now)
+            found[number] = (fetched["revid"], parsed)
+        pick, closed = flip(catalog, show, now)
+
+        # After the flip, which is what decides a new season isn't current. A season new
+        # to the catalog, or just closed, has its whole history published from this page.
+        for number, (rev, parsed) in found.items():
+            rows = query_all(catalog, f"SEASON#{show}#{number}")
+            meta, episodes, players = season_parts(rows, show, number)
+            done = finished(meta, episodes, t)
+            if done and (number in seeded or number in closed):
+                publish_season(show, number, rows, parsed, rev, t, 0)
+                published.append(number)
+            traitors_people.index(
+                catalog, show, number, players, parsed["contestants"] if done else None
+            )
         # A bare JSON line, so Logs Insights discovers the fields without a parse step.
         print(
             json.dumps(
@@ -113,6 +141,7 @@ def handler(event, context):
                     "refreshed": refreshed,
                     "skipped": skipped,
                     "failed": failed,
+                    "published": published,
                     "current": f"{show}-{pick}" if pick else None,
                 }
             )
