@@ -470,3 +470,100 @@ body {
 html:has(dialog[open]) {
   overflow: hidden;
 }
+
+/*
+ * Landing motion (components/scroll-reveals.tsx, landing-sections.tsx). Base
+ * styles are the end state, so reduced motion only switches animations off.
+ */
+.reveals [data-reveal]:not([data-shown]) {
+  opacity: 0;
+}
+
+[data-shown] {
+  animation: landing-rise 760ms cubic-bezier(0.2, 0.8, 0.3, 1) var(--reveal-delay, 0ms) backwards;
+}
+
+@keyframes landing-rise {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+  }
+}
+
+/* Charts inside a revealed block play once it shows. */
+[data-shown] .lx-bar {
+  transform-origin: left;
+  animation: lx-grow 900ms cubic-bezier(0.2, 0.8, 0.3, 1) var(--d) backwards;
+}
+
+@keyframes lx-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+[data-shown] .lx-draw {
+  stroke-dasharray: 1;
+  animation: lx-draw 1200ms ease-out var(--d) backwards;
+}
+
+@keyframes lx-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+[data-shown] .lx-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lx-pop 420ms cubic-bezier(0.2, 0.8, 0.3, 1.5) var(--d) backwards;
+}
+
+@keyframes lx-pop {
+  from {
+    scale: 0;
+  }
+}
+
+[data-shown] .lx-slide {
+  animation: lx-slide 560ms cubic-bezier(0.2, 0.8, 0.3, 1) var(--d) backwards;
+}
+
+@keyframes lx-slide {
+  from {
+    opacity: 0;
+    translate: -16px 0;
+  }
+}
+
+/* Follow-spots behind the hero desk, swaying slowly across the floor. */
+.lx-beam {
+  rotate: -14deg;
+  animation: lx-beam 9s ease-in-out infinite alternate;
+}
+
+.lx-beam-2 {
+  rotate: 14deg;
+  animation-duration: 11s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes lx-beam {
+  from {
+    rotate: -14deg;
+  }
+  to {
+    rotate: 12deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-shown],
+  [data-shown] .lx-bar,
+  [data-shown] .lx-draw,
+  [data-shown] .lx-pop,
+  [data-shown] .lx-slide,
+  .lx-beam {
+    animation: none;
+  }
+}
