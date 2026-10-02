@@ -56,6 +56,7 @@ export function EpisodeScreen() {
           members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
           seasonTitle={name.title}
           onNeedBet={() => bet.open(PICK_PROMPT)}
+          cast={view.cast}
           onSealed={reload}
         />
       </CatchUp>

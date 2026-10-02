@@ -77,7 +77,7 @@ function Shell({ title, seasonless = false, children }: AppShellProps) {
   const pathname = usePathname();
   const { season, seasons } = useShellSeason();
   const summary = seasons?.find((s) => s.id === season);
-  const load = useSeasonLoad(seasonless || summary?.current === false ? null : season);
+  const load = useSeasonLoad(seasonless ? null : season);
   // A finished season has nothing to call: its history stands in for every tab.
   const finished = !seasonless && (summary ? !summary.current : load.data?.current === false);
   const tabs = !finished;
@@ -222,7 +222,7 @@ function Content({ load, finished, seasonless, children }: ContentProps) {
   if (seasonless) return children;
   if (season === null && failed)
     return <ErrorState what="the seasons" message="the castle didn't answer" retry={retry} />;
-  if (season !== null && finished) return <HistoryScreen key={season} season={season} />;
+  if (season !== null && finished) return <HistoryScreen key={season} season={season} summary={data?.summary} />;
   if (data === null && error !== null) return <ErrorState what="this season" message={error} retry={reload} />;
   if (data === null) return <SkeletonList label="Opening the season" rows={3} row="h-20" />;
   return (

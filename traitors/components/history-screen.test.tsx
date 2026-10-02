@@ -54,7 +54,7 @@ it("crowns a Traitor win in red and lists the cast with how each left", async ()
   );
   expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Season 3");
 
-  const cast = within(screen.getByRole("region", { name: "The cast" }));
+  const cast = within(screen.getByRole("region", { name: "Final standings" }));
   // Winner first, then whoever lasted longest.
   const tiles = [
     "Ann Avery, Traitor, Winner",
@@ -96,7 +96,7 @@ it("links every past-season player to their profile: cast wall, round-table seat
   render(<HistoryScreen season="tus-3" />);
   const profile = /^\/players\/player\/?\?show=tus&id=cy-cole&season=tus-3$/;
 
-  const cast = within(await screen.findByRole("region", { name: "The cast" }));
+  const cast = within(await screen.findByRole("region", { name: "Final standings" }));
   expect(cast.getByRole("link", { name: /^Cy Cole/ }).getAttribute("href")).toMatch(profile);
 
   const night = within(screen.getByRole("listitem", { name: "Episode 2" }));
@@ -116,6 +116,6 @@ it("offers a retry when the season won't load", async () => {
   render(<HistoryScreen season="tus-3" />);
   expect((await screen.findByRole("alert")).textContent).toContain("castle closed");
   fireEvent.click(screen.getByRole("button", { name: "Try again" }));
-  expect(await screen.findByRole("region", { name: "The cast" })).toBeTruthy();
+  expect(await screen.findByRole("region", { name: "Final standings" })).toBeTruthy();
   expect(api.getHistory).toHaveBeenCalledTimes(2);
 });

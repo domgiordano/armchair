@@ -117,11 +117,13 @@ it("reveals the banishment on the table with your points and everyone's first pi
   );
   ballot();
   fireEvent.click(await screen.findByRole("tab", { name: "Banish, sealed" }));
-  expect(screen.getByRole("img", { name: "Ava Stone, your first, banished, Traitor, 5 called" })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Ava Stone, your first, banished, Traitor, 5 called" })).toBeTruthy();
   expect(screen.getByText(para("+10 points"))).toBeTruthy();
-  expect(screen.getByText(/had Ava Stone first/).textContent).toBe("63% had Ava Stone first");
+  const consensus = within(screen.getByRole("region", { name: /Everyone's calls/ }));
+  expect(consensus.getAllByRole("listitem")[0].textContent).toBe("63% had Ava Stone first");
+  expect(consensus.getByRole("link", { name: "Ava Stone" }).getAttribute("href")).toMatch(/show=tus&id=ava&season=tus-5/);
 
   fireEvent.click(screen.getByRole("tab", { name: "Murder, sealed" }));
-  expect(screen.getByRole("img", { name: "Ben Hart, your pick, murdered" })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Ben Hart, your pick, murdered" })).toBeTruthy();
   expect(screen.getByText(para("+4 points"))).toBeTruthy();
 });

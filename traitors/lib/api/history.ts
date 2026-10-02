@@ -1,6 +1,6 @@
 import { request } from "@armchair/app-core/api/client";
 
-import type { Exit, Faction } from "@/lib/api/traitors";
+import type { Exit, Faction, Writeup } from "@/lib/api/traitors";
 import type { Show } from "@/lib/seasons";
 
 export type { Exit };
@@ -44,12 +44,15 @@ export interface Career {
   faction: Faction | null;
   /** First votes drawn at each round table sat at; null for the current season. */
   votes: { ep: number; received: number }[] | null;
+  /** Won the season. */
+  championship: boolean;
 }
 
 export interface PlayerProfile {
   id: string;
   name: string;
   headshot: string | null;
+  bio: Writeup | null;
   seasons: Career[];
 }
 

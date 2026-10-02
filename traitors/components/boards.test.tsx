@@ -102,11 +102,18 @@ it("shows hit rates per call and points by episode", async () => {
   expect(screen.getByRole("list", { name: "Points by episode: episode 1 0, episode 2 23, episode 3 14" })).toBeTruthy();
 });
 
-it("lists the whole cast from episode 1", async () => {
-  api.getEpisode.mockResolvedValue({ roster: [{ id: "ava-stone", name: "Ava Stone", headshot: null }] });
-  wrap(<PlayersScreen />);
-  expect(await screen.findByText("Ava Stone")).toBeTruthy();
-  expect(api.getEpisode).toHaveBeenCalledWith("tus-5", 1);
+it("walls the cast, crossing off only those the season says are out, each linked to their page", async () => {
+  const cast = [
+    { id: "ava-stone", name: "Ava Stone", headshot: null, faction: null, exit: null },
+    { id: "ben-hart", name: "Ben Hart", headshot: null, faction: "Traitor" as const, exit: { ep: 2, how: "banished" } },
+  ];
+  render(<SeasonDataContext value={{ view: { ...VIEW, cast }, reload: vi.fn() }}><PlayersScreen /></SeasonDataContext>);
+  const ben = screen.getByRole("link", { name: "Ben Hart, Traitor, Banished ep 2" });
+  expect(ben.getAttribute("href")).toMatch(/show=tus&id=ben-hart&season=tus-5/);
+  expect(ben.querySelector("[data-out=banished]")).toBeTruthy();
+  const ava = screen.getByRole("link", { name: "Ava Stone" });
+  expect(ava.querySelector("[data-out]")).toBeNull();
+  expect(api.getEpisode).not.toHaveBeenCalled();
 });
 
 it("pins your row when you're outside the list", async () => {
