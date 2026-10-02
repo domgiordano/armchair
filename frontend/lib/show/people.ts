@@ -11,8 +11,8 @@ export function personSlug(name: string): string {
 
 export const personHref = (id: string) => `/people/?id=${encodeURIComponent(id)}`;
 
-/** A couple's every dance in one season: their celebrity's page, narrowed to it. */
+/** A couple's page for one season. A couple's id is their celebrity's. */
 export function coupleHref(members: { name: string; role: string }[], season: string): string {
   const star = members.find((m) => m.role === "celebrity") ?? members[0];
-  return `${personHref(personSlug(star.name))}&season=${encodeURIComponent(season)}`;
+  return `/couples/couple/?id=${encodeURIComponent(personSlug(star.name))}&season=${encodeURIComponent(season)}`;
 }
