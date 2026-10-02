@@ -30,6 +30,7 @@ jobs:
         NEXT_PUBLIC_COGNITO_USER_POOL_ID=/armchair/shared/cognito/user-pool-id
         NEXT_PUBLIC_COGNITO_CLIENT_ID=/armchair/shared/cognito/clients/traitors-id
         NEXT_PUBLIC_COGNITO_DOMAIN=/armchair/shared/cognito/hosted-ui-domain
+        NEXT_PUBLIC_API_URL=/armchair/api-url
       # postbuild's verify-build fails unless the values above reached the bundle.
       build-command: REQUIRE_AUTH_ENV=1 npm run build
       dist-dir: out
