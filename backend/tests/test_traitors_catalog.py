@@ -42,7 +42,7 @@ def test_meta_index_and_players():
         2026,
         True,
     )
-    assert nb["PLAYER#abbey-benjamin"]["aliases"] == ["abbey", "abbey b."]
+    assert nb["PLAYER#abbey-benjamin"]["aliases"] == ["abbey", "abbey b", "abbey b.", "benjamin"]
     assert sum(sk.startswith("PLAYER#") for sk in nb) == 22
     assert not any("faction" in r or "exit" in r for r in nb.values())
 

@@ -1,5 +1,5 @@
 """
-GET /people/get?id=<person id>[&season=dwts-20] - one celebrity, pro or judge:
+GET /people/get?id=<person id>[&season=dwts-20|&show=dwts] - one celebrity, pro or judge:
 bio, roles, seasons with partners and results, the dances they danced and
 judged, and all-time numbers.
 
@@ -31,11 +31,10 @@ from zoneinfo import ZoneInfo
 from lambdas.common import board_dynamo, people
 from lambdas.common.api import NotFoundError, ValidationError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_partitions
-from lambdas.common.episodes_dynamo import episode_pk, season_index, season_ref
+from lambdas.common.episodes_dynamo import episode_pk, season_index, season_ref, show_ref
 from lambdas.common.gate import cid, episode_view, is_open
 from lambdas.common.social_dynamo import peers, status
 
-SHOW = "dwts"
 ID = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 EXTREMES = 3
 # Someone in this many seasons or fewer has every season read.
@@ -53,8 +52,8 @@ def handler(event, context):
     pid = str(params.get("id") or "")
     if not ID.fullmatch(pid) or len(pid) > 80:
         raise ValidationError("id is not a person id", field="id")
-    only = season_ref(params)[1] if params.get("season") else None
-    person = people.person(SHOW, pid)
+    show, only = season_ref(params) if params.get("season") else (show_ref(params), None)
+    person = people.person(show, pid)
     if person is None:
         raise NotFoundError("No such person", id=pid)
 
@@ -65,16 +64,16 @@ def handler(event, context):
     if len(numbers) <= FEW:
         wanted = numbers
     else:
-        current = {int(r["number"]) for r in season_index(SHOW) if r.get("current")}
-        scored = set(board_dynamo.seasons_with(sub, SHOW, sorted(numbers)))
+        current = {int(r["number"]) for r in season_index(show) if r.get("current")}
+        scored = set(board_dynamo.seasons_with(sub, show, sorted(numbers)))
         wanted = numbers & ({max(numbers), only, shown} | current | scored)
-    seasons = _seasons(wanted)
+    seasons = _seasons(show, wanted)
     nights = [
         (s, _episodes(pid, s, seasons[s["season"]]) if s["season"] in seasons else None)
         for s in stints
     ]
     views = _views(
-        sub, seasons, sorted({(s["season"], ep) for s, eps in nights for ep in eps or []})
+        sub, show, seasons, sorted({(s["season"], ep) for s, eps in nights for ep in eps or []})
     )
     friends = {s for s, item in peers(sub).items() if status(item) == "friend"}
 
@@ -82,7 +81,7 @@ def handler(event, context):
     for stint, eps in nights:
         n = stint["season"]
         entry = {
-            "season": f"{SHOW}-{n}",
+            "season": f"{show}-{n}",
             "number": n,
             "role": stint["role"],
             "loaded": eps is not None,
@@ -94,7 +93,7 @@ def handler(event, context):
             timeline.append(entry)
             continue
         mine = [
-            _row(n, ep, seasons[n], card, friends)
+            _row(show, n, ep, seasons[n], card, friends)
             for ep in eps
             for card in views[(n, ep)]["performances"]
             if stint["role"] == "judge" or stint["couple"] in card["contestants"]
@@ -103,10 +102,10 @@ def handler(event, context):
         entry["dances"] = len(mine)
         entry["locked"] = sum(r["locked"] for r in mine)
         if stint["role"] != "judge":
-            entry["result"] = _result(n, stint["couple"], seasons[n], views)
+            entry["result"] = _result(show, n, stint["couple"], seasons[n], views)
         timeline.append(entry)
 
-    label = only and f"{SHOW}-{only}"
+    label = only and f"{show}-{only}"
     return ok(
         {
             "id": pid,
@@ -115,8 +114,8 @@ def handler(event, context):
             "performances": [r for r in danced if label in (None, r["season"])],
             "judged": shown
             and {
-                "season": f"{SHOW}-{shown}",
-                "rows": [r for r in judged if r["season"] == f"{SHOW}-{shown}"],
+                "season": f"{show}-{shown}",
+                "rows": [r for r in judged if r["season"] == f"{show}-{shown}"],
             },
             "stats": {
                 "dancer": _dancer(danced) if danced else None,
@@ -126,9 +125,9 @@ def handler(event, context):
     )
 
 
-def _seasons(numbers: set[int]) -> dict[int, dict]:
+def _seasons(show: str, numbers: set[int]) -> dict[int, dict]:
     """Per season: META, episodes by number, contestants, and which episodes have aired."""
-    rows = query_partitions("CATALOG_TABLE", [f"SEASON#{SHOW}#{n}" for n in sorted(numbers)])
+    rows = query_partitions("CATALOG_TABLE", [f"SEASON#{show}#{n}" for n in sorted(numbers)])
     out = {}
     now = _now()
     for pk, items in rows.items():
@@ -187,8 +186,8 @@ def _episodes(pid: str, stint: dict, season: dict) -> list[int]:
     return [n for n in season["aired"] if last is None or n <= last]
 
 
-def _views(sub: str, seasons: dict[int, dict], eps: list[tuple[int, int]]) -> dict:
-    pks = [episode_pk(SHOW, n, ep) for n, ep in eps]
+def _views(sub: str, show: str, seasons: dict[int, dict], eps: list[tuple[int, int]]) -> dict:
+    pks = [episode_pk(show, n, ep) for n, ep in eps]
     perfs = query_partitions("PERFORMANCES_TABLE", pks)
     scores = query_partitions("SCORES_TABLE", pks)
     out = {}
@@ -204,9 +203,9 @@ def _mean(values: list[float]) -> float | None:
     return round(sum(values) / len(values), 2) if values else None
 
 
-def _row(n: int, ep: int, season: dict, card: dict, friends: set[str]) -> dict:
+def _row(show: str, n: int, ep: int, season: dict, card: dict, friends: set[str]) -> dict:
     row = {
-        "season": f"{SHOW}-{n}",
+        "season": f"{show}-{n}",
         "ep": ep,
         "week": season["episodes"][ep].get("week"),
         "key": card["key"],
@@ -242,14 +241,14 @@ def _confirmed(judge: dict) -> bool:
     return judge["state"] == "confirmed" and judge["value"] is not None
 
 
-def _result(n: int, couple: str, season: dict, views: dict) -> dict:
+def _result(show: str, n: int, couple: str, season: dict, views: dict) -> dict:
     """How the couple's season went, once the caller has watched far enough to know."""
     c = next(c for c in season["contestants"] if cid(c) == couple)
     last = c.get("eliminatedEp")
     upto = [ep for ep in season["aired"] if last is None or ep <= last]
     left = [ep for ep in upto if not views[(n, ep)]["complete"]]
     if left:
-        return {"locked": True, "season": f"{SHOW}-{n}", "ep": left[0]}
+        return {"locked": True, "season": f"{show}-{n}", "ep": left[0]}
     if last is not None:
         return {"status": "out", "ep": last, "week": season["episodes"][last].get("week")}
     if not is_open(season["meta"]):

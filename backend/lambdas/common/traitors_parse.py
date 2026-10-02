@@ -1,4 +1,5 @@
 """Parses a Traitors season page's wikitext: episodes, contestants, round tables, recruits.
+Also an edition's main article, for its list of season pages.
 
 Pure functions, no network. Real-revision fixtures live in fixtures/wiki/traitors-*.
 Layout and special cases: docs/features/traitors/RESEARCH.md Q2.
@@ -12,8 +13,6 @@ from collections import Counter
 from lambdas.common.wiki_parse import expand
 
 SPAN = re.compile(r'(row|col)span\s*=\s*"?(\d+)')
-# Attributes ahead of a template with no pipe of their own: `rowspan="2" {{N/A|''None''}}`.
-LEAD_ATTRS = re.compile(r'\s*((?:[\w-]+\s*=\s*"?[^"{|]*"?\s*)+)')
 TEMPLATE = re.compile(r"\{\{([^{}]*)\}\}")
 LINK = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]]*)\]\]")
 EPISODE = re.compile(r"Episode\s*(\d+)")
@@ -21,7 +20,7 @@ START_DATE = re.compile(r"\{\{\s*Start date\s*\|\s*(\d{4})\s*\|\s*(\d{1,2})\s*\|
 DAGGER = re.compile(r"\{\{\s*efn\s*\|\s*name\s*=\s*\"?Dagger|\(2x\)", re.IGNORECASE)
 FACTIONS = {"Faithful", "Traitor", "Accomplice"}
 RECRUIT_ACTIONS = {"recruit", "seduce", "offer", "ultimatum"}
-NOT_A_VOTE = {"", "TBA", "No vote", "None"}
+NOT_A_VOTE = {"", "tba", "no vote", "none", "not in game"}
 
 
 def unwrap(m: re.Match) -> str:
@@ -38,6 +37,8 @@ def unwrap(m: re.Match) -> str:
         return parts[-1]
     if name == "sortname":
         return " ".join(parts[:2])
+    if name == "sort":
+        return parts[-1]
     return ""
 
 
@@ -47,9 +48,10 @@ def text(raw: str) -> str:
     # A struck name is a murder the Seer or a shield blocked: it didn't happen.
     raw = re.sub(r"<s>.*?</s>", "", raw, flags=re.DOTALL)
     raw = raw.replace("(2x)", "")
+    # Links first, so a link's pipe inside a template isn't taken for the template's.
+    raw = LINK.sub(r"\1", raw)
     while (stripped := TEMPLATE.sub(unwrap, raw)) != raw:
         raw = stripped
-    raw = LINK.sub(r"\1", raw)
     raw = re.sub(r"<br\s*/?>", "\n", raw)
     raw = re.sub(r"<[^>]+>|'''|''", "", raw)
     return "\n".join(line.strip() for line in raw.split("\n") if line.strip())
@@ -71,8 +73,9 @@ def cell(raw: str, header: bool) -> dict:
     i = top_pipe(raw)
     if i is not None and "=" in raw[:i]:
         attrs, body = raw[:i], raw[i + 1 :]
-    elif i is None and "{{" in raw and (m := LEAD_ATTRS.match(raw)) and "=" in m.group(1):
-        attrs, body = m.group(1), raw[m.end() :]
+    elif i is None and "=" in raw[: raw.find("{{")]:
+        # `colspan="4" nowrap {{n/a|...}}`: attributes, then a template, with no pipe between.
+        attrs, body = raw[: raw.find("{{")], raw[raw.find("{{") :]
     else:
         attrs, body = "", raw
     spans = {kind: int(n) for kind, n in SPAN.findall(attrs)}
@@ -206,12 +209,17 @@ def contestants(wikitext: str) -> list[dict]:
 def aliases(names: list[str]) -> dict[str, str]:
     """Short forms the elimination table uses (`Abbey B.`, `Joe`, `Maz`) mapped to full contestant names."""
     firsts = Counter(n.split()[0].lower() for n in names)
+    lasts = Counter(n.split()[-1].lower() for n in names)
     out = {}
     for name in names:
         parts = name.split()
         out[name.lower()] = name
         if len(parts) > 1:
             out[f"{parts[0]} {parts[-1][0]}.".lower()] = name
+            # US season 3: "Bob TDQ" is Bob the Drag Queen; "Ayan" is Chanel Ayan.
+            out[f"{parts[0]} {''.join(w[0] for w in parts[1:])}".lower()] = name
+            if lasts[parts[-1].lower()] == 1:
+                out.setdefault(parts[-1].lower(), name)
         if firsts[parts[0].lower()] == 1:
             out[parts[0].lower()] = name
         # Marzook "Maz" Bana goes by Maz in the table.
@@ -273,8 +281,8 @@ def round_tables(wikitext: str, names: dict[str, str]) -> list[dict]:
             for row in players:
                 if c >= len(row):
                     continue
-                vote = row[c]["text"]
-                if vote in NOT_A_VOTE or vote.split("\n")[0] in (
+                vote = row[c]["text"].replace("\n", " ")
+                if vote.lower() in NOT_A_VOTE or vote.split(" ")[0] in (
                     "Banished",
                     "Murdered",
                     "Quit",
@@ -330,6 +338,29 @@ def recruits(wikitext: str, names: dict[str, str]) -> list[dict]:
             if person := resolve(names, name):
                 out.append({"name": person, "ep": int(ep.group()) if ep else None})
     return out
+
+
+OVERVIEW = re.compile(r"\{\{\s*Series overview(.*?)^\}\}", re.DOTALL | re.MULTILINE | re.IGNORECASE)
+OVERVIEW_LINK = re.compile(r"^\|\s*link(\d+)\s*=([^\n]*)", re.MULTILINE)
+MAIN_UNDER_HEADING = re.compile(
+    r"^===\s*(?:Season|Series)\s+(\d+)\b[^\n]*===\s*\n\{\{\s*main\s*\|([^}|]+)",
+    re.MULTILINE | re.IGNORECASE,
+)
+
+
+def seasons(wikitext: str) -> dict[int, str]:
+    """An edition's main article: season number to season page title.
+
+    From the `{{Series overview}}` links, or for a number missing there, the `{{main}}`
+    link under a `===Season N===` heading.
+    """
+    out = {int(n): t.strip() for n, t in MAIN_UNDER_HEADING.findall(wikitext)}
+    if m := OVERVIEW.search(wikitext):
+        for n, raw in OVERVIEW_LINK.findall(m.group(1)):
+            title = re.sub(r"<!--.*?-->|\[\[|\]\]", "", raw).split("#")[0].strip()
+            if title:
+                out[int(n)] = title
+    return dict(sorted(out.items()))
 
 
 def season(wikitext: str) -> dict:

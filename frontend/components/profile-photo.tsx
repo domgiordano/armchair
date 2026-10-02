@@ -5,7 +5,7 @@ import { useRef, useState, type ChangeEvent } from "react";
 import { Avatar } from "@/components/avatar";
 import { AvatarCropper } from "@/components/avatar-cropper";
 import { Sheet } from "@/components/ui/sheet";
-import type { AvatarKind } from "@/lib/api/client";
+import type { AvatarKind } from "@armchair/app-core/api/client";
 import { updateProfile, uploadAvatar, type MyProfile } from "@/lib/api/profile";
 import { SECONDARY } from "@/lib/ui";
 

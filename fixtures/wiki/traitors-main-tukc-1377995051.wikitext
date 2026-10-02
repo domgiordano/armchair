@@ -1,0 +1,250 @@
+{{Short description|British reality television series}}
+{{about|the British celebrity version of The Traitors|other versions of the franchise that partially or exclusively had celebrities in their cast (e.g. US, Australia, NZ)|The Traitors}}
+{{Use dmy dates|date=May 2025}}
+{{Infobox television
+| image                = The Celebrity Traitors logo.jpg
+| image_alt            = 
+| caption              = 
+| alt_name             = 
+| genre                = {{Plainlist|
+* Reality
+* Game show
+}}
+| creator              = 
+| based_on             = {{Based on|''[[De Verraders]]''|[[Marc Pos]]|Jasper Hoogendoorn}}
+| developer            = 
+| writer               = 
+| story                = 
+| director             = 
+| creative_director    = 
+| presenter            = [[Claudia Winkleman]]
+| location             = [[Ardross, Highland]]
+| starring             = 
+| theme_music_composer = Sam Watts<ref>{{Cite web |title=Sam Watts {{!}} Composer – Film and television composer |url=https://samwatts.com/ |access-date=23 December 2022 |language=en-US |archive-date=23 December 2022 |archive-url=https://web.archive.org/web/20221223202128/https://samwatts.com/ |url-status=live }}</ref>
+| open_theme           = 
+| end_theme            = 
+| country              = United Kingdom
+| language             = English
+| num_series           = 2
+| num_episodes         = 10<!--increment when new episode airs-->
+| list_episodes        = 
+| executive_producer   = 
+| producer             = 
+| cinematography       = 
+| camera               = Multi-camera
+| runtime              = 60 minutes
+| company              = [[Studio Lambert]]
+| budget               = 
+| network              = [[BBC One]]
+| first_aired          = {{start date|2025|10|8|df=y}}
+| last_aired           = present
+| related              = ''[[The Traitors (British TV series)|The Traitors]]''
+}}
+'''''The Celebrity Traitors''''' (also known as '''''The Celebrity Traitors UK''''') is a spin-off of the British version of the reality television series ''[[The Traitors (British TV series)|The Traitors]]''. It was first broadcast on [[BBC One]] on 8 October 2025.<ref name=":0">{{Cite web |title=The Celebrity Traitors - Everything you need to know |url=https://www.bbc.co.uk/mediacentre/articles/2025/the-celebrity-traitors |access-date=2025-08-21 |website=www.bbc.co.uk |language=en-GB |archive-date=14 May 2025 |archive-url=https://web.archive.org/web/20250514221454/https://www.bbc.co.uk/mediacentre/articles/2025/the-celebrity-traitors |url-status=live }}</ref> [[Claudia Winkleman]] presented the series. 
+
+Following the premise of the parent series, the show features a group of celebrity contestants participating in a [[social deduction game]] similar to [[Mafia (party game)|Mafia or Werewolf]], set in and around [[Ardross, Highland|Ardross Castle]] in Scotland. A small group of contestants is chosen as the titular "Traitors," and must work together to eliminate the other contestants to win a grand prize. The remaining contestants are the "Faithful" and are tasked to discover and banish the Traitors by voting them out to win the grand prize. The grand prize is awarded to a charity of the winner's choice.
+
+A second series began broadcasting on 1 October 2026.<ref name="auto">{{Cite web |date=2025-11-10 |title=Celebrity Traitors to return for a second series in 2026 |url=https://www.bbc.co.uk/news/articles/cwy12ln7rnlo |access-date=2025-11-10 |website=BBC News |language=en-GB |archive-date=10 November 2025 |archive-url=https://web.archive.org/web/20251110183709/https://www.bbc.co.uk/news/articles/cwy12ln7rnlo |url-status=live }}</ref>
+
+==Format==
+Following the format of the original version of the show, a group of celebrity contestants arrives at a castle in the [[Scottish Highlands]] where the members will remain for the duration of the game in order to win up to £100,000 for a charity of their choice. On the arrival day, host Claudia Winkleman picks a small number of contestants to be "Traitors". The rest are automatically called "Faithful". The television audience knows which players have been chosen as Traitors, but the Faithful do not know their number or identity.
+
+At the end of each day, all contestants meet at a Round Table to discuss who they think are Traitors. They then cast votes that are revealed one by one. The person with the most votes is immediately banished, and reveals their identity before leaving.{{efn|In the event of a tie, the tied players make a final plea before the remaining players vote between them again – if a second tie occurs, one player is chosen for banishment randomly among the tied players.|name=tie}} On most nights, the Traitors meet in private and agree to "murder" one Faithful who will leave the game immediately. The remaining Faithful players only discover who has been murdered at breakfast the next morning.
+
+Each day, the group participates in missions to win money for the prize fund which can reach £100,000 by the end of the game. During the missions, contestants may also win a shield that awards that player [[immunity (reality television)|immunity]] from being murdered that night, but not from being banished. In some cases, contestants have the right not to disclose whether they won the shield, or to inform only certain chosen players.<ref>{{Cite web |title=BBC One – The Traitors – The Traitors: How the Show Works |url=https://www.bbc.co.uk/programmes/articles/2xRtJpWRbKcwPdXs7bZnxxH/the-traitors-how-the-show-works |access-date=12 December 2022 |publisher=BBC Media Centre |language=en-GB |archive-date=12 December 2022 |archive-url=https://web.archive.org/web/20221212171149/https://www.bbc.co.uk/programmes/articles/2xRtJpWRbKcwPdXs7bZnxxH/the-traitors-how-the-show-works |url-status=live }}</ref>
+
+===End Game===
+After the final Round Table, the remaining players (usually four) gather at the Fire of Truth and participate in the End Game. The group is given an opportunity to end the game by unanimous vote. Any vote to continue will lead to another immediate banishment vote. When a unanimous decision is reached to end the game — or when there are only two players left — the remaining players reveal whether they are Faithful or Traitors. If they are all Faithful, they will all share the prize fund for their charities; however, if any of these final players are Traitors those players alone will share the prize fund amongst themselves for their charities.
+
+;Notes
+{{Notelist}}
+
+==Production==
+In August 2024, the [[BBC]] confirmed that ''The Celebrity Traitors'' had been commissioned, along with two more series of ''The Traitors'', [[The Traitors (British TV series) series 3|the first of which]] aired in January 2025.<ref>{{cite web |title=The Traitors: First UK celebrity series announced |url=https://www.bbc.co.uk/news/articles/c70j84rvg91o |website=[[BBC News]] |accessdate=13 May 2025 |language=en-gb |date=22 August 2024}}</ref> Speaking at the [[Edinburgh International Television Festival]], Kalpna Patel-Knight, the BBC's head of entertainment, said: "The Traitors has well and truly established itself as an unmissable highlight of the year and the news of a fourth outing, alongside a brand new celebrity version coming to the BBC, will take the series to a whole new level.<ref>{{cite web |last1=Creamer |first1=Jon |title=Traitors confirmed for S4 plus celeb version |url=https://www.televisual.com/news/traitors-confirmed-for-s4-plus-celeb-version/ |website=Televisual |accessdate=13 May 2025 |date=22 August 2024 |archive-date=15 May 2025 |archive-url=https://web.archive.org/web/20250515170306/https://www.televisual.com/news/traitors-confirmed-for-s4-plus-celeb-version/ |url-status=live }}</ref> In April 2025, it was confirmed that the show would air in the autumn of that year,<ref>{{cite web |title=BBC's Celebrity Traitors gets exciting update ahead of its 2025 release |url=https://www.digitalspy.com/tv/reality-tv/a64349830/celebrity-traitors-release-window/ |website=[[Digital Spy]] |accessdate=14 May 2025 |date=1 April 2025 |archive-date=15 May 2025 |archive-url=https://web.archive.org/web/20250515170305/https://www.digitalspy.com/tv/reality-tv/a64349830/celebrity-traitors-release-window/ |url-status=live }}</ref> with October 2025 later specified.<ref name=":0" />
+
+Filming for the series began on 22 April 2025 at [[Ardross, Highland|Ardross Castle]] and concluded the following month, consisting of 9 episodes due to air over four weeks from 8 October to 6 November 2025.<ref>{{cite web |title=The Celebrity Traitors launch date confirmed and fans will be treated to an extra-long opening episode |url=https://www.bbc.co.uk/mediacentre/2025/celebrity-traitors-launch-date-confirmed |website=BBC |format=press release |access-date=21 September 2025 |archive-date=21 September 2025 |archive-url=https://web.archive.org/web/20250921002202/https://www.bbc.co.uk/mediacentre/2025/celebrity-traitors-launch-date-confirmed |url-status=live }}</ref><ref>{{cite web |last1=Ross |first1=Charley |title=When does Celebrity Traitors start? Here's what we know |url=https://www.glamourmagazine.co.uk/article/when-does-celebrity-traitors-start |website=Glamour UK |accessdate=14 May 2025 |date=25 April 2025 |archive-date=27 April 2025 |archive-url=https://web.archive.org/web/20250427202318/https://www.glamourmagazine.co.uk/article/when-does-celebrity-traitors-start |url-status=live }}</ref><ref>{{cite web |title=Celebrity Traitors latest: Release date, cast and filming revealed |url=https://www.heart.co.uk/showbiz/celebrity-traitors-start-date-line-up/ |website=[[Heart (radio network)|Heart]] |accessdate=14 May 2025 |language=en |archive-date=15 May 2025 |archive-url=https://web.archive.org/web/20250515170305/https://www.heart.co.uk/showbiz/celebrity-traitors-start-date-line-up/ |url-status=live }}</ref> Following the cast announcement, host [[Claudia Winkleman]] said "We're incredibly lucky these brilliant people have said yes. I’d love to say we'll take it easy on them, and they'll just wander round the castle and eat toast for a couple of weeks - but that would be a lie."<ref>{{cite web |title=The BBC's 'Celebrity Traitors' Cast Pits an Olympian Against a 'Ted Lasso' Star |url=https://www.cosmopolitan.com/entertainment/tv/g64759984/celebrity-traitors-cast-line-up-contestants-bbc/ |website=Cosmopolitan |accessdate=14 May 2025 |date=13 May 2025 |archive-date=14 May 2025 |archive-url=https://web.archive.org/web/20250514120833/https://www.cosmopolitan.com/entertainment/tv/g64759984/celebrity-traitors-cast-line-up-contestants-bbc/ |url-status=live }}</ref><ref>{{cite web |title=The Celebrity Traitors' "brilliant" cast has officially been confirmed – along with a release date window |url=https://www.digitalspy.com/tv/reality-tv/a64757349/the-celebrity-traitors-cast-release-window/ |website=[[Digital Spy]] |accessdate=14 May 2025 |date=13 May 2025 |archive-date=13 May 2025 |archive-url=https://web.archive.org/web/20250513182707/https://www.digitalspy.com/tv/reality-tv/a64757349/the-celebrity-traitors-cast-release-window/ |url-status=live }}</ref>
+
+The first series final was mistakenly released early online in Canada and New Zealand as the episode was mistakenly made available on the [[Crave (streaming service)|Crave]] and [[ThreeNow]] streaming services 24 hours in advance of its broadcast on BBC One, due to a miscommunication between [[All3Media|All3Media International]] and its international partners.<ref>{{Cite web|url=https://deadline.com/2025/11/celebrity-traitors-uk-leak-canada-all3media-reviewing-processes-1236610470/|title='Celebrity Traitors UK' Distributor All3Media International “Urgently Reviewing Our Processes” After Dramatic Finale Leaks A Day Early In Canada & New Zealand|first=Max|last=Goldbart|date=7 November 2025|accessdate=18 November 2025|archive-date=9 November 2025|archive-url=https://web.archive.org/web/20251109123601/https://deadline.com/2025/11/celebrity-traitors-uk-leak-canada-all3media-reviewing-processes-1236610470/|url-status=live}}</ref>
+
+In March 2026, [[BBC]] announced a three-year deal that will keep ''The Celebrity Traitors'' and ''[[The Traitors (British TV series)|The Traitors]]'' in production until 2030.<ref>{{cite web|title=BBC remains Faithful to The Traitors and The Celebrity Traitors until at least 2030|url=https://www.bbc.co.uk/mediacentre/2026/bbc-remains-faithful-to-the-traitors-the-celebrity-traitors-2030/|publisher=[[BBC]]|accessdate=12 March 2026}}</ref>
+
+==Episodes==
+===Series overview===
+{{Series overview
+| caption    = {{Screen reader-only|Series overview}}
+| auxA       = Contestants
+| infoA      = Winner
+| infoB      = Prize
+| infoC      = Traitors
+| infoD      = Average viewers<br/>(millions)
+| color1     = #311500
+| link1      = The Celebrity Traitors series 1
+| auxA1      = 19
+| episodes1  = 9
+| start1     = {{Start date|2025|10|08|df=y}}
+| end1       = {{End date|2025|11|06|df=y}}
+| infoA1     = [[Alan Carr]]<br/>('''Traitor''')<ref name="ACwinner">{{cite news|last=Nanji|first=Noor|title=After weeks of tension, plots and sabotage, Celebrity Traitors has come to a nail-biting end|url=https://www.bbc.co.uk/news/articles/cdjrny1m4rxo|date=6 November 2025|work=[[BBC News]]|access-date=7 November 2025}}</ref>
+| infoB1     = £87,500<br/>(out of £100,000)
+| infoC1     = [[Alan Carr]]<br>[[Cat Burns]]<br>[[Jonathan Ross]]
+| infoD1     = 13.35
+| color2     = #1A2420
+| link2      = The Celebrity Traitors series 2
+| auxA2      = 21
+| episodes2  = 10
+| start2     = {{Start date|2026|10|1|df=y}}
+| end2       = present
+| infoA2     = 
+| infoB2     = 
+| infoC2     = [[Maya Jama]]<br>{{nowrap|[[Richard E. Grant]]}}
+| infoD2     = 
+}}
+
+=== Series 1 (2025) ===
+{{main|The Celebrity Traitors series 1}}
+{{:The Celebrity Traitors series 1}}
+
+=== Series 2 (2026) ===
+{{main|The Celebrity Traitors series 2}}
+{{:The Celebrity Traitors series 2}}
+
+==''The Celebrity Traitors: Uncloaked''==
+{{Infobox television
+| name                 = The Celebrity Traitors: Uncloaked
+| image                = 
+| image_alt            = 
+| caption              = 
+| alt_name             = ''Uncloaked''
+| genre                =
+| creator              = 
+| developer            = 
+| writer               = 
+| story                = 
+| director             = 
+| creative_director    = 
+| presenter            = [[Ed Gamble]]
+| starring             = 
+| theme_music_composer = Sam Watts<ref>{{Cite web |title=Sam Watts {{!}} Composer – Film and television composer |url=https://samwatts.com/ |access-date=25 October 2025 |language=en-US |archive-date=23 December 2022 |archive-url=https://web.archive.org/web/20221223202128/https://samwatts.com/ |url-status=live }}</ref>
+| open_theme           = 
+| end_theme            = 
+| country              = United Kingdom
+| language             = English
+| num_series           = 2<!-- Increment when new series begin. -->
+| num_episodes         = 10<!-- as of 1 October 2026-->
+| list_episodes        = 
+| producer             = Listen
+| executive_producer   = 
+| cinematography       = 
+| camera               = Multi-camera
+| runtime              = 29 minutes
+| company              = [[Studio Lambert]]
+| budget               = 
+| channel              = [[BBC One]]
+| first_aired         = {{Start date|2025|10|8|df=y}}
+| last_aired          = present
+}}
+To accompany the series, a follow-up television programme and [[BBC Sounds]] [[podcast]] was included, called ''The Celebrity Traitors: Uncloaked'' produced by Listen. The first episode aired on 8 October 2025. It was hosted by [[Ed Gamble]] and broadcast on [[BBC Two]].<ref>{{cite web |url=https://www.bbc.co.uk/programmes/m002kksc |title=The Celebrity Traitors: Uncloaked |work=BBC |access-date=9 October 2025 |archive-date=8 October 2025 |archive-url=https://web.archive.org/web/20251008225130/https://www.bbc.co.uk/programmes/m002kksc |url-status=live }}</ref>
+
+{{clear}}
+
+==Awards and nominations==
+{|class="wikitable sortable"
+!scope="col"|Year
+!scope="col"|Award
+!scope="col"|Category
+!scope="col"|Result
+|-
+| rowspan="19" style="text-align:center" |2026
+| rowspan="3" |[[2026 British Academy Television Awards|British Academy Television Awards]]
+|[[British Academy Television Award for P&O Cruises Memorable Moment|Memorable Moment]] (Alan Carr wins)<ref name=":4">{{Cite web |last=Knight |first=Lewis |title=BAFTA TV Awards 2026 nominations revealed: Full list of nominees including Celebrity Traitors {{!}} Radio Times |url=https://www.radiotimes.com/tv/drama/bafta-tv-awards-2026-nominations-full-list-nominees-newsupdate/ |access-date=2026-05-08 |website=www.radiotimes.com |language=en-GB}}</ref>
+|{{won}}
+|-
+|[[British Academy Television Award for Best Reality and Constructed Factual|Best Reality]]<ref name=":4" />
+|{{won}}
+|-
+|[[British Academy Television Award for Best Entertainment Performance|Best Entertainment Performance]] (Claudia Winkleman)<ref name=":4" />
+|{{nom}}
+|-
+| rowspan="2" |[[2026 British Academy Television Craft Awards|British Academy Television Craft Awards]]
+|[[British Academy Television Craft Award for Best Sound: Factual|Sound: Factual Award]]
+|{{won}}<ref name=":1">{{Cite web |title=TV Craft |url=https://www.bafta.org/awards/tv-craft/ |access-date=2026-05-08 |website=Bafta |language=en}}</ref>
+|-
+|[[British Academy Television Craft Award for Best Entertainment Craft Team|Entertainment Craft Team Award]] 
+|{{won}}<ref name=":1" />
+|-
+|rowspan="2" |[[31st National Television Awards|National Television Awards]]
+| Reality Competition<ref>{{Cite web |last=Hibbs |first=James |title=National Television Awards 2026 nominations longlist revealed {{!}} Radio Times |url=https://www.radiotimes.com/tv/entertainment/ntas-national-television-awards-2026-nominations-longlist-revealed-newsupdate/ |access-date=2026-05-19 |website=www.radiotimes.com |language=en-GB}}</ref>
+|{{won}}<ref name=":5">{{Cite web |last=Hibbs |first=James |title=National Television Awards 2026 winners {{!}} Full list {{!}} Radio Times |url=https://www.radiotimes.com/tv/entertainment/national-television-awards-2026-winners-full-list-newsupdate/ |access-date=2026-09-08 |website=www.radiotimes.com |language=en-GB}}</ref>
+|-
+| Television Presenter (Claudia Winkleman)
+|{{shortlisted}}<ref name=":5" />
+|-
+| rowspan="2" |[[Television and Radio Industries Club|Television and Radio Industries Club Awards]]
+| Game Show
+| {{won}}<ref name=":6">{{Cite web |date=2026-06-23 |title=The Celebrity Traitors, Clarkson's Farm and Emmerdale among the big winners at The TRIC Awards 2026 |url=https://www.digitalspy.com/tv/a71681503/tric-awards-2026-winners-celebrity-traitors-emmerdale/ |access-date=2026-06-24 |website=Digital Spy |language=en-GB}}</ref>
+|-
+| Podcast (Uncloaked)
+| {{nominated}}<ref name=":6" />
+|-
+|[[Royal Television Society Programme Awards]]
+|Entertainment & Reality 
+|{{won}}<ref>{{Cite web |last=Knight |first=Lewis |title=Royal Television Society Awards 2026 winners: From Adolescence to EastEnders {{!}} Radio Times |url=https://www.radiotimes.com/tv/drama/royal-television-society-awards-2026-winners-list-newsupdate/ |access-date=2026-05-08 |website=www.radiotimes.com |language=en-GB}}</ref>
+|-
+| rowspan="2" |[[Edinburgh Television Festival|Edinburgh Television Festival Awards]]
+|Best Entertainment or Reality Series 
+|{{won}}<ref name=":7">{{Cite web |last=Kanter |first=Jake |date=2026-08-27 |title='The Pitt' & 'The Traitors' Win Prizes At Edinburgh TV Festival Awards |url=https://deadline.com/2026/08/the-pitt-the-traitors-edinburgh-tv-festival-awards-1237061059/ |access-date=2026-08-28 |website=Deadline |language=en-US}}</ref>
+|-
+|Best Television Presenter - Entertainment (Claudia Winkleman)
+|{{won}}<ref name=":7" />
+|-
+|[[Broadcast Digital Awards]]
+|Best Digital Support for a Programme
+|{{won}}<ref>{{Cite web |title=Best Digital Support for a Programme: The Celebrity Traitors Digital Support Campaign |url=https://www.broadcastnow.co.uk/winners/best-digital-support-for-a-programme-the-celebrity-traitors-digital-support-campaign/5218166.article |access-date=2026-07-02 |website=Broadcast |language=en}}</ref>
+|-
+| rowspan="6" |[[National Reality Television Awards]]
+| Celebrity Personality of the Year (Alan Carr)<ref name=":8">{{Cite web |date=2026-06-26 |title=The Traitors dominates 2026 National Reality TV Awards nominations |url=https://www.femalefirst.co.uk/tv/news/traitors-dominates-2026-national-reality-awards-nominations-1446589.html |access-date=2026-06-26 |language=en}}</ref>
+| {{nom}}
+|-
+| Best Male Personality (Alan Carr)<ref name=":8" />
+| {{nom}}
+|-
+| Celebrity Personality of the Year (Tom Daley)<ref name=":8" />
+| {{nom}}
+|-
+| Best Reality Competition Show<ref name=":8" />
+| {{nom}}
+|-
+| Best New Show<ref name=":8" />
+| {{nom}}
+|-
+| Best Social Experiment Show<ref name=":8" />
+| {{nom}}
+|- 
+|}
+
+==References==
+{{Reflist}}
+
+==External links==
+* {{BBC programme|m002csng}}
+* {{IMDb title|33248156}}
+
+{{The Traitors in the United Kingdom}}
+{{The Traitors}}
+{{British Academy Television Award for Best Reality and Constructed Factual}}
+
+{{DEFAULTSORT:Celebrity Traitors, The}}
+[[Category:The Traitors]]
+[[Category:2025 British television series debuts]]
+[[Category:2025 English-language television series debuts]]
+[[Category:2020s British reality television series]]
+[[Category:2020s British game shows]]
+[[Category:BBC television game shows]]
+[[Category:BBC reality television shows]]
+[[Category:BBC One original programming]]
+[[Category:Television shows shot in Scotland]]
+[[Category:Television shows set in Scotland]]
+[[Category:English-language British television shows]]
+[[Category:Television series by All3Media]]
+[[Category:British celebrity reality television series]]
+[[Category:British television series based on Dutch television series]]
+[[Category:BAFTA winners (television series)]]
