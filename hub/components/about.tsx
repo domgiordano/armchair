@@ -29,8 +29,8 @@ export function About() {
           </p>
           <p>
             Armchair Judge does not generate, edit or host images of people, and it uses no AI image or video generation
-            of any kind. The only photos in the app are public, openly licensed headshots of the shows&rsquo; cast and
-            judges, credited to their photographers, plus the profile photo from your own Google account.
+            of any kind. The only photos in the app are headshots of the shows&rsquo; cast and judges, either openly licensed and
+            credited or used with permission, plus the profile photo from your own Google account.
           </p>
           <p>
             Details are in our{" "}
