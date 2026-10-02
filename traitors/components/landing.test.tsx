@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { signInWithRedirect } from "aws-amplify/auth";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -66,14 +66,14 @@ describe("Landing", () => {
 
     fireEvent.click(cta);
     expect(signInWithRedirect).toHaveBeenCalledWith({ provider: "Google" });
-    expect(screen.getAllByRole("button", { name: "Opening Google..." })).toHaveLength(2);
+    expect(screen.getAllByRole("button", { name: "Opening Google..." })).toHaveLength(3);
   });
 
   it("explains the game and sets out the real points", () => {
     render(<Landing />);
     skipIntro();
     expect(screen.getByText(/rank the round table.s top three/i)).toBeTruthy();
-    expect(screen.getByText(/lock in up to two winners/i)).toBeTruthy();
+    expect(screen.getByText(/back up to three winners/i)).toBeTruthy();
 
     const ledger = screen.getByRole("table", { name: "Points for each call" });
     const rows = Array.from(ledger.querySelectorAll("tbody tr")).map((tr) => [
@@ -92,10 +92,37 @@ describe("Landing", () => {
     ]);
   });
 
-  it("shows an example slate and the not-affiliated line", () => {
+  it("walks through a night, the calls, blind play, friends, both editions and the FAQ", () => {
     render(<Landing />);
     skipIntro();
-    expect(screen.getByText("An example ballot. The names are made up.")).toBeTruthy();
+    const headings = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+    expect(headings).toHaveLength(8);
+    for (const beat of ["Breakfast", "The mission", "The round table", "The turret"]) {
+      expect(screen.getByRole("heading", { level: 3, name: beat })).toBeTruthy();
+    }
+    for (const call of ["The slate: your top three", "The murder", "The recruit", "The winners"]) {
+      expect(screen.getByRole("heading", { level: 3, name: call })).toBeTruthy();
+    }
+    expect(screen.getByRole("heading", { level: 3, name: "The Traitors US" })).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 3, name: "The Traitors UK" })).toBeTruthy();
+    expect(screen.getByText("Can I change a call?")).toBeTruthy();
+    expect(screen.getByText("An example round table. The names are made up.")).toBeTruthy();
     expect(screen.getByText("Not affiliated with The Traitors, BBC, NBC or Peacock.")).toBeTruthy();
+  });
+
+  it("chalks the votes up one at a time, and shows them all at once for reduced motion", () => {
+    vi.useFakeTimers();
+    const strokes = () => document.querySelectorAll("[data-drawn]").length;
+    const { unmount } = render(<Landing />);
+    skipIntro();
+    expect(strokes()).toBe(0);
+    act(() => vi.advanceTimersByTime(650 * 3));
+    expect(strokes()).toBe(3);
+    unmount();
+    vi.useRealTimers();
+
+    prefersReducedMotion(true);
+    render(<Landing />);
+    expect(strokes()).toBe(12);
   });
 });
