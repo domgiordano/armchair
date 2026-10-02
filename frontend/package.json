@@ -17,6 +17,7 @@
     "postbuild": "npm run verify"
   },
   "dependencies": {
+    "@armchair/app-core": "file:../packages/app-core",
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.1",
     "@react-three/postprocessing": "^3.1.3",

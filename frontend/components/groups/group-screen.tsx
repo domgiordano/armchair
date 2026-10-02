@@ -15,10 +15,10 @@ import { Menu, MenuItem } from "@/components/ui/menu";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { tabId, Tabs } from "@/components/ui/tabs";
-import { getGroupDetails, type GroupDetail } from "@/lib/api/groups";
-import { getFriends, mySub } from "@/lib/api/social";
+import { getGroupDetails, type GroupDetail } from "@armchair/app-core/api/groups";
+import { getFriends, mySub } from "@armchair/app-core/api/social";
 import { saveGroup } from "@/lib/show/group-filter";
-import { useNotifications } from "@/lib/social/notifications";
+import { useNotifications } from "@armchair/app-core/social/notifications";
 import { button, cn, FOCUS } from "@/lib/ui";
 
 /** /groups/?id=: one group's page. Without an id, your groups list on your profile. */

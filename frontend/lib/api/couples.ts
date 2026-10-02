@@ -1,4 +1,4 @@
-import { request } from "./client";
+import { request } from "@armchair/app-core/api/client";
 import type { Headshot, Member } from "./show";
 
 /** Other people's mean on the caller's dances; null under two raters, so one paddle never shows. */

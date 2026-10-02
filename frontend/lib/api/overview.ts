@@ -1,4 +1,4 @@
-import { request } from "./client";
+import { request } from "@armchair/app-core/api/client";
 import type { Elimination } from "./couples";
 import type { Answer, Headshot, JudgeSeat, Member } from "./show";
 

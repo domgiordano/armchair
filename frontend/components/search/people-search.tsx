@@ -8,7 +8,7 @@ import { Avatar } from "@/components/avatar";
 import { Headshot } from "@/components/headshot";
 import { Spinner } from "@/components/ui/spinner";
 import { profileHref, SEARCH_MAX, SEARCH_MIN, type PersonHit, type Role, type SearchResults } from "@/lib/api/people";
-import type { Match } from "@/lib/api/social";
+import type { Match } from "@armchair/app-core/api/social";
 import { fold } from "@/lib/search/match";
 import { knownMembers, loadContacts, loadIndex, mergeUsers, searchIndex, searchMembers, startsWith } from "@/lib/search/people";
 import { personHref } from "@/lib/show/people";

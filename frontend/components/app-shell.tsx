@@ -14,9 +14,9 @@ import { Menu, MenuItem } from "@/components/ui/menu";
 import { Select } from "@/components/ui/select";
 import { Specks } from "@/components/ui/specks";
 import { ToastProvider } from "@/components/ui/toast";
-import { getMe, type Me } from "@/lib/api/client";
+import { getMe, type Me } from "@armchair/app-core/api/client";
 import { prefetchPage } from "@/lib/api/prefetch";
-import { useAuth } from "@/lib/auth/use-auth";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
 import { SEASONS, seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
 import { FOCUS } from "@/lib/ui";
 

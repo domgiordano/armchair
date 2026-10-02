@@ -3,10 +3,10 @@
 import { fetchAuthSession, getCurrentUser, signInWithRedirect } from "aws-amplify/auth";
 import { useEffect } from "react";
 
-import { authConfigured } from "@/lib/auth/amplify";
-import { rememberReturn } from "@/lib/auth/return-to";
-import { markSilent } from "@/lib/auth/silent";
-import { writeWho } from "@/lib/auth/who";
+import { authConfigured } from "@armchair/app-core/auth/amplify";
+import { rememberReturn } from "@armchair/app-core/auth/return-to";
+import { markSilent } from "@armchair/app-core/auth/silent";
+import { writeWho } from "@armchair/app-core/auth/who";
 
 /**
  * Links from the hub carry `?sso=1`. Without a session here, that resumes the

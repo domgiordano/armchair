@@ -1,9 +1,9 @@
 import { render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("@/lib/api/client", () => ({ getMe: vi.fn() }));
+vi.mock("@armchair/app-core/api/client", () => ({ getMe: vi.fn() }));
 
-import { getMe } from "@/lib/api/client";
+import { getMe } from "@armchair/app-core/api/client";
 import type { Judge, JudgeSeat, RevealedCard } from "@/lib/api/show";
 import { Desk } from "./desk";
 

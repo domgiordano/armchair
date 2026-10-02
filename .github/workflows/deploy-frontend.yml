@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "frontend/**"
+      - "packages/app-core/**"
       # The search box's people index is built from these.
       - "fixtures/seasons/**"
       - ".github/workflows/deploy-frontend.yml"
