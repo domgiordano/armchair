@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from lambdas.common.traitors_parse import season
+from lambdas.common.traitors_parse import aliases, season
 
 WIKI = Path(__file__).parents[2] / "fixtures" / "wiki"
 
@@ -154,3 +154,30 @@ def test_episodes():
         "2026-10-09",
     ]
     assert len(celeb["contestants"]) == 21
+
+
+SORTED = """== Contestants ==
+{| class="wikitable"
+! Contestant !! Affiliation !! Finish
+|-
+! scope="row" | {{sort|Tamburello, CT|[[CT Tamburello|Chris "CT" Tamburello]]}}
+| Faithful
+| '''Winner'''<br><small>(Episode 11)</small>
+|}
+"""
+
+
+def test_sort_template_keeps_the_display_name():
+    # US season 2 wraps CT's name in {{sort|key|display}}.
+    s = season(SORTED)
+    assert s["contestants"][0]["name"] == 'Chris "CT" Tamburello'
+    assert s["winners"] == ['Chris "CT" Tamburello']
+
+
+def test_aliases_for_initials_and_surnames():
+    # US season 3's table calls Bob the Drag Queen "Bob TDQ" and Chanel Ayan "Ayan".
+    names = aliases(["Bob the Drag Queen", "Bob Harper", "Chanel Ayan"])
+    assert names["bob tdq"] == "Bob the Drag Queen"
+    assert names["bob h."] == "Bob Harper"
+    assert names["ayan"] == "Chanel Ayan"
+    assert "bob" not in names

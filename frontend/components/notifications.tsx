@@ -9,9 +9,9 @@ import { PageHeader } from "@/components/ui/page-header";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { SignedIn } from "@/components/signed-in";
-import { groupHref } from "@/lib/api/groups";
-import type { Notification } from "@/lib/api/social";
-import { useMarkAllReadOnView, useNotifications } from "@/lib/social/notifications";
+import { groupHref } from "@armchair/app-core/api/groups";
+import type { Notification } from "@armchair/app-core/api/social";
+import { useMarkAllReadOnView, useNotifications } from "@armchair/app-core/social/notifications";
 import { button, TEXT_LINK } from "@/lib/ui";
 
 const FOCUS = "focus-ring";

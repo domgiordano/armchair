@@ -9,6 +9,18 @@
   }
 }
 
+/* The header's Back link easing in beside the mark on a sub-page. */
+.back-in {
+  animation: back-in 320ms cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+}
+
+@keyframes back-in {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+}
+
 /* Hero entrance (components/hero.tsx). Held at the start while the intro covers
    the page; clearing data-intro restarts the animation in view. */
 .hero-in {
@@ -380,6 +392,7 @@ html[data-intro="playing"] .hero-in {
   .art-pan,
   .account-flow,
   .cta-glow,
+  .back-in,
   .apps-panel li,
   .apps-panel[data-closing],
   .apps-backdrop[data-closing] {

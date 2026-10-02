@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { getEpisodeState, type Episode, type EpisodeState } from "@/lib/api/show";
-import { pollInterval } from "./poll";
+import { pollInterval } from "@armchair/app-core/show/poll";
 import { isLive } from "./schedule";
 
 export interface EpisodeLoad {

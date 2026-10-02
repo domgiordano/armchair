@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { SignedIn } from "@/components/signed-in";
 import { PageHeader } from "@/components/ui/page-header";
 import { PageLoader } from "@/components/disco-loader";
-import { groupHref, joinGroup } from "@/lib/api/groups";
+import { groupHref, joinGroup } from "@armchair/app-core/api/groups";
 import { saveGroup } from "@/lib/show/group-filter";
 import { SECONDARY } from "@/lib/ui";
 
