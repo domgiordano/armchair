@@ -242,3 +242,16 @@ def test_missing_sub_is_401(show):
     event = authorized_event(path="/leaderboard/get", query={"season": "dwts-35"})
     del event["requestContext"]["authorizer"]["claims"]["sub"]
     assert handler(event, None)["statusCode"] == 401
+
+
+def test_all_time_reads_the_shows_board(show):
+    change = ("someone#1", None, board_dynamo.contribution({CARRIE: 5.0}, 8))
+    assert board_dynamo.transact(board_dynamo.ops(A, "tus", 5, 2, [change]))
+    assert board(season="all", show="tus")["me"]["count"] == 1
+    assert board(season="all")["me"]["count"] == 0
+
+
+def test_unknown_show_is_400(show):
+    status, body = get(season="all", show="traitors")
+    assert status == 400
+    assert body["error"]["detail"] == {"field": "show"}
