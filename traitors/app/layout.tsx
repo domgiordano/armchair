@@ -5,7 +5,7 @@ import { SESSION_HINT_SCRIPT } from "@armchair/app-core/auth/session-hint";
 
 import "./globals.css";
 
-import { SsoHandoff } from "@/components/sso-handoff";
+import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
 
 const garamond = EB_Garamond({ subsets: ["latin"], variable: "--font-garamond", display: "swap" });
 const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel", display: "swap" });

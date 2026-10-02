@@ -7,6 +7,7 @@ import { Hub } from "aws-amplify/utils";
 import { clearCache } from "../api/cache";
 
 import { authConfigured } from "./amplify";
+import { clearFamilySignedIn } from "./family";
 import { clearWho } from "./who";
 
 export type AuthStatus = "loading" | "signedIn" | "signedOut" | "unconfigured";
@@ -61,6 +62,7 @@ export function useAuth() {
     status,
     refresh,
     signOut: async () => {
+      clearFamilySignedIn();
       clearWho();
       clearCache();
       await amplifySignOut();

@@ -30,7 +30,7 @@ export function AuthCallback() {
     const stop = Hub.listen("auth", ({ payload }) => {
       if (payload.event === "signInWithRedirect") void refresh();
       if (payload.event !== "signInWithRedirect_failure") return;
-      // A hub hand-off (components/sso-handoff.tsx) with no Armchair session
+      // A hub hand-off (app-core auth/sso-handoff.tsx) with no Armchair session
       // left: Google signs a returning user straight back in instead.
       if (takeSilent()) {
         void signInWithRedirect({ provider: "Google" }).catch(() => setFailed(true));

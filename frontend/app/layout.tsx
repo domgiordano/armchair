@@ -5,7 +5,7 @@ import { SESSION_HINT_SCRIPT } from "@armchair/app-core/auth/session-hint";
 
 import "./globals.css";
 
-import { SsoHandoff } from "@/components/sso-handoff";
+import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
 
 const poppins = Poppins({
   subsets: ["latin"],
