@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { resetMe } from "@/lib/me";
@@ -37,10 +37,27 @@ describe("signed-in dashboard", () => {
     expect(stat("Accuracy")).toContain("0.87");
     expect(stat("Rank")).toContain("#2");
     expect(stat("Rank")).toContain("of 4");
-    expect(within(apps).getByRole("link", { name: "Open" }).getAttribute("href")).toBe(
-      "https://dwts.armchairjudge.com/?sso=1",
-    );
-    expect(within(apps).getByText("The Traitors").closest("a")).toBeNull();
+    const [dwts, traitors] = within(apps).getAllByRole("link", { name: "Open" });
+    expect(dwts.getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
+    expect(traitors.getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
+    expect(within(apps).getByText("Survivor").closest("a")).toBeNull();
+  });
+
+  it("shows Traitors points for each current season", async () => {
+    render(<Dashboard />);
+    const apps = await screen.findByRole("region", { name: "Your apps" });
+    expect((await within(apps).findByText("US · Season 5")).parentElement?.textContent).toContain("12 pts");
+    expect(within(apps).getByText("Celebrity UK · Season 2")).toBeTruthy();
+  });
+
+  it("leaves the Traitors tile as just a link when the API won't show the season", async () => {
+    stubApi({ "/traitors/stats": () => ({ status: 404 }) });
+    render(<Dashboard />);
+    const apps = await screen.findByRole("region", { name: "Your apps" });
+    await within(apps).findByText("Season 35 · 2026");
+    await waitFor(() => expect(within(apps).queryByText("Loading your points...")).toBeNull());
+    expect(within(apps).queryByText(/pts/)).toBeNull();
+    expect(within(apps).getAllByRole("link", { name: "Open" })).toHaveLength(2);
   });
 
   it("remembers who signed in, for the one-tap button next time", async () => {

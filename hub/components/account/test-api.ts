@@ -31,11 +31,39 @@ export const INVITE: Notification = {
   group: { id: "g-2", name: "Ballroom Bench" },
 };
 
-type Route = (body: unknown, init: RequestInit) => { data?: unknown; meta?: unknown; status?: number };
+type Route = (body: unknown, init: RequestInit, url: URL) => { data?: unknown; meta?: unknown; status?: number };
+
+const SEASONS: Record<string, unknown[]> = {
+  dwts: [{ id: "dwts-35", number: 35, year: 2026, current: true }],
+  tus: [{ id: "tus-5", number: 5, year: 2026, current: true }],
+  tuk: [{ id: "tuk-4", number: 4, year: 2026, current: false }],
+  tukc: [{ id: "tukc-2", number: 2, year: 2026, current: true }],
+};
+
+export const traitorsStats = (points: number) => ({
+  points,
+  events: 6,
+  banishHits: 1,
+  byEvent: {
+    RT: { scored: 2, hits: 1, points: points - 3 },
+    MURDER: { scored: 2, hits: 1, points: 2 },
+    RECRUIT: { scored: 2, hits: 1, points: 1 },
+  },
+  byEpisode: [
+    { ep: 1, points: 0 },
+    { ep: 2, points },
+    { ep: 3, points: 0 },
+  ],
+  winnerPoints: null,
+});
 
 export const ROUTES: Record<string, Route> = {
   "/users/me": () => ({ data: ME }),
-  "/seasons/list": () => ({ data: { show: "dwts", seasons: [{ id: "dwts-35", number: 35, year: 2026, current: true }] } }),
+  "/seasons/list": (_, __, url) => {
+    const show = url.searchParams.get("show") ?? "dwts";
+    return { data: { show, seasons: SEASONS[show] ?? [] } };
+  },
+  "/traitors/stats": (_, __, url) => ({ data: { season: url.searchParams.get("season"), ...traitorsStats(12) } }),
   "/stats/get": () => ({ data: { mine: { count: 14, mae: 0.87 } } }),
   "/leaderboard/get": () => ({ data: { minDances: 5, ranked: [{}, {}, {}, {}], me: { rank: 2 } }, meta: { ranked: 4 } }),
   "/friends/list": () => ({
@@ -60,11 +88,12 @@ export const ROUTES: Record<string, Route> = {
 export function stubApi(overrides: Record<string, Route> = {}) {
   const routes = { ...ROUTES, ...overrides };
   const fetchMock = vi.fn(async (url: string, init: RequestInit = {}) => {
-    const path = new URL(url, "http://api.test").pathname;
+    const parsed = new URL(url, "http://api.test");
+    const path = parsed.pathname;
     const route = routes[path];
     if (!route) throw new Error(`No fake for ${path}`);
     const body = typeof init.body === "string" ? (JSON.parse(init.body) as unknown) : null;
-    const { data = null, meta = null, status = 200 } = route(body, init);
+    const { data = null, meta = null, status = 200 } = route(body, init, parsed);
     const error = status >= 400 ? { handler: path, message: "Nope" } : null;
     return new Response(JSON.stringify({ data, meta, error }), { status });
   });
