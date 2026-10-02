@@ -7,6 +7,7 @@ vi.mock("@/lib/api/traitors", () => api);
 vi.mock("@armchair/app-core/api/groups", () => ({ getMyGroups: vi.fn(async () => []) }));
 vi.mock("@/components/season-provider", () => ({
   useShellSeason: () => ({ seasons: [{ id: "tus-5", number: 5, year: 2026, current: true }] }),
+  useSeasonName: () => ({ title: "Season 5", eyebrow: "US", numbered: null }),
 }));
 
 import type { SeasonView, Standing } from "@/lib/api/traitors";

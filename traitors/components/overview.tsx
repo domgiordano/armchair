@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Outcome } from "@/components/outcome";
 import { errorText, useSeasonView } from "@/components/season-data";
-import { useShellSeason } from "@/components/season-provider";
+import { useSeasonName } from "@/components/season-provider";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
@@ -13,16 +13,15 @@ import { getStats, type EpisodeEvent, type Player, type SeasonEpisode, type Seas
 import { nameOf } from "@/lib/players";
 import { multiplier } from "@/lib/points";
 import { countdown, episodeLabel, formatRelease, latestUnlocked, nextRelease, toCall } from "@/lib/schedule";
-import { seasonLabel, withSeason } from "@/lib/seasons";
+import { withSeason } from "@/lib/seasons";
 import { useEpisode } from "@/lib/use-episode";
 import { button, cn, EYEBROW, HEADING } from "@/lib/ui";
 import { useNow } from "@armchair/app-core/show/use-now";
 
 export function Overview() {
   const { view } = useSeasonView();
-  const { seasons } = useShellSeason();
+  const name = useSeasonName(view.season, view.title);
   const now = useNow();
-  const meta = seasons?.find((s) => s.id === view.season);
   const due = toCall(view.episodes, now);
   const latest = latestUnlocked(view.episodes, now);
   // Episode 1's roster is the whole cast, and gives nothing away.
@@ -32,8 +31,8 @@ export function Overview() {
   return (
     <>
       <div className="flex flex-col gap-1">
-        <p className={EYEBROW}>{meta ? seasonLabel(meta) : view.season}</p>
-        <h1 className={cn(HEADING, "text-3xl")}>{view.current ? "Tonight at the castle" : "A season gone by"}</h1>
+        <p className={EYEBROW}>{name.eyebrow}</p>
+        <h1 className={cn(HEADING, "text-3xl")}>{name.title}</h1>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <PointsCard view={view} players={players} />

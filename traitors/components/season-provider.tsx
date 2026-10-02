@@ -10,8 +10,11 @@ import {
   isSeasonId,
   mergeSeasons,
   pickSeason,
+  seasonName,
+  seasonNumber,
   withSeason,
   type Edition,
+  type SeasonName,
   type SeasonSummary,
 } from "@/lib/seasons";
 
@@ -59,6 +62,13 @@ export function useSeasonId(): string {
   const { season } = useShellSeason();
   if (season === null) throw new Error("useSeasonId before the season resolved");
   return season;
+}
+
+/** A season's name, from the edition's list where it carries the page title. */
+export function useSeasonName(id: string, title?: string | null): SeasonName {
+  const { seasons } = useShellSeason();
+  const listed = seasons?.find((s) => s.id === id);
+  return seasonName({ id, number: seasonNumber(id), title: listed?.title ?? title });
 }
 
 /**

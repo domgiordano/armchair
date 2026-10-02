@@ -11,10 +11,12 @@ import { Sheet } from "@/components/ui/sheet";
 import { ErrorState } from "@/components/ui/states";
 import { SEARCH_MIN, searchPlayers, type PlayerHit } from "@/lib/api/history";
 import { playerHref, seasonsText } from "@/lib/history";
-import { EDITIONS, type Show } from "@/lib/seasons";
+import { EDITIONS, type Edition, type Show } from "@/lib/seasons";
 import { cn, EYEBROW, FOCUS, ICON_BUTTON } from "@/lib/ui";
 
 const DELAY_MS = 250;
+
+const searchOrder = (edition: Edition): Show[] => [...EDITIONS[edition], ...EDITIONS[edition === "us" ? "uk" : "us"]];
 
 /** The header's search button, and the sheet it opens: every player in the edition's seasons. */
 export function PlayerSearch() {
@@ -44,6 +46,8 @@ export function PlayerSearch() {
   );
 }
 
+const EDITION_OF: Record<Show, string> = { tus: "US", tuk: "UK", tukc: "UK" };
+
 interface Hit extends PlayerHit {
   show: Show;
 }
@@ -67,8 +71,8 @@ function SearchPanel({ onClose, onPick }: { onClose: () => void; onPick: () => v
     if (short) return;
     let cancelled = false;
     const t = setTimeout(() => {
-      // UK searches its civilian and celebrity series at once: a name may be in either.
-      Promise.all(EDITIONS[edition].map((show) => searchPlayers(show, query).then((ps) => ps.map((p) => ({ ...p, show }))))).then(
+      // Every edition at once, this one's first: a past player may be from any of them.
+      Promise.all(searchOrder(edition).map((show) => searchPlayers(show, query).then((ps) => ps.map((p) => ({ ...p, show }))))).then(
         (lists) => !cancelled && setFound({ q: query, hits: lists.flat(), error: null }),
         (e: unknown) => !cancelled && setFound({ q: query, hits: [], error: errorText(e) }),
       );
@@ -139,7 +143,9 @@ function SearchPanel({ onClose, onPick }: { onClose: () => void; onPick: () => v
                 </span>
                 <span className="flex min-w-0 flex-col">
                   <span className="truncate text-bone">{p.name}</span>
-                  <span className="truncate text-sm text-ash">{seasonsText(p.show, p.seasons)}</span>
+                  <span className="truncate text-sm text-ash">
+                    {EDITION_OF[p.show]} · {seasonsText(p.show, p.seasons)}
+                  </span>
                 </span>
               </Link>
             </li>
