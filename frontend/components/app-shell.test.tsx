@@ -21,6 +21,7 @@ vi.mock("@/lib/social/notifications", () => ({
 }));
 
 import { getMe } from "@/lib/api/client";
+import { parentOf, resetHistory } from "@/lib/nav/back";
 import { activeTab, AppShell } from "./app-shell";
 
 const ME = {
@@ -33,13 +34,16 @@ const ME = {
   lastSeenAt: "2026-09-30T12:00:00+00:00",
 };
 
+// A fresh element each call, so a rerender re-reads the mocked URL.
+const shell = () => (
+  <AppShell title="Groups">
+    <p>page body</p>
+  </AppShell>
+);
+
 function renderShell() {
   vi.mocked(getMe).mockResolvedValue(ME);
-  return render(
-    <AppShell title="Groups">
-      <p>page body</p>
-    </AppShell>,
-  );
+  return render(shell());
 }
 
 // next/link outside a Next build drops the trailing slash that trailingSlash: true keeps.
@@ -53,6 +57,8 @@ afterEach(() => {
   nav.pathname = "/";
   nav.search = new URLSearchParams();
   unread.n = 0;
+  resetHistory();
+  window.history.replaceState(null, "");
 });
 
 describe("activeTab", () => {
@@ -218,5 +224,78 @@ describe("AppShell", () => {
     fireEvent.click(within(sheet).getByRole("button", { name: "Cancel" }));
     expect(sheet.hasAttribute("open")).toBe(false);
     expect(document.activeElement).toBe(open);
+  });
+});
+
+describe("parentOf", () => {
+  it.each([
+    ["/couples/couple/", "id=amber-glenn", "/couples/"],
+    ["/couples/couple/", "id=amber-glenn&season=dwts-34", "/couples/?season=dwts-34"],
+    ["/people/", "id=derek-hough", "/discover/"],
+    ["/groups/", "id=g1", "/profile/"],
+    ["/friends/", "", "/profile/"],
+    ["/profile/", "", "/"],
+    ["/profile/", "u=abc", "/discover/"],
+    ["/notifications/", "", "/"],
+    ["/credits/", "", "/"],
+  ])("%s?%s goes up to %s", (path, query, parent) => {
+    const params = new URLSearchParams(query);
+    expect(parentOf(path, params, params.get("season") ?? "dwts-35")).toBe(parent);
+  });
+});
+
+describe("Back", () => {
+  it.each(["/", "/episode/", "/leaderboard/", "/stats/", "/couples/", "/discover/"])("has no Back on the %s tab", async (path) => {
+    nav.pathname = path;
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+    expect(screen.queryByRole("link", { name: "Back" })).toBeNull();
+  });
+
+  it("links up to the parent on a page opened without in-app history", async () => {
+    nav.pathname = "/couples/couple/";
+    nav.search = new URLSearchParams("season=dwts-34&id=amber-glenn");
+    const back = vi.spyOn(window.history, "back");
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+
+    const link = screen.getByRole("link", { name: "Back" });
+    expect(href(link)).toBe("/couples?season=dwts-34");
+    fireEvent.click(link);
+    expect(back).not.toHaveBeenCalled();
+  });
+
+  it("steps back through history once the app has pushed a page", async () => {
+    nav.pathname = "/discover/";
+    const back = vi.spyOn(window.history, "back").mockImplementation(() => {});
+    const { rerender } = renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+
+    window.history.pushState(null, "", "/people/?id=derek-hough");
+    nav.pathname = "/people/";
+    nav.search = new URLSearchParams("id=derek-hough");
+    rerender(shell());
+
+    const link = screen.getByRole("link", { name: "Back" });
+    expect(href(link)).toBe("/discover");
+    expect(fireEvent.click(link)).toBe(false);
+    expect(back).toHaveBeenCalledTimes(1);
+  });
+
+  it("treats a replaced URL as the same entry, so Back still goes up rather than off the site", async () => {
+    nav.pathname = "/people/";
+    nav.search = new URLSearchParams("id=derek-hough");
+    const back = vi.spyOn(window.history, "back");
+    const { rerender } = renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+
+    window.history.replaceState(null, "", "/people/?id=derek-hough&season=dwts-34");
+    nav.search = new URLSearchParams("id=derek-hough&season=dwts-34");
+    rerender(shell());
+
+    const link = screen.getByRole("link", { name: "Back" });
+    fireEvent.click(link);
+    expect(back).not.toHaveBeenCalled();
+    expect(href(link)).toBe("/discover?season=dwts-34");
   });
 });
