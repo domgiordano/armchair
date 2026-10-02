@@ -1,7 +1,9 @@
 "use client";
 
 import { Desk, type DeskMember } from "@/components/desk";
+import { EliminatedStamp } from "@/components/eliminated";
 import { CoupleAvatars, Headshot } from "@/components/headshot";
+import type { Elimination } from "@/lib/api/couples";
 import type { GroupMember } from "@/lib/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { PaddlePicker } from "@/components/paddle-picker";
@@ -14,6 +16,8 @@ interface PerformanceCardProps {
   /** The filtering group's members, or null for everyone. */
   members: GroupMember[] | null;
   onSubmit: (card: LockedCard, answer: Answer) => Promise<void>;
+  /** The couple went home this episode, and the caller may know it. */
+  out?: Elimination;
 }
 
 const celebrity = (c: Contestant | undefined): Member | undefined =>
@@ -32,7 +36,7 @@ function memberSeats(card: RevealedCard, members: GroupMember[]): DeskMember[] {
   });
 }
 
-export function PerformanceCard({ card, contestants, judges, airsOn, members, onSubmit }: PerformanceCardProps) {
+export function PerformanceCard({ card, contestants, judges, airsOn, members, onSubmit, out }: PerformanceCardProps) {
   const team = card.contestants.length > 1;
   const couple = contestants.get(card.contestants[0]);
   const faces = team
@@ -51,8 +55,9 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
   return (
     <article
       aria-labelledby={headingId}
-      className="flex h-full flex-col gap-4 rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] transition-colors hover:border-silver/20"
+      className="relative flex h-full flex-col gap-4 rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] transition-colors hover:border-silver/20"
     >
+      {out && <EliminatedStamp out={out} className="absolute right-5 bottom-5 z-10" />}
       <div className="flex items-center gap-3">
         {team ? (
           <div className="flex -space-x-3">

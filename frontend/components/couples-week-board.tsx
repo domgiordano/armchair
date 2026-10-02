@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { CoupleNames, PersonLink } from "@/components/couple-names";
 import { DiscoLoader } from "@/components/disco-loader";
+import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { CoupleAvatars } from "@/components/headshot";
 import { judgeName } from "@/components/leaderboard-screen";
 import { formatScore } from "@/components/performance-card";
@@ -13,9 +15,11 @@ import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { tabId, Tabs } from "@/components/ui/tabs";
-import { getWeekBoard, type BoardColumn, type BoardRow, type WeekBoard } from "@/lib/api/couples";
+import { getWeekBoard, type BoardColumn, type BoardRow, type Elimination, type WeekBoard } from "@/lib/api/couples";
 import type { Season } from "@/lib/api/show";
 import { baseline, boardOrder, movement, ordinal } from "@/lib/show/couples";
+import { useShowEliminated } from "@/lib/show/eliminated";
+import { coupleHref } from "@/lib/show/people";
 import { episodeLabel, hasAired, latestAired } from "@/lib/show/schedule";
 import { withSeason } from "@/lib/show/seasons";
 import { useReducedMotion } from "@/lib/motion";
@@ -92,10 +96,16 @@ function BoardFetcher({ season, ep, group, column }: { season: Season; ep: numbe
 const VERB: Record<BoardColumn, string> = { judges: "the judges", you: "you", friends: "your friends", everyone: "everyone" };
 
 function Board({ board, season, column }: { board: WeekBoard; season: Season; column: BoardColumn }) {
+  const [showOut, setShowOut] = useShowEliminated("week-board");
   const scoreHref = withSeason(`/episode/?ep=${board.ep}`, season.season);
+  const gone = new Set(board.eliminated);
+  const out: Elimination = { ep: board.ep, week: board.week };
   const rows = boardOrder(board.couples, column);
-  const ranked = rows.filter((r) => r.ranks[column] !== null);
-  const unranked = rows.filter((r) => r.ranks[column] === null);
+  const dancing = rows.filter((r) => !gone.has(r.id));
+  const ranked = dancing.filter((r) => r.ranks[column] !== null);
+  const unranked = dancing.filter((r) => r.ranks[column] === null);
+  // Gone home that night: listed after everyone still dancing, whatever their rank.
+  const eliminated = showOut ? rows.filter((r) => gone.has(r.id)) : [];
   const byId = new Map(board.couples.map((r) => [r.id, r]));
   const split = board.disagreements.flatMap((id) => byId.get(id) ?? []);
   const left = board.open ? 0 : board.rateable - board.answered;
@@ -130,7 +140,8 @@ function Board({ board, season, column }: { board: WeekBoard; season: Season; co
       ) : (
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start">
           <section aria-label={`Ranked by ${VERB[column]}`} className="flex flex-col gap-2">
-            <Ranking rows={ranked} column={column} />
+            <ShowEliminated checked={showOut} onChange={setShowOut} count={gone.size} />
+            <Ranking rows={ranked} eliminated={eliminated} out={out} season={season.season} column={column} />
             {unranked.length > 0 && (
               <p className="px-1 text-xs text-silver-dim">
                 {unranked.length} more without a {column === "judges" ? "confirmed panel" : "number"} yet
@@ -167,7 +178,16 @@ function Board({ board, season, column }: { board: WeekBoard; season: Season; co
  * The ranking, re-sorted in place: each row slides from where it was to where
  * the new column puts it (FLIP), so a toggle shows who moved.
  */
-function Ranking({ rows, column }: { rows: BoardRow[]; column: BoardColumn }) {
+interface RankingProps {
+  rows: BoardRow[];
+  /** Listed after `rows`, stamped. */
+  eliminated: BoardRow[];
+  out: Elimination;
+  season: string;
+  column: BoardColumn;
+}
+
+function Ranking({ rows, eliminated, out, season, column }: RankingProps) {
   const list = useRef<HTMLOListElement>(null);
   const tops = useRef(new Map<string, number>());
   const reduced = useReducedMotion();
@@ -185,12 +205,15 @@ function Ranking({ rows, column }: { rows: BoardRow[]; column: BoardColumn }) {
       }
     }
     tops.current = new Map(items.map((i) => [i.dataset.id ?? "", i.offsetTop]));
-  }, [column, reduced]);
+  }, [column, reduced, eliminated.length]);
 
   return (
     <ol ref={list} aria-label="Couples" className="relative flex flex-col gap-1.5">
       {rows.map((r) => (
-        <BoardItem key={r.id} row={r} column={column} />
+        <BoardItem key={r.id} row={r} season={season} column={column} />
+      ))}
+      {eliminated.map((r) => (
+        <BoardItem key={r.id} row={r} season={season} column={column} out={out} />
       ))}
     </ol>
   );
@@ -203,25 +226,45 @@ const VALUE: Record<BoardColumn, (r: BoardRow) => number | null> = {
   everyone: (r) => r.everyone,
 };
 
-function BoardItem({ row: r, column }: { row: BoardRow; column: BoardColumn }) {
+interface BoardItemProps {
+  row: BoardRow;
+  season: string;
+  column: BoardColumn;
+  /** Set when the couple went home this episode. */
+  out?: Elimination;
+}
+
+/** One couple's row. Tapping it opens their every dance of the season. */
+function BoardItem({ row: r, season, column, out }: BoardItemProps) {
+  const router = useRouter();
   const rank = r.ranks[column];
   const move = movement(r, column);
   const value = VALUE[column](r);
   const versus = baseline(column);
+  const top = rank === 1 && !out;
   return (
     <li
       data-id={r.id}
+      onClick={() => router.push(coupleHref(r.members, season))}
       className={cn(
-        "flex items-center gap-3 rounded-xl border px-3 py-2.5 transition-colors",
-        rank === 1 ? "border-gold/40 bg-gradient-to-r from-gold/10 to-ballroom/40" : "border-silver/10 bg-ballroom/45",
+        "relative flex cursor-pointer items-center gap-3 rounded-xl border px-3 py-2.5 transition-colors",
+        out
+          ? "border-dashed border-silver/15 bg-ink/40 hover:border-silver/30"
+          : top
+            ? "border-gold/40 bg-gradient-to-r from-gold/10 to-ballroom/40 hover:border-gold/60"
+            : "border-silver/10 bg-ballroom/45 hover:border-silver/25 hover:bg-ballroom/70",
       )}
     >
-      <span className={cn("w-6 shrink-0 text-right font-display text-xl tabular-nums", rank === 1 ? "text-gold" : "text-silver-dim")}>{rank}</span>
-      <Movement by={move} versus={versus} />
-      <CoupleAvatars members={r.members} size={36} />
+      <span className={cn("w-6 shrink-0 text-right font-display text-xl tabular-nums", top ? "text-gold" : "text-silver-dim", out && "opacity-55")}>
+        {rank}
+      </span>
+      {out ? <span aria-hidden="true" className="w-8 shrink-0" /> : <Movement by={move} versus={versus} />}
+      <span className={cn("shrink-0", out && OUT_FADE)}>
+        <CoupleAvatars members={r.members} size={36} />
+      </span>
       <span className="flex min-w-0 flex-1 flex-col">
-        <CoupleNames members={r.members} className="truncate text-sm font-medium text-pearl" />
-        <span className="truncate text-xs text-silver-dim tabular-nums">
+        <CoupleNames members={r.members} className={cn("truncate text-sm font-medium", out ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")} />
+        <span className={cn("truncate text-xs text-silver-dim tabular-nums", out && "opacity-70")}>
           {[
             column !== "judges" && r.judges !== null && `Judges ${formatScore(r.judges)}`,
             column !== "you" && r.you !== null && `You ${formatScore(r.you)}`,
@@ -231,12 +274,13 @@ function BoardItem({ row: r, column }: { row: BoardRow; column: BoardColumn }) {
             .join(" · ")}
         </span>
       </span>
-      <span className="flex flex-col items-end">
+      <span className={cn("flex flex-col items-end", out && "opacity-55")}>
         <span className="text-lg font-semibold text-pearl tabular-nums">{value === null ? "–" : formatScore(value)}</span>
         {column === "judges" && r.judgesTotal !== null && r.dances > 1 && (
           <span className="text-[11px] text-silver-dim tabular-nums">{formatScore(r.judgesTotal)} total</span>
         )}
       </span>
+      {out && <EliminatedStamp out={out} size="sm" className="absolute top-1/2 left-3 -translate-y-1/2 sm:left-8" />}
     </li>
   );
 }

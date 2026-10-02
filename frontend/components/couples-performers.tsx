@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
 
 import { CoupleNames, PersonLink } from "@/components/couple-names";
+import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { CoupleAvatars, Headshot } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
 import { Card } from "@/components/ui/card";
@@ -22,9 +23,10 @@ import {
 } from "@/lib/api/couples";
 import type { Season } from "@/lib/api/show";
 import { COUPLE_SORTS, gapTone, signed, sortCouples, type CoupleSort, type GapTone } from "@/lib/show/couples";
-import { personSlug } from "@/lib/show/people";
+import { eliminatedLast, highlights, useShowEliminated } from "@/lib/show/eliminated";
+import { coupleHref, personSlug } from "@/lib/show/people";
 import { seasonLabel } from "@/lib/show/seasons";
-import { button, cn, EYEBROW, FOCUS } from "@/lib/ui";
+import { button, cn, EYEBROW, FOCUS, TEXT_LINK } from "@/lib/ui";
 
 type Load = { kind: "loading" } | { kind: "ready"; data: Performers } | { kind: "error"; message: string };
 
@@ -67,6 +69,7 @@ function PerformersFetcher({ season, group, sort }: { season: string; group: str
   const [load, setLoad] = useState<Load>({ kind: "loading" });
   const [attempt, setAttempt] = useState(0);
   const [open, setOpen] = useState<string | null>(null);
+  const [showOut, setShowOut] = useShowEliminated("performers");
 
   useEffect(() => {
     let cancelled = false;
@@ -105,19 +108,22 @@ function PerformersFetcher({ season, group, sort }: { season: string; group: str
   }
 
   const byRef = new Map(data.couples.map((c) => [c.ref, c]));
-  const pick = (refs: string[]) => refs.flatMap((r) => byRef.get(r) ?? []);
   const multi = data.season === ALL_SEASONS;
   const selected = open ? byRef.get(open) : undefined;
   const returning = data.celebrities.filter((c) => c.couples > 1);
+  const gone = data.couples.filter((c) => c.eliminated).length;
+  const list = eliminatedLast(sortCouples(data.couples, sort), (c) => Boolean(c.eliminated), showOut);
+  const top = highlights(showOut ? data.couples : list);
 
   return (
     <>
+      <ShowEliminated checked={showOut} onChange={setShowOut} count={gone} />
       <div className="stagger grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <Highlight title="Your favorites" couples={pick(data.favorites)} value={(c) => avg(c.you)} onOpen={setOpen} />
+        <Highlight title="Your favorites" couples={top.favorites} value={(c) => avg(c.you)} onOpen={setOpen} />
         <Highlight
           title="You're softer on"
           note="Higher than the judges"
-          couples={pick(data.softerOn)}
+          couples={top.softerOn}
           value={(c) => signed(c.gap ?? 0)}
           tone="over"
           onOpen={setOpen}
@@ -125,24 +131,30 @@ function PerformersFetcher({ season, group, sort }: { season: string; group: str
         <Highlight
           title="You're tougher on"
           note="Lower than the judges"
-          couples={pick(data.tougherOn)}
+          couples={top.tougherOn}
           value={(c) => signed(c.gap ?? 0)}
           tone="under"
           onOpen={setOpen}
         />
-        <Highlight title="Least favorites" couples={pick(data.leastFavorites)} value={(c) => avg(c.you)} onOpen={setOpen} />
+        <Highlight title="Least favorites" couples={top.leastFavorites} value={(c) => avg(c.you)} onOpen={setOpen} />
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] lg:items-start">
         <section aria-labelledby="every-couple" className="flex flex-col gap-2">
           <h2 id="every-couple" className={EYEBROW}>
-            Every couple you&apos;ve scored · {data.couples.length}
+            Every couple you&apos;ve scored · {list.length}
           </h2>
-          <ol className="stagger flex flex-col gap-2">
-            {sortCouples(data.couples, sort).map((c, i) => (
-              <CoupleRow key={c.ref} couple={c} place={i + 1} multi={multi} onOpen={() => setOpen(c.ref)} />
-            ))}
-          </ol>
+          {list.length === 0 ? (
+            <EmptyState compact title="Everyone you scored has gone home">
+              Switch on Show eliminated to see them.
+            </EmptyState>
+          ) : (
+            <ol className="stagger flex flex-col gap-2">
+              {list.map((c, i) => (
+                <CoupleRow key={c.ref} couple={c} place={i + 1} multi={multi} onOpen={() => setOpen(c.ref)} />
+              ))}
+            </ol>
+          )}
         </section>
         <div className="flex flex-col gap-4 lg:sticky lg:top-32">
           <PeopleCard
@@ -209,16 +221,25 @@ function Metric({ label, value, detail }: { label: string; value: string; detail
 const crowdDetail = (c: Crowd) => (c.mean === null ? `${c.raters} scored, needs 2 to show` : `${c.raters} scored`);
 
 function CoupleRow({ couple: c, place, multi, onOpen }: { couple: CoupleStats; place: number; multi: boolean; onOpen: () => void }) {
+  const out = c.eliminated;
   return (
     <li
       onClick={onOpen}
-      className="group flex cursor-pointer flex-col gap-3 rounded-xl border border-silver/10 bg-ballroom/45 p-3 transition-colors hover:border-silver/25 hover:bg-ballroom/70 sm:p-4"
+      className={cn(
+        "group relative flex cursor-pointer flex-col gap-3 rounded-xl border p-3 transition-colors sm:p-4",
+        out
+          ? "border-dashed border-silver/15 bg-ink/40 hover:border-silver/30"
+          : "border-silver/10 bg-ballroom/45 hover:border-silver/25 hover:bg-ballroom/70",
+      )}
     >
+      {out && <EliminatedStamp out={out} size="sm" className="absolute top-5 left-2 z-10 sm:top-6 sm:left-4" />}
       <div className="flex items-center gap-3">
-        <span className="w-5 shrink-0 text-right text-sm font-semibold text-silver-dim tabular-nums">{place}</span>
-        <CoupleAvatars members={c.members} size={40} />
+        <span className={cn("w-5 shrink-0 text-right text-sm font-semibold text-silver-dim tabular-nums", out && "opacity-55")}>{place}</span>
+        <span className={cn("shrink-0", out && OUT_FADE)}>
+          <CoupleAvatars members={c.members} size={40} />
+        </span>
         <span className="flex min-w-0 flex-1 flex-col">
-          <CoupleNames members={c.members} className="truncate font-medium text-pearl" />
+          <CoupleNames members={c.members} className={cn("truncate font-medium", out ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")} />
           <span className="truncate text-xs text-silver-dim">
             {c.dances} {c.dances === 1 ? "dance" : "dances"}
             {multi && ` · ${seasonLabel(c.season)}`}
@@ -241,7 +262,7 @@ function CoupleRow({ couple: c, place, multi, onOpen }: { couple: CoupleStats; p
           </svg>
         </button>
       </div>
-      <div className="grid grid-cols-5 gap-1 sm:grid-cols-4 sm:pl-8">
+      <div className={cn("grid grid-cols-5 gap-1 sm:grid-cols-4 sm:pl-8", out && OUT_FADE)}>
         <Metric label="You" value={avg(c.you)} />
         <Metric label="Judges" value={avg(c.judges)} />
         <span className="flex flex-col items-center gap-1 sm:hidden">
@@ -251,7 +272,7 @@ function CoupleRow({ couple: c, place, multi, onOpen }: { couple: CoupleStats; p
         <Metric label="Friends" value={avg(c.friends.mean)} detail={crowdDetail(c.friends)} />
         <Metric label="Everyone" value={avg(c.everyone.mean)} detail={crowdDetail(c.everyone)} />
       </div>
-      <div className="sm:pl-8">
+      <div className={cn("sm:pl-8", out && OUT_FADE)}>
         <GapBar gap={c.gap} delay={Math.min(place, 12) * 45} />
       </div>
     </li>
@@ -296,10 +317,13 @@ function Highlight({
                 onClick={() => onOpen(c.ref)}
                 className={cn("flex w-full items-center gap-2.5 rounded-lg text-left transition-colors hover:bg-silver/5", FOCUS)}
               >
-                <CoupleAvatars members={c.members} size={28} />
-                <span className="min-w-0 flex-1 truncate text-sm text-pearl">
+                <span className={cn("shrink-0", c.eliminated && OUT_FADE)}>
+                  <CoupleAvatars members={c.members} size={28} />
+                </span>
+                <span className={cn("min-w-0 flex-1 truncate text-sm", c.eliminated ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")}>
                   {c.members.find((m) => m.role === "celebrity")?.name ?? coupleTitle(c)}
                 </span>
+                {c.eliminated && <span className="sr-only">, eliminated</span>}
                 <span className={cn("text-sm font-semibold tabular-nums", TEXT_TONE[tone ?? "level"])}>{value(c)}</span>
               </button>
             </li>
@@ -338,14 +362,20 @@ function CoupleDetail({ couple: c }: { couple: CoupleStats }) {
   return (
     <>
       <div className="flex items-center gap-3 pr-10">
-        <CoupleAvatars members={c.members} size={56} />
+        <span className={cn("shrink-0", c.eliminated && OUT_FADE)}>
+          <CoupleAvatars members={c.members} size={56} />
+        </span>
         <div className="flex min-w-0 flex-col">
-          <CoupleNames members={c.members} className="text-lg leading-snug font-semibold text-pearl" />
+          <CoupleNames
+            members={c.members}
+            className={cn("text-lg leading-snug font-semibold", c.eliminated ? cn("text-silver", OUT_STRIKE) : "text-pearl")}
+          />
           <span className="text-xs text-silver-dim">
             {seasonLabel(c.season)} · {c.dances} {c.dances === 1 ? "dance" : "dances"} scored
           </span>
         </div>
       </div>
+      {c.eliminated && <EliminatedStamp out={c.eliminated} className="self-start" />}
 
       <p className="text-sm text-silver">
         {c.gap === null
@@ -384,6 +414,10 @@ function CoupleDetail({ couple: c }: { couple: CoupleStats }) {
         <DanceLine title="Your best" dance={c.best} />
         {c.dances > 1 && <DanceLine title="Your lowest" dance={c.worst} />}
       </div>
+
+      <Link href={coupleHref(c.members, c.season)} prefetch={false} className={cn(TEXT_LINK, "inline-flex min-h-11 items-center self-start")}>
+        Every dance: songs, judges and everyone&apos;s scores
+      </Link>
     </>
   );
 }

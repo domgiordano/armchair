@@ -170,6 +170,20 @@ describe("EpisodeScreen", () => {
     ]);
   });
 
+  it("stamps the couple sent home once the results are the caller's to see", async () => {
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, answered: 2, complete: true, eliminated: ["tyler-cameron"] });
+    render(<EpisodeScreen />);
+    const tyler = await screen.findByRole("article", { name: "Tyler Cameron & Sharna Burgess" });
+    expect(tyler.textContent).toContain("Eliminated · Week 3");
+    expect(screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" }).textContent).not.toContain("Eliminated");
+  });
+
+  it("stamps nobody while the episode is unfinished", async () => {
+    render(<EpisodeScreen />);
+    await screen.findByRole("article", { name: "Tyler Cameron & Sharna Burgess" });
+    expect(screen.queryByText("Eliminated", { exact: false })).toBeNull();
+  });
+
   it("shows a revealed card as a plain number list", async () => {
     render(<EpisodeScreen />);
     const tyler = await screen.findByRole("article", { name: "Tyler Cameron & Sharna Burgess" });

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { CoupleAvatars } from "@/components/headshot";
 import { CoupleNames } from "@/components/couple-names";
+import { OUT_FADE, OUT_STRIKE } from "@/components/eliminated";
 import type { Member, Season } from "@/lib/api/show";
 import { episodeLabel } from "@/lib/show/schedule";
 import { cn } from "@/lib/ui";
@@ -60,8 +61,15 @@ export function Heading({ id, title, note }: { id: string; title: string; note?:
   );
 }
 
+interface DancersProps {
+  members: Member[];
+  size?: number;
+  /** An eliminated couple: faces drained, names struck through. */
+  out?: boolean;
+}
+
 /** A couple's faces and linked names; a team dance names its celebrities instead. */
-export function Dancers({ members, size = 36 }: { members: Member[]; size?: number }) {
+export function Dancers({ members, size = 36, out }: DancersProps) {
   const team = members.filter((m) => m.role === "celebrity").length > 1;
   if (team) {
     const stars = members.filter((m) => m.role === "celebrity");
@@ -69,8 +77,10 @@ export function Dancers({ members, size = 36 }: { members: Member[]; size?: numb
   }
   return (
     <span className="flex min-w-0 items-center gap-3">
-      <CoupleAvatars members={members} size={size} />
-      <CoupleNames members={members} className="min-w-0 font-medium text-pearl" />
+      <span className={cn("shrink-0", out && OUT_FADE)}>
+        <CoupleAvatars members={members} size={size} />
+      </span>
+      <CoupleNames members={members} className={cn("min-w-0 font-medium", out ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")} />
     </span>
   );
 }

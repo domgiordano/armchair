@@ -1,4 +1,5 @@
 import { request } from "./client";
+import type { Elimination } from "./couples";
 import type { Answer, Headshot, JudgeSeat, Member } from "./show";
 
 export interface OverviewEpisode {
@@ -34,7 +35,7 @@ export interface CoupleStanding {
   members: Member[];
   dances: number;
   average: number | null;
-  out: boolean;
+  eliminated: Elimination | null;
 }
 
 export interface Overview {

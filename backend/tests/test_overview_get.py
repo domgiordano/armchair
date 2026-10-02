@@ -97,7 +97,7 @@ def test_a_new_user_sees_the_schedule_and_nothing_scored(show):
         "startsAt": "2026-10-14T00:00Z",
     }
     assert d["reveals"] == []
-    assert all(c["average"] is None and not c["out"] for c in d["couples"])
+    assert all(c["average"] is None and c["eliminated"] is None for c in d["couples"])
     ep5 = d["episodes"][4]
     assert ep5["aired"] and ep5["answered"] == 0 and not ep5["complete"]
     assert ep5["startsAt"] == "2026-10-07T00:00Z" and ep5["endsAt"] == "2026-10-07T02:00Z"
@@ -124,7 +124,7 @@ def test_judge_values_only_where_the_caller_answered_and_never_anyone_elses(show
         "members": None,
         "dances": 1,
         "average": 8,
-        "out": False,
+        "eliminated": None,
     }
     # A hasn't answered Y, so the judges' 6s stay hidden.
     assert couple(d, Y)["average"] is None
@@ -158,10 +158,10 @@ def test_accuracy_per_episode(show):
 
 def test_eliminations_only_from_episodes_the_caller_finished(show):
     # Conner Leavitt went out in episode 1.
-    assert not couple(data(), "conner-leavitt")["out"]
+    assert couple(data(), "conner-leavitt")["eliminated"] is None
     finish(A, 1)
     d = data()
-    assert couple(d, "conner-leavitt")["out"]
+    assert couple(d, "conner-leavitt")["eliminated"] == {"ep": 1, "week": 1}
     assert d["couples"][-1]["id"] == "conner-leavitt"
     assert d["progress"]["couplesLeft"] == 15
     # Someone else finishing learns nothing for A.

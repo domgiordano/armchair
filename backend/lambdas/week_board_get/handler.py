@@ -6,9 +6,10 @@ ranking and the judges' disagreed most.
 
 Every number comes from common/couples.py over performances the caller paddled.
 A couple the caller hasn't paddled is listed as locked, with no numbers, in
-alphabetical order as gate.episode_view lists unanswered cards. A past season
-(gate.is_open) ranks every couple and locks none; `you` is None where the
-caller has no paddle. Other people appear only as means over at least
+alphabetical order as gate.episode_view lists unanswered cards. `eliminated`
+is who went home that night, once gate.results_open lets the caller know. A
+past season (gate.is_open) ranks every couple and locks none; `you` is None
+where the caller has no paddle. Other people appear only as means over at least
 couples.MIN_RATERS of them. `scope=global` is everyone; `scope=friends` narrows
 everyone to the caller's friends; `scope=group` narrows both friends and
 everyone to the group's members and is 403 unless the caller is one. Identity
@@ -22,7 +23,7 @@ from collections import defaultdict
 from lambdas.common.api import ValidationError, api_handler, caller_sub, ok, query, require
 from lambdas.common.couples import crowd, dances, friends, group_pool, mean, people
 from lambdas.common.episodes_dynamo import catalog, episode_pk, performances, ref, scores
-from lambdas.common.gate import answered, cid, is_open, rateable
+from lambdas.common.gate import answered, cid, eliminated, is_open, rateable, results_open
 
 DISAGREEMENTS = 3
 COLUMNS = ("judges", "you", "friends", "everyone")
@@ -112,6 +113,9 @@ def handler(event, context):
             "couples": rows,
             "locked": locked,
             "disagreements": [r["id"] for r in split[:DISAGREEMENTS]],
+            "eliminated": eliminated(ep, contestants)
+            if results_open(sub, ep, meta, episode, contestants, perfs, score_rows)
+            else [],
         }
     )
 

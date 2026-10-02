@@ -181,6 +181,7 @@ const couple = (id: string, members: Member[], you: number, gap: number): Couple
   absGap: Math.abs(gap),
   friends: { mean: null, raters: 0 },
   everyone: { mean: null, raters: 0 },
+  eliminated: null,
 });
 
 const FAVORITES: Performers<CoupleSummary> = {

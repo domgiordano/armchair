@@ -17,6 +17,7 @@ const couple = (ref: string, you: number, gap: number | null, friends: number | 
   absGap: gap === null ? null : Math.abs(gap),
   friends: { mean: friends, raters: friends === null ? 1 : 2 },
   everyone: { mean: null, raters: 0 },
+  eliminated: null,
   best: { ep: 1, week: 1, key: `${ref}#1`, style: null, paddle: you, judges: null },
   worst: { ep: 1, week: 1, key: `${ref}#1`, style: null, paddle: you, judges: null },
   weeks: [],
