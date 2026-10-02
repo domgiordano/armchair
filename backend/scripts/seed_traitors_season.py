@@ -27,6 +27,8 @@ from lambdas.common.traitors_catalog import EDITIONS, items
 from lambdas.common.traitors_parse import season
 from lambdas.common.wiki_fetch import latest
 
+HEADSHOTS = Path(__file__).resolve().parents[2] / "fixtures" / "traitors-headshots.json"
+
 
 def write(table, rows: list[dict], keep: set[str]) -> None:
     """Updates rather than puts, so attributes the poller wrote survive a re-seed."""
@@ -68,6 +70,7 @@ def main(argv: list[str] | None = None) -> None:
         current=args.current,
         open_at=args.open_at or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         release_time=args.release_time,
+        headshots=json.loads(HEADSHOTS.read_text()) if HEADSHOTS.exists() else None,
     )
     if args.dry_run:
         print(json.dumps(rows, indent=2, ensure_ascii=False))
