@@ -12,7 +12,7 @@ vi.mock("aws-amplify/auth", () => ({
   signInWithRedirect: vi.fn(),
   signOut: vi.fn(),
 }));
-vi.mock("@/lib/auth/amplify", () => ({ authConfigured: true }));
+vi.mock("@armchair/app-core/auth/amplify", () => ({ authConfigured: true }));
 
 const who = (sub: string, name: string, rank: number, mae: number) => ({ sub, name, picture: null, count: 9, mae, rank });
 

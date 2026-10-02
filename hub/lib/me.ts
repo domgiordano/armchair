@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 
 import { getMyProfile, type MyProfile } from "@/lib/api/profile";
-import { writeWho } from "@/lib/auth/who";
+import { writeWho } from "@armchair/app-core/auth/who";
 
 // Header, hero and profile page all show the same /users/me, so it's fetched
 // once and an edit on the profile page reaches the header straight away.

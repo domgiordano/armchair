@@ -4,13 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState, type ReactNode } from "react";
 
+import { rememberReturn } from "@armchair/app-core/auth/return-to";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
+
 import { ChairLoader } from "@/components/chair-loader";
 import { ChairMark } from "@/components/chair-mark";
 import { GoogleMark } from "@/components/google-mark";
 import { ICON_TRIGGER, ShowIcon } from "@/components/show-icon";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { signInWithGoogle, useAuth } from "@/lib/auth/use-auth";
 import { dwtsLink } from "@/lib/links";
 import { TABS } from "@/lib/tabs";
 
@@ -173,6 +175,7 @@ export function SignedInPage({ eyebrow, pitch, children }: SignedInPageProps) {
 }
 
 export function SignInWall({ eyebrow, pitch }: { eyebrow: string; pitch: string }) {
+  const { signInWithGoogle } = useAuth();
   return (
     <div className="rise mx-auto flex max-w-2xl flex-col items-start gap-5 py-8">
       <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">{eyebrow}</p>
@@ -180,7 +183,10 @@ export function SignInWall({ eyebrow, pitch }: { eyebrow: string; pitch: string 
         Take your <span className="text-brand-gradient">seat.</span>
       </h1>
       <p className="text-muted">{pitch}</p>
-      <button type="button" onClick={() => void signInWithGoogle()} className={PRIMARY}>
+      <button type="button" onClick={() => {
+          rememberReturn();
+          void signInWithGoogle();
+        }} className={PRIMARY}>
         <GoogleMark className="h-4 w-4" />
         Sign in with Google
       </button>
