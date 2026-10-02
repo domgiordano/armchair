@@ -1,8 +1,9 @@
 /* Timeline, against LENGTH = 7000 ms in intro.tsx and intro/timeline.ts, counted
    from data-playing (the 3D scene's first drawn frame, or mount for the 2D stage):
-   3D: 0-2.4 s the procession comes down the corridor · 2.1-2.75 s dip to black, cut
-   to the hall · 2.6-6.8 s push in on the lead · 4.2-5.0 s hood falls · 4.5-5.3 s void
-   Both: 5.0-5.6 s the title kindles in the void · 6.5 s fade out */
+   3D: 0-3.25 s the procession walks out of the fog until the lead's cloak fills
+   the lens · 3.25 s cut, up from the chest to the hood · 4.35-5.55 s the hood
+   slides back · 4.35-5.85 s the dark spreads where the face would be
+   Both: 5.1-6.3 s the title burns in, a letter at a time · 6.5 s fade out */
 
 .scene {
   position: fixed;
@@ -64,9 +65,11 @@
   opacity: 1;
 }
 
-/* The 2D stage fades up over the poster. */
+/* The 2D stage is the poster itself, pushing in slowly on the lead's head. */
 .scene[data-stage="2d"][data-playing] .poster {
-  animation: fade-out 600ms ease-in forwards;
+  opacity: 1;
+  transform-origin: 48% 44%;
+  animation: push 7000ms cubic-bezier(0.4, 0, 0.3, 1) both;
 }
 
 /* Centred on the void. The 3D scene writes --vx, --vy and --vr (the void's
@@ -80,27 +83,32 @@
 }
 
 .scene[data-stage="2d"] .title {
-  --vx: 50%;
-  --vy: 36.25%;
-  --vr: min(22cqh, 40cqw);
+  --vx: 48%;
+  --vy: 44%;
+  --vr: min(40cqh, 48cqw);
 }
 
 .word {
   font-family: var(--font-title);
   font-weight: 900;
-  font-size: clamp(28px, calc(var(--vr, 160px) * 0.3), 15cqw);
+  font-size: min(calc(var(--vr, 160px) * 0.29), 12.5cqw);
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   white-space: nowrap;
+  filter: drop-shadow(0 0 0.12em rgb(242 102 42 / 0.7)) drop-shadow(0 0 0.4em rgb(242 102 42 / 0.3));
+  animation: breathe 1.9s 6400ms linear infinite;
+}
+
+/* Each letter catches like a wick: white-hot and smeared, then cooling to gilt.
+   Staggered left to right from 5.1 s, the last done by 6.3 s. */
+.letter {
+  display: inline-block;
   color: var(--candle);
-  background: linear-gradient(to bottom, var(--flame) 15%, var(--candle) 55%, var(--gilt) 85%);
+  background: linear-gradient(to bottom, var(--flame) 15%, var(--candle) 55%, var(--gilt) 88%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 10px rgb(242 102 42 / 0.75)) drop-shadow(0 0 28px rgb(242 102 42 / 0.35));
-  animation:
-    kindle 600ms 5000ms cubic-bezier(0.2, 0.7, 0.3, 1) both,
-    burn 1.9s 5600ms linear infinite;
+  animation: catch 640ms calc(5100ms + var(--i) * 80ms) cubic-bezier(0.25, 0.6, 0.3, 1) both;
 }
 
 .skip {
@@ -139,35 +147,43 @@
   outline-offset: 3px;
 }
 
-@keyframes kindle {
+@keyframes catch {
   from {
     opacity: 0;
-    transform: scale(0.94);
-    letter-spacing: 0.14em;
-    filter: blur(8px) drop-shadow(0 0 10px rgb(242 102 42 / 0)) drop-shadow(0 0 28px rgb(242 102 42 / 0));
+    transform: translateY(0.06em) scale(1.08);
+    filter: blur(0.12em) brightness(3.2) saturate(0.4);
+  }
+  35% {
+    opacity: 1;
+    filter: blur(0.03em) brightness(2.1) saturate(0.7);
   }
   to {
     opacity: 1;
     transform: none;
-    letter-spacing: 0.02em;
-    filter: blur(0) drop-shadow(0 0 10px rgb(242 102 42 / 0.75)) drop-shadow(0 0 28px rgb(242 102 42 / 0.35));
+    filter: none;
   }
 }
 
-/* The glow breathes like the candles under it. Opacity only, so it stays cheap. */
-@keyframes burn {
+/* The glow breathes like the fire behind it. Opacity only, so it stays cheap. */
+@keyframes breathe {
   0%,
   100% {
     opacity: 1;
   }
   23% {
-    opacity: 0.9;
+    opacity: 0.93;
   }
   48% {
-    opacity: 0.97;
+    opacity: 0.98;
   }
   71% {
-    opacity: 0.86;
+    opacity: 0.9;
+  }
+}
+
+@keyframes push {
+  to {
+    transform: scale(1.3);
   }
 }
 

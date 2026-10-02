@@ -2,15 +2,17 @@
 
 import { PerformanceMonitor } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Bloom, EffectComposer, Noise, ToneMapping, Vignette } from "@react-three/postprocessing";
-import { BlendFunction, ToneMappingMode } from "postprocessing";
+import { Bloom, ChromaticAberration, DepthOfField, EffectComposer, GodRays, Noise, ToneMapping, Vignette } from "@react-three/postprocessing";
+import { BlendFunction, type DepthOfFieldEffect, KernelSize, ToneMappingMode } from "postprocessing";
 import { type RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { type Mesh, MeshBasicMaterial, type PerspectiveCamera, Vector3 } from "three";
+import { type DataTexture, type Mesh, type PerspectiveCamera, VSMShadowMap, Vector2, Vector3 } from "three";
 
-import { Castle } from "./castle";
 import { Figures } from "./figures";
 import { Fire } from "./fire";
-import { camera as cameraAt, coverFov, dip, VOID, voidOpen } from "./timeline";
+import { Grade } from "./grade";
+import { Hall } from "./hall";
+import { loadSurfaces, noise, type Surfaces } from "./textures";
+import { camera as cameraAt, coverFov, focus, VOID, voidOpen } from "./timeline";
 
 interface Clocked {
   now: () => number;
@@ -20,8 +22,8 @@ interface RigProps extends Clocked {
   title: RefObject<HTMLElement | null>;
 }
 
-// The void's radius in metres at full open, for sizing the title over it.
-const VOID_RADIUS = 0.42;
+// The void's radius in metres at full spread, for sizing the title inside it.
+const VOID_RADIUS = 0.3;
 
 /** Moves the camera, and keeps the DOM title centred on the void at the size it appears. */
 function Rig({ now, title }: RigProps) {
@@ -54,40 +56,23 @@ function Rig({ now, title }: RigProps) {
   return null;
 }
 
-const blackout = new MeshBasicMaterial({ color: "#000000", transparent: true, depthTest: false, depthWrite: false, fog: false });
-
-/** The dip to black over the cut, held just in front of the lens. */
-function Dip({ now }: Clocked) {
-  const mesh = useRef<Mesh>(null);
-  const forward = useMemo(() => new Vector3(), []);
-  useFrame(({ camera }) => {
-    const m = mesh.current;
-    if (!m) return;
-    const d = dip(now());
-    m.visible = d > 0;
-    blackout.opacity = d;
-    camera.getWorldDirection(forward);
-    m.position.copy(camera.position).addScaledVector(forward, 0.3);
-    m.quaternion.copy(camera.quaternion);
-  });
-  return (
-    <mesh ref={mesh} material={blackout} renderOrder={20} frustumCulled={false}>
-      <planeGeometry args={[4, 4]} />
-    </mesh>
-  );
-}
-
 interface WarmupProps {
   onWarm: () => void;
 }
 
-// Compile every shader before anything is drawn (in parallel where the browser
-// offers KHR_parallel_shader_compile), so the first frames don't stall.
+// Upload every texture and compile every shader before anything is drawn (in
+// parallel where the browser offers KHR_parallel_shader_compile), so the
+// first frames don't stall.
 function Warmup({ onWarm }: WarmupProps) {
   const get = useThree((s) => s.get);
   useEffect(() => {
     let live = true;
     const { gl, scene, camera } = get();
+    scene.traverse((o) => {
+      const m = (o as Mesh).material;
+      if (!m || Array.isArray(m)) return;
+      for (const v of Object.values(m)) if (v && typeof v === "object" && "isTexture" in v) gl.initTexture(v);
+    });
     gl.compileAsync(scene, camera).then(() => {
       if (live) onWarm();
     });
@@ -112,13 +97,43 @@ function FirstFrame({ onDrawn }: FirstFrameProps) {
   return null;
 }
 
-function Effects({ low }: { low: boolean }) {
+interface EffectsProps extends Clocked {
+  low: boolean;
+  sun: RefObject<Mesh | null>;
+}
+
+const ABERRATION = new Vector2(0.0011, 0.0007);
+
+/** The lens and the film: light shafts, focus, bloom, the grade, fringing, vignette and grain. */
+function Effects({ now, low, sun }: EffectsProps) {
+  const dof = useRef<DepthOfFieldEffect>(null);
+  const target = useMemo(() => new Vector3(), []);
+  const grade = useMemo(() => new Grade(), []);
+  useFrame(() => {
+    const d = dof.current;
+    if (d?.target) d.target.copy(focus(now(), target));
+  });
   return (
-    <EffectComposer multisampling={low ? 0 : 4}>
-      <Bloom mipmapBlur luminanceThreshold={0.85} luminanceSmoothing={0.2} intensity={1.15} radius={0.7} />
+    <EffectComposer multisampling={low ? 0 : 4} autoClear={false}>
+      <GodRays
+        sun={sun as RefObject<Mesh>}
+        samples={low ? 36 : 60}
+        density={0.95}
+        decay={0.93}
+        weight={0.5}
+        exposure={0.42}
+        clampMax={1}
+        blur
+        kernelSize={KernelSize.SMALL}
+        resolutionScale={low ? 0.35 : 0.5}
+      />
+      <DepthOfField ref={dof} target={target} focusRange={0.9} bokehScale={low ? 2.5 : 4} resolutionScale={low ? 0.35 : 0.5} />
+      <Bloom mipmapBlur luminanceThreshold={1} luminanceSmoothing={0.3} intensity={0.75} radius={0.62} />
       <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
-      <Vignette offset={0.25} darkness={0.72} />
-      <Noise premultiply blendFunction={BlendFunction.SCREEN} opacity={0.35} />
+      <primitive object={grade} />
+      <ChromaticAberration offset={ABERRATION} radialModulation modulationOffset={0.25} />
+      <Vignette offset={0.22} darkness={0.78} />
+      <Noise premultiply blendFunction={BlendFunction.SCREEN} opacity={0.42} />
     </EffectComposer>
   );
 }
@@ -130,12 +145,15 @@ interface IntroSceneProps {
   title: RefObject<HTMLElement | null>;
 }
 
-/** The procession: down a torch-lit corridor to the round table, where the lead's hood falls. */
+/** The procession down the hall to the lens, then the lead's hood slides back on darkness. */
 export function IntroScene({ onReady, title }: IntroSceneProps) {
+  const [surfaces, setSurfaces] = useState<Surfaces | null>(null);
   const [warm, setWarm] = useState(false);
   const [ready, setReady] = useState(false);
   // Phones start a step down; PerformanceMonitor takes anything else down when it drops frames.
   const [low, setLow] = useState(() => window.innerWidth < 700);
+  const fog = useMemo<DataTexture>(() => noise(), []);
+  const sun = useRef<Mesh>(null);
   const start = useRef<number | null>(null);
   const now = useCallback(() => (start.current === null ? 0 : (performance.now() - start.current) / 1000), []);
   const onWarm = useCallback(() => setWarm(true), []);
@@ -146,26 +164,38 @@ export function IntroScene({ onReady, title }: IntroSceneProps) {
   }, [onReady]);
   const onDecline = useCallback(() => setLow(true), []);
 
+  useEffect(() => {
+    let live = true;
+    loadSurfaces().then((s) => {
+      if (live) setSurfaces(s);
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
+
   return (
     <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: ready ? 1 : 0, transition: "opacity 350ms ease-out" }}>
       <Canvas
         dpr={low ? 1 : [1, 1.75]}
         gl={{ antialias: false, powerPreference: "high-performance", stencil: false }}
-        camera={{ fov: 42, near: 0.05, far: 60 }}
+        shadows={{ type: VSMShadowMap }}
+        camera={{ fov: 42, near: 0.05, far: 40 }}
       >
         <PerformanceMonitor onDecline={onDecline} flipflops={1} />
-        <color attach="background" args={["#040504"]} />
-        <fogExp2 attach="fog" args={["#080604", 0.07]} />
-        <hemisphereLight args={["#2b3a48", "#170f08", 0.35]} />
+        <color attach="background" args={["#030303"]} />
+        <fogExp2 attach="fog" args={["#0b0805", 0.045]} />
+        <hemisphereLight args={["#24323a", "#0e0905", 0.12]} />
         <Rig now={now} title={title} />
-        <group visible={warm}>
-          <Castle />
-          <Fire now={now} low={low} />
-          <Figures now={now} />
-        </group>
-        <Dip now={now} />
-        <Effects low={low} />
-        <Warmup onWarm={onWarm} />
+        {surfaces && (
+          <group visible={warm}>
+            <Hall surfaces={surfaces} />
+            <Fire now={now} low={low} noise={fog} sun={sun} />
+            <Figures now={now} />
+            <Warmup onWarm={onWarm} />
+          </group>
+        )}
+        {warm && <Effects now={now} low={low} sun={sun} />}
         {warm && !ready && <FirstFrame onDrawn={onDrawn} />}
       </Canvas>
     </div>

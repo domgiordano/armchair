@@ -1,7 +1,18 @@
 "use client";
 
 import { getImageProps } from "next/image";
-import { lazy, Suspense, useCallback, useEffect, useRef, useState, useSyncExternalStore, type ComponentType, type RefObject } from "react";
+import {
+  type ComponentType,
+  type CSSProperties,
+  lazy,
+  type RefObject,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
 import { Fallback } from "@/components/intro/fallback";
 import { Loader } from "@/components/loader";
@@ -18,6 +29,8 @@ const LENGTH = 7000;
 // against it: the chunk is about 1 MB and a cold phone can take longer than
 // this just to fetch it.
 const PATIENCE = 8000;
+// Burned in one letter at a time, so each is its own element.
+const WORD = [..."Traitors"];
 
 function probeWebGL() {
   if (typeof window.WebGLRenderingContext === "undefined") return false;
@@ -67,7 +80,7 @@ interface IntroProps {
 }
 
 /**
- * The procession: a real-time scene where WebGL allows, a 2D stage where not.
+ * The procession and the hood: a real-time scene where WebGL allows, a 2D stage where not.
  * The static HTML opens on the load-in (the hooded loader), which gives way to
  * a poster of the scene's opening frame. The scene takes over once it has
  * compiled and drawn that same frame.
@@ -124,7 +137,16 @@ export function Intro({ onDone }: IntroProps) {
 
       {playing && (
         <div ref={title} className={styles.title}>
-          <p className={styles.word}>Traitors</p>
+          <p className={styles.word}>
+            <span className="sr-only">Traitors</span>
+            <span aria-hidden="true">
+              {WORD.map((letter, i) => (
+                <span key={i} className={styles.letter} style={{ "--i": i } as CSSProperties}>
+                  {letter}
+                </span>
+              ))}
+            </span>
+          </p>
         </div>
       )}
 

@@ -1,106 +1,54 @@
 /* Timed against LENGTH = 7000 ms in intro.tsx, from mount, on the same beats as
-   intro/timeline.ts: 0-7 s slow push · 4.2-5.0 s hood falls · 4.5-5.3 s the void
-   opens · 5.0 s title (intro.module.css) · 6.5 s fade out.
-   The head sits at 50% across, 36.25% down: 10cqh + 90cqh * 175 / 600. */
+   intro/timeline.ts: 0-7 s slow push on the poster (intro.module.css) · 4.35 s
+   the dark spreads from the lead's head · 5.1 s title · 6.5 s fade out.
+   The lead's head sits at about 48% across, 44% down in both posters. */
 
 .room {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse 60% 30% at 50% 100%, rgb(242 102 42 / 0.28), transparent 70%),
-    repeating-linear-gradient(to bottom, transparent 0 46px, rgb(0 0 0 / 0.35) 46px 50px),
-    radial-gradient(ellipse 80% 70% at 50% 40%, #1d1912, #0b0a07 70%, #050504);
-  transform-origin: 50% 36.25%;
-  animation:
-    pool 600ms ease-out both,
-    push 7000ms cubic-bezier(0.4, 0, 0.6, 1) both;
+  pointer-events: none;
 }
 
-/* The torches at the door behind them: the black head reads against it. */
-.backlight {
+/* The door's fire behind the procession, breathing. */
+.fire {
   position: absolute;
-  left: 50%;
-  top: 36.25%;
-  width: 70cqh;
+  left: 48%;
+  top: 40%;
+  width: 90cqh;
   aspect-ratio: 1;
-  translate: -50% -50%;
-  background: radial-gradient(circle, rgb(255 154 60 / 0.3), rgb(242 102 42 / 0.1) 40%, transparent 70%);
+  margin: -45cqh 0 0 -45cqh;
+  background: radial-gradient(circle, rgb(255 154 60 / 0.22), rgb(242 102 42 / 0.08) 40%, transparent 68%);
+  mix-blend-mode: screen;
   animation: flicker 2.3s linear infinite;
 }
 
-.figure {
+/* Two sheets of smoke at different depths, drifting past each other. */
+.fog {
   position: absolute;
-  left: 50%;
-  bottom: 0;
-  height: 90cqh;
-  aspect-ratio: 2 / 3;
-  translate: -50% 0;
-  overflow: visible;
+  inset: -20%;
+  mix-blend-mode: screen;
+  filter: blur(28px);
 }
 
-.follower {
-  fill: #08110b;
-  opacity: 0.9;
+.near {
+  background:
+    radial-gradient(ellipse 30% 14% at 30% 70%, rgb(200 150 100 / 0.16), transparent 70%),
+    radial-gradient(ellipse 26% 12% at 72% 62%, rgb(200 150 100 / 0.12), transparent 70%);
+  animation: drift 7000ms linear both;
 }
 
-.hood {
-  transform-box: view-box;
-  transform-origin: 200px 256px;
-  animation: hood-fall 800ms 4200ms cubic-bezier(0.55, 0, 0.35, 1.25) both;
-}
-
-.void {
-  position: absolute;
-  left: 50%;
-  top: 36.25%;
-  width: min(48cqh, 86cqw);
-  aspect-ratio: 1;
-  translate: -50% -50%;
-  border-radius: 50%;
-  background: radial-gradient(circle, #000 0 42%, rgb(0 0 0 / 0.85) 55%, transparent 70%);
-  animation: open 800ms 4500ms cubic-bezier(0.3, 0, 0.2, 1) both;
-}
-
-/* The table's near edge, seen from the side, with candles on it. */
-.table {
-  position: absolute;
-  inset: auto 0 0;
-  height: 15cqh;
-  border-top: 2px solid var(--gilt);
-  background: linear-gradient(to bottom, #3a2414, #1b0f07 40%, #0b0603);
-  box-shadow: 0 -20px 60px rgb(255 154 60 / 0.15);
-}
-
-.candle {
-  position: absolute;
-  left: var(--x);
-  bottom: 100%;
-  width: clamp(8px, 1.2cqw, 14px);
-  height: var(--h);
-  translate: -50% 0;
-  background: linear-gradient(to right, #c9b994, var(--parchment) 40%, #b9a47c);
-  border-radius: 2px 2px 0 0;
-}
-
-.flame {
-  position: absolute;
-  left: 50%;
-  bottom: 100%;
-  width: 180%;
-  aspect-ratio: 1 / 2.4;
-  translate: -50% 0;
-  border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%;
-  background: radial-gradient(ellipse at 50% 75%, #fff4d6 0 15%, var(--flame) 35%, var(--ember) 70%, transparent 72%);
-  filter: drop-shadow(0 0 12px rgb(255 154 60 / 0.9));
-  transform-origin: 50% 100%;
-  animation: lick 1.3s linear infinite;
+.far {
+  background:
+    radial-gradient(ellipse 34% 18% at 55% 38%, rgb(220 160 100 / 0.14), transparent 70%),
+    radial-gradient(ellipse 22% 10% at 20% 45%, rgb(220 160 100 / 0.1), transparent 70%);
+  animation: drift 7000ms linear reverse both;
 }
 
 .ember {
   position: absolute;
   left: var(--x);
-  bottom: 12cqh;
+  bottom: 18cqh;
   width: var(--size);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -110,31 +58,19 @@
   animation: rise linear infinite;
 }
 
-@keyframes pool {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes push {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.14);
-  }
-}
-
-@keyframes hood-fall {
-  to {
-    transform: translateY(4px) scaleY(0.16);
-  }
-}
-
-@keyframes open {
-  from {
-    transform: scale(0);
-  }
+/* Darkness pouring out of the hood and over everything round it, so the title
+   has a void to burn in. A blurred black disc, grown from nothing. */
+.dark {
+  position: absolute;
+  left: 48%;
+  top: 44%;
+  width: max(80cqh, 100cqw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #000 0 30%, rgb(0 0 0 / 0.85) 42%, rgb(0 0 0 / 0.4) 56%, transparent 70%);
+  filter: blur(14px);
+  transform: translate(-50%, -50%) scale(0);
+  animation: spread 1500ms 4350ms cubic-bezier(0.45, 0, 0.25, 1) both;
 }
 
 @keyframes flicker {
@@ -156,22 +92,26 @@
   }
 }
 
-@keyframes lick {
-  0%,
-  100% {
-    transform: scale(1, 1) skewX(0deg);
+@keyframes drift {
+  from {
+    transform: translate3d(-4%, 1%, 0);
   }
-  21% {
-    transform: scale(0.92, 1.1) skewX(-4deg);
+  to {
+    transform: translate3d(4%, -2%, 0);
   }
-  43% {
-    transform: scale(1.05, 0.93) skewX(3deg);
+}
+
+@keyframes spread {
+  from {
+    transform: translate(-50%, -50%) scale(0.15);
+    opacity: 0;
   }
-  67% {
-    transform: scale(0.96, 1.08) skewX(-2deg);
+  45% {
+    opacity: 1;
   }
-  84% {
-    transform: scale(1.03, 0.96) skewX(2deg);
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
 
@@ -185,6 +125,6 @@
   }
   100% {
     opacity: 0;
-    transform: translate(var(--drift), -70cqh);
+    transform: translate(var(--drift), -60cqh);
   }
 }
