@@ -142,6 +142,10 @@ const rowNames = (list: HTMLElement) =>
     .map((li) => li.querySelector("a")?.textContent);
 
 describe("Your couples", () => {
+  beforeEach(() => {
+    nav.search = new URLSearchParams("compare=season");
+  });
+
   it("lists every couple by your average with the gap to the judges", async () => {
     render(<CouplesScreen />);
     const heading = await screen.findByRole("heading", { name: /Every couple you've scored · 3/ });
