@@ -32,7 +32,7 @@ import { countdown, hero, showTime } from "@/lib/show/overview";
 import { coupleHref, personSlug } from "@/lib/show/people";
 import { formatAirDate } from "@/lib/show/schedule";
 import { seasonLabel, useSeasonId, withSeason } from "@/lib/show/seasons";
-import { useNow } from "@/lib/show/use-now";
+import { useNow } from "@armchair/app-core/show/use-now";
 import { button, cn, DISPLAY, TEXT_LINK as LINK } from "@/lib/ui";
 
 const GOLD = button("primary");

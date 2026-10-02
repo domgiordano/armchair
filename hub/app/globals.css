@@ -470,3 +470,10 @@ body {
     animation: none;
   }
 }
+
+/* A phone header with Back has no room for the wordmark beside Apps and Sign in; the chair mark stays. */
+@media (max-width: 639.98px) {
+  header:has(.back-in) .brand-word {
+    display: none;
+  }
+}

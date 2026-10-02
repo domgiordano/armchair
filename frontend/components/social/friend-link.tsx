@@ -9,9 +9,9 @@ import { Redirect } from "@/components/redirect";
 import { SignedIn } from "@/components/signed-in";
 import { displayName, message } from "@/components/social/parts";
 import { useToast } from "@/components/ui/toast";
-import { groupHref } from "@/lib/api/groups";
+import { groupHref } from "@armchair/app-core/api/groups";
 import { profileHref } from "@/lib/api/people";
-import { addFriend } from "@/lib/api/social";
+import { addFriend } from "@armchair/app-core/api/social";
 import { SECONDARY } from "@/lib/ui";
 
 /** /friends/: an invite link sends its request and opens their profile; older bookmarks land on your lists. */

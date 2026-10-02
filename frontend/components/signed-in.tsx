@@ -7,8 +7,8 @@ import { AppShell } from "@/components/app-shell";
 import { Brand } from "@/components/brand";
 import { PageLoader } from "@/components/disco-loader";
 import { Specks } from "@/components/ui/specks";
-import { rememberReturn } from "@/lib/auth/return-to";
-import { useAuth } from "@/lib/auth/use-auth";
+import { rememberReturn } from "@armchair/app-core/auth/return-to";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
 import { DISPLAY, PRIMARY } from "@/lib/ui";
 
 interface SignedInProps {

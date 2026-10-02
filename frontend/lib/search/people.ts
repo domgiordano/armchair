@@ -1,5 +1,5 @@
 import type { PersonHit, SearchResults } from "@/lib/api/people";
-import { getFriends, searchPeople, type Match } from "@/lib/api/social";
+import { getFriends, searchPeople, type Match } from "@armchair/app-core/api/social";
 
 import { search } from "./match";
 
