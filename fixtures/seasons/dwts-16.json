@@ -20,16 +20,11 @@
         "Carrie Ann Inaba"
       ],
       "headshot": {
-        "file": "Carrie_Ann_Inaba.jpg",
-        "image": "carrie-ann-inaba-130d90accf.webp",
-        "author": "The original uploader was QuicksilverFX0 at English Wikipedia.",
-        "license": "CC BY-SA 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carrie_Ann_Inaba.jpg",
-        "box": [
-          146,
-          112,
-          104
-        ]
+        "image": "supplied/carrie-ann-inaba-21ac504799.webp",
+        "author": "Supplied",
+        "license": "Used with permission",
+        "sourceUrl": null,
+        "source": "supplied"
       }
     },
     {
@@ -58,11 +53,11 @@
         "Bruno Tonioli"
       ],
       "headshot": {
-        "file": "Bruno_Tonioli_in_2015.jpg",
-        "image": "bruno-tonioli-e25ea8a395.webp",
-        "author": "Beautiful: The Carole King Musical Opening Night Video",
-        "license": "CC BY 3.0",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bruno_Tonioli_in_2015.jpg"
+        "image": "supplied/bruno-tonioli-ffd9a03e76.webp",
+        "author": "Supplied",
+        "license": "Used with permission",
+        "sourceUrl": null,
+        "source": "supplied"
       }
     }
   ],
@@ -2320,16 +2315,11 @@
           "name": "Sharna Burgess",
           "role": "pro",
           "headshot": {
-            "file": "2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
-            "image": "sharna-burgess-8323368f60.webp",
-            "author": "NaBUru38",
-            "license": "CC BY-SA 4.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2017_500_Festival_Parade_-_Celebrities_-_Sharna_Burgess_(crop).jpg",
-            "box": [
-              245,
-              130,
-              150
-            ]
+            "image": "supplied/sharna-burgess-e9aa718db2.webp",
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": null,
+            "source": "supplied"
           }
         }
       ],
@@ -2406,11 +2396,11 @@
           "name": "Mark Ballas",
           "role": "pro",
           "headshot": {
-            "file": "Mark_Ballas_2013.jpg",
-            "image": "mark-ballas-abad087c60.webp",
-            "author": "Justin Higuchi",
-            "license": "CC BY 2.0",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_Ballas_2013.jpg"
+            "image": "supplied/mark-ballas-1edf1a5670.webp",
+            "author": "Supplied",
+            "license": "Used with permission",
+            "sourceUrl": null,
+            "source": "supplied"
           }
         }
       ],

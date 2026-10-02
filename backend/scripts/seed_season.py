@@ -211,16 +211,23 @@ def upload(shots: list[dict], bucket: str, dry_run: bool) -> None:
     Keys are content-hashed (faces.key), so the year-long cache never serves a replaced
     photo. A photo the cropper finds no face in is left out, and the run fails naming it:
     the site shows initials for it until the registry drops or replaces it.
+
+    A supplied photo has no Commons file: it was cropped and uploaded by hand, so one
+    missing from the bucket fails the run instead.
     """
     s3 = boto3.client("s3")
     pages = s3.get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix="headshots/")
     have = {o["Key"] for page in pages for o in page.get("Contents", [])}
     skipped = 0
     faceless = []
+    missing = []
     for shot in sorted({s["image"]: s for s in shots}.values(), key=lambda s: s["image"]):
         key = f"headshots/{shot['image']}"
         if key in have:
             skipped += 1
+            continue
+        if shot.get("source") == "supplied":
+            missing.append(shot["image"])
             continue
         print(f"{shot['file']} -> s3://{bucket}/{key}")
         if dry_run:
@@ -239,6 +246,8 @@ def upload(shots: list[dict], bucket: str, dry_run: bool) -> None:
         )
         time.sleep(0.2)
     print(f"headshots: {skipped} already in the bucket")
+    if missing:
+        sys.exit(f"supplied headshots not in the bucket: {', '.join(missing)}")
     if faceless:
         sys.exit(f"headshots with no face found, not uploaded: {', '.join(faceless)}")
 
