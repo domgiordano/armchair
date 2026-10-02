@@ -76,6 +76,7 @@ function Shell({ title, wide, children }: AppShellProps) {
   const search = params.toString();
   const season = useSeasonId();
   const current = activeTab(pathname);
+  const root = TABS.some((t) => bare(t.href) === bare(pathname));
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
 
@@ -110,10 +111,8 @@ function Shell({ title, wide, children }: AppShellProps) {
           >
             <MenuIcon />
           </button>
-          {!TABS.some((t) => bare(t.href) === bare(pathname)) && (
-            <BackLink key={pathname} parent={parentOf(pathname, params, season)} />
-          )}
-          <Brand />
+          {!root && <BackLink key={pathname} parent={parentOf(pathname, params, season)} />}
+          <Brand compact={!root} />
           <div className="ml-2 hidden md:block">
             <SeasonPicker season={season} />
           </div>
