@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { FactionBadge } from "@/components/faction-badge";
+import { Writeup } from "@/components/writeup";
 import { errorText } from "@/components/season-data";
 import { Headshot } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
@@ -56,19 +57,36 @@ function Player({ show, id }: { show: Show; id: string }) {
 
   const p = load.player;
   const seasons = [...p.seasons].sort((a, b) => b.number - a.number);
+  const titles = seasons.filter((s) => s.championship);
   return (
     <>
-      <div className="flex items-center gap-4">
-        <Headshot name={p.name} image={p.headshot} size={104} className="shadow-[0_10px_24px_-10px_rgb(0_0_0/0.9)]" />
-        <div className="flex min-w-0 flex-col gap-1">
+      <Card as="section" aria-labelledby="player-name" tartan className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-6">
+        <Headshot
+          name={p.name}
+          image={p.headshot}
+          size={144}
+          className={cn("shadow-[0_14px_30px_-12px_rgb(0_0_0/0.95)]", titles.length > 0 && "ring-2 ring-candle")}
+        />
+        <div className="flex min-w-0 flex-col gap-1.5">
           <p className={EYEBROW}>The Traitors {EDITION_NAMES[show]}</p>
-          <h1 className={cn(HEADING, "text-2xl leading-tight")}>{p.name}</h1>
-          <p className="text-ash">
+          <h1 id="player-name" className={cn(HEADING, "text-3xl leading-tight")}>
+            {p.name}
+          </h1>
+          <p className="text-parchment">
             {seasons.length === 1 ? "One season" : `${seasons.length} seasons`} in the castle
           </p>
+          {titles.length > 0 && (
+            <p className="flex flex-wrap gap-2 pt-1">
+              {titles.map((s) => (
+                <ChampionBadge key={s.season} label={`Won ${seasonLabel({ id: s.season, number: s.number })}`} />
+              ))}
+            </p>
+          )}
         </div>
-      </div>
-      <ol aria-label="Seasons played" className="flex flex-col gap-4">
+      </Card>
+      {p.bio && <Writeup title={`About ${p.name}`} writeup={p.bio} />}
+      <h2 className={EYEBROW}>Seasons played</h2>
+      <ol aria-label="Seasons played" className="-mt-2 flex flex-col gap-4">
         {seasons.map((s) => (
           <SeasonCard key={s.season} career={s} />
         ))}
@@ -89,6 +107,7 @@ function SeasonCard({ career: s }: { career: Career }) {
         {s.current && <span className="text-sm text-candle">Live now</span>}
       </div>
       <p className="flex flex-wrap items-center gap-2">
+        {s.championship && <ChampionBadge label="Champion" />}
         {s.faction && <FactionBadge faction={s.faction} />}
         <span className={s.finish?.how === "winner" ? "text-candle" : "text-parchment"}>
           {finish ?? (s.current ? "Still in the castle" : "Finish not on record")}
@@ -96,6 +115,17 @@ function SeasonCard({ career: s }: { career: Career }) {
       </p>
       {s.votes && <VotesChart votes={s.votes} banishedAt={s.finish?.how === "banished" ? s.finish.ep : null} />}
     </Card>
+  );
+}
+
+function ChampionBadge({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-sm border border-candle/70 bg-candle/10 px-2 py-0.5 font-display text-xs font-semibold tracking-[0.12em] text-candle uppercase">
+      <svg viewBox="0 0 16 12" aria-hidden="true" className="h-2.5 w-3.5">
+        <path d="M1 11h14L13.5 3 10.5 6.5 8 1 5.5 6.5 2.5 3Z" fill="currentColor" />
+      </svg>
+      {label}
+    </span>
   );
 }
 
