@@ -167,13 +167,13 @@ resource "aws_iam_role_policy" "deploy_seed" {
   policy = data.aws_iam_policy_document.deploy_seed.json
 }
 
-# The Backfill Scores workflow invokes the poller with {"backfill": true}.
+# The Backfill Scores and Backfill Traitors workflows invoke the pollers with {"backfill": true}.
 data "aws_iam_policy_document" "deploy_backfill" {
   statement {
     sid       = "InvokePoller"
     effect    = "Allow"
     actions   = ["lambda:InvokeFunction"]
-    resources = [aws_lambda_function.poll_wiki.arn]
+    resources = [aws_lambda_function.poll_wiki.arn, aws_lambda_function.poll_traitors.arn]
   }
 }
 

@@ -5,13 +5,15 @@ Body: {"season": "tus-5", "ep": "05", "event": "RT", "picks": ["<id>", "<id>", "
 (three, in order, for a round table; one for MURDER or RECRUIT), or {"forfeit": true}
 in place of picks. Picks are final: a retry with the same pick returns it, a different
 one is 409. A closed episode or finished season is 403, and so is any pick before the
-caller's winner bet.
+caller's winner bet. A pick made after its result confirmed is scored here; the poller
+has stopped looking by then.
 """
 
 from __future__ import annotations
 
 from datetime import UTC, datetime
 
+from lambdas.common import traitors_board
 from lambdas.common.api import (
     ConflictError,
     ForbiddenError,
@@ -73,6 +75,8 @@ def handler(event, context):
     )
     if stored.get("picks") != given.get("picks") or stored.get("forfeit") != given.get("forfeit"):
         raise ConflictError("Already picked; picks are final")
+    if "picks" in given:
+        traitors_board.reconcile(show, number, ep)
     return ok(
         {
             "event": kind,

@@ -1,10 +1,18 @@
 """
 EventBridge Scheduler, every minute: poll each edition's current Traitors season while an
-episode is fresh, and log what its Wikipedia page says. Log-only for now; publishing
-comes with the confirm and release-time guards (docs/features/traitors/PLAN.md PR 9).
+episode is fresh, and publish the results its Wikipedia page settles.
 
 Fresh means released within the last 6 hours: every tick. Then hourly, at minute 0, for
 72 hours, for edits that land late. Off-air, a tick is three catalog Queries and no fetch.
+Only episodes already released are published, so a page that knows the result early
+(finale cells appeared 9 h before a Peacock drop) shows nothing before release.
+
+Results go provisional -> confirmed (common/traitors_publish.py). A confirmed round table
+or murder marks the PLAYER's exit, and every episode it touches is reconciled into the
+points board. Once the page names the winners, the winner bets are settled.
+
+Invoke with {"backfill": true} to publish every released episode of every current season
+at once, confirmed with no window: for episodes that aired before the season was seeded.
 """
 
 from __future__ import annotations
@@ -13,8 +21,11 @@ import json
 import time
 from datetime import UTC, datetime
 
-from lambdas.common.dynamo import query_all, table
+from lambdas.common import confirm, traitors_board
+from lambdas.common.dynamo import query_all, query_many, table
+from lambdas.common.episodes_dynamo import episode_pk
 from lambdas.common.traitors_parse import season, voting_grid
+from lambdas.common.traitors_publish import exits, outcomes, publish, winners
 from lambdas.common.wiki_fetch import latest
 
 SHOWS = ("tus", "tuk", "tukc")
@@ -53,7 +64,28 @@ def summary(parsed: dict) -> dict:
     }
 
 
+def run(
+    show: str, number: int, rows: list[dict], parsed: dict, rev: int, t: int, window: int
+) -> dict:
+    meta = next(r for r in rows if r["sk"] == "META")
+    episodes = [r for r in rows if r["sk"].startswith("EP#")]
+    out = [int(e["sk"][3:]) for e in episodes if epoch(e["releaseAt"]) <= t]
+    stored = query_many([("PERFORMANCES_TABLE", episode_pk(show, number, ep)) for ep in out])
+    results = outcomes(parsed, out)
+    pending = False
+    for ep, have in zip(out, stored):
+        waiting, confirmed = publish(show, number, ep, results[ep], have, t, rev, window)
+        pending |= waiting
+        exits(show, number, ep, confirmed)
+        traitors_board.reconcile(show, number, ep)
+    won = winners(parsed)
+    if won and len(out) == len(episodes):
+        traitors_board.reconcile_winners(show, number, won, int(meta["episodes"]))
+    return {"published": out, "pending": pending, "winners": sorted(won)}
+
+
 def handler(event, context):
+    backfill = (event or {}).get("backfill") is True
     t = int(time.time())
     catalog = table("CATALOG_TABLE")
     polled = []
@@ -61,9 +93,9 @@ def handler(event, context):
         for index in query_all(catalog, f"SEASONS#{show}"):
             if not index.get("current"):
                 continue
-            rows = query_all(catalog, f"SEASON#{show}#{index['number']}")
-            episodes = [r for r in rows if r["sk"].startswith("EP#")]
-            if not due(episodes, t):
+            number = int(index["number"])
+            rows = query_all(catalog, f"SEASON#{show}#{number}")
+            if not backfill and not due([r for r in rows if r["sk"].startswith("EP#")], t):
                 continue
             meta = next(r for r in rows if r["sk"] == "META")
             page = latest(int(meta["pageid"]))
@@ -76,6 +108,10 @@ def handler(event, context):
                     )
                 )
                 continue
-            print(json.dumps({**line, **summary(season(page["content"]))}, ensure_ascii=False))
+            parsed = season(page["content"])
+            done = run(
+                show, number, rows, parsed, page["revid"], t, 0 if backfill else confirm.WINDOW
+            )
+            print(json.dumps({**line, **done, **summary(parsed)}, ensure_ascii=False))
             polled.append(index["id"])
     return {"polled": polled}
