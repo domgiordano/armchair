@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useLayoutEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 import { FactionWord } from "@/components/faction-word";
@@ -34,6 +35,8 @@ interface RoundTableProps {
   tallyLabel?: (count: number) => string;
   /** Names the table when a page shows more than one. */
   label?: string;
+  /** Read-only seats link to each player's page. */
+  hrefOf?: (id: string) => string;
 }
 
 const RANKS = ["first", "second", "third"];
@@ -58,6 +61,7 @@ export function RoundTable({
   tallies = null,
   tallyLabel = (n) => `${n} called`,
   label,
+  hrefOf,
 }: RoundTableProps) {
   const scroller = useRef<HTMLDivElement>(null);
   const width = tableWidth(roster.length);
@@ -121,6 +125,7 @@ export function RoundTable({
               onTap={onTap}
               disabled={full && !chosen.includes(p.id)}
               tally={tallies?.[p.id] ? tallyLabel(tallies[p.id]) : null}
+              href={hrefOf?.(p.id)}
             />
           ))}
         </div>
@@ -157,9 +162,10 @@ interface SeatProps {
   onTap?: (id: string) => void;
   disabled: boolean;
   tally: string | null;
+  href?: string;
 }
 
-function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally }: SeatProps) {
+function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally, href }: SeatProps) {
   const picked = rank >= 0;
   const label = [
     player.name,
@@ -177,7 +183,7 @@ function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally
       className={cn(
         "relative block size-12 overflow-hidden rounded-full bg-night ring-2 shadow-[0_6px_14px_-4px_rgb(0_0_0/0.9)] transition-[box-shadow,transform] duration-150",
         picked ? "ring-candle shadow-[0_0_16px_2px_rgb(233_185_73/0.45)]" : "ring-gilt/80",
-        onTap && !disabled && "group-hover:ring-candle group-active:scale-95",
+        (href || (onTap && !disabled)) && "group-hover:ring-candle group-active:scale-95",
       )}
     >
       {state === "murdered" ? (
@@ -225,6 +231,13 @@ function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally
   };
   const box = "absolute flex w-16 flex-col items-center gap-1";
 
+  if (!onTap && href) {
+    return (
+      <Link href={href} aria-label={label} style={style} className={cn(box, FOCUS, "group rounded-sm pt-1 pb-0.5")}>
+        {body}
+      </Link>
+    );
+  }
   if (!onTap) {
     return (
       <div role="img" aria-label={label} style={style} className={box}>

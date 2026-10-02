@@ -169,7 +169,7 @@ describe("AppShell", () => {
     renderShell();
     const apps = screen.getByRole("button", { name: "Apps" });
     fireEvent.click(apps);
-    expect(screen.getByRole("menuitem", { name: "All shows" }).getAttribute("href")).toBe("https://armchairjudge.com");
+    expect(screen.getByRole("menuitem", { name: /Armchair Judge/ }).getAttribute("href")).toBe("https://armchairjudge.com/?sso=1");
     const menu = screen.getByRole("menu", { name: "Apps" });
     const icons = [...menu.querySelectorAll("[data-show]")].map((el) => [el.getAttribute("data-show"), !!el.querySelector("span")]);
     expect(icons).toEqual([
@@ -182,6 +182,18 @@ describe("AppShell", () => {
     fireEvent.pointerDown(screen.getByText("page body"));
     expect(apps.getAttribute("aria-expanded")).toBe("false");
     await screen.findByRole("img", { name: "Ada Lovelace" });
+  });
+
+  it("ends every signed-in page with the footer listing all the Armchair apps", async () => {
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+    const apps = within(screen.getByRole("contentinfo")).getByRole("navigation", { name: "Apps" });
+    expect(within(apps).getAllByRole("listitem").map((li) => li.textContent?.replace(/LIVE|SOON/, ""))).toEqual([
+      "Armchair Judge",
+      "Dancing with the Stars",
+      "The Traitors",
+      "Survivor",
+    ]);
   });
 
   it("opens the phone menu as a dialog and returns focus to the hamburger on close", async () => {

@@ -6,6 +6,8 @@ import "./intro.css";
 import "./motion.css";
 import "./account.css";
 
+import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
+
 import { Backdrop } from "@/components/backdrop";
 import { ACCOUNT_HINT_SCRIPT } from "@/lib/account-hint-script";
 
@@ -38,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: ACCOUNT_HINT_SCRIPT }} />
       </head>
       <body className="min-h-full bg-night font-display text-text">
+        <SsoHandoff />
         <Backdrop />
         {children}
       </body>

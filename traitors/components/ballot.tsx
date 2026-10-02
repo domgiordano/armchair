@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type ReactNode } from "react";
 
 import { Outcome } from "@/components/outcome";
+import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
 import { RoundTable } from "@/components/round-table";
 import { errorText } from "@/components/season-data";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar, Headshot } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SkeletonList } from "@/components/ui/skeleton";
@@ -16,6 +18,7 @@ import { useToast } from "@/components/ui/toast";
 import { WaxSeal } from "@/components/ui/wax-seal";
 import {
   submitPick,
+  type CastMember,
   type Episode,
   type EpisodeEvent,
   type EventType,
@@ -23,7 +26,8 @@ import {
   type SeasonEpisode,
 } from "@/lib/api/traitors";
 import { consensusRows, move, toggle } from "@/lib/ballot";
-import { nameOf, roman } from "@/lib/players";
+import { finishText } from "@/lib/history";
+import { firstName, nameOf, roman } from "@/lib/players";
 import { eventPoints } from "@/lib/points";
 import { formatRelease } from "@/lib/schedule";
 import { useEpisodePoll } from "@/lib/use-episode-poll";
@@ -56,12 +60,18 @@ interface BallotProps {
   episode: SeasonEpisode;
   group: string | null;
   members: GroupMember[] | null;
+  /** The season's title for the header, when the page knows it. */
+  seasonTitle?: string;
   /** After a call is sealed, so the season's answered counts catch up. */
   onSealed: () => void;
+  /** A pick tried before the winner bet: the caller asks for it. */
+  onNeedBet?: () => void;
+  /** The season's cast, for the faces of those already gone. */
+  cast?: CastMember[];
 }
 
 /** One episode's three calls: murder, round table, recruit. Blind and final, each under the wax seal. */
-export function Ballot({ season, episode, group, members, onSealed }: BallotProps) {
+export function Ballot({ season, episode, group, members, seasonTitle, onSealed, onNeedBet, cast = [] }: BallotProps) {
   const { data, error, reload } = useEpisodePoll(season, episode.ep, episode.releaseAt, group);
   const [tab, setTab] = useState<EventType | null>(null);
 
@@ -78,7 +88,7 @@ export function Ballot({ season, episode, group, members, onSealed }: BallotProp
       <div className="flex items-end justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-1">
           <p className={EYEBROW}>
-            Episode {roman(data.ep)} · {formatRelease(data.releaseAt)}
+            {seasonTitle && `${seasonTitle} · `}Episode {roman(data.ep)} · {formatRelease(data.releaseAt)}
           </p>
           <h1 id="episode-title" className={cn(HEADING, "text-2xl leading-tight")}>
             {data.title ?? `Episode ${data.ep}`}
@@ -94,6 +104,7 @@ export function Ballot({ season, episode, group, members, onSealed }: BallotProp
           )}
         </p>
       </div>
+      {data.out.length > 0 && <Gone season={season} out={data.out} cast={cast} />}
       {error !== null && (
         <p role="status" className="rounded-sm border border-ember/50 bg-ember/10 px-3 py-2 text-bone">
           Couldn&apos;t refresh: {error}. Showing the last view loaded.
@@ -115,6 +126,7 @@ export function Ballot({ season, episode, group, members, onSealed }: BallotProp
               episode={data}
               event={active}
               members={members}
+              onNeedBet={onNeedBet}
               onSealed={() => {
                 reload();
                 onSealed();
@@ -127,19 +139,54 @@ export function Ballot({ season, episode, group, members, onSealed }: BallotProp
   );
 }
 
+/** Who has already left the castle, crossed off, so the table's empty places make sense. */
+function Gone({ season, out, cast }: { season: string; out: Episode["out"]; cast: CastMember[] }) {
+  const faces = new Map(cast.map((p) => [p.id, p]));
+  const hrefOf = seasonPlayerHref(season);
+  return (
+    <section aria-labelledby="gone-title" className="flex flex-col gap-2">
+      <h2 id="gone-title" className={EYEBROW}>
+        Gone from the castle
+      </h2>
+      <ul className="-mx-1 flex gap-1 overflow-x-auto px-1 pb-1">
+        {out.map((o) => {
+          const name = faces.get(o.id)?.name ?? nameOf(o.id, null);
+          return (
+            <li key={o.id} className="shrink-0">
+              <Link
+                href={hrefOf(o.id)}
+                aria-label={`${name}, ${finishText(o)}${o.faction ? `, ${o.faction}` : ""}`}
+                className={cn(FOCUS, "group flex w-16 flex-col items-center gap-1 rounded-sm p-1 text-center hover:bg-cloak/50")}
+              >
+                <span aria-hidden="true">
+                  <Headshot name={name} image={faces.get(o.id)?.headshot ?? null} exit={o} size={44} />
+                </span>
+                <span className="w-full truncate text-xs text-ash group-hover:text-bone">{firstName(name)}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
 interface EventPanelProps {
   season: string;
   episode: Episode;
   event: EpisodeEvent;
   members: GroupMember[] | null;
   onSealed: () => void;
+  onNeedBet?: () => void;
 }
 
-function EventPanel({ season, episode, event, members, onSealed }: EventPanelProps) {
+function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: EventPanelProps) {
   const toast = useToast();
   const [picks, setPicks] = useState<string[]>([]);
   const [forfeit, setForfeit] = useState(false);
   const picking = event.locked && !episode.closed;
+  // Before the winner bet the table looks the same, but a tap asks for the bet.
+  const waiting = episode.needsBet ? onNeedBet : undefined;
   const rows = consensusRows(event, Infinity);
 
   const submit = async () => {
@@ -167,12 +214,27 @@ function EventPanel({ season, episode, event, members, onSealed }: EventPanelPro
         roster={episode.roster}
         kind={event.type}
         chosen={picking ? (forfeit ? [] : picks) : (event.mine?.picks ?? [])}
-        onTap={picking && !forfeit ? (id) => setPicks((p) => toggle(p, id, event.picks)) : undefined}
+        onTap={
+          picking && waiting
+            ? () => waiting()
+            : picking && !forfeit
+              ? (id) => setPicks((p) => toggle(p, id, event.picks))
+              : undefined
+        }
         full={event.picks > 1 && picks.length >= event.picks}
         result={picking ? null : event.result}
         tallies={picking ? null : Object.fromEntries(rows.map((r) => [r.id, r.count]))}
+        hrefOf={picking ? undefined : seasonPlayerHref(season)}
       />
-      {picking ? (
+      {picking && waiting ? (
+        <Slate className="flex flex-col items-start gap-3">
+          <p className={EYEBROW}>Your slate</p>
+          <p className="text-parchment">Lock in your winners to start playing. Your calls open once they&apos;re sealed.</p>
+          <Button variant="gold" onClick={waiting}>
+            Lock in your winners
+          </Button>
+        </Slate>
+      ) : picking ? (
         <PickSlate
           event={event}
           roster={episode.roster}
@@ -183,7 +245,7 @@ function EventPanel({ season, episode, event, members, onSealed }: EventPanelPro
           onSeal={submit}
         />
       ) : (
-        <Reveal event={event} roster={episode.roster} members={members} closed={episode.closed} />
+        <Reveal season={season} event={event} roster={episode.roster} members={members} closed={episode.closed} />
       )}
     </>
   );
@@ -317,13 +379,14 @@ function SlateButton({
 }
 
 interface RevealProps {
+  season: string;
   event: EpisodeEvent;
   roster: Player[];
   members: GroupMember[] | null;
   closed: boolean;
 }
 
-function Reveal({ event, roster, members, closed }: RevealProps) {
+function Reveal({ season, event, roster, members, closed }: RevealProps) {
   const points = eventPoints(event);
   const rows = consensusRows(event);
   const people = new Map((members ?? []).map((m) => [m.sub, m]));
@@ -339,7 +402,11 @@ function Reveal({ event, roster, members, closed }: RevealProps) {
             {mine.picks.map((id, i) => (
               <li key={id} className="flex items-baseline gap-2">
                 {event.type === "RT" && <span className="font-display text-gilt">{roman(i + 1)}</span>}
-                <Chalk>{nameOf(id, roster)}</Chalk>
+                <Chalk>
+                  <PlayerLink season={season} id={id} className="text-bone no-underline">
+                    {nameOf(id, roster)}
+                  </PlayerLink>
+                </Chalk>
               </li>
             ))}
           </ol>
@@ -350,7 +417,7 @@ function Reveal({ event, roster, members, closed }: RevealProps) {
           aria-live="polite"
         >
           <span className="font-display text-xs tracking-[0.14em] text-ash uppercase">What happened</span>
-          <Outcome event={event} roster={roster} />
+          <Outcome event={event} roster={roster} season={season} />
         </p>
         {points !== null && (
           <p className="font-display text-2xl font-semibold text-candle">
@@ -368,7 +435,10 @@ function Reveal({ event, roster, members, closed }: RevealProps) {
             {rows.map((r, i) => (
               <li key={r.id} className="flex flex-col gap-1">
                 <span className="text-parchment">
-                  <span className="nums text-bone">{Math.round(r.share * 100)}%</span> had {nameOf(r.id, roster)}
+                  <span className="nums text-bone">{Math.round(r.share * 100)}%</span> had{" "}
+                  <PlayerLink season={season} id={r.id}>
+                    {nameOf(r.id, roster)}
+                  </PlayerLink>
                   {event.type === "RT" ? " first" : ""}
                 </span>
                 <span aria-hidden="true" className="h-2 overflow-hidden rounded-full bg-night">

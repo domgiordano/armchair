@@ -23,6 +23,8 @@ const episode = (events: EpisodeEvent[]): Episode => ({
   releaseAt: SEASON_EP.releaseAt,
   closed: false,
   roster: ROSTER,
+  out: [],
+  needsBet: false,
   events,
 });
 
@@ -37,6 +39,19 @@ const ballot = (onSealed = vi.fn()) =>
 const seat = (name: string) => screen.getByRole("button", { name: new RegExp(`^${name}`) });
 const para = (text: string) => (_: string, el: Element | null) => el?.tagName === "P" && el.textContent === text;
 const seal = () => screen.getByRole("button", { name: /^Seal/ }) as HTMLButtonElement;
+
+it("shows the table before the winner bet, and asks for the bet instead of taking a pick", async () => {
+  api.getEpisode.mockResolvedValue({ ...episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]), needsBet: true });
+  const onNeedBet = vi.fn();
+  render(<Ballot season="tus-5" episode={SEASON_EP} group={null} members={null} onSealed={vi.fn()} onNeedBet={onNeedBet} />);
+  fireEvent.click(await screen.findByRole("button", { name: /^Cal Reyes/ }));
+  expect(onNeedBet).toHaveBeenCalledOnce();
+  expect(screen.getByRole("button", { name: /^Cal Reyes/ }).getAttribute("aria-pressed")).toBe("false");
+  expect(screen.queryByRole("button", { name: /^Seal/ })).toBeNull();
+  fireEvent.click(screen.getByRole("button", { name: "Lock in your winners" }));
+  expect(onNeedBet).toHaveBeenCalledTimes(2);
+  expect(api.submitPick).not.toHaveBeenCalled();
+});
 
 it("ranks three heads at the round table, reorders them on the slate, and seals the slate", async () => {
   const onSealed = vi.fn();
@@ -102,11 +117,13 @@ it("reveals the banishment on the table with your points and everyone's first pi
   );
   ballot();
   fireEvent.click(await screen.findByRole("tab", { name: "Banish, sealed" }));
-  expect(screen.getByRole("img", { name: "Ava Stone, your first, banished, Traitor, 5 called" })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Ava Stone, your first, banished, Traitor, 5 called" })).toBeTruthy();
   expect(screen.getByText(para("+10 points"))).toBeTruthy();
-  expect(screen.getByText(/had Ava Stone first/).textContent).toBe("63% had Ava Stone first");
+  const consensus = within(screen.getByRole("region", { name: /Everyone's calls/ }));
+  expect(consensus.getAllByRole("listitem")[0].textContent).toBe("63% had Ava Stone first");
+  expect(consensus.getByRole("link", { name: "Ava Stone" }).getAttribute("href")).toMatch(/show=tus&id=ava&season=tus-5/);
 
   fireEvent.click(screen.getByRole("tab", { name: "Murder, sealed" }));
-  expect(screen.getByRole("img", { name: "Ben Hart, your pick, murdered" })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Ben Hart, your pick, murdered" })).toBeTruthy();
   expect(screen.getByText(para("+4 points"))).toBeTruthy();
 });

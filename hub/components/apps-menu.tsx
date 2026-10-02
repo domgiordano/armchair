@@ -2,29 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useEffectEvent, useId, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent } from "react";
-import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
+import { APPS, appLink, type App } from "@armchair/app-core/apps";
 
-import { DWTS_URL, TRAITORS_URL } from "@/lib/links";
+import { AppIcon } from "@/components/app-icon";
+import { ICON_TRIGGER } from "@/components/show-icon";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
-
-interface ShowApp {
-  name: string;
-  line: string;
-  /** Only live apps have one; the rest render as "coming soon" rows. */
-  href?: string;
-  show: Show;
-}
-
-const APPS: ShowApp[] = [
-  { name: "Dancing with the Stars", line: "Score every dance before the judges' paddles go up.", href: DWTS_URL, show: "dwts" },
-  {
-    name: "The Traitors",
-    line: "Call the round table's top 3, the murder and the recruit before they happen.",
-    href: TRAITORS_URL,
-    show: "traitors",
-  },
-  { name: "Survivor", line: "Rate the blindside before the tribe has spoken.", show: "survivor" },
-];
 
 // The longer of the two exit animations in app/motion.css.
 const CLOSE_MS = 200;
@@ -36,15 +18,21 @@ const SECTION_LINKS = [
   { href: "/#shows", label: "Shows" },
 ];
 
-function AppRow({ app }: { app: ShowApp }) {
+function AppRow({ app }: { app: App }) {
+  const here = app.id === "hub";
+  const href = here ? null : appLink(app.id);
   const body = (
     <>
-      <ShowIcon show={app.show} size={44} locked={!app.href} />
-      <span className={`min-w-0 flex-1 ${app.href ? "" : "opacity-60"}`}>
+      <AppIcon id={app.id} size={44} locked={!here && !href} />
+      <span className={`min-w-0 flex-1 ${here || href ? "" : "opacity-60"}`}>
         <span className="block text-sm font-semibold text-text">{app.name}</span>
         <span className="mt-0.5 block text-xs leading-snug text-muted">{app.line}</span>
       </span>
-      {app.href ? (
+      {here ? (
+        <span className="shrink-0 rounded-full bg-gold/15 px-2.5 py-1 text-[10px] font-bold tracking-[0.15em] whitespace-nowrap text-gold">
+          YOU&rsquo;RE HERE
+        </span>
+      ) : href ? (
         <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-magenta/15 px-2.5 py-1 text-[10px] font-bold tracking-[0.15em] text-magenta">
           <span className="size-1.5 rounded-full bg-current motion-safe:animate-pulse" aria-hidden="true" />
           LIVE
@@ -57,12 +45,12 @@ function AppRow({ app }: { app: ShowApp }) {
     </>
   );
 
-  if (!app.href) {
+  if (!href) {
     return <div className={`${ICON_TRIGGER} flex items-center gap-3 rounded-2xl p-3`}>{body}</div>;
   }
   return (
     <a
-      href={app.href}
+      href={href}
       className={`${ICON_TRIGGER} flex items-center gap-3 rounded-2xl p-3 hover:bg-line/50 focus-visible:bg-line/50 focus-visible:outline-2 focus-visible:outline-gold active:bg-line`}
     >
       {body}
@@ -207,7 +195,7 @@ export function AppsMenu() {
             <p className="px-3 pt-2 pb-1 text-[11px] font-semibold tracking-[0.25em] text-muted">ARMCHAIR JUDGE APPS</p>
             <ul>
               {APPS.map((app, i) => (
-                <li key={app.name} style={row(i)}>
+                <li key={app.id} style={row(i)}>
                   <AppRow app={app} />
                 </li>
               ))}

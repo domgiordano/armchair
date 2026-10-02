@@ -7,8 +7,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { ChairLoader } from "@/components/chair-loader";
-import { takeReturn } from "@/lib/auth/return-to";
-import { takeSilent, useAuth } from "@/lib/auth/use-auth";
+import { takeReturn } from "@armchair/app-core/auth/return-to";
+import { takeSilent } from "@armchair/app-core/auth/silent";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
 
 import { SECONDARY } from "./ui";
 
@@ -29,9 +30,10 @@ export function AuthCallback() {
     const stop = Hub.listen("auth", ({ payload }) => {
       if (payload.event === "signInWithRedirect") void refresh();
       if (payload.event !== "signInWithRedirect_failure") return;
-      // A "Continue as" attempt with no Armchair session left (Cognito's
-      // login_required): go to Google instead, which signs a returning user
-      // straight back in. takeReturn() is left for that second trip.
+      // A silent attempt ("Continue as", or app-core's SsoHandoff) with no
+      // Armchair session left (Cognito's login_required): go to Google instead,
+      // which signs a returning user straight back in. takeReturn() is left
+      // for that second trip.
       if (takeSilent()) {
         void signInWithRedirect({ provider: "Google" }).catch(() => setFailed(true));
         return;

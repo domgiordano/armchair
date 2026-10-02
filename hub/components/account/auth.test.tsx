@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { Hub } from "aws-amplify/utils";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { rememberReturn, takeReturn } from "@/lib/auth/return-to";
+import { rememberReturn, takeReturn } from "@armchair/app-core/auth/return-to";
 import { resetMe } from "@/lib/me";
 import { resetNotifications } from "@/lib/notifications";
 
@@ -26,7 +26,7 @@ vi.mock("aws-amplify/auth", () => ({
   signInWithRedirect: auth.signInWithRedirect,
   signOut: auth.signOut,
 }));
-vi.mock("@/lib/auth/amplify", () => ({ authConfigured: true }));
+vi.mock("@armchair/app-core/auth/amplify", () => ({ authConfigured: true }));
 
 const replace = vi.fn();
 vi.mock("next/navigation", () => ({ useRouter: () => ({ replace }), usePathname: () => "/" }));
@@ -104,12 +104,18 @@ describe("header account button", () => {
     expect(await screen.findByRole("button", { name: "Sign in with Google" })).toBeTruthy();
   });
 
-  it("is the avatar menu once signed in, with Profile and Sign out", async () => {
+  it("is the avatar menu once signed in, with Profile, every app and Sign out", async () => {
     auth.signedIn = true;
     render(<AccountButton />);
     fireEvent.click(await screen.findByRole("button", { name: "Account: Pat Couch" }));
     // next/link drops the trailing slash outside a trailingSlash build.
     expect(screen.getByRole("link", { name: "Profile" }).getAttribute("href")).toMatch(/^\/profile\/?$/);
+    // Every app, not a shortcut to one show; the shows open signed in.
+    expect(screen.queryByRole("link", { name: /Open Dancing with the Stars/ })).toBeNull();
+    expect(screen.getByText("Armchair Judge").closest("a")).toBeNull();
+    expect(screen.getByRole("link", { name: /Dancing with the Stars/ }).getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
+    expect(screen.getByRole("link", { name: /The Traitors/ }).getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
+    expect(screen.getByText("Survivor").closest("a")).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
     await waitFor(() => expect(auth.signOut).toHaveBeenCalled());
     expect(document.cookie).not.toContain("armchair_who=%7B");
@@ -126,12 +132,12 @@ describe("auth callback", () => {
   });
 
   it("refuses a return path pointing off-site", () => {
-    sessionStorage.setItem("armchair-hub.returnTo", "//evil.example/");
+    sessionStorage.setItem("armchair.returnTo", "//evil.example/");
     expect(takeReturn()).toBe("/");
   });
 
   it("falls through to Google when a silent continue finds no session", async () => {
-    sessionStorage.setItem("armchair-hub.silent", "1");
+    sessionStorage.setItem("armchair.silent", "1");
     render(<AuthCallback />);
     await screen.findByRole("status");
     act(() => Hub.dispatch("auth", { event: "signInWithRedirect_failure", data: { error: new Error("login_required") } }));

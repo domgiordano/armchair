@@ -29,6 +29,14 @@ vi.mock("@/lib/api/seasons", () => ({
   ),
 }));
 
+// jsdom has <dialog> but not its modal methods.
+HTMLDialogElement.prototype.showModal = function (this: HTMLDialogElement) {
+  this.open = true;
+};
+HTMLDialogElement.prototype.close = function (this: HTMLDialogElement) {
+  this.open = false;
+};
+
 import { AppShell } from "./app-shell";
 import { useSeasonId } from "./season-provider";
 
@@ -70,13 +78,13 @@ it("keeps a season from the URL and lights its edition", async () => {
   nav.search = "season=tukc-2";
   shell();
   expect(await screen.findByText("Showing tukc-2")).toBeTruthy();
-  expect(screen.getByRole("button", { name: "UK" }).getAttribute("aria-pressed")).toBe("true");
+  expect(screen.getByRole("button", { name: "United Kingdom edition" }).getAttribute("aria-pressed")).toBe("true");
 });
 
 it("switches edition by dropping the old season and remembering the choice", async () => {
   shell();
   await screen.findByText("Showing tus-5");
-  fireEvent.click(screen.getByRole("button", { name: "UK" }));
+  fireEvent.click(screen.getByRole("button", { name: "United Kingdom edition" }));
   expect(nav.push).toHaveBeenCalledWith("/stats/");
   expect(localStorage.getItem("armchair.traitors.edition")).toBe("uk");
   expect(await screen.findByText("Showing tukc-2")).toBeTruthy();
@@ -91,20 +99,36 @@ it("changes season from the picker", async () => {
   expect(nav.push).toHaveBeenCalledWith("/stats/?season=tus-4");
 });
 
-it("holds a live season behind the winner bet, with no tabs", async () => {
+it("opens a live season before the winner bet, asking for it in a banner until it's sealed", async () => {
+  const now = Date.now();
   traitors.getTraitorsSeason.mockResolvedValue({
     season: "tus-5",
     title: "",
     current: true,
     needsBet: true,
-    episodes: 12,
-    released: 0,
-    players: [{ id: "ava-stone", name: "Ava Stone", headshot: null }],
+    betRoster: [{ id: "ava-stone", name: "Ava Stone", headshot: null }],
+    bet: null,
+    summary: null,
+    cast: [],
+    episodes: [1, 2, 3, 4].map((ep) => ({
+      ep,
+      title: null,
+      releaseAt: new Date(now + (ep - 1.5) * 86_400_000).toISOString(),
+      closed: false,
+      events: 3,
+      answered: 0,
+    })),
   });
   shell();
+  expect(await screen.findByText("Showing tus-5")).toBeTruthy();
+  expect(screen.getAllByRole("navigation", { name: "Main" })[0]).toBeTruthy();
+  const aside = screen.getByRole("complementary", { name: "Winner bet" });
+  const banner = within(aside);
+  // One of four episodes is out.
+  expect(aside.textContent).toContain("Worth 75% now");
+  fireEvent.click(banner.getByRole("button", { name: "Lock in" }));
   expect(await screen.findByRole("heading", { name: "Who takes the pot?" })).toBeTruthy();
-  expect(screen.queryByText("Showing tus-5")).toBeNull();
-  expect(screen.queryByRole("link", { name: "Leaderboard" })).toBeNull();
+  expect(screen.getByRole("button", { name: "Ava Stone" })).toBeTruthy();
 });
 
 it("shows a finished season's history in place of the tabs", async () => {
@@ -132,4 +156,22 @@ it("renders a seasonless page without loading a season, and leaves it for the ov
   fireEvent.click(await screen.findByRole("option", { name: "Season 4" }));
   expect(nav.push).toHaveBeenCalledWith("/?season=tus-4");
   expect(traitors.getTraitorsSeason).not.toHaveBeenCalled();
+});
+
+it("lists every Armchair Judge app in the header menu and the footer, the others opening signed in", async () => {
+  shell();
+  await screen.findByText("Showing tus-5");
+  const button = screen.getByRole("button", { name: "Armchair Judge apps" });
+  fireEvent.click(button);
+  const menu = button.parentElement as HTMLElement;
+  expect(within(menu).getByRole("link", { name: /Dancing with the Stars/ }).getAttribute("href")).toBe(
+    "https://dwts.armchairjudge.com/?sso=1",
+  );
+  expect(within(menu).getByRole("link", { name: /The Traitors/ }).getAttribute("aria-current")).toBe("page");
+  expect(within(menu).queryByRole("link", { name: /Survivor/ })).toBeNull();
+
+  const footer = within(screen.getByRole("contentinfo"));
+  expect(footer.getByRole("link", { name: "Armchair Judge" }).getAttribute("href")).toBe("https://armchairjudge.com/?sso=1");
+  expect(footer.getByText(/coming soon/)).toBeTruthy();
+  expect(screen.getByText(/Not affiliated with The Traitors/)).toBeTruthy();
 });

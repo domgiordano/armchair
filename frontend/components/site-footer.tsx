@@ -2,11 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { HUB_URL, TRAITORS_URL } from "@/components/apps-menu";
-import { ICON_TRIGGER, ShowIcon, type Show } from "@/components/show-icon";
+import { APPS, appLink, type App } from "@armchair/app-core/apps";
+
+import { AppIcon } from "@/components/app-icon";
+import { ICON_TRIGGER } from "@/components/show-icon";
 import { FOCUS } from "@/lib/ui";
 
-// Kept in step with hub/components/site-footer.tsx by hand: the two apps share no package.
+// The same columns as hub/components/site-footer.tsx; the app list comes from app-core.
+
+// The hub's pages, opening signed in like every other cross-app link.
+const hub = (path = "/") => appLink("hub", path) ?? path;
 
 const GITHUB_URL = "https://github.com/domgiordano/armchair";
 const XOMWARE_URL = "https://xomware.com";
@@ -19,18 +24,6 @@ const UNDERLINE =
 
 // Stamped when the static page is built.
 const YEAR = new Date().getFullYear();
-
-interface App {
-  show: Show;
-  name: string;
-  href?: string;
-}
-
-const APPS: App[] = [
-  { show: "dwts", name: "Dancing with the Stars", href: "/" },
-  { show: "traitors", name: "The Traitors", href: TRAITORS_URL },
-  { show: "survivor", name: "Survivor" },
-];
 
 function FooterLink({ href, children }: { href: string; children: ReactNode }) {
   const body = (
@@ -63,8 +56,9 @@ function Column({ title, children }: { title: string; children: ReactNode }) {
 }
 
 function AppItem({ app }: { app: App }) {
-  const icon = <ShowIcon show={app.show} size={28} locked={!app.href} />;
-  if (!app.href) {
+  const href = app.id === "dwts" ? "/" : appLink(app.id);
+  const icon = <AppIcon id={app.id} size={28} locked={!href} />;
+  if (!href) {
     return (
       <li className={`${ICON_TRIGGER} flex min-h-11 items-center gap-2.5 text-sm text-silver-dim/70`}>
         {icon}
@@ -77,16 +71,18 @@ function AppItem({ app }: { app: App }) {
   }
   return (
     <li>
-      <AppLink href={app.href}>
+      <AppLink href={href}>
         {icon}
         <span className="relative">
           {app.name}
           <span aria-hidden="true" className={`${UNDERLINE} bottom-0`} />
         </span>
-        <span className="flex items-center gap-1 rounded-full bg-gold/15 px-2 py-0.5 text-[9px] font-bold tracking-[0.15em] text-gold-light">
-          <span className="size-1 rounded-full bg-current motion-safe:animate-pulse" aria-hidden="true" />
-          LIVE
-        </span>
+        {app.id !== "hub" && (
+          <span className="flex items-center gap-1 rounded-full bg-gold/15 px-2 py-0.5 text-[9px] font-bold tracking-[0.15em] text-gold-light">
+            <span className="size-1 rounded-full bg-current motion-safe:animate-pulse" aria-hidden="true" />
+            LIVE
+          </span>
+        )}
       </AppLink>
     </li>
   );
@@ -117,7 +113,7 @@ export function SiteFooter() {
       />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 pt-14 pb-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-16">
         <div className="flex flex-col items-start gap-4">
-          <a href={HUB_URL} className={`group flex min-h-11 items-center gap-3 rounded-md ${FOCUS}`}>
+          <a href={hub()} className={`group flex min-h-11 items-center gap-3 rounded-md ${FOCUS}`}>
             <Image
               src="/brand/mark-96.png"
               alt=""
@@ -146,11 +142,8 @@ export function SiteFooter() {
           <div className="col-span-2 sm:col-span-1">
             <Column title="Apps">
               {APPS.map((app) => (
-                <AppItem key={app.show} app={app} />
+                <AppItem key={app.id} app={app} />
               ))}
-              <li>
-                <FooterLink href={HUB_URL}>armchairjudge.com</FooterLink>
-              </li>
             </Column>
           </div>
           <Column title="Product">
@@ -158,7 +151,7 @@ export function SiteFooter() {
               <FooterLink href="/#how">How it works</FooterLink>
             </li>
             <li>
-              <FooterLink href={`${HUB_URL}/#faq`}>FAQ</FooterLink>
+              <FooterLink href={`${hub()}#faq`}>FAQ</FooterLink>
             </li>
             <li>
               <FooterLink href="/discover/">Discover</FooterLink>
@@ -166,10 +159,10 @@ export function SiteFooter() {
           </Column>
           <Column title="Legal">
             <li>
-              <FooterLink href={`${HUB_URL}/privacy/`}>Privacy</FooterLink>
+              <FooterLink href={hub("/privacy/")}>Privacy</FooterLink>
             </li>
             <li>
-              <FooterLink href={`${HUB_URL}/terms/`}>Terms</FooterLink>
+              <FooterLink href={hub("/terms/")}>Terms</FooterLink>
             </li>
             <li>
               <FooterLink href="/credits/">Photo credits</FooterLink>
@@ -189,7 +182,7 @@ export function SiteFooter() {
       <div className="border-t border-silver/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs leading-relaxed text-silver-dim sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6">
           <p className="shrink-0">&copy; {YEAR} Armchair Judge &middot; An independent fan project</p>
-          <p className="sm:text-right">Not affiliated with ABC, Disney, BBC, BBC Studios, NBC, Peacock or The Traitors.</p>
+          <p className="sm:text-right">Not affiliated with Dancing with the Stars, The Traitors, ABC, Disney, NBC, Peacock, BBC, CBS or the shows&rsquo; producers.</p>
         </div>
       </div>
     </footer>

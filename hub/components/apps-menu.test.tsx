@@ -24,16 +24,20 @@ describe("AppsMenu", () => {
     expect(screen.queryByText("Dancing with the Stars")).toBeNull();
   });
 
-  it("links the live apps and leaves coming-soon apps unclickable", () => {
+  it("lists every Armchair app: this one, the live ones signed in, and coming-soon ones unclickable", () => {
     const panel = renderOpen();
     expect(toggle().getAttribute("aria-expanded")).toBe("true");
 
+    const hub = within(panel).getByText("Armchair Judge");
+    expect(hub.closest("a")).toBeNull();
+    expect(hub.parentElement?.parentElement?.textContent).toContain("HERE");
+
     const dwts = within(panel).getByRole("link", { name: /Dancing with the Stars/ });
-    expect(dwts.getAttribute("href")).toBe("https://dwts.armchairjudge.com");
+    expect(dwts.getAttribute("href")).toBe("https://dwts.armchairjudge.com/?sso=1");
     expect(dwts.textContent).toContain("LIVE");
 
     const traitors = within(panel).getByRole("link", { name: /The Traitors/ });
-    expect(traitors.getAttribute("href")).toBe("https://traitors.armchairjudge.com");
+    expect(traitors.getAttribute("href")).toBe("https://traitors.armchairjudge.com/?sso=1");
     expect(traitors.textContent).toContain("LIVE");
 
     const survivor = within(panel).getByText("Survivor");
@@ -43,7 +47,7 @@ describe("AppsMenu", () => {
 
   it("gives each app its icon, padlocked until the app is live, played by hovering its row", () => {
     const panel = renderOpen();
-    const rows = within(panel).getAllByRole("listitem").slice(0, 3);
+    const rows = within(panel).getAllByRole("listitem").slice(1, 4);
     expect(rows.map((li) => li.querySelector("[data-show]")?.getAttribute("data-show"))).toEqual(["dwts", "traitors", "survivor"]);
     for (const li of rows) expect(li.firstElementChild?.classList.contains(ICON_TRIGGER)).toBe(true);
     const locked = rows.map((li) => li.querySelector("[data-show]")?.querySelector("span") !== null);

@@ -8,6 +8,9 @@ openAt and any per-season releaseTime. docs/features/traitors/PLAN.md "Future se
 History fills itself: a finished season new to the catalog, or one the flip just closed,
 is published in-process from the page already fetched, the poller's backfill path. Every
 seeded season is merged into the people index (common/traitors_people.py).
+
+Every run re-fetches the season article's lead and each linked contestant's article lead
+(wiki_fetch.summary and leads), so an edit on Wikipedia lands within a day.
 """
 
 from __future__ import annotations
@@ -25,7 +28,7 @@ from lambdas.common.traitors_catalog import EDITIONS, items
 from lambdas.common.traitors_dynamo import season_parts
 from lambdas.common.traitors_parse import season, seasons
 from lambdas.common.traitors_publish import finished, publish_season
-from lambdas.common.wiki_fetch import latest, pageids
+from lambdas.common.wiki_fetch import latest, leads, pageids, summary
 
 WEEK = timedelta(days=7)
 
@@ -45,8 +48,11 @@ def current_season(releases: dict[int, list[datetime]], now: datetime) -> int | 
     return max((n for n, r in releases.items() if r and min(r) <= now), default=None)
 
 
-def seed(catalog, show: str, number: int, page: dict, parsed: dict, now: datetime) -> bool:
-    """Writes the season's items; True when it is new to the catalog."""
+def seed(
+    catalog, show: str, number: int, page: dict, parsed: dict, now: datetime, about: dict
+) -> bool:
+    """Writes the season's items; True when it is new to the catalog. `about` is the
+    `summary` and `bios` that traitors_catalog.items takes."""
     pk = f"SEASON#{show}#{number}"
     found = catalog.query(KeyConditionExpression=Key("pk").eq(pk) & Key("sk").eq("META"))
     meta = found["Items"][0] if found["Items"] else None
@@ -58,10 +64,18 @@ def seed(catalog, show: str, number: int, page: dict, parsed: dict, now: datetim
         current=False,
         open_at=stamp(now),
         release_time=meta["releaseTime"] if meta else None,
+        **about,
     )
     if meta:
         rows = [r for r in rows if r["sk"].startswith(("EP#", "PLAYER#"))]
-        rows.append({"pk": pk, "sk": "META", "episodes": len(parsed["episodes"])})
+        rows.append(
+            {
+                "pk": pk,
+                "sk": "META",
+                "episodes": len(parsed["episodes"]),
+                "summary": about["summary"],
+            }
+        )
     write(catalog, rows, keep={"openAt"})
     return meta is None
 
@@ -106,26 +120,31 @@ def handler(event, context):
             try:
                 fetched = latest(page["pageid"]) if page else None
                 parsed = season(fetched["content"]) if fetched else None
-            except Exception as e:  # noqa: BLE001 -- any parse bug, logged and skipped
+                if not parsed or not parsed["contestants"] or not parsed["episodes"]:
+                    skipped.append(number)
+                    continue
+                articles = [p["article"] for p in parsed["contestants"] if p["article"]]
+                about = {"summary": summary(page["pageid"]), "bios": leads(articles)}
+            except Exception as e:  # noqa: BLE001 -- any parse bug or fetch error, logged and skipped
                 # One bad page must not stop the other seasons; US season 2's cast table
                 # crashed the parser on 2026-10-02 (rev 1376555148). Retried tomorrow.
                 failed.append({"season": number, "error": repr(e)})
                 continue
-            if not parsed or not parsed["contestants"] or not parsed["episodes"]:
-                skipped.append(number)
-                continue
-            new = seed(catalog, show, number, page, parsed, now)
+            new = seed(catalog, show, number, page, parsed, now, about)
             (seeded if new else refreshed).append(number)
             found[number] = (fetched["revid"], parsed)
         pick, closed = flip(catalog, show, now)
 
         # After the flip, which is what decides a new season isn't current. A season new
         # to the catalog, or just closed, has its whole history published from this page.
+        # So does a finished season with no exit on any player: seeded by the script and
+        # never published, its player pages would show no finish.
         for number, (rev, parsed) in found.items():
             rows = query_all(catalog, f"SEASON#{show}#{number}")
             meta, episodes, players = season_parts(rows, show, number)
             done = finished(meta, episodes, t)
-            if done and (number in seeded or number in closed):
+            bare = not any(p.get("exit") for p in players)
+            if done and (number in seeded or number in closed or bare):
                 publish_season(show, number, rows, parsed, rev, t, 0)
                 published.append(number)
             traitors_people.index(

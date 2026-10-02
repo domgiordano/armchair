@@ -6,7 +6,8 @@ import { Headshot } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/toast";
 import { WaxSeal } from "@/components/ui/wax-seal";
-import { submitWinner, type BetGate, type Faction } from "@/lib/api/traitors";
+import { submitWinner, type Faction, type Player } from "@/lib/api/traitors";
+import { roman } from "@/lib/players";
 import { FACTION, multiplier, WINNER } from "@/lib/points";
 import { cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
 import { ApiError } from "@armchair/app-core/api/client";
@@ -16,23 +17,29 @@ interface Pick {
   faction: Faction | null;
 }
 
-const MAX = 2;
+const MAX = 3;
 
 interface WinnerBetProps {
-  gate: BetGate;
+  season: string;
+  roster: Player[];
+  episodes: number;
+  released: number;
+  /** Why it opened: a tap on a pick says what's waiting. */
+  prompt?: string;
   onSealed: () => void;
 }
 
 /**
- * The season's door: nothing else shows until you name one or two winners and
- * how they win. Late bets are worth less; the candle shows how much is left.
+ * Up to three winners and how each wins. The season is open to browse without
+ * it, but no call can be made until it's sealed. Late bets are worth less; the
+ * candle shows how much is left.
  */
-export function WinnerBet({ gate, onSealed }: WinnerBetProps) {
+export function WinnerBet({ season, roster, episodes, released, prompt, onSealed }: WinnerBetProps) {
   const toast = useToast();
   const [picks, setPicks] = useState<Pick[]>([]);
-  const m = multiplier(gate.episodes, gate.released);
+  const m = multiplier(episodes, released);
   const ready = picks.length > 0 && picks.every((p) => p.faction !== null);
-  const names = new Map(gate.players.map((p) => [p.id, p.name]));
+  const names = new Map(roster.map((p) => [p.id, p.name]));
 
   const toggle = (id: string) =>
     setPicks((ps) =>
@@ -46,7 +53,7 @@ export function WinnerBet({ gate, onSealed }: WinnerBetProps) {
   const seal = async () => {
     try {
       await submitWinner(
-        gate.season,
+        season,
         picks.map((p) => ({ player: p.player, faction: p.faction ?? "Faithful" })),
       );
       onSealed();
@@ -64,13 +71,13 @@ export function WinnerBet({ gate, onSealed }: WinnerBetProps) {
   return (
     <section aria-labelledby="bet-title" className="flex flex-col gap-6">
       <Card tone="blood" tartan className="flex flex-col gap-3 p-5 sm:p-6">
-        <p className={cn(EYEBROW, "text-flame")}>Before anything else</p>
-        <h1 id="bet-title" className={cn(HEADING, "text-3xl leading-tight sm:text-4xl")}>
+        <p className={cn(EYEBROW, "text-flame")}>{prompt ?? "Your top 3 winners"}</p>
+        <h2 id="bet-title" className={cn(HEADING, "text-3xl leading-tight sm:text-4xl")}>
           Who takes the pot?
-        </h1>
+        </h2>
         <p className="text-lg leading-relaxed text-parchment">
-          Name one or two winners, and whether each wins as a Faithful or a Traitor. Your seal makes it final, and the
-          season opens once it&apos;s set.
+          Name up to three winners, and whether each wins as a Faithful or a Traitor. Every one is scored the same.
+          Your seal makes it final, and your calls open once it&apos;s set.
         </p>
         <div className="flex items-center gap-4 pt-1">
           <BetCandle share={m} />
@@ -81,7 +88,7 @@ export function WinnerBet({ gate, onSealed }: WinnerBetProps) {
             <span className="text-parchment">
               <span className="nums">{Math.round(WINNER * m)}</span> points per right winner,{" "}
               <span className="nums">+{Math.round(FACTION * m)}</span> if you call their side.
-              {gate.released > 0 && ` ${gate.released} of ${gate.episodes} episodes are already out.`}
+              {released > 0 && ` ${released} of ${episodes} episodes are already out.`}
             </span>
           </p>
         </div>
@@ -89,10 +96,10 @@ export function WinnerBet({ gate, onSealed }: WinnerBetProps) {
 
       <fieldset className="flex flex-col gap-3">
         <legend className={cn(EYEBROW, "mb-3")}>
-          Pick up to two · {picks.length} of {MAX}
+          Pick up to three · {picks.length} of {MAX}
         </legend>
         <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5">
-          {gate.players.map((p) => {
+          {roster.map((p) => {
             const at = picks.findIndex((x) => x.player === p.id);
             const full = at < 0 && picks.length >= MAX;
             return (
@@ -117,7 +124,7 @@ export function WinnerBet({ gate, onSealed }: WinnerBetProps) {
                   <span className="text-sm leading-tight">{p.name}</span>
                   {at >= 0 && (
                     <span aria-hidden="true" className="absolute top-1 right-1.5 font-display text-xs text-candle">
-                      {at === 0 ? "I" : "II"}
+                      {roman(at + 1)}
                     </span>
                   )}
                 </button>

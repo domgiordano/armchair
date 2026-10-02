@@ -4,12 +4,16 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
+import { AppList, AppsMenu } from "@/components/apps-menu";
+import { BetProvider } from "@/components/bet";
 import { HistoryScreen } from "@/components/history-screen";
 import { PlayerSearch } from "@/components/player-search";
 import { SeasonDataContext, useSeasonLoad } from "@/components/season-data";
 import { SeasonProvider, useShellSeason } from "@/components/season-provider";
+import { SiteFooter } from "@/components/site-footer";
 import { Avatar } from "@/components/ui/avatar";
 import { EmberGlow } from "@/components/ui/ember-glow";
+import { UkFlag, UsFlag } from "@/components/ui/flags";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { Select } from "@/components/ui/select";
 import { Sheet } from "@/components/ui/sheet";
@@ -17,9 +21,8 @@ import { SkeletonList } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { TartanBand } from "@/components/ui/tartan-band";
 import { ToastProvider } from "@/components/ui/toast";
-import { WinnerBet } from "@/components/winner-bet";
-import { seasonLabel, withSeason, type Edition } from "@/lib/seasons";
-import { cn, FOCUS, ICON_BUTTON } from "@/lib/ui";
+import { seasonName, seasonNumber, withSeason, type Edition } from "@/lib/seasons";
+import { cn, EYEBROW, FOCUS, ICON_BUTTON } from "@/lib/ui";
 import { getMe, type Me } from "@armchair/app-core/api/client";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
 
@@ -74,12 +77,10 @@ function Shell({ title, seasonless = false, children }: AppShellProps) {
   const pathname = usePathname();
   const { season, seasons } = useShellSeason();
   const summary = seasons?.find((s) => s.id === season);
-  const load = useSeasonLoad(seasonless || summary?.current === false ? null : season);
+  const load = useSeasonLoad(seasonless ? null : season);
   // A finished season has nothing to call: its history stands in for every tab.
   const finished = !seasonless && (summary ? !summary.current : load.data?.current === false);
-  // The winner bet comes before anything else in a live season, tabs included.
-  const gated = load.data?.needsBet === true;
-  const tabs = !gated && !finished;
+  const tabs = !finished;
   const current = activeTab(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
@@ -123,6 +124,8 @@ function Shell({ title, seasonless = false, children }: AppShellProps) {
           <div className="ml-auto flex items-center gap-1 sm:gap-2">
             <PlayerSearch />
             <EditionToggle />
+            {/* A phone's header has no room: there the apps sit in the menu. */}
+            <AppsMenu className="max-sm:hidden" />
             <AccountMenu />
           </div>
         </div>
@@ -185,6 +188,10 @@ function Shell({ title, seasonless = false, children }: AppShellProps) {
           </nav>
         )}
         <SeasonPicker />
+        <nav aria-label="Armchair Judge apps" className="-mx-3 flex flex-col gap-1 sm:hidden">
+          <p className={cn(EYEBROW, "px-3")}>Armchair Judge apps</p>
+          <AppList onPick={() => setMenuOpen(false)} />
+        </nav>
         <TartanBand className="mt-auto" />
       </Sheet>
 
@@ -197,9 +204,7 @@ function Shell({ title, seasonless = false, children }: AppShellProps) {
           {children}
         </Content>
       </main>
-      <footer className="border-t border-gilt/20 px-6 py-5 text-center text-sm text-ash">
-        Not affiliated with The Traitors, BBC, NBC or Peacock.
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
@@ -217,35 +222,49 @@ function Content({ load, finished, seasonless, children }: ContentProps) {
   if (seasonless) return children;
   if (season === null && failed)
     return <ErrorState what="the seasons" message="the castle didn't answer" retry={retry} />;
-  if (season !== null && finished) return <HistoryScreen key={season} season={season} />;
+  if (season !== null && finished) return <HistoryScreen key={season} season={season} summary={data?.summary} />;
   if (data === null && error !== null) return <ErrorState what="this season" message={error} retry={reload} />;
   if (data === null) return <SkeletonList label="Opening the season" rows={3} row="h-20" />;
-  if (data.needsBet) return <WinnerBet key={data.season} gate={data} onSealed={reload} />;
-  return <SeasonDataContext value={{ view: data, reload }}>{children}</SeasonDataContext>;
+  return (
+    <SeasonDataContext value={{ view: data, reload }}>
+      <BetProvider key={data.season} view={data} onSealed={reload}>
+        {children}
+      </BetProvider>
+    </SeasonDataContext>
+  );
 }
 
-const EDITION_LABELS: [Edition, string][] = [
-  ["us", "US"],
-  ["uk", "UK"],
+const EDITION_LABELS: { id: Edition; short: string; name: string; Flag: typeof UsFlag }[] = [
+  { id: "us", short: "US", name: "United States edition", Flag: UsFlag },
+  { id: "uk", short: "UK", name: "United Kingdom edition", Flag: UkFlag },
 ];
 
 function EditionToggle() {
   const { edition, chooseEdition } = useShellSeason();
   return (
     <div role="group" aria-label="Edition" className="flex rounded-sm border border-gilt/50 bg-night/70 p-0.5">
-      {EDITION_LABELS.map(([id, label]) => (
+      {EDITION_LABELS.map(({ id, short, name, Flag }) => (
         <button
           key={id}
           type="button"
+          aria-label={name}
           aria-pressed={edition === id}
           onClick={() => chooseEdition(id)}
           className={cn(
             FOCUS,
-            "flex min-h-10 min-w-11 items-center justify-center rounded-sm font-display text-xs font-semibold tracking-[0.14em] transition-colors",
+            "group flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-sm px-1.5 font-display text-xs font-semibold tracking-[0.14em] transition-colors",
             edition === id ? "bg-cloak-500 text-bone" : "text-ash hover:text-bone active:bg-cloak",
           )}
         >
-          {label}
+          <Flag
+            className={cn(
+              "h-3.5 ring-1 ring-night/60 transition-[filter,opacity]",
+              edition !== id && "opacity-55 saturate-50 group-hover:opacity-100 group-hover:saturate-100",
+            )}
+          />
+          <span aria-hidden="true" className="max-sm:hidden">
+            {short}
+          </span>
         </button>
       ))}
     </div>
@@ -258,13 +277,17 @@ function SeasonPicker({ hideLabel = false }: { hideLabel?: boolean }) {
   // Until the list arrives, the URL's season is the only option.
   const options = seasons?.some((s) => s.id === season)
     ? seasons
-    : [...(seasons ?? []), { id: season, number: Number(season.split("-")[1]), year: 0, current: false }];
+    : [...(seasons ?? []), { id: season, number: seasonNumber(season), year: 0, current: false }];
   return (
     <Select
       label="Season"
       hideLabel={hideLabel}
       value={season}
-      options={options.map((s) => ({ value: s.id, label: seasonLabel(s), detail: s.current ? "Live now" : undefined }))}
+      options={options.map((s) => {
+        const name = seasonName(s);
+        const detail = [name.numbered, s.current && "Live now"].filter(Boolean).join(" · ");
+        return { value: s.id, label: name.title, detail: detail || undefined };
+      })}
       onChange={chooseSeason}
     />
   );

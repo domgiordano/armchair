@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
-import { getTraitorsSeason, type SeasonView, type TraitorsSeason } from "@/lib/api/traitors";
+import { getTraitorsSeason, type SeasonView } from "@/lib/api/traitors";
 
 export interface SeasonData {
   view: SeasonView;
@@ -11,7 +11,7 @@ export interface SeasonData {
 
 export const SeasonDataContext = createContext<SeasonData | null>(null);
 
-/** The open season's schedule and your progress in it. Only pages behind the bet gate have one. */
+/** The open season's schedule and your progress in it. Every season page under the shell has one. */
 export function useSeasonView(): SeasonData {
   const value = useContext(SeasonDataContext);
   if (!value) throw new Error("useSeasonView needs the shell's season data");
@@ -22,7 +22,7 @@ export const errorText = (e: unknown) => (e instanceof Error ? e.message : "Requ
 
 interface Loaded {
   season: string;
-  data: TraitorsSeason | null;
+  data: SeasonView | null;
   error: string | null;
 }
 

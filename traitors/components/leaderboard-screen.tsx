@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { errorText, useSeasonView } from "@/components/season-data";
-import { useShellSeason } from "@/components/season-provider";
+import { useSeasonName } from "@/components/season-provider";
 import { Avatar } from "@/components/ui/avatar";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { Select } from "@/components/ui/select";
@@ -12,7 +12,7 @@ import { TartanBand } from "@/components/ui/tartan-band";
 import { tabId, Tabs } from "@/components/ui/tabs";
 import { getRanks, type Ranks, type Scope, type Standing } from "@/lib/api/traitors";
 import { useGroupFilter } from "@/lib/group-filter";
-import { seasonLabel, showOf } from "@/lib/seasons";
+import { showOf } from "@/lib/seasons";
 import { cn, HEADING } from "@/lib/ui";
 
 const SCOPES = [
@@ -25,12 +25,11 @@ const ALL = "all";
 
 export function LeaderboardScreen() {
   const { view } = useSeasonView();
-  const { seasons } = useShellSeason();
+  const name = useSeasonName(view.season, view.title);
   const filter = useGroupFilter();
   const [range, setRange] = useState<string>(view.season);
   const [scope, setScope] = useState<Scope>("global");
   const [picked, setPicked] = useState<string | null>(null);
-  const meta = seasons?.find((s) => s.id === view.season);
   const groups = filter.groups ?? [];
   const group = groups.find((g) => g.id === (picked ?? filter.group))?.id ?? groups[0]?.id ?? null;
   const waiting = scope === "group" && filter.groups === null && !filter.failed;
@@ -46,7 +45,7 @@ export function LeaderboardScreen() {
           className="w-40"
           value={range}
           options={[
-            { value: view.season, label: meta ? seasonLabel(meta) : "This season" },
+            { value: view.season, label: name.title },
             { value: ALL, label: "All-time" },
           ]}
           onChange={setRange}

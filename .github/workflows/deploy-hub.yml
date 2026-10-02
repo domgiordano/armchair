@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "hub/**"
+      - "packages/app-core/**"
       # The landing's stats strip is counted from the season catalog at build time.
       - "fixtures/seasons/**"
       - ".github/workflows/deploy-hub.yml"

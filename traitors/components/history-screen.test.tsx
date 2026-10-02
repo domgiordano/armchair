@@ -54,7 +54,7 @@ it("crowns a Traitor win in red and lists the cast with how each left", async ()
   );
   expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Season 3");
 
-  const cast = within(screen.getByRole("region", { name: "The cast" }));
+  const cast = within(screen.getByRole("region", { name: "Final standings" }));
   // Winner first, then whoever lasted longest.
   const tiles = [
     "Ann Avery, Traitor, Winner",
@@ -72,7 +72,7 @@ it("seats each round table with its first votes in chalk and marks the banished 
 
   const table = within(await screen.findByRole("group", { name: "Episode 2 round table" }));
   // That morning's murder isn't at the table; nobody left before it is.
-  const seats = table.getAllByRole("img").filter((el) => el.tagName === "DIV");
+  const seats = table.getAllByRole("link");
   expect(seats.map((seat) => seat.getAttribute("aria-label"))).toEqual([
     "Ann Avery",
     "Bo Banks, banished, Traitor, 3 votes",
@@ -91,6 +91,20 @@ it("seats each round table with its first votes in chalk and marks the banished 
   expect(first.getByText("No one murdered")).toBeTruthy();
 });
 
+it("links every past-season player to their profile: cast wall, round-table seat and timeline", async () => {
+  api.getHistory.mockResolvedValue(HISTORY);
+  render(<HistoryScreen season="tus-3" />);
+  const profile = /^\/players\/player\/?\?show=tus&id=cy-cole&season=tus-3$/;
+
+  const cast = within(await screen.findByRole("region", { name: "Final standings" }));
+  expect(cast.getByRole("link", { name: /^Cy Cole/ }).getAttribute("href")).toMatch(profile);
+
+  const night = within(screen.getByRole("listitem", { name: "Episode 2" }));
+  expect(night.getByRole("link", { name: "Cy Cole" }).getAttribute("href")).toMatch(profile);
+  const seat = within(night.getByRole("group", { name: "Episode 2 round table" })).getByRole("link", { name: /^Di Dunn/ });
+  expect(seat.getAttribute("href")).toMatch(/id=di-dunn&season=tus-3$/);
+});
+
 it("shows a gold banner for a Faithful win", async () => {
   api.getHistory.mockResolvedValue({ ...HISTORY, winners: [{ id: "ed-eaves", faction: "Faithful" }] });
   render(<HistoryScreen season="tus-3" />);
@@ -102,6 +116,6 @@ it("offers a retry when the season won't load", async () => {
   render(<HistoryScreen season="tus-3" />);
   expect((await screen.findByRole("alert")).textContent).toContain("castle closed");
   fireEvent.click(screen.getByRole("button", { name: "Try again" }));
-  expect(await screen.findByRole("region", { name: "The cast" })).toBeTruthy();
+  expect(await screen.findByRole("region", { name: "Final standings" })).toBeTruthy();
   expect(api.getHistory).toHaveBeenCalledTimes(2);
 });

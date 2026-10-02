@@ -1,7 +1,20 @@
 #!/usr/bin/env python3
-"""Headshots for a Traitors cast, found by image search and approved by eye.
+"""Headshots for a Traitors cast: found automatically, or by image search and approved by eye.
 
     cd backend
+    python scripts/find_traitors_headshots.py auto tus 5 --bucket traitors.armchairjudge.com
+    python scripts/find_traitors_headshots.py auto tukc 2 --pageid 83087125 --bucket x --dry-run
+
+`auto` takes each player of a season (or of every season the catalog has for the show) with
+no headshot in the registry or on their catalog PLAYER, and keeps the first source with one
+clear face (faces.crop):
+1. Wikimedia Commons, through the player's Wikipedia article (find_headshots.commons): free, credited.
+2. The player's page on the show's Fandom wiki: its main image, a network promo photo like
+   DWTS's supplied ones. Fandom's HTML is behind Cloudflare; its api.php is not.
+3. Brave image search, only when BRAVE_API_KEY is set.
+Crops go to s3://<bucket>/headshots/, into the registry, and straight onto the PLAYER and
+PERSON items, since a CI run can't commit the registry.
+
     BRAVE_API_KEY=... python scripts/find_traitors_headshots.py search 83493607 --out /tmp/nb
     open /tmp/nb/contact.html            # note the number under each keeper
     python scripts/find_traitors_headshots.py approve /tmp/nb picks.json --bucket traitors.armchairjudge.com
@@ -29,14 +42,25 @@ import boto3
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from lambdas.common.dynamo import query_all
 from lambdas.common.people import slug
+from lambdas.common.traitors_catalog import EDITIONS
+from lambdas.common.traitors_gate import player_id
 from lambdas.common.traitors_parse import season
 from lambdas.common.wiki_fetch import USER_AGENT, latest
-from scripts import faces
+from scripts import faces, find_headshots
+from scripts.find_headshots import get, same
 
 SEARCH = "https://api.search.brave.com/res/v1/images/search"
 REGISTRY = Path(__file__).resolve().parents[2] / "fixtures" / "traitors-headshots.json"
 KEEP = 4
+# thetraitors.fandom.com covers the US and international editions.
+FANDOM = {
+    "tus": "https://thetraitors.fandom.com/api.php",
+    "tuk": "https://thetraitorsuk.fandom.com/api.php",
+    "tukc": "https://thetraitorsuk.fandom.com/api.php",
+}
+Hit = tuple[bytes, dict]
 
 
 def search(query: str, key: str) -> list[dict]:
@@ -77,6 +101,135 @@ def candidates(name: str, title: str, key: str, out: Path) -> list[dict]:
         if len(found) == KEEP:
             break
     return found
+
+
+def commons(show: str, title: str, names: list[str]) -> dict[str, Hit]:
+    people = {n: {title} for n in names}
+    known = find_headshots.articles(people, (title, EDITIONS[show]["article"]))
+    out = {}
+    for name, (page, item) in known.items():
+        shot = find_headshots.commons(name, page, item)
+        if shot:
+            crop = faces.crop(faces.fetch(shot["file"]))
+            keep = ("image", "sourceUrl", "author", "license")
+            out[name] = crop, {**{k: shot[k] for k in keep}, "source": "commons"}
+    return out
+
+
+def fandom_image(api: str, name: str) -> str | None:
+    """The main image of the wiki page titled with the name, else of a search hit that is."""
+    q = {"action": "query", "prop": "pageimages", "piprop": "name"}
+    page = get(api, {**q, "titles": name, "redirects": 1})["query"]["pages"][0]
+    if "pageimage" in page:
+        return page["pageimage"]
+    found = get(api, {**q, "generator": "search", "gsrsearch": name, "gsrlimit": 5})
+    hits = sorted(found.get("query", {}).get("pages", []), key=lambda p: p["index"])
+    return next((p["pageimage"] for p in hits if same(p["title"], name) and "pageimage" in p), None)
+
+
+def fandom(show: str, name: str) -> Hit | None:
+    api = FANDOM[show]
+    file = fandom_image(api, name)
+    if not file:
+        return None
+    params = {"action": "query", "titles": f"File:{file}", "prop": "imageinfo"}
+    pages = get(api, {**params, "iiprop": "url|sha1", "iiurlwidth": faces.WIDTH})["query"]["pages"]
+    if not pages[0].get("imageinfo"):
+        return None
+    info = pages[0]["imageinfo"][0]
+    data = download(info.get("thumburl") or info["url"])
+    crop = data and faces.crop(data)
+    if not crop:
+        return None
+    shot = {"image": faces.key(name, info["sha1"]), "sourceUrl": info["descriptionurl"]}
+    return crop, {**shot, "source": "fandom"}
+
+
+def brave(name: str, title: str, key: str) -> Hit | None:
+    for r in search(f'"{name}" {title}', key):
+        image = r.get("properties", {}).get("url")
+        data = image and download(image)
+        crop = data and faces.crop(data)
+        if crop:
+            shot = {"image": faces.key(name, hashlib.sha1(data).hexdigest())}
+            return crop, {**shot, "sourceUrl": r.get("url") or image, "source": "search"}
+    return None
+
+
+def resolve(show: str, title: str, names: list[str]) -> dict[str, Hit]:
+    """{name: (crop, headshot)} for the names some source has a usable face for."""
+    found = commons(show, title, names) if names else {}
+    key = os.environ.get("BRAVE_API_KEY")
+    for name in names:
+        hit = found.get(name) or fandom(show, name) or (key and brave(name, title, key))
+        if hit:
+            found[name] = hit
+        print(f"{name}: {hit[1]['source'] if hit else '-'}", flush=True)
+    return found
+
+
+def stamp(catalog, show: str, player: dict, shot: dict) -> None:
+    """The headshot on the PLAYER, and on the PERSON rows when the people index has them."""
+    pid = player_id(player)
+    for pk, sk, value in [
+        (player["pk"], player["sk"], shot),
+        (f"PERSON#{show}#{pid}", "META", shot),
+        (f"PEOPLE#{show}", f"PERSON#{pid}", shot["image"]),
+    ]:
+        try:
+            catalog.update_item(
+                Key={"pk": pk, "sk": sk},
+                UpdateExpression="SET headshot = :h",
+                ConditionExpression="attribute_exists(pk)",
+                ExpressionAttributeValues={":h": value},
+            )
+        except catalog.meta.client.exceptions.ConditionalCheckFailedException:
+            # No PERSON yet: discovery's people index copies the PLAYER headshot when it adds one.
+            continue
+
+
+def auto(
+    show: str, numbers: list[int], bucket: str, dry_run: bool, pageid: int | None = None
+) -> None:
+    registry = json.loads(REGISTRY.read_text()) if REGISTRY.exists() else {}
+    table = os.environ.get("CATALOG_TABLE", "armchair-catalog")
+    catalog = None if dry_run and pageid else boto3.resource("dynamodb").Table(table)
+    for number in numbers:
+        rows = query_all(catalog, f"SEASON#{show}#{number}") if catalog else []
+        meta = next((r for r in rows if r["sk"] == "META"), None)
+        if not pageid and not meta:
+            sys.exit(f"{show} {number} is not in the catalog: seed it or pass --pageid")
+        page = latest(pageid or int(meta["pageid"]))
+        players = {r["name"]: r for r in rows if r["sk"].startswith("PLAYER#")}
+        cast = [p["name"] for p in season(page["content"])["contestants"]]
+        todo = [n for n in cast if n not in registry and not players.get(n, {}).get("headshot")]
+        found = resolve(show, page["title"], todo)
+        print(f"{show} {number}: found {len(found)} of {len(todo)} missing, {len(cast)} players")
+        if dry_run:
+            continue
+        s3 = boto3.client("s3")
+        for name, (crop, shot) in found.items():
+            s3.put_object(
+                Bucket=bucket,
+                Key=f"headshots/{shot['image']}",
+                Body=crop,
+                ContentType="image/webp",
+                CacheControl="public, max-age=31536000, immutable",
+            )
+            registry[name] = shot
+        for name, player in players.items():
+            if not player.get("headshot") and registry.get(name):
+                stamp(catalog, show, player, registry[name])
+        REGISTRY.write_text(
+            json.dumps(dict(sorted(registry.items())), indent=2, ensure_ascii=False) + "\n"
+        )
+
+
+def numbers(show: str, which: str) -> list[int]:
+    if which != "all":
+        return [int(which)]
+    table = boto3.resource("dynamodb").Table(os.environ.get("CATALOG_TABLE", "armchair-catalog"))
+    return sorted(int(r["number"]) for r in query_all(table, f"SEASONS#{show}"))
 
 
 def sheet(out: Path, found: dict[str, list[dict]]) -> None:
@@ -127,8 +280,19 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("picks", type=Path)
     a.add_argument("--bucket", required=True)
     a.add_argument("--dry-run", action="store_true")
+    u = sub.add_parser("auto")
+    u.add_argument("show", choices=sorted(EDITIONS))
+    u.add_argument("season", help="a season number, or all of the show's in the catalog")
+    u.add_argument("--bucket", required=True)
+    u.add_argument("--pageid", type=int, help="the season's Wikipedia page id, for one season")
+    u.add_argument("--dry-run", action="store_true", help="find only: no upload, no writes")
     args = ap.parse_args(argv)
 
+    if args.cmd == "auto":
+        if args.pageid and args.season == "all":
+            sys.exit("--pageid is for one season")
+        auto(args.show, numbers(args.show, args.season), args.bucket, args.dry_run, args.pageid)
+        return
     if args.cmd == "approve":
         approve(args.out, json.loads(args.picks.read_text()), args.bucket, args.dry_run)
         return

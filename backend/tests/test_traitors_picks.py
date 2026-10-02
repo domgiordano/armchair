@@ -49,9 +49,9 @@ def db(aws):
     )
     t.update_item(
         Key={"pk": PK, "sk": "PLAYER#bob"},
-        UpdateExpression="SET #e = :e",
+        UpdateExpression="SET #e = :e, faction = :f",
         ExpressionAttributeNames={"#e": "exit"},
-        ExpressionAttributeValues={":e": {"ep": 2, "how": "banished"}},
+        ExpressionAttributeValues={":e": {"ep": 2, "how": "banished"}, ":f": "Faithful"},
     )
     perf = aws.Table(PERFORMANCES_TABLE)
     perf.put_item(
@@ -91,23 +91,95 @@ def cards(sub, ep="02", **params):
     return {c["type"]: c for c in res["data"]["events"]}
 
 
-def test_season_asks_for_the_bet_first(db):
+def test_season_browses_before_the_bet(db):
     status, res = get(season_handler, "/traitors/season", A)
     assert status == 200
     data = res["data"]
-    assert data["needsBet"] is True
-    assert data["episodes"] == 3
-    assert data["released"] == 2
+    assert (data["needsBet"], data["bet"], data["released"]) == (True, None, 2)
+    assert [(e["ep"], e["closed"], e["answered"]) for e in data["episodes"]] == [
+        (1, True, 0),
+        (2, False, 0),
+        (3, False, 0),
+    ]
     # Ann went out in a closed episode; Bob's exit is in an open one and stays hidden.
-    assert [p["id"] for p in data["players"]] == ["bob", "cat", "dan", "eve"]
-    assert "bet" not in data
+    assert [p["id"] for p in data["betRoster"]] == ["bob", "cat", "dan", "eve"]
+    assert "winners" not in data
 
 
-def test_everything_else_waits_for_the_bet(db):
-    assert get(episode_handler, "/traitors/episode", A, ep="02")[0] == 403
+def test_season_cast_hides_exits_still_open_to_picks(db):
+    bet(A)
+    _, res = get(season_handler, "/traitors/season", A)
+    data = res["data"]
+    assert "betRoster" not in data and data["needsBet"] is False
+    assert data["summary"] is None
+    cast = {p["id"]: p for p in data["cast"]}
+    assert cast["ann"] == {
+        "id": "ann",
+        "name": "Ann",
+        "headshot": None,
+        "faction": None,
+        "exit": {"ep": 1, "how": "murdered"},
+    }
+    # Bob's banishment and the faction it revealed are in episode 2, still pickable.
+    assert (cast["bob"]["exit"], cast["bob"]["faction"]) == (None, None)
+    assert len(cast) == 5
+
+
+def test_season_summary(db):
+    lead = {
+        "text": "New Blood is the fifth season.",
+        "sourceUrl": "https://en.wikipedia.org/wiki/x",
+    }
+    db.Table(CATALOG_TABLE).update_item(
+        Key={"pk": PK, "sk": "META"},
+        UpdateExpression="SET summary = :s",
+        ExpressionAttributeValues={":s": lead},
+    )
+    assert get(season_handler, "/traitors/season", A)[1]["data"]["summary"] == lead
+
+
+def test_episode_browses_locked_before_the_bet(db):
+    bet(B)
+    pick(B, "MURDER", ["dan"])
+    pick(B, "RT", ["bob", "cat", "dan"])
+    status, res = get(episode_handler, "/traitors/episode", A, ep="02")
+    assert status == 200
+    data = res["data"]
+    assert data["needsBet"] is True
+    assert all(
+        c["locked"] and c["mine"] is None and "result" not in c and "consensus" not in c
+        for c in data["events"]
+    )
+    assert data["out"] == [{"id": "ann", "ep": 1, "how": "murdered", "faction": None}]
+    # A closed episode is open to everyone, bet or not.
+    _, closed_ep = get(episode_handler, "/traitors/episode", A, ep="01")
+    assert all(not c["locked"] for c in closed_ep["data"]["events"])
+
+
+def test_picking_waits_for_the_bet(db):
     status, res = pick(A, "MURDER", ["dan"])
     assert status == 403
     assert res["error"]["detail"]["needsBet"] is True
+
+
+def test_out_needs_an_episode_fully_answered(db):
+    bet(A)
+    _, res = get(episode_handler, "/traitors/episode", A, ep="03")
+    assert res["data"]["needsBet"] is False
+    assert [o["id"] for o in res["data"]["out"]] == ["ann"]
+    pick(A, "MURDER", ["dan"])
+    pick(A, "RT", ["bob", "cat", "dan"])
+    _, res = get(episode_handler, "/traitors/episode", A, ep="03")
+    assert [o["id"] for o in res["data"]["out"]] == ["ann"]
+    pick(A, "RECRUIT", forfeit=True)
+    _, res = get(episode_handler, "/traitors/episode", A, ep="03")
+    assert res["data"]["out"] == [
+        {"id": "ann", "ep": 1, "how": "murdered", "faction": None},
+        {"id": "bob", "ep": 2, "how": "banished", "faction": "Faithful"},
+    ]
+    # Episode 2's own view never crosses out its own exits.
+    _, res = get(episode_handler, "/traitors/episode", A, ep="02")
+    assert [o["id"] for o in res["data"]["out"]] == ["ann"]
 
 
 def test_bet_is_final_and_records_episodes_out(db):
@@ -121,6 +193,15 @@ def test_bet_is_final_and_records_episodes_out(db):
     assert bet(B, [{"player": "ann", "faction": "Traitor"}])[0] == 400
     assert bet(B, [{"player": "cat", "faction": "Seer"}])[0] == 400
     assert bet(B, [{"player": "cat", "faction": "Traitor"}] * 2)[0] == 400
+
+
+def test_bet_takes_up_to_three(db):
+    three = [{"player": p, "faction": "Faithful"} for p in ("cat", "dan", "eve")]
+    assert bet(B, [*three, {"player": "bob", "faction": "Traitor"}])[0] == 400
+    assert bet(B, [])[0] == 400
+    status, res = bet(B, three)
+    assert status == 200
+    assert res["data"]["picks"] == three
 
 
 def test_locked_until_answered(db):

@@ -150,13 +150,14 @@ resource "aws_iam_role_policy" "deploy_backend" {
   policy = data.aws_iam_policy_document.deploy_backend.json
 }
 
-# The Seed Season workflow writes catalog items. The table is encrypted with
-# the app CMK, so the writes also need the key.
+# The Seed Season workflow writes catalog items. Traitors Headshots also reads a
+# season's META and PLAYER rows. The table is encrypted with the app CMK, so the
+# reads and writes also need the key.
 data "aws_iam_policy_document" "deploy_seed" {
   statement {
     sid       = "SeedCatalog"
     effect    = "Allow"
-    actions   = ["dynamodb:UpdateItem", "dynamodb:DescribeTable"]
+    actions   = ["dynamodb:Query", "dynamodb:UpdateItem", "dynamodb:DescribeTable"]
     resources = [aws_dynamodb_table.catalog.arn]
   }
 
@@ -174,13 +175,18 @@ resource "aws_iam_role_policy" "deploy_seed" {
   policy = data.aws_iam_policy_document.deploy_seed.json
 }
 
-# The Backfill Scores and Backfill Traitors workflows invoke the pollers with {"backfill": true}.
+# The Backfill Scores and Backfill Traitors workflows invoke the pollers with {"backfill": true};
+# Discover Traitors runs the daily discovery on demand.
 data "aws_iam_policy_document" "deploy_backfill" {
   statement {
-    sid       = "InvokePoller"
-    effect    = "Allow"
-    actions   = ["lambda:InvokeFunction"]
-    resources = [aws_lambda_function.poll_wiki.arn, aws_lambda_function.poll_traitors.arn]
+    sid     = "InvokePoller"
+    effect  = "Allow"
+    actions = ["lambda:InvokeFunction"]
+    resources = [
+      aws_lambda_function.poll_wiki.arn,
+      aws_lambda_function.poll_traitors.arn,
+      aws_lambda_function.discover_traitors.arn,
+    ]
   }
 }
 

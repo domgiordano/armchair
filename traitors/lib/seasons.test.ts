@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { editionOf, isSeasonId, mergeSeasons, pickSeason, seasonLabel, withSeason } from "./seasons";
+import { editionOf, isSeasonId, mergeSeasons, pickSeason, seasonLabel, seasonName, withSeason } from "./seasons";
 
 const s = (id: string, year: number, current = false) => ({ id, number: Number(id.split("-")[1]), year, current });
 
@@ -18,13 +18,21 @@ describe("seasons", () => {
     expect(isSeasonId(null)).toBe(false);
   });
 
-  it("names seasons per edition, adding the page title only when it's a name", () => {
-    expect(seasonLabel(s("tus-4", 2026))).toBe("Season 4");
-    expect(seasonLabel(s("tuk-3", 2025))).toBe("Series 3");
-    expect(seasonLabel(s("tukc-2", 2026))).toBe("Celebrity 2");
-    expect(seasonLabel({ ...s("tus-5", 2026), title: "The Traitors: New Blood" })).toBe("Season 5 · New Blood");
+  it("names a season by its own title when it has one, else by its number", () => {
+    expect(seasonName(s("tus-4", 2026))).toEqual({ title: "Season 4", eyebrow: "US", numbered: null });
+    expect(seasonName(s("tuk-3", 2025))).toEqual({ title: "Series 3", eyebrow: "UK", numbered: null });
+    expect(seasonName(s("tukc-2", 2026))).toEqual({ title: "Celebrity Traitors · Series 2", eyebrow: "UK", numbered: null });
+    expect(seasonName({ ...s("tus-5", 2026), title: "The Traitors: New Blood" })).toEqual({
+      title: "New Blood",
+      eyebrow: "US · Season 5",
+      numbered: "Season 5",
+    });
     expect(seasonLabel({ ...s("tus-3", 2025), title: "The Traitors (American TV series) season 3" })).toBe("Season 3");
-    expect(seasonLabel({ ...s("tukc-1", 2025), title: "The Celebrity Traitors" })).toBe("Celebrity 1");
+    expect(seasonLabel({ ...s("tuk-4", 2026), title: "The Traitors (British TV series) series 4" })).toBe("Series 4");
+    expect(seasonLabel({ ...s("tukc-2", 2026), title: "The Celebrity Traitors series 2" })).toBe(
+      "Celebrity Traitors · Series 2",
+    );
+    expect(seasonLabel({ ...s("tukc-1", 2025), title: "The Celebrity Traitors" })).toBe("Celebrity Traitors · Series 1");
   });
 
   it("puts live seasons first, then the newest, across both UK series", () => {

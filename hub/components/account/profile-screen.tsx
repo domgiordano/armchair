@@ -1,7 +1,7 @@
 "use client";
 
 import { ChairLoader } from "@/components/chair-loader";
-import { useAuth } from "@/lib/auth/use-auth";
+import { useAuth } from "@armchair/app-core/auth/use-auth";
 import { dwtsLink } from "@/lib/links";
 import { loadMe, useMe } from "@/lib/me";
 

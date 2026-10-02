@@ -16,6 +16,7 @@ const PROFILE: PlayerProfile = {
   id: "ann-avery",
   name: "Ann Avery",
   headshot: null,
+  bio: { text: "Ann Avery is a nurse from Ohio.", sourceUrl: "https://en.wikipedia.org/wiki/Ann_Avery" },
   seasons: [
     {
       season: "tus-2",
@@ -28,8 +29,18 @@ const PROFILE: PlayerProfile = {
         { ep: 3, received: 2 },
         { ep: 4, received: 7 },
       ],
+      championship: false,
     },
-    { season: "tus-5", number: 5, current: true, finish: null, faction: null, votes: null },
+    {
+      season: "tus-1",
+      number: 1,
+      current: false,
+      finish: { how: "winner", ep: 9 },
+      faction: "Faithful",
+      votes: [],
+      championship: true,
+    },
+    { season: "tus-5", number: 5, current: true, finish: null, faction: null, votes: null, championship: false },
   ],
 };
 
@@ -53,7 +64,7 @@ it("lists every season played, newest first, with a votes chart for past ones", 
   expect((await screen.findByRole("heading", { level: 1 })).textContent).toBe("Ann Avery");
   expect(api.getPlayer).toHaveBeenCalledWith("tus", "ann-avery");
   const seasons = within(screen.getByRole("list", { name: "Seasons played" })).getAllByRole("listitem");
-  expect(seasons.map((li) => li.getAttribute("aria-label"))).toEqual(["Season 5", "Season 2"]);
+  expect(seasons.map((li) => li.getAttribute("aria-label"))).toEqual(["Season 5", "Season 2", "Season 1"]);
 
   const live = within(seasons[0]);
   expect(live.getByText("Still in the castle")).toBeTruthy();
@@ -82,9 +93,13 @@ it("retries a failed load", async () => {
   expect(await screen.findByRole("heading", { name: "Ann Avery" })).toBeTruthy();
 });
 
-it("searches both UK series from the header and links each player to their page", async () => {
+it("searches every edition from the header, this one first, and links each player to their page", async () => {
   api.searchPlayers.mockImplementation(async (show: string) =>
-    show === "tukc" ? [{ id: "ann-avery", name: "Ann Avery", headshot: null, seasons: [1, 2] }] : [],
+    show === "tukc"
+      ? [{ id: "ann-avery", name: "Ann Avery", headshot: null, seasons: [1, 2] }]
+      : show === "tus"
+        ? [{ id: "anna-bly", name: "Anna Bly", headshot: null, seasons: [3] }]
+        : [],
   );
   render(<PlayerSearch />);
   fireEvent.click(screen.getByRole("button", { name: "Search players" }));
@@ -97,7 +112,22 @@ it("searches both UK series from the header and links each player to their page"
   expect(api.searchPlayers.mock.calls).toEqual([
     ["tukc", "ann"],
     ["tuk", "ann"],
+    ["tus", "ann"],
   ]);
-  expect(hit.textContent).toContain("Celebrity series 1 and 2");
+  expect(hit.textContent).toContain("UK · Celebrity series 1 and 2");
   expect(hit.getAttribute("href")).toMatch(/^\/players\/player\/?\?show=tukc&id=ann-avery&season=tukc-2$/);
+  const us = screen.getByRole("link", { name: /Anna Bly/ });
+  expect(us.textContent).toContain("US · Season 3");
+  expect(us.getAttribute("href")).toMatch(/show=tus&id=anna-bly/);
+});
+
+it("heads the profile with a bio credited to Wikipedia and a badge for each season won", async () => {
+  api.getPlayer.mockResolvedValue(PROFILE);
+  render(<PlayerScreen />);
+  expect(await screen.findByText("Ann Avery is a nurse from Ohio.")).toBeTruthy();
+  expect(screen.getByRole("link", { name: "From Wikipedia" }).getAttribute("href")).toBe("https://en.wikipedia.org/wiki/Ann_Avery");
+  expect(screen.getByText("Won Season 1")).toBeTruthy();
+  const seasons = within(screen.getByRole("list", { name: "Seasons played" })).getAllByRole("listitem");
+  expect(within(seasons[2]).getByText("Champion")).toBeTruthy();
+  expect(within(seasons[1]).queryByText("Champion")).toBeNull();
 });

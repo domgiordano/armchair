@@ -50,8 +50,8 @@ describe("Home", () => {
     render(<Home />);
     fireEvent.click(await screen.findByRole("button", { name: "Skip intro" }));
 
-    // The hero's button; the header has its own.
-    const button = within(await screen.findByRole("main")).getByRole("button", { name: "Sign in with Google" });
+    // The hero's button; the header and the closing call to action have their own.
+    const [button] = within(await screen.findByRole("main")).getAllByRole("button", { name: "Sign in with Google" });
     await vi.waitFor(() => expect(button).toHaveProperty("disabled", false));
     fireEvent.click(button);
 
