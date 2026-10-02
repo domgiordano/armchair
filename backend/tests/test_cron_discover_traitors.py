@@ -168,16 +168,21 @@ def test_renamed_season_found_and_no_cast_skipped(aws, run):
         == []
     )
     assert item(aws, "SEASONS#tus", "SEASON#006") is None
-    assert (logs["tuk"]["seeded"], logs["tuk"]["current"]) == ([4], "tuk-4")
+    assert (logs["tuk"]["seeded"], logs["tuk"]["current"]) == ([4], None)
     assert (logs["tukc"]["seeded"], logs["tukc"]["current"]) == ([1, 2], "tukc-2")
 
 
 def test_current_flips_at_t_minus_7_days(aws, run):
     # New Blood episode 1 releases 2026-09-18T00:00:00Z.
-    assert run("2026-09-10T06:00:00Z")["tus"]["current"] == "tus-4"
+    # Season 4 was airing in February.
+    assert run("2026-02-20T06:00:00Z")["tus"]["current"] == "tus-4"
     assert item(aws, "SEASON#tus#4", "META")["current"] is True
     assert item(aws, "SEASONS#tus", "SEASON#004")["current"] is True
     assert item(aws, "SEASONS#tus", "SEASON#005")["current"] is False
+
+    # Between seasons nothing is current.
+    assert run("2026-09-10T06:00:00Z")["tus"]["current"] is None
+    assert item(aws, "SEASONS#tus", "SEASON#004")["current"] is False
 
     logs = run("2026-09-11T06:00:00Z")
     assert (logs["tus"]["seeded"], logs["tus"]["current"]) == ([], "tus-5")
@@ -185,9 +190,9 @@ def test_current_flips_at_t_minus_7_days(aws, run):
     assert item(aws, "SEASONS#tus", "SEASON#005")["current"] is True
     assert item(aws, "SEASON#tus#4", "META")["current"] is False
     assert item(aws, "SEASONS#tus", "SEASON#004")["current"] is False
-    # Celebrity series 2's episode 1 is 2026-10-01: series 1 holds the flag until 9/24.
-    assert logs["tukc"]["current"] == "tukc-1"
-    assert item(aws, "SEASON#tus#5", "META")["openAt"] == "2026-09-10T06:00:00Z"
+    # Celebrity series 2's episode 1 is 2026-10-01, so its week starts 9/24; series 1 is long over.
+    assert logs["tukc"]["current"] is None
+    assert item(aws, "SEASON#tus#5", "META")["openAt"] == "2026-02-20T06:00:00Z"
 
 
 def test_rerun_is_idempotent(aws, run):
@@ -247,7 +252,7 @@ def test_new_past_season_is_published_and_indexed(aws, run):
 
 
 def test_season_closed_by_the_flip_is_published(aws, run):
-    logs = run("2026-09-10T06:00:00Z")
+    logs = run("2026-02-20T06:00:00Z")
     # Season 3 is published because it is new, not because of the flip.
     assert logs["tus"]["published"] == [3]
     assert rt(aws, "tus-4", 2) is None
@@ -289,9 +294,11 @@ def test_current_season_rule():
         6: [],
     }
     assert discover.current_season(releases, d("2026-03-05")) == 4
-    assert discover.current_season(releases, d("2026-09-10")) == 4
+    # Between seasons nothing is current, so no one bets on a finished season.
+    assert discover.current_season(releases, d("2026-03-07")) is None
+    assert discover.current_season(releases, d("2026-09-10")) is None
     assert discover.current_season(releases, d("2026-09-11")) == 5
-    assert discover.current_season(releases, d("2027-06-01")) == 5
+    assert discover.current_season(releases, d("2027-06-01")) is None
     assert discover.current_season({6: []}, d("2027-06-01")) is None
 
 
