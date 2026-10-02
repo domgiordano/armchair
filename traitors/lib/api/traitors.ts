@@ -154,3 +154,33 @@ export interface Stats {
 }
 
 export const getStats = (season: string) => request<Stats>(`/traitors/stats?season=${encodeURIComponent(season)}`);
+
+export type Scope = "global" | "friends" | "group";
+
+export interface Standing {
+  rank: number;
+  sub: string;
+  name: string | null;
+  picture: string | null;
+  points: number;
+  events: number;
+  banishHits: number;
+  /** Points per scored event, null before any. */
+  average: number | null;
+}
+
+export interface Ranks {
+  season: string;
+  scope: Scope;
+  group: string | null;
+  ranked: Standing[];
+  me: Standing;
+}
+
+/** `season` is a season id, or "all" with the edition's `show` for all-time. */
+export function getRanks(season: string, show: string, scope: Scope, group: string | null) {
+  const query = new URLSearchParams({ season, scope });
+  if (season === "all") query.set("show", show);
+  if (scope === "group" && group) query.set("group", group);
+  return request<Ranks>(`/traitors/ranks?${query}`);
+}
