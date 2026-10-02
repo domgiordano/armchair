@@ -46,3 +46,23 @@ module "hub" {
   minimum_tls_version = "TLSv1.2_2021"
   retain_on_delete    = false
 }
+
+# The Traitors companion (traitors/). Its own app_name for the same reason as
+# the hub's.
+module "traitors" {
+  source = "git::https://github.com/domgiordano/web-hosting.git?ref=v1.8.0"
+
+  app_name    = "${var.app_name}-traitors"
+  domain_name = var.traitors_domain_name
+  zone_id     = data.aws_route53_zone.hub_zone.zone_id
+  waf_acl_arn = data.aws_ssm_parameter.shared_cloudfront_waf_arn.value
+
+  enable_subroute_rewrite = true
+  subroute_style          = "directory"
+  spa_error_path          = "/404.html"
+  spa_error_response_code = 404
+
+  enable_cache        = true
+  minimum_tls_version = "TLSv1.2_2021"
+  retain_on_delete    = false
+}
