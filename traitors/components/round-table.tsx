@@ -29,8 +29,11 @@ interface RoundTableProps {
   /** A full slate: seats not on it can't be tapped. */
   full?: boolean;
   result?: TableResult | null;
-  /** How many others called each player. */
+  /** How many others called each player, or in a past season, the votes each drew. */
   tallies?: Record<string, number> | null;
+  tallyLabel?: (count: number) => string;
+  /** Names the table when a page shows more than one. */
+  label?: string;
 }
 
 const RANKS = ["first", "second", "third"];
@@ -53,6 +56,8 @@ export function RoundTable({
   full = false,
   result = null,
   tallies = null,
+  tallyLabel = (n) => `${n} called`,
+  label,
 }: RoundTableProps) {
   const scroller = useRef<HTMLDivElement>(null);
   const width = tableWidth(roster.length);
@@ -75,7 +80,7 @@ export function RoundTable({
     <div ref={scroller} className="-mx-4 overflow-x-auto overscroll-x-contain px-4 sm:mx-0 sm:px-0">
       <div
         role="group"
-        aria-label={LABELS[kind]}
+        aria-label={label ?? LABELS[kind]}
         className="relative mx-auto w-full max-w-2xl"
         style={{ minWidth: width, aspectRatio: TABLE_ASPECT }}
       >
@@ -115,7 +120,7 @@ export function RoundTable({
               faction={result?.faction}
               onTap={onTap}
               disabled={full && !chosen.includes(p.id)}
-              tally={tallies?.[p.id] ?? 0}
+              tally={tallies?.[p.id] ? tallyLabel(tallies[p.id]) : null}
             />
           ))}
         </div>
@@ -151,7 +156,7 @@ interface SeatProps {
   faction: Faction | undefined;
   onTap?: (id: string) => void;
   disabled: boolean;
-  tally: number;
+  tally: string | null;
 }
 
 function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally }: SeatProps) {
@@ -162,7 +167,7 @@ function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally
     state === "banished" && `banished${faction ? `, ${faction}` : ""}`,
     state === "murdered" && "murdered",
     state === "recruited" && "recruited",
-    tally > 0 && `${tally} called`,
+    tally,
   ]
     .filter(Boolean)
     .join(", ");

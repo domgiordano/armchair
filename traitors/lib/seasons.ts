@@ -6,7 +6,7 @@ export interface SeasonSummary {
   number: number;
   year: number;
   current: boolean;
-  title?: string;
+  title?: string | null;
 }
 
 /** UK lists the celebrity series beside the civilian one: they're numbered independently. */
@@ -18,12 +18,21 @@ export const isSeasonId = (id: string | null): id is string => id !== null && SE
 
 export const showOf = (id: string) => id.split("-")[0] as Show;
 
+export const isShow = (s: string | null): s is Show => s === "tus" || s === "tuk" || s === "tukc";
+
 export const editionOf = (id: string): Edition => (showOf(id) === "tus" ? "us" : "uk");
 
 const NAMES: Record<Show, string> = { tus: "Season", tuk: "Series", tukc: "Celebrity" };
 
+// Titles are Wikipedia page titles. Only a name of its own, like "The Traitors:
+// New Blood", says more than the number; "...(American TV series) season 3" doesn't.
+const PAGE_PREFIX = /^The (Celebrity )?Traitors\b(\s*\([^)]*\))?[:\s]*/;
+const NUMBERED = /^(season|series)\s+\d+$/i;
+
 export function seasonLabel(s: Pick<SeasonSummary, "id" | "number" | "title">): string {
-  return s.title ?? `${NAMES[showOf(s.id)]} ${s.number}`;
+  const base = `${NAMES[showOf(s.id)]} ${s.number}`;
+  const name = s.title?.replace(PAGE_PREFIX, "").trim();
+  return name && !NUMBERED.test(name) ? `${base} · ${name}` : base;
 }
 
 /** An edition's seasons, live ones first, then newest. */

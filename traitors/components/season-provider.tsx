@@ -65,7 +65,7 @@ export function useSeasonId(): string {
  * The season lives in the URL (`?season=tus-5`), so links and reloads keep it. With
  * none, it's the remembered edition's live season, so a new season needs no code change.
  */
-export function SeasonProvider({ children }: { children: ReactNode }) {
+export function SeasonProvider({ children, home }: { children: ReactNode; home?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const asked = useSearchParams().get("season");
@@ -99,9 +99,9 @@ export function SeasonProvider({ children }: { children: ReactNode }) {
       saveEdition(next);
       setPreferred(next);
       // Every other param belongs to the old season: its episode 5 isn't this one's.
-      router.push(pathname);
+      router.push(home ?? pathname);
     },
-    chooseSeason: (id) => router.push(withSeason(pathname, id)),
+    chooseSeason: (id) => router.push(withSeason(home ?? pathname, id)),
   };
 
   return <SeasonContext value={value}>{children}</SeasonContext>;

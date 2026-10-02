@@ -18,11 +18,13 @@ describe("seasons", () => {
     expect(isSeasonId(null)).toBe(false);
   });
 
-  it("names seasons per edition, preferring a title", () => {
+  it("names seasons per edition, adding the page title only when it's a name", () => {
     expect(seasonLabel(s("tus-4", 2026))).toBe("Season 4");
     expect(seasonLabel(s("tuk-3", 2025))).toBe("Series 3");
     expect(seasonLabel(s("tukc-2", 2026))).toBe("Celebrity 2");
-    expect(seasonLabel({ ...s("tus-5", 2026), title: "New Blood" })).toBe("New Blood");
+    expect(seasonLabel({ ...s("tus-5", 2026), title: "The Traitors: New Blood" })).toBe("Season 5 · New Blood");
+    expect(seasonLabel({ ...s("tus-3", 2025), title: "The Traitors (American TV series) season 3" })).toBe("Season 3");
+    expect(seasonLabel({ ...s("tukc-1", 2025), title: "The Celebrity Traitors" })).toBe("Celebrity 1");
   });
 
   it("puts live seasons first, then the newest, across both UK series", () => {

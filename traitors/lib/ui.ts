@@ -3,6 +3,9 @@ export const cn = (...parts: (string | false | null | undefined)[]) => parts.fil
 
 export const FOCUS = "focus-ring";
 
+/** A square header button around an icon. */
+export const ICON_BUTTON = `${FOCUS} relative flex size-11 shrink-0 items-center justify-center rounded-sm text-parchment transition-colors hover:bg-cloak hover:text-bone active:bg-cloak/70 aria-expanded:bg-cloak`;
+
 export type ButtonVariant = "primary" | "gold" | "blood" | "outline" | "ghost";
 export type ButtonSize = "md" | "sm";
 

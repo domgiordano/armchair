@@ -1,11 +1,15 @@
 "use client";
 
+import Link from "next/link";
+
 import { useSeasonView } from "@/components/season-data";
 import { Headshot } from "@/components/ui/avatar";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
+import { playerHref } from "@/lib/history";
+import { showOf } from "@/lib/seasons";
 import { useEpisode } from "@/lib/use-episode";
-import { cn, HEADING } from "@/lib/ui";
+import { cn, FOCUS, HEADING } from "@/lib/ui";
 
 /**
  * The whole cast, from episode 1's roster. A later roster would show who's gone,
@@ -32,9 +36,21 @@ export function PlayersScreen() {
       {load.kind === "ready" && (
         <ul className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5">
           {load.episode.roster.map((p) => (
-            <li key={p.id} className="flex flex-col items-center gap-2 text-center">
-              <Headshot name={p.name} image={p.headshot} size={84} className="shadow-[0_8px_18px_-8px_rgb(0_0_0/0.9)]" />
-              <span className="text-sm leading-tight text-bone">{p.name}</span>
+            <li key={p.id}>
+              <Link
+                href={playerHref(showOf(view.season), p.id, view.season)}
+                className={`${FOCUS} group flex flex-col items-center gap-2 rounded-sm p-1 text-center transition-colors hover:bg-cloak/50 active:bg-cloak`}
+              >
+                <span aria-hidden="true">
+                  <Headshot
+                    name={p.name}
+                    image={p.headshot}
+                    size={84}
+                    className="shadow-[0_8px_18px_-8px_rgb(0_0_0/0.9)] group-hover:ring-candle"
+                  />
+                </span>
+                <span className="text-sm leading-tight text-bone group-hover:text-candle">{p.name}</span>
+              </Link>
             </li>
           ))}
         </ul>

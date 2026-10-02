@@ -4,10 +4,13 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
+import { HistoryScreen } from "@/components/history-screen";
+import { PlayerSearch } from "@/components/player-search";
 import { SeasonDataContext, useSeasonLoad } from "@/components/season-data";
 import { SeasonProvider, useShellSeason } from "@/components/season-provider";
 import { Avatar } from "@/components/ui/avatar";
 import { EmberGlow } from "@/components/ui/ember-glow";
+import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { Select } from "@/components/ui/select";
 import { Sheet } from "@/components/ui/sheet";
 import { SkeletonList } from "@/components/ui/skeleton";
@@ -16,7 +19,7 @@ import { TartanBand } from "@/components/ui/tartan-band";
 import { ToastProvider } from "@/components/ui/toast";
 import { WinnerBet } from "@/components/winner-bet";
 import { seasonLabel, withSeason, type Edition } from "@/lib/seasons";
-import { cn, FOCUS } from "@/lib/ui";
+import { cn, FOCUS, ICON_BUTTON } from "@/lib/ui";
 import { getMe, type Me } from "@armchair/app-core/api/client";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
 
@@ -42,34 +45,41 @@ export function activeTab(pathname: string): Tab | undefined {
   return TABS.find((t) => t.match.some((m) => (m === "/" ? path === "/" : path === m || path.startsWith(`${m}/`))));
 }
 
-const ICON_BUTTON = `${FOCUS} relative flex size-11 shrink-0 items-center justify-center rounded-sm text-parchment transition-colors hover:bg-cloak hover:text-bone active:bg-cloak/70 aria-expanded:bg-cloak`;
-
 interface AppShellProps {
   // Names the main landmark; the active tab already says where you are.
   title: string;
+  /** A page about no one season, like a player's: no season load, bet gate or history swap. */
+  seasonless?: boolean;
   children: ReactNode;
 }
 
 /** Header, tabs and phone menu around every signed-in page. Callers handle the sign-in wall. */
-export function AppShell({ title, children }: AppShellProps) {
+export function AppShell({ title, seasonless = false, children }: AppShellProps) {
   // The season lives in the query string, which a static export only has on the client.
   return (
     <Suspense>
       <ToastProvider>
-        <SeasonProvider>
-          <Shell title={title}>{children}</Shell>
+        {/* Picking a season or edition from a seasonless page goes to that season's overview. */}
+        <SeasonProvider home={seasonless ? "/" : undefined}>
+          <Shell title={title} seasonless={seasonless}>
+            {children}
+          </Shell>
         </SeasonProvider>
       </ToastProvider>
     </Suspense>
   );
 }
 
-function Shell({ title, children }: AppShellProps) {
+function Shell({ title, seasonless = false, children }: AppShellProps) {
   const pathname = usePathname();
-  const { season } = useShellSeason();
-  const load = useSeasonLoad(season);
+  const { season, seasons } = useShellSeason();
+  const summary = seasons?.find((s) => s.id === season);
+  const load = useSeasonLoad(seasonless || summary?.current === false ? null : season);
+  // A finished season has nothing to call: its history stands in for every tab.
+  const finished = !seasonless && (summary ? !summary.current : load.data?.current === false);
   // The winner bet comes before anything else in a live season, tabs included.
   const gated = load.data?.needsBet === true;
+  const tabs = !gated && !finished;
   const current = activeTab(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
@@ -90,7 +100,7 @@ function Shell({ title, children }: AppShellProps) {
         Skip to content
       </a>
       <header className="sticky top-0 z-20 bg-night/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center gap-2 px-2 py-1.5 sm:px-4">
+        <div className="mx-auto flex max-w-5xl items-center gap-1 px-2 sm:gap-2 py-1.5 sm:px-4">
           <button
             ref={hamburger}
             type="button"
@@ -103,19 +113,20 @@ function Shell({ title, children }: AppShellProps) {
           </button>
           <Link
             href={href("/")}
-            className={`${FOCUS} rounded-sm px-1 font-title text-2xl font-bold text-bone sm:text-3xl`}
+            className={`${FOCUS} hidden rounded-sm px-1 font-title text-xl font-bold text-bone min-[360px]:block sm:text-3xl`}
           >
             Traitors
           </Link>
           <div className="ml-4 hidden w-56 md:block">
             <SeasonPicker hideLabel />
           </div>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-1 sm:gap-2">
+            <PlayerSearch />
             <EditionToggle />
             <AccountMenu />
           </div>
         </div>
-        {!gated && (
+        {tabs && (
           <nav aria-label="Main" className="mx-auto hidden max-w-5xl px-2 md:block lg:px-4">
             <ul className="flex gap-1">
               {TABS.map((t) => (
@@ -149,7 +160,7 @@ function Shell({ title, children }: AppShellProps) {
           </button>
           <span className="font-title text-2xl font-bold text-bone">Traitors</span>
         </div>
-        {!gated && (
+        {tabs && (
           <nav aria-label="Main">
             <ul className="flex flex-col gap-1">
               {TABS.map((t) => (
@@ -179,10 +190,12 @@ function Shell({ title, children }: AppShellProps) {
 
       <main
         id="main"
-        aria-label={title}
+        aria-label={finished ? "Season history" : title}
         className="mx-auto flex w-full max-w-md flex-1 animate-page-in flex-col gap-5 px-4 py-6 sm:px-6 md:max-w-3xl"
       >
-        <Content load={load}>{children}</Content>
+        <Content load={load} finished={finished} seasonless={seasonless}>
+          {children}
+        </Content>
       </main>
       <footer className="border-t border-gilt/20 px-6 py-5 text-center text-sm text-ash">
         Not affiliated with The Traitors, BBC, NBC or Peacock.
@@ -191,11 +204,20 @@ function Shell({ title, children }: AppShellProps) {
   );
 }
 
-function Content({ load, children }: { load: ReturnType<typeof useSeasonLoad>; children: ReactNode }) {
+interface ContentProps {
+  load: ReturnType<typeof useSeasonLoad>;
+  finished: boolean;
+  seasonless: boolean;
+  children: ReactNode;
+}
+
+function Content({ load, finished, seasonless, children }: ContentProps) {
   const { season, failed, retry } = useShellSeason();
   const { data, error, reload } = load;
+  if (seasonless) return children;
   if (season === null && failed)
     return <ErrorState what="the seasons" message="the castle didn't answer" retry={retry} />;
+  if (season !== null && finished) return <HistoryScreen key={season} season={season} />;
   if (data === null && error !== null) return <ErrorState what="this season" message={error} retry={reload} />;
   if (data === null) return <SkeletonList label="Opening the season" rows={3} row="h-20" />;
   if (data.needsBet) return <WinnerBet key={data.season} gate={data} onSealed={reload} />;
@@ -312,32 +334,4 @@ function useMe(): Me | null {
     };
   }, []);
   return me;
-}
-
-const ICON = {
-  width: 22,
-  height: 22,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.8,
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-  "aria-hidden": true,
-} as const;
-
-function MenuIcon() {
-  return (
-    <svg {...ICON}>
-      <path d="M4 7h16M4 12h16M4 17h16" />
-    </svg>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg {...ICON}>
-      <path d="M6 6l12 12M18 6L6 18" />
-    </svg>
-  );
 }
