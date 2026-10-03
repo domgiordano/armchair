@@ -2,7 +2,8 @@
 The Traitors people index, in DWTS's shape (common/people.py) so people_search reads it:
 
     PERSON#{show}#{id}  META          name, roles, headshot, seasons: [{season, finish, faction}],
-                                      article, bio: {text, sourceUrl}
+                                      article, bio: {text, source, sourceUrl},
+                                      about: {age, hometown, occupation}
     PEOPLE#{show}       PERSON#{id}   name, roles, headshot image, season numbers
 
 An id is the PLAYER id, so one person across an edition's seasons is one PERSON. A
@@ -44,6 +45,7 @@ def index(catalog, show: str, number: int, players: list[dict], cast: list[dict]
                 "seasons": seasons,
                 "article": player.get("article") or have.get("article"),
                 "bio": player.get("bio") or have.get("bio"),
+                "about": player.get("about") or have.get("about"),
             },
             {
                 "pk": f"PEOPLE#{show}",

@@ -27,13 +27,13 @@ export interface CastMember extends Player {
   exit: Exit | null;
 }
 
-export type WriteupSource = "wikipedia" | "fandom";
+export type WriteupSource = "wikipedia" | "fandom" | "official" | "results";
 
 export interface Writeup {
   text: string;
-  /** Where it's from; absent means Wikipedia. Both are CC BY-SA, so always linked. */
+  /** Where it's from; absent means Wikipedia. Wiki text is CC BY-SA, so it's always linked; "results" is ours. */
   source?: WriteupSource;
-  sourceUrl: string;
+  sourceUrl: string | null;
 }
 
 export interface SeasonEpisode {

@@ -7,16 +7,22 @@ import { cn, EYEBROW, TEXT_LINK } from "@/lib/ui";
 export function Credit({ writeup, className }: { writeup: Text; className?: string }) {
   return (
     <p className={cn("text-sm text-ash", className)}>
-      {writeup.source === "fandom" ? (
+      {writeup.source === "results" ? (
+        <>Written from the episode&apos;s confirmed results</>
+      ) : writeup.source === "official" ? (
+        <a href={writeup.sourceUrl ?? undefined} target="_blank" rel="noreferrer" className={TEXT_LINK}>
+          From the network&apos;s cast page
+        </a>
+      ) : writeup.source === "fandom" ? (
         <>
-          <a href={writeup.sourceUrl} target="_blank" rel="noreferrer" className={TEXT_LINK}>
+          <a href={writeup.sourceUrl ?? undefined} target="_blank" rel="noreferrer" className={TEXT_LINK}>
             From The Traitors Wiki (Fandom)
           </a>
           , CC BY-SA
         </>
       ) : (
         <>
-          <a href={writeup.sourceUrl} target="_blank" rel="noreferrer" className={TEXT_LINK}>
+          <a href={writeup.sourceUrl ?? undefined} target="_blank" rel="noreferrer" className={TEXT_LINK}>
             From Wikipedia
           </a>{" "}
           · CC BY-SA 4.0
