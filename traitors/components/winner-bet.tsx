@@ -8,7 +8,7 @@ import { useToast } from "@/components/ui/toast";
 import { WaxSeal } from "@/components/ui/wax-seal";
 import { submitWinner, type Faction, type Player } from "@/lib/api/traitors";
 import { FACTION, multiplier, WINNER } from "@/lib/points";
-import { cn, EYEBROW, HEADING } from "@/lib/ui";
+import { button, cn, EYEBROW, HEADING } from "@/lib/ui";
 import { ApiError } from "@armchair/app-core/api/client";
 
 interface Pick {
@@ -48,6 +48,14 @@ export function WinnerBet({ season, roster, episodes, released, prompt, onSealed
     );
   const side = (id: string, faction: Faction) =>
     setPicks((ps) => ps.map((p) => (p.player === id ? { ...p, faction } : p)));
+  // From the focus card: name them with a side, change the side, or the same again takes them back.
+  const choose = (id: string, faction: Faction) =>
+    setPicks((ps) => {
+      const had = ps.find((p) => p.player === id);
+      if (had?.faction === faction) return ps.filter((p) => p.player !== id);
+      if (had) return ps.map((p) => (p.player === id ? { ...p, faction } : p));
+      return ps.length < MAX ? [...ps, { player: id, faction }] : ps;
+    });
 
   const seal = async () => {
     try {
@@ -97,12 +105,32 @@ export function WinnerBet({ season, roster, episodes, released, prompt, onSealed
         <legend className={cn(EYEBROW, "mb-3")}>
           Pick up to three · {picks.length} of {MAX}
         </legend>
-        <p className="text-parchment">Tap a seat to name a winner; tap again to take it back.</p>
+        <p className="text-parchment">Turn the table to a player and pick them as a Faithful or a Traitor winner.</p>
         <RoundTable
           roster={roster}
           kind="WINNER"
+          season={season}
           chosen={picks.map((p) => p.player)}
           onTap={toggle}
+          actions={(p) => (
+            <span role="group" aria-label="Pick as winner" className="flex flex-wrap gap-2">
+              {SIDES.map((s) => {
+                const on = picks.some((x) => x.player === p.id && x.faction === s.id);
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    aria-pressed={on}
+                    disabled={!on && picks.length >= MAX && !picks.some((x) => x.player === p.id)}
+                    onClick={() => choose(p.id, s.id)}
+                    className={button(on ? "gold" : "primary", "sm")}
+                  >
+                    Pick as winner ({s.id})
+                  </button>
+                );
+              })}
+            </span>
+          )}
           full={picks.length >= MAX}
         />
       </fieldset>

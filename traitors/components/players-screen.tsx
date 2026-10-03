@@ -16,7 +16,7 @@ export function PlayersScreen() {
       {cast.length === 0 ? (
         <EmptyState title="No cast yet">The players appear once the season is announced.</EmptyState>
       ) : (
-        <CastTable players={cast} hrefOf={seasonPlayerHref(view.season)} />
+        <CastTable players={cast} hrefOf={seasonPlayerHref(view.season)} season={view.season} />
       )}
     </>
   );

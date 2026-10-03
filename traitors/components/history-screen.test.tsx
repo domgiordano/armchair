@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 
-const api = vi.hoisted(() => ({ getHistory: vi.fn() }));
+const api = vi.hoisted(() => ({ getHistory: vi.fn(), getPlayer: vi.fn(() => new Promise(() => {})) }));
 vi.mock("@/lib/api/history", () => api);
 
 import type { History } from "@/lib/api/history";
@@ -54,7 +54,7 @@ it("crowns a Traitor win in red and lists the cast with how each left", async ()
   );
   expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Season 3");
 
-  const cast = within(screen.getByRole("region", { name: "Final standings" }));
+  const cast = within(screen.getByRole("group", { name: "The cast at the table" }));
   // Winner first, then whoever lasted longest.
   const tiles = [
     "Ann Avery, Traitor, Winner",

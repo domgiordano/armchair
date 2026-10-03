@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import type { EpisodeEvent } from "@/lib/api/traitors";
 
-import { consensusRows, move, tableLayout, toggle } from "./ballot";
+import { chalk, chalkable, consensusRows, move, toggle } from "./ballot";
 
 describe("ballot", () => {
   it("chalks names in order, rubs one out, and ignores a fourth", () => {
@@ -37,25 +37,19 @@ describe("ballot", () => {
     expect(consensusRows({ ...murder, consensus: { voters: 0, picks: {} } })).toEqual([]);
   });
 
-  it("keeps the head of the table for the host and seats players clockwise from its left", () => {
-    const t = tableLayout(3);
-    expect(t.host.x).toBeCloseTo(50);
-    expect(t.host.y).toBeLessThan(t.seats[1].y);
-    expect(t.seats[0].x).toBeGreaterThan(50);
-    expect(t.seats[2].x).toBeLessThan(50);
+  it("chalks a name in at a rank, moves it between ranks, and rubs it out on its own rank", () => {
+    expect(chalk([], "a", 0, 3)).toEqual(["a"]);
+    expect(chalk(["a", "b"], "c", 0, 3)).toEqual(["c", "a", "b"]);
+    expect(chalk(["a", "b"], "a", 1, 3)).toEqual(["b", "a"]);
+    expect(chalk(["a", "b"], "b", 1, 3)).toEqual(["a"]);
+    // A full slate: the new name takes that rank's place.
+    expect(chalk(["a", "b", "c"], "d", 1, 3)).toEqual(["a", "d", "c"]);
   });
 
-  it("spaces every seat at least a tap target apart, for 12 players or 22", () => {
-    for (const n of [12, 22]) {
-      const t = tableLayout(n);
-      const px = [t.host, ...t.seats].map((s) => ({ x: (s.x * t.width) / 100, y: (s.y * t.height) / 100 }));
-      const gaps = px.map((p, i) => Math.hypot(p.x - px[(i + 1) % px.length].x, p.y - px[(i + 1) % px.length].y));
-      expect(Math.min(...gaps)).toBeGreaterThanOrEqual(56);
-    }
-  });
-
-  it("fits twelve on a phone and widens the table for a big cast", () => {
-    expect(tableLayout(12).width).toBeLessThanOrEqual(343);
-    expect(tableLayout(22).width).toBeGreaterThan(tableLayout(12).width);
+  it("fills ranks in order: no II before a I", () => {
+    expect([0, 1, 2].map((r) => chalkable([], "a", r, 3))).toEqual([true, false, false]);
+    expect([0, 1, 2].map((r) => chalkable(["b"], "a", r, 3))).toEqual([true, true, false]);
+    expect([0, 1, 2].map((r) => chalkable(["a", "b"], "a", r, 3))).toEqual([true, true, false]);
+    expect([0, 1, 2].map((r) => chalkable(["b", "c", "d"], "a", r, 3))).toEqual([true, true, true]);
   });
 });

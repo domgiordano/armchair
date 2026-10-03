@@ -129,7 +129,7 @@ export function Overview() {
         {view.cast.length === 0 ? (
           <EmptyState title="No cast yet">The players appear once the season is announced.</EmptyState>
         ) : (
-          <CastTable players={byStanding(view.cast)} hrefOf={hrefOf} />
+          <CastTable players={byStanding(view.cast)} hrefOf={hrefOf} season={view.season} />
         )}
       </section>
     </>

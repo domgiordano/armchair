@@ -3,6 +3,7 @@ import { expect, it, vi } from "vitest";
 
 const api = vi.hoisted(() => ({ getRanks: vi.fn(), getEpisode: vi.fn() }));
 vi.mock("@/lib/api/traitors", () => api);
+vi.mock("@/lib/api/history", () => ({ getPlayer: () => new Promise(() => {}) }));
 vi.mock("@/components/season-provider", () => ({
   useSeasonName: () => ({ title: "New Blood", eyebrow: "US · Season 5", numbered: "Season 5" }),
 }));
@@ -57,7 +58,7 @@ it("shows how far in the season is, the Traitors caught so far and the cast wall
   expect(caught.getAllByRole("listitem")).toHaveLength(1);
   expect(caught.getByRole("link", { name: "Ben Hart" }).getAttribute("href")).toMatch(/id=ben-hart&season=tus-5/);
 
-  const wall = within(screen.getByRole("region", { name: "The castle" }));
+  const wall = within(screen.getByRole("group", { name: "The cast at the table" }));
   expect(wall.getAllByRole("link").map((a) => a.getAttribute("aria-label"))).toEqual([
     "Ava Stone",
     "Ben Hart, Traitor, Banished ep 2",

@@ -27,7 +27,7 @@ import {
   type Player,
   type SeasonEpisode,
 } from "@/lib/api/traitors";
-import { consensusRows, move, toggle } from "@/lib/ballot";
+import { chalk, chalkable, consensusRows, move, toggle } from "@/lib/ballot";
 import { finishText } from "@/lib/history";
 import { firstName, nameOf, roman } from "@/lib/players";
 import { eventPoints } from "@/lib/points";
@@ -42,17 +42,17 @@ const COPY: Record<EventType, { tab: string; title: string; prompt: string }> = 
   MURDER: {
     tab: "Murder",
     title: "The murder",
-    prompt: "Who won't come down in the morning? Tap one seat.",
+    prompt: "Who won't come down in the morning? Turn the table to them and choose them for the murder.",
   },
   RT: {
     tab: "Banish",
     title: "The round table",
-    prompt: "Tap three seats in the order the votes fall. I is who you think leaves.",
+    prompt: "Chalk three names in the order the votes fall. I is who you think leaves.",
   },
   RECRUIT: {
     tab: "Recruit",
     title: "The recruit",
-    prompt: "If the Traitors recruit tonight, who gets the cloak? Tap one seat, or take no pick.",
+    prompt: "If the Traitors recruit tonight, who gets the cloak? Turn the table to them and choose, or take no pick.",
   },
 };
 
@@ -246,6 +246,7 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
       <RoundTable
         roster={episode.roster}
         kind={event.type}
+        season={season}
         chosen={picking ? (forfeit ? [] : picks) : (event.mine?.picks ?? [])}
         onTap={
           picking && waiting
@@ -253,6 +254,19 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
             : picking && !forfeit
               ? (id) => setPicks((p) => toggle(p, id, event.picks))
               : undefined
+        }
+        actions={
+          picking && (waiting || !forfeit)
+            ? (p) => (
+                <PickActions
+                  type={event.type}
+                  id={p.id}
+                  picks={picks}
+                  max={event.picks}
+                  onPicks={waiting ? () => waiting() : setPicks}
+                />
+              )
+            : undefined
         }
         full={event.picks > 1 && picks.length >= event.picks}
         result={picking ? null : event.result}
@@ -293,6 +307,52 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
         </>
       )}
     </>
+  );
+}
+
+const ACTION: Record<Exclude<EventType, "RT">, string> = {
+  MURDER: "Choose for the murder",
+  RECRUIT: "Choose to recruit",
+};
+
+interface PickActionsProps {
+  type: EventType;
+  id: string;
+  picks: string[];
+  max: number;
+  onPicks: (picks: string[]) => void;
+}
+
+/** The focus card's call on whoever is at the head: a rank on the slate, or the one pick. */
+function PickActions({ type, id, picks, max, onPicks }: PickActionsProps) {
+  if (type !== "RT") {
+    const on = picks.includes(id);
+    return (
+      <button
+        type="button"
+        aria-pressed={on}
+        onClick={() => onPicks(toggle(picks, id, max))}
+        className={button(on ? "gold" : "primary", "sm")}
+      >
+        {ACTION[type]}
+      </button>
+    );
+  }
+  return (
+    <span role="group" aria-label="Chalk on your slate" className="flex gap-2">
+      {Array.from({ length: max }, (_, r) => (
+        <button
+          key={r}
+          type="button"
+          aria-pressed={picks[r] === id}
+          disabled={!chalkable(picks, id, r, max)}
+          onClick={() => onPicks(chalk(picks, id, r, max))}
+          className={button(picks[r] === id ? "gold" : "primary", "sm")}
+        >
+          Chalk {roman(r + 1)}
+        </button>
+      ))}
+    </span>
   );
 }
 
@@ -359,7 +419,7 @@ function PickSlate({ event, roster, picks, forfeit, onPicks, onForfeit, onSeal }
                 </SlateButton>
               </>
             ) : (
-              <span className="text-ash italic">{forfeit ? "No pick" : "Tap a seat"}</span>
+              <span className="text-ash italic">{forfeit ? "No pick" : "Turn to a seat"}</span>
             )}
           </li>
         ))}

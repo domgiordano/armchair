@@ -13,11 +13,12 @@ interface CastWallProps {
 }
 
 /** Everyone in the season seated at the table, crossed off as they go; the wall is the list view. */
-export function CastTable({ players, hrefOf }: CastWallProps) {
+export function CastTable({ players, hrefOf, season }: CastWallProps & { season: string }) {
   return (
     <RoundTable
       roster={players}
       kind="RT"
+      season={season}
       chosen={[]}
       cast
       hrefOf={hrefOf}

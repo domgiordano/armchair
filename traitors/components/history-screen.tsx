@@ -102,7 +102,7 @@ export function HistoryScreen({ season, summary = null }: HistoryScreenProps) {
         {h.players.length === 0 ? (
           <EmptyState>No cast on record for this season.</EmptyState>
         ) : (
-          <CastTable players={byFinish(h.players)} hrefOf={link} />
+          <CastTable players={byFinish(h.players)} hrefOf={link} season={season} />
         )}
       </section>
 
@@ -118,7 +118,7 @@ export function HistoryScreen({ season, summary = null }: HistoryScreenProps) {
         ) : (
           <ol className="flex flex-col gap-4">
             {h.episodes.map((e) => (
-              <Night key={e.ep} episode={e} players={h.players} names={names} link={link} />
+              <Night key={e.ep} episode={e} players={h.players} names={names} link={link} season={season} />
             ))}
           </ol>
         )}
@@ -182,9 +182,10 @@ interface NightProps {
   players: HistoryPlayer[];
   names: (ids: string[]) => ReactNode;
   link: (id: string) => string;
+  season: string;
 }
 
-function Night({ episode: e, players, names, link }: NightProps) {
+function Night({ episode: e, players, names, link, season }: NightProps) {
   const rt = e.roundTable;
   return (
     <Card as="li" aria-labelledby={`ep-${e.ep}`} className="flex flex-col gap-3">
@@ -215,6 +216,7 @@ function Night({ episode: e, players, names, link }: NightProps) {
             label={`Episode ${e.ep} round table`}
             roster={seatedAt(players, e)}
             kind="RT"
+            season={season}
             chosen={[]}
             result={{ banished: rt.banished, faction: rt.faction ?? undefined }}
             tallies={rt.firstVote}

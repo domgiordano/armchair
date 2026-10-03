@@ -3,6 +3,7 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
 const api = vi.hoisted(() => ({ getEpisode: vi.fn(), submitPick: vi.fn() }));
 vi.mock("@/lib/api/traitors", () => api);
+vi.mock("@/lib/api/history", () => ({ getPlayer: () => new Promise(() => {}) }));
 vi.mock("@armchair/app-core/api/client", () => ({ ApiError: class ApiError extends Error {} }));
 
 import type { Episode, EpisodeEvent, SeasonEpisode } from "@/lib/api/traitors";
@@ -45,6 +46,8 @@ it("shows the table before the winner bet, and asks for the bet instead of takin
   const onNeedBet = vi.fn();
   render(<Ballot season="tus-5" episode={SEASON_EP} group={null} members={null} onSealed={vi.fn()} onNeedBet={onNeedBet} />);
   fireEvent.click(await screen.findByRole("button", { name: /^Cal Reyes/ }));
+  expect(onNeedBet).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole("button", { name: "Choose for the murder" }));
   expect(onNeedBet).toHaveBeenCalledOnce();
   expect(screen.getByRole("button", { name: /^Cal Reyes/ }).getAttribute("aria-pressed")).toBe("false");
   expect(screen.queryByRole("button", { name: /^Seal/ })).toBeNull();
@@ -58,12 +61,21 @@ it("ranks three heads at the round table, reorders them on the slate, and seals 
   ballot(onSealed);
   fireEvent.click(await screen.findByRole("tab", { name: "Banish" }));
 
+  // Turn each to the head, then chalk them from the card.
+  const chalk = (name: string, rank: string) => {
+    fireEvent.click(seat(name));
+    fireEvent.click(screen.getByRole("button", { name: `Chalk ${rank}` }));
+  };
   fireEvent.click(seat("Cal Reyes"));
-  fireEvent.click(seat("Ava Stone"));
+  expect(screen.getByRole("button", { name: "Chalk II" })).toHaveProperty("disabled", true);
+  fireEvent.click(screen.getByRole("button", { name: "Chalk I" }));
+  chalk("Ava Stone", "II");
   expect(seal().disabled).toBe(true);
+  // A second tap on the seat at the head chalks the next rank.
+  fireEvent.click(seat("Eli Park"));
   fireEvent.click(seat("Eli Park"));
   expect(seat("Ava Stone").getAttribute("aria-label")).toBe("Ava Stone, your second");
-  expect((seat("Ben Hart") as HTMLButtonElement).disabled).toBe(true);
+  expect(screen.getByRole("button", { name: "Chalk III" }).getAttribute("aria-pressed")).toBe("true");
 
   fireEvent.click(screen.getByRole("button", { name: "Move Eli Park up" }));
   const slate = within(screen.getByRole("list", { name: "Your slate" }));
@@ -73,8 +85,9 @@ it("ranks three heads at the round table, reorders them on the slate, and seals 
     "Ava",
   ]);
 
-  fireEvent.click(seat("Cal Reyes"));
-  fireEvent.click(seat("Dee Moss"));
+  // Chalking Cal again on his own rank rubs him out.
+  chalk("Cal Reyes", "I");
+  chalk("Dee Moss", "III");
   fireEvent.click(seal());
   await vi.waitFor(() => expect(onSealed).toHaveBeenCalledOnce());
   expect(api.submitPick).toHaveBeenCalledWith("tus-5", 5, "RT", { picks: ["eli", "ava", "dee"] });
@@ -85,6 +98,10 @@ it("opens on the first call still to make, and a single pick swaps on the next t
   ballot();
   expect((await screen.findByRole("tab", { name: "Murder" })).getAttribute("aria-selected")).toBe("true");
   fireEvent.click(seat("Ben Hart"));
+  fireEvent.click(screen.getByRole("button", { name: "Choose for the murder" }));
+  expect(screen.getByRole("button", { name: "Choose for the murder" }).getAttribute("aria-pressed")).toBe("true");
+  fireEvent.click(seat("Dee Moss"));
+  expect(screen.getByRole("button", { name: "Choose for the murder" }).getAttribute("aria-pressed")).toBe("false");
   fireEvent.click(seat("Dee Moss"));
   expect(seat("Ben Hart").getAttribute("aria-pressed")).toBe("false");
   fireEvent.click(seal());
@@ -95,7 +112,7 @@ it("seals no pick to see the result", async () => {
   ballot();
   await screen.findByRole("tab", { name: "Murder" });
   fireEvent.click(screen.getByRole("checkbox", { name: "No pick (reveal)" }));
-  expect(screen.queryByRole("button", { name: /^Ava Stone/ })).toBeNull();
+  expect(screen.queryByRole("button", { name: "Choose for the murder" })).toBeNull();
   fireEvent.click(screen.getByRole("button", { name: "Seal: no pick" }));
   await vi.waitFor(() => expect(api.submitPick).toHaveBeenCalledWith("tus-5", 5, "MURDER", { forfeit: true }));
 });
