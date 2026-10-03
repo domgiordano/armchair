@@ -3,7 +3,8 @@ GET /episodes/state?season=dwts-35&ep=05[&group=<gid>] - the caller's view of on
 
 Every performance, judges' score and other user's value goes through
 common/gate.py: locked cards until the caller answers, results only once they
-have answered the whole episode. `group` narrows other users to that group's
+have answered the whole episode, and each dance's AI write-up with its card.
+`group` narrows other users to that group's
 members and is 403 unless the caller is one; it never widens what the gate
 shows. Identity is the Cognito sub; admins get the same view as everyone else.
 """
@@ -30,13 +31,16 @@ def handler(event, context):
         if sub not in in_group:
             raise ForbiddenError("Not a member of that group")
     pk = episode_pk(show, season, ep)
-    rows, perfs, score_rows = query_many(
+    rows, perfs, score_rows, notes = query_many(
         [
             ("CATALOG_TABLE", season_pk(show, season)),
             ("PERFORMANCES_TABLE", pk),
             ("SCORES_TABLE", pk),
+            ("WRITEUPS_TABLE", pk),
         ]
     )
     meta, episode, contestants = episode_rows(rows, show, season, ep)
-    view = episode_view(sub, ep, meta, episode, contestants, perfs, score_rows, in_group)
+    view = episode_view(
+        sub, ep, meta, episode, contestants, perfs, score_rows, in_group, writeups=notes
+    )
     return ok({"season": f"{show}-{season}", **view})

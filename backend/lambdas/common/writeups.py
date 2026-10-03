@@ -278,3 +278,18 @@ def validate(raw: dict, perfs: list[dict]) -> tuple[dict[str, dict], int]:
             "sources": [] if empty else sources,
         }
     return out, dropped
+
+
+def public(item: dict | None) -> dict | None:
+    """A stored write-up as the API serves it, or None when nothing survived validation."""
+    if not item or not (item.get("summary") or item.get("judges") or item.get("highlights")):
+        return None
+    return {
+        "summary": item.get("summary"),
+        "judges": [
+            {"id": j["judge"], "text": j["text"], "quote": j.get("quote")}
+            for j in item.get("judges") or []
+        ],
+        "highlights": list(item.get("highlights") or []),
+        "sources": list(item.get("sources") or []),
+    }

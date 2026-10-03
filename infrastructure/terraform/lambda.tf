@@ -106,12 +106,13 @@ locals {
     groups       = aws_dynamodb_table.groups.arn
     board        = aws_dynamodb_table.board.arn
     social       = aws_dynamodb_table.social.arn
+    writeups     = aws_dynamodb_table.writeups.arn
   }
   api_grants = {
     users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     scores_submit      = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem", "board:PutItem", "board:UpdateItem"]
     scores_reveal_all  = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
-    episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
+    episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "writeups:Query"]
     seasons_get        = ["catalog:Query"]
     admin_keyword      = ["catalog:UpdateItem"]
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
@@ -140,7 +141,7 @@ locals {
     performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem", "users:GetItem", "social:GetItem"]
     week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
     people_search      = ["catalog:Query", "social:Query", "users:BatchGetItem"]
-    people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query"]
+    people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query", "writeups:Query"]
     traitors_season    = ["catalog:Query", "scores:Query", "scores:GetItem"]
     traitors_episode   = ["catalog:Query", "performances:Query", "scores:Query", "scores:GetItem", "groups:Query"]
     traitors_pick      = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:Query", "performances:Query", "board:Query", "board:PutItem", "board:UpdateItem", "board:DeleteItem"]

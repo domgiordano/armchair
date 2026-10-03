@@ -14,7 +14,13 @@ from lambdas.common.groups_dynamo import join as join_group
 from lambdas.episodes_state.handler import handler as state_handler
 from lambdas.scores_submit.handler import handler as submit_handler
 from scripts.seed_season import SEASONS, items, write
-from tests.conftest import CATALOG_TABLE, GROUPS_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
+from tests.conftest import (
+    CATALOG_TABLE,
+    GROUPS_TABLE,
+    PERFORMANCES_TABLE,
+    SCORES_TABLE,
+    WRITEUPS_TABLE,
+)
 from tests.events import SUB as A
 from tests.events import authorized_event
 from tests.seasons import close
@@ -23,7 +29,7 @@ B = "3f1c2b9a-0000-4000-8000-000000000002"
 C = "3f1c2b9a-0000-4000-8000-000000000003"
 SEASON = json.loads((SEASONS / "dwts-35.json").read_text())
 EP5 = "EP#dwts#35#05"
-LOCKED = {"key", "contestants", "n", "style", "song", "locked"}
+LOCKED = {"key", "contestants", "n", "style", "song", "locked", "writeup"}
 # Ep 5: the four couples out in eps 1-4 are gone, twelve dance once each.
 EP5_KEYS = sorted(f"{c['id']}#1" for c in SEASON["contestants"] if c.get("eliminatedEp") is None)
 JUDGED = "tyler-cameron#1"
@@ -111,6 +117,7 @@ def test_the_locked_card_keeps_pre_show_facts(show):
         "style": "Tango",
         "song": "Example Song",
         "locked": True,
+        "writeup": None,
     }
 
 
@@ -453,3 +460,48 @@ def test_premiere_nights_each_ask_only_for_the_couples_who_danced(show):
 
     status, body = submit(ep="01", contestant="jenna-dewan", value=7)
     assert status == 400, body
+
+
+WRITEUP = {
+    "pk": EP5,
+    "sk": f"PERF#{JUDGED}",
+    "summary": "Tyler and Sharna danced a dramatic tango.",
+    "judges": [{"judge": "derek-hough", "text": "Loved the attack.", "quote": "proper tango"}],
+    "highlights": ["Sharp lines"],
+    "sources": ["https://www.goldderby.com/recap/"],
+    "model": "claude-opus-5-5",
+    "generatedAt": 1790000000,
+}
+
+
+def test_a_writeup_stays_locked_until_the_dance_is_answered(show):
+    show.Table(WRITEUPS_TABLE).put_item(Item=WRITEUP)
+    show.Table(WRITEUPS_TABLE).put_item(Item={"pk": EP5, "sk": "META", "spentUsd": Decimal(1)})
+    score(B, JUDGED, value=8)
+    view = state()
+    assert cards(view)[JUDGED]["writeup"] == {"locked": True}
+    assert cards(view)["amber-glenn#1"]["writeup"] is None
+    raw = json.dumps(view)
+    assert "dramatic tango" not in raw and "Loved the attack" not in raw
+
+    score(A, JUDGED, forfeit=True)
+    assert cards(state())[JUDGED]["writeup"] == {
+        "summary": "Tyler and Sharna danced a dramatic tango.",
+        "judges": [{"id": "derek-hough", "text": "Loved the attack.", "quote": "proper tango"}],
+        "highlights": ["Sharp lines"],
+        "sources": ["https://www.goldderby.com/recap/"],
+    }
+
+
+def test_a_past_seasons_writeups_are_open_to_everyone(show):
+    show.Table(WRITEUPS_TABLE).put_item(Item=WRITEUP)
+    close(show, SEASON)
+    assert cards(state())[JUDGED]["writeup"]["summary"] == WRITEUP["summary"]
+
+
+def test_an_empty_writeup_is_no_writeup(show):
+    show.Table(WRITEUPS_TABLE).put_item(
+        Item={"pk": EP5, "sk": f"PERF#{JUDGED}", "summary": None, "judges": [], "highlights": []}
+    )
+    score(A, JUDGED, value=6)
+    assert cards(state())[JUDGED]["writeup"] is None
