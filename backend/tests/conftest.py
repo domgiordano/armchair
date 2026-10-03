@@ -25,6 +25,21 @@ PK_SK = {
 }
 
 
+@pytest.fixture(autouse=True)
+def fandom_offline(monkeypatch):
+    """Fandom unreachable and unthrottled unless a test answers for it."""
+    import urllib.request
+
+    from lambdas.common import fandom
+
+    def offline(req, timeout=None):
+        raise OSError(f"offline: {req.full_url}")
+
+    monkeypatch.setattr(fandom, "GAP", 0)
+    monkeypatch.setattr(fandom, "_left", float("inf"))
+    monkeypatch.setattr(urllib.request, "urlopen", offline)
+
+
 @pytest.fixture
 def aws(monkeypatch):
     """A moto account with the tables Terraform creates."""

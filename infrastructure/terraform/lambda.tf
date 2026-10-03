@@ -146,7 +146,7 @@ locals {
     traitors_episode   = ["catalog:Query", "performances:Query", "scores:Query", "scores:GetItem", "groups:Query"]
     traitors_pick      = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:Query", "performances:Query", "board:Query", "board:PutItem", "board:UpdateItem", "board:DeleteItem"]
     traitors_winner    = ["catalog:Query", "scores:GetItem", "scores:PutItem"]
-    traitors_player    = ["catalog:GetItem", "catalog:Query", "performances:Query"]
+    traitors_player    = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query"]
     traitors_history   = ["catalog:Query", "performances:Query"]
     traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]

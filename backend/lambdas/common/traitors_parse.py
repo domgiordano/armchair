@@ -23,6 +23,16 @@ DAGGER = re.compile(r"\{\{\s*efn\s*\|\s*name\s*=\s*\"?Dagger|\(2x\)", re.IGNOREC
 FACTIONS = {"Faithful", "Traitor", "Accomplice"}
 RECRUIT_ACTIONS = {"recruit", "seduce", "offer", "ultimatum"}
 NOT_A_VOTE = {"", "tba", "no vote", "none", "not in game"}
+# Contestants table columns, by the headers seasons have used for them.
+ABOUT = {
+    "age": ("Age",),
+    "hometown": ("Hometown", "Residence", "From"),
+    "occupation": ("Occupation", "Notability"),
+}
+# A ShortSummary runs to the template's next parameter or its close, across paragraphs.
+SUMMARY = re.compile(
+    r"^\s*\|\s*ShortSummary\s*=(.*?)(?=^\s*\|\s*\w+\s*=|^\s*\}\}|\Z)", re.DOTALL | re.MULTILINE
+)
 
 
 def unwrap(m: re.Match) -> str:
@@ -158,8 +168,18 @@ def section(wikitext: str, *names: str) -> str:
     return ""
 
 
+def summary(chunk: str) -> str:
+    """An episode's ShortSummary as plain text, paragraphs split by a blank line. Empty when unwritten."""
+    m = SUMMARY.search(chunk)
+    if not m:
+        return ""
+    # A bullet is a mission write-up (UK); the marker itself is markup.
+    body = re.sub(r"^\s*\*+\s*", "", m.group(1), flags=re.MULTILINE)
+    return "\n\n".join(text(body).split("\n"))
+
+
 def episodes(wikitext: str) -> list[dict]:
-    """`{{Episode list}}` entries: season episode number, air date, title, and whether it's a `{{void}}` placeholder."""
+    """`{{Episode list}}` entries: season episode number, air date, title, ShortSummary, and whether it's a `{{void}}` placeholder."""
     out = []
     for chunk in re.split(r"(?=\{\{\s*(?:void\s*\|\s*)?Episode list)", wikitext)[1:]:
         n = re.search(r"\|\s*EpisodeNumber2\s*=\s*(\d+)", chunk)
@@ -173,6 +193,7 @@ def episodes(wikitext: str) -> list[dict]:
                 "n": int(n.group(1)),
                 "date": f"{y:04d}-{m:02d}-{d:02d}",
                 "title": text(title.group(1)) if title else "",
+                "summary": summary(chunk),
                 "placeholder": bool(re.match(r"\{\{\s*void", chunk)),
             }
         )
@@ -195,14 +216,24 @@ def article(raw: str) -> str | None:
 
 
 def contestants(wikitext: str) -> list[dict]:
-    """The Contestants table: name, linked article, affiliations in order (a recruit may show two), and finish."""
+    """The Contestants table: name, linked article, `about` (age, hometown, occupation),
+    affiliations in order (a recruit may show two), and finish."""
     for rows in tables(section(wikitext, "Contestants", "Cast")):
         head = [c["text"] for c in expand(rows[:1])[0]]
         finish_at = next((i for i, h in enumerate(head) if h in ("Finish", "Status")), None)
         if "Contestant" not in head or finish_at is None:
             continue
+        at = {
+            k: next((i for i, h in enumerate(head) if h.split("/")[0] in names), None)
+            for k, names in ABOUT.items()
+        }
         out = []
         for row in expand(rows)[1:]:
+            about = {
+                k: (row[i]["text"].split("\n")[0] if i is not None and i < len(row) else "") or None
+                for k, i in at.items()
+            }
+            about["age"] = int(about["age"]) if (about["age"] or "").isdigit() else None
             who = next((c for c in row if c["header"]), row[0])
             name = who["text"].split("\n")[0]
             # "Secret Traitor" is a Traitor; a recruit's row may hold Faithful then Traitor.
@@ -214,6 +245,7 @@ def contestants(wikitext: str) -> list[dict]:
                 {
                     "name": name,
                     "article": article(who["raw"]),
+                    "about": about,
                     "affiliation": sides,
                     "finish": {
                         "how": finish.split("\n")[0].split(" ")[0].lower() if finish else "",
@@ -270,7 +302,8 @@ def round_tables(wikitext: str, names: dict[str, str]) -> list[dict]:
     """One entry per round table: its column labels, first-vote tally, declared counts and result.
 
     A tie opens a group that the revote and any Fate column join. The first vote decides
-    the top 3; the last column decides who left.
+    the top 3; the last column decides who left. `ballots` is each voter's first vote,
+    voter to target, and `daggers` the voters whose vote counted twice.
     """
     found = voting_grid(wikitext)
     if not found:
@@ -297,6 +330,8 @@ def round_tables(wikitext: str, names: dict[str, str]) -> list[dict]:
         else:
             tally: Counter = Counter()
             unresolved = []
+            ballots: dict[str, str] = {}
+            daggers = []
             for row in players:
                 if c >= len(row):
                     continue
@@ -312,11 +347,18 @@ def round_tables(wikitext: str, names: dict[str, str]) -> list[dict]:
                 if who is None:
                     unresolved.append(vote)
                     continue
-                tally[who] += 2 if DAGGER.search(row[c]["raw"]) else 1
+                dagger = bool(DAGGER.search(row[c]["raw"]))
+                tally[who] += 2 if dagger else 1
+                if voter := resolve(names, label(row)):
+                    ballots[voter] = who
+                    if dagger:
+                        daggers.append(voter)
             counts = [int(n) for n in re.findall(r"\d+", declared)]
             group = {
                 "columns": [column],
                 "firstVote": dict(tally),
+                "ballots": ballots,
+                "daggers": daggers,
                 "declared": counts,
                 "unresolved": unresolved,
             }
@@ -357,6 +399,29 @@ def recruits(wikitext: str, names: dict[str, str]) -> list[dict]:
             if person := resolve(names, name):
                 out.append({"name": person, "ep": int(ep.group()) if ep else None})
     return out
+
+
+def shields(wikitext: str, names: dict[str, str]) -> dict[int, list[str]]:
+    """Who held a shield, by episode: the first number of a column's label, since a `3/4`
+    round table column still belongs to episode 3's mission."""
+    found = voting_grid(wikitext)
+    if not found:
+        return {}
+    grid, start = found
+    header = grid[0]
+    row = next((r for r in grid if label(r).lower() in ("shield", "shields")), None)
+    if row is None:
+        return {}
+    out: dict[int, list[str]] = {}
+    for c in range(start, min(len(row), len(header))):
+        ep = re.match(r"\d+", header[c]["text"])
+        if not ep or (c > start and row[c] is row[c - 1]):
+            continue
+        held = out.setdefault(int(ep.group()), [])
+        for name in row[c]["text"].split("\n"):
+            if (person := resolve(names, name)) and person not in held:
+                held.append(person)
+    return {ep: held for ep, held in out.items() if held}
 
 
 OVERVIEW = re.compile(r"\{\{\s*Series overview(.*?)^\}\}", re.DOTALL | re.MULTILINE | re.IGNORECASE)
@@ -406,5 +471,6 @@ def season(wikitext: str) -> dict:
             if p["finish"]["how"] == "murdered"
         ],
         "recruited": recruits(wikitext, names),
+        "shields": shields(wikitext, names),
         "winners": [p["name"] for p in cast if p["finish"]["how"] in ("winner", "winners")],
     }

@@ -2,10 +2,13 @@
 GET /traitors/episode?season=tus-5&ep=05[&group=<gid>] - one Traitors episode as the caller may see it.
 
     {season, ep, title, releaseAt, closed, needsBet, roster, events,
+     recap: {text, source: "wikipedia" | "fandom", sourceUrl} | null,
      out: [{id, ep, how, faction | null}]}
 
 Everything goes through common/traitors_gate.py: an event stays locked until the caller
-picks or forfeits it. Without a winner bet a current season can still be browsed:
+picks or forfeits it. An unlocked round table's result carries `ballots` ({voter id:
+target id}, first vote) and `daggers` ([voter id]). `recap` tells the whole episode, so
+it shows only once the episode is closed or the caller has answered every event. Without a winner bet a current season can still be browsed:
 `needsBet` is true and, since picking needs the bet, every open event stays locked.
 `out` is who left in earlier episodes the caller has fully answered or that are closed.
 `group` narrows the picks shown to that group's members and is 403 unless the caller is one.
