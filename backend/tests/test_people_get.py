@@ -156,6 +156,44 @@ def test_a_past_season_shows_every_dance_and_result_unanswered(seeded):
     assert stats["mine"]["count"] == 0
     assert data("melissa-rycroft")["seasons"][0]["result"] == {"status": "finalist"}
     assert all(not r["locked"] for r in data("carrie-ann-inaba")["judged"]["rows"])
+    assert (season["place"], season["cast"]) == (12, 13)
+
+
+def test_the_current_season_never_carries_a_place(seeded):
+    # The index holds season 8's places, but season 8 is replayed as current.
+    finish(A, 1, 2, 3, 4, 5)
+    (season,) = data("denise-richards")["seasons"]
+    assert season["result"] == {"status": "out", "ep": 5, "week": 3}
+    assert "place" not in season and "cast" not in season
+    assert all("place" not in s for s in data("shawn-johnson", brief="1")["seasons"])
+
+
+def test_brief_reads_who_they_are_and_no_dances(seeded):
+    close(seeded, S8)
+    maks = data("maksim-chmerkovskiy", brief="1")
+    assert maks["name"] == "Maksim Chmerkovskiy"
+    assert maks["performances"] == [] and maks["stats"] == {"dancer": None, "judge": None}
+    (season,) = maks["seasons"]
+    assert season["loaded"] is False and season["result"] is None
+    assert season["partners"][0]["id"] == "denise-richards"
+    assert (season["place"], season["cast"]) == (12, 13)
+
+
+def test_a_judge_season_names_the_couple_they_scored_highest(seeded):
+    close(seeded, S8)
+    seasons = data("carrie-ann-inaba")["stats"]["judge"]["bySeason"]
+    (s8,) = seasons
+    top = s8["top"]
+    assert top["count"] > 0
+    assert {d["role"] for d in top["dancers"]} == {"celebrity", "pro"}
+    # Nobody she scored that season averaged higher from her.
+    by_couple = {}
+    for e in S8["episodes"]:
+        for p in e.get("performances") or []:
+            if len(p["contestants"]) == 1 and p["judges"] and p["judges"][0] is not None:
+                by_couple.setdefault(p["contestants"][0], []).append(float(p["judges"][0]))
+    best = max(sum(v) / len(v) for v in by_couple.values())
+    assert top["mean"] == round(best, 2)
 
 
 def test_a_pro_sees_their_partners_dances(seeded):
@@ -164,7 +202,8 @@ def test_a_pro_sees_their_partners_dances(seeded):
     assert [r["key"] for r in maks["performances"]] == [
         f"denise-richards#{n}" for n in (1, 1, 1, 2)
     ]
-    assert maks["seasons"][0]["partners"] == [{"id": "denise-richards", "name": "Denise Richards"}]
+    (denise,) = maks["seasons"][0]["partners"]
+    assert (denise["id"], denise["name"]) == ("denise-richards", "Denise Richards")
 
 
 def test_a_judge_gets_their_nights_and_tendencies_over_answered_dances(seeded):
