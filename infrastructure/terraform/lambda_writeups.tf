@@ -3,9 +3,21 @@
 # CloudFront distribution can't read (avatars.tf grants it avatars/* only).
 
 locals {
-  writeups_name     = "${var.app_name}-cron-writeups"
-  # Put by hand, never by Terraform, so the key stays out of state.
-  anthropic_key_arn = "arn:aws:ssm:${var.aws_region}:${local.account_id}:parameter/${var.app_name}/api/ANTHROPIC_API_KEY"
+  writeups_name = "${var.app_name}-cron-writeups"
+}
+
+# The key lives in Infisical (code project, /armchair); the Terraform workflow
+# exports it as TF_VAR_anthropic_api_key. Rotate there and re-run Terraform.
+# Hand-set before this was managed; drop the import once applied.
+import {
+  to = aws_ssm_parameter.anthropic_api_key
+  id = "/armchair/api/ANTHROPIC_API_KEY"
+}
+
+resource "aws_ssm_parameter" "anthropic_api_key" {
+  name  = "/${var.app_name}/api/ANTHROPIC_API_KEY"
+  type  = "SecureString"
+  value = var.anthropic_api_key
 }
 
 resource "aws_cloudwatch_log_group" "writeups" {
@@ -60,7 +72,7 @@ data "aws_iam_policy_document" "writeups" {
   statement {
     sid       = "AnthropicKey"
     actions   = ["ssm:GetParameter"]
-    resources = [local.anthropic_key_arn]
+    resources = [aws_ssm_parameter.anthropic_api_key.arn]
   }
 
   statement {
