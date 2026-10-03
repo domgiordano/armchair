@@ -1,5 +1,5 @@
 import { request } from "@armchair/app-core/api/client";
-import type { Answer, Headshot, JudgeSeat } from "./show";
+import type { Answer, Headshot, JudgeSeat, LockedWriteup, Writeup } from "./show";
 import type { Match } from "@armchair/app-core/api/social";
 
 export type Role = "celebrity" | "pro" | "judge";
@@ -51,10 +51,12 @@ interface RowBase {
 /** A dance the caller hasn't answered: what the pre-show table says, and nothing else. */
 export interface LockedRow extends RowBase {
   locked: true;
+  writeup?: LockedWriteup | null;
 }
 
 export interface OpenRow extends RowBase {
   locked: false;
+  writeup?: Writeup | null;
   judges: JudgeSeat[];
   /** Null until every panel judge is confirmed. */
   panelMean: number | null;
