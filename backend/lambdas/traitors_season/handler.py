@@ -14,8 +14,9 @@ it's the caller's own rows. A current season can be browsed before the winner be
 `needsBet` says picking waits for it and `betRoster` is who it may name. `cast` follows
 traitors_gate.wall: in a current season only exits from closed episodes show. `summary`
 is the season article's lead, attributed by `sourceUrl` (CC BY-SA), written by discovery.
-A recap reveals its episode's results, so a current season's are always null here: they
-come one at a time through /traitors/episode.
+A recap reveals its episode's results, so it follows traitors_gate.seen like the episode
+view: closed, or every event answered. The wiki's recap, else one written from the
+confirmed results.
 """
 
 from __future__ import annotations
@@ -33,7 +34,9 @@ from lambdas.common.traitors_gate import (
     events,
     mine,
     needs_bet,
+    recap,
     released,
+    seen,
     wall,
 )
 
@@ -47,6 +50,15 @@ def handler(event, context):
     own_bet = bet(show, number, sub)
     picks = query_many([("SCORES_TABLE", episode_pk(show, number, ep_number(e))) for e in episodes])
     cast = wall(meta, episodes, players)
+    open_eps = [e for e, answers in zip(episodes, picks) if seen(sub, meta, e, answers)]
+    results = dict(
+        zip(
+            (ep_number(e) for e in open_eps),
+            query_many(
+                [("PERFORMANCES_TABLE", episode_pk(show, number, ep_number(e))) for e in open_eps]
+            ),
+        )
+    )
     data = {
         "season": f"{show}-{number}",
         "title": meta["wikiTitle"],
@@ -63,7 +75,13 @@ def handler(event, context):
                 "closed": closed(meta, e),
                 "events": len(events(e)),
                 "answered": len(mine(sub, answers)),
-                "recap": None if meta.get("current") else e.get("recap"),
+                "recap": (
+                    recap(
+                        e, {r["sk"].removeprefix("EVT#"): r for r in results[ep_number(e)]}, players
+                    )
+                    if ep_number(e) in results
+                    else None
+                ),
             }
             for e, answers in zip(episodes, picks)
         ],

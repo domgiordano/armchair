@@ -467,12 +467,16 @@ def test_closed_episode_shows_its_recap(db):
     assert episode(1)["recap"]["text"] == "They arrive."
 
 
-def test_season_list_never_carries_a_current_recap(db):
+def test_season_list_shows_recaps_only_for_episodes_the_caller_may_see(db):
     backfill()
     set_recap(db, 5, 1, "They arrive.")
+    set_recap(db, 5, 2, "Madeline goes.")
     set_recap(db, 4, 2, "Porsha goes.")
     _, current = get(season_handler, "/traitors/season", season="tus-5")
-    assert {e["recap"] for e in current["data"]["episodes"]} == {None}
+    eps = {e["ep"]: e["recap"] for e in current["data"]["episodes"]}
+    # Episode 1 aired before the season opened (closed); episode 2 is still to be called.
+    assert eps[1]["text"] == "They arrive."
+    assert eps[2] is None
     _, past = get(season_handler, "/traitors/season", season="tus-4")
     assert past["data"]["episodes"][1]["recap"]["text"] == "Porsha goes."
 
