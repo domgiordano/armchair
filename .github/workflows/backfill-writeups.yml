@@ -1,0 +1,54 @@
+name: Backfill Write-ups
+
+# Invokes the write-up Lambda with {"backfill": true}: every aired episode of the
+# given weeks gets AI write-ups for its confirmed dances. Dances that already have
+# one are skipped unless `force` is set, and each episode's spend stays under the
+# cap in lambdas/cron_writeups/handler.py, so re-running is safe.
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: Season, e.g. dwts-35
+        default: dwts-35
+      weeks:
+        description: Comma-separated week numbers, e.g. 1,2,3,4
+        default: 1,2,3,4
+      force:
+        description: Rewrite dances that already have a write-up
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write # mint the OIDC token traded for the deploy role
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Xomware/github-actions/actions/load-infisical-secrets@v1
+        with:
+          path: /armchair
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Invoke
+        env:
+          SEASON: ${{ inputs.season }}
+          WEEKS: ${{ inputs.weeks }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          payload=$(jq -cn --arg s "$SEASON" --arg w "$WEEKS" --argjson f "$FORCE" \
+            '{backfill: true, season: $s, weeks: ($w | split(",") | map(tonumber)), force: $f}')
+          # A backfill runs for minutes; the CLI's default read timeout is 60 s.
+          aws lambda invoke --function-name armchair-cron-writeups --cli-read-timeout 900 \
+            --cli-binary-format raw-in-base64-out --payload "$payload" \
+            --log-type Tail --query LogResult --output text out.json | base64 -d | tail -c 3000
+          cat out.json
+          # A handler exception still returns 200 from Invoke; the error is in the body.
+          ! grep -q '"errorMessage"' out.json
