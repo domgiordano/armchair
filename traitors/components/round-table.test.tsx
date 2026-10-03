@@ -132,3 +132,17 @@ it("seats the cast with how each left, and the card says it for the one at the h
   fireEvent.click(ben);
   expect(within(card()).getByText("Traitor · Banished ep 2")).toBeTruthy();
 });
+
+it("shows the banished player's portrait crossed out under the dropped hood, not an empty seat", () => {
+  const { container } = render(
+    <RoundTable
+      roster={players(12)}
+      kind="RT"
+      season="tus-5"
+      chosen={[]}
+      onTap={vi.fn()}
+      result={{ banished: "p3", faction: "Faithful" }}
+    />,
+  );
+  expect(container.querySelector('[data-out="banished"]')).toBeTruthy();
+});

@@ -523,9 +523,16 @@ function Face({ player, notes, size, cast }: FaceProps) {
     <>
       {notes.state === "murdered" ? (
         <EmptyChair className="size-full" />
-      ) : notes.state !== "banished" ? (
-        <Headshot round name={player.name} image={player.headshot} size={size} exit={cast ? player.exit : null} />
-      ) : null}
+      ) : (
+        <Headshot
+          round
+          name={player.name}
+          image={player.headshot}
+          size={size}
+          // The hood drops away to show the portrait crossed out, not an empty seat.
+          exit={notes.state === "banished" ? (player.exit ?? { how: "banished" }) : cast ? player.exit : null}
+        />
+      )}
       {notes.state === "banished" && (
         <span className="absolute inset-0 animate-hood-drop">
           <Hood className="size-full" />

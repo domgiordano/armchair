@@ -13,7 +13,7 @@ export function initials(name: string): string {
 }
 
 /** Out of the game, so crossed off the wall. A winner or finalist left on top. */
-export const eliminated = (exit: Exit | null | undefined) => Boolean(exit && !/winner|runner|final/i.test(exit.how));
+export const eliminated = (exit: Pick<Exit, "how"> | null | undefined) => Boolean(exit && !/winner|runner|final/i.test(exit.how));
 
 interface PortraitProps {
   name: string;
@@ -120,7 +120,7 @@ interface HeadshotProps {
   /** A round seat at the table rather than a framed portrait. */
   round?: boolean;
   /** How they left: banished or murdered crosses them off. Only ever what the API sent. */
-  exit?: Exit | null;
+  exit?: Pick<Exit, "how"> | null;
   className?: string;
 }
 
