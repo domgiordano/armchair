@@ -101,13 +101,48 @@ function HoodedFigure({ letters }: { letters: string }) {
 }
 
 /** A bold red cross painted over the portrait, two strokes with a dry-brush edge. */
-function PaintedX() {
+/**
+ * The show's red X. `paint` brushes it on: each stroke is revealed by a mask whose own
+ * path draws in along its diagonal, first one, then the other, then the drip runs.
+ */
+function PaintedX({ paint = false }: { paint?: boolean }) {
+  const id = useId();
+  const brush = (d: string, delay: number) =>
+    paint && (
+      <mask id={`${id}-${delay}`} maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+        <path
+          d={d}
+          pathLength={1}
+          stroke="white"
+          strokeWidth={30}
+          strokeLinecap="round"
+          strokeDasharray="1"
+          className="animate-draw [animation-duration:520ms]"
+          style={{ animationDelay: `${delay}ms` }}
+        />
+      </mask>
+    );
+  const masked = (delay: number) => (paint ? `url(#${id}-${delay})` : undefined);
   return (
     <svg viewBox="0 0 100 100" aria-hidden="true" className="pointer-events-none absolute -top-[6%] -left-[6%] h-[112%] w-[112%] drop-shadow-[0_2px_2px_rgb(0_0_0/0.6)]">
-      <path d="M12 9c4-2 8 0 12 4l64 70c3 4 3 8 0 10-3 2-7 1-10-3L12 22c-4-4-4-10 0-13Z" fill="var(--blood)" />
-      <path d="M91 12c2 4 0 8-4 12L23 90c-4 4-9 5-12 2s-1-8 3-12L78 13c4-4 10-5 13-1Z" fill="var(--blood)" />
-      <path d="M16 12l70 75M86 15L18 86" stroke="var(--blood-hi)" strokeWidth={3} strokeLinecap="round" strokeDasharray="22 5 9 4 30 6" opacity={0.55} />
-      <path d="M50 52c1 6 0 12 1 17 0 2-2 3-3 1-1-5 0-11 2-18Z" fill="var(--blood)" opacity={0.85} />
+      <defs>
+        {brush("M10 8 L92 94", 250)}
+        {brush("M92 8 L10 94", 800)}
+      </defs>
+      <g mask={masked(250)}>
+        <path d="M12 9c4-2 8 0 12 4l64 70c3 4 3 8 0 10-3 2-7 1-10-3L12 22c-4-4-4-10 0-13Z" fill="var(--blood)" />
+        <path d="M16 12l70 75" stroke="var(--blood-hi)" strokeWidth={3} strokeLinecap="round" strokeDasharray="22 5 9 4 30 6" opacity={0.55} />
+      </g>
+      <g mask={masked(800)}>
+        <path d="M91 12c2 4 0 8-4 12L23 90c-4 4-9 5-12 2s-1-8 3-12L78 13c4-4 10-5 13-1Z" fill="var(--blood)" />
+        <path d="M86 15L18 86" stroke="var(--blood-hi)" strokeWidth={3} strokeLinecap="round" strokeDasharray="22 5 9 4 30 6" opacity={0.55} />
+      </g>
+      <path
+        d="M50 52c1 6 0 12 1 17 0 2-2 3-3 1-1-5 0-11 2-18Z"
+        fill="var(--blood)"
+        opacity={0.85}
+        className={paint ? "animate-grow-y [animation-delay:1350ms] [transform-box:fill-box] origin-top" : undefined}
+      />
     </svg>
   );
 }
@@ -121,11 +156,13 @@ interface HeadshotProps {
   round?: boolean;
   /** How they left: banished or murdered crosses them off. Only ever what the API sent. */
   exit?: Pick<Exit, "how"> | null;
+  /** Brush the X on as it appears, for a profile's first look at someone who's out. */
+  paint?: boolean;
   className?: string;
 }
 
 /** A player's portrait in a gilt frame, or a hooded figure until a photo exists. */
-export function Headshot({ name, image, size = 48, round = false, exit, className }: HeadshotProps) {
+export function Headshot({ name, image, size = 48, round = false, exit, paint, className }: HeadshotProps) {
   const portrait = (
     <Portrait
       name={name}
@@ -140,7 +177,7 @@ export function Headshot({ name, image, size = 48, round = false, exit, classNam
   return (
     <span data-out={exit?.how} className="relative inline-flex shrink-0" style={{ width: size, height: size }}>
       {portrait}
-      <PaintedX />
+      <PaintedX paint={paint} />
     </span>
   );
 }
