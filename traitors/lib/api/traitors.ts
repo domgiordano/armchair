@@ -27,9 +27,12 @@ export interface CastMember extends Player {
   exit: Exit | null;
 }
 
+export type WriteupSource = "wikipedia" | "fandom";
+
 export interface Writeup {
   text: string;
-  /** The Wikipedia article it's from: CC BY-SA, so always linked. */
+  /** Where it's from; absent means Wikipedia. Both are CC BY-SA, so always linked. */
+  source?: WriteupSource;
   sourceUrl: string;
 }
 
@@ -41,6 +44,8 @@ export interface SeasonEpisode {
   closed: boolean;
   events: number;
   answered: number;
+  /** A finished season's episode recap. */
+  recap?: Writeup | null;
 }
 
 /** Everything is browsable before the bet; only picks wait for it (403). */
@@ -86,6 +91,10 @@ export interface RoundTableResult {
   banished?: string;
   faction?: Faction;
   firstVote?: Record<string, number>;
+  /** Who each player voted to banish, voter id to target id, once the round table is unlocked for you. */
+  ballots?: Record<string, string>;
+  /** Who held a shield that night. */
+  shields?: string[];
 }
 export interface RecruitResult {
   recruits?: string[];
@@ -121,6 +130,8 @@ export interface Episode {
   /** Picks wait for the winner bet; the episode still shows. */
   needsBet: boolean;
   events: EpisodeEvent[];
+  /** Sent only once you've made every call, or the episode is closed. */
+  recap?: Writeup;
 }
 
 export const epParam = (ep: number) => String(ep).padStart(2, "0");

@@ -5,16 +5,18 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { FactionBadge } from "@/components/faction-badge";
-import { Writeup } from "@/components/writeup";
 import { errorText } from "@/components/season-data";
+import { ShieldMark, Tally } from "@/components/table-art";
 import { Headshot } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
-import { getPlayer, type Career, type PlayerProfile } from "@/lib/api/history";
-import { finishText } from "@/lib/history";
-import { isShow, seasonLabel, withSeason, type Show } from "@/lib/seasons";
-import { cn, EYEBROW, HEADING, TEXT_LINK } from "@/lib/ui";
+import { Writeup } from "@/components/writeup";
+import { getPlayer, type Career, type PlayerProfile, type StoryEpisode } from "@/lib/api/history";
+import { finishText, playerHref } from "@/lib/history";
+import { nameOf, roman } from "@/lib/players";
+import { isShow, seasonLabel, seasonNumber, withSeason, type Show } from "@/lib/seasons";
+import { cn, EYEBROW, FOCUS, HEADING, TEXT_LINK } from "@/lib/ui";
 
 type Load = { kind: "loading" } | { kind: "ready"; player: PlayerProfile } | { kind: "error"; message: string };
 
@@ -84,7 +86,17 @@ function Player({ show, id }: { show: Show; id: string }) {
           )}
         </div>
       </Card>
-      {p.bio && <Writeup title={`About ${p.name}`} writeup={p.bio} />}
+      {p.bio ? (
+        <Writeup title={`About ${p.name}`} writeup={p.bio} />
+      ) : (
+        <section aria-labelledby="bio-title" className="flex flex-col gap-2">
+          <h2 id="bio-title" className={EYEBROW}>
+            About {p.name}
+          </h2>
+          <p className="text-ash">No biography yet.</p>
+        </section>
+      )}
+      <Story show={show} story={p.story ?? []} seasons={seasons} />
       <h2 className={EYEBROW}>Seasons played</h2>
       <ol aria-label="Seasons played" className="-mt-2 flex flex-col gap-4">
         {seasons.map((s) => (
@@ -115,6 +127,107 @@ function SeasonCard({ career: s }: { career: Career }) {
       </p>
       {s.votes && <VotesChart votes={s.votes} banishedAt={s.finish?.how === "banished" ? s.finish.ep : null} />}
     </Card>
+  );
+}
+
+interface StoryProps {
+  show: Show;
+  story: StoryEpisode[];
+  /** Newest first: the story's seasons go in the same order. */
+  seasons: Career[];
+}
+
+/** What the player did each episode you may see: their vote, the votes against them, a shield, how they left. */
+function Story({ show, story, seasons }: StoryProps) {
+  const order = seasons.map((s) => s.season);
+  const groups = [...new Set(story.map((s) => s.season))]
+    .sort((a, b) => order.indexOf(a) - order.indexOf(b))
+    .map((season) => ({
+      season,
+      label: seasonLabel({ id: season, number: seasons.find((s) => s.season === season)?.number ?? seasonNumber(season) }),
+      episodes: story.filter((s) => s.season === season).sort((a, b) => a.ep - b.ep),
+    }));
+
+  return (
+    <section aria-labelledby="story-title" className="flex flex-col gap-3">
+      <h2 id="story-title" className={EYEBROW}>
+        Episode by episode
+      </h2>
+      {groups.length === 0 ? (
+        <EmptyState>Each episode fills in here once its results are yours to see.</EmptyState>
+      ) : (
+        groups.map((g) => (
+          <Card as="section" key={g.season} aria-label={`${g.label}, episode by episode`} className="flex flex-col gap-2">
+            <h3 className="font-display text-lg font-semibold text-bone">{g.label}</h3>
+            <ol className="flex flex-col">
+              {g.episodes.map((s) => (
+                <StoryRow key={s.ep} show={show} entry={s} />
+              ))}
+            </ol>
+          </Card>
+        ))
+      )}
+    </section>
+  );
+}
+
+function StoryRow({ show, entry: s }: { show: Show; entry: StoryEpisode }) {
+  const voted = s.voted && nameOf(s.voted, null);
+  return (
+    <li
+      aria-label={`Episode ${s.ep}`}
+      className="flex gap-3 border-t border-bone/10 py-3 first:border-t-0 first:pt-1 last:pb-0"
+    >
+      <span aria-hidden="true" className="w-9 shrink-0 pt-0.5 font-display text-lg text-gilt">
+        {roman(s.ep)}
+      </span>
+      <div className="flex min-w-0 flex-col gap-2">
+        <p className="text-bone">{s.title ?? `Episode ${s.ep}`}</p>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-parchment">
+          {s.voted && voted ? (
+            <span className="flex items-center gap-2">
+              Voted for
+              <Link
+                href={playerHref(show, s.voted, s.season)}
+                className={cn(FOCUS, "group flex min-h-11 items-center gap-2 rounded-sm pr-1 hover:text-candle")}
+              >
+                <span aria-hidden="true">
+                  <Headshot name={voted} image={null} size={28} round />
+                </span>
+                <span className="font-hand text-xl leading-none text-bone group-hover:text-candle">{voted}</span>
+              </Link>
+            </span>
+          ) : (
+            s.votesReceived !== null && <span className="text-ash">No vote on record</span>
+          )}
+          {s.votesReceived !== null && (
+            <span className="flex items-center gap-2">
+              {s.votesReceived > 0 ? (
+                <>
+                  <Tally count={s.votesReceived} />
+                  <span>
+                    <span className="nums">{s.votesReceived}</span> {s.votesReceived === 1 ? "vote" : "votes"} against
+                  </span>
+                </>
+              ) : (
+                <span className="text-ash">No votes against</span>
+              )}
+            </span>
+          )}
+          {s.shield && (
+            <span className="flex items-center gap-1.5 text-candle">
+              <ShieldMark className="h-5 w-4" />
+              Shield
+            </span>
+          )}
+          {s.out && (
+            <span className={cn("font-display text-sm font-semibold tracking-[0.12em] uppercase", s.out.how === "winner" ? "text-candle" : "text-blood-hi")}>
+              {s.out.how === "winner" ? "Won" : s.out.how}
+            </span>
+          )}
+        </div>
+      </div>
+    </li>
   );
 }
 

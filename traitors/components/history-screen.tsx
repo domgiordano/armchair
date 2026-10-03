@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 
 import { FactionWord } from "@/components/faction-word";
+import { RecapFold } from "@/components/recap";
 import { RoundTable } from "@/components/round-table";
 import { errorText } from "@/components/season-data";
 import { CastWall } from "@/components/cast-wall";
@@ -234,6 +235,13 @@ function Night({ episode: e, players, names, link }: NightProps) {
           <CloakToken className="size-7 shrink-0" />
           <span>Recruited: {names(e.recruited)}</span>
         </p>
+      )}
+
+      {e.recap && (
+        <div className="flex flex-col gap-2 border-t border-gilt/20 pt-3">
+          <p className={EYEBROW}>What happened</p>
+          <RecapFold recap={e.recap} />
+        </div>
       )}
     </Card>
   );

@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useLayoutEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode, type RefObject } from "react";
 
 import { FactionWord } from "@/components/faction-word";
-import { CloakToken, DaggerToken, EmptyChair, Hood, SlateToken, TableTop, Tally } from "@/components/table-art";
+import { CloakToken, DaggerToken, EmptyChair, Hood, ShieldMark, SlateToken, TableTop, Tally } from "@/components/table-art";
 import { Headshot } from "@/components/ui/avatar";
 import type { EventType, Faction, Player } from "@/lib/api/traitors";
 import { RING_INSET, seatLayout, TABLE_ASPECT, tableWidth, toward, type SeatSpot } from "@/lib/ballot";
-import { firstName } from "@/lib/players";
+import { firstName, nameOf } from "@/lib/players";
 import { cn, FOCUS } from "@/lib/ui";
 
 export interface TableResult {
@@ -37,6 +37,10 @@ interface RoundTableProps {
   label?: string;
   /** Read-only seats link to each player's page. */
   hrefOf?: (id: string) => string;
+  /** Voter id to target id: drawn as chalk arrows across the table. */
+  ballots?: Record<string, string> | null;
+  /** Who held a shield: a badge on their seat. */
+  shields?: string[];
 }
 
 const RANKS = ["first", "second", "third"];
@@ -62,8 +66,12 @@ export function RoundTable({
   tallyLabel = (n) => `${n} called`,
   label,
   hrefOf,
+  ballots = null,
+  shields = [],
 }: RoundTableProps) {
   const scroller = useRef<HTMLDivElement>(null);
+  const ring = useRef<HTMLDivElement>(null);
+  const size = useSize(ring, ballots !== null);
   const width = tableWidth(roster.length);
   const spots = seatLayout(roster.length, width);
 
@@ -89,18 +97,21 @@ export function RoundTable({
         style={{ minWidth: width, aspectRatio: TABLE_ASPECT }}
       >
         <div
+          ref={ring}
           className="absolute"
           style={{ left: RING_INSET.x, right: RING_INSET.x, top: RING_INSET.top, bottom: RING_INSET.bottom }}
         >
           <div className="absolute inset-x-[3%] inset-y-[6%]">
             <TableTop />
           </div>
+          {ballots && size && <VoteLines roster={roster} spots={spots} ballots={ballots} size={size} />}
           {roster.map((p, i) => {
             const rank = chosen.indexOf(p.id);
             const count = tallies?.[p.id] ?? 0;
             return (
               <div key={p.id}>
-                {rank >= 0 && (
+                {/* With the votes drawn, your slate tokens would sit on the arrows; the slate below still lists them. */}
+                {rank >= 0 && !ballots && (
                   <Placed spot={toward(spots[i], 0.34)} z={5}>
                     <Token kind={kind} rank={rank} />
                   </Placed>
@@ -126,11 +137,106 @@ export function RoundTable({
               disabled={full && !chosen.includes(p.id)}
               tally={tallies?.[p.id] ? tallyLabel(tallies[p.id]) : null}
               href={hrefOf?.(p.id)}
+              shield={shields.includes(p.id)}
+              votedFor={ballots?.[p.id] ? nameOf(ballots[p.id], roster) : null}
             />
           ))}
         </div>
       </div>
     </div>
+  );
+}
+
+type Size = { w: number; h: number };
+
+/** The seat ring's size in pixels, tracked only while something is drawn on it. */
+function useSize(ref: RefObject<HTMLDivElement | null>, on: boolean): Size | null {
+  const [size, setSize] = useState<Size | null>(null);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!on || !el || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(([entry]) => setSize({ w: entry.contentRect.width, h: entry.contentRect.height }));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ref, on]);
+  return size;
+}
+
+type Point = { x: number; y: number };
+const unit = (from: Point, to: Point) => {
+  const len = Math.hypot(to.x - from.x, to.y - from.y) || 1;
+  return { x: (to.x - from.x) / len, y: (to.y - from.y) / len };
+};
+
+/**
+ * Each vote as a chalk arrow from voter to target, bowed toward the middle of the
+ * table so votes for one player fan in rather than lie on top of each other.
+ */
+function VoteLines({ roster, spots, ballots, size }: { roster: Player[]; spots: SeatSpot[]; ballots: Record<string, string>; size: Size }) {
+  const filter = useId();
+  const seat = new Map(roster.map((p, i) => [p.id, i]));
+  // The face sits above the seat's centre, its name below; ends stop at the face's rim.
+  const face = (i: number) => ({
+    x: (spots[i].x / 100) * size.w,
+    y: (spots[i].y / 100) * size.h - 8 * spots[i].scale,
+    r: 27 * spots[i].scale,
+  });
+  const centre = { x: size.w / 2, y: size.h / 2 };
+  const paths = Object.entries(ballots).flatMap(([voter, target]) => {
+    const a = seat.get(voter);
+    const b = seat.get(target);
+    if (a === undefined || b === undefined || a === b) return [];
+    const p0 = face(a);
+    const p2 = face(b);
+    const mid = { x: (p0.x + p2.x) / 2, y: (p0.y + p2.y) / 2 };
+    const c = { x: mid.x + (centre.x - mid.x) * 0.35, y: mid.y + (centre.y - mid.y) * 0.35 };
+    const out = unit(p0, c);
+    const into = unit(c, p2);
+    const s = { x: p0.x + out.x * p0.r, y: p0.y + out.y * p0.r };
+    const e = { x: p2.x - into.x * p2.r, y: p2.y - into.y * p2.r };
+    const barb = (turn: number) => {
+      const cos = Math.cos(turn);
+      const sin = Math.sin(turn);
+      return { x: e.x - 10 * (into.x * cos - into.y * sin), y: e.y - 10 * (into.x * sin + into.y * cos) };
+    };
+    const l = barb(0.5);
+    const r = barb(-0.5);
+    const f = (n: number) => n.toFixed(1);
+    return [
+      {
+        voter,
+        d: `M${f(s.x)} ${f(s.y)}Q${f(c.x)} ${f(c.y)} ${f(e.x)} ${f(e.y)}M${f(l.x)} ${f(l.y)}L${f(e.x)} ${f(e.y)}L${f(r.x)} ${f(r.y)}`,
+      },
+    ];
+  });
+
+  return (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-[5] overflow-visible"
+      width={size.w}
+      height={size.h}
+      viewBox={`0 0 ${size.w} ${size.h}`}
+    >
+      <defs>
+        <filter id={filter}>
+          <feTurbulence type="fractalNoise" baseFrequency={1.1} numOctaves={1} seed={3} />
+          <feDisplacementMap in="SourceGraphic" scale={2} />
+        </filter>
+      </defs>
+      <g filter={`url(#${filter})`} fill="none" stroke="var(--bone)" strokeOpacity={0.88} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        {paths.map((p, i) => (
+          <path
+            key={p.voter}
+            d={p.d}
+            pathLength={1}
+            strokeDasharray={1}
+            className="animate-draw"
+            style={{ animationDelay: `${i * 70}ms` }}
+          />
+        ))}
+      </g>
+    </svg>
   );
 }
 
@@ -163,9 +269,11 @@ interface SeatProps {
   disabled: boolean;
   tally: string | null;
   href?: string;
+  shield: boolean;
+  votedFor: string | null;
 }
 
-function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally, href }: SeatProps) {
+function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally, href, shield, votedFor }: SeatProps) {
   const picked = rank >= 0;
   const label = [
     player.name,
@@ -174,6 +282,8 @@ function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally
     state === "murdered" && "murdered",
     state === "recruited" && "recruited",
     tally,
+    votedFor && `voted for ${votedFor}`,
+    shield && "held a shield",
   ]
     .filter(Boolean)
     .join(", ");
@@ -206,6 +316,7 @@ function Seat({ player, spot, kind, rank, state, faction, onTap, disabled, tally
   const body = (
     <>
       {face}
+      {shield && <ShieldMark className="absolute top-0 right-0.5 h-5 w-4 drop-shadow-[0_2px_2px_rgb(0_0_0/0.8)]" />}
       <span
         className={cn(
           "max-w-16 truncate font-display text-[11px] font-semibold tracking-[0.08em] uppercase",

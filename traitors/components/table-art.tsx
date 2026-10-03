@@ -143,6 +143,46 @@ export function SlateToken({ rank, className }: { rank: number; className?: stri
   );
 }
 
+/** A heater shield in gilt: held that night, so safe from murder. */
+export function ShieldMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 24" aria-hidden="true" className={className}>
+      <path
+        d="M10 1.5 2 4.5v6.5c0 5.5 3.4 9.4 8 11.5 4.6-2.1 8-6 8-11.5V4.5Z"
+        fill="var(--cloak-500)"
+        stroke="var(--candle)"
+        strokeWidth={1.6}
+        strokeLinejoin="round"
+      />
+      <path d="M10 4.5v15M5 9.5h10" stroke="var(--candle)" strokeWidth={1.4} strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** A recap still rolled up and tied with our seal's ribbon. */
+export function ScrollArt({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 56" aria-hidden="true" className={className}>
+      <defs>
+        <linearGradient id="scroll-body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--bone)" />
+          <stop offset="55%" stopColor="var(--parchment)" />
+          <stop offset="100%" stopColor="var(--gilt)" />
+        </linearGradient>
+      </defs>
+      <ellipse cx={60} cy={49} rx={50} ry={4} fill="var(--night)" opacity={0.8} />
+      <rect x={14} y={13} width={92} height={30} fill="url(#scroll-body)" />
+      <path d="M14 20h92M14 37h92" stroke="var(--wood)" strokeOpacity={0.18} strokeWidth={0.8} />
+      <ellipse cx={14} cy={28} rx={6} ry={15} fill="var(--parchment)" stroke="var(--gilt)" strokeWidth={1} />
+      <ellipse cx={14} cy={28} rx={2.5} ry={7} fill="var(--wood-dark)" />
+      <ellipse cx={106} cy={28} rx={6} ry={15} fill="var(--parchment)" stroke="var(--gilt)" strokeWidth={1} />
+      <ellipse cx={106} cy={28} rx={2.5} ry={7} fill="var(--wood-dark)" />
+      <path d="M55 13h10v30H55Z" fill="var(--blood)" />
+      <path d="M57 43l-3 10 4-3 2 4 1-11Z M63 43l3 9-4-2-1 4-1-11Z" fill="var(--oxblood)" />
+    </svg>
+  );
+}
+
 /** A count in chalk tally marks, gates of five; past ten it writes the number. */
 export function Tally({ count, className }: { count: number; className?: string }) {
   if (count > 10) {
