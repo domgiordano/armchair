@@ -51,3 +51,9 @@ variable "admin_emails" {
   type        = string
   sensitive   = true
 }
+
+variable "anthropic_api_key" {
+  description = "Anthropic API key for the dance write-ups, from Infisical /armchair."
+  type        = string
+  sensitive   = true
+}
