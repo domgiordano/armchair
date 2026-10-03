@@ -211,16 +211,16 @@ export function Shows() {
   return (
     <section id="shows" aria-labelledby="shows-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div {...reveal()}>
+        <div className="text-center" {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-magenta uppercase">Shows</p>
           <h2 id="shows-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             Pick your panel.
           </h2>
-          <p className="mt-3 max-w-xl text-muted">
+          <p className="mx-auto mt-3 max-w-xl text-muted">
             Two shows are live, each its own app with its own game. Survivor is in rehearsal.
           </p>
         </div>
-        <ul className="mt-12 grid gap-6 lg:grid-cols-3">
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <li className="flex flex-col" {...reveal(1)}>
             <Tilt className="flex flex-1 flex-col">
               <ShowCard
@@ -248,7 +248,7 @@ export function Shows() {
               />
             </Tilt>
           </li>
-          <li className="flex flex-col" {...reveal(3)}>
+          <li className="flex flex-col sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.75rem)] lg:col-span-1 lg:w-auto" {...reveal(3)}>
             <Tilt className="flex flex-1 flex-col">
               <ShowCard
                 show="survivor"

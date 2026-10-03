@@ -57,12 +57,12 @@ export function ShowPlaybook() {
   return (
     <section id="play" aria-labelledby="play-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div {...reveal()}>
+        <div className="text-center" {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">How each show plays</p>
-          <h2 id="play-title" className="mt-3 max-w-2xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
+          <h2 id="play-title" className="mx-auto mt-3 max-w-2xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             Same rule everywhere: <span className="text-brand-gradient">call it before you see it.</span>
           </h2>
-          <p className="mt-3 max-w-xl text-muted">Each show keeps its own game and its own way of keeping score.</p>
+          <p className="mx-auto mt-3 max-w-xl text-muted">Each show keeps its own game and its own way of keeping score.</p>
         </div>
 
         <div className="mt-14 flex flex-col gap-20">
