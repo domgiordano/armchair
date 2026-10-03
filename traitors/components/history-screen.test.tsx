@@ -105,6 +105,22 @@ it("links every past-season player to their profile: cast wall, round-table seat
   expect(seat.getAttribute("href")).toMatch(/id=di-dunn&season=tus-3$/);
 });
 
+it("folds each episode's recap under its night, opening in full on request", async () => {
+  const text = `Bo was banished. ${"The castle argued long into the night. ".repeat(12)}`;
+  const recap = { text, source: "wikipedia" as const, sourceUrl: "https://en.wikipedia.org/wiki/S3" };
+  api.getHistory.mockResolvedValue({ ...HISTORY, episodes: [HISTORY.episodes[0], { ...HISTORY.episodes[1], recap }] });
+  render(<HistoryScreen season="tus-3" />);
+
+  const night = within(await screen.findByRole("listitem", { name: "Episode 2" }));
+  const body = night.getByText(/^Bo was banished/);
+  expect(body.textContent).toMatch(/…$/);
+  fireEvent.click(night.getByRole("button", { name: "Read the recap" }));
+  expect(body.textContent).toBe(text);
+  expect(night.getByRole("button", { name: "Show less" }).getAttribute("aria-expanded")).toBe("true");
+  expect(night.getByRole("link", { name: "From Wikipedia" }).getAttribute("href")).toBe(recap.sourceUrl);
+  expect(within(screen.getByRole("listitem", { name: "Arrival" })).queryByText("What happened")).toBeNull();
+});
+
 it("shows a gold banner for a Faithful win", async () => {
   api.getHistory.mockResolvedValue({ ...HISTORY, winners: [{ id: "ed-eaves", faction: "Faithful" }] });
   render(<HistoryScreen season="tus-3" />);

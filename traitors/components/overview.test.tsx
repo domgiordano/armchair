@@ -67,3 +67,51 @@ it("shows how far in the season is, the Traitors caught so far and the cast wall
   // Your bet names link too.
   expect(screen.getAllByRole("link", { name: "Ava Stone" })).toHaveLength(2);
 });
+
+it("leads with the latest unlocked episode's recap, then earlier ones, sealed where calls are still owed", async () => {
+  const long = `Ben was banished. ${"The castle argued long into the night. ".repeat(20)}`;
+  const recaps: Record<number, string> = { 1: "Cal walked in first.", 3: long };
+  vi.clearAllMocks();
+  api.getRanks.mockReturnValue(new Promise(() => {}));
+  api.getEpisode.mockImplementation(async (_season: string, ep: number) => ({
+    season: "tus-5",
+    ep,
+    title: null,
+    releaseAt: "",
+    closed: false,
+    roster: [],
+    out: [],
+    needsBet: false,
+    events: [{ type: "RT", picks: 3, locked: false, mine: { forfeit: true, submittedAt: "" }, result: { banished: "ben-hart" } }],
+    recap: { text: recaps[ep], source: "wikipedia", sourceUrl: `https://en.wikipedia.org/wiki/Ep${ep}` },
+  }));
+  const episodes = [3, 0, 3, 0].map((answered, i) => ({
+    ...VIEW.episodes[i],
+    releaseAt: new Date(now - (4 - i) * DAY).toISOString(),
+    closed: false,
+    answered,
+  }));
+  render(
+    <SeasonDataContext value={{ view: { ...VIEW, episodes }, reload: vi.fn() }}>
+      <Overview />
+    </SeasonDataContext>,
+  );
+
+  const latest = within(screen.getByRole("region", { name: "Latest in the castle" }));
+  expect((await latest.findByText(/^Ben was banished/)).textContent).toMatch(/…$/);
+  expect(latest.getByRole("link", { name: "From Wikipedia" }).getAttribute("href")).toBe("https://en.wikipedia.org/wiki/Ep3");
+  expect(latest.getByRole("link", { name: "Open the episode" }).getAttribute("href")).toMatch(/ep=3/);
+
+  const earlier = within(screen.getByRole("region", { name: "Previously on" }));
+  const rows = earlier.getAllByRole("listitem");
+  expect(rows.map((li) => within(li).getByRole("heading").textContent)).toEqual([
+    "Episode 4",
+    "Episode 2",
+    "Episode 1",
+  ]);
+  // Episodes 2 and 4 still owe calls: no read, no recap, a way to go make them.
+  expect(within(rows[0]).getByRole("link", { name: "Make your calls" }).getAttribute("href")).toMatch(/ep=4/);
+  expect(within(rows[1]).getByText("Make your calls to unseal the recap.")).toBeTruthy();
+  expect(await within(rows[2]).findByText("Cal walked in first.")).toBeTruthy();
+  expect(api.getEpisode.mock.calls.map((c) => c[1]).sort()).toEqual([1, 3]);
+});

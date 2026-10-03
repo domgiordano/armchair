@@ -127,3 +127,66 @@ it("reveals the banishment on the table with your points and everyone's first pi
   expect(screen.getByRole("link", { name: "Ben Hart, your pick, murdered" })).toBeTruthy();
   expect(screen.getByText(para("+4 points"))).toBeTruthy();
 });
+
+const RECAP = {
+  text: "The Faithful turned on Ava at the round table.",
+  source: "fandom" as const,
+  sourceUrl: "https://thetraitors.fandom.com/wiki/Episode_5",
+};
+const sealedEvent = (type: EpisodeEvent["type"], result: EpisodeEvent["result"]) =>
+  ({ type, picks: type === "RT" ? 3 : 1, locked: false, mine: { forfeit: true, submittedAt: "" }, result }) as EpisodeEvent;
+
+it("keeps the recap sealed, saying nothing of it, until every call is made", async () => {
+  ballot();
+  await screen.findByRole("tab", { name: "Murder" });
+  expect(screen.getByText("Make your calls to unseal the recap.")).toBeTruthy();
+  expect(screen.queryByRole("heading", { name: "What happened" })).toBeNull();
+  expect(screen.queryByText(/Faithful turned/)).toBeNull();
+});
+
+it("unseals the recap once every call is in, credited to the wiki it came from", async () => {
+  api.getEpisode.mockResolvedValue({
+    ...episode([sealedEvent("MURDER", { victims: [] }), sealedEvent("RT", { banished: "ava" }), sealedEvent("RECRUIT", {})]),
+    recap: RECAP,
+  });
+  ballot();
+  const card = within(await screen.findByRole("region", { name: "What happened" }));
+  expect(card.getByText(RECAP.text)).toBeTruthy();
+  expect(card.getByRole("link", { name: "From The Traitors Wiki (Fandom)" }).getAttribute("href")).toBe(RECAP.sourceUrl);
+  expect(screen.queryByText("Make your calls to unseal the recap.")).toBeNull();
+});
+
+it("draws who voted for whom on the table, lists the votes by target and badges the shields", async () => {
+  api.getEpisode.mockResolvedValue(
+    episode([
+      sealedEvent("MURDER", { victims: [] }),
+      sealedEvent("RT", {
+        banished: "ava",
+        faction: "Faithful",
+        ballots: { ben: "ava", cal: "ava", dee: "ava", ava: "cal", eli: "cal" },
+        shields: ["eli"],
+      }),
+      sealedEvent("RECRUIT", {}),
+    ]),
+  );
+  ballot();
+  fireEvent.click(await screen.findByRole("tab", { name: "Banish, sealed" }));
+
+  const toggle = screen.getByRole("button", { name: "Show the votes" });
+  expect(toggle.getAttribute("aria-pressed")).toBe("true");
+  expect(screen.getByRole("link", { name: "Ava Stone, banished, Faithful, 3 votes, voted for Cal Reyes" })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Eli Park, voted for Cal Reyes, held a shield" })).toBeTruthy();
+
+  const votes = within(screen.getByRole("region", { name: "How the castle voted" }));
+  expect(votes.getAllByRole("listitem").map((li) => li.textContent)).toEqual([
+    "Ava Stone3 votesfrom Ben Hart, Cal Reyes, Dee Moss",
+    "Cal Reyes2 votesfrom Ava Stone, Eli Park",
+  ]);
+  expect(votes.getByText(/Shielded tonight/).textContent).toBe("Shielded tonight: Eli Park");
+
+  // Off, the table goes back to counting everyone's calls; the shield stays.
+  fireEvent.click(toggle);
+  expect(toggle.getAttribute("aria-pressed")).toBe("false");
+  expect(screen.getByRole("link", { name: "Ava Stone, banished, Faithful" })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Eli Park, held a shield" })).toBeTruthy();
+});
