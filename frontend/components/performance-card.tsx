@@ -1,15 +1,18 @@
 "use client";
 
+import { CoupleLink, CoupleNames, PersonLink } from "@/components/couple-names";
 import { Desk, type DeskMember } from "@/components/desk";
 import { EliminatedStamp } from "@/components/eliminated";
-import { CoupleAvatars, Headshot } from "@/components/headshot";
+import { Headshot } from "@/components/headshot";
 import type { Elimination } from "@/lib/api/couples";
+import { personSlug } from "@/lib/show/people";
 import type { GroupMember } from "@armchair/app-core/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { PaddlePicker } from "@/components/paddle-picker";
 
 interface PerformanceCardProps {
   card: Card;
+  season: string;
   contestants: Map<string, Contestant>;
   judges: Map<string, Judge>;
   airsOn: string | null;
@@ -36,7 +39,7 @@ function memberSeats(card: RevealedCard, members: GroupMember[]): DeskMember[] {
   });
 }
 
-export function PerformanceCard({ card, contestants, judges, airsOn, members, onSubmit, out }: PerformanceCardProps) {
+export function PerformanceCard({ card, season, contestants, judges, airsOn, members, onSubmit, out }: PerformanceCardProps) {
   const team = card.contestants.length > 1;
   const couple = contestants.get(card.contestants[0]);
   const faces = team
@@ -66,11 +69,22 @@ export function PerformanceCard({ card, contestants, judges, airsOn, members, on
             ))}
           </div>
         ) : (
-          <CoupleAvatars members={faces} size={48} />
+          <CoupleLink members={faces} season={season} size={48} />
         )}
         <div className="flex min-w-0 flex-col">
           <h3 id={headingId} className="leading-tight font-semibold text-pearl">
-            {title}
+            {team ? (
+              faces.map((m, i) => (
+                <span key={m.name}>
+                  {i > 0 && ", "}
+                  <PersonLink id={personSlug(m.name)} name={m.name} />
+                </span>
+              ))
+            ) : couple ? (
+              <CoupleNames members={couple.members} />
+            ) : (
+              title
+            )}
           </h3>
           {details.length > 0 && <p className="text-sm text-silver-dim">{details.join(" · ")}</p>}
         </div>
