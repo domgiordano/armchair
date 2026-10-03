@@ -1,6 +1,6 @@
 "use client";
 
-import { CastWall } from "@/components/cast-wall";
+import { CastTable } from "@/components/cast-wall";
 import { seasonPlayerHref } from "@/components/player-link";
 import { useSeasonView } from "@/components/season-data";
 import { EmptyState } from "@/components/ui/states";
@@ -16,7 +16,7 @@ export function PlayersScreen() {
       {cast.length === 0 ? (
         <EmptyState title="No cast yet">The players appear once the season is announced.</EmptyState>
       ) : (
-        <CastWall players={cast} hrefOf={seasonPlayerHref(view.season)} />
+        <CastTable players={cast} hrefOf={seasonPlayerHref(view.season)} />
       )}
     </>
   );

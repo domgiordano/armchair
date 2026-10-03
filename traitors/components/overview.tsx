@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useBet } from "@/components/bet";
-import { CastWall } from "@/components/cast-wall";
+import { CastTable } from "@/components/cast-wall";
 import { Outcome } from "@/components/outcome";
 import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
 import { SealedScroll } from "@/components/recap";
@@ -129,7 +129,7 @@ export function Overview() {
         {view.cast.length === 0 ? (
           <EmptyState title="No cast yet">The players appear once the season is announced.</EmptyState>
         ) : (
-          <CastWall players={byStanding(view.cast)} hrefOf={hrefOf} />
+          <CastTable players={byStanding(view.cast)} hrefOf={hrefOf} />
         )}
       </section>
     </>

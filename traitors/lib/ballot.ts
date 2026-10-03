@@ -31,57 +31,66 @@ export function consensusRows(event: EpisodeEvent, top = 3): { id: string; count
 }
 
 export interface SeatSpot {
-  /** Percent of the seat ring's width and height. */
+  /** The centre of the seat's face, in percent of the table's box. */
   x: number;
   y: number;
-  /** 0 at the far side of the table, 1 nearest you. */
-  depth: number;
-  scale: number;
 }
 
-/**
- * Seats round an oval seen from a low three-quarter angle: the first sits at the
- * far end, the rest go round at equal distances along the rim, since equal
- * angles would crowd the oval's ends. Far seats shrink so it reads as a table.
- */
-export function seatLayout(n: number, width = tableWidth(n)): SeatSpot[] {
-  const a = (width - 2 * RING_INSET.x) / 2;
-  const b = (width / TABLE_ASPECT - RING_INSET.top - RING_INSET.bottom) / 2;
-  const steps = 720;
-  const at = (t: number) => [a * Math.sin(t), b * Math.cos(t)];
-  const lengths = [0];
-  for (let i = 1; i <= steps; i++) {
-    const [x0, y0] = at(((i - 1) / steps) * 2 * Math.PI);
-    const [x1, y1] = at((i / steps) * 2 * Math.PI);
-    lengths.push(lengths[i - 1] + Math.hypot(x1 - x0, y1 - y0));
-  }
-  const total = lengths[steps];
-  return Array.from({ length: n }, (_, i) => {
-    const goal = ((i + 0.5) / n) * total;
-    const t = (lengths.findIndex((l) => l >= goal) / steps) * 2 * Math.PI;
-    const depth = (1 - Math.cos(t)) / 2;
-    return { x: 50 + 50 * Math.sin(t), y: 50 - 50 * Math.cos(t), depth, scale: 0.8 + 0.3 * depth };
-  });
+export interface TableLayout {
+  /** The box at its narrowest, in px. It scales up, never down. */
+  width: number;
+  height: number;
+  /** The seat ring, in px of that box. */
+  ring: { cx: number; cy: number; rx: number; ry: number };
+  /** The head of the table, kept empty for the host. */
+  host: SeatSpot;
+  seats: SeatSpot[];
 }
 
-/** A point `share` of the way from a seat to the table's middle, for tokens set in front of it. */
-export const toward = (s: SeatSpot, share: number) => ({ x: 50 + (s.x - 50) * (1 - share), y: 50 + (s.y - 50) * (1 - share) });
-
-// A seat is about 64px square at full size; this keeps neighbours' tap areas apart.
-const SPACING = 66;
-export const RING_INSET = { x: 40, top: 40, bottom: 56 };
-export const TABLE_ASPECT = 1.45;
+// A seat is a 44px face over its name, 56px wide; this keeps neighbours' tap areas apart.
+const SPACING = 60;
+// A camera a few degrees off straight down: the ring is a touch shorter than it is wide.
+export const TILT = 0.94;
+// Faces sit on the ring; names hang below the lowest ones.
+const MARGIN = { x: 30, top: 30, bottom: 48 };
 
 /** Ramanujan's approximation of an ellipse's perimeter. */
 const perimeter = (a: number, b: number) => Math.PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (a + 3 * b)));
 
-/** The narrowest table whose ring fits `n` seats without them touching. Wider than a phone scrolls. */
-export function tableWidth(n: number): number {
-  let w = 320;
-  const fits = (w: number) => {
-    const h = w / TABLE_ASPECT;
-    return perimeter((w - 2 * RING_INSET.x) / 2, (h - RING_INSET.top - RING_INSET.bottom) / 2) >= n * SPACING;
+/**
+ * The table seen from above: the host's place at the head, the players round the
+ * rest of the rim at equal distances along it, clockwise from the host's left.
+ * The ring grows until every seat fits; wider than a phone, the view scrolls.
+ */
+export function tableLayout(n: number): TableLayout {
+  const slots = n + 1;
+  let rx = 110;
+  while (perimeter(rx, rx * TILT) < slots * SPACING) rx += 2;
+  const ry = rx * TILT;
+  const width = 2 * (rx + MARGIN.x);
+  const height = 2 * ry + MARGIN.top + MARGIN.bottom;
+  const ring = { cx: width / 2, cy: MARGIN.top + ry, rx, ry };
+
+  // Equal steps along the rim, not equal angles: the tilt would bunch the sides.
+  const steps = 720;
+  const at = (t: number) => ({ x: ring.cx + rx * Math.sin(t), y: ring.cy - ry * Math.cos(t) });
+  const lengths = [0];
+  for (let i = 1; i <= steps; i++) {
+    const a = at(((i - 1) / steps) * 2 * Math.PI);
+    const b = at((i / steps) * 2 * Math.PI);
+    lengths.push(lengths[i - 1] + Math.hypot(b.x - a.x, b.y - a.y));
+  }
+  const slot = (i: number): SeatSpot => {
+    const goal = (i / slots) * lengths[steps];
+    const p = at((lengths.findIndex((l) => l >= goal) / steps) * 2 * Math.PI);
+    return { x: (p.x / width) * 100, y: (p.y / height) * 100 };
   };
-  while (!fits(w)) w += 8;
-  return w;
+  return { width, height, ring, host: slot(0), seats: Array.from({ length: n }, (_, i) => slot(i + 1)) };
+}
+
+/** A point `share` of the way from a seat to the table's middle, for tokens set in front of it. */
+export function toward(t: TableLayout, s: SeatSpot, share: number): SeatSpot {
+  const cx = (t.ring.cx / t.width) * 100;
+  const cy = (t.ring.cy / t.height) * 100;
+  return { x: cx + (s.x - cx) * (1 - share), y: cy + (s.y - cy) * (1 - share) };
 }

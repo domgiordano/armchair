@@ -136,7 +136,7 @@ No new tables.
 - **Motifs.** The ballot is a slate with ranks I/II/III. Every final pick locks with the same wax-seal stamp. A reveal is a hood drop, then *Faithful.* or *Traitor.* burns in. A murder result is an empty breakfast chair with its candle out. A red cloak marks rare things, like the winner bet or a perfect week.
 - **Fire on a budget.** At most 4 flickering point lights, drei `Sparkles` embers, Bloom and `PerformanceMonitor`. 2D screens use CSS flicker. Reduced motion gets a static glow.
 - **Clean room.** None of the show's logo, wordmark or official artwork, and a "not affiliated with" footer line. The plan's intro already avoids faces. The research adds:
-  - no top-down round-table emblem (it's the franchise logo)
+  - top-down table OK; never the franchise compass emblem (8-point star + crescent hub + moon-phase ring)
   - no "Murrrder" styling
   - no breakfast-letter wording
   - no show audio
