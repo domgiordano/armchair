@@ -15,13 +15,13 @@ from lambdas.scores_reveal_all.handler import handler as reveal_all_handler
 from lambdas.scores_submit.handler import handler as submit_handler
 from scripts.seed_season import SEASONS, items, publish_all, write
 from scripts.seed_season import people as person_index
-from tests.conftest import CATALOG_TABLE
+from tests.conftest import CATALOG_TABLE, WRITEUPS_TABLE
 from tests.events import authorized_event
 from tests.seasons import as_current, close
 from tests.social import A, B, accept, ask, call, post
 
 S8 = json.loads((SEASONS / "dwts-8.json").read_text(), parse_float=Decimal)
-LOCKED = {"season", "ep", "week", "key", "style", "song", "dancers", "locked"}
+LOCKED = {"season", "ep", "week", "key", "style", "song", "dancers", "locked", "writeup"}
 # Denise Richards and Maksim Chmerkovskiy danced episodes 1, 2, 4 and 5 and went out in 5.
 DENISE = [1, 2, 4, 5]
 EP1 = next(e for e in S8["episodes"] if e["ep"] == 1)
@@ -111,6 +111,25 @@ def test_answering_opens_that_dance_and_no_other(seeded):
     stats = data("denise-richards")["stats"]["dancer"]
     assert stats["mine"] == {"count": 1, "mean": 7.0, "gap": round(7 - first["panelMean"], 2)}
     assert stats["locked"] == 3
+
+
+def test_a_writeup_opens_with_its_dance_on_the_couple_and_person_pages(seeded):
+    seeded.Table(WRITEUPS_TABLE).put_item(
+        Item={
+            "pk": "EP#dwts#8#01",
+            "sk": "PERF#denise-richards#1",
+            "summary": "A breezy cha-cha.",
+            "judges": [],
+            "highlights": ["Hip action"],
+            "sources": ["https://people.com/x"],
+        }
+    )
+    assert data("denise-richards")["performances"][0]["writeup"] == {"locked": True}
+    assert data("maksim-chmerkovskiy")["performances"][0]["writeup"] == {"locked": True}
+    answer(A, 1, "denise-richards", 7)
+    rows = data("denise-richards")["performances"]
+    assert rows[0]["writeup"]["summary"] == "A breezy cha-cha."
+    assert rows[1]["writeup"] is None
 
 
 def test_friends_average_counts_accepted_friends_only(seeded, people):

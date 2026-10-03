@@ -9,6 +9,7 @@ import { personSlug } from "@/lib/show/people";
 import type { GroupMember } from "@armchair/app-core/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { PaddlePicker } from "@/components/paddle-picker";
+import { WhatHappened } from "@/components/what-happened";
 
 interface PerformanceCardProps {
   card: Card;
@@ -96,6 +97,7 @@ export function PerformanceCard({ card, season, contestants, judges, airsOn, mem
       ) : (
         <PaddlePicker label={title} airsOn={airsOn} onSubmit={(answer) => onSubmit(card, answer)} />
       )}
+      <WhatHappened writeup={card.writeup} judges={[...judges.values()]} />
     </article>
   );
 }
