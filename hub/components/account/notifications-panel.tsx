@@ -5,7 +5,7 @@ import { dwtsLink } from "@/lib/links";
 import { useAction } from "@/lib/load";
 import { useNotifications } from "@/lib/notifications";
 
-import { Empty, ErrorNote, PersonRow, PRIMARY, QUIET, SECONDARY, SkeletonRows, Panel } from "./ui";
+import { Empty, ErrorNote, PersonRow, PRIMARY, QUIET, SECONDARY, SkeletonRows } from "./ui";
 
 const SHOWN = 6;
 
@@ -34,24 +34,28 @@ export function timeAgo(iso: string, now: number = Date.now()): string {
   return new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
 
-export function NotificationsPanel({ index }: { index: number }) {
+/** The notifications list with its heading, inside the header bell's popover. */
+export function NotificationsPanel({ titleId }: { titleId: string }) {
   const { items, unread, loaded, error, refresh, markAllRead } = useNotifications();
 
   return (
-    <Panel
-      id="notifications"
-      title="Notifications"
-      count={unread}
-      countLabel="unread"
-      index={index}
-      action={
-        unread > 0 && (
+    <div className="flex flex-col gap-2">
+      <div className="flex min-h-11 items-center justify-between gap-3 pl-2">
+        <h2 id={titleId} className="text-base font-bold tracking-tight">
+          Notifications
+          {unread > 0 && (
+            <span className="ml-2 inline-flex min-w-6 justify-center rounded-full bg-magenta/20 px-2 text-sm text-magenta tabular-nums">
+              {unread}
+              <span className="sr-only"> unread</span>
+            </span>
+          )}
+        </h2>
+        {unread > 0 && (
           <button type="button" onClick={() => void markAllRead()} className={QUIET}>
             Mark all read
           </button>
-        )
-      }
-    >
+        )}
+      </div>
       {!loaded && <SkeletonRows label="Loading notifications" />}
       {loaded && error !== null && items.length === 0 && (
         <ErrorNote what="notifications" message={error} retry={() => void refresh()} />
@@ -69,11 +73,11 @@ export function NotificationsPanel({ index }: { index: number }) {
         </ul>
       )}
       {items.length > SHOWN && (
-        <a href={dwtsLink("/notifications/")} className={`${QUIET} -ml-3 self-start`}>
+        <a href={dwtsLink("/notifications/")} className={`${QUIET} self-start`}>
           See all
         </a>
       )}
-    </Panel>
+    </div>
   );
 }
 
