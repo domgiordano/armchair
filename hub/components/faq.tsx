@@ -55,8 +55,8 @@ const QUESTIONS: Question[] = [
 export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
-        <div {...reveal()}>
+      <div className="mx-auto flex max-w-3xl flex-col gap-10 px-6">
+        <div className="text-center" {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-orange uppercase">FAQ</p>
           <h2 id="faq-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             Before you <span className="text-brand-gradient">make your first call.</span>

@@ -11,7 +11,7 @@ export function FinalCta() {
           className="cta-glow pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_0%_100%,rgb(59_91_255/0.22),transparent),radial-gradient(45%_70%_at_100%_0%,rgb(232_63_208/0.2),transparent)]"
           aria-hidden="true"
         />
-        <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="relative flex flex-col items-center gap-8 text-center">
           <div className="max-w-xl">
             <h2 id="cta-title" className="text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
               Next show night, <span className="text-brand-gradient">make your call.</span>
@@ -20,7 +20,7 @@ export function FinalCta() {
               Sign in with Google once, start a group, and see who in it calls the show best.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             <a
               href="#shows"
               className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-text px-6 font-semibold text-night shadow-lg shadow-violet/20 hover:bg-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold transition active:scale-[0.98] motion-reduce:transition-none"

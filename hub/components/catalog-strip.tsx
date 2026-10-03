@@ -18,19 +18,19 @@ export function CatalogStrip() {
         className="pointer-events-none absolute -top-24 right-0 size-80 rounded-full bg-[radial-gradient(closest-side,rgb(122_44_255/0.18),transparent)]"
       />
       <div className="relative mx-auto max-w-6xl px-6 py-12 sm:py-14">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between" {...reveal()}>
+        <div className="flex flex-col items-center gap-2 text-center" {...reveal()}>
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">By the numbers</p>
             <h2 id="numbers-title" className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
               Dancing with the Stars, <span className="text-brand-gradient">every season.</span>
             </h2>
           </div>
-          <p className="max-w-xs text-xs leading-relaxed text-muted sm:text-right">
+          <p className="max-w-md text-xs leading-relaxed text-muted">
             Counted from the Dancing with the Stars catalog when this page was built. Live-season scores land as they
             air.
           </p>
         </div>
-        <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
+        <dl className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
           {stats.map((s, i) => (
             <div key={s.label} className="flex flex-col border-l-2 border-violet/60 pl-4" {...reveal(i + 1)}>
               <dt className="text-sm font-semibold tracking-tight text-text">{s.label}</dt>
