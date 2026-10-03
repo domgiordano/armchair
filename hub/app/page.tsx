@@ -17,6 +17,9 @@ import { ShowPlaybook } from "@/components/show-playbook";
 import { Shows } from "@/components/shows";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { Ticker } from "@/components/ticker";
+import { catalogCounts } from "@/lib/catalog";
+import { staticTickerItems } from "@/lib/ticker";
 
 export default function HomePage() {
   return (
@@ -42,6 +45,7 @@ function Landing() {
         <SectionRail />
         <main id="main" tabIndex={-1} className="outline-none">
           <Hero />
+          <Ticker label="What's on" items={staticTickerItems(catalogCounts())} />
           <Shows />
           <ShowPlaybook />
           <HowItWorks />

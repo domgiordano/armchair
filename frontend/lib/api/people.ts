@@ -71,14 +71,24 @@ export type SeasonResult =
   | { status: "dancing" }
   | { status: "finalist" };
 
+export interface Partner {
+  id: string;
+  name: string;
+  /** Missing until the person index is re-seeded. */
+  headshot?: Headshot | null;
+}
+
 export interface Stint {
   season: string;
   number: number;
   role: Role;
   /** False for a past season the caller hasn't scored: no rows, no result, until asked for. */
   loaded: boolean;
-  partners?: { id: string; name: string }[];
+  partners?: Partner[];
   result?: SeasonResult | null;
+  /** The couple's finish, of `cast` couples. Only a finished season has one. */
+  place?: number;
+  cast?: number;
   dances?: number;
   locked?: number;
 }
@@ -103,6 +113,26 @@ export interface Extreme {
   vsPanel: number;
 }
 
+/** The couple a judge scored highest in a season, over dances the caller has answered. */
+export interface TopCouple {
+  dancers: Dancer[];
+  mean: number | null;
+  count: number;
+}
+
+export type SimilarReason = "category" | "cast" | "finish";
+
+/** Another celebrity like this one: the same field, the same cast, or a finish in the same part of the field. */
+export interface SimilarCelebrity {
+  id: string;
+  name: string;
+  headshot: Headshot | null;
+  /** Their latest season's number. */
+  season: number;
+  category: string | null;
+  reasons: SimilarReason[];
+}
+
 export interface JudgeStats {
   dances: number;
   locked: number;
@@ -114,7 +144,7 @@ export interface JudgeStats {
   harshest: Extreme[];
   generous: Extreme[];
   byStyle: { style: string; count: number; mean: number | null }[];
-  bySeason: { season: string; count: number; mean: number | null }[];
+  bySeason: { season: string; count: number; mean: number | null; top?: TopCouple | null }[];
   distribution: Record<string, number>;
   mine: { count: number; gap: number | null; mae: number | null };
 }
@@ -126,6 +156,9 @@ export interface PersonPage {
   headshot: Headshot | null;
   bio: { title: string; url: string; description: string | null; extract: string } | null;
   facts: { born: string | null; died: string | null; occupations: string[]; nationality: string[] } | null;
+  /** A celebrity's field of work, from their bio. */
+  category?: string | null;
+  similar?: SimilarCelebrity[] | null;
   seasons: Stint[];
   performances: PerformanceRow[];
   judged: { season: string; rows: PerformanceRow[] } | null;
@@ -137,3 +170,6 @@ export const getPerson = (id: string, season?: string) => {
   if (season) query.set("season", season);
   return request<PersonPage>(`/people/get?${query}`);
 };
+
+/** Who someone is and every season they danced, with no dances read: cheap enough to fetch beside another page. */
+export const getPersonBrief = (id: string) => request<PersonPage>(`/people/get?${new URLSearchParams({ id, brief: "1" })}`);

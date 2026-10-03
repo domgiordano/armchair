@@ -8,8 +8,8 @@ const link =
 export function About() {
   return (
     <section id="about" aria-labelledby="about-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
-        <div>
+      <div className="mx-auto flex max-w-3xl flex-col gap-8 px-6">
+        <div className="text-center">
           <p className="text-xs font-semibold tracking-[0.3em] text-gold">ABOUT ARMCHAIR JUDGE</p>
           <h2 id="about-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             What this app is, and what it does with your Google account

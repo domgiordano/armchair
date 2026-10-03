@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { resetMe } from "@/lib/me";
@@ -85,6 +85,47 @@ describe("signed-in dashboard", () => {
     const tabs = screen.getByRole("navigation", { name: "Main" });
     expect(within(tabs).getByRole("link", { name: "Home" }).getAttribute("aria-current")).toBe("page");
     for (const name of ["Stats", "Leaderboards", "Social"]) expect(within(tabs).getByRole("link", { name })).toBeTruthy();
-    expect(screen.getByRole("region", { name: /Notifications/ })).toBeTruthy();
+  });
+
+  it("keeps notifications behind the header bell, with the unread count on it", async () => {
+    render(<Dashboard />);
+    expect(screen.queryByRole("region", { name: /Notifications/ })).toBeNull();
+
+    const bell = await screen.findByRole("button", { name: "Notifications, 1 unread" });
+    expect(bell.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.click(bell);
+    const panel = screen.getByRole("region", { name: /Notifications/ });
+    expect(within(panel).getByText(/Invited you to Ballroom Bench/)).toBeTruthy();
+    expect(within(panel).getByRole("button", { name: "Accept" })).toBeTruthy();
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("region", { name: /Notifications/ })).toBeNull();
+    expect(document.activeElement).toBe(bell);
+  });
+
+  it("runs a ticker of the member's next episodes and boards", async () => {
+    const standing = { picture: null, count: 14, mae: 0.87 };
+    stubApi({
+      "/leaderboard/get": () => ({
+        data: {
+          minDances: 5,
+          ranked: [{ ...standing, sub: "u-9", name: "Robin Sofa", mae: 0.42, rank: 1 }],
+          unranked: [],
+          me: { ...standing, sub: "me-1", name: "Pat Couch", rank: 2 },
+        },
+        meta: { ranked: 4 },
+      }),
+    });
+    render(<Dashboard />);
+    const ticker = await screen.findByRole("region", { name: "What's on" });
+    // The moving copies are aria-hidden, so this is the one list a screen reader gets.
+    const list = within(ticker).getByRole("list");
+    const text = within(list).getAllByRole("listitem").map((li) => li.textContent);
+    expect(text).toContainEqual(expect.stringMatching(/^DWTS S35: Episode 9 airs in \d+ days, /));
+    expect(text).toContain("DWTS S35: Robin Sofa leads the room, 0.42 points off the judges");
+    expect(text).toContain("DWTS S35: You're #2 of 4, ahead of 2 players");
+    expect(text).toContainEqual(expect.stringMatching(/^Traitors US S5: Episode 6 drops in \d+ days, /));
+    expect(text).toContain("Traitors Celebrity UK S2: Lock in your winners to open the episodes");
+    expect(text).toContain("Traitors US S5: You're #3 of 25, ahead of 22 players");
   });
 });

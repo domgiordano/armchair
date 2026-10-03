@@ -7,20 +7,17 @@ import { firstName, loadMe, useMe } from "@/lib/me";
 
 import { AppsPanel } from "./apps-panel";
 import { HubShell } from "./hub-shell";
-import { NotificationsPanel } from "./notifications-panel";
+import { LiveTicker } from "./live-ticker";
 import { ErrorNote, FOCUS, Skeleton, step } from "./ui";
 
-/** A member's armchairjudge.com home: their apps, what's waiting on them, and the way to every tab. */
+/** A member's armchairjudge.com home: what's on, their shows, and the way to every tab. Notifications live in the header. */
 export function Dashboard() {
   return (
-    <HubShell>
+    <HubShell banner={<LiveTicker />}>
       <Welcome />
-      <div className="mt-8 flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start lg:gap-8">
-        <div className="flex flex-col gap-6 lg:gap-8">
-          <AppsPanel index={1} />
-          <Shortcuts />
-        </div>
-        <NotificationsPanel index={3} />
+      <div className="mt-10 flex flex-col gap-10">
+        <AppsPanel index={1} />
+        <Shortcuts />
       </div>
     </HubShell>
   );
@@ -29,7 +26,7 @@ export function Dashboard() {
 function Welcome() {
   const load = useMe();
   return (
-    <header className="rise" style={step(0)}>
+    <header className="rise flex flex-col items-center text-center" style={step(0)}>
       <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Your couch</p>
       {load.kind === "loading" && (
         <div role="status">
@@ -45,7 +42,7 @@ function Welcome() {
       {load.kind === "error" && (
         <div className="mt-3">
           <h1 className="text-4xl font-extrabold tracking-tight">Welcome back.</h1>
-          <div className="mt-4 max-w-md">
+          <div className="mx-auto mt-4 max-w-md text-left">
             <ErrorNote what="your account" message={load.message} retry={() => void loadMe()} />
           </div>
         </div>
@@ -78,7 +75,7 @@ const SHORTCUTS: { href: string; title: string; line: string; icon: ReactNode }[
 
 function Shortcuts() {
   return (
-    <nav aria-label="Jump to" className="rise" style={step(2)}>
+    <nav aria-label="Jump to" className="rise mx-auto w-full max-w-3xl" style={step(2)}>
       <ul className="grid grid-cols-3 gap-3">
         {SHORTCUTS.map((s) => (
           <li key={s.href}>

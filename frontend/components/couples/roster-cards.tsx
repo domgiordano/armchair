@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 import { Portrait } from "@/components/couple/portrait";
+import { CoupleNames } from "@/components/couple-names";
 import { EliminatedStamp, OUT_FADE, OUT_STRIKE } from "@/components/eliminated";
 import { coupleName } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
@@ -178,7 +179,9 @@ function CoupleCard({ couple: c, season, aired, near }: { couple: RosterCouple; 
 
       <div className="relative flex flex-col gap-1">
         <div className="flex items-start justify-between gap-2">
-          <h3 className={cn("text-xl leading-tight font-semibold", out ? cn("text-silver", OUT_STRIKE) : "text-pearl")}>{coupleName(c)}</h3>
+          <h3 className={cn("text-xl leading-tight font-semibold", out ? cn("text-silver", OUT_STRIKE) : "text-pearl")}>
+            <CoupleNames members={c.members} />
+          </h3>
           {place && (
             <span className={cn("mt-0.5 shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-semibold", season.open ? "border-gold/40 text-gold-light" : "border-emerald-300/30 text-emerald-200")}>
               {place}

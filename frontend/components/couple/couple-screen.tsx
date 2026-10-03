@@ -6,6 +6,7 @@ import { Suspense, useEffect, useState, type ReactNode } from "react";
 
 import { PersonLink } from "@/components/couple-names";
 import { CoupleDances } from "@/components/couple/couple-dances";
+import { CoupleOverview } from "@/components/couple/couple-overview";
 import { Portrait } from "@/components/couple/portrait";
 import { ScoreChart } from "@/components/couple/score-chart";
 import { EliminatedStamp, OUT_FADE, OUT_STRIKE } from "@/components/eliminated";
@@ -16,7 +17,7 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { ApiError } from "@armchair/app-core/api/client";
-import { getPerson, type OpenRow, type PersonPage, type SeasonResult } from "@/lib/api/people";
+import { getPerson, getPersonBrief, type OpenRow, type PersonPage, type SeasonResult } from "@/lib/api/people";
 import { getSeason, type Contestant, type Season } from "@/lib/api/show";
 import { coupleResult, coupleTotals, paddle, type CoupleTotals } from "@/lib/show/couple";
 import { personSlug } from "@/lib/show/people";
@@ -103,26 +104,55 @@ function Couple({ couple, season, person }: { couple: Contestant; season: Season
   const result = coupleResult(person, season.season);
   const open = rows.filter((r): r is OpenRow => !r.locked && (r.panelMean !== null || paddle(r) !== null));
   const self = couple.members.map((m) => (m.role === "celebrity" ? couple.id : personSlug(m.name)));
+  const pro = couple.members.find((m) => m.role === "pro");
+  const proId = pro ? personSlug(pro.name) : null;
+  // The pro's history fills in the overview after the page is up; without it the overview just says less.
+  const [proPage, setProPage] = useState<PersonPage | null | undefined>(proId ? undefined : null);
+
+  useEffect(() => {
+    if (!proId) return;
+    let cancelled = false;
+    getPersonBrief(proId).then(
+      (p) => !cancelled && setProPage(p),
+      () => !cancelled && setProPage(null),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [proId]);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-10">
       <Hero couple={couple} season={season} result={result} />
 
-      <div className="stagger grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
-        <Tile
-          label="Dances"
-          value={totals.locked ? `${totals.dances - totals.locked}/${totals.dances}` : totals.dances}
-          note={totals.locked ? `${totals.locked} still to score` : totals.dances ? "All revealed" : "None aired yet"}
-        />
-        <Tile label="Judges' avg" value={avg(totals.judges)} note={totals.judged ? `over ${plural(totals.judged, "dance")}` : "Score to see their marks"} />
-        <Tile
-          label="Your avg"
-          value={avg(totals.you)}
-          note={totals.gap === null ? plural(totals.paddles, "paddle") : gapText(totals.gap, "above the judges", "below the judges")}
-        />
-        <Tile label="Friends' avg" value={totals.friends.count ? avg(totals.friends.mean) : "–"} note={plural(totals.friends.count, "paddle")} />
-        <Tile label="Everyone" value={totals.everyone.count ? avg(totals.everyone.mean) : "–"} note={plural(totals.everyone.count, "paddle")} />
-      </div>
+      <CoupleOverview
+        celeb={person}
+        pro={{ id: proId ?? "", name: pro?.name ?? "", page: proPage }}
+        season={season.season}
+        totals={totals}
+        result={result}
+      />
+
+      <section aria-labelledby="scores" className="flex flex-col gap-3">
+        <h2 id="scores" className={EYEBROW}>
+          Scores
+        </h2>
+        <div className="stagger grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+          <Tile
+            label="Dances"
+            value={totals.locked ? `${totals.dances - totals.locked}/${totals.dances}` : totals.dances}
+            note={totals.locked ? `${totals.locked} still to score` : totals.dances ? "All revealed" : "None aired yet"}
+          />
+          <Tile label="Judges' avg" value={avg(totals.judges)} note={totals.judged ? `over ${plural(totals.judged, "dance")}` : "Score to see their marks"} />
+          <Tile
+            label="Your avg"
+            value={avg(totals.you)}
+            note={totals.gap === null ? plural(totals.paddles, "paddle") : gapText(totals.gap, "above the judges", "below the judges")}
+          />
+          <Tile label="Friends' avg" value={totals.friends.count ? avg(totals.friends.mean) : "–"} note={plural(totals.friends.count, "paddle")} />
+          <Tile label="Everyone" value={totals.everyone.count ? avg(totals.everyone.mean) : "–"} note={plural(totals.everyone.count, "paddle")} />
+        </div>
+      </section>
 
       {/* The chart's viewBox scales its type with its width, so on desktop it shares the row with the notes. */}
       <div className="grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start">

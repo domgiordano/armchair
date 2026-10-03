@@ -64,7 +64,7 @@ export function DanceList({ rows, self, judge }: DanceListProps) {
       {nights(rows).map(({ season, nights: list }) => (
         <section key={season} aria-label={seasonLabel(season)} className="flex flex-col gap-4">
           <h3 className={EYEBROW}>{seasonLabel(season)}</h3>
-          <ol className="stagger flex flex-col gap-4">
+          <ol className="stagger grid grid-cols-1 gap-x-3 gap-y-5 min-[30rem]:grid-cols-2 xl:grid-cols-3">
             {list.map((night) => (
               <NightBlock key={night.ep} night={night} self={self} judge={judge} />
             ))}
@@ -82,7 +82,7 @@ function NightBlock({ night, self, judge }: { night: Night; self: string; judge?
     <li className="flex flex-col gap-2">
       <p className="text-sm font-semibold text-pearl">{night.label}</p>
       {open.length > 0 && (
-        <ul className="grid gap-2 lg:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-2">
           {open.map((r) => (
             <li key={r.key}>
               <DanceCard row={r} self={self} judge={judge} />

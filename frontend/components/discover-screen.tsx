@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 
 import { Avatar } from "@/components/avatar";
-import { CoupleAvatars, Headshot } from "@/components/headshot";
+import { CoupleLink, PersonLink } from "@/components/couple-names";
+import { Headshot } from "@/components/headshot";
 import { SearchBox } from "@/components/search/people-search";
 import { SignedIn } from "@/components/signed-in";
 import { PageHeader } from "@/components/ui/page-header";
@@ -14,7 +15,7 @@ import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
 import { profileHref } from "@/lib/api/people";
 import type { Season } from "@/lib/api/show";
 import { getFriends, mySub, type Friends, type Person } from "@armchair/app-core/api/social";
-import { personHref } from "@/lib/show/people";
+import { personHref, personSlug } from "@/lib/show/people";
 import { seasonLabel } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 import { cn, FOCUS, TEXT_LINK } from "@/lib/ui";
@@ -106,10 +107,12 @@ function Section({ id, title, note, children }: { id: string; title: string; not
   );
 }
 
-const TILE = cn(
-  "group flex min-h-16 items-center gap-3 rounded-xl border border-silver/10 bg-ballroom/45 px-3 py-2.5 transition-colors hover:border-gold/35 hover:bg-ballroom/70 active:bg-ballroom",
-  FOCUS,
-);
+const TILE_BOX =
+  "group flex min-h-16 items-center gap-3 rounded-xl border border-silver/10 bg-ballroom/45 px-3 py-2.5 transition-colors hover:border-gold/35 hover:bg-ballroom/70 active:bg-ballroom";
+const TILE = cn(TILE_BOX, FOCUS);
+// The star's name covers the tile; the faces and the pro's name sit above it as their own links.
+const STRETCHED =
+  "truncate font-medium text-pearl outline-none group-hover:text-gold-light after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-gold-light";
 
 function SeasonPeople({ season }: { season: Season }) {
   const stars = [...season.contestants].sort((a, b) => celebrity(a).localeCompare(celebrity(b)));
@@ -120,14 +123,18 @@ function SeasonPeople({ season }: { season: Season }) {
           {stars.map((c) => {
             const pro = c.members.find((m) => m.role === "pro");
             return (
-              <li key={c.id}>
-                <Link href={personHref(c.id)} prefetch={false} className={TILE}>
-                  <CoupleAvatars members={c.members} size={40} />
-                  <span className="flex min-w-0 flex-col">
-                    <span className="truncate font-medium text-pearl group-hover:text-gold-light">{celebrity(c)}</span>
-                    {pro && <span className="truncate text-xs text-silver-dim">with {pro.name}</span>}
-                  </span>
-                </Link>
+              <li key={c.id} className={cn(TILE_BOX, "relative")}>
+                <CoupleLink members={c.members} season={season.season} size={40} className="relative z-10" />
+                <span className="flex min-w-0 flex-col">
+                  <Link href={personHref(c.id)} prefetch={false} className={STRETCHED}>
+                    {celebrity(c)}
+                  </Link>
+                  {pro && (
+                    <span className="relative z-10 truncate text-xs text-silver-dim">
+                      with <PersonLink id={personSlug(pro.name)} name={pro.name} />
+                    </span>
+                  )}
+                </span>
               </li>
             );
           })}

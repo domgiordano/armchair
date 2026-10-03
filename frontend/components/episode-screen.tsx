@@ -199,6 +199,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
             <li key={card.key}>
               <PerformanceCard
                 card={card}
+                season={season.season}
                 out={card.contestants.length === 1 && gone.has(card.contestants[0]) ? { ep: episode.ep, week: episode.week } : undefined}
                 contestants={contestants}
                 judges={judges}
