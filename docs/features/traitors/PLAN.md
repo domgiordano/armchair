@@ -109,9 +109,9 @@ No new tables.
 | Table | pk | sk | Item |
 |---|---|---|---|
 | catalog | `SEASON#{show}#{n}` | `META` | `pageid`, `edition`, `episodes`, `current`, `releaseDefaults`, `summary: {text, sourceUrl}` (article lead, CC BY-SA) |
-| | | `EP#{nn}` | `releaseAt` (UTC), `closed`, `noRoundTable`, gated `results`: `rt: {banished, firstVote: {cid: n}, revote?, fate?}`, `murdered[]`, `recruited[]` |
-| | | `PLAYER#{cid}` | `name`, `aliases[]`, `headshot`, `article`, `bio: {text, sourceUrl}`; gated `faction`, `exit: {ep, how}` |
-| performances | `EP#{show}#{n}#{nn}` | `EVT#{RT|MURDER|RECRUIT}` | event result plus confirm state (`confirm.py`) |
+| | | `EP#{nn}` | `releaseAt` (UTC), `closed`, `noRoundTable`, gated `recap: {text, source, sourceUrl}` (Wikipedia ShortSummary, else the Fandom episode page; `traitors_about.py`) |
+| | | `PLAYER#{cid}` | `name`, `aliases[]`, `headshot`, `article`, `about: {age, hometown, occupation}`, `bio: {text, source, sourceUrl}` (Wikipedia, else Fandom, else the network's cast page), `bioCut`; gated `faction`, `exit: {ep, how}` |
+| performances | `EP#{show}#{n}#{nn}` | `EVT#{RT|MURDER|RECRUIT|SHIELD}` | event result plus confirm state (`confirm.py`); RT also `ballots: {voter: target}`, `daggers[]`, unscored |
 | scores | `EP#{show}#{n}#{nn}` | `EVT#{type}#USER#{sub}` | `picks[]` (ordered) or `forfeit`, `submittedAt` |
 | scores | `WIN#{show}#{n}` | `USER#{sub}` | `picks: [{cid, faction}]`, `released` (multiplier basis) |
 | board | `BOARD#{show}#{n|all}` | `USER#{sub}` | `pts`, `events`, `banishHits`, `firstAt` |

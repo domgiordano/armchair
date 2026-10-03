@@ -66,10 +66,11 @@ def lead(page: dict) -> dict | None:
     text = (page.get("extract") or "").strip()
     if not text:
         return None
-    return {
-        "text": text,
-        "sourceUrl": ARTICLE + quote(page["title"].replace(" ", "_"), safe="/:(),"),
-    }
+    return {"text": text, "sourceUrl": url(page["title"])}
+
+
+def url(title: str) -> str:
+    return ARTICLE + quote(title.replace(" ", "_"), safe="/:(),")
 
 
 def summary(pageid: int) -> dict | None:
