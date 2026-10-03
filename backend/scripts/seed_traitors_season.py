@@ -8,7 +8,8 @@
 Episodes released before --open-at are closed: results showing, no picks. Without it a
 first seed opens the season now and a re-seed keeps whatever openAt it already has.
 Results, factions and exits are the poller's to write, never this script's. The season
-summary and player bios are re-fetched from Wikipedia on every run.
+summary, player bios and episode recaps are re-fetched from Wikipedia on every run;
+the Fandom ones are cron_discover_traitors' to fill, and a re-seed leaves them.
 """
 
 from __future__ import annotations
@@ -25,6 +26,7 @@ import boto3
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from lambdas.common.catalog_dynamo import write
+from lambdas.common.traitors_about import recaps
 from lambdas.common.traitors_catalog import EDITIONS, items
 from lambdas.common.traitors_parse import season
 from lambdas.common.wiki_fetch import latest, leads, summary
@@ -48,6 +50,7 @@ def main(argv: list[str] | None = None) -> None:
     if not parsed["contestants"] or not parsed["episodes"]:
         sys.exit(f"{page['title']} rev {page['revid']}: no cast or episode table, not seeding")
 
+    found = leads([p["article"] for p in parsed["contestants"] if p["article"]])
     rows = items(
         args.show,
         args.season,
@@ -58,7 +61,12 @@ def main(argv: list[str] | None = None) -> None:
         release_time=args.release_time,
         headshots=json.loads(HEADSHOTS.read_text()) if HEADSHOTS.exists() else None,
         summary=summary(args.pageid),
-        bios=leads([p["article"] for p in parsed["contestants"] if p["article"]]),
+        bios={
+            p["name"]: ({**found[p["article"]], "source": "wikipedia"}, False)
+            for p in parsed["contestants"]
+            if found.get(p["article"] or "")
+        },
+        recaps=recaps(args.show, args.season, page["title"], parsed, {}, set()),
     )
     if args.dry_run:
         print(json.dumps(rows, indent=2, ensure_ascii=False))

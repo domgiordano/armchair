@@ -10,7 +10,9 @@ is published in-process from the page already fetched, the poller's backfill pat
 seeded season is merged into the people index (common/traitors_people.py).
 
 Every run re-fetches the season article's lead and each linked contestant's article lead
-(wiki_fetch.summary and leads), so an edit on Wikipedia lands within a day.
+(wiki_fetch.summary and leads), so an edit on Wikipedia lands within a day. Episode recaps
+come from the season page's episode summaries, and bios and recaps Wikipedia lacks from
+Fandom (common/traitors_about.py), so the first run fills every existing season.
 """
 
 from __future__ import annotations
@@ -21,16 +23,20 @@ from datetime import UTC, datetime, timedelta
 
 from boto3.dynamodb.conditions import Key
 
-from lambdas.common import traitors_people
+from lambdas.common import fandom, traitors_about, traitors_people
 from lambdas.common.catalog_dynamo import write
 from lambdas.common.dynamo import query_all, table
 from lambdas.common.traitors_catalog import EDITIONS, items
 from lambdas.common.traitors_dynamo import season_parts
 from lambdas.common.traitors_parse import season, seasons
-from lambdas.common.traitors_publish import finished, publish_season
+from lambdas.common.traitors_publish import PUBLISHED, finished, publish_season
 from lambdas.common.wiki_fetch import latest, leads, pageids, summary
 
 WEEK = timedelta(days=7)
+SWEEP = timedelta(hours=72)
+# Fandom calls a run may make, a second apart. A first run's backfill needs about 60;
+# whatever is cut off waits for tomorrow's.
+FANDOM_CALLS = 200
 
 
 def stamp(t: datetime) -> str:
@@ -79,6 +85,35 @@ def seed(
     return meta is None
 
 
+def about(catalog, show: str, number: int, page: dict, parsed: dict, now: datetime) -> dict:
+    """The `summary`, `bios` and `recaps` for traitors_catalog.items, keeping what the
+    catalog holds wherever Wikipedia and Fandom have nothing."""
+    have = query_all(catalog, f"SEASON#{show}#{number}")
+    players = {r["name"]: r for r in have if r["sk"].startswith("PLAYER#")}
+    recaps = {int(r["sk"][3:]): r.get("recap") for r in have if r["sk"].startswith("EP#")}
+    today, fresh = stamp(now)[:10], stamp(now - SWEEP)[:10]
+    # Fandom is asked for an aired episode's recap while it has none, and again while
+    # the episode is under 72 hours old and its page is still being written.
+    ask = {
+        e["n"]
+        for e in parsed["episodes"]
+        if e["date"] < today and (not recaps.get(e["n"]) or e["date"] >= fresh)
+    }
+    articles = [p["article"] for p in parsed["contestants"] if p["article"]]
+    return {
+        "summary": summary(page["pageid"]),
+        "bios": traitors_about.bios(
+            show,
+            number,
+            parsed["contestants"],
+            leads(articles),
+            players,
+            running=not parsed["winners"],
+        ),
+        "recaps": traitors_about.recaps(show, number, page["title"], parsed, recaps, ask),
+    }
+
+
 def flip(catalog, show: str, now: datetime) -> tuple[int | None, list[int]]:
     """Sets `current` on META and the season-picker row of exactly one season, if any.
     Returns that season and any it took the flag from."""
@@ -109,6 +144,7 @@ def handler(event, context):
     t = int(time.time())
     now = datetime.fromtimestamp(t, UTC)
     catalog = table("CATALOG_TABLE")
+    fandom.allow(FANDOM_CALLS)
     for show, edition in EDITIONS.items():
         titles = seasons(latest(edition["article"])["content"])
         pages = pageids(list(titles.values()))
@@ -122,14 +158,13 @@ def handler(event, context):
                 if not parsed or not parsed["contestants"] or not parsed["episodes"]:
                     skipped.append(number)
                     continue
-                articles = [p["article"] for p in parsed["contestants"] if p["article"]]
-                about = {"summary": summary(page["pageid"]), "bios": leads(articles)}
+                extras = about(catalog, show, number, page, parsed, now)
             except Exception as e:  # noqa: BLE001 -- any parse bug or fetch error, logged and skipped
                 # One bad page must not stop the other seasons; US season 2's cast table
                 # crashed the parser on 2026-10-02 (rev 1376555148). Retried tomorrow.
                 failed.append({"season": number, "error": repr(e)})
                 continue
-            new = seed(catalog, show, number, page, parsed, now, about)
+            new = seed(catalog, show, number, page, parsed, now, extras)
             (seeded if new else refreshed).append(number)
             found[number] = (fetched["revid"], parsed)
         pick, closed = flip(catalog, show, now)
@@ -137,13 +172,15 @@ def handler(event, context):
         # After the flip, which is what decides a new season isn't current. A season new
         # to the catalog, or just closed, has its whole history published from this page.
         # So does a finished season with no exit on any player: seeded by the script and
-        # never published, its player pages would show no finish.
+        # never published, its player pages would show no finish. And one published
+        # before publishing wrote what it writes now (traitors_publish.PUBLISHED).
         for number, (rev, parsed) in found.items():
             rows = query_all(catalog, f"SEASON#{show}#{number}")
             meta, episodes, players = season_parts(rows, show, number)
             done = finished(meta, episodes, t)
             bare = not any(p.get("exit") for p in players)
-            if done and (number in seeded or number in closed or bare):
+            stale = meta.get("published") != PUBLISHED
+            if done and (number in seeded or number in closed or bare or stale):
                 publish_season(show, number, rows, parsed, rev, t, 0)
                 published.append(number)
             traitors_people.index(

@@ -7,7 +7,8 @@ once it has stayed the same for confirm.WINDOW seconds (common/confirm.py). What
 docs/features/traitors/PLAN.md, "Results".
 
 A performances `EVT#{type}` item: {state, value, firstSeenAt, rev} plus the result's
-own fields, which are what the gate shows.
+own fields, which are what the gate shows. EVT#RT also holds `ballots` and `daggers`
+(see `ballots`).
 """
 
 from __future__ import annotations
@@ -20,6 +21,9 @@ from lambdas.common.episodes_dynamo import episode_pk
 from lambdas.common.people import slug
 
 STEP = ("value", "state", "firstSeenAt", "rev")
+# Stamped on a finished season's META once published. Bump it when publishing starts
+# writing something new, and discovery republishes every finished season once (2: ballots, shields).
+PUBLISHED = 2
 
 
 def epoch(stamp: str) -> int:
@@ -48,6 +52,8 @@ def outcomes(parsed: dict, episodes: list[int]) -> dict[int, dict[str, dict | No
       anything later in the season is.
     - RECRUIT: its recruits, possibly none, once anything later is in. The night is the
       last thing in an episode, so nothing inside it says the night is over.
+    - SHIELD: who held a shield, once the page lists one or anything later is in. No
+      pick is ever made on it; it's there for a player's story.
     """
     factions = {p["name"]: (p["affiliation"] or [None])[-1] for p in parsed["contestants"]}
     rts: dict[int, dict] = {}
@@ -59,6 +65,7 @@ def outcomes(parsed: dict, episodes: list[int]) -> dict[int, dict[str, dict | No
     recruits: dict[int, list[str]] = {}
     for r in parsed["recruited"]:
         recruits.setdefault(r["ep"], []).append(slug(r["name"]))
+    shields = {e: [slug(n) for n in names] for e, names in parsed["shields"].items()}
 
     filled = {e for e, rt in rts.items() if rt["complete"]} | set(victims)
     done = bool(parsed["winners"])
@@ -72,6 +79,7 @@ def outcomes(parsed: dict, episodes: list[int]) -> dict[int, dict[str, dict | No
             if e in victims or e in filled or later
             else None,
             "RECRUIT": {"recruits": recruits.get(e, [])} if e in recruits or later else None,
+            "SHIELD": {"shields": shields.get(e, [])} if e in shields or later else None,
         }
         if rt and rt["complete"]:
             out[e]["RT"] = {
@@ -80,6 +88,24 @@ def outcomes(parsed: dict, episodes: list[int]) -> dict[int, dict[str, dict | No
                 "firstVote": {slug(n): c for n, c in rt["firstVote"].items()},
             }
     return out
+
+
+def ballots(parsed: dict) -> dict[int, dict]:
+    """
+    Each episode's complete first round table as `{ballots: {voter id: target id},
+    daggers: [voter id]}`. Written beside the RT result, never into its value: they
+    don't score, and a changed value would send a confirmed result back through the
+    window, unscoring it meanwhile.
+    """
+    out = {}
+    for rt in parsed["roundTables"]:
+        if rt["ep"] in out:
+            continue
+        out[rt["ep"]] = rt["complete"] and {
+            "ballots": {slug(v): slug(t) for v, t in rt["ballots"].items()},
+            "daggers": [slug(v) for v in rt["daggers"]],
+        }
+    return {ep: notes for ep, notes in out.items() if notes}
 
 
 def winners(parsed: dict) -> dict[str, str]:
@@ -97,11 +123,13 @@ def publish(
     t: int,
     rev: int,
     window: int = confirm.WINDOW,
+    notes: dict[str, dict] | None = None,
 ) -> tuple[bool, list[dict]]:
     """
     Steps each event of one episode and writes what changed. Returns (anything still
     provisional, the confirmed results). A result the page drops goes back to pending
     unless it already confirmed; confirmed results stay, as judges' values do in DWTS.
+    `notes` are fields written beside a kind's result without stepping it (`ballots`).
     """
     pk = episode_pk(show, season, ep)
     by_sk = {r["sk"]: r for r in stored if r.get("state") != "pending"}
@@ -116,8 +144,11 @@ def publish(
             continue
         before = prev and {k: prev[k] for k in STEP}
         entry = confirm.step(before, value, t, rev, window)
+        more = (notes or {}).get(kind, {})
         if entry != before:
-            update("PERFORMANCES_TABLE", {"pk": pk, "sk": sk}, {**entry, **value})
+            update("PERFORMANCES_TABLE", {"pk": pk, "sk": sk}, {**entry, **value, **more})
+        elif any(prev.get(k) != v for k, v in more.items()):
+            update("PERFORMANCES_TABLE", {"pk": pk, "sk": sk}, more)
         if entry["state"] == "confirmed":
             confirmed.append({"kind": kind, **value})
         else:
@@ -181,9 +212,11 @@ def publish_season(
     out = [int(e["sk"][3:]) for e in episodes if epoch(e["releaseAt"]) <= t]
     stored = query_many([("PERFORMANCES_TABLE", episode_pk(show, number, ep)) for ep in out])
     results = outcomes(parsed, out)
+    notes = ballots(parsed)
     pending = False
     for ep, have in zip(out, stored):
-        waiting, confirmed = publish(show, number, ep, results[ep], have, t, rev, window)
+        rt = {"RT": notes[ep]} if ep in notes else None
+        waiting, confirmed = publish(show, number, ep, results[ep], have, t, rev, window, rt)
         pending |= waiting
         exits(show, number, ep, confirmed)
         traitors_board.reconcile(show, number, ep)
@@ -192,4 +225,5 @@ def publish_season(
         traitors_board.reconcile_winners(show, number, won, int(meta["episodes"]))
     if finished(meta, episodes, t):
         standings(show, number, parsed)
+        update("CATALOG_TABLE", {"pk": meta["pk"], "sk": "META"}, {"published": PUBLISHED})
     return {"published": out, "pending": pending, "winners": sorted(won)}

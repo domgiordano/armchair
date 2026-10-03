@@ -11,7 +11,9 @@ clear face (faces.crop):
 1. Wikimedia Commons, through the player's Wikipedia article (find_headshots.commons): free, credited.
 2. The player's page on the show's Fandom wiki: its main image, a network promo photo like
    DWTS's supplied ones. Fandom's HTML is behind Cloudflare; its api.php is not.
-3. Brave image search, only when BRAVE_API_KEY is set.
+3. The network's cast page (BBC Media Centre, Peacock; common/official.py): its photo of
+   the player, recorded as `source: "official"` with the page as `sourceUrl`.
+4. Brave image search, only when BRAVE_API_KEY is set.
 Crops go to s3://<bucket>/headshots/, into the registry, and straight onto the PLAYER and
 PERSON items, since a CI run can't commit the registry.
 
@@ -42,6 +44,8 @@ import boto3
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from lambdas.common import fandom as wiki_fandom
+from lambdas.common import official
 from lambdas.common.dynamo import query_all
 from lambdas.common.people import slug
 from lambdas.common.traitors_catalog import EDITIONS
@@ -49,17 +53,11 @@ from lambdas.common.traitors_gate import player_id
 from lambdas.common.traitors_parse import season
 from lambdas.common.wiki_fetch import USER_AGENT, latest
 from scripts import faces, find_headshots
-from scripts.find_headshots import get, same
+from scripts.find_headshots import get
 
 SEARCH = "https://api.search.brave.com/res/v1/images/search"
 REGISTRY = Path(__file__).resolve().parents[2] / "fixtures" / "traitors-headshots.json"
 KEEP = 4
-# thetraitors.fandom.com covers the US and international editions.
-FANDOM = {
-    "tus": "https://thetraitors.fandom.com/api.php",
-    "tuk": "https://thetraitorsuk.fandom.com/api.php",
-    "tukc": "https://thetraitorsuk.fandom.com/api.php",
-}
 Hit = tuple[bytes, dict]
 
 
@@ -116,22 +114,13 @@ def commons(show: str, title: str, names: list[str]) -> dict[str, Hit]:
     return out
 
 
-def fandom_image(api: str, name: str) -> str | None:
-    """The main image of the wiki page titled with the name, else of a search hit that is."""
-    q = {"action": "query", "prop": "pageimages", "piprop": "name"}
-    page = get(api, {**q, "titles": name, "redirects": 1})["query"]["pages"][0]
-    if "pageimage" in page:
-        return page["pageimage"]
-    found = get(api, {**q, "generator": "search", "gsrsearch": name, "gsrlimit": 5})
-    hits = sorted(found.get("query", {}).get("pages", []), key=lambda p: p["index"])
-    return next((p["pageimage"] for p in hits if same(p["title"], name) and "pageimage" in p), None)
-
-
 def fandom(show: str, name: str) -> Hit | None:
-    api = FANDOM[show]
-    file = fandom_image(api, name)
+    """The main image of the player's Fandom page, found as the bios are (common/fandom.py)."""
+    page = wiki_fandom.players(show, [name]).get(name)
+    file = page and page["image"]
     if not file:
         return None
+    api = wiki_fandom.WIKI[show] + "/api.php"
     params = {"action": "query", "titles": f"File:{file}", "prop": "imageinfo"}
     pages = get(api, {**params, "iiprop": "url|sha1", "iiurlwidth": faces.WIDTH})["query"]["pages"]
     if not pages[0].get("imageinfo"):
@@ -156,12 +145,28 @@ def brave(name: str, title: str, key: str) -> Hit | None:
     return None
 
 
-def resolve(show: str, title: str, names: list[str]) -> dict[str, Hit]:
+def network(entry: dict | None, name: str) -> Hit | None:
+    """The player's photo on the network's cast page (common/official.py)."""
+    data = entry and entry["image"] and download(entry["image"])
+    crop = data and faces.crop(data)
+    if not crop:
+        return None
+    shot = {"image": faces.key(name, hashlib.sha1(data).hexdigest())}
+    return crop, {**shot, "sourceUrl": entry["sourceUrl"], "source": "official"}
+
+
+def resolve(show: str, number: int, title: str, names: list[str]) -> dict[str, Hit]:
     """{name: (crop, headshot)} for the names some source has a usable face for."""
     found = commons(show, title, names) if names else {}
     key = os.environ.get("BRAVE_API_KEY")
+    site: dict[str, dict] | None = None
     for name in names:
-        hit = found.get(name) or fandom(show, name) or (key and brave(name, title, key))
+        hit = found.get(name) or fandom(show, name)
+        if not hit:
+            # One fetch of the cast page per season, and only once a player needs it.
+            site = official.cast(show, number, names, False) if site is None else site
+            hit = network(site.get(name), name)
+        hit = hit or (key and brave(name, title, key))
         if hit:
             found[name] = hit
         print(f"{name}: {hit[1]['source'] if hit else '-'}", flush=True)
@@ -203,7 +208,7 @@ def auto(
         players = {r["name"]: r for r in rows if r["sk"].startswith("PLAYER#")}
         cast = [p["name"] for p in season(page["content"])["contestants"]]
         todo = [n for n in cast if n not in registry and not players.get(n, {}).get("headshot")]
-        found = resolve(show, page["title"], todo)
+        found = resolve(show, number, page["title"], todo)
         print(f"{show} {number}: found {len(found)} of {len(todo)} missing, {len(cast)} players")
         if dry_run:
             continue

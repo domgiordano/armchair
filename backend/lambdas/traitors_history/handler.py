@@ -4,12 +4,16 @@ GET /traitors/history?season=tus-3 - a finished Traitors season in one read, for
     {season, title, winners: [{id, faction}],
      players: [{id, name, headshot, faction, exit: {ep, how} | null}],
      episodes: [{ep, title, airDate, releaseAt,
-                 roundTable: {banished, faction, firstVote: {id: n}} | null,
-                 murdered: [id] | null, recruited: [id] | null}]}
+                 recap: {text, source: "wikipedia" | "fandom" | "results", sourceUrl} | null,
+                 roundTable: {banished, faction, firstVote: {id: n},
+                              ballots: {voter id: target id}, daggers: [id]} | null,
+                 murdered: [id] | null, recruited: [id] | null, shields: [id] | null}]}
 
-Only confirmed results; null where the page never settled one. A past season has no
-gate (PLAN "Gate" rule 5), so this needs no picks. The current season is 403: it goes
-through /traitors/episode, one gated episode at a time.
+Only confirmed results; null where the page never settled one. `ballots` is each
+voter's first vote and `daggers` whose counted twice; a round table published before
+they were parsed has neither. A past season has no gate (PLAN "Gate" rule 5), so this
+needs no picks. The current season is 403: it goes through /traitors/episode, one
+gated episode at a time.
 """
 
 from __future__ import annotations
@@ -18,7 +22,8 @@ from lambdas.common.api import ForbiddenError, api_handler, caller_sub, ok, quer
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, season_pk
 from lambdas.common.traitors_dynamo import season_parts, traitors_ref
-from lambdas.common.traitors_gate import ep_number, player_id, result
+from lambdas.common.traitors_gate import ep_number, player_id, shown
+from lambdas.common.traitors_recap import written
 
 
 @api_handler("traitors_history")
@@ -33,19 +38,22 @@ def handler(event, context):
     stored = query_many(
         [("PERFORMANCES_TABLE", episode_pk(show, number, ep_number(e))) for e in episodes]
     )
+    who = {player_id(p): p["name"] for p in players}
     timeline = []
     for e, evts in zip(episodes, stored):
-        got = {r["sk"].removeprefix("EVT#"): result(r) for r in evts}
-        murder, recruit = got.get("MURDER"), got.get("RECRUIT")
+        got = {r["sk"].removeprefix("EVT#"): shown(r) for r in evts}
+        murder, recruit, shield = got.get("MURDER"), got.get("RECRUIT"), got.get("SHIELD")
         timeline.append(
             {
                 "ep": ep_number(e),
                 "title": e.get("title"),
                 "airDate": e.get("airDate"),
                 "releaseAt": e["releaseAt"],
+                "recap": e.get("recap") or written(got, who),
                 "roundTable": got.get("RT"),
                 "murdered": murder and murder["victims"],
                 "recruited": recruit and recruit["recruits"],
+                "shields": shield and shield["shields"],
             }
         )
     cast = [

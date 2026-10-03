@@ -73,8 +73,13 @@ def face(monkeypatch):
     monkeypatch.setattr(faces, "crop", lambda data: b"crop" if data == b"photo" else None)
 
 
+def wiki_page(title: str, image: str | None = None) -> dict:
+    page = {"title": title, "revisions": [{"slots": {"main": {"content": "x"}}}]}
+    return page | ({"pageimage": image} if image else {})
+
+
 def test_fandom_crops_the_main_image_of_the_players_page(monkeypatch, face):
-    page = {"title": "King Kenny", "pageimage": "KingKenny.webp"}
+    page = wiki_page("King Kenny", "KingKenny.webp")
     fake_urlopen(
         monkeypatch,
         {
@@ -95,24 +100,27 @@ def test_fandom_crops_the_main_image_of_the_players_page(monkeypatch, face):
 
 
 def test_fandom_search_only_takes_a_page_titled_with_the_name(monkeypatch, face):
-    hits = [
-        {"title": "Series 2 (Celebrity)", "index": 1, "pageimage": "Cast.jpg"},
-        {"title": "Ross Kemp (Celebrity)", "index": 2, "pageimage": "RossKemp.webp"},
-    ]
+    hits = [{"title": "Series 2 (Celebrity)"}, {"title": "Ross Kemp (Celebrity)"}]
     fake_urlopen(
         monkeypatch,
         {
+            (UK, "titles=Ross Kemp (Celebrity)"): {
+                "query": {"pages": [wiki_page("Ross Kemp (Celebrity)", "RossKemp.webp")]}
+            },
             (UK, "titles=Ross Kemp"): {
                 "query": {"pages": [{"title": "Ross Kemp", "missing": True}]}
             },
-            (UK, "gsrsearch=Ross Kemp"): {"query": {"pages": hits}},
+            (UK, "srsearch=Ross Kemp"): {"query": {"search": hits}},
+            (UK, "titles=File:RossKemp.webp"): file_info("RossKemp.webp"),
+            (THUMB, ""): b"photo",
         },
     )
-    assert finder.fandom_image(UK, "Ross Kemp") == "RossKemp.webp"
+    _, shot = finder.fandom("tukc", "Ross Kemp")
+    assert shot["sourceUrl"] == "https://thetraitorsuk.fandom.com/wiki/File:RossKemp.webp"
 
 
 def test_fandom_skips_a_photo_without_one_clear_face(monkeypatch, face):
-    page = {"title": "King Kenny", "pageimage": "KingKenny.webp"}
+    page = wiki_page("King Kenny", "KingKenny.webp")
     fake_urlopen(
         monkeypatch,
         {
@@ -128,8 +136,11 @@ def test_fandom_has_no_page_for_the_name(monkeypatch):
     fake_urlopen(
         monkeypatch,
         {
-            (UK, "titles=Sharon Rooney"): {"query": {"pages": [{"missing": True}]}},
-            (UK, "gsrsearch=Sharon Rooney"): {"batchcomplete": True},
+            (UK, "titles=Sharon Rooney"): {
+                "query": {"pages": [{"title": "Sharon Rooney", "missing": True}]}
+            },
+            (UK, "srsearch=Sharon Rooney"): {"batchcomplete": True},
+            (UK, "srsearch=Rooney"): {"query": {"search": [{"title": "Wayne Rooney"}]}},
         },
     )
     assert finder.fandom("tukc", "Sharon Rooney") is None
@@ -139,10 +150,37 @@ def test_resolve_takes_commons_first_and_brave_only_with_a_key(monkeypatch):
     shot = {"image": "a.webp", "sourceUrl": "https://c", "source": "commons"}
     monkeypatch.setattr(finder, "commons", lambda show, title, names: {"Ann": (b"c", shot)})
     monkeypatch.setattr(finder, "fandom", lambda show, name: None)
+    monkeypatch.setattr(finder.official, "cast", lambda *a: {})
     monkeypatch.setattr(finder, "brave", lambda *a: pytest.fail("searched without a key"))
     monkeypatch.delenv("BRAVE_API_KEY", raising=False)
 
-    assert finder.resolve("tus", "T", ["Ann", "Bob"]) == {"Ann": (b"c", shot)}
+    assert finder.resolve("tus", 5, "T", ["Ann", "Bob"]) == {"Ann": (b"c", shot)}
+
+
+def test_resolve_falls_back_to_the_networks_cast_page(monkeypatch, face):
+    page = "https://www.bbc.co.uk/mediacentre/mediapacks/the-traitors-series-4-contestants"
+    asked = []
+
+    def cast(show, number, names, running):
+        asked.append((show, number))
+        return {"Bob": {"image": "https://ichef/bob.jpg", "sourceUrl": page}}
+
+    monkeypatch.setattr(finder, "commons", lambda show, title, names: {})
+    monkeypatch.setattr(finder, "fandom", lambda show, name: None)
+    monkeypatch.setattr(finder.official, "cast", cast)
+    monkeypatch.setattr(
+        finder, "download", lambda url: b"photo" if url.endswith("bob.jpg") else None
+    )
+    monkeypatch.delenv("BRAVE_API_KEY", raising=False)
+
+    found = finder.resolve("tuk", 4, "T", ["Ann", "Bob"])
+
+    assert list(found) == ["Bob"]
+    crop, shot = found["Bob"]
+    assert crop == b"crop"
+    assert (shot["source"], shot["sourceUrl"]) == ("official", page)
+    # One fetch of the page for the season, however many players miss.
+    assert asked == [("tuk", 4)]
 
 
 SEASON_PK = "SEASON#tus#5"
@@ -169,7 +207,7 @@ def test_auto_uploads_and_writes_onto_player_and_person(aws, registry, monkeypat
     asked = []
     shot = {"image": "kim-daily-x.webp", "sourceUrl": "https://f/File:K", "source": "fandom"}
 
-    def resolve(show, title, names):
+    def resolve(show, number, title, names):
         asked.extend(names)
         return {"Kim Daily": (b"crop", shot)}
 
@@ -197,7 +235,7 @@ def test_auto_uploads_and_writes_onto_player_and_person(aws, registry, monkeypat
 def test_auto_dry_run_with_a_pageid_touches_nothing(registry, monkeypatch):
     monkeypatch.setattr(finder, "latest", lambda pageid: {"title": "NB", "content": ""})
     monkeypatch.setattr(finder, "season", lambda content: {"contestants": [{"name": "Kim"}]})
-    monkeypatch.setattr(finder, "resolve", lambda show, title, names: {"Kim": (b"c", {})})
+    monkeypatch.setattr(finder, "resolve", lambda show, number, title, names: {"Kim": (b"c", {})})
     monkeypatch.setattr(boto3, "resource", None)
     monkeypatch.setattr(boto3, "client", None)
 

@@ -62,14 +62,17 @@ def items(
     release_time: str | None = None,
     headshots: dict[str, dict] | None = None,
     summary: dict | None = None,
-    bios: dict[str, dict | None] | None = None,
+    bios: dict[str, tuple[dict | None, bool]] | None = None,
+    recaps: dict[int, dict | None] | None = None,
 ) -> list[dict]:
     """META, the season-picker row, one EP per episode and one PLAYER per contestant.
 
-    Nothing gated is written here: factions, exits and results come from the poller.
-    `open_at` (UTC) closes every episode released before it: those show results and take no picks.
-    `summary` is the season article's lead and `bios` each linked article's, both from
-    wiki_fetch, fetched by the caller so this stays pure.
+    Nothing gated is written here: factions, exits and results come from the poller, and
+    the gate decides who sees a recap. `open_at` (UTC) closes every episode released
+    before it: those show results and take no picks. `summary` is the season article's
+    lead (wiki_fetch); `bios` maps a contestant's name to (bio, cut) and `recaps` an
+    episode to its recap (traitors_about). The caller fetches them so this stays pure;
+    a name or episode they leave out keeps what the catalog has.
     """
     edition = EDITIONS[show]
     pk = f"SEASON#{show}#{number}"
@@ -78,6 +81,7 @@ def items(
     year = int(parsed["episodes"][0]["date"][:4]) if parsed["episodes"] else None
     names = [p["name"] for p in parsed["contestants"]]
     short = aliases(names)
+    bios, recaps = bios or {}, recaps or {}
 
     rows = [
         {
@@ -110,6 +114,7 @@ def items(
             "airDate": e["date"],
             "releaseAt": releases[e["n"]],
             "noRoundTable": e["n"] < edition["firstRoundTable"],
+            **({"recap": recaps[e["n"]]} if recaps.get(e["n"]) else {}),
         }
         for e in parsed["episodes"]
     ]
@@ -126,7 +131,12 @@ def items(
             ),
             **({"headshot": shots[p["name"]]} if shots.get(p["name"]) else {}),
             "article": p.get("article"),
-            "bio": (bios or {}).get(p.get("article") or ""),
+            "about": p["about"],
+            **(
+                {"bio": bios[p["name"]][0], "bioCut": bios[p["name"]][1]}
+                if p["name"] in bios
+                else {}
+            ),
         }
         for p in parsed["contestants"]
     ]

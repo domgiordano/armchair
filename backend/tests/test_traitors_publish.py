@@ -25,7 +25,10 @@ def test_new_blood_outcomes():
         "RT": None,
         "MURDER": {"victims": ["xavier-scruggs"]},
         "RECRUIT": {"recruits": ["katie-fites"]},
+        "SHIELD": {"shields": ["clyde-moser"]},
     }
+    # The Shield row's episode 2 cell reads None; later results say it's settled.
+    assert out[2]["SHIELD"] == {"shields": []}
     assert out[4]["RT"]["firstVote"] == {
         "arisa-thomas": 13,
         "victor-vollbrechthausen": 5,
@@ -34,9 +37,14 @@ def test_new_blood_outcomes():
     # Nothing after episode 4 is in yet, so its night stays open; episode 5 has nothing.
     assert out[4]["MURDER"] == {"victims": ["logan-smith"]}
     assert out[4]["RECRUIT"] is None
-    assert out[5] == {"RT": None, "MURDER": None, "RECRUIT": None}
+    assert out[5] == {"RT": None, "MURDER": None, "RECRUIT": None, "SHIELD": None}
     # Episode 1 has no round table, and its night settled once episode 2 filled in.
-    assert out[1] == {"RT": None, "MURDER": {"victims": []}, "RECRUIT": {"recruits": []}}
+    assert out[1] == {
+        "RT": None,
+        "MURDER": {"victims": []},
+        "RECRUIT": {"recruits": []},
+        "SHIELD": {"shields": ["abby-lee", "madeline-kostopulos", "victor-vollbrechthausen"]},
+    }
 
 
 def test_partial_tally_publishes_no_round_table():

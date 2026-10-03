@@ -3,7 +3,8 @@ GET /traitors/season?season=tus-5 - a Traitors season's schedule and the caller'
 
     {season, title, current, summary: {text, sourceUrl} | null,
      needsBet, bet: {picks, released} | null, released,
-     episodes: [{ep, title, releaseAt, closed, events, answered}],
+     episodes: [{ep, title, releaseAt, closed, events, answered,
+                 recap: {text, source, sourceUrl} | null}],
      cast: [{id, name, headshot, faction, exit: {ep, how} | null}],
      winners: [{id, name, headshot, faction}]      past seasons only
      betRoster: [{id, name, headshot}]}            when needsBet only
@@ -13,6 +14,8 @@ it's the caller's own rows. A current season can be browsed before the winner be
 `needsBet` says picking waits for it and `betRoster` is who it may name. `cast` follows
 traitors_gate.wall: in a current season only exits from closed episodes show. `summary`
 is the season article's lead, attributed by `sourceUrl` (CC BY-SA), written by discovery.
+A recap reveals its episode's results, so a current season's are always null here: they
+come one at a time through /traitors/episode.
 """
 
 from __future__ import annotations
@@ -60,6 +63,7 @@ def handler(event, context):
                 "closed": closed(meta, e),
                 "events": len(events(e)),
                 "answered": len(mine(sub, answers)),
+                "recap": None if meta.get("current") else e.get("recap"),
             }
             for e, answers in zip(episodes, picks)
         ],

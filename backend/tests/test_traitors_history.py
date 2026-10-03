@@ -29,6 +29,11 @@ ROB_BIO = {"text": "Rob Rausch is a snake handler.", "sourceUrl": "https://examp
 
 @pytest.fixture
 def db(aws, monkeypatch):
+    return world(aws, monkeypatch)
+
+
+def world(aws, monkeypatch):
+    """US season 4 finished and New Blood current, seeded from the fixtures, at NOW."""
     catalog = aws.Table(CATALOG_TABLE)
     for number, current in ((4, False), (5, True)):
         rows = items(
@@ -165,6 +170,8 @@ def test_player_past_season(db):
     index(db)
     status, body = get(player_handler, "/traitors/player", show="tus", id="rob-rausch")
     assert status == 200
+    # The story has its own tests (test_traitors_stories.py).
+    assert len(body["data"].pop("story")) == 11
     assert body["data"] == {
         "id": "rob-rausch",
         "name": "Rob Rausch",
@@ -176,6 +183,8 @@ def test_player_past_season(db):
             "license": None,
         },
         "bio": ROB_BIO,
+        # His Contestants row: `| 26` / `| [[Florence, Alabama]]` / `| Love Island USA 5`.
+        "about": {"age": 26, "hometown": "Florence, Alabama", "occupation": "Love Island USA 5"},
         "seasons": [
             {
                 "season": "tus-4",
@@ -253,11 +262,16 @@ def test_history_of_a_past_season(db):
     eps = {e["ep"]: e for e in data["episodes"]}
     assert len(eps) == 12
     assert eps[1]["roundTable"] is None
-    assert eps[2]["roundTable"] == {
+    rt = eps[2]["roundTable"]
+    assert (len(rt.pop("ballots")), rt.pop("daggers")) == (22, [])
+    assert rt == {
         "banished": "porsha-williams",
         "faction": "Faithful",
         "firstVote": {"porsha-williams": 10, "donna-kelce": 8, "michael-rapaport": 4},
     }
+    assert eps[10]["roundTable"]["daggers"] == ["rob-rausch"]
+    assert eps[1]["shields"][:2] == ["candiace-dillard-bassett", "caroline-stanbury"]
+    assert eps[3]["shields"] == []
     assert eps[2]["murdered"] == ["ian-terry"]
     assert eps[9]["recruited"] == ["eric-nam"]
     assert eps[12]["recruited"] == []
