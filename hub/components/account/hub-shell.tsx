@@ -26,11 +26,13 @@ const isActive = (href: string, pathname: string) => {
 const ICON_BUTTON = `flex size-11 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:bg-line/60 hover:text-text active:bg-line ${FOCUS}`;
 
 interface HubShellProps {
+  /** Full width, between the header and the page: the dashboard's ticker. */
+  banner?: ReactNode;
   children: ReactNode;
 }
 
 /** Header, tabs and footer around the hub's pages. The tabs only show once signed in. */
-export function HubShell({ children }: HubShellProps) {
+export function HubShell({ banner, children }: HubShellProps) {
   const { status } = useAuth();
   // Null outside the app router, as in unit tests.
   const pathname = usePathname() ?? "/";
@@ -107,6 +109,7 @@ export function HubShell({ children }: HubShellProps) {
           </div>
         </NavSheet>
       )}
+      {banner}
       <main id="main" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 pt-8 pb-20 outline-none sm:px-6 sm:pt-10">
         {children}
       </main>

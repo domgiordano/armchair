@@ -12,6 +12,7 @@ import { GoogleMark } from "@/components/google-mark";
 import { useAccountHint } from "@/lib/account-hint";
 
 import { AvatarMenu } from "./avatar-menu";
+import { NotificationsBell } from "./notifications-bell";
 import { Avatar, FOCUS } from "./ui";
 
 const PILL = `flex min-h-11 items-center gap-2 rounded-full bg-text text-sm font-semibold text-night transition-colors hover:bg-gold active:scale-95 disabled:opacity-60 motion-reduce:transition-none ${FOCUS}`;
@@ -40,7 +41,14 @@ export function AccountButton() {
     return () => window.removeEventListener("pageshow", reset);
   }, []);
 
-  if (status === "signedIn") return <AvatarMenu />;
+  if (status === "signedIn") {
+    return (
+      <>
+        <NotificationsBell />
+        <AvatarMenu />
+      </>
+    );
+  }
 
   // A build without Cognito config (local, PR previews) has nowhere to send anyone.
   if (status === "unconfigured") {

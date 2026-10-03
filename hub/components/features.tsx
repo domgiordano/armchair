@@ -75,14 +75,14 @@ export function Features() {
   return (
     <section id="features" aria-labelledby="features-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-4 lg:grid-cols-[1fr_1fr] lg:items-end" {...reveal()}>
+        <div className="text-center" {...reveal()}>
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-blue uppercase">What you get</p>
             <h2 id="features-title" className="mt-3 text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
               A seat on the panel <span className="text-brand-gradient">in your pocket.</span>
             </h2>
           </div>
-          <p className="max-w-lg text-muted lg:justify-self-end">
+          <p className="mx-auto mt-3 max-w-xl text-muted">
             Everything below runs in the live show apps today, except where it says otherwise. The screens are
             illustrations with invented names and scores.
           </p>

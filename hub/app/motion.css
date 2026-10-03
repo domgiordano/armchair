@@ -410,3 +410,37 @@ html[data-intro="playing"] .hero-in {
     transition: none;
   }
 }
+
+/* Ticker (components/ticker.tsx): two identical halves, so sliding one half-width loops seamlessly. */
+.ticker-window {
+  mask-image: linear-gradient(90deg, transparent, black 4%, black 92%, transparent);
+}
+
+.ticker-track {
+  animation: ticker var(--ticker-duration, 50s) linear infinite;
+}
+
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track,
+.ticker[data-paused] .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Reduced motion: one still row of the items, clipped at the edge. */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+
+  .ticker-half[data-copy="1"],
+  .ticker-half [data-echo],
+  .ticker-toggle {
+    display: none;
+  }
+}
