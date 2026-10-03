@@ -17,6 +17,8 @@ from __future__ import annotations
 from collections import Counter
 from datetime import UTC, datetime
 
+from lambdas.common.traitors_recap import written
+
 # Show order: the breakfast reveal, the round table, then the night's recruitment.
 EVENTS = ("MURDER", "RT", "RECRUIT")
 PICKS = {"MURDER": 1, "RT": 3, "RECRUIT": 1}
@@ -112,6 +114,14 @@ def consensus(kind: str, rows: list[dict]) -> dict:
     return out
 
 
+def recap(episode: dict, results_by: dict[str, dict], players: list[dict]) -> dict | None:
+    """The wiki's recap, else one written from the confirmed results."""
+    if episode.get("recap"):
+        return episode["recap"]
+    who = {player_id(p): p["name"] for p in players}
+    return written({k: shown(r) for k, r in results_by.items()}, who)
+
+
 def episode_view(
     sub: str,
     meta: dict,
@@ -162,7 +172,7 @@ def episode_view(
         "title": episode.get("title"),
         "releaseAt": episode["releaseAt"],
         "closed": is_closed,
-        "recap": episode.get("recap") if seen(sub, meta, episode, picks) else None,
+        "recap": recap(episode, results_by, players) if seen(sub, meta, episode, picks) else None,
         "roster": roster(ep, players),
         "events": cards,
     }
