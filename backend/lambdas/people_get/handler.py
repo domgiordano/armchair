@@ -18,7 +18,13 @@ season the caller has a leaderboard row in, and all of them for someone in
 three or fewer. The numbers cover the seasons read. An unread season lists
 no rows and its result is null. `season` also
 narrows the dance lists, never the numbers, and picks which season of judging
-to list, the latest by default. Identity is the Cognito sub.
+to list, the latest by default. `brief=1` reads no season: the bio, every
+stint with its partners, and nothing gated, for a page that only needs who
+someone is. Identity is the Cognito sub.
+
+A finished season's stint carries its couple's finishing `place` of `cast`
+from the person index; the current season's never does, whatever the index
+holds, because that is a result the episode rule hasn't opened.
 """
 
 from __future__ import annotations
@@ -57,14 +63,16 @@ def handler(event, context):
     if person is None:
         raise NotFoundError("No such person", id=pid)
 
+    current = {int(r["number"]) for r in season_index(show) if r.get("current")}
     stints = [{**s, "season": int(s["season"])} for s in person["seasons"]]
     numbers = {s["season"] for s in stints}
     judging = sorted(s["season"] for s in stints if s["role"] == "judge")
     shown = only if only in judging else (judging[-1] if judging else None)
-    if len(numbers) <= FEW:
+    if params.get("brief") == "1":
+        wanted = set()
+    elif len(numbers) <= FEW:
         wanted = numbers
     else:
-        current = {int(r["number"]) for r in season_index(show) if r.get("current")}
         scored = set(board_dynamo.seasons_with(sub, show, sorted(numbers)))
         wanted = numbers & ({max(numbers), only, shown} | current | scored)
     seasons = _seasons(show, wanted)
@@ -89,6 +97,8 @@ def handler(event, context):
         if stint["role"] != "judge":
             entry["partners"] = stint["partners"]
             entry["result"] = None
+            if "place" in stint and n not in current:
+                entry |= {"place": int(stint["place"]), "cast": int(stint["cast"])}
         if eps is None:
             timeline.append(entry)
             continue
@@ -109,7 +119,10 @@ def handler(event, context):
     return ok(
         {
             "id": pid,
-            **{k: person.get(k) for k in ("name", "roles", "headshot", "bio", "facts")},
+            **{
+                k: person.get(k)
+                for k in ("name", "roles", "headshot", "bio", "facts", "category", "similar")
+            },
             "seasons": timeline,
             "performances": [r for r in danced if label in (None, r["season"])],
             "judged": shown
@@ -283,6 +296,15 @@ def _dancer(rows: list[dict]) -> dict:
     }
 
 
+def _top(season: str, by_couple: dict) -> dict | None:
+    """The couple a judge scored highest on average in `season`, more dances first on a tie."""
+    mine = [(k[1], vs) for k, vs in by_couple.items() if k[0] == season]
+    if not mine:
+        return None
+    _, vs = max(mine, key=lambda x: (_mean([v for v, _ in x[1]]), len(x[1])))
+    return {"dancers": vs[0][1]["dancers"], "mean": _mean([v for v, _ in vs]), "count": len(vs)}
+
+
 def _judge(pid: str, rows: list[dict]) -> dict:
     """How a judge scores, over the dances the caller has answered and the judge has confirmed."""
     scored = []
@@ -296,9 +318,13 @@ def _judge(pid: str, rows: list[dict]) -> dict:
         scored.append((r, values[pid], _mean(rest)))
 
     by_style, by_season = defaultdict(list), defaultdict(list)
+    by_couple = defaultdict(list)
     for r, v, _ in scored:
         by_style[r["style"] or "Unknown"].append(v)
         by_season[r["season"]].append(v)
+        # A team dance has no one couple to credit.
+        if sum(d["role"] == "celebrity" for d in r["dancers"]) == 1:
+            by_couple[(r["season"], tuple(d["id"] for d in r["dancers"]))].append((v, r))
     versus = sorted(
         ((v - rest, r, v) for r, v, rest in scored if rest is not None), key=lambda x: x[0]
     )
@@ -327,7 +353,8 @@ def _judge(pid: str, rows: list[dict]) -> dict:
             key=lambda x: (-x["count"], x["style"]),
         ),
         "bySeason": [
-            {"season": s, "count": len(vs), "mean": _mean(vs)} for s, vs in by_season.items()
+            {"season": s, "count": len(vs), "mean": _mean(vs), "top": _top(s, by_couple)}
+            for s, vs in by_season.items()
         ],
         "distribution": {f"{v:g}": n for v, n in sorted(Counter(v for _, v, _ in scored).items())},
         "mine": {

@@ -40,6 +40,7 @@ from lambdas.common.keywords import keywords
 from lambdas.common.people import slug
 from lambdas.cron_poll_wiki.handler import publish
 from scripts import faces
+from scripts.similar import category, places, similar
 
 SEASONS = Path(__file__).resolve().parents[2] / "fixtures" / "seasons"
 BIOS = SEASONS.parent / "bios.json"
@@ -103,31 +104,44 @@ def people(seasons: list[dict], bios: dict[str, dict | None]) -> list[dict]:
     """
     A PERSON item and a PEOPLE search row for everyone in `seasons`, keyed by the
     contestant id for a celebrity and the name's slug for a pro, the same as a judge id,
-    so Derek Hough the pro and Derek Hough the judge are one person. No result or
-    elimination is copied: those are gated per episode and read from the season.
+    so Derek Hough the pro and Derek Hough the judge are one person. No elimination
+    is copied: that is gated per episode and read from the season. A finished season's
+    stints carry the couple's finishing `place` of `cast`, since a past season is open
+    to everyone (gate.is_open); people_get still drops it for a season flagged current.
     """
     found: dict[str, dict] = {}
+    celebs: dict[str, dict] = {}
     for s in sorted(seasons, key=lambda s: s["season"]):
+        finished = places(s)
         for c in s["contestants"]:
             ids = [c["id"] if m["role"] == "celebrity" else slug(m["name"]) for m in c["members"]]
+            place = finished.get(c["id"])
             for pid, m in zip(ids, c["members"]):
                 partners = [
-                    {"id": other, "name": om["name"]}
+                    {"id": other, "name": om["name"], "headshot": om.get("headshot")}
                     for other, om in zip(ids, c["members"])
                     if other != pid
                 ]
-                _person(found, s, pid, m)["seasons"].append(
-                    {
-                        "season": s["season"],
-                        "role": m["role"],
-                        "couple": c["id"],
-                        "partners": partners,
-                    }
-                )
+                stint = {"season": s["season"], "role": m["role"], "couple": c["id"]}
+                if place is not None:
+                    stint |= {"place": place, "cast": len(s["contestants"])}
+                _person(found, s, pid, m)["seasons"].append({**stint, "partners": partners})
+                if m["role"] == "celebrity":
+                    who = celebs.setdefault(pid, {"seasons": {}})
+                    who["seasons"][s["season"]] = place and (place, len(s["contestants"]))
         for j in s["judges"]:
             _person(found, s, j["id"], j)["seasons"].append(
                 {"season": s["season"], "role": "judge"}
             )
+
+    for pid, c in celebs.items():
+        p = found[pid]
+        c |= {
+            "name": p["name"],
+            "headshot": p["headshot"],
+            "category": category(bios.get(p["name"])),
+        }
+    alike = similar(celebs)
 
     rows = []
     for pid, p in sorted(found.items()):
@@ -145,6 +159,11 @@ def people(seasons: list[dict], bios: dict[str, dict | None]) -> list[dict]:
                 "bio": bio and {k: bio[k] for k in ("title", "url", "description", "extract")},
                 "facts": bio
                 and {k: bio[k] for k in ("born", "died", "occupations", "nationality")},
+                **(
+                    {"category": celebs[pid]["category"], "similar": alike[pid]}
+                    if pid in celebs
+                    else {}
+                ),
             }
         )
         rows.append(
