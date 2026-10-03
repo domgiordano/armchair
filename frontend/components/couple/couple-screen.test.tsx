@@ -17,10 +17,11 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
 vi.mock("@/lib/api/people", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/people")>()),
   getPerson: vi.fn(),
+  getPersonBrief: vi.fn(),
 }));
 
 import { ApiError } from "@armchair/app-core/api/client";
-import { getPerson, type OpenRow, type PerformanceRow, type PersonPage, type SeasonResult } from "@/lib/api/people";
+import { getPerson, getPersonBrief, type OpenRow, type PerformanceRow, type PersonPage, type SeasonResult } from "@/lib/api/people";
 import { getSeason, type Season } from "@/lib/api/show";
 import { CoupleScreen } from "./couple-screen";
 
@@ -87,8 +88,21 @@ const page = (result: SeasonResult | null, performances: PerformanceRow[]): Pers
   stats: { dancer: null, judge: null },
 });
 
+const PASHA: PersonPage = {
+  ...page(null, []),
+  id: "pasha-pashkov",
+  name: "Pasha Pashkov",
+  roles: ["pro"],
+  seasons: [
+    { season: "dwts-30", number: 30, role: "pro", loaded: false, partners: [{ id: "melora-hardin", name: "Melora Hardin" }], result: null, place: 6, cast: 15 },
+    { season: "dwts-33", number: 33, role: "pro", loaded: false, partners: [{ id: "chandler-kinney", name: "Chandler Kinney" }], result: null, place: 3, cast: 13 },
+    { season: "dwts-35", number: 35, role: "pro", loaded: false, partners: [{ id: "amber-glenn", name: "Amber Glenn" }], result: null },
+  ],
+};
+
 beforeEach(() => {
   nav.search = new URLSearchParams("id=amber-glenn");
+  vi.mocked(getPersonBrief).mockResolvedValue(PASHA);
   vi.mocked(getSeason).mockResolvedValue(SEASON);
   vi.mocked(getPerson).mockResolvedValue(
     page({ locked: true, season: "dwts-35", ep: 4 }, [open(2, 1, "Cha-cha", [7, 8], 9), open(3, 2, "Tango", [8, 8], 6), LOCKED]),
@@ -129,18 +143,84 @@ describe("CoupleScreen", () => {
     expect(notes.textContent).toContain("Where you splitTango · Week 2");
   });
 
-  it("charts you against the judges and lists every dance week by week, gated ones as a nudge", async () => {
+  it("charts you against the judges and lays every dance out as a grid, gated ones as a nudge", async () => {
     render(<CoupleScreen />);
     const chart = await screen.findByRole("img", { name: /W1 Cha-cha you 9, judges 7.5; W2 Tango you 6, judges 8/ });
     expect(chart.querySelectorAll("polyline")).toHaveLength(2);
     const dances = screen.getByRole("region", { name: "Every dance" });
-    expect(within(dances).getAllByRole("heading", { level: 3 }).map((h) => h.textContent)).toEqual([
-      "Week 1Premiere",
-      "Week 2",
-      "Week 3Yacht Rock",
-    ]);
-    expect(within(dances).getByText("To see week 3 scores, score it first")).toBeTruthy();
+    const grid = within(dances).getByRole("list", { name: "Dances, night by night" });
+    const cells = within(grid).getAllByRole("listitem").filter((li) => li.parentElement === grid);
+    expect(cells.map((c) => c.querySelector("p")?.textContent)).toEqual(["Week 1 · Premiere", "Week 2", "To see week 3 scores, score it first"]);
+    expect(within(cells[0]).getByRole("heading", { level: 3 }).textContent).toBe("Cha-cha");
     expect(within(dances).getAllByRole("list", { name: "Judges' scores" })[0].textContent).toBe("Carrie7Derek8");
+  });
+
+  it("is one column on a phone, two from 30rem and three on a wide desktop", async () => {
+    render(<CoupleScreen />);
+    const grid = await screen.findByRole("list", { name: "Dances, night by night" });
+    expect(grid.className.split(" ")).toEqual(expect.arrayContaining(["grid-cols-1", "min-[30rem]:grid-cols-2", "xl:grid-cols-3"]));
+    // A lone nudge spans the pair of columns it would otherwise leave half empty.
+    const nudge = within(grid).getByText("To see week 3 scores, score it first").closest("li")!;
+    expect(nudge.className).toContain("min-[30rem]:col-span-2");
+    const partnership = screen.getByRole("region", { name: "Partnership" }).querySelector("dl")!;
+    expect(partnership.className.split(" ")).toEqual(expect.arrayContaining(["grid-cols-2", "sm:grid-cols-4", "lg:grid-cols-2"]));
+  });
+
+  it("jumps to a night from the rail, which shows the judges' best or a lock", async () => {
+    const scroll = vi.fn();
+    Element.prototype.scrollIntoView = scroll;
+    render(<CoupleScreen />);
+    const rail = await screen.findByRole("navigation", { name: "Jump to a night" });
+    const stops = within(rail).getAllByRole("button");
+    expect(stops.map((b) => b.getAttribute("aria-label"))).toEqual([
+      "Week 1, judges' best 7.5",
+      "Week 2, judges' best 8.0",
+      "Week 3, still to score",
+    ]);
+    fireEvent.click(stops[1]);
+    expect(stops[1].getAttribute("aria-current")).toBe("true");
+    expect(document.activeElement?.id).toBe("night-3");
+    expect(scroll).toHaveBeenCalledTimes(1);
+  });
+
+  it("opens with who they are, quick facts and the partnership in numbers", async () => {
+    vi.mocked(getPerson).mockResolvedValue({
+      ...page({ locked: true, season: "dwts-35", ep: 4 }, [open(2, 1, "Cha-cha", [7, 8], 9), open(3, 2, "Tango", [10, 8], 6), LOCKED]),
+      bio: { title: "Amber Glenn", url: "", description: "American figure skater (born 1999)", extract: "" },
+      category: "Athlete",
+    });
+    render(<CoupleScreen />);
+    const overview = await screen.findByRole("region", { name: "Overview" });
+    await within(overview).findByText(/3rd season as a pro/);
+    expect(overview.querySelector("p")?.textContent).toBe(
+      "Amber Glenn is an American figure skater. This is Pasha Pashkov's 3rd season as a pro, after partnering Chandler Kinney and Melora Hardin. Best finish before this: 3rd of 13 with Chandler Kinney in Season 33.",
+    );
+    expect(within(overview).getByRole("link", { name: "Melora Hardin" }).getAttribute("href")).toMatch(/^\/people\/?\?id=melora-hardin$/);
+    expect(getPersonBrief).toHaveBeenCalledWith("pasha-pashkov");
+    const facts = within(overview).getByRole("list", { name: "Quick facts" });
+    expect(within(facts).getAllByRole("listitem").map((li) => li.textContent)).toEqual([
+      "Season 35",
+      "Athlete",
+      "Pro's 3rd season",
+      "2 previous partners",
+      "Best dance: Tango 9",
+    ]);
+    const numbers = screen.getByRole("region", { name: "Partnership" });
+    expect(numbers.textContent).toContain("Nights together");
+    expect(numbers.textContent).toContain("Perfect 10s");
+  });
+
+  it("names a past season's finish, and still shows the overview when the pro won't load", async () => {
+    nav.search = new URLSearchParams("id=amber-glenn&season=dwts-34");
+    vi.mocked(getSeason).mockResolvedValue({ ...SEASON, season: "dwts-34", open: true });
+    vi.mocked(getPersonBrief).mockRejectedValue(new Error("Network down"));
+    const past = page({ status: "finalist" }, []);
+    past.seasons = [{ ...past.seasons[0], season: "dwts-34", number: 34, place: 2, cast: 14 }];
+    vi.mocked(getPerson).mockResolvedValue(past);
+    render(<CoupleScreen />);
+    const facts = await screen.findByRole("list", { name: "Quick facts" });
+    expect(within(facts).getByText("Runner-up")).toBeTruthy();
+    expect(screen.queryByText(/season as a pro/)).toBeNull();
   });
 
   it("stamps a couple the caller knows went home", async () => {
