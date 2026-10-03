@@ -7,6 +7,7 @@ import { judgeName } from "@/components/leaderboard-screen";
 import { formatScore } from "@/components/performance-card";
 import { avg, nights, Nudge, type Night } from "@/components/people/person-dances";
 import { Badge } from "@/components/ui/badge";
+import { WhatHappened } from "@/components/what-happened";
 import type { Average, OpenRow, PerformanceRow } from "@/lib/api/people";
 import type { Episode, Judge } from "@/lib/api/show";
 import { paddle } from "@/lib/show/couple";
@@ -209,6 +210,7 @@ function DanceCard({ row, night, theme, self, judges }: DanceCardProps) {
           </li>
         ))}
       </ul>
+      <WhatHappened writeup={row.writeup} judges={judges} />
     </article>
   );
 }

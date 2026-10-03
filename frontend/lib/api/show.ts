@@ -52,6 +52,20 @@ export interface Season {
 
 export type Answer = { value: number } | { forfeit: true };
 
+/** An AI write-up of one dance from published recaps. Any field can be empty when the recaps said nothing. */
+export interface Writeup {
+  summary: string | null;
+  /** One short paraphrase per judge the recaps quoted; `quote` is at most six of their own words. */
+  judges: { id: string; text: string; quote: string | null }[];
+  highlights: string[];
+  sources: string[];
+}
+
+/** What a locked card may say of its write-up: only that there is one. */
+export interface LockedWriteup {
+  locked: true;
+}
+
 export interface LockedCard {
   key: string;
   contestants: string[];
@@ -59,6 +73,7 @@ export interface LockedCard {
   style: string | null;
   song: string | null;
   locked: true;
+  writeup?: LockedWriteup | null;
 }
 
 export interface JudgeSeat {
@@ -67,8 +82,9 @@ export interface JudgeSeat {
   state: "pending" | "provisional" | "confirmed";
 }
 
-export interface RevealedCard extends Omit<LockedCard, "locked"> {
+export interface RevealedCard extends Omit<LockedCard, "locked" | "writeup"> {
   locked: false;
+  writeup?: Writeup | null;
   judges: JudgeSeat[];
   mine: Answer | null;
   others: { sub: string; value: number }[];

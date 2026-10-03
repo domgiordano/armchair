@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import { PersonLink } from "@/components/couple-names";
 import { judgeName } from "@/components/leaderboard-screen";
 import { formatScore } from "@/components/performance-card";
 import { Badge } from "@/components/ui/badge";
+import { WhatHappened } from "@/components/what-happened";
 import type { Average, OpenRow, PerformanceRow } from "@/lib/api/people";
+import { getSeason, type Judge } from "@/lib/api/show";
 import { seasonLabel } from "@/lib/show/seasons";
 import { button, cn, EYEBROW } from "@/lib/ui";
 
@@ -59,6 +62,7 @@ interface DanceListProps {
 
 /** Every night as a block: answered dances as cards, the rest folded into one nudge to go score them. */
 export function DanceList({ rows, self, judge }: DanceListProps) {
+  const judges = useJudges(rows);
   return (
     <div className="flex flex-col gap-8">
       {nights(rows).map(({ season, nights: list }) => (
@@ -66,7 +70,7 @@ export function DanceList({ rows, self, judge }: DanceListProps) {
           <h3 className={EYEBROW}>{seasonLabel(season)}</h3>
           <ol className="stagger grid grid-cols-1 gap-x-3 gap-y-5 min-[30rem]:grid-cols-2 xl:grid-cols-3">
             {list.map((night) => (
-              <NightBlock key={night.ep} night={night} self={self} judge={judge} />
+              <NightBlock key={night.ep} night={night} self={self} judge={judge} judges={judges} />
             ))}
           </ol>
         </section>
@@ -75,7 +79,26 @@ export function DanceList({ rows, self, judge }: DanceListProps) {
   );
 }
 
-function NightBlock({ night, self, judge }: { night: Night; self: string; judge?: string }) {
+/** The panels of the seasons whose open dances have a write-up, for the judges' names and photos. */
+function useJudges(rows: PerformanceRow[]): Judge[] {
+  const wanted = [...new Set(rows.flatMap((r) => (!r.locked && r.writeup ? [r.season] : [])))].sort().join(",");
+  const [judges, setJudges] = useState<Judge[]>([]);
+  useEffect(() => {
+    if (!wanted) return;
+    let cancelled = false;
+    Promise.all(wanted.split(",").map(getSeason)).then(
+      (seasons) => !cancelled && setJudges(seasons.flatMap((s) => s.judges)),
+      // Without the panel the write-ups still show, with names from ids and initials for photos.
+      () => undefined,
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [wanted]);
+  return judges;
+}
+
+function NightBlock({ night, self, judge, judges }: { night: Night; self: string; judge?: string; judges: Judge[] }) {
   const open = night.rows.filter((r): r is OpenRow => !r.locked);
   const locked = night.rows.length - open.length;
   return (
@@ -85,7 +108,7 @@ function NightBlock({ night, self, judge }: { night: Night; self: string; judge?
         <ul className="grid grid-cols-1 gap-2">
           {open.map((r) => (
             <li key={r.key}>
-              <DanceCard row={r} self={self} judge={judge} />
+              <DanceCard row={r} self={self} judge={judge} judges={judges} />
             </li>
           ))}
         </ul>
@@ -99,6 +122,7 @@ function NightBlock({ night, self, judge }: { night: Night; self: string; judge?
 export function Nudge({ night, count, partial }: { night: Night; count: number; partial: boolean }) {
   const what = night.label.replace(/^Week/, "week");
   const styles = night.rows.flatMap((r) => (r.locked && r.style ? [r.style] : []));
+  const told = night.rows.some((r) => r.locked && r.writeup);
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-dashed border-gold/30 bg-gold/[0.04] px-4 py-3">
       <div className="flex min-w-0 items-start gap-3">
@@ -110,6 +134,7 @@ export function Nudge({ night, count, partial }: { night: Night; count: number; 
               : `To see ${what} scores, score ${count === 1 ? "it" : "them"} first`}
           </p>
           {styles.length > 0 && <p className="truncate text-xs text-silver-dim">{styles.join(" · ")}</p>}
+          {told && <p className="text-xs text-silver-dim">What happened, and what the judges said, opens with the scores.</p>}
         </div>
       </div>
       <Link href={episodeHref(night.season, night.ep)} prefetch={false} className={button("primary", "sm")}>
@@ -119,7 +144,7 @@ export function Nudge({ night, count, partial }: { night: Night; count: number; 
   );
 }
 
-function DanceCard({ row, self, judge }: { row: OpenRow; self: string; judge?: string }) {
+function DanceCard({ row, self, judge, judges }: { row: OpenRow; self: string; judge?: string; judges: Judge[] }) {
   const others = row.dancers.filter((d) => d.id !== self);
   const theirs = judge ? row.judges.find((j) => j.id === judge) : undefined;
   const mine = row.mine && "value" in row.mine ? row.mine.value : null;
@@ -157,6 +182,7 @@ function DanceCard({ row, self, judge }: { row: OpenRow; self: string; judge?: s
         {row.judges.map((j) => `${judgeName(j.id, []).split(" ")[0]} ${j.value === null ? "–" : formatScore(j.value)}`).join(" · ")}
         {theirs && mine !== null && ` · You ${mine}`}
       </p>
+      <WhatHappened writeup={row.writeup} judges={judges} />
     </article>
   );
 }
