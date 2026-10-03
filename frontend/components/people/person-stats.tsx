@@ -155,18 +155,6 @@ export function JudgeCharts({ stats }: { stats: JudgeStats }) {
           </div>
         </Card>
       )}
-      {stats.bySeason.length > 1 && (
-        <Card id="judge-seasons" title="By season" className="lg:col-span-2">
-          <ul className="flex flex-wrap gap-2">
-            {stats.bySeason.map((s) => (
-              <li key={s.season} className="rounded-lg bg-ink/40 px-3 py-1.5 text-sm">
-                <span className="text-silver-dim">{seasonLabel(s.season)} </span>
-                <span className="font-semibold text-pearl tabular-nums">{avg(s.mean)}</span>
-              </li>
-            ))}
-          </ul>
-        </Card>
-      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FactionBadge } from "@/components/faction-badge";
+import { RoundTable } from "@/components/round-table";
 import { Headshot } from "@/components/ui/avatar";
 import type { CastMember } from "@/lib/api/traitors";
 import { finishText } from "@/lib/history";
@@ -9,6 +10,22 @@ import { cn, FOCUS } from "@/lib/ui";
 interface CastWallProps {
   players: CastMember[];
   hrefOf: (id: string) => string;
+}
+
+/** Everyone in the season seated at the table, crossed off as they go; the wall is the list view. */
+export function CastTable({ players, hrefOf }: CastWallProps) {
+  return (
+    <RoundTable
+      roster={players}
+      kind="RT"
+      chosen={[]}
+      cast
+      hrefOf={hrefOf}
+      label="The cast at the table"
+      listToggle
+      list={<CastWall players={players} hrefOf={hrefOf} />}
+    />
+  );
 }
 
 /** The portrait wall: everyone in the season, crossed off as they go, each a link to their page. */

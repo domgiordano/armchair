@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
 const nav = vi.hoisted(() => ({ search: "" }));
@@ -7,7 +7,7 @@ vi.mock("next/navigation", () => ({ useSearchParams: () => new URLSearchParams(n
 vi.mock("@/lib/api/history", () => api);
 vi.mock("@/components/season-provider", () => ({ useShellSeason: () => ({ edition: "uk", season: "tukc-2" }) }));
 
-import type { PlayerProfile } from "@/lib/api/history";
+import type { PlayerProfile, StoryEpisode } from "@/lib/api/history";
 
 import { PlayerScreen } from "./player-screen";
 import { PlayerSearch } from "./player-search";
@@ -119,6 +119,58 @@ it("searches every edition from the header, this one first, and links each playe
   const us = screen.getByRole("link", { name: /Anna Bly/ });
   expect(us.textContent).toContain("US · Season 3");
   expect(us.getAttribute("href")).toMatch(/show=tus&id=anna-bly/);
+});
+
+it("tells each episode: who they voted for, the votes against them, a shield, and how they left", async () => {
+  const at = (ep: number, rest: Partial<StoryEpisode>): StoryEpisode => ({
+    season: "tus-2",
+    ep,
+    title: null,
+    voted: null,
+    votesReceived: null,
+    shield: false,
+    out: null,
+    ...rest,
+  });
+  api.getPlayer.mockResolvedValue({
+    ...PROFILE,
+    story: [
+      at(4, { title: "The Reckoning", voted: "bo-banks", votesReceived: 7, out: { how: "banished" } }),
+      at(3, { voted: "cy-cole", votesReceived: 0, shield: true }),
+      at(1, { season: "tus-1" }),
+    ],
+  });
+  render(<PlayerScreen />);
+
+  const s2 = within(await screen.findByRole("region", { name: "Season 2, episode by episode" }));
+  const rows = s2.getAllByRole("listitem");
+  expect(rows.map((li) => li.getAttribute("aria-label"))).toEqual(["Episode 3", "Episode 4"]);
+  const third = within(rows[0]);
+  expect(third.getByRole("link", { name: "Cy Cole" }).getAttribute("href")).toMatch(/show=tus&id=cy-cole&season=tus-2$/);
+  expect(third.getByText("No votes against")).toBeTruthy();
+  expect(third.getByText("Shield")).toBeTruthy();
+  const fourth = within(rows[1]);
+  expect(fourth.getByText("The Reckoning")).toBeTruthy();
+  expect(fourth.getByText(/votes against/).textContent).toBe("7 votes against");
+  expect(fourth.getByText("banished")).toBeTruthy();
+  // Seasons in the profile's order, newest first.
+  expect(screen.getAllByRole("region", { name: /episode by episode$/ }).map((r) => r.getAttribute("aria-label"))).toEqual([
+    "Season 2, episode by episode",
+    "Season 1, episode by episode",
+  ]);
+});
+
+it("says when there's no biography or story yet, and credits a Fandom bio", async () => {
+  api.getPlayer.mockResolvedValueOnce({ ...PROFILE, bio: null, story: [] });
+  render(<PlayerScreen />);
+  expect(await screen.findByText("No biography yet.")).toBeTruthy();
+  expect(screen.getByText("Each episode fills in here once its results are yours to see.")).toBeTruthy();
+  cleanup();
+
+  const fandom = "https://thetraitors.fandom.com/wiki/Ann_Avery";
+  api.getPlayer.mockResolvedValueOnce({ ...PROFILE, bio: { text: "Ann is a nurse.", source: "fandom", sourceUrl: fandom } });
+  render(<PlayerScreen />);
+  expect((await screen.findByRole("link", { name: "From The Traitors Wiki (Fandom)" })).getAttribute("href")).toBe(fandom);
 });
 
 it("heads the profile with a bio credited to Wikipedia and a badge for each season won", async () => {

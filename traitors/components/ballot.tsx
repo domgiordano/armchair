@@ -5,7 +5,9 @@ import { useState, type ReactNode } from "react";
 
 import { Outcome } from "@/components/outcome";
 import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
+import { RecapCard, SealedScroll } from "@/components/recap";
 import { RoundTable } from "@/components/round-table";
+import { ShieldMark, Tally } from "@/components/table-art";
 import { errorText } from "@/components/season-data";
 import { Avatar, Headshot } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -29,9 +31,10 @@ import { consensusRows, move, toggle } from "@/lib/ballot";
 import { finishText } from "@/lib/history";
 import { firstName, nameOf, roman } from "@/lib/players";
 import { eventPoints } from "@/lib/points";
+import { votesByTarget } from "@/lib/recap";
 import { formatRelease } from "@/lib/schedule";
 import { useEpisodePoll } from "@/lib/use-episode-poll";
-import { cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
+import { button, cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
 import { ApiError } from "@armchair/app-core/api/client";
 import type { GroupMember } from "@armchair/app-core/api/groups";
 
@@ -135,6 +138,13 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed,
           </div>
         </>
       )}
+      {data.recap ? (
+        <RecapCard recap={data.recap} />
+      ) : data.closed || data.events.every((e) => e.mine) ? (
+        <p className="text-ash">The recap isn&apos;t written yet. It appears here once the wiki has it.</p>
+      ) : (
+        <SealedScroll />
+      )}
     </section>
   );
 }
@@ -184,10 +194,14 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
   const toast = useToast();
   const [picks, setPicks] = useState<string[]>([]);
   const [forfeit, setForfeit] = useState(false);
+  const [showVotes, setShowVotes] = useState(true);
   const picking = event.locked && !episode.closed;
   // Before the winner bet the table looks the same, but a tap asks for the bet.
   const waiting = episode.needsBet ? onNeedBet : undefined;
   const rows = consensusRows(event, Infinity);
+  const ballots = !picking && event.type === "RT" ? (event.result?.ballots ?? null) : null;
+  const shields = !picking && event.type === "RT" ? (event.result?.shields ?? []) : [];
+  const drawn = ballots && showVotes ? ballots : null;
 
   const submit = async () => {
     try {
@@ -207,8 +221,27 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
   return (
     <>
       <div className="flex flex-col gap-1">
-        <h2 className={cn(HEADING, "text-xl")}>{COPY[event.type].title}</h2>
+        <div className="flex items-center justify-between gap-3">
+          <h2 className={cn(HEADING, "text-xl")}>{COPY[event.type].title}</h2>
+          {ballots && (
+            <button
+              type="button"
+              aria-pressed={showVotes}
+              onClick={() => setShowVotes((v) => !v)}
+              className={button(showVotes ? "primary" : "outline", "sm")}
+            >
+              Show the votes
+            </button>
+          )}
+        </div>
         {picking && <p className="text-parchment">{COPY[event.type].prompt}</p>}
+        {ballots && (
+          <p className="text-sm text-ash">
+            {showVotes
+              ? "Chalk arrows run from each player to who they wrote on their slate."
+              : "Chalk marks count everyone's calls."}
+          </p>
+        )}
       </div>
       <RoundTable
         roster={episode.roster}
@@ -223,8 +256,17 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
         }
         full={event.picks > 1 && picks.length >= event.picks}
         result={picking ? null : event.result}
-        tallies={picking ? null : Object.fromEntries(rows.map((r) => [r.id, r.count]))}
+        tallies={
+          picking
+            ? null
+            : drawn
+              ? Object.fromEntries(votesByTarget(drawn).map((v) => [v.target, v.voters.length]))
+              : Object.fromEntries(rows.map((r) => [r.id, r.count]))
+        }
+        tallyLabel={drawn ? (n) => `${n} ${n === 1 ? "vote" : "votes"}` : undefined}
         hrefOf={picking ? undefined : seasonPlayerHref(season)}
+        ballots={drawn}
+        shields={shields}
       />
       {picking && waiting ? (
         <Slate className="flex flex-col items-start gap-3">
@@ -245,7 +287,10 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
           onSeal={submit}
         />
       ) : (
-        <Reveal season={season} event={event} roster={episode.roster} members={members} closed={episode.closed} />
+        <>
+          <Reveal season={season} event={event} roster={episode.roster} members={members} closed={episode.closed} />
+          {ballots && <Votes season={season} ballots={ballots} shields={shields} roster={episode.roster} />}
+        </>
       )}
     </>
   );
@@ -375,6 +420,52 @@ function SlateButton({
         {children}
       </svg>
     </button>
+  );
+}
+
+interface VotesProps {
+  season: string;
+  ballots: Record<string, string>;
+  shields: string[];
+  roster: Player[];
+}
+
+/** The slates as they were read out, gathered by who they named. */
+function Votes({ season, ballots, shields, roster }: VotesProps) {
+  const link = (id: string) => (
+    <PlayerLink key={id} season={season} id={id}>
+      {nameOf(id, roster)}
+    </PlayerLink>
+  );
+  const list = (ids: string[]) => ids.flatMap((id, i) => (i > 0 ? [", ", link(id)] : [link(id)]));
+  return (
+    <Card as="section" aria-labelledby="votes-title" className="flex flex-col gap-3">
+      <h3 id="votes-title" className={EYEBROW}>
+        How the castle voted
+      </h3>
+      <ul className="flex flex-col gap-2">
+        {votesByTarget(ballots).map(({ target, voters }) => (
+          <li key={target} className="flex flex-col gap-1 border-b border-bone/10 pb-2 last:border-b-0 last:pb-0">
+            <span className="flex items-center gap-3">
+              <PlayerLink season={season} id={target} className="font-display font-semibold text-bone">
+                {nameOf(target, roster)}
+              </PlayerLink>
+              <Tally count={voters.length} />
+              <span className="ml-auto text-sm text-ash">
+                <span className="nums">{voters.length}</span> {voters.length === 1 ? "vote" : "votes"}
+              </span>
+            </span>
+            <span className="text-parchment">from {list(voters)}</span>
+          </li>
+        ))}
+      </ul>
+      {shields.length > 0 && (
+        <p className="flex items-center gap-2 border-t border-bone/10 pt-3 text-parchment">
+          <ShieldMark className="h-5 w-4 shrink-0" />
+          <span>Shielded tonight: {list(shields)}</span>
+        </p>
+      )}
+    </Card>
   );
 }
 

@@ -1,7 +1,10 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const { search, replace } = vi.hoisted(() => ({ search: { value: new URLSearchParams("id=jenna-dewan") }, replace: vi.fn() }));
+const { search, replace } = vi.hoisted(() => ({
+  search: { value: new URLSearchParams("id=jenna-dewan") },
+  replace: vi.fn(),
+}));
 vi.mock("next/navigation", () => ({
   usePathname: () => "/people/",
   useRouter: () => ({ push: vi.fn(), replace }),
@@ -52,7 +55,12 @@ const PAGE: PersonPage = {
   name: "Jenna Dewan",
   roles: ["celebrity"],
   headshot: null,
-  bio: { title: "Jenna Dewan", url: "https://en.wikipedia.org/wiki/Jenna_Dewan", description: "American actress", extract: "Jenna Dewan is an actress." },
+  bio: {
+    title: "Jenna Dewan",
+    url: "https://en.wikipedia.org/wiki/Jenna_Dewan",
+    description: "American actress",
+    extract: "Jenna Dewan is an actress.",
+  },
   facts: { born: "1980-12-03", died: null, occupations: ["actor"], nationality: ["United States"] },
   seasons: [
     {
@@ -65,7 +73,35 @@ const PAGE: PersonPage = {
       dances: 2,
       locked: 1,
     },
-    { season: "dwts-20", number: 20, role: "celebrity", loaded: false, partners: [], result: null },
+    {
+      season: "dwts-20",
+      number: 20,
+      role: "celebrity",
+      loaded: false,
+      partners: [{ id: "derek-hough", name: "Derek Hough" }],
+      result: null,
+      place: 4,
+      cast: 12,
+    },
+  ],
+  category: "Actor",
+  similar: [
+    {
+      id: "julia-stiles",
+      name: "Julia Stiles",
+      headshot: null,
+      season: 35,
+      category: "Actor",
+      reasons: ["category", "cast"],
+    },
+    {
+      id: "jennie-garth",
+      name: "Jennie Garth",
+      headshot: null,
+      season: 5,
+      category: "Actor",
+      reasons: ["category", "finish"],
+    },
   ],
   performances: [OPEN, LOCKED],
   judged: null,
@@ -124,12 +160,87 @@ describe("PersonScreen", () => {
     expect(within(dances).queryByText("Jive")).toBeTruthy();
   });
 
-  it("says how to see a season's result, and offers unscored seasons", async () => {
+  it("lists each partnership newest first, each card opening that season's couple page", async () => {
     render(<PersonScreen />);
-    const seasons = await screen.findByRole("region", { name: "Seasons" });
-    expect(href(within(seasons).getByRole("link", { name: /Finish episode 4/ }))).toBe("/episode?season=dwts-35&ep=04");
-    fireEvent.click(within(seasons).getByRole("button", { name: /Season 20/ }));
-    expect(replace).toHaveBeenCalledWith("/people/?id=jenna-dewan&season=dwts-20", { scroll: false });
+    const couples = await screen.findByRole("region", { name: "Danced with" });
+    const [now, then] = within(couples).getAllByRole("article");
+    // The current season's result waits on the episode rule; no place leaks in.
+    expect(href(within(now).getByRole("link", { name: /Finish episode 4/ }))).toBe("/episode?season=dwts-35&ep=04");
+    expect(within(now).queryByText(/of \d+|Won|Runner-up|Out/)).toBeNull();
+    expect(href(within(now).getByRole("link", { name: "Val Chmerkovskiy" }))).toBe("/people?id=val-chmerkovskiy");
+    expect(href(within(now).getByRole("link", { name: /Their season/ }))).toBe(
+      "/couples/couple?id=jenna-dewan&season=dwts-35",
+    );
+    expect(within(then).getByText("4th of 12")).toBeTruthy();
+    expect(href(within(then).getByRole("link", { name: /Their season: Season 20 with Derek Hough/ }))).toBe(
+      "/couples/couple?id=jenna-dewan&season=dwts-20",
+    );
+  });
+
+  it("lists similar celebrities with why, each opening their page", async () => {
+    render(<PersonScreen />);
+    const similar = await screen.findByRole("region", { name: "Similar celebrities" });
+    const links = within(similar).getAllByRole("link");
+    // Initials stand in for a missing headshot.
+    expect(links.map((a) => [a.textContent, href(a)])).toEqual([
+      ["JSJulia StilesSeason 35ActorSame season", "/people?id=julia-stiles"],
+      ["JGJennie GarthSeason 5ActorSimilar finish", "/people?id=jennie-garth"],
+    ]);
+  });
+
+  it("sums up a pro's run: seasons, partners, titles and each finish", async () => {
+    search.value = new URLSearchParams("id=witney-carson");
+    vi.mocked(getPerson).mockResolvedValue({
+      ...PAGE,
+      id: "witney-carson",
+      name: "Witney Carson",
+      roles: ["pro"],
+      similar: null,
+      category: null,
+      seasons: [
+        {
+          season: "dwts-19",
+          number: 19,
+          role: "pro",
+          loaded: false,
+          partners: [{ id: "alfonso-ribeiro", name: "Alfonso Ribeiro" }],
+          result: null,
+          place: 1,
+          cast: 13,
+        },
+        {
+          season: "dwts-20",
+          number: 20,
+          role: "pro",
+          loaded: false,
+          partners: [{ id: "riker-lynch", name: "Riker Lynch" }],
+          result: null,
+          place: 2,
+          cast: 12,
+        },
+        {
+          season: "dwts-35",
+          number: 35,
+          role: "pro",
+          loaded: true,
+          partners: [{ id: "dylan-efron", name: "Dylan Efron" }],
+          result: { status: "dancing" },
+        },
+      ],
+    });
+    render(<PersonScreen />);
+    const couples = await screen.findByRole("region", { name: "Partners over the years" });
+    expect(within(couples).getByRole("list", { name: "Their run" }).textContent).toBe(
+      "3 seasons3 partners1 title2 top-three finishes",
+    );
+    expect(
+      within(couples)
+        .getAllByRole("article")
+        .map((a) => within(a).getAllByRole("link")[0].textContent),
+    ).toEqual(["Dylan Efron", "Riker Lynch", "Alfonso Ribeiro"]);
+    expect(within(couples).getByText("Won the season")).toBeTruthy();
+    expect(within(couples).getByText("Still dancing")).toBeTruthy();
+    expect(screen.queryByRole("region", { name: "Similar celebrities" })).toBeNull();
   });
 
   it("answers an unknown id with a way back to Discover", async () => {
@@ -163,5 +274,47 @@ describe("PersonScreen", () => {
     expect(within(judged).getByText("Them")).toBeTruthy();
     expect(within(judged).getByRole("link", { name: "Jenna Dewan" })).toBeTruthy();
     expect(getPerson).toHaveBeenCalledWith("derek-hough", "dwts-35");
+  });
+
+  it("lists every season judged with the couple they scored highest, and opens one not yet read", async () => {
+    search.value = new URLSearchParams("id=derek-hough");
+    const judge = {
+      dances: 1,
+      locked: 0,
+      count: 1,
+      mean: 8,
+      panelMean: 7,
+      vsPanel: 1,
+      harshest: [],
+      generous: [],
+      byStyle: [],
+      bySeason: [{ season: "dwts-35", count: 3, mean: 8, top: { dancers: DANCERS, mean: 8.5, count: 2 } }],
+      distribution: { "8": 1 },
+      mine: { count: 0, gap: null, mae: null },
+    };
+    vi.mocked(getPerson).mockResolvedValue({
+      ...PAGE,
+      id: "derek-hough",
+      name: "Derek Hough",
+      roles: ["judge"],
+      similar: null,
+      seasons: [
+        { season: "dwts-34", number: 34, role: "judge", loaded: false },
+        { season: "dwts-35", number: 35, role: "judge", loaded: true, dances: 3, locked: 0 },
+      ],
+      performances: [],
+      judged: { season: "dwts-35", rows: [OPEN] },
+      stats: { dancer: null, judge },
+    });
+    render(<PersonScreen />);
+    const seasons = await screen.findByRole("region", { name: "Seasons judged" });
+    const [s35, s34] = within(seasons).getAllByRole("listitem");
+    expect(s35.textContent).toContain("Scored highest");
+    expect(href(within(s35).getByRole("link", { name: "Jenna Dewan" }))).toBe("/people?id=jenna-dewan");
+    expect(href(within(s35).getByRole("link", { name: /Their season/ }))).toBe(
+      "/couples/couple?id=jenna-dewan&season=dwts-35",
+    );
+    fireEvent.click(within(s34).getByRole("button", { name: "Open Season 34" }));
+    expect(replace).toHaveBeenCalledWith("/people/?id=derek-hough&season=dwts-34", { scroll: false });
   });
 });

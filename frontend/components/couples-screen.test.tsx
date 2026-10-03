@@ -139,7 +139,7 @@ afterEach(() => {
 const rowNames = (list: HTMLElement) =>
   within(list)
     .getAllByRole("listitem")
-    .map((li) => li.querySelector("a")?.textContent);
+    .map((li) => li.querySelector('a[href^="/people"]')?.textContent);
 
 describe("Your couples", () => {
   beforeEach(() => {
@@ -221,7 +221,7 @@ describe("Your couples", () => {
       // Amber is first on your average and still goes to the bottom.
       const heading = screen.getByRole("heading", { name: /Every couple you've scored · 3/ });
       const rows = within(heading.parentElement!.querySelector("ol")!).getAllByRole("listitem");
-      expect(rows.map((li) => li.querySelector("a")?.textContent)).toEqual(["Tyler Cameron", "Jenna Dewan", "Amber Glenn"]);
+      expect(rows.map((li) => li.querySelector('a[href^="/people"]')?.textContent)).toEqual(["Tyler Cameron", "Jenna Dewan", "Amber Glenn"]);
       expect(rows[2].textContent).toContain("Eliminated · Week 4");
       expect(window.localStorage.getItem("armchair.showEliminated.performers")).toBe("1");
     });

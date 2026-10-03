@@ -113,9 +113,9 @@ export function HowItWorks() {
   return (
     <section id="how" aria-labelledby="how-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div {...reveal()}>
+        <div className="text-center" {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-orange uppercase">How it works</p>
-          <h2 id="how-title" className="mt-3 max-w-xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
+          <h2 id="how-title" className="mx-auto mt-3 max-w-xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             Blind first. <span className="text-brand-gradient">Then the reveal.</span>
           </h2>
         </div>

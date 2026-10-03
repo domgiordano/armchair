@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 
-import { CoupleNames, PersonLink } from "@/components/couple-names";
+import { CoupleLink, CoupleNames, PersonLink } from "@/components/couple-names";
 import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { CoupleAvatars, Headshot } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
@@ -229,7 +229,7 @@ function CoupleRow({ couple: c, place, multi }: { couple: CoupleStats; place: nu
       <div className="flex items-center gap-3">
         <span className={cn("w-5 shrink-0 text-right text-sm font-semibold text-silver-dim tabular-nums", out && "opacity-55")}>{place}</span>
         <span className={cn("shrink-0", out && OUT_FADE)}>
-          <CoupleAvatars members={c.members} size={40} />
+          <CoupleLink members={c.members} season={c.season} size={40} />
         </span>
         <span className="flex min-w-0 flex-1 flex-col">
           <CoupleNames members={c.members} className={cn("truncate font-medium", out ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")} />

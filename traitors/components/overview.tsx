@@ -4,9 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useBet } from "@/components/bet";
-import { CastWall } from "@/components/cast-wall";
+import { CastTable } from "@/components/cast-wall";
 import { Outcome } from "@/components/outcome";
 import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
+import { SealedScroll } from "@/components/recap";
+import { Credit } from "@/components/writeup";
 import { errorText, useSeasonView } from "@/components/season-data";
 import { useSeasonName } from "@/components/season-provider";
 import { Headshot } from "@/components/ui/avatar";
@@ -15,17 +17,21 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { getRanks, type CastMember, type EpisodeEvent, type SeasonEpisode, type SeasonView, type Standing } from "@/lib/api/traitors";
 import { finishText } from "@/lib/history";
-import { nameOf } from "@/lib/players";
+import { nameOf, roman } from "@/lib/players";
 import { multiplier } from "@/lib/points";
-import { countdown, episodeLabel, formatRelease, latestUnlocked, nextRelease, released, toCall } from "@/lib/schedule";
+import { excerpt } from "@/lib/recap";
+import { countdown, episodeLabel, formatRelease, latestUnlocked, nextRelease, released, toCall, unlocked } from "@/lib/schedule";
 import { showOf, withSeason } from "@/lib/seasons";
 import { useEpisode } from "@/lib/use-episode";
-import { button, cn, EYEBROW, HEADING } from "@/lib/ui";
+import { button, cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
 import { useNow } from "@armchair/app-core/show/use-now";
 
 /** Still in first, then whoever lasted longest. */
 const byStanding = (cast: CastMember[]) =>
   [...cast].sort((a, b) => (b.exit?.ep ?? 1000) - (a.exit?.ep ?? 1000) || a.name.localeCompare(b.name));
+
+// Each unlocked one costs an episode read, so the list stops here; the rest are a tab away.
+const PREVIOUSLY = 4;
 
 /** The live season at a glance: how far in, where you stand, who's left and which Traitors are out. */
 export function Overview() {
@@ -35,6 +41,10 @@ export function Overview() {
   const now = useNow();
   const due = needed ? [] : toCall(view.episodes, now);
   const latest = latestUnlocked(view.episodes, now);
+  const earlier = view.episodes
+    .filter((e) => released(e, now) && e.ep !== latest?.ep)
+    .reverse()
+    .slice(0, PREVIOUSLY);
   const unmasked = view.cast.filter((p) => p.faction === "Traitor" && p.exit);
   const hrefOf = seasonPlayerHref(view.season);
 
@@ -60,6 +70,31 @@ export function Overview() {
             Make your calls
           </Link>
         </Card>
+      )}
+
+      <section aria-labelledby="latest" className="flex flex-col gap-3">
+        <h2 id="latest" className={EYEBROW}>
+          Latest in the castle
+        </h2>
+        {latest ? (
+          <LatestResults key={latest.ep} season={view.season} episode={latest} />
+        ) : (
+          <EmptyState title="Nothing unsealed yet">
+            What happened in an episode shows here once you&apos;ve made every call in it.
+          </EmptyState>
+        )}
+      </section>
+      {earlier.length > 0 && (
+        <section aria-labelledby="previously" className="flex flex-col gap-3">
+          <h2 id="previously" className={EYEBROW}>
+            Previously on
+          </h2>
+          <ol className="flex flex-col">
+            {earlier.map((e) => (
+              <Previously key={e.ep} season={view.season} episode={e} />
+            ))}
+          </ol>
+        </section>
       )}
 
       <section aria-labelledby="unmasked" className="flex flex-col gap-3">
@@ -94,15 +129,9 @@ export function Overview() {
         {view.cast.length === 0 ? (
           <EmptyState title="No cast yet">The players appear once the season is announced.</EmptyState>
         ) : (
-          <CastWall players={byStanding(view.cast)} hrefOf={hrefOf} />
+          <CastTable players={byStanding(view.cast)} hrefOf={hrefOf} />
         )}
       </section>
-
-      {latest ? (
-        <LatestResults key={latest.ep} season={view.season} episode={latest} />
-      ) : (
-        <EmptyState title="No results yet">Results show here once you&apos;ve made every call in an episode.</EmptyState>
-      )}
     </>
   );
 }
@@ -220,29 +249,91 @@ function LatestResults({ season, episode }: { season: string; episode: SeasonEpi
   const href = withSeason(`/episode/?ep=${episode.ep}`, season);
 
   return (
-    <Card as="section" aria-labelledby="latest-title" tartan className="flex flex-col gap-3">
-      <div className="flex items-baseline justify-between gap-3">
-        <h2 id="latest-title" className={cn(HEADING, "text-xl")}>
+    <Card as="article" aria-labelledby="latest-title" tartan className="flex flex-col gap-3">
+      <div className="flex flex-col gap-0.5">
+        <p className={EYEBROW}>Episode {roman(episode.ep)}</p>
+        <h3 id="latest-title" className={cn(HEADING, "text-xl leading-tight")}>
           {episodeLabel(episode)}
-        </h2>
-        <Link href={href} className="shrink-0 text-sm text-parchment underline decoration-gilt/50 underline-offset-4 hover:text-candle">
-          Open
-        </Link>
+        </h3>
       </div>
-      {load.kind === "loading" && <Skeleton className="h-16" />}
+      {load.kind === "loading" && (
+        <div role="status" className="flex flex-col gap-2">
+          <span className="sr-only">Loading the episode...</span>
+          <Skeleton className="h-16" />
+          <Skeleton className="h-24" />
+        </div>
+      )}
       {load.kind === "error" && <ErrorState what="the results" message={load.message} retry={retry} />}
       {load.kind === "ready" && (
-        <dl className="flex flex-col gap-2">
-          {load.episode.events.map((e) => (
-            <div key={e.type} className="flex flex-wrap items-baseline gap-x-3">
-              <dt className="w-24 shrink-0 font-display text-xs tracking-[0.14em] text-ash uppercase">{EVENT_NAMES[e.type]}</dt>
-              <dd className="text-bone">
-                <Outcome event={e} roster={load.episode.roster} season={season} />
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <>
+          <dl className="flex flex-col gap-2">
+            {load.episode.events.map((e) => (
+              <div key={e.type} className="flex flex-wrap items-baseline gap-x-3">
+                <dt className="w-24 shrink-0 font-display text-xs tracking-[0.14em] text-ash uppercase">{EVENT_NAMES[e.type]}</dt>
+                <dd className="text-bone">
+                  <Outcome event={e} roster={load.episode.roster} season={season} />
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <div className="flex flex-col gap-2 border-t border-gilt/20 pt-3">
+            {load.episode.recap ? (
+              <>
+                <p className="text-lg leading-relaxed text-parchment">{excerpt(load.episode.recap.text, 420)}</p>
+                <Credit writeup={load.episode.recap} />
+              </>
+            ) : (
+              <p className="text-ash">The recap isn&apos;t written yet.</p>
+            )}
+          </div>
+        </>
       )}
+      <Link href={href} className={cn(button("outline", "sm"), "self-start")}>
+        Open the episode
+      </Link>
     </Card>
+  );
+}
+
+/** One earlier episode: the opening of its recap, or the sealed scroll until your calls are in. */
+function Previously({ season, episode }: { season: string; episode: SeasonEpisode }) {
+  const open = unlocked(episode);
+  // A finished season's schedule carries its recaps; a live one's need the episode read.
+  const known = episode.recap !== undefined;
+  const { load, retry } = useEpisode(season, open && !known ? episode.ep : null);
+  const recap = known ? episode.recap : load.kind === "ready" ? (load.episode.recap ?? null) : undefined;
+  const href = withSeason(`/episode/?ep=${episode.ep}`, season);
+  const id = `previously-${episode.ep}`;
+
+  return (
+    <li aria-labelledby={id} className="flex flex-col gap-2 border-t border-gilt/20 py-4 first:border-t-0 first:pt-0">
+      <div className="flex flex-col gap-0.5">
+        <p className={EYEBROW}>Episode {roman(episode.ep)}</p>
+        <h3 id={id} className="font-display text-lg leading-tight font-semibold">
+          <Link
+            href={href}
+            className={cn(FOCUS, "rounded-sm text-bone decoration-candle underline-offset-4 transition-colors hover:text-candle hover:underline")}
+          >
+            {episodeLabel(episode)}
+          </Link>
+        </h3>
+      </div>
+      {!open ? (
+        <SealedScroll bare href={href} />
+      ) : recap === undefined ? (
+        load.kind === "error" ? (
+          <ErrorState what="the recap" message={load.message} retry={retry} />
+        ) : (
+          <Skeleton className="h-12" />
+        )
+      ) : recap ? (
+        <>
+          <p className="leading-relaxed text-parchment">{excerpt(recap.text, 220)}</p>
+          <Credit writeup={recap} />
+        </>
+      ) : (
+        <p className="text-ash">No recap on record yet.</p>
+      )}
+    </li>
   );
 }

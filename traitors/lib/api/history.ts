@@ -21,6 +21,7 @@ export interface HistoryEpisode {
   roundTable: { banished: string; faction: Faction | null; firstVote: Record<string, number> } | null;
   murdered: string[] | null;
   recruited: string[] | null;
+  recap?: Writeup | null;
 }
 
 /** A finished season in one read. The current season is a 403: it goes episode by episode. */
@@ -48,12 +49,25 @@ export interface Career {
   championship: boolean;
 }
 
+/** One episode of a player's season, only as far as the caller may see. */
+export interface StoryEpisode {
+  season: string;
+  ep: number;
+  title: string | null;
+  /** Who they voted to banish; null with no round table or no vote on record. */
+  voted: string | null;
+  votesReceived: number | null;
+  shield: boolean;
+  out: { how: string } | null;
+}
+
 export interface PlayerProfile {
   id: string;
   name: string;
   headshot: string | null;
   bio: Writeup | null;
   seasons: Career[];
+  story?: StoryEpisode[];
 }
 
 export const getPlayer = (show: Show, id: string) =>

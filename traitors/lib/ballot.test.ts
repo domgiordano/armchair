@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import type { EpisodeEvent } from "@/lib/api/traitors";
 
-import { consensusRows, move, seatLayout, tableWidth, toggle } from "./ballot";
+import { consensusRows, move, tableLayout, toggle } from "./ballot";
 
 describe("ballot", () => {
   it("chalks names in order, rubs one out, and ignores a fourth", () => {
@@ -37,18 +37,25 @@ describe("ballot", () => {
     expect(consensusRows({ ...murder, consensus: { voters: 0, picks: {} } })).toEqual([]);
   });
 
-  it("seats the first player at the far end and makes the near side bigger", () => {
-    const seats = seatLayout(4);
-    expect(seats[0].y).toBeLessThan(50);
-    expect(seats[2].y).toBeGreaterThan(50);
-    expect(seats[2].scale).toBeGreaterThan(seats[0].scale);
-    // Far seats still leave a 44px tap target on a 64px seat.
-    expect(Math.min(...seatLayout(24).map((s) => s.scale)) * 64).toBeGreaterThanOrEqual(44);
+  it("keeps the head of the table for the host and seats players clockwise from its left", () => {
+    const t = tableLayout(3);
+    expect(t.host.x).toBeCloseTo(50);
+    expect(t.host.y).toBeLessThan(t.seats[1].y);
+    expect(t.seats[0].x).toBeGreaterThan(50);
+    expect(t.seats[2].x).toBeLessThan(50);
   });
 
-  it("fits a small cast on a phone and widens the table for a big one", () => {
-    expect(tableWidth(8)).toBe(320);
-    expect(tableWidth(22)).toBeGreaterThan(400);
-    expect(tableWidth(22)).toBeLessThan(tableWidth(30));
+  it("spaces every seat at least a tap target apart, for 12 players or 22", () => {
+    for (const n of [12, 22]) {
+      const t = tableLayout(n);
+      const px = [t.host, ...t.seats].map((s) => ({ x: (s.x * t.width) / 100, y: (s.y * t.height) / 100 }));
+      const gaps = px.map((p, i) => Math.hypot(p.x - px[(i + 1) % px.length].x, p.y - px[(i + 1) % px.length].y));
+      expect(Math.min(...gaps)).toBeGreaterThanOrEqual(56);
+    }
+  });
+
+  it("fits twelve on a phone and widens the table for a big cast", () => {
+    expect(tableLayout(12).width).toBeLessThanOrEqual(343);
+    expect(tableLayout(22).width).toBeGreaterThan(tableLayout(12).width);
   });
 });

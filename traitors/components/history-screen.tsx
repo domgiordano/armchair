@@ -4,9 +4,10 @@ import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 
 import { FactionWord } from "@/components/faction-word";
+import { RecapFold } from "@/components/recap";
 import { RoundTable } from "@/components/round-table";
 import { errorText } from "@/components/season-data";
-import { CastWall } from "@/components/cast-wall";
+import { CastTable } from "@/components/cast-wall";
 import { Writeup } from "@/components/writeup";
 import { CloakToken, EmptyChair } from "@/components/table-art";
 import { Headshot } from "@/components/ui/avatar";
@@ -101,7 +102,7 @@ export function HistoryScreen({ season, summary = null }: HistoryScreenProps) {
         {h.players.length === 0 ? (
           <EmptyState>No cast on record for this season.</EmptyState>
         ) : (
-          <CastWall players={byFinish(h.players)} hrefOf={link} />
+          <CastTable players={byFinish(h.players)} hrefOf={link} />
         )}
       </section>
 
@@ -234,6 +235,13 @@ function Night({ episode: e, players, names, link }: NightProps) {
           <CloakToken className="size-7 shrink-0" />
           <span>Recruited: {names(e.recruited)}</span>
         </p>
+      )}
+
+      {e.recap && (
+        <div className="flex flex-col gap-2 border-t border-gilt/20 pt-3">
+          <p className={EYEBROW}>What happened</p>
+          <RecapFold recap={e.recap} />
+        </div>
       )}
     </Card>
   );

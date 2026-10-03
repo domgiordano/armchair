@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 
-import { Headshot } from "@/components/ui/avatar";
+import { RoundTable } from "@/components/round-table";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/toast";
 import { WaxSeal } from "@/components/ui/wax-seal";
 import { submitWinner, type Faction, type Player } from "@/lib/api/traitors";
-import { roman } from "@/lib/players";
 import { FACTION, multiplier, WINNER } from "@/lib/points";
-import { cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
+import { cn, EYEBROW, HEADING } from "@/lib/ui";
 import { ApiError } from "@armchair/app-core/api/client";
 
 interface Pick {
@@ -98,40 +97,14 @@ export function WinnerBet({ season, roster, episodes, released, prompt, onSealed
         <legend className={cn(EYEBROW, "mb-3")}>
           Pick up to three · {picks.length} of {MAX}
         </legend>
-        <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5">
-          {roster.map((p) => {
-            const at = picks.findIndex((x) => x.player === p.id);
-            const full = at < 0 && picks.length >= MAX;
-            return (
-              <li key={p.id}>
-                <button
-                  type="button"
-                  aria-pressed={at >= 0}
-                  disabled={full}
-                  onClick={() => toggle(p.id)}
-                  className={cn(
-                    FOCUS,
-                    "relative flex h-full w-full flex-col items-center gap-2 rounded-sm border px-1 pt-3 pb-2 text-center transition-colors",
-                    at >= 0
-                      ? "border-candle bg-cloak-500 text-bone shadow-[0_0_18px_-4px_rgb(233_185_73/0.6)]"
-                      : "border-gilt/25 bg-stone/80 text-parchment hover:border-gilt hover:bg-cloak active:bg-cloak-500",
-                    "disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-gilt/25 disabled:hover:bg-stone/80",
-                  )}
-                >
-                  <span aria-hidden="true">
-                    <Headshot name={p.name} image={p.headshot} size={56} />
-                  </span>
-                  <span className="text-sm leading-tight">{p.name}</span>
-                  {at >= 0 && (
-                    <span aria-hidden="true" className="absolute top-1 right-1.5 font-display text-xs text-candle">
-                      {roman(at + 1)}
-                    </span>
-                  )}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        <p className="text-parchment">Tap a seat to name a winner; tap again to take it back.</p>
+        <RoundTable
+          roster={roster}
+          kind="WINNER"
+          chosen={picks.map((p) => p.player)}
+          onTap={toggle}
+          full={picks.length >= MAX}
+        />
       </fieldset>
 
       {picks.map((p) => (

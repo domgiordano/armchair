@@ -12,19 +12,28 @@ import { ErrorNote, PRIMARY, Skeleton, step } from "./ui";
 /** A card per live show, then the ones still coming. */
 export function AppsPanel({ index }: { index: number }) {
   return (
-    // Unboxed, unlike the panels: the show cards are the cards here.
-    <section aria-labelledby="shows-title" className="rise flex flex-col gap-4" style={step(index)}>
-      <h2 id="shows-title" className="text-lg font-bold tracking-tight">
+    <section aria-labelledby="shows-title" className="rise flex flex-col gap-5" style={step(index)}>
+      <h2 id="shows-title" className="text-center text-lg font-bold tracking-tight">
         Your shows
       </h2>
-      <DwtsCard />
-      <TraitorsCards />
-      <div className="flex min-h-16 items-center justify-between gap-3 rounded-2xl border border-[#5a2a10] bg-linear-to-b from-[#3a1606] to-[#140803] p-4 text-[#ffe2c4] opacity-70">
-        <span className="text-sm leading-tight font-semibold">Survivor</span>
-        <span className="text-[10px] font-bold tracking-[0.2em]">COMING SOON</span>
-      </div>
+      {/* Wrapping flex, not a grid, so a short last row sits in the middle instead of at the left. */}
+      <ul className="flex flex-wrap justify-center gap-5">
+        <Slot>
+          <DwtsCard />
+        </Slot>
+        <TraitorsCards />
+        <Slot>
+          <ShowCard theme="survivor" title="Survivor" eyebrow="COMING SOON">
+            <p className={`text-sm ${THEMES.survivor.soft}`}>Torches, tribal council and blindsides. In rehearsal.</p>
+          </ShowCard>
+        </Slot>
+      </ul>
     </section>
   );
+}
+
+function Slot({ children }: { children: ReactNode }) {
+  return <li className="flex w-full sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]">{children}</li>;
 }
 
 // Each show keeps its app tile's colours; text tints are the tile's ink at lower opacity.
@@ -43,6 +52,13 @@ const THEMES = {
     faint: "text-[#e9dcc0]/60",
     rule: "divide-[#e9dcc0]/15",
   },
+  survivor: {
+    card: "border-[#5a2a10] from-[#3a1606] to-[#140803] text-[#ffe2c4] opacity-80",
+    glow: "bg-[radial-gradient(closest-side,rgb(255_154_61/0.16),transparent)]",
+    soft: "text-[#ffe2c4]/75",
+    faint: "text-[#ffe2c4]/60",
+    rule: "divide-[#ffe2c4]/15",
+  },
 };
 
 type Theme = keyof typeof THEMES;
@@ -57,30 +73,39 @@ interface ShowCardProps {
   theme: Theme;
   title: string;
   subtitle?: string;
-  href: string;
+  eyebrow?: string;
+  /** Without one, the show isn't open yet and the card has no way in. */
+  href?: string;
   action?: string;
   children?: ReactNode;
 }
 
-function ShowCard({ theme, title, subtitle, href, action = "Open", children }: ShowCardProps) {
+function ShowCard({ theme, title, subtitle, eyebrow = "LIVE NOW", href, action = "Open", children }: ShowCardProps) {
   const t = THEMES[theme];
   return (
-    <article aria-label={title} className={`relative overflow-hidden rounded-2xl border bg-linear-to-br p-5 ${t.card}`}>
+    <article
+      aria-label={title}
+      className={`relative flex min-h-60 w-full flex-col overflow-hidden rounded-2xl border bg-linear-to-br p-5 ${t.card} ${
+        href ? "transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-night motion-reduce:transition-none motion-reduce:hover:translate-y-0" : ""
+      }`}
+    >
       <div aria-hidden="true" className={`pointer-events-none absolute -top-16 -right-10 size-56 rounded-full ${t.glow}`} />
-      <div className="relative flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-[10px] font-bold tracking-[0.25em] text-gold">LIVE NOW</p>
-          <h3 className="mt-1 text-xl font-bold tracking-tight">{title}</h3>
-          {subtitle && <p className={`text-sm ${t.soft}`}>{subtitle}</p>}
-        </div>
-        <a href={href} className={`${PRIMARY} shrink-0`}>
-          {action}
-          <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </a>
+      <div className="relative min-w-0">
+        <p className={`text-[10px] font-bold tracking-[0.25em] ${href ? "text-gold" : t.faint}`}>{eyebrow}</p>
+        <h3 className="mt-1 text-xl font-bold tracking-tight">{title}</h3>
+        {subtitle && <p className={`text-sm ${t.soft}`}>{subtitle}</p>}
       </div>
       {children && <div className="relative mt-5">{children}</div>}
+      {href && (
+        <div className="relative mt-auto pt-5">
+          <a href={href} className={PRIMARY}>
+            {action}
+            <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+        </div>
+      )}
     </article>
   );
 }
@@ -165,15 +190,25 @@ function TraitorsCards() {
 
   if (load.kind === "loading") {
     return (
-      <ShowCard theme="traitors" title="The Traitors" subtitle="US and UK" href={traitorsLink()}>
-        <Loading what="your Traitors seasons" />
-      </ShowCard>
+      <Slot>
+        <ShowCard theme="traitors" title="The Traitors" subtitle="US and UK" href={traitorsLink()}>
+          <Loading what="your Traitors seasons" />
+        </ShowCard>
+      </Slot>
     );
   }
   if (load.kind === "error" || load.value.length === 0) {
-    return <ShowCard theme="traitors" title="The Traitors" subtitle="US and UK" href={traitorsLink()} />;
+    return (
+      <Slot>
+        <ShowCard theme="traitors" title="The Traitors" subtitle="US and UK" href={traitorsLink()} />
+      </Slot>
+    );
   }
-  return load.value.map((card) => <TraitorsCard key={card.season.id} card={card} />);
+  return load.value.map((card) => (
+    <Slot key={card.season.id}>
+      <TraitorsCard card={card} />
+    </Slot>
+  ));
 }
 
 function TraitorsCard({ card }: { card: SeasonCard }) {

@@ -87,12 +87,12 @@ export function ShowNight() {
   return (
     <section id="night" aria-labelledby="night-title" className="scroll-mt-20 border-t border-line py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div {...reveal()}>
+        <div className="text-center" {...reveal()}>
           <p className="text-xs font-semibold tracking-[0.3em] text-gold uppercase">Show night</p>
-          <h2 id="night-title" className="mt-3 max-w-2xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
+          <h2 id="night-title" className="mx-auto mt-3 max-w-2xl text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             How a show night <span className="text-brand-gradient">plays out.</span>
           </h2>
-          <p className="mt-3 max-w-xl text-muted">
+          <p className="mx-auto mt-3 max-w-xl text-muted">
             One example: Dancing with the Stars airs live on the East Coast, 8 to 10 PM Eastern. On The Traitors, picks
             lock when each episode is released.
           </p>

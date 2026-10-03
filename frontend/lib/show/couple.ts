@@ -1,4 +1,5 @@
-import type { Average, OpenRow, PerformanceRow, PersonPage, SeasonResult } from "@/lib/api/people";
+import type { Average, OpenRow, PerformanceRow, PersonPage, SeasonResult, Stint } from "@/lib/api/people";
+import { ordinal } from "@/lib/show/couples";
 
 export const paddle = (r: OpenRow) => (r.mine && "value" in r.mine ? r.mine.value : null);
 
@@ -63,3 +64,129 @@ export function coupleResult(person: PersonPage, season: string): SeasonResult |
 
 /** "W3", or "Ep 6" for a night with no week. */
 export const weekShort = (r: { ep: number; week: number | null }) => (r.week === null ? `Ep ${r.ep}` : `W${r.week}`);
+
+/** "Won the season", "Runner-up", "5th of 12". */
+export function placeText(place: number, cast: number): string {
+  if (place === 1) return "Won the season";
+  if (place === 2) return "Runner-up";
+  return `${ordinal(place)} of ${cast}`;
+}
+
+const number = (season: string) => Number(season.split("-")[1]);
+
+export interface Career {
+  /** This season's place in their run on the show: 1 for a debut. */
+  nth: number;
+  /** Seasons they danced before this one, oldest first. */
+  before: Stint[];
+  partners: number;
+  titles: Stint[];
+  /** Their best finish before this season; a title counts. */
+  best: Stint | null;
+}
+
+/** Someone's dancing seasons up to `season`, from the stints people_get lists. Places only exist for finished seasons. */
+export function career(person: PersonPage, season: string): Career {
+  const before = person.seasons
+    .filter((s) => s.role !== "judge" && s.number < number(season))
+    .sort((a, b) => a.number - b.number);
+  const placed = before.filter((s) => s.place !== undefined);
+  return {
+    nth: before.length + 1,
+    before,
+    partners: new Set(before.flatMap((s) => (s.partners ?? []).map((p) => p.id))).size,
+    titles: placed.filter((s) => s.place === 1),
+    best: [...placed].sort((a, b) => (a.place ?? 0) - (b.place ?? 0) || b.number - a.number)[0] ?? null,
+  };
+}
+
+export interface Partnership {
+  nights: number;
+  /** Every style they danced, in order, locked dances included: the pre-show table names them. */
+  styles: string[];
+  /** The judges' best average for them, over dances the caller can see. */
+  top: number | null;
+  /** Confirmed 10s from any judge. */
+  tens: number;
+}
+
+export function partnership(rows: PerformanceRow[]): Partnership {
+  const open = rows.filter((r): r is OpenRow => !r.locked);
+  const means = open.flatMap((r) => (r.panelMean === null ? [] : [r.panelMean]));
+  return {
+    nights: new Set(rows.map((r) => r.ep)).size,
+    styles: [...new Set(rows.flatMap((r) => (r.style ? [r.style.replace(/\s*\n\s*/g, " ")] : [])))],
+    top: means.length ? Math.max(...means) : null,
+    tens: open.reduce((n, r) => n + r.judges.filter((j) => j.value === 10 && j.state === "confirmed").length, 0),
+  };
+}
+
+/** Plain text, or a person to link. */
+export type Segment = string | { id: string; name: string };
+
+const article = (word: string) => (/^(?:eu|uni|one)/i.test(word) || !/^[aeiou]/i.test(word) ? "a" : "an");
+
+/** "American figure skater (born 1999)" → "an American figure skater". */
+function described(description: string): string {
+  const bare = description.replace(/\s*\([^)]*\)\s*$/, "").trim();
+  return `${article(bare)} ${bare}`;
+}
+
+function names(stints: Stint[], cap: number): Segment[] {
+  const partners = stints.flatMap((s) => s.partners ?? []).reverse();
+  const shown = partners.slice(0, cap);
+  const out: Segment[] = [];
+  shown.forEach((p, i) => {
+    if (i > 0) out.push(i === shown.length - 1 && partners.length <= cap ? " and " : ", ");
+    out.push({ id: p.id, name: p.name });
+  });
+  if (partners.length > cap) out.push(` and ${partners.length - cap} more`);
+  return out;
+}
+
+const seasonOf = (s: Stint) => `Season ${s.number}`;
+
+/**
+ * A couple's overview as sentences of text and linked people: who the celebrity
+ * is, their earlier seasons, and the pro's run before this one. Every place in
+ * it comes from a finished season, so nothing here is a result the gate holds back.
+ */
+export function overviewLines(celeb: PersonPage, pro: { id: string; name: string; page: PersonPage | null }, season: string): Segment[][] {
+  const lines: Segment[][] = [];
+  const me = { id: celeb.id, name: celeb.name };
+  if (celeb.bio?.description) lines.push([me, ` is ${described(celeb.bio.description)}.`]);
+  else if (celeb.facts?.occupations.length) lines.push([me, ` is known as ${described(celeb.facts.occupations[0])}.`]);
+
+  const back = career(celeb, season).before;
+  if (back.length) {
+    const last = back[back.length - 1];
+    const finish = !last.place || !last.cast ? "" : last.place === 1 ? " and winning it" : `, finishing ${last.place === 2 ? "runner-up" : `${ordinal(last.place)} of ${last.cast}`}`;
+    lines.push(["Back on the floor after dancing with ", ...names([last], 1), ` in ${seasonOf(last)}${finish}.`]);
+  }
+
+  if (!pro.page) return lines;
+  const run = career(pro.page, season);
+  const who = { id: pro.id, name: pro.name };
+  if (run.nth === 1) {
+    lines.push(["This is ", who, "'s first season as a pro."]);
+    return lines;
+  }
+  lines.push(["This is ", who, `'s ${ordinal(run.nth)} season as a pro, after partnering `, ...names(run.before, 3), "."]);
+  const [first, ...more] = [...run.titles].reverse();
+  if (first) {
+    const partner = first.partners?.[0];
+    lines.push([
+      more.length ? `${run.titles.length}-time champion, most recently with ` : "A champion before, with ",
+      ...(partner ? [{ id: partner.id, name: partner.name }] : []),
+      ` in ${seasonOf(first)}.`,
+    ]);
+  } else if (run.best?.place && run.best.cast && run.best.place <= 3) {
+    const partner = run.best.partners?.[0];
+    lines.push([
+      `Best finish before this: ${placeText(run.best.place, run.best.cast).toLowerCase()} with `,
+      ...(partner ? [{ id: partner.id, name: partner.name }] : []),
+      ` in ${seasonOf(run.best)}.`,
+    ]);
+  }
+  return lines;
+}

@@ -1,66 +1,151 @@
+import { useId } from "react";
+
+import { TILT, type TableLayout } from "@/lib/ballot";
 import { cn } from "@/lib/ui";
 
-// Drawn for the ballot's round table, all ours: an oval seen from a seat at it,
-// never from above, so it can't read as the franchise's round-table emblem.
+// The round table from above, all ours. The franchise's emblem is a compass rose:
+// an eight-point star, a crescent moon at its hub and a ring of moon phases. This
+// table never draws that combination: its inlay is a twelve-point star of
+// alternating lengths, the hub carries our hood, and the places are plain gilt
+// candle discs. See docs/features/traitors/DESIGN-RESEARCH.md.
 
-/** The table: a wooden oval with its near edge showing, a gilt inlay and three candles. */
-export function TableTop() {
+const HOOD = "M0-9c-5 2-7 7-7 12 0 3 1 5 2 7h10c1-2 2-4 2-7 0-5-2-10-7-12Z";
+const HOOD_OPENING = "M0-3c-2.5 1.5-3.5 4-3.5 6.5 0 2 .7 3.5 1.5 4.5h4c.8-1 1.5-2.5 1.5-4.5 0-2.5-1-5-3.5-6.5Z";
+
+/** Twelve points, long and short in turn, each split into a light and a dark half like cut veneer. */
+function Star({ r }: { r: number }) {
+  const pt = (a: number, d: number) => `${(d * Math.sin(a)).toFixed(2)} ${(-d * Math.cos(a)).toFixed(2)}`;
+  const inner = r * 0.2;
   return (
-    <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid meet" aria-hidden="true" className="h-full w-full">
-      <defs>
-        <radialGradient id="table-wood" cx="50%" cy="42%" r="62%">
-          <stop offset="0%" stopColor="var(--wood)" />
-          <stop offset="100%" stopColor="var(--wood-dark)" />
-        </radialGradient>
-        <radialGradient id="table-light">
-          <stop offset="0%" stopColor="var(--flame)" stopOpacity={0.45} />
-          <stop offset="60%" stopColor="var(--ember)" stopOpacity={0.12} />
-          <stop offset="100%" stopColor="var(--ember)" stopOpacity={0} />
-        </radialGradient>
-        <radialGradient id="table-shadow">
-          <stop offset="0%" stopColor="var(--night)" stopOpacity={0.9} />
-          <stop offset="100%" stopColor="var(--night)" stopOpacity={0} />
-        </radialGradient>
-      </defs>
-      <ellipse cx={100} cy={76} rx={98} ry={38} fill="url(#table-shadow)" />
-      <path
-        d="M14 60v7c0 16 39 30 86 30s86-14 86-30v-7"
-        fill="var(--wood-dark)"
-        stroke="var(--gilt)"
-        strokeOpacity={0.5}
-        strokeWidth={0.6}
-      />
-      <ellipse cx={100} cy={60} rx={86} ry={30} fill="url(#table-wood)" stroke="var(--gilt)" strokeWidth={1.2} />
-      <ellipse
-        cx={100}
-        cy={60}
-        rx={74}
-        ry={24}
-        fill="none"
-        stroke="var(--gilt)"
-        strokeOpacity={0.55}
-        strokeWidth={0.6}
-      />
-      <ellipse cx={100} cy={57} rx={46} ry={16} fill="url(#table-light)" className="animate-flicker" />
-      <Candle x={86} y={56} h={10} delay="-0.4s" />
-      <Candle x={100} y={52} h={14} delay="-1.3s" />
-      <Candle x={114} y={56} h={9} delay="-2.1s" />
-    </svg>
+    <g>
+      {Array.from({ length: 12 }, (_, i) => {
+        const a = (i * Math.PI) / 6;
+        const tip = pt(a, i % 2 ? r * 0.68 : r);
+        const left = pt(a - Math.PI / 12, inner);
+        const right = pt(a + Math.PI / 12, inner);
+        return (
+          <g key={i}>
+            <path d={`M0 0L${left}L${tip}Z`} fill="var(--bone)" fillOpacity={i % 2 ? 0.55 : 0.8} />
+            <path d={`M0 0L${tip}L${right}Z`} fill="var(--gilt)" fillOpacity={i % 2 ? 0.6 : 0.9} />
+          </g>
+        );
+      })}
+    </g>
   );
 }
 
-function Candle({ x, y, h, delay }: { x: number; y: number; h: number; delay: string }) {
+/**
+ * The table: a dark rim with a gilt and marquetry border, a radial-grained wood
+ * field under a warm pool of light, the inlaid star and a raised hub. A gilt
+ * candle disc marks each player's place; the head of the table is the host's,
+ * left empty and lit.
+ */
+export function TableTop({ layout }: { layout: TableLayout }) {
+  const id = useId();
+  const { cx, cy, rx } = layout.ring;
+  const R = rx - 4;
+  const field = R * 0.86;
+  // Where a place's disc sits: in from the face, on the wood.
+  const disc = (s: { x: number; y: number }, inset: number) => {
+    const dx = (s.x / 100) * layout.width - cx;
+    const dy = ((s.y / 100) * layout.height - cy) / TILT;
+    const len = Math.hypot(dx, dy);
+    return { x: (dx * (len - inset)) / len, y: (dy * (len - inset)) / len };
+  };
+  const host = disc(layout.host, 0);
+  const ids = { light: `${id}l`, rim: `${id}r`, grain: `${id}g`, sheen: `${id}s`, hub: `${id}h`, glow: `${id}w` };
+
   return (
-    <g>
-      <ellipse cx={x} cy={y + 0.6} rx={4} ry={1.4} fill="var(--gilt)" />
-      <rect x={x - 2} y={y - h} width={4} height={h} rx={0.8} fill="var(--parchment)" />
-      <path
-        d={`M${x} ${y - h - 6}c-1.4 1.8-2.2 3.2-2.2 4.2a2.2 2.2 0 0 0 4.4 0c0-1-0.8-2.4-2.2-4.2Z`}
-        fill="var(--flame)"
-        className="animate-flicker"
-        style={{ animationDelay: delay }}
-      />
-    </g>
+    <svg
+      viewBox={`0 0 ${layout.width} ${layout.height}`}
+      aria-hidden="true"
+      className="absolute inset-0 h-full w-full overflow-visible"
+    >
+      <defs>
+        <radialGradient id={ids.light}>
+          <stop offset="0%" stopColor="var(--flame)" stopOpacity={0.2} />
+          <stop offset="70%" stopColor="var(--ember)" stopOpacity={0.06} />
+          <stop offset="100%" stopColor="var(--ember)" stopOpacity={0} />
+        </radialGradient>
+        <radialGradient id={ids.rim}>
+          <stop offset="80%" stopColor="var(--wood-dark)" />
+          <stop offset="100%" stopColor="var(--night)" />
+        </radialGradient>
+        <radialGradient id={ids.grain} gradientUnits="userSpaceOnUse" cx={0} cy={0} r={R * 0.06} spreadMethod="repeat">
+          <stop offset="0%" stopColor="var(--wood-dark)" stopOpacity={0} />
+          <stop offset="55%" stopColor="var(--wood-dark)" stopOpacity={0.28} />
+          <stop offset="100%" stopColor="var(--wood-dark)" stopOpacity={0} />
+        </radialGradient>
+        <radialGradient id={ids.sheen}>
+          <stop offset="0%" stopColor="var(--flame)" stopOpacity={0.24} />
+          <stop offset="45%" stopColor="var(--ember)" stopOpacity={0.06} />
+          <stop offset="78%" stopColor="var(--night)" stopOpacity={0.2} />
+          <stop offset="100%" stopColor="var(--night)" stopOpacity={0.62} />
+        </radialGradient>
+        <radialGradient id={ids.hub} cx="40%" cy="35%">
+          <stop offset="0%" stopColor="var(--wood)" />
+          <stop offset="100%" stopColor="var(--wood-dark)" />
+        </radialGradient>
+        <radialGradient id={ids.glow}>
+          <stop offset="0%" stopColor="var(--flame)" stopOpacity={0.55} />
+          <stop offset="100%" stopColor="var(--ember)" stopOpacity={0} />
+        </radialGradient>
+      </defs>
+
+      <g transform={`translate(${cx} ${cy}) scale(1 ${TILT})`}>
+        <circle r={R * 1.3} fill={`url(#${ids.light})`} />
+        <circle r={R + 3} cy={7} fill="var(--night)" opacity={0.85} />
+        <circle r={R} fill={`url(#${ids.rim})`} stroke="var(--gilt)" strokeOpacity={0.7} strokeWidth={1} />
+
+        {/* The border: blocks of pale and dark veneer between two gilt lines. */}
+        <circle r={R * 0.9} fill="none" stroke="var(--wood)" strokeWidth={R * 0.07} />
+        <circle r={R * 0.9} fill="none" stroke="var(--bone)" strokeOpacity={0.5} strokeWidth={R * 0.07} strokeDasharray="5 7" />
+        <circle r={R * 0.935} fill="none" stroke="var(--gilt)" strokeWidth={1.2} />
+        <circle r={R * 0.865} fill="none" stroke="var(--gilt)" strokeWidth={1.2} />
+
+        <circle r={field} fill="var(--wood)" />
+        <circle r={field} fill={`url(#${ids.grain})`} />
+        <Star r={field * 0.62} />
+        <circle r={field * 0.68} fill="none" stroke="var(--gilt)" strokeOpacity={0.55} strokeWidth={0.8} />
+        <circle r={field} fill={`url(#${ids.sheen})`} />
+
+        {/* The hub, raised: a shadow under it, a lit edge on it, our hood on top. */}
+        <circle r={R * 0.14} cy={3} fill="var(--night)" opacity={0.7} />
+        <circle r={R * 0.14} fill={`url(#${ids.hub})`} stroke="var(--gilt)" strokeWidth={1.4} />
+        <circle r={R * 0.11} fill="none" stroke="var(--gilt)" strokeOpacity={0.45} strokeWidth={0.6} />
+        <g transform={`scale(${(R * 0.1) / 10})`}>
+          <path d={HOOD} fill="var(--gilt)" />
+          <path d={HOOD_OPENING} fill="var(--wood-dark)" />
+        </g>
+
+        {layout.seats.map((s, i) => {
+          const d = disc(s, 32);
+          return (
+            <g key={i} transform={`translate(${d.x.toFixed(1)} ${d.y.toFixed(1)})`}>
+              <circle r={5.5} fill="var(--gilt)" stroke="var(--wood-dark)" strokeWidth={1} />
+              <circle r={2.5} fill="var(--candle)" />
+              <circle
+                r={1.6}
+                cx={6}
+                cy={-4}
+                fill="var(--flame)"
+                className="animate-flicker"
+                style={{ animationDelay: `${-((i * 0.77) % 3.7)}s` }}
+              />
+            </g>
+          );
+        })}
+
+        {/* The host's place: an empty chair at the head, a candle lit before it. */}
+        <circle cx={host.x} cy={host.y + 16} r={46} fill={`url(#${ids.glow})`} className="animate-flicker" />
+        <g transform={`translate(${host.x} ${host.y})`}>
+          <path d="M-17-14h34a3 3 0 0 1 3 3v5h-40v-5a3 3 0 0 1 3-3Z" fill="var(--wood)" stroke="var(--gilt)" strokeWidth={1} />
+          <rect x={-14} y={-6} width={28} height={18} rx={3} fill="var(--oxblood)" stroke="var(--gilt)" strokeWidth={1} />
+          <circle cy={30} r={5.5} fill="var(--gilt)" stroke="var(--wood-dark)" strokeWidth={1} />
+          <circle cy={30} r={3} fill="var(--flame)" className="animate-flicker" />
+        </g>
+      </g>
+    </svg>
   );
 }
 
@@ -140,6 +225,46 @@ export function SlateToken({ rank, className }: { rank: number; className?: stri
     >
       {["I", "II", "III"][rank]}
     </span>
+  );
+}
+
+/** A heater shield in gilt: held that night, so safe from murder. */
+export function ShieldMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 24" aria-hidden="true" className={className}>
+      <path
+        d="M10 1.5 2 4.5v6.5c0 5.5 3.4 9.4 8 11.5 4.6-2.1 8-6 8-11.5V4.5Z"
+        fill="var(--cloak-500)"
+        stroke="var(--candle)"
+        strokeWidth={1.6}
+        strokeLinejoin="round"
+      />
+      <path d="M10 4.5v15M5 9.5h10" stroke="var(--candle)" strokeWidth={1.4} strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** A recap still rolled up and tied with our seal's ribbon. */
+export function ScrollArt({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 56" aria-hidden="true" className={className}>
+      <defs>
+        <linearGradient id="scroll-body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--bone)" />
+          <stop offset="55%" stopColor="var(--parchment)" />
+          <stop offset="100%" stopColor="var(--gilt)" />
+        </linearGradient>
+      </defs>
+      <ellipse cx={60} cy={49} rx={50} ry={4} fill="var(--night)" opacity={0.8} />
+      <rect x={14} y={13} width={92} height={30} fill="url(#scroll-body)" />
+      <path d="M14 20h92M14 37h92" stroke="var(--wood)" strokeOpacity={0.18} strokeWidth={0.8} />
+      <ellipse cx={14} cy={28} rx={6} ry={15} fill="var(--parchment)" stroke="var(--gilt)" strokeWidth={1} />
+      <ellipse cx={14} cy={28} rx={2.5} ry={7} fill="var(--wood-dark)" />
+      <ellipse cx={106} cy={28} rx={6} ry={15} fill="var(--parchment)" stroke="var(--gilt)" strokeWidth={1} />
+      <ellipse cx={106} cy={28} rx={2.5} ry={7} fill="var(--wood-dark)" />
+      <path d="M55 13h10v30H55Z" fill="var(--blood)" />
+      <path d="M57 43l-3 10 4-3 2 4 1-11Z M63 43l3 9-4-2-1 4-1-11Z" fill="var(--oxblood)" />
+    </svg>
   );
 }
 

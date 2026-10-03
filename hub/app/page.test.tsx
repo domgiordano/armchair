@@ -68,6 +68,15 @@ describe("landing", () => {
     expect(within(shows).getByRole("heading", { name: "Survivor" }).closest("a")).toBeNull();
   });
 
+  it("runs a ticker of what's on under the hero, from public copy", () => {
+    render(<HomePage />);
+    const ticker = screen.getByRole("region", { name: "What's on" });
+    expect(ticker.previousElementSibling?.id).toBe("top");
+    const text = within(ticker).getAllByRole("listitem").map((li) => li.textContent);
+    expect(text).toContain("Dancing with the Stars: Live on the East Coast, 8 to 10 PM ET");
+    expect(text).toContainEqual(expect.stringMatching(/^Archive: \d+ DWTS seasons/));
+  });
+
   it("labels the desk as invented data", () => {
     render(<HomePage />);
     expect(screen.getByText("Illustration · invented scores")).toBeTruthy();
