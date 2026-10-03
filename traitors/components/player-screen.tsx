@@ -67,6 +67,9 @@ function Player({ show, id }: { show: Show; id: string }) {
           name={p.name}
           image={p.headshot}
           size={144}
+          // Their latest season's finish, only as far as the API lets this caller see it.
+          exit={seasons[0]?.finish}
+          paint
           className={cn("shadow-[0_14px_30px_-12px_rgb(0_0_0/0.95)]", titles.length > 0 && "ring-2 ring-candle")}
         />
         <div className="flex min-w-0 flex-col gap-1.5">

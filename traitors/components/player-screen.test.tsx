@@ -183,3 +183,20 @@ it("heads the profile with a bio credited to Wikipedia and a badge for each seas
   expect(within(seasons[2]).getByText("Champion")).toBeTruthy();
   expect(within(seasons[1]).queryByText("Champion")).toBeNull();
 });
+
+it("paints the red X onto someone banished in their latest season, and not on someone still in", async () => {
+  const banished = { ...PROFILE, seasons: PROFILE.seasons.filter((s) => s.season === "tus-2") };
+  api.getPlayer.mockResolvedValueOnce(banished);
+  const { container, unmount } = render(<PlayerScreen />);
+  await screen.findByRole("heading", { name: "Ann Avery" });
+  const out = container.querySelector('[data-out="banished"]');
+  expect(out).toBeTruthy();
+  expect(out!.querySelectorAll("mask path.animate-draw")).toHaveLength(2);
+  unmount();
+
+  // Still in the current season: no X, whatever happened before.
+  api.getPlayer.mockResolvedValueOnce(PROFILE);
+  const again = render(<PlayerScreen />);
+  await screen.findByRole("heading", { name: "Ann Avery" });
+  expect(again.container.querySelector("[data-out]")).toBeNull();
+});
