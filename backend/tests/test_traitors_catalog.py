@@ -61,15 +61,18 @@ def test_summary_and_bios():
         current=True,
         open_at="2026-10-15T00:00:00Z",
         summary=lead,
-        bios={"Xavier Scruggs": bio},
+        bios={"Xavier Scruggs": (bio, False)},
+        recaps={2: {"text": "Votes.", "source": "fandom", "sourceUrl": "https://f/2"}, 3: None},
     )
     by_sk = {r["sk"]: r for r in out}
     assert by_sk["META"]["summary"] == lead
-    assert (by_sk["PLAYER#xavier-scruggs"]["article"], by_sk["PLAYER#xavier-scruggs"]["bio"]) == (
-        "Xavier Scruggs",
-        bio,
-    )
-    assert (by_sk["PLAYER#kim-daily"]["article"], by_sk["PLAYER#kim-daily"]["bio"]) == (None, None)
+    xavier = by_sk["PLAYER#xavier-scruggs"]
+    assert (xavier["article"], xavier["bio"], xavier["bioCut"]) == ("Xavier Scruggs", bio, False)
+    # Left out: a re-seed keeps whatever bio discovery wrote.
+    assert by_sk["PLAYER#kim-daily"]["article"] is None
+    assert "bio" not in by_sk["PLAYER#kim-daily"]
+    assert by_sk["EP#02"]["recap"]["text"] == "Votes."
+    assert "recap" not in by_sk["EP#03"]
 
 
 def test_release_time_override():

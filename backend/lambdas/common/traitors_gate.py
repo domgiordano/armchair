@@ -3,11 +3,11 @@ The only code that decides what a caller may see of Traitors picks and results.
 Rules and their reasons: docs/features/traitors/PLAN.md, "Gate".
 
 Inputs are raw DynamoDB items; nothing here reads a table.
-- catalog `SEASON#{show}#{n}`: META, `EP#{nn}` (releaseAt, noRoundTable), `PLAYER#{id}`
-  (`exit: {ep, how}` once the poller writes it).
+- catalog `SEASON#{show}#{n}`: META, `EP#{nn}` (releaseAt, noRoundTable, recap),
+  `PLAYER#{id}` (`exit: {ep, how}` once the poller writes it).
 - performances `EP#{show}#{n}#{nn}`: `EVT#{type}` with `state` and the result fields
-  (RT: banished, faction, firstVote; MURDER: victims; RECRUIT: recruits). Only a
-  `confirmed` row is a result.
+  (RT: banished, faction, firstVote, and the notes ballots, daggers; MURDER: victims;
+  RECRUIT: recruits; SHIELD: shields). Only a `confirmed` row is a result.
 - scores `EP#{show}#{n}#{nn}`: `EVT#{type}#USER#{sub}` holding `picks` or `forfeit`.
   scores `WIN#{show}#{n}`: `USER#{sub}` holding the winner bet.
 """
@@ -24,7 +24,10 @@ RESULT_FIELDS = {
     "MURDER": ("victims",),
     "RT": ("banished", "faction", "firstVote"),
     "RECRUIT": ("recruits",),
+    "SHIELD": ("shields",),
 }
+# Shown with a result but never scored: board signatures are over RESULT_FIELDS only.
+NOTES = {"RT": ("ballots", "daggers")}
 
 
 def ep_number(item: dict) -> int:
@@ -92,6 +95,14 @@ def result(row: dict | None) -> dict | None:
     return {k: row[k] for k in RESULT_FIELDS[row["sk"].removeprefix("EVT#")] if k in row}
 
 
+def shown(row: dict | None) -> dict | None:
+    """A confirmed result with its notes, for display."""
+    out = result(row)
+    if out is None:
+        return None
+    return out | {k: row[k] for k in NOTES.get(row["sk"].removeprefix("EVT#"), ()) if k in row}
+
+
 def consensus(kind: str, rows: list[dict]) -> dict:
     """Everyone's picks for one event, counted. Forfeits count toward nothing."""
     chosen = [r["picks"] for r in rows if r.get("picks")]
@@ -113,7 +124,8 @@ def episode_view(
     """
     One episode as the caller may see it. An event's result, consensus and group
     members' picks show once the caller has picked or forfeited it, or the episode is
-    closed. A group narrows the people shown; it never opens a locked event.
+    closed. A group narrows the people shown; it never opens a locked event. The recap
+    tells the whole episode, so it waits for every event to be answered.
     """
     ep = ep_number(episode)
     is_closed = closed(meta, episode)
@@ -134,7 +146,7 @@ def episode_view(
         }
         if not card["locked"]:
             rows = by_kind.get(kind, [])
-            card["result"] = result(results_by.get(kind))
+            card["result"] = shown(results_by.get(kind))
             card["consensus"] = consensus(kind, rows)
             if group is not None:
                 card["group"] = [
@@ -150,6 +162,7 @@ def episode_view(
         "title": episode.get("title"),
         "releaseAt": episode["releaseAt"],
         "closed": is_closed,
+        "recap": episode.get("recap") if seen(sub, meta, episode, picks) else None,
         "roster": roster(ep, players),
         "events": cards,
     }
@@ -201,6 +214,49 @@ def wall(meta: dict, episodes: list[dict], players: list[dict]) -> list[dict]:
 def answered(sub: str, episode: dict, picks: list[dict]) -> bool:
     """Every event of the episode picked or forfeited by the caller: gate rule 2."""
     return set(mine(sub, picks)) >= set(events(episode))
+
+
+def seen(sub: str, meta: dict, episode: dict, picks: list[dict]) -> bool:
+    """The whole episode is the caller's to see: closed, or every event answered."""
+    return closed(meta, episode) or answered(sub, episode, picks)
+
+
+def story(
+    sub: str,
+    meta: dict,
+    episodes: list[dict],
+    player: dict,
+    stored: dict[int, list[dict]],
+    picks: dict[int, list[dict]],
+) -> list[dict]:
+    """
+    One player's season an episode at a time, over `episodes` (released, up to their
+    exit): whom they voted for, the votes they drew, a shield, and how they left.
+    `stored` and `picks` map an episode to its performances and scores rows. A current
+    season stops at the first episode the caller hasn't seen, so a missing episode
+    can't hint that the player is out.
+    """
+    pid = player_id(player)
+    gone = player.get("exit")
+    out = []
+    for e in episodes:
+        n = ep_number(e)
+        if meta.get("current") and not seen(sub, meta, e, picks.get(n, [])):
+            break
+        rows = {r["sk"].removeprefix("EVT#"): r for r in stored.get(n, [])}
+        rt = shown(rows.get("RT"))
+        held = result(rows.get("SHIELD"))
+        out.append(
+            {
+                "ep": n,
+                "title": e.get("title"),
+                "voted": rt and rt.get("ballots", {}).get(pid),
+                "votesReceived": rt and rt["firstVote"].get(pid, 0),
+                "shield": bool(held) and pid in held["shields"],
+                "out": {"how": gone["how"]} if gone and int(gone["ep"]) == n else None,
+            }
+        )
+    return out
 
 
 def out(

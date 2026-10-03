@@ -142,6 +142,7 @@ def test_episodes():
         "n": 1,
         "date": "2026-09-17",
         "title": "A New Dawn Is Rising",
+        "summary": "",
         "placeholder": False,
     }
     assert nb[6]["placeholder"] is True

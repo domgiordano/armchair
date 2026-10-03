@@ -9,7 +9,8 @@ Only episodes already released are published, so a page that knows the result ea
 
 Results go provisional -> confirmed (common/traitors_publish.py). A confirmed round table
 or murder marks the PLAYER's exit, and every episode it touches is reconciled into the
-points board. Once the page names the winners, the winner bets are settled.
+points board. Once the page names the winners, the winner bets are settled. Each poll
+also refreshes the recap of every episode under 72 hours old (common/traitors_about.py).
 
 Invoke with {"backfill": true} to publish every released episode of every current season
 at once, confirmed with no window: for episodes that aired before the season was seeded.
@@ -22,8 +23,8 @@ from __future__ import annotations
 import json
 import time
 
-from lambdas.common import confirm
-from lambdas.common.dynamo import query_all, table
+from lambdas.common import confirm, fandom, traitors_about
+from lambdas.common.dynamo import query_all, table, update
 from lambdas.common.traitors_dynamo import season_parts, traitors_ref
 from lambdas.common.traitors_parse import season, voting_grid
 from lambdas.common.traitors_publish import epoch, publish_season
@@ -33,6 +34,8 @@ SHOWS = ("tus", "tuk", "tukc")
 LIVE, SWEEP = 6 * 3600, 72 * 3600
 # A redirect left by a page move is ~150 bytes; a real season page is 20 KB and up.
 MIN_PAGE = 5000
+# One batched episode-page read per season polled on the hourly sweep.
+FANDOM_CALLS = 10
 
 
 def due(episodes: list[dict], t: int) -> bool:
@@ -74,8 +77,26 @@ def poll(show: str, number: int, rows: list[dict], t: int, window: int) -> bool:
         return False
     parsed = season(page["content"])
     done = publish_season(show, number, rows, parsed, page["revid"], t, window)
-    print(json.dumps({**line, **done, **summary(parsed)}, ensure_ascii=False))
+    recapped = recaps(show, number, rows, parsed, t, meta["wikiTitle"])
+    print(json.dumps({**line, **done, "recaps": recapped, **summary(parsed)}, ensure_ascii=False))
     return True
+
+
+def recaps(show: str, number: int, rows: list[dict], parsed: dict, t: int, title: str) -> list[int]:
+    """Refreshes the recap of each episode under 72 hours old, asking Fandom on the
+    hourly sweep only. Returns the episodes whose recap changed."""
+    recent = {
+        int(r["sk"][3:]): r
+        for r in rows
+        if r["sk"].startswith("EP#") and 0 <= t - epoch(r["releaseAt"]) < SWEEP
+    }
+    ask = set(recent) if t % 3600 < 60 else set()
+    have = {n: r.get("recap") for n, r in recent.items()}
+    got = traitors_about.recaps(show, number, title, parsed, have, ask)
+    changed = [n for n in recent if got[n] and got[n] != have[n]]
+    for n in changed:
+        update("CATALOG_TABLE", {"pk": recent[n]["pk"], "sk": recent[n]["sk"]}, {"recap": got[n]})
+    return changed
 
 
 def handler(event, context):
@@ -83,6 +104,7 @@ def handler(event, context):
     backfill = event.get("backfill") is True
     t = int(time.time())
     catalog = table("CATALOG_TABLE")
+    fandom.allow(FANDOM_CALLS)
     if backfill and event.get("season"):
         show, number = traitors_ref(event)
         rows = query_all(catalog, f"SEASON#{show}#{number}")
