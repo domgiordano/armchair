@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
-import { PersonLink } from "@/components/couple-names";
 import { Headshot } from "@/components/headshot";
-import { DanceList, episodeHref } from "@/components/people/person-dances";
+import { JudgedSeasons, PersonCouples, SimilarCelebrities } from "@/components/people/person-couples";
+import { DanceList } from "@/components/people/person-dances";
 import { DanceChart, DancerTiles, JudgeCharts, JudgeTiles } from "@/components/people/person-stats";
 import { SignedIn } from "@/components/signed-in";
 import { Badge } from "@/components/ui/badge";
@@ -14,9 +14,9 @@ import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { ApiError } from "@armchair/app-core/api/client";
-import { getPerson, type PersonPage, type Role, type SeasonResult, type Stint } from "@/lib/api/people";
+import { getPerson, type PersonPage, type Role } from "@/lib/api/people";
 import { seasonLabel } from "@/lib/show/seasons";
-import { button, EYEBROW, SECONDARY, TEXT_LINK } from "@/lib/ui";
+import { SECONDARY, TEXT_LINK } from "@/lib/ui";
 
 export function PersonScreen() {
   return (
@@ -108,7 +108,6 @@ const date = (iso: string) => {
 function Person({ data, season }: { data: PersonPage; season?: string }) {
   const router = useRouter();
   const pick = (s: string) => router.replace(`/people/?id=${encodeURIComponent(data.id)}&season=${encodeURIComponent(s)}`, { scroll: false });
-  const danced = data.seasons.filter((s) => s.role !== "judge");
   const judged = data.seasons.filter((s) => s.role === "judge");
   const judgeFirst = data.roles[0] === "judge";
   const judgeStats = data.stats.judge && (
@@ -120,12 +119,14 @@ function Person({ data, season }: { data: PersonPage; season?: string }) {
       <JudgeCharts stats={data.stats.judge} />
     </section>
   );
+  const seasonsJudged = <JudgedSeasons stints={judged} stats={data.stats.judge} onLoad={pick} />;
 
   return (
     <div className="flex flex-col gap-10">
       <Hero data={data} />
 
       {judgeFirst && judgeStats}
+      {judgeFirst && seasonsJudged}
 
       {data.stats.dancer && (
         <section aria-labelledby="as-dancer" className="flex flex-col gap-4">
@@ -137,9 +138,12 @@ function Person({ data, season }: { data: PersonPage; season?: string }) {
         </section>
       )}
 
-      {danced.length > 0 && <Timeline stints={danced} onLoad={pick} />}
+      <PersonCouples data={data} />
+
+      {data.similar && <SimilarCelebrities similar={data.similar} />}
 
       {!judgeFirst && judgeStats}
+      {!judgeFirst && seasonsJudged}
 
       {data.performances.length > 0 && (
         <section aria-labelledby="dances" className="flex flex-col gap-4">
@@ -235,75 +239,6 @@ function Hero({ data }: { data: PersonPage }) {
         )}
       </div>
     </header>
-  );
-}
-
-function resultText(result: SeasonResult | null | undefined): string | null {
-  if (!result || "locked" in result) return null;
-  if (result.status === "out") return result.week === null ? "Out" : `Out in week ${result.week}`;
-  if (result.status === "dancing") return "Still dancing";
-  return "Made the finale";
-}
-
-function Timeline({ stints, onLoad }: { stints: Stint[]; onLoad: (season: string) => void }) {
-  const unscored = [...stints].reverse().filter((s) => !s.loaded);
-  return (
-    <section aria-labelledby="seasons" className="flex flex-col gap-3">
-      <h2 id="seasons" className="text-lg font-semibold text-pearl">
-        Seasons
-      </h2>
-      <ol className="stagger grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        {[...stints].reverse().filter((s) => s.loaded).map((s) => {
-          const result = s.result;
-          const text = resultText(result);
-          return (
-            <li key={`${s.season}-${s.role}`} className="flex flex-col gap-2 rounded-xl border border-silver/10 bg-ballroom/45 p-3.5">
-              <div className="flex items-center justify-between gap-2">
-                <p className={EYEBROW}>{seasonLabel(s.season)}</p>
-                {text && <Badge tone={result && "status" in result && result.status === "out" ? "muted" : "gold"}>{text}</Badge>}
-              </div>
-              {s.partners && s.partners.length > 0 && (
-                <p className="text-sm text-pearl">
-                  with{" "}
-                  {s.partners.map((p, i) => (
-                    <span key={p.id}>
-                      {i > 0 && " & "}
-                      <PersonLink id={p.id} name={p.name} />
-                    </span>
-                  ))}
-                </p>
-              )}
-              {result && "locked" in result && (
-                <Link href={episodeHref(result.season, result.ep)} prefetch={false} className={`${TEXT_LINK} self-start text-xs`}>
-                  Finish episode {result.ep} to see how they did
-                </Link>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-      {unscored.length > 0 && (
-        <div className="flex flex-col gap-2 pt-1">
-          <p className="text-sm text-silver-dim">
-            More seasons. Open one to see their dances and results.
-          </p>
-          <ul className="flex flex-wrap gap-1.5">
-            {unscored.map((s) => (
-              <li key={`${s.season}-${s.role}`}>
-                <button
-                  type="button"
-                  onClick={() => onLoad(s.season)}
-                  className={`${button("secondary", "sm")} gap-1.5`}
-                >
-                  {seasonLabel(s.season)}
-                  {s.partners?.[0] && <span className="text-silver-dim">with {s.partners[0].name}</span>}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </section>
   );
 }
 
