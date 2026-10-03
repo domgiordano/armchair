@@ -3,6 +3,7 @@ import { afterEach, expect, it, vi } from "vitest";
 
 const api = vi.hoisted(() => ({ submitWinner: vi.fn() }));
 vi.mock("@/lib/api/traitors", () => api);
+vi.mock("@/lib/api/history", () => ({ getPlayer: () => new Promise(() => {}) }));
 vi.mock("@armchair/app-core/api/client", () => ({
   ApiError: class ApiError extends Error {
     constructor(
@@ -44,15 +45,24 @@ it("takes three players at most, each with a side, then seals the bet", async ()
   render(<WinnerBet {...BET} onSealed={onSealed} />);
   expect(seal().disabled).toBe(true);
 
+  const pick = (name: string, side: string) => {
+    fireEvent.click(screen.getByRole("button", { name }));
+    fireEvent.click(screen.getByRole("button", { name: `Pick as winner (${side})` }));
+  };
+  // A tap at the head picks without a side; the radios below still ask for one.
   fireEvent.click(screen.getByRole("button", { name: "Ava Stone" }));
-  fireEvent.click(screen.getByRole("button", { name: "Cal Reyes" }));
-  fireEvent.click(screen.getByRole("button", { name: "Dee Moss" }));
-  expect((screen.getByRole("button", { name: "Ben Hart" }) as HTMLButtonElement).disabled).toBe(true);
   expect(seal().disabled).toBe(true);
-
   fireEvent.click(screen.getAllByRole("radio", { name: "Traitor" })[0]);
-  fireEvent.click(screen.getAllByRole("radio", { name: "Faithful" })[1]);
-  fireEvent.click(screen.getAllByRole("radio", { name: "Faithful" })[2]);
+  pick("Cal Reyes", "Faithful");
+  pick("Dee Moss", "Traitor");
+  fireEvent.click(screen.getByRole("button", { name: "Pick as winner (Faithful)" }));
+  expect(screen.getAllByRole("radio", { name: "Faithful" })[2]).toHaveProperty("checked", true);
+
+  // Three is the most: the fourth can be turned to, not picked.
+  fireEvent.click(screen.getByRole("button", { name: "Ben Hart" }));
+  expect((screen.getByRole("button", { name: "Pick as winner (Faithful)" }) as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.click(screen.getByRole("button", { name: "Ben Hart" }));
+  expect(screen.getAllByRole("radio", { name: "Faithful" })).toHaveLength(3);
   expect(seal().disabled).toBe(false);
 
   fireEvent.click(seal());
@@ -79,7 +89,7 @@ it("opens the season when another device already sealed a bet", async () => {
   const onSealed = vi.fn();
   render(<WinnerBet {...BET} onSealed={onSealed} />);
   fireEvent.click(screen.getByRole("button", { name: "Ben Hart" }));
-  fireEvent.click(screen.getByRole("radio", { name: "Faithful" }));
+  fireEvent.click(screen.getByRole("button", { name: "Pick as winner (Faithful)" }));
   fireEvent.click(seal());
   await vi.waitFor(() => expect(onSealed).toHaveBeenCalledOnce());
 });

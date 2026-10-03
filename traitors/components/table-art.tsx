@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-import { TILT, type TableLayout } from "@/lib/ballot";
+import { headShare, type Point, type Ring } from "@/lib/spin";
 import { cn } from "@/lib/ui";
 
 // The round table from above, all ours. The franchise's emblem is a compass rose:
@@ -37,27 +37,28 @@ function Star({ r }: { r: number }) {
 /**
  * The table: a dark rim with a gilt and marquetry border, a radial-grained wood
  * field under a warm pool of light, the inlaid star and a raised hub. A gilt
- * candle disc marks each player's place; the head of the table is the host's,
- * left empty and lit.
+ * candle disc sits in front of each seat, and the head of the table, where the
+ * host stands, is lit. A cast too big for a round table gets an oval one. The
+ * star turns `angle` degrees with the seats.
  */
-export function TableTop({ layout }: { layout: TableLayout }) {
+export function TableTop({ ring, angle, seats }: { ring: Ring; angle: number; seats: (Point & { k: number })[] }) {
   const id = useId();
-  const { cx, cy, rx } = layout.ring;
+  const { cx, cy, rx, ry } = ring;
   const R = rx - 4;
+  const squash = ry / rx;
   const field = R * 0.86;
-  // Where a place's disc sits: in from the face, on the wood.
-  const disc = (s: { x: number; y: number }, inset: number) => {
-    const dx = (s.x / 100) * layout.width - cx;
-    const dy = ((s.y / 100) * layout.height - cy) / TILT;
-    const len = Math.hypot(dx, dy);
+  // Where a seat's disc sits: in from the face, on the wood, measured before the squash.
+  const disc = (s: Point, inset: number) => {
+    const dx = s.x - cx;
+    const dy = (s.y - cy) / squash;
+    const len = Math.hypot(dx, dy) || 1;
     return { x: (dx * (len - inset)) / len, y: (dy * (len - inset)) / len };
   };
-  const host = disc(layout.host, 0);
   const ids = { light: `${id}l`, rim: `${id}r`, grain: `${id}g`, sheen: `${id}s`, hub: `${id}h`, glow: `${id}w` };
 
   return (
     <svg
-      viewBox={`0 0 ${layout.width} ${layout.height}`}
+      viewBox={`0 0 ${ring.width} ${ring.height}`}
       aria-hidden="true"
       className="absolute inset-0 h-full w-full overflow-visible"
     >
@@ -92,7 +93,7 @@ export function TableTop({ layout }: { layout: TableLayout }) {
         </radialGradient>
       </defs>
 
-      <g transform={`translate(${cx} ${cy}) scale(1 ${TILT})`}>
+      <g transform={`translate(${cx} ${cy}) scale(1 ${squash.toFixed(4)})`}>
         <circle r={R * 1.3} fill={`url(#${ids.light})`} />
         <circle r={R + 3} cy={7} fill="var(--night)" opacity={0.85} />
         <circle r={R} fill={`url(#${ids.rim})`} stroke="var(--gilt)" strokeOpacity={0.7} strokeWidth={1} />
@@ -105,9 +106,14 @@ export function TableTop({ layout }: { layout: TableLayout }) {
 
         <circle r={field} fill="var(--wood)" />
         <circle r={field} fill={`url(#${ids.grain})`} />
-        <Star r={field * 0.62} />
+        <g transform={`rotate(${angle.toFixed(2)})`}>
+          <Star r={field * 0.62} />
+        </g>
         <circle r={field * 0.68} fill="none" stroke="var(--gilt)" strokeOpacity={0.55} strokeWidth={0.8} />
         <circle r={field} fill={`url(#${ids.sheen})`} />
+
+        {/* The head of the table, lit: whoever is turned to it is the one being read about. */}
+        <ellipse cy={-R + 30} rx={56} ry={40} fill={`url(#${ids.glow})`} className="animate-flicker" />
 
         {/* The hub, raised: a shadow under it, a lit edge on it, our hood on top. */}
         <circle r={R * 0.14} cy={3} fill="var(--night)" opacity={0.7} />
@@ -118,10 +124,11 @@ export function TableTop({ layout }: { layout: TableLayout }) {
           <path d={HOOD_OPENING} fill="var(--wood-dark)" />
         </g>
 
-        {layout.seats.map((s, i) => {
+        {seats.map((s, i) => {
           const d = disc(s, 32);
           return (
-            <g key={i} transform={`translate(${d.x.toFixed(1)} ${d.y.toFixed(1)})`}>
+            // The head's disc gives way to its name.
+            <g key={i} transform={`translate(${d.x.toFixed(1)} ${d.y.toFixed(1)})`} opacity={1 - headShare(s.k)}>
               <circle r={5.5} fill="var(--gilt)" stroke="var(--wood-dark)" strokeWidth={1} />
               <circle r={2.5} fill="var(--candle)" />
               <circle
@@ -135,15 +142,6 @@ export function TableTop({ layout }: { layout: TableLayout }) {
             </g>
           );
         })}
-
-        {/* The host's place: an empty chair at the head, a candle lit before it. */}
-        <circle cx={host.x} cy={host.y + 16} r={46} fill={`url(#${ids.glow})`} className="animate-flicker" />
-        <g transform={`translate(${host.x} ${host.y})`}>
-          <path d="M-17-14h34a3 3 0 0 1 3 3v5h-40v-5a3 3 0 0 1 3-3Z" fill="var(--wood)" stroke="var(--gilt)" strokeWidth={1} />
-          <rect x={-14} y={-6} width={28} height={18} rx={3} fill="var(--oxblood)" stroke="var(--gilt)" strokeWidth={1} />
-          <circle cy={30} r={5.5} fill="var(--gilt)" stroke="var(--wood-dark)" strokeWidth={1} />
-          <circle cy={30} r={3} fill="var(--flame)" className="animate-flicker" />
-        </g>
       </g>
     </svg>
   );

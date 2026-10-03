@@ -66,6 +66,8 @@ export interface PlayerProfile {
   name: string;
   headshot: string | null;
   bio: Writeup | null;
+  /** Their row of the season's contestants table; occupation is what a celebrity is known for. */
+  about?: { age: number | null; hometown: string | null; occupation: string | null } | null;
   seasons: Career[];
   story?: StoryEpisode[];
 }
