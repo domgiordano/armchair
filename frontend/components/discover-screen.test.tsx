@@ -80,9 +80,13 @@ describe("DiscoverScreen", () => {
   it("lists the season's stars and judges, linked to their pages", async () => {
     render(<DiscoverScreen />);
     const stars = await screen.findByRole("region", { name: "Stars of Season 35" });
-    const links = within(stars).getAllByRole("link");
-    expect(links.map((a) => a.lastElementChild?.textContent)).toEqual(["Amber Glenn", "Tyler Cameronwith Witney Carson"]);
-    expect(href(links[1])).toBe("/people?id=tyler-cameron");
+    const tyler = within(stars).getAllByRole("listitem")[1];
+    const links = within(tyler).getAllByRole("link");
+    expect(links.map((a) => [a.getAttribute("aria-label") ?? a.textContent, href(a)])).toEqual([
+      ["Tyler Cameron & Witney Carson, couple page", "/couples/couple?id=tyler-cameron&season=dwts-35"],
+      ["Tyler Cameron", "/people?id=tyler-cameron"],
+      ["Witney Carson", "/people?id=witney-carson"],
+    ]);
     const judges = screen.getByRole("region", { name: "Judges" });
     expect(href(within(judges).getByRole("link"))).toBe("/people?id=derek-hough");
   });

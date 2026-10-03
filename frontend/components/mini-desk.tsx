@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-import { CoupleAvatars, coupleName } from "@/components/headshot";
+import { CoupleLink, CoupleNames } from "@/components/couple-names";
+import { coupleName } from "@/components/headshot";
 import { Paddle as PaddleArt } from "@/components/paddle";
 import { formatScore } from "@/components/performance-card";
 import type { CoupleStanding, Reveal } from "@/lib/api/overview";
@@ -29,9 +30,9 @@ export function MiniDesk({ reveal, couple, judgeName, weekLabel, season }: MiniD
       className="flex h-full flex-col gap-3 rounded-xl border border-silver/10 bg-ballroom/60 p-4 transition-colors hover:border-gold/30"
     >
       <header className="flex items-center gap-3">
-        {couple && <CoupleAvatars members={couple.members} size={36} />}
+        {couple && <CoupleLink members={couple.members} season={season} size={36} />}
         <div className="flex min-w-0 flex-col gap-0.5">
-          <h3 className="truncate font-semibold text-pearl">{title}</h3>
+          <h3 className="truncate font-semibold text-pearl">{couple ? <CoupleNames members={couple.members} /> : title}</h3>
           <p className="truncate text-xs text-silver-dim">
             {[weekLabel, reveal.style, reveal.song].filter(Boolean).join(" · ")}
           </p>

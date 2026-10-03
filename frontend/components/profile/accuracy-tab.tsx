@@ -199,7 +199,7 @@ function CallCard({ title, tone, call, season, own }: CallCardProps) {
       >
         {title}
       </p>
-      <Dancers members={call.members} />
+      <Dancers members={call.members} season={season.season} />
       <p className="text-sm text-silver-dim">{[call.style, weekLabel(call, season)].filter(Boolean).join(" · ")}</p>
       <p className="flex items-baseline gap-3 text-sm tabular-nums">
         <span>

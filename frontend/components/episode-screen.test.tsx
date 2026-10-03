@@ -194,6 +194,12 @@ describe("EpisodeScreen", () => {
     expect(value(tyler, "You")).toBe("6");
     expect(value(tyler, "Everyone")).toBe("7.52 scores");
     expect(within(tyler).queryByRole("button")).toBeNull();
+    const links = within(tyler).getAllByRole("link").map((a) => [a.getAttribute("aria-label") ?? a.textContent, a.getAttribute("href")]);
+    expect(links.slice(0, 3)).toEqual([
+      ["Tyler Cameron & Sharna Burgess, couple page", expect.stringMatching(/^\/couples\/couple\/?\?id=tyler-cameron&season=dwts-35$/)],
+      ["Tyler Cameron", expect.stringMatching(/^\/people\/?\?id=tyler-cameron$/)],
+      ["Sharna Burgess", expect.stringMatching(/^\/people\/?\?id=sharna-burgess$/)],
+    ]);
   });
 
   it("submits from a locked card and reloads the episode", async () => {
