@@ -56,6 +56,7 @@ def aws(monkeypatch):
         "SOCIAL_TABLE": SOCIAL_TABLE,
         "AVATARS_BUCKET": AVATARS_BUCKET,
         "AVATARS_URL": AVATARS_URL,
+        "RECAPS_BUCKET": AVATARS_BUCKET,
         "APP_NAME": "armchair",
         "CORS_ALLOW_ORIGIN": "https://dwts.armchairjudge.com,http://localhost:3000",
     }.items():
