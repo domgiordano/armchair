@@ -4,10 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-import { CoupleNames, PersonLink } from "@/components/couple-names";
+import { CoupleLink, CoupleNames, PersonLink } from "@/components/couple-names";
 import { DiscoLoader } from "@/components/disco-loader";
 import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
-import { CoupleAvatars } from "@/components/headshot";
 import { judgeName } from "@/components/leaderboard-screen";
 import { formatScore } from "@/components/performance-card";
 import { Card } from "@/components/ui/card";
@@ -151,13 +150,13 @@ function Board({ board, season, column }: { board: WeekBoard; season: Season; co
           </section>
 
           <div className="flex flex-col gap-4 lg:sticky lg:top-32">
-            {split.length > 0 && <Disagreements rows={split} />}
+            {split.length > 0 && <Disagreements rows={split} season={season.season} />}
             {left > 0 && (
               <Card id="locked" title={`${left} still to score`} note="Score them to see where they land.">
                 <ul className="flex flex-wrap gap-2">
                   {board.locked.map((c) => (
                     <li key={c.id} className="flex items-center gap-2 rounded-full border border-silver/10 bg-ink/40 py-1 pr-3 pl-1 text-sm text-silver opacity-80">
-                      <CoupleAvatars members={c.members} size={24} />
+                      <CoupleLink members={c.members} season={season.season} size={24} />
                       {name(c)}
                     </li>
                   ))}
@@ -260,7 +259,7 @@ function BoardItem({ row: r, season, column, out }: BoardItemProps) {
       </span>
       {out ? <span aria-hidden="true" className="w-8 shrink-0" /> : <Movement by={move} versus={versus} />}
       <span className={cn("shrink-0", out && OUT_FADE)}>
-        <CoupleAvatars members={r.members} size={36} />
+        <CoupleLink members={r.members} season={season} size={36} />
       </span>
       <span className="flex min-w-0 flex-1 flex-col">
         <CoupleNames members={r.members} className={cn("truncate text-sm font-medium", out ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")} />
@@ -308,7 +307,7 @@ function Movement({ by, versus }: { by: number | null; versus: BoardColumn }) {
   );
 }
 
-function Disagreements({ rows }: { rows: BoardRow[] }) {
+function Disagreements({ rows, season }: { rows: BoardRow[]; season: string }) {
   return (
     <section
       aria-labelledby="disagreements"
@@ -327,9 +326,9 @@ function Disagreements({ rows }: { rows: BoardRow[] }) {
           const judges = r.ranks.judges ?? 0;
           return (
             <li key={r.id} className="flex items-center gap-3">
-              <CoupleAvatars members={r.members} size={32} />
+              <CoupleLink members={r.members} season={season} size={32} />
               <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate text-sm font-medium text-pearl">{name(r)}</span>
+                <CoupleNames members={r.members} className="truncate text-sm font-medium text-pearl" />
                 <span className="text-xs text-silver-dim tabular-nums">
                   You {r.you === null ? "–" : formatScore(r.you)} · judges {r.judges === null ? "–" : formatScore(r.judges)}
                 </span>

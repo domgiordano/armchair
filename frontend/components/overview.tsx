@@ -7,10 +7,9 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { AccuracyChart } from "@/components/accuracy-chart";
 import { Avatar } from "@/components/avatar";
 import { UserLink } from "@/components/user-link";
-import { PersonLink } from "@/components/couple-names";
+import { CoupleLink, PersonLink } from "@/components/couple-names";
 import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { PageLoader } from "@/components/disco-loader";
-import { CoupleAvatars } from "@/components/headshot";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
 import { SkipConfirm } from "@/components/skip-confirm";
@@ -533,7 +532,7 @@ function Standings({ couples: every, season }: { couples: CoupleStanding[]; seas
               )}
             >
               <span className={cn("shrink-0", c.eliminated && OUT_FADE)}>
-                <CoupleAvatars members={c.members} size={36} />
+                <CoupleLink members={c.members} season={season} size={36} />
               </span>
               <span className="min-w-0 flex-1">
                 <PersonLink
@@ -542,7 +541,9 @@ function Standings({ couples: every, season }: { couples: CoupleStanding[]; seas
                   className={cn("block truncate text-sm font-medium", c.eliminated ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")}
                 />
                 {pro && (
-                  <span className={cn("block truncate text-xs text-silver-dim", c.eliminated && OUT_STRIKE)}>with {pro.name}</span>
+                  <span className={cn("block truncate text-xs text-silver-dim", c.eliminated && OUT_STRIKE)}>
+                    with <PersonLink id={personSlug(pro.name)} name={pro.name} />
+                  </span>
                 )}
                 {c.average !== null && (
                   <span aria-hidden="true" className={cn("mt-1 block h-1 rounded-full bg-silver/10", c.eliminated && "opacity-40")}>

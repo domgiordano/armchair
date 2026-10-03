@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 
-import { CoupleAvatars } from "@/components/headshot";
-import { CoupleNames } from "@/components/couple-names";
+import { CoupleLink, CoupleNames, PersonLink } from "@/components/couple-names";
 import { OUT_FADE, OUT_STRIKE } from "@/components/eliminated";
 import type { Member, Season } from "@/lib/api/show";
+import { personSlug } from "@/lib/show/people";
 import { episodeLabel } from "@/lib/show/schedule";
 import { cn } from "@/lib/ui";
 
@@ -63,22 +63,32 @@ export function Heading({ id, title, note }: { id: string; title: string; note?:
 
 interface DancersProps {
   members: Member[];
+  season: string;
   size?: number;
   /** An eliminated couple: faces drained, names struck through. */
   out?: boolean;
 }
 
 /** A couple's faces and linked names; a team dance names its celebrities instead. */
-export function Dancers({ members, size = 36, out }: DancersProps) {
+export function Dancers({ members, season, size = 36, out }: DancersProps) {
   const team = members.filter((m) => m.role === "celebrity").length > 1;
   if (team) {
     const stars = members.filter((m) => m.role === "celebrity");
-    return <span className="font-medium text-pearl">{stars.map((m) => m.name).join(", ")}</span>;
+    return (
+      <span className="font-medium text-pearl">
+        {stars.map((m, i) => (
+          <span key={m.name}>
+            {i > 0 && ", "}
+            <PersonLink id={personSlug(m.name)} name={m.name} />
+          </span>
+        ))}
+      </span>
+    );
   }
   return (
     <span className="flex min-w-0 items-center gap-3">
       <span className={cn("shrink-0", out && OUT_FADE)}>
-        <CoupleAvatars members={members} size={size} />
+        <CoupleLink members={members} season={season} size={size} />
       </span>
       <CoupleNames members={members} className={cn("min-w-0 font-medium", out ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")} />
     </span>

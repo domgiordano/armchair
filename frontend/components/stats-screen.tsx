@@ -6,7 +6,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { PageLoader } from "@/components/disco-loader";
 import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
 import { GroupPicker } from "@/components/group-picker";
-import { CoupleAvatars, coupleName } from "@/components/headshot";
+import { CoupleLink, CoupleNames } from "@/components/couple-names";
 import { formatScore } from "@/components/performance-card";
 import { SignedIn } from "@/components/signed-in";
 import { Card } from "@/components/ui/card";
@@ -184,8 +184,10 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
         </Card>
 
         <Card id="calls" title="Best calls and biggest misses">
-          <Calls title="Best calls" dances={closest} couple={couple} team={team} short={short} />
-          {furthest.length > 0 && <Calls title="Biggest misses" dances={furthest} couple={couple} team={team} short={short} />}
+          <Calls title="Best calls" season={season.season} dances={closest} couple={couple} team={team} short={short} />
+          {furthest.length > 0 && (
+            <Calls title="Biggest misses" season={season.season} dances={furthest} couple={couple} team={team} short={short} />
+          )}
         </Card>
       </div>
     </>
@@ -194,12 +196,14 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
 
 function Calls({
   title,
+  season,
   dances,
   couple,
   team,
   short,
 }: {
   title: string;
+  season: string;
   dances: Dance[];
   couple: (key: string) => Contestant | undefined;
   team: (key: string) => string;
@@ -213,9 +217,9 @@ function Calls({
           const c = couple(d.key);
           return (
             <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
-              {c && <CoupleAvatars members={c.members} size={32} />}
+              {c && <CoupleLink members={c.members} season={season} size={32} />}
               <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate text-pearl">{c ? coupleName(c) : team(d.key)}</span>
+                <span className="truncate text-pearl">{c ? <CoupleNames members={c.members} /> : team(d.key)}</span>
                 <span className="truncate text-xs text-silver-dim">
                   {short(d.ep)}
                   {d.style && ` · ${d.style}`}

@@ -130,7 +130,7 @@ function Favorites({ data, own }: { data: Performers<CoupleSummary>; own: boolea
                   {multi && ` · ${seasonLabel(c.season)}`}
                 </span>
               </div>
-              <Dancers members={c.members} size={40} out={Boolean(c.eliminated)} />
+              <Dancers members={c.members} season={c.season} size={40} out={Boolean(c.eliminated)} />
               {c.eliminated && <EliminatedStamp out={c.eliminated} className="absolute right-4 bottom-4" />}
               <p className="flex items-baseline gap-3 text-sm tabular-nums">
                 <span className="text-silver-dim">
@@ -221,7 +221,7 @@ function GapCard({ id, title, note, couples }: { id: string; title: string; note
         <ol className="stagger flex flex-col gap-3">
           {couples.map((c) => (
             <li key={c.ref} className="flex items-center justify-between gap-3">
-              <Dancers members={c.members} size={32} out={Boolean(c.eliminated)} />
+              <Dancers members={c.members} season={c.season} size={32} out={Boolean(c.eliminated)} />
               {c.eliminated && <span className="sr-only">Eliminated.</span>}
               <GapChip gap={c.gap} />
             </li>
