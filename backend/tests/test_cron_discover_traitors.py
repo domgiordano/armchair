@@ -1,5 +1,7 @@
 import io
 import json
+import sys
+import urllib.request
 from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -120,10 +122,35 @@ def fake_urlopen(req, timeout):
     return io.BytesIO(json.dumps({"query": body}).encode())
 
 
+# Fandom pages by title, as wikitext. Anything else is missing and searches find nothing.
+FANDOM: dict[str, str] = {}
+FANDOM_CALLS: list[dict] = []
+
+
+def fake_fandom(req, timeout):
+    """Fandom's api.php; the networks' cast pages don't answer."""
+    if "fandom.com" not in req.full_url:
+        raise OSError("unreachable")
+    q = {k: v[0] for k, v in parse_qs(urlparse(req.full_url).query).items()}
+    FANDOM_CALLS.append(q)
+    if q.get("list") == "search":
+        return io.BytesIO(json.dumps({"query": {"search": []}}).encode())
+    pages = [
+        {"title": t, "revisions": [{"slots": {"main": {"content": FANDOM[t]}}}]}
+        if t in FANDOM
+        else {"title": t, "missing": True}
+        for t in q["titles"].split("|")
+    ]
+    return io.BytesIO(json.dumps({"query": {"pages": pages}}).encode())
+
+
 @pytest.fixture
 def run(aws, monkeypatch, capsys):
     monkeypatch.setattr(wiki_fetch, "urlopen", fake_urlopen)
+    monkeypatch.setattr(urllib.request, "urlopen", fake_fandom)
+    monkeypatch.setattr(sys.modules[__name__], "FANDOM", {})
     EXTRACT_CALLS.clear()
+    FANDOM_CALLS.clear()
 
     def at(when: str) -> dict[str, dict]:
         t = datetime.strptime(when, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC).timestamp()
@@ -131,7 +158,8 @@ def run(aws, monkeypatch, capsys):
         capsys.readouterr()
         discover.handler({}, None)
         lines = [json.loads(line) for line in capsys.readouterr().out.splitlines()]
-        return {line["show"]: line for line in lines}
+        # Other lines are fetch errors logged on the way, here the networks' cast pages.
+        return {line["show"]: line for line in lines if "show" in line}
 
     return at
 
@@ -313,6 +341,7 @@ def test_summary_and_bios_are_stored(aws, run):
         "Xavier Scruggs",
         {
             "text": "Xavier Scruggs is a person.",
+            "source": "wikipedia",
             "sourceUrl": "https://en.wikipedia.org/wiki/Xavier_Scruggs",
         },
     )
@@ -382,3 +411,52 @@ def test_people_search_finds_every_seeded_season(aws, run, show, q, expected):
     )
     assert status == 200
     assert [(p["id"], p["seasons"]) for p in body["data"]["players"]] == expected
+
+
+def test_backfill_fills_fandom_bios_and_recaps(aws, run):
+    FANDOM["Series 1, Episode 2 (Celebrity)"] = (
+        "{{CustomEpisode}}\nThis is the second episode.\n== Mission ==\nThey dig graves.\n"
+    )
+    FANDOM["Netty Österberg"] = "'''Netty''' is a nursery school teacher from Glasgow."
+    run("2026-10-02T06:00:00Z")
+    netty = item(aws, "SEASON#tuk#4", "PLAYER#netty-osterberg")
+    assert netty["bio"] == {
+        "text": "Netty is a nursery school teacher from Glasgow.",
+        "source": "fandom",
+        "sourceUrl": "https://thetraitorsuk.fandom.com/wiki/Netty_%C3%96sterberg",
+    }
+    # Her Contestants row: `| 42` / `| [[Glasgow]], Scotland` / `| Nursery school teacher`.
+    assert item(aws, "PERSON#tuk#netty-osterberg", "META")["about"] == {
+        "age": 42,
+        "hometown": "Glasgow, Scotland",
+        "occupation": "Nursery school teacher",
+    }
+    # Celebrity series 1 has every ShortSummary, so Wikipedia's stands and Fandom isn't asked.
+    assert item(aws, "SEASON#tukc#1", "EP#02")["recap"]["source"] == "wikipedia"
+    asked = [q["titles"] for q in FANDOM_CALLS if "Episode" in q.get("titles", "")]
+    assert not any("Series 1, Episode 2 (Celebrity)" in t for t in asked)
+
+
+def test_finished_season_bio_is_fetched_once(aws, run):
+    FANDOM["Netty Österberg"] = "'''Netty''' is a nursery school teacher from Glasgow."
+    FANDOM["Kim Daily"] = "'''Kim''' is a lawyer."
+    run("2026-10-02T06:00:00Z")
+    FANDOM_CALLS.clear()
+    run("2026-10-03T06:00:00Z")
+    asked = {t for q in FANDOM_CALLS for t in q.get("titles", "").split("|")}
+    # A finished season's bio, once found, stays; the running New Blood's is fetched daily.
+    assert "Netty Österberg" not in asked
+    assert "Kim Daily" in asked
+
+
+def test_season_published_before_ballots_is_republished_once(aws, run):
+    run("2026-10-02T06:00:00Z")
+    aws.Table(PERFORMANCES_TABLE).update_item(
+        Key={"pk": "EP#tus#4#02", "sk": "EVT#RT"}, UpdateExpression="REMOVE ballots, daggers"
+    )
+    aws.Table(CATALOG_TABLE).update_item(
+        Key={"pk": "SEASON#tus#4", "sk": "META"}, UpdateExpression="REMOVE published"
+    )
+    assert run("2026-10-03T06:00:00Z")["tus"]["published"] == [4]
+    assert rt(aws, "tus-4", 2)["ballots"]["rob-rausch"] == "porsha-williams"
+    assert run("2026-10-04T06:00:00Z")["tus"]["published"] == []
