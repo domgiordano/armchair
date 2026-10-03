@@ -11,6 +11,8 @@ from __future__ import annotations
 
 from collections import defaultdict
 
+from lambdas.common.writeups import public
+
 
 def is_open(meta: dict) -> bool:
     """
@@ -131,9 +133,15 @@ def episode_view(
     performances: list[dict],
     scores: list[dict],
     members: set[str] | None = None,
+    writeups: list[dict] | None = None,
 ) -> dict:
-    """The whole episode as the caller may see it."""
+    """
+    The whole episode as the caller may see it. A dance's AI write-up carries
+    the judges' reactions, so it opens with the dance: a locked card says only
+    that one exists.
+    """
     perfs = {perf_key(p["sk"]): p for p in performances}
+    notes = {perf_key(w["sk"]): public(w) for w in writeups or [] if w["sk"].startswith("PERF#")}
     keys = rateable(ep, episode, contestants, performances)
     opened = is_open(meta)
     mine = {}
@@ -165,9 +173,15 @@ def episode_view(
         "answered": sum(k in mine for k in keys),
         "complete": complete,
         "performances": [
-            _card(key, perfs.get(key, {}), panel, mine.get(key), values[key], sub, complete)
+            {
+                **_card(key, perfs.get(key, {}), panel, mine.get(key), values[key], sub, complete),
+                "writeup": notes.get(key),
+            }
             if revealed
-            else _locked(key, perfs.get(key, {}))
+            else {
+                **_locked(key, perfs.get(key, {})),
+                "writeup": {"locked": True} if notes.get(key) else None,
+            }
             for key, revealed in _alphabetical(cards, contestants, perfs)
         ],
     }

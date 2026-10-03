@@ -26,6 +26,7 @@ locals {
     GROUPS_TABLE       = aws_dynamodb_table.groups.id
     BOARD_TABLE        = aws_dynamodb_table.board.id
     SOCIAL_TABLE       = aws_dynamodb_table.social.id
+    WRITEUPS_TABLE     = aws_dynamodb_table.writeups.id
     AVATARS_BUCKET     = aws_s3_bucket.avatars.id
     AVATARS_URL        = "https://${aws_cloudfront_distribution.avatars.domain_name}"
   }

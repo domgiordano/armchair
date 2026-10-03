@@ -6,7 +6,8 @@ judged, and all-time numbers.
 Every aired episode read is built by gate.episode_view and only its cards are
 used. A dance the caller hasn't answered comes back as {season, ep, week, key,
 style, song, dancers, locked: true} and nothing else, enough to send them to
-/episode/ to score it. A season's result shows once the caller has finished
+/episode/ to score it, and `writeup` {locked: true} when an AI write-up waits
+behind it. A season's result shows once the caller has finished
 every aired episode up to it, the episode rule; until then it is
 {locked: true, season, ep} with the first episode left. Every all-time number
 is over dances the caller has answered; friends are their accepted friends.
@@ -203,11 +204,19 @@ def _views(sub: str, show: str, seasons: dict[int, dict], eps: list[tuple[int, i
     pks = [episode_pk(show, n, ep) for n, ep in eps]
     perfs = query_partitions("PERFORMANCES_TABLE", pks)
     scores = query_partitions("SCORES_TABLE", pks)
+    notes = query_partitions("WRITEUPS_TABLE", pks)
     out = {}
     for (n, ep), pk in zip(eps, pks):
         s = seasons[n]
         out[(n, ep)] = episode_view(
-            sub, ep, s["meta"], s["episodes"][ep], s["contestants"], perfs[pk], scores[pk]
+            sub,
+            ep,
+            s["meta"],
+            s["episodes"][ep],
+            s["contestants"],
+            perfs[pk],
+            scores[pk],
+            writeups=notes[pk],
         )
     return out
 
@@ -226,6 +235,7 @@ def _row(show: str, n: int, ep: int, season: dict, card: dict, friends: set[str]
         "song": card["song"],
         "dancers": [d for c in card["contestants"] for d in season["dancers"].get(c, [])],
         "locked": card["locked"],
+        "writeup": card["writeup"],
     }
     if card["locked"]:
         return row
