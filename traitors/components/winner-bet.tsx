@@ -3,10 +3,12 @@
 import { useState } from "react";
 
 import { RoundTable } from "@/components/round-table";
+import { Headshot } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/toast";
 import { WaxSeal } from "@/components/ui/wax-seal";
 import { submitWinner, type Faction, type Player } from "@/lib/api/traitors";
+import { playerOf } from "@/lib/players";
 import { FACTION, multiplier, WINNER } from "@/lib/points";
 import { button, cn, EYEBROW, HEADING } from "@/lib/ui";
 import { ApiError } from "@armchair/app-core/api/client";
@@ -38,7 +40,6 @@ export function WinnerBet({ season, roster, episodes, released, prompt, onSealed
   const [picks, setPicks] = useState<Pick[]>([]);
   const m = multiplier(episodes, released);
   const ready = picks.length > 0 && picks.every((p) => p.faction !== null);
-  const names = new Map(roster.map((p) => [p.id, p.name]));
 
   const toggle = (id: string) =>
     setPicks((ps) =>
@@ -138,7 +139,7 @@ export function WinnerBet({ season, roster, episodes, released, prompt, onSealed
       {picks.map((p) => (
         <FactionChoice
           key={p.player}
-          name={names.get(p.player) ?? p.player}
+          player={playerOf(p.player, roster)}
           value={p.faction}
           onChange={(f) => side(p.player, f)}
         />
@@ -160,17 +161,23 @@ const SIDES: { id: Faction; swatch: string }[] = [
 ];
 
 function FactionChoice({
-  name,
+  player,
   value,
   onChange,
 }: {
-  name: string;
+  player: Player;
   value: Faction | null;
   onChange: (f: Faction) => void;
 }) {
+  const name = player.name;
   return (
     <fieldset className="flex flex-col gap-2">
-      <legend className="mb-2 font-display tracking-[0.06em] text-bone">{name} wins as</legend>
+      <legend className="mb-2 flex items-center gap-2 font-display tracking-[0.06em] text-bone">
+        <span aria-hidden="true" className="inline-flex">
+          <Headshot name={name} image={player.headshot} size={32} round />
+        </span>
+        {name} wins as
+      </legend>
       <div className="grid grid-cols-2 gap-2">
         {SIDES.map((s) => (
           <label key={s.id} className="relative cursor-pointer">

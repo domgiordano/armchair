@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useState, type ReactNode } from "react";
 
 import { Outcome } from "@/components/outcome";
-import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
+import { PlayerChip } from "@/components/player-chip";
+import { seasonPlayerHref } from "@/components/player-link";
 import { RecapCard, SealedScroll } from "@/components/recap";
 import { RoundTable } from "@/components/round-table";
 import { ShieldMark, Tally } from "@/components/table-art";
@@ -29,7 +30,7 @@ import {
 } from "@/lib/api/traitors";
 import { chalk, chalkable, consensusRows, move, toggle } from "@/lib/ballot";
 import { finishText } from "@/lib/history";
-import { firstName, nameOf, roman } from "@/lib/players";
+import { firstName, nameOf, playerOf, roman } from "@/lib/players";
 import { eventPoints } from "@/lib/points";
 import { votesByTarget } from "@/lib/recap";
 import { formatRelease } from "@/lib/schedule";
@@ -389,6 +390,9 @@ function PickSlate({ event, roster, picks, forfeit, onPicks, onForfeit, onSeal }
             </span>
             {id && !forfeit ? (
               <>
+                <span aria-hidden="true" className="inline-flex">
+                  <Headshot name={nameOf(id, roster)} image={playerOf(id, roster).headshot} size={32} round />
+                </span>
                 <Chalk key={id} className="min-w-0 flex-1 truncate">
                   <span className="sr-only">{ranked ? `${roman(i + 1)}: ` : ""}</span>
                   {nameOf(id, roster)}
@@ -492,11 +496,8 @@ interface VotesProps {
 
 /** The slates as they were read out, gathered by who they named. */
 function Votes({ season, ballots, shields, roster }: VotesProps) {
-  const link = (id: string) => (
-    <PlayerLink key={id} season={season} id={id}>
-      {nameOf(id, roster)}
-    </PlayerLink>
-  );
+  const hrefOf = seasonPlayerHref(season);
+  const link = (id: string) => <PlayerChip key={id} player={playerOf(id, roster)} href={hrefOf(id)} size={24} />;
   const list = (ids: string[]) => ids.flatMap((id, i) => (i > 0 ? [", ", link(id)] : [link(id)]));
   return (
     <Card as="section" aria-labelledby="votes-title" className="flex flex-col gap-3">
@@ -507,9 +508,12 @@ function Votes({ season, ballots, shields, roster }: VotesProps) {
         {votesByTarget(ballots).map(({ target, voters }) => (
           <li key={target} className="flex flex-col gap-1 border-b border-bone/10 pb-2 last:border-b-0 last:pb-0">
             <span className="flex items-center gap-3">
-              <PlayerLink season={season} id={target} className="font-display font-semibold text-bone">
-                {nameOf(target, roster)}
-              </PlayerLink>
+              <PlayerChip
+                player={playerOf(target, roster)}
+                href={hrefOf(target)}
+                size={36}
+                nameClassName="font-display font-semibold"
+              />
               <Tally count={voters.length} />
               <span className="ml-auto text-sm text-ash">
                 <span className="nums">{voters.length}</span> {voters.length === 1 ? "vote" : "votes"}
@@ -551,12 +555,10 @@ function Reveal({ season, event, roster, members, closed }: RevealProps) {
         {mine?.picks && (
           <ol className="flex flex-wrap gap-x-5 gap-y-1">
             {mine.picks.map((id, i) => (
-              <li key={id} className="flex items-baseline gap-2">
+              <li key={id} className="flex items-center gap-2">
                 {event.type === "RT" && <span className="font-display text-gilt">{roman(i + 1)}</span>}
                 <Chalk>
-                  <PlayerLink season={season} id={id} className="text-bone no-underline">
-                    {nameOf(id, roster)}
-                  </PlayerLink>
+                  <PlayerChip player={playerOf(id, roster)} href={seasonPlayerHref(season)(id)} />
                 </Chalk>
               </li>
             ))}
@@ -587,9 +589,7 @@ function Reveal({ season, event, roster, members, closed }: RevealProps) {
               <li key={r.id} className="flex flex-col gap-1">
                 <span className="text-parchment">
                   <span className="nums text-bone">{Math.round(r.share * 100)}%</span> had{" "}
-                  <PlayerLink season={season} id={r.id}>
-                    {nameOf(r.id, roster)}
-                  </PlayerLink>
+                  <PlayerChip player={playerOf(r.id, roster)} href={seasonPlayerHref(season)(r.id)} size={24} />
                   {event.type === "RT" ? " first" : ""}
                 </span>
                 <span aria-hidden="true" className="h-2 overflow-hidden rounded-full bg-night">
@@ -623,8 +623,10 @@ function Reveal({ season, event, roster, members, closed }: RevealProps) {
                     <Avatar name={who?.name ?? null} picture={who?.picture ?? null} size={32} />
                     <span className="w-24 shrink-0 truncate text-bone">{who?.name ?? "Someone"}</span>
                     {g.picks ? (
-                      <Chalk className="min-w-0 truncate text-xl">
-                        {g.picks.map((id) => nameOf(id, roster)).join(" · ")}
+                      <Chalk className="flex min-w-0 flex-wrap gap-x-3 gap-y-1 text-xl">
+                        {g.picks.map((id) => (
+                          <PlayerChip key={id} player={playerOf(id, roster)} href={seasonPlayerHref(season)(id)} size={24} />
+                        ))}
                       </Chalk>
                     ) : (
                       <span className="text-ash italic">No pick</span>

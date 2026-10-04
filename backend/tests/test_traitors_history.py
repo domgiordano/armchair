@@ -172,6 +172,7 @@ def test_player_past_season(db):
     assert status == 200
     # The story has its own tests (test_traitors_stories.py).
     assert len(body["data"].pop("story")) == 11
+    body["data"].pop("people")
     assert body["data"] == {
         "id": "rob-rausch",
         "name": "Rob Rausch",
@@ -194,6 +195,7 @@ def test_player_past_season(db):
                 "finish": {"ep": 11, "how": "winner"},
                 "faction": "Traitor",
                 "votes": [{"ep": ep, "received": 1 if ep in (7, 8) else 0} for ep in range(2, 12)],
+                "traitorFrom": 1,
             }
         ],
     }
@@ -225,6 +227,7 @@ def test_player_current_season_shows_only_closed_exits(db):
             "finish": None,
             "faction": None,
             "votes": None,
+            "traitorFrom": None,
         }
     ]
     db.Table(CATALOG_TABLE).update_item(

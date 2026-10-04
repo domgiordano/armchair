@@ -500,6 +500,8 @@ def test_finished_season_story(db):
         "votesReceived": None,
         "shield": False,
         "out": None,
+        "murdered": None,
+        "recruited": None,
     }
     # Episode 2: his row reads `| Porsha`; Yam Yam, Monét, Tiffany and Rob C. named him.
     assert (told[1]["voted"], told[1]["votesReceived"]) == ("porsha-williams", 4)
@@ -524,6 +526,119 @@ def test_current_season_story_stops_at_the_first_unseen_episode(db):
     kim = story("kim-daily")
     assert [s["ep"] for s in kim] == [1, 2]
     assert kim[1]["out"] == {"how": "murdered"}
+
+
+# --- A Traitor's kills and recruits -------------------------------------------------------
+
+
+def profile(pid: str) -> dict:
+    status, body = get(player_handler, "/traitors/player", show="tus", id=pid)
+    assert status == 200
+    return body["data"]
+
+
+def set_player(aws, number: int, pid: str, **fields) -> None:
+    aws.Table(CATALOG_TABLE).update_item(
+        Key={"pk": f"SEASON#tus#{number}", "sk": f"PLAYER#{pid}"},
+        UpdateExpression="SET " + ", ".join(f"#{k} = :{k}" for k in fields),
+        ExpressionAttributeNames={f"#{k}": k for k in fields},
+        ExpressionAttributeValues={f":{k}": v for k, v in fields.items()},
+    )
+
+
+def by_ep(data: dict, field: str) -> dict[int, list[str] | None]:
+    return {s["ep"]: s[field] for s in data["story"]}
+
+
+def test_original_traitor_murders_and_recruits_all_season(db):
+    backfill("tus-4")
+    index(db)
+    rob = profile("rob-rausch")
+    assert rob["seasons"][0]["traitorFrom"] == 1
+    murdered = by_ep(rob, "murdered")
+    # The Murdered column: Ian Terry found at episode 2's breakfast, Mark Ballas at 11's.
+    assert murdered[1] == []
+    assert murdered[2] == ["ian-terry"] and murdered[11] == ["mark-ballas"]
+    recruited = by_ep(rob, "recruited")
+    assert recruited[9] == ["eric-nam"]
+    # He won in episode 11: there was no night after it to be his.
+    assert recruited[11] is None
+
+
+def test_recruit_acts_only_after_the_night_they_were_recruited(db):
+    backfill("tus-4")
+    index(db)
+    eric = profile("eric-nam")
+    assert eric["seasons"][0]["traitorFrom"] == 9
+    murdered = by_ep(eric, "murdered")
+    assert all(murdered[ep] is None for ep in range(1, 10))
+    assert (murdered[10], murdered[11]) == (["kristen-kish"], ["mark-ballas"])
+    recruited = by_ep(eric, "recruited")
+    assert recruited[9] is None and recruited[10] == []
+    # Banished in episode 11, before that night.
+    assert recruited[11] is None
+
+
+def test_faithful_and_accomplice_never_murder(db):
+    backfill("tus-4")
+    index(db)
+    set_player(db, 4, "michael-rapaport", faction="Accomplice")
+    for pid in ("michael-rapaport", "colton-underwood"):
+        data = profile(pid)
+        assert data["seasons"][0]["traitorFrom"] is None
+        assert all(s["murdered"] is None and s["recruited"] is None for s in data["story"])
+
+
+def test_people_names_everyone_the_story_mentions(db):
+    backfill("tus-4")
+    index(db)
+    set_player(db, 4, "ian-terry", headshot={"image": "ian.jpg", "source": "search"})
+    rob = profile("rob-rausch")
+    named = {
+        who
+        for s in rob["story"]
+        for who in [s["voted"], *(s["murdered"] or []), *(s["recruited"] or [])]
+        if who
+    }
+    assert {"ian-terry", "eric-nam", "mark-ballas"} <= named
+    assert set(rob["people"]) == named
+    assert rob["people"]["ian-terry"] == {"name": "Ian Terry", "headshot": "ian.jpg"}
+    assert rob["people"]["eric-nam"] == {"name": "Eric Nam", "headshot": None}
+
+
+def test_current_season_hides_an_unrevealed_traitors_murders(db):
+    backfill()
+    index(db)
+    # Joe stays in the castle: nothing has said he is a Traitor, even of closed episode 1.
+    set_player(db, 5, "joe-vanella", faction="Traitor")
+    answer(db, 2)
+    answer(db, 3)
+    joe = profile("joe-vanella")
+    assert joe["seasons"][0]["traitorFrom"] is None
+    assert [s["ep"] for s in joe["story"]] == [1, 2, 3]
+    assert all(s["murdered"] is None and s["recruited"] is None for s in joe["story"])
+    assert "kim-daily" not in joe["people"]
+    # Banished as a Traitor in episode 4, which the caller hasn't seen: still hidden.
+    set_player(db, 5, "joe-vanella", exit={"ep": 4, "how": "banished"})
+    joe = profile("joe-vanella")
+    assert joe["seasons"][0]["traitorFrom"] is None
+    assert all(s["murdered"] is None for s in joe["story"])
+
+
+def test_current_season_reveals_murders_once_the_banishment_is_seen(db):
+    backfill()
+    index(db)
+    set_player(db, 5, "joe-vanella", faction="Traitor", exit={"ep": 4, "how": "banished"})
+    answer(db, 2)
+    answer(db, 4)
+    # Episode 4's banishment is seen, but 3 isn't: the story, murders and all, stops at 2.
+    joe = profile("joe-vanella")
+    assert joe["seasons"][0]["traitorFrom"] == 1
+    assert by_ep(joe, "murdered") == {1: [], 2: ["kim-daily"]}
+    assert joe["people"]["kim-daily"]["name"] == "Kim Daily"
+    answer(db, 3)
+    murdered = by_ep(profile("joe-vanella"), "murdered")
+    assert (murdered[3], murdered[4]) == (["xavier-scruggs"], ["logan-smith"])
 
 
 def test_player_about_and_bio_source(db):

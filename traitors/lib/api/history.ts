@@ -47,6 +47,8 @@ export interface Career {
   votes: { ep: number; received: number }[] | null;
   /** Won the season. */
   championship: boolean;
+  /** The episode they became a Traitor; null unless that's yours to know. */
+  traitorFrom?: number | null;
 }
 
 /** One episode of a player's season, only as far as the caller may see. */
@@ -59,6 +61,10 @@ export interface StoryEpisode {
   votesReceived: number | null;
   shield: boolean;
   out: { how: string } | null;
+  /** As a Traitor: found dead at this episode's breakfast. Null when not theirs, or not yours to know. */
+  murdered?: string[] | null;
+  /** As a Traitor: recruited this episode's night. */
+  recruited?: string[] | null;
 }
 
 export interface PlayerProfile {
@@ -70,6 +76,8 @@ export interface PlayerProfile {
   about?: { age: number | null; hometown: string | null; occupation: string | null } | null;
   seasons: Career[];
   story?: StoryEpisode[];
+  /** Name and photo of everyone the story names, by id. */
+  people?: Record<string, { name: string; headshot: string | null }>;
 }
 
 export const getPlayer = (show: Show, id: string) =>

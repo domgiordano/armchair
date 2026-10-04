@@ -231,6 +231,44 @@ def seen(sub: str, meta: dict, episode: dict, picks: list[dict]) -> bool:
     return closed(meta, episode) or answered(sub, episode, picks)
 
 
+def recruited_at(pid: str, stored: dict[int, list[dict]]) -> int | None:
+    """The night a player was recruited, from the confirmed RECRUIT rows in `stored`."""
+    nights = [
+        n
+        for n, rows in stored.items()
+        for r in rows
+        if r["sk"] == "EVT#RECRUIT" and pid in (result(r) or {}).get("recruits", [])
+    ]
+    return min(nights, default=None)
+
+
+def traitor_from(
+    sub: str,
+    meta: dict,
+    episodes: list[dict],
+    player: dict,
+    stored: dict[int, list[dict]],
+    picks: dict[int, list[dict]],
+) -> int | None:
+    """
+    The episode a player became a Traitor, if the caller may know they were one: 1 for
+    an original, the episode whose night recruited them for a recruit, never for an
+    Accomplice. A current season tells only once a banishment the caller has seen
+    revealed them: before that, a murder list, even an empty one, would give away their
+    side. Arguments as for `story`.
+    """
+    if player.get("faction") != "Traitor":
+        return None
+    if meta.get("current"):
+        gone = player.get("exit")
+        if not gone or gone["how"] != "banished":
+            return None
+        ep = int(gone["ep"])
+        if not any(ep_number(e) == ep and seen(sub, meta, e, picks.get(ep, [])) for e in episodes):
+            return None
+    return recruited_at(player_id(player), stored) or 1
+
+
 def story(
     sub: str,
     meta: dict,
@@ -241,13 +279,21 @@ def story(
 ) -> list[dict]:
     """
     One player's season an episode at a time, over `episodes` (released, up to their
-    exit): whom they voted for, the votes they drew, a shield, and how they left.
-    `stored` and `picks` map an episode to its performances and scores rows. A current
-    season stops at the first episode the caller hasn't seen, so a missing episode
-    can't hint that the player is out.
+    exit): whom they voted for, the votes they drew, a shield, how they left, and for a
+    Traitor whom they murdered and recruited. `stored` and `picks` map an episode to its
+    performances and scores rows. A current season stops at the first episode the
+    caller hasn't seen, so a missing episode can't hint that the player is out.
+
+    `murdered` is who was found dead at that episode's breakfast, decided the night
+    before; `recruited` is that night's recruits. Both are null unless the player was a
+    Traitor then and the caller may know it (traitor_from): an original all season, a
+    recruit from the episode after the night that recruited them. `recruited` is also
+    null in the episode they left, since that night went on without them.
     """
     pid = player_id(player)
     gone = player.get("exit")
+    traitor = traitor_from(sub, meta, episodes, player, stored, picks) is not None
+    night = recruited_at(pid, stored) or 0
     out = []
     for e in episodes:
         n = ep_number(e)
@@ -256,6 +302,10 @@ def story(
         rows = {r["sk"].removeprefix("EVT#"): r for r in stored.get(n, [])}
         rt = shown(rows.get("RT"))
         held = result(rows.get("SHIELD"))
+        killed = result(rows.get("MURDER"))
+        recruits = result(rows.get("RECRUIT"))
+        acting = traitor and n > night
+        last = bool(gone) and int(gone["ep"]) == n
         out.append(
             {
                 "ep": n,
@@ -263,7 +313,9 @@ def story(
                 "voted": rt and rt.get("ballots", {}).get(pid),
                 "votesReceived": rt and rt["firstVote"].get(pid, 0),
                 "shield": bool(held) and pid in held["shields"],
-                "out": {"how": gone["how"]} if gone and int(gone["ep"]) == n else None,
+                "out": {"how": gone["how"]} if last else None,
+                "murdered": killed["victims"] if acting and killed else None,
+                "recruited": recruits["recruits"] if acting and recruits and not last else None,
             }
         )
     return out

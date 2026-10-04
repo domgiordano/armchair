@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 
 import { FactionBadge } from "@/components/faction-badge";
 import { errorText } from "@/components/season-data";
-import { ShieldMark, Tally } from "@/components/table-art";
+import { PlayerChip } from "@/components/player-chip";
+import { CloakToken, DaggerToken, ShieldMark, Tally } from "@/components/table-art";
 import { Headshot } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { SkeletonList } from "@/components/ui/skeleton";
@@ -16,7 +17,9 @@ import { getPlayer, type Career, type PlayerProfile, type StoryEpisode } from "@
 import { finishText, playerHref } from "@/lib/history";
 import { nameOf, roman } from "@/lib/players";
 import { isShow, seasonLabel, seasonNumber, withSeason, type Show } from "@/lib/seasons";
-import { cn, EYEBROW, FOCUS, HEADING, TEXT_LINK } from "@/lib/ui";
+import { cn, EYEBROW, HEADING, TEXT_LINK } from "@/lib/ui";
+
+type People = NonNullable<PlayerProfile["people"]>;
 
 type Load = { kind: "loading" } | { kind: "ready"; player: PlayerProfile } | { kind: "error"; message: string };
 
@@ -99,7 +102,7 @@ function Player({ show, id }: { show: Show; id: string }) {
           <p className="text-ash">No biography yet.</p>
         </section>
       )}
-      <Story show={show} story={p.story ?? []} seasons={seasons} />
+      <Story show={show} story={p.story ?? []} seasons={seasons} people={p.people ?? {}} />
       <h2 className={EYEBROW}>Seasons played</h2>
       <ol aria-label="Seasons played" className="-mt-2 flex flex-col gap-4">
         {seasons.map((s) => (
@@ -138,18 +141,26 @@ interface StoryProps {
   story: StoryEpisode[];
   /** Newest first: the story's seasons go in the same order. */
   seasons: Career[];
+  people: People;
 }
 
-/** What the player did each episode you may see: their vote, the votes against them, a shield, how they left. */
-function Story({ show, story, seasons }: StoryProps) {
+/**
+ * What the player did each episode you may see: their vote, the votes against them, a
+ * shield, how they left, and as a Traitor whom they murdered and recruited.
+ */
+function Story({ show, story, seasons, people }: StoryProps) {
   const order = seasons.map((s) => s.season);
   const groups = [...new Set(story.map((s) => s.season))]
     .sort((a, b) => order.indexOf(a) - order.indexOf(b))
-    .map((season) => ({
-      season,
-      label: seasonLabel({ id: season, number: seasons.find((s) => s.season === season)?.number ?? seasonNumber(season) }),
-      episodes: story.filter((s) => s.season === season).sort((a, b) => a.ep - b.ep),
-    }));
+    .map((season) => {
+      const career = seasons.find((s) => s.season === season);
+      return {
+        season,
+        label: seasonLabel({ id: season, number: career?.number ?? seasonNumber(season) }),
+        traitorFrom: career?.traitorFrom ?? null,
+        episodes: story.filter((s) => s.season === season).sort((a, b) => a.ep - b.ep),
+      };
+    });
 
   return (
     <section aria-labelledby="story-title" className="flex flex-col gap-3">
@@ -162,9 +173,15 @@ function Story({ show, story, seasons }: StoryProps) {
         groups.map((g) => (
           <Card as="section" key={g.season} aria-label={`${g.label}, episode by episode`} className="flex flex-col gap-2">
             <h3 className="font-display text-lg font-semibold text-bone">{g.label}</h3>
+            {g.traitorFrom !== null && (
+              <p className="flex items-center gap-2 text-parchment">
+                <CloakToken className="size-6 shrink-0" />
+                Traitor from episode {g.traitorFrom}
+              </p>
+            )}
             <ol className="flex flex-col">
               {g.episodes.map((s) => (
-                <StoryRow key={s.ep} show={show} entry={s} />
+                <StoryRow key={s.ep} show={show} entry={s} people={people} />
               ))}
             </ol>
           </Card>
@@ -174,8 +191,16 @@ function Story({ show, story, seasons }: StoryProps) {
   );
 }
 
-function StoryRow({ show, entry: s }: { show: Show; entry: StoryEpisode }) {
-  const voted = s.voted && nameOf(s.voted, null);
+function StoryRow({ show, entry: s, people }: { show: Show; entry: StoryEpisode; people: People }) {
+  const chip = (id: string) => (
+    <PlayerChip
+      key={id}
+      player={{ id, name: people[id]?.name ?? nameOf(id, null), headshot: people[id]?.headshot ?? null }}
+      href={playerHref(show, id, s.season)}
+      className="min-h-11"
+      nameClassName="font-hand text-xl leading-none"
+    />
+  );
   return (
     <li
       aria-label={`Episode ${s.ep}`}
@@ -187,18 +212,10 @@ function StoryRow({ show, entry: s }: { show: Show; entry: StoryEpisode }) {
       <div className="flex min-w-0 flex-col gap-2">
         <p className="text-bone">{s.title ?? `Episode ${s.ep}`}</p>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-parchment">
-          {s.voted && voted ? (
+          {s.voted ? (
             <span className="flex items-center gap-2">
               Voted for
-              <Link
-                href={playerHref(show, s.voted, s.season)}
-                className={cn(FOCUS, "group flex min-h-11 items-center gap-2 rounded-sm pr-1 hover:text-candle")}
-              >
-                <span aria-hidden="true">
-                  <Headshot name={voted} image={null} size={28} round />
-                </span>
-                <span className="font-hand text-xl leading-none text-bone group-hover:text-candle">{voted}</span>
-              </Link>
+              {chip(s.voted)}
             </span>
           ) : (
             s.votesReceived !== null && <span className="text-ash">No vote on record</span>
@@ -229,6 +246,20 @@ function StoryRow({ show, entry: s }: { show: Show; entry: StoryEpisode }) {
             </span>
           )}
         </div>
+        {s.murdered && s.murdered.length > 0 && (
+          <div role="group" aria-label="Murdered" className="flex flex-wrap items-center gap-x-3 gap-y-1 text-parchment">
+            <DaggerToken className="size-6 shrink-0" />
+            <span>Murdered</span>
+            {s.murdered.map(chip)}
+          </div>
+        )}
+        {s.recruited && s.recruited.length > 0 && (
+          <div role="group" aria-label="Recruited" className="flex flex-wrap items-center gap-x-3 gap-y-1 text-parchment">
+            <CloakToken className="size-6 shrink-0" />
+            <span>Recruited</span>
+            {s.recruited.map(chip)}
+          </div>
+        )}
       </div>
     </li>
   );

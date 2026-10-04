@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 
 import { FactionWord } from "@/components/faction-word";
+import { PlayerChip } from "@/components/player-chip";
 import { RecapFold } from "@/components/recap";
 import { RoundTable } from "@/components/round-table";
 import { errorText } from "@/components/season-data";
@@ -17,9 +18,9 @@ import { EmptyState, ErrorState } from "@/components/ui/states";
 import { getHistory, type History, type HistoryEpisode, type HistoryPlayer } from "@/lib/api/history";
 import type { Writeup as WriteupText } from "@/lib/api/traitors";
 import { byFinish, playerHref, seatedAt } from "@/lib/history";
-import { roman } from "@/lib/players";
+import { playerOf, roman } from "@/lib/players";
 import { seasonName, seasonNumber, showOf } from "@/lib/seasons";
-import { cn, EYEBROW, FOCUS, HEADING, TEXT_LINK } from "@/lib/ui";
+import { cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
 
 type Load = { kind: "loading" } | { kind: "ready"; history: History } | { kind: "error"; message: string };
 
@@ -77,15 +78,12 @@ export function HistoryScreen({ season, summary = null }: HistoryScreenProps) {
   }
 
   const h = load.history;
-  const byId = new Map(h.players.map((p) => [p.id, p]));
   const link = (id: string) => playerHref(showOf(season), id, season);
   const names = (ids: string[]) =>
     ids.map((id, i) => (
       <span key={id}>
         {i > 0 && ", "}
-        <Link href={link(id)} className={TEXT_LINK}>
-          {byId.get(id)?.name ?? id}
-        </Link>
+        <PlayerChip player={playerOf(id, h.players)} href={link(id)} size={28} />
       </span>
     ));
 
@@ -146,25 +144,25 @@ function Winners({ history, link }: { history: History; link: (id: string) => st
       </h2>
       <ul className="flex flex-wrap gap-x-5 gap-y-3">
         {history.winners.map((w) => {
-          const p = history.players.find((x) => x.id === w.id);
+          const p = playerOf(w.id, history.players);
           return (
             <li key={w.id}>
               <Link
                 href={link(w.id)}
-                aria-label={[p?.name ?? w.id, w.faction].filter(Boolean).join(", ")}
+                aria-label={[p.name, w.faction].filter(Boolean).join(", ")}
                 className={`${FOCUS} group flex items-center gap-3 rounded-sm transition-colors active:opacity-80`}
               >
                 <span aria-hidden="true">
                   <Headshot
-                    name={p?.name ?? w.id}
-                    image={p?.headshot ?? null}
+                    name={p.name}
+                    image={p.headshot}
                     size={72}
                     className="ring-candle transition-shadow group-hover:shadow-[0_0_14px_rgb(233_185_73/0.6)]"
                   />
                 </span>
                 <span className="flex flex-col">
                   <span className="font-display text-lg leading-tight font-semibold text-bone group-hover:text-candle">
-                    {p?.name ?? w.id}
+                    {p.name}
                   </span>
                   {w.faction && <FactionWord faction={w.faction} className="text-base" />}
                 </span>

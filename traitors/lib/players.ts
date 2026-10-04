@@ -5,6 +5,11 @@ export function nameOf(id: string, players: Player[] | null): string {
   return players?.find((p) => p.id === id)?.name ?? id.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 }
 
+/** A player from a roster, with their photo; someone missing from it gets a name and the hood. */
+export function playerOf(id: string, players: Player[] | null): Player {
+  return players?.find((p) => p.id === id) ?? { id, name: nameOf(id, null), headshot: null };
+}
+
 export const firstName = (name: string) => name.trim().split(/\s+/)[0];
 
 const NUMERALS: [number, string][] = [
