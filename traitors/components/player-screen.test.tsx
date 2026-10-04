@@ -8,6 +8,7 @@ vi.mock("@/lib/api/history", () => api);
 vi.mock("@/components/season-provider", () => ({ useShellSeason: () => ({ edition: "uk", season: "tukc-2" }) }));
 
 import type { PlayerProfile, StoryEpisode } from "@/lib/api/history";
+import { spoken } from "@/test/spoken";
 
 import { PlayerScreen } from "./player-screen";
 import { PlayerSearch } from "./player-search";
@@ -199,4 +200,63 @@ it("paints the red X onto someone banished in their latest season, and not on so
   const again = render(<PlayerScreen />);
   await screen.findByRole("heading", { name: "Ann Avery" });
   expect(again.container.querySelector("[data-out]")).toBeNull();
+});
+
+const entry = (ep: number, rest: Partial<StoryEpisode>): StoryEpisode => ({
+  season: "tus-2",
+  ep,
+  title: null,
+  voted: null,
+  votesReceived: null,
+  shield: false,
+  out: null,
+  murdered: null,
+  recruited: null,
+  ...rest,
+});
+
+it("shows everyone the story names with their photo, and a Traitor's murders and recruits", async () => {
+  api.getPlayer.mockResolvedValue({
+    ...PROFILE,
+    seasons: PROFILE.seasons.map((s) => (s.season === "tus-2" ? { ...s, traitorFrom: 1 } : s)),
+    story: [
+      entry(2, { voted: "bo-banks", votesReceived: 0, murdered: [] }),
+      entry(3, { voted: "cy-cole", votesReceived: 2, murdered: ["bo-banks", "di-dunn"], recruited: ["ed-eaves"] }),
+    ],
+    people: {
+      "bo-banks": { name: "Bo Banks", headshot: "bo.jpg" },
+      "cy-cole": { name: "Cy Cole", headshot: null },
+      "ed-eaves": { name: "Ed Eaves", headshot: "ed.jpg" },
+    },
+  });
+  render(<PlayerScreen />);
+
+  const s2 = within(await screen.findByRole("region", { name: "Season 2, episode by episode" }));
+  expect(s2.getByText("Traitor from episode 1")).toBeTruthy();
+  const [second, third] = s2.getAllByRole("listitem").map((li) => within(li));
+
+  const photo = (link: HTMLElement) => link.querySelector("img")?.getAttribute("src");
+  expect(photo(second.getByRole("link", { name: "Bo Banks" }))).toMatch(/\/headshots\/bo\.jpg$/);
+  // No photo on file: the hood, still under their real name.
+  const cy = third.getByRole("link", { name: "Cy Cole" });
+  expect(cy.querySelector("img")).toBeNull();
+  expect(cy.querySelector('[role="img"]')?.getAttribute("aria-label")).toBe("Cy Cole");
+  // Nobody killed that night: no Murdered line rather than an empty one.
+  expect(second.queryByRole("group", { name: "Murdered" })).toBeNull();
+
+  const murdered = within(third.getByRole("group", { name: "Murdered" }));
+  expect(murdered.getAllByRole("link").map(spoken)).toEqual(["Bo Banks", "Di Dunn"]);
+  expect(photo(murdered.getByRole("link", { name: "Bo Banks" }))).toMatch(/\/headshots\/bo\.jpg$/);
+  expect(murdered.getByRole("link", { name: "Di Dunn" }).getAttribute("href")).toMatch(/show=tus&id=di-dunn&season=tus-2$/);
+  const recruited = within(third.getByRole("group", { name: "Recruited" }));
+  expect(photo(recruited.getByRole("link", { name: "Ed Eaves" }))).toMatch(/\/headshots\/ed\.jpg$/);
+});
+
+it("says nothing of murders for a player the API doesn't name a Traitor", async () => {
+  api.getPlayer.mockResolvedValue({ ...PROFILE, story: [entry(3, { votesReceived: 1 })] });
+  render(<PlayerScreen />);
+  const s2 = within(await screen.findByRole("region", { name: "Season 2, episode by episode" }));
+  expect(s2.queryByText(/Traitor from/)).toBeNull();
+  expect(s2.queryByRole("group", { name: "Murdered" })).toBeNull();
+  expect(s2.queryByRole("group", { name: "Recruited" })).toBeNull();
 });

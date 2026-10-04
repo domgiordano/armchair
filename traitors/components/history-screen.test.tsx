@@ -5,6 +5,7 @@ const api = vi.hoisted(() => ({ getHistory: vi.fn(), getPlayer: vi.fn(() => new 
 vi.mock("@/lib/api/history", () => api);
 
 import type { History } from "@/lib/api/history";
+import { spoken } from "@/test/spoken";
 
 import { HistoryScreen } from "./history-screen";
 
@@ -82,8 +83,8 @@ it("seats each round table with its first votes in chalk and marks the banished 
   expect(table.queryAllByRole("button")).toHaveLength(0);
 
   const night = within(screen.getByRole("listitem", { name: "Episode 2" }));
-  expect(night.getByText(/Murdered:/).textContent).toBe("Murdered: Cy Cole");
-  expect(night.getByText(/Recruited:/).textContent).toBe("Recruited: Ed Eaves");
+  expect(spoken(night.getByText(/Murdered:/))).toBe("Murdered: Cy Cole");
+  expect(spoken(night.getByText(/Recruited:/))).toBe("Recruited: Ed Eaves");
   expect(night.getByText(/Banished:/).textContent).toContain("Bo Banks");
 
   const first = within(screen.getByRole("listitem", { name: "Arrival" }));

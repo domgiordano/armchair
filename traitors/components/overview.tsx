@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useBet } from "@/components/bet";
 import { CastTable } from "@/components/cast-wall";
 import { Outcome } from "@/components/outcome";
+import { PlayerChip } from "@/components/player-chip";
 import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
 import { SealedScroll } from "@/components/recap";
 import { Credit } from "@/components/writeup";
@@ -17,7 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { getRanks, type CastMember, type EpisodeEvent, type SeasonEpisode, type SeasonView, type Standing } from "@/lib/api/traitors";
 import { finishText } from "@/lib/history";
-import { nameOf, roman } from "@/lib/players";
+import { playerOf, roman } from "@/lib/players";
 import { multiplier } from "@/lib/points";
 import { excerpt } from "@/lib/recap";
 import { countdown, episodeLabel, formatRelease, latestUnlocked, nextRelease, released, toCall, unlocked } from "@/lib/schedule";
@@ -231,9 +232,7 @@ function BetLine({ view }: { view: SeasonView }) {
       {picks.map((p, i) => (
         <span key={p.player}>
           {i > 0 && (i === picks.length - 1 ? " and " : ", ")}
-          <PlayerLink season={view.season} id={p.player} className="text-bone">
-            {nameOf(p.player, view.cast)}
-          </PlayerLink>{" "}
+          <PlayerChip player={playerOf(p.player, view.cast)} href={seasonPlayerHref(view.season)(p.player)} size={28} />{" "}
           as {p.faction === "Traitor" ? "a Traitor" : "a Faithful"}
         </span>
       ))}

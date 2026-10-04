@@ -1,9 +1,10 @@
 import { Fragment } from "react";
 
 import { FactionWord } from "@/components/faction-word";
-import { PlayerLink } from "@/components/player-link";
+import { PlayerChip } from "@/components/player-chip";
+import { seasonPlayerHref } from "@/components/player-link";
 import type { EpisodeEvent, Player } from "@/lib/api/traitors";
-import { nameOf } from "@/lib/players";
+import { playerOf } from "@/lib/players";
 
 interface OutcomeProps {
   event: EpisodeEvent;
@@ -12,14 +13,10 @@ interface OutcomeProps {
   season: string;
 }
 
-/** What happened at one event, in words: who, and for a banishment, which side. */
+/** What happened at one event: who, with their photo, and for a banishment, which side. */
 export function Outcome({ event, roster, season }: OutcomeProps) {
   if (!event.result) return <span className="text-ash italic">Awaiting the castle</span>;
-  const name = (id: string) => (
-    <PlayerLink season={season} id={id} className="text-bone">
-      {nameOf(id, roster)}
-    </PlayerLink>
-  );
+  const name = (id: string) => <PlayerChip player={playerOf(id, roster)} href={seasonPlayerHref(season)(id)} size={28} />;
   const names = (ids: string[] | undefined) =>
     ids?.length
       ? ids.map((id, i) => (

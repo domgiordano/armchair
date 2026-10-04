@@ -7,13 +7,14 @@ vi.mock("@/lib/api/history", () => ({ getPlayer: () => new Promise(() => {}) }))
 vi.mock("@armchair/app-core/api/client", () => ({ ApiError: class ApiError extends Error {} }));
 
 import type { Episode, EpisodeEvent, SeasonEpisode } from "@/lib/api/traitors";
+import { spoken } from "@/test/spoken";
 
 import { Ballot } from "./ballot";
 
 const ROSTER = ["Ava Stone", "Ben Hart", "Cal Reyes", "Dee Moss", "Eli Park"].map((name) => ({
   id: name.split(" ")[0].toLowerCase(),
   name,
-  headshot: null,
+  headshot: name === "Ava Stone" ? "ava.jpg" : null,
 }));
 const SEASON_EP: SeasonEpisode = { ep: 5, title: null, releaseAt: "2026-10-16T01:00:00Z", closed: false, events: 3, answered: 0 };
 const locked = (type: EpisodeEvent["type"]) => ({ type, picks: type === "RT" ? 3 : 1, mine: null, locked: true }) as EpisodeEvent;
@@ -137,8 +138,11 @@ it("reveals the banishment on the table with your points and everyone's first pi
   expect(screen.getByRole("link", { name: "Ava Stone, your first, banished, Traitor, 5 called" })).toBeTruthy();
   expect(screen.getByText(para("+10 points"))).toBeTruthy();
   const consensus = within(screen.getByRole("region", { name: /Everyone's calls/ }));
-  expect(consensus.getAllByRole("listitem")[0].textContent).toBe("63% had Ava Stone first");
-  expect(consensus.getByRole("link", { name: "Ava Stone" }).getAttribute("href")).toMatch(/show=tus&id=ava&season=tus-5/);
+  expect(spoken(consensus.getAllByRole("listitem")[0])).toBe("63% had Ava Stone first");
+  const ava = consensus.getByRole("link", { name: "Ava Stone" });
+  expect(ava.getAttribute("href")).toMatch(/show=tus&id=ava&season=tus-5/);
+  // Her photo, not the hood.
+  expect(ava.querySelector("img")?.getAttribute("src")).toMatch(/\/headshots\/ava\.jpg$/);
 
   fireEvent.click(screen.getByRole("tab", { name: "Murder, sealed" }));
   expect(screen.getByRole("link", { name: "Ben Hart, your pick, murdered" })).toBeTruthy();
@@ -195,11 +199,11 @@ it("draws who voted for whom on the table, lists the votes by target and badges 
   expect(screen.getByRole("link", { name: "Eli Park, voted for Cal Reyes, held a shield" })).toBeTruthy();
 
   const votes = within(screen.getByRole("region", { name: "How the castle voted" }));
-  expect(votes.getAllByRole("listitem").map((li) => li.textContent)).toEqual([
+  expect(votes.getAllByRole("listitem").map(spoken)).toEqual([
     "Ava Stone3 votesfrom Ben Hart, Cal Reyes, Dee Moss",
     "Cal Reyes2 votesfrom Ava Stone, Eli Park",
   ]);
-  expect(votes.getByText(/Shielded tonight/).textContent).toBe("Shielded tonight: Eli Park");
+  expect(spoken(votes.getByText(/Shielded tonight/))).toBe("Shielded tonight: Eli Park");
 
   // Off, the table goes back to counting everyone's calls; the shield stays.
   fireEvent.click(toggle);
