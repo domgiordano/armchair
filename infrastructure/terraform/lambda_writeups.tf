@@ -8,12 +8,6 @@ locals {
 
 # The key lives in Infisical (code project, /armchair); the Terraform workflow
 # exports it as TF_VAR_anthropic_api_key. Rotate there and re-run Terraform.
-# Hand-set before this was managed; drop the import once applied.
-import {
-  to = aws_ssm_parameter.anthropic_api_key
-  id = "/armchair/api/ANTHROPIC_API_KEY"
-}
-
 resource "aws_ssm_parameter" "anthropic_api_key" {
   name  = "/${var.app_name}/api/ANTHROPIC_API_KEY"
   type  = "SecureString"
