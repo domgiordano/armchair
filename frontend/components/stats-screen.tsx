@@ -124,7 +124,7 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
       .map((id) => season.contestants.find((x) => x.id === id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
       .join(", ");
   // A team dance's key names no one couple, so it never reads as eliminated.
-  const out = (key: string): Elimination | undefined => stats.eliminated[key.slice(0, key.lastIndexOf("#"))];
+  const out = (key: string): Elimination | undefined => (stats.eliminated ?? {})[key.slice(0, key.lastIndexOf("#"))];
   const gone = new Set(stats.dances.flatMap((d) => (out(d.key) ? [d.key.split("#")[0]] : []))).size;
   const { closest, furthest } = extremes(showOut ? stats.dances : stats.dances.filter((d) => !out(d.key)));
 
