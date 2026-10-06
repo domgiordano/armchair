@@ -257,11 +257,21 @@ describe("parentOf", () => {
 });
 
 describe("Back", () => {
-  it.each(["/", "/episode/", "/leaderboard/", "/stats/", "/couples/", "/discover/"])("has no Back on the %s tab", async (path) => {
+  it.each(["/", "/leaderboard/", "/stats/", "/couples/", "/discover/"])("has no Back on the %s tab", async (path) => {
     nav.pathname = path;
     renderShell();
     await screen.findByRole("img", { name: "Ada Lovelace" });
     expect(screen.queryByRole("link", { name: "Back" })).toBeNull();
+  });
+
+  it("keeps Back on the Episodes tab, up to the overview", async () => {
+    nav.pathname = "/episode/";
+    nav.search = new URLSearchParams("season=dwts-34&ep=04");
+    renderShell();
+    await screen.findByRole("img", { name: "Ada Lovelace" });
+
+    expect(screen.getByRole("link", { name: "Back" }).getAttribute("href")).toBe("/?season=dwts-34");
+    expect(tabs().getByRole("link", { name: "Episodes" }).getAttribute("aria-current")).toBe("page");
   });
 
   it("links up to the parent on a page opened without in-app history", async () => {
