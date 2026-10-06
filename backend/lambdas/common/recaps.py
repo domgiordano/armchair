@@ -205,6 +205,21 @@ def _store(item: dict) -> None:
     )
 
 
+def save(key: str, body: dict) -> None:
+    """A JSON object under PREFIX, for what cron_writeups hands a writer outside the Lambda."""
+    if not key.startswith(PREFIX):
+        raise ValueError(f"{key} is outside {PREFIX}")
+    _client().put_object(
+        Bucket=_bucket(), Key=key, Body=json.dumps(body).encode(), ContentType="application/json"
+    )
+
+
+def load(key: str) -> dict:
+    if not key.startswith(PREFIX):
+        raise ValueError(f"{key} is outside {PREFIX}")
+    return json.loads(_client().get_object(Bucket=_bucket(), Key=key)["Body"].read())
+
+
 def _get(url: str) -> tuple[int, str, str]:
     """(status, final URL, body) for one polite request. A 4xx is returned; other failures raise."""
     host = urlsplit(url).netloc

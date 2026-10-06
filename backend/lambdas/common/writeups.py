@@ -25,6 +25,15 @@ JUDGE_CHARS = 220
 QUOTE_WORDS = 6
 HIGHLIGHTS = 3
 HIGHLIGHT_CHARS = 32
+# What validate() enforces, for a writer outside this Lambda (cron_writeups prepare mode).
+LIMITS = {
+    "summaryChars": SUMMARY_CHARS,
+    "summaryMaxSentences": SENTENCES + 1,
+    "judgeChars": JUDGE_CHARS,
+    "quoteWords": QUOTE_WORDS,
+    "highlights": HIGHLIGHTS,
+    "highlightChars": HIGHLIGHT_CHARS,
+}
 
 SYSTEM = """You write short write-ups of Dancing with the Stars performances for a companion app, working only from excerpts of published recaps given to you.
 
@@ -197,22 +206,28 @@ def _fold(text: str) -> str:
     return " ".join(re.sub(r"[^\w' ]+", " ", text.casefold()).split())
 
 
+def flaw(text: str, f: dict) -> str | None:
+    """Why clean() drops `text`, or None when it keeps it."""
+    numbers = {_num(Decimal(n)) for n in NUMBER.findall(text) if Decimal(n) <= SCORE_MAX}
+    spoken = {str(WORDS[(a or b).lower()]) for a, b in SPOKEN.findall(text)}
+    if not (numbers | spoken) <= f["allowed"]:
+        return "names a number other than this dance's scores"
+    if PERFECT.search(text) and f["total"] != f["max"]:
+        return "calls a score perfect that wasn't"
+    if RESULTS.search(text):
+        return "mentions a result of the night"
+    for n in f["others"]:
+        if re.search(rf"(?<!\w){re.escape(n)}(?!\w)", text):
+            return f"names another couple ({n})"
+    return None
+
+
 def clean(text: str | None, f: dict) -> str | None:
     """The text, or None when it names a wrong score, a result or another couple."""
     if not isinstance(text, str) or not text.strip():
         return None
     text = " ".join(text.split())
-    numbers = {_num(Decimal(n)) for n in NUMBER.findall(text) if Decimal(n) <= SCORE_MAX}
-    spoken = {str(WORDS[(a or b).lower()]) for a, b in SPOKEN.findall(text)}
-    if not (numbers | spoken) <= f["allowed"]:
-        return None
-    if PERFECT.search(text) and f["total"] != f["max"]:
-        return None
-    if RESULTS.search(text):
-        return None
-    if any(re.search(rf"(?<!\w){re.escape(n)}(?!\w)", text) for n in f["others"]):
-        return None
-    return text
+    return None if flaw(text, f) else text
 
 
 def _sentences(text: str) -> int:
@@ -278,6 +293,73 @@ def validate(raw: dict, perfs: list[dict]) -> tuple[dict[str, dict], int]:
             "sources": [] if empty else sources,
         }
     return out, dropped
+
+
+def problems(w: dict, f: dict) -> list[str]:
+    """
+    Why validate() would drop any part of the write-up `w` for the dance `f`,
+    one reason per part. Empty means validate() keeps all of it, so a writer
+    that can be told why (the store mode of cron_writeups) gets rejected
+    instead of silently trimmed.
+    """
+    out = []
+    summary = w.get("summary")
+    if summary is not None:
+        summary = " ".join(summary.split())
+        if reason := flaw(summary, f):
+            out.append(f"summary {reason}")
+        elif len(summary) > SUMMARY_CHARS:
+            out.append(f"summary is over {SUMMARY_CHARS} characters")
+        elif _sentences(summary) > SENTENCES + 1:
+            out.append(f"summary is over {SENTENCES + 1} sentences")
+
+    source = _fold(" ".join(text for _, text in f["excerpts"]))
+    panel = {j for j, _, _ in f["judges"]}
+    said = set()
+    for j in w.get("judges") or []:
+        judge = j.get("judge")
+        if judge not in panel:
+            out.append(f"judge {judge!r} is not on this night's panel")
+            continue
+        if judge in said:
+            out.append(f"judge {judge} appears twice")
+            continue
+        said.add(judge)
+        text = " ".join(j["paraphrase"].split())
+        if reason := flaw(text, f):
+            out.append(f"{judge} paraphrase {reason}")
+        elif len(text) > JUDGE_CHARS:
+            out.append(f"{judge} paraphrase is over {JUDGE_CHARS} characters")
+        quote = j.get("quote")
+        if quote is None:
+            continue
+        quote = " ".join(quote.split())
+        if reason := flaw(quote, f):
+            out.append(f"{judge} quote {reason}")
+            continue
+        quote = quote.strip(" \"'“”")
+        if len(quote.split()) > QUOTE_WORDS:
+            out.append(f"{judge} quote is over {QUOTE_WORDS} words")
+        elif _fold(quote) not in source:
+            out.append(f"{judge} quote is not word for word in the excerpts")
+
+    chips = w.get("highlights") or []
+    if len(chips) > HIGHLIGHTS:
+        out.append(f"more than {HIGHLIGHTS} highlights")
+    for h in chips[:HIGHLIGHTS]:
+        chip = " ".join(h.split())
+        if reason := flaw(chip, f):
+            out.append(f"highlight {chip!r} {reason}")
+        elif len(chip) > HIGHLIGHT_CHARS:
+            out.append(f"highlight {chip!r} is over {HIGHLIGHT_CHARS} characters")
+
+    given = {url for url, _ in f["excerpts"]}
+    out += [
+        f"source {u} is not one of this dance's excerpts"
+        for u in w.get("sources") or []
+        if u not in given
+    ]
+    return out
 
 
 def public(item: dict | None) -> dict | None:
