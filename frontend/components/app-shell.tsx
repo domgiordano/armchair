@@ -78,7 +78,8 @@ function Shell({ title, wide, children }: AppShellProps) {
   const search = params.toString();
   const season = useSeasonId();
   const current = activeTab(pathname);
-  const root = TABS.some((t) => bare(t.href) === bare(pathname));
+  // Episodes is a tab, but every scorecard link lands on it, so it keeps a way back.
+  const back = bare(pathname) === "/episode" || !TABS.some((t) => bare(t.href) === bare(pathname));
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
 
@@ -113,8 +114,8 @@ function Shell({ title, wide, children }: AppShellProps) {
           >
             <MenuIcon />
           </button>
-          {!root && <BackLink key={pathname} parent={parentOf(pathname, params, season)} />}
-          <Brand compact={!root} />
+          {back && <BackLink key={pathname} parent={parentOf(pathname, params, season)} />}
+          <Brand compact={back} />
           <div className="ml-2 hidden md:block">
             <SeasonPicker season={season} />
           </div>
