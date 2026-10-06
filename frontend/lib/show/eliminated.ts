@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import type { CoupleSummary, Elimination } from "@/lib/api/couples";
 
-export type EliminatedView = "couples" | "week-board" | "standings" | "performers" | "favorites";
+export type EliminatedView = "couples" | "week-board" | "standings" | "performers" | "favorites" | "stats";
 
 /** The roster and leaderboards keep the eliminated couples, at the end; stats leave them out until asked. */
 export const SHOW_ELIMINATED: Record<EliminatedView, boolean> = {
@@ -13,6 +13,7 @@ export const SHOW_ELIMINATED: Record<EliminatedView, boolean> = {
   standings: true,
   performers: false,
   favorites: false,
+  stats: false,
 };
 
 const key = (view: EliminatedView) => `armchair.showEliminated.${view}`;

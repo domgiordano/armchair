@@ -8,6 +8,7 @@ import pytest
 
 from lambdas.common.groups_dynamo import create as create_group
 from lambdas.common.groups_dynamo import join as join_group
+from lambdas.scores_reveal_all.handler import handler as reveal_all_handler
 from lambdas.scores_submit.handler import handler as submit_handler
 from lambdas.stats_get.handler import handler
 from scripts.seed_season import SEASONS, items, write
@@ -145,6 +146,29 @@ def test_dance_details_cover_only_answered_dances(show):
     answer(A, X, value=8)
     assert [d["key"] for d in stats()["dances"]] == [f"{X}#1"]
     assert "6" not in json.dumps(stats()["dances"][0]["judges"])
+
+
+def test_eliminated_once_the_caller_finishes_that_episode(show):
+    # Taylor Hanson went out in episode 4, week 3.
+    T = "taylor-hanson"
+    show.Table(PERFORMANCES_TABLE).put_item(
+        Item={
+            "pk": "EP#dwts#35#04",
+            "sk": f"PERF#{T}#1",
+            "contestants": [T],
+            "rateable": True,
+            "judges": {j: {"value": Decimal(7), "state": "confirmed"} for j in SEASON["defaultPanel"]},
+        }
+    )
+    answer(A, T, ep=4, value=8)
+    assert stats()["eliminated"] == {}
+
+    event = authorized_event(
+        path="/scores/reveal-all", method="POST", sub=A, body={"season": "dwts-35", "ep": "04"}
+    )
+    assert reveal_all_handler(event, None)["statusCode"] == 200
+    assert stats()["eliminated"] == {T: {"ep": 4, "week": 3}}
+    assert stats(B)["eliminated"] == {}
 
 
 def test_ep_narrows_to_one_episode(show):

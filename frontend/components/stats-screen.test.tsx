@@ -65,6 +65,7 @@ const STATS: Stats = {
     { sub: "b", count: 3, mae: 0.8 },
     { sub: "c", count: 2, mae: 2 },
   ],
+  eliminated: {},
 };
 
 beforeEach(() => {
@@ -132,6 +133,24 @@ describe("StatsScreen", () => {
     expect(within(misses).getAllByRole("listitem")[0].textContent).toBe("TCTyler CameronW2 · TangoYou 6 · judges 82 off");
     const best = screen.getByRole("list", { name: "Best calls" });
     expect(within(best).getAllByRole("listitem")).toHaveLength(2);
+    expect(screen.queryByRole("switch", { name: /Show eliminated/ })).toBeNull();
+  });
+
+  it("leaves eliminated couples out of the calls until switched on, then strikes and labels them", async () => {
+    vi.mocked(getStats).mockResolvedValue({ ...STATS, eliminated: { "tyler-cameron": { ep: 4, week: 3 } } });
+    render(<StatsScreen />);
+    const best = await screen.findByRole("list", { name: "Best calls" });
+    expect(within(best).getAllByRole("listitem").map((li) => li.textContent)).toEqual(["amber-glennW3 · JiveYou 7 · judges 81 off"]);
+    expect(screen.queryByRole("list", { name: "Biggest misses" })).toBeNull();
+
+    const toggle = screen.getByRole("switch", { name: /Show eliminated/ });
+    expect(toggle.getAttribute("aria-checked")).toBe("false");
+    fireEvent.click(toggle);
+
+    const miss = within(screen.getByRole("list", { name: "Biggest misses" })).getAllByRole("listitem")[0];
+    expect(miss.textContent).toContain("Out week 3 · W2 · Tango");
+    expect(within(miss).getByText("Tyler Cameron").closest(".line-through")).toBeTruthy();
+    expect(window.localStorage.getItem("armchair.showEliminated.stats")).toBe("1");
   });
 
   it("plots one point per dance on both lines", async () => {

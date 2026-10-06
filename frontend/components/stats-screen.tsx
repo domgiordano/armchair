@@ -7,6 +7,7 @@ import { PageLoader } from "@/components/disco-loader";
 import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
 import { GroupPicker } from "@/components/group-picker";
 import { CoupleLink, CoupleNames } from "@/components/couple-names";
+import { OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { formatScore } from "@/components/performance-card";
 import { SignedIn } from "@/components/signed-in";
 import { Card } from "@/components/ui/card";
@@ -14,13 +15,15 @@ import { CountUp } from "@/components/ui/count-up";
 import { PageHeader } from "@/components/ui/page-header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
+import type { Elimination } from "@/lib/api/couples";
 import type { Contestant, Season } from "@/lib/api/show";
 import { getStats, type Dance, type Stats } from "@/lib/api/stats";
+import { eliminatedWhen, useShowEliminated } from "@/lib/show/eliminated";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel } from "@/lib/show/schedule";
 import { useSeason } from "@/lib/show/use-season";
 import { byStyle, distribution, extremes, type Bar } from "@/lib/show/stats-summary";
-import { button } from "@/lib/ui";
+import { button, cn } from "@/lib/ui";
 
 type StatsLoad = { kind: "loading" } | { kind: "ready"; stats: Stats } | { kind: "error"; message: string };
 
@@ -83,6 +86,7 @@ const off = (mae: number) => `${formatScore(mae)} off`;
 
 function StatsView({ season, stats }: { season: Season; stats: Stats }) {
   const { mine } = stats;
+  const [showOut, setShowOut] = useShowEliminated("stats");
   const judgeName = (id: string) => season.judges.find((j) => j.id === id)?.name ?? id;
   const label = (ep: number) => {
     const e = season.episodes.find((x) => x.ep === ep);
@@ -119,7 +123,10 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
       .split("+")
       .map((id) => season.contestants.find((x) => x.id === id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
       .join(", ");
-  const { closest, furthest } = extremes(stats.dances);
+  // A team dance's key names no one couple, so it never reads as eliminated.
+  const out = (key: string): Elimination | undefined => stats.eliminated[key.slice(0, key.lastIndexOf("#"))];
+  const gone = new Set(stats.dances.flatMap((d) => (out(d.key) ? [d.key.split("#")[0]] : []))).size;
+  const { closest, furthest } = extremes(showOut ? stats.dances : stats.dances.filter((d) => !out(d.key)));
 
   return (
     <>
@@ -142,6 +149,8 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
           {stats.others.length > 0 && ` You rank ${rank} of ${stats.others.length + 1} on the dances you've scored.`}
         </p>
       </section>
+
+      <ShowEliminated checked={showOut} onChange={setShowOut} count={gone} />
 
       {/* Columns, not a grid: the cards differ in height and a grid row would pad the short ones. */}
       <div className="stagger gap-4 lg:columns-2 xl:columns-3 [&>section]:mb-4 [&>section]:break-inside-avoid">
@@ -184,9 +193,13 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
         </Card>
 
         <Card id="calls" title="Best calls and biggest misses">
-          <Calls title="Best calls" season={season.season} dances={closest} couple={couple} team={team} short={short} />
+          {closest.length === 0 ? (
+            <p className="text-sm text-silver-dim">Everyone you scored has gone home. Switch on Show eliminated to see them.</p>
+          ) : (
+            <Calls title="Best calls" season={season.season} dances={closest} couple={couple} team={team} short={short} out={out} />
+          )}
           {furthest.length > 0 && (
-            <Calls title="Biggest misses" season={season.season} dances={furthest} couple={couple} team={team} short={short} />
+            <Calls title="Biggest misses" season={season.season} dances={furthest} couple={couple} team={team} short={short} out={out} />
           )}
         </Card>
       </div>
@@ -201,6 +214,7 @@ function Calls({
   couple,
   team,
   short,
+  out,
 }: {
   title: string;
   season: string;
@@ -208,6 +222,7 @@ function Calls({
   couple: (key: string) => Contestant | undefined;
   team: (key: string) => string;
   short: (ep: number) => string;
+  out: (key: string) => Elimination | undefined;
 }) {
   return (
     <div className="flex flex-col gap-1">
@@ -215,12 +230,21 @@ function Calls({
       <ul aria-label={title} className="flex flex-col divide-y divide-silver/10 text-sm">
         {dances.map((d) => {
           const c = couple(d.key);
+          const gone = out(d.key);
           return (
             <li key={`${d.ep}-${d.key}`} className="flex items-center justify-between gap-3 py-2">
-              {c && <CoupleLink members={c.members} season={season} size={32} />}
+              {c && (
+                <span className={cn("shrink-0", gone && OUT_FADE)}>
+                  <CoupleLink members={c.members} season={season} size={32} />
+                </span>
+              )}
               <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate text-pearl">{c ? <CoupleNames members={c.members} /> : team(d.key)}</span>
+                <span className={cn("truncate", gone ? cn("text-silver-dim", OUT_STRIKE) : "text-pearl")}>
+                  {c ? <CoupleNames members={c.members} /> : team(d.key)}
+                </span>
                 <span className="truncate text-xs text-silver-dim">
+                  {/* The stamp doesn't fit beside 32px faces in a three-column card, so the line says it, as on the roster. */}
+                  {gone && <span className="font-semibold text-stamp">Out {eliminatedWhen(gone).toLowerCase()} · </span>}
                   {short(d.ep)}
                   {d.style && ` · ${d.style}`}
                 </span>

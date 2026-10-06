@@ -7,7 +7,9 @@ for the charts on /stats/.
 Every number is computed from gate.visible_scores, so a performance the caller
 hasn't answered never counts, for them or for anyone else. `group` narrows
 everyone else to that group's members and is 403 unless the caller is one.
-Identity is the Cognito sub.
+`eliminated` maps a couple id to the {ep, week} it went home, for episodes in
+range the caller may see results of (gate.results_open). Identity is the
+Cognito sub.
 """
 
 from __future__ import annotations
@@ -18,7 +20,7 @@ from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import ForbiddenError, NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, ref, season_ref, season_rows
-from lambdas.common.gate import answered, perf_key, visible_scores
+from lambdas.common.gate import answered, eliminated, perf_key, results_open, visible_scores
 from lambdas.common.groups_dynamo import members
 
 
@@ -37,6 +39,8 @@ def handler(event, context):
     rows = {r["sk"]: r for r in season_rows(show, season)}
     if "META" not in rows:
         raise NotFoundError("No such season", season=f"{show}-{season}")
+    meta = rows["META"]
+    contestants = [r for sk, r in rows.items() if sk.startswith("CONTESTANT#")]
     episodes = sorted(
         (int(sk.removeprefix("EP#")), r) for sk, r in rows.items() if sk.startswith("EP#")
     )
@@ -54,11 +58,15 @@ def handler(event, context):
     details = {}
     per_episode = []
     everyone = defaultdict(list)
+    out = {}
     for i, (n, episode) in enumerate(episodes):
         score_rows, perfs = found[2 * i], found[2 * i + 1]
+        gone = eliminated(n, contestants)
+        if gone and results_open(sub, n, meta, episode, contestants, perfs, score_rows):
+            out.update({c: {"ep": n, "week": episode.get("week")} for c in gone})
         if not answered(sub, score_rows):
             continue
-        panel = episode.get("panel") or rows["META"]["defaultPanel"]
+        panel = episode.get("panel") or meta["defaultPanel"]
         by_owner = errors(panel, perfs, visible_scores(sub, score_rows, in_group))
         for owner, errs in by_owner.items():
             everyone[owner] += errs
@@ -94,5 +102,6 @@ def handler(event, context):
                 for d in mine
             ],
             "others": sorted(others, key=lambda o: o["mae"]),
+            "eliminated": out,
         }
     )

@@ -1,4 +1,5 @@
 import { request } from "@armchair/app-core/api/client";
+import type { Elimination } from "./couples";
 
 export interface Accuracy {
   count: number;
@@ -24,6 +25,8 @@ export interface Stats {
   episodes: (Accuracy & { ep: number })[];
   dances: Dance[];
   others: { sub: string; count: number; mae: number }[];
+  /** By couple id, once the caller has finished the episode they went home. */
+  eliminated: Record<string, Elimination>;
 }
 
 export const getStats = (season: string, group: string | null = null) => {
