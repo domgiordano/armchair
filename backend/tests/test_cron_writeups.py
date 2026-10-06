@@ -5,7 +5,7 @@ from decimal import Decimal
 import boto3
 import pytest
 
-from lambdas.common import claude, recaps, wiki_fetch
+from lambdas.common import claude, recaps, wiki_fetch, writeups
 from lambdas.cron_writeups import handler as cron
 from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE, WRITEUPS_TABLE
@@ -198,3 +198,142 @@ def test_the_key_comes_from_the_secure_string(aws, monkeypatch):
     monkeypatch.setattr(claude, "_key", None)
     boto3.client("ssm").put_parameter(Name=claude.KEY_PARAM, Type="SecureString", Value="sk-test")
     assert claude.api_key() == "sk-test"
+
+
+PREPARE = {"mode": "prepare", "season": "dwts-35", "weeks": [3]}
+
+
+def test_prepare_returns_each_ready_dances_inputs_without_calling_claude(stubs, monkeypatch):
+    # No key at all: prepare must not need one.
+    monkeypatch.setattr(claude, "_key", None)
+    out = cron.handler(PREPARE, None)
+    assert stubs.bodies == []
+    assert out["system"] == writeups.SYSTEM
+    assert out["limits"]["summaryChars"] == writeups.SUMMARY_CHARS
+    (ep,) = out["episodes"]
+    assert (ep["season"], ep["ep"], ep["pk"], ep["status"]) == ("dwts-35", 4, EP4, "ready")
+    (p,) = ep["performances"]
+    assert p["key"] == "amber-glenn#1" and p["sk"] == "PERF#amber-glenn#1"
+    assert p["style"] == "Foxtrot" and p["song"] == "Hold the Line"
+    assert [s["value"] for s in p["scores"]] == [8, 8, 8] and p["total"] == 24
+    assert p["excerpts"][0]["url"] == CITED and "true growth" in p["excerpts"][0]["text"]
+    assert 'key="amber-glenn#1"' in ep["prompt"] and "julia-stiles" not in ep["prompt"]
+    assert ep["schema"]["properties"]["writeups"]["items"]["properties"]["key"]["enum"] == [
+        "amber-glenn#1"
+    ]
+    assert stored() == {}
+    json.dumps(out)
+
+
+def test_prepare_skips_dances_already_written_unless_forced(stubs):
+    cron.handler(store_event([AMBER]), None)
+    assert cron.handler(PREPARE, None)["episodes"][0]["status"] == "nothing to write"
+    forced = cron.handler({**PREPARE, "force": True}, None)
+    assert forced["episodes"][0]["status"] == "ready"
+
+
+def test_prepare_too_big_to_return_goes_to_s3(stubs, monkeypatch):
+    inline = cron.handler(PREPARE, None)["episodes"][0]
+    monkeypatch.setattr(cron, "PAYLOAD_LIMIT", 1000)
+    out = cron.handler(PREPARE, None)
+    (ep,) = out["episodes"]
+    assert ep["s3Key"] == "recaps/prepare/dwts-35/04.json"
+    assert "performances" not in ep and ep["bytes"] > 1000
+    assert recaps.load(ep["s3Key"]) == inline
+
+
+def store_event(items, **extra) -> dict:
+    rows = [{"season": "dwts-35", "ep": 4, **w} for w in items]
+    return {
+        "mode": "store",
+        "model": "claude-opus-5-5",
+        "source": "routine",
+        "items": rows,
+        **extra,
+    }
+
+
+def test_store_writes_what_the_lambda_would_and_marks_the_writer(stubs, monkeypatch):
+    monkeypatch.setattr(claude, "_key", None)
+    out = cron.handler(store_event([AMBER]), None)
+    assert (out["written"], out["rejected"]) == (1, 0)
+    assert out["items"] == [{"season": "dwts-35", "ep": 4, "key": "amber-glenn#1"}]
+    item = stored()["PERF#amber-glenn#1"]
+    assert item["summary"] == AMBER["summary"]
+    assert item["judges"] == [
+        {"judge": "carrie-ann-inaba", "text": "Saw growth.", "quote": "true growth"}
+    ]
+    assert item["highlights"] == ["Poise"] and item["sources"] == [CITED]
+    assert (item["model"], item["source"]) == ("claude-opus-5-5", "routine")
+    assert stubs.bodies == []
+
+
+def test_store_overwrites(stubs):
+    cron.handler(store_event([AMBER]), None)
+    cron.handler(store_event([{**AMBER, "summary": "Amber and Pasha glided."}]), None)
+    assert stored()["PERF#amber-glenn#1"]["summary"] == "Amber and Pasha glided."
+
+
+def test_store_reads_its_items_from_s3(stubs):
+    body = store_event([AMBER])
+    recaps.save("recaps/store/dwts-35/04.json", body)
+    out = cron.handler({"mode": "store", "s3_key": "recaps/store/dwts-35/04.json"}, None)
+    assert out["written"] == 1
+
+
+def reasons_for(stubs, w: dict) -> list[str]:
+    out = cron.handler(store_event([w]), None)
+    assert out["written"] == 0 and stored() == {}
+    (r,) = out["rejections"]
+    return r["reasons"]
+
+
+@pytest.mark.parametrize(
+    "change, reason",
+    [
+        ({"summary": "x" * 601}, "summary is over 600 characters"),
+        ({"summary": "   "}, "summary must be non-empty text or null"),
+        ({"summary": "They scored a 10 from Carrie Ann."}, "summary names a number"),
+        ({"summary": "She was eliminated."}, "summary mentions a result"),
+        ({"highlights": [""]}, "highlights must be a list of non-empty strings"),
+        ({"highlights": ["A chip far longer than thirty-two characters"]}, "is over 32"),
+        ({"highlights": ["a", "b", "c", "d"]}, "more than 3 highlights"),
+        (
+            {
+                "judges": [
+                    {"judge": "carrie-ann-inaba", "paraphrase": "Saw growth.", "quote": "a triumph"}
+                ]
+            },
+            "not word for word",
+        ),
+        ({"judges": [{"judge": "len-goodman", "paraphrase": "Hi.", "quote": None}]}, "not on this"),
+        ({"sources": ["https://example.com/elsewhere"]}, "not one of this dance's excerpts"),
+        ({"key": "nobody#1"}, "no such performance"),
+        ({"key": "julia-stiles#1"}, "aren't all confirmed"),
+        ({"ep": 40}, "no such episode"),
+        ({"season": "dwts-34"}, "seasons before 35"),
+    ],
+)
+def test_store_rejects_with_a_reason(stubs, change, reason):
+    reasons = reasons_for(stubs, {**AMBER, **change})
+    assert any(reason in r for r in reasons), reasons
+
+
+def test_store_rejects_missing_fields_and_duplicates(stubs):
+    partial = {k: v for k, v in AMBER.items() if k != "highlights"}
+    out = cron.handler(store_event([AMBER, partial, AMBER]), None)
+    assert out["written"] == 1
+    assert [(r["index"], r["reasons"]) for r in out["rejections"]] == [
+        (1, ["missing highlights"]),
+        (2, ["duplicate of an earlier item"]),
+    ]
+
+
+def test_store_needs_the_writer_named(stubs):
+    with pytest.raises(ValueError, match="model and source"):
+        cron.handler({"mode": "store", "items": [AMBER]}, None)
+
+
+def test_an_unknown_mode_fails(stubs):
+    with pytest.raises(ValueError, match="unknown mode"):
+        cron.handler({"mode": "write"}, None)

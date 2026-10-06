@@ -1,6 +1,8 @@
-# AI write-ups of each dance from published recaps, the mornings after show
-# nights. Recap text is cached under recaps/ in the avatars bucket, which its
-# CloudFront distribution can't read (avatars.tf grants it avatars/* only).
+# AI write-ups of each dance from published recaps. Nothing schedules it: the
+# Anthropic API path has no credits, so an outside writer drives its prepare and
+# store modes (lambdas/cron_writeups/handler.py). Recap text is cached under
+# recaps/ in the avatars bucket, which its CloudFront distribution can't read
+# (avatars.tf grants it avatars/* only).
 
 locals {
   writeups_name = "${var.app_name}-cron-writeups"
@@ -112,40 +114,5 @@ resource "aws_lambda_function" "writeups" {
   # Code ownership belongs to CI after the first apply.
   lifecycle {
     ignore_changes = [description, filename, source_code_hash, layers]
-  }
-}
-
-data "aws_iam_policy_document" "scheduler_writeups" {
-  statement {
-    sid       = "InvokeWriteups"
-    actions   = ["lambda:InvokeFunction"]
-    resources = [aws_lambda_function.writeups.arn]
-  }
-}
-
-resource "aws_iam_role_policy" "scheduler_writeups" {
-  name   = "invoke-writeups"
-  role   = aws_iam_role.scheduler.id
-  policy = data.aws_iam_policy_document.scheduler_writeups.json
-}
-
-resource "aws_scheduler_schedule" "writeups" {
-  name                         = local.writeups_name
-  description                  = "9 am ET the mornings after show nights"
-  schedule_expression          = "cron(0 9 ? * TUE,WED *)"
-  schedule_expression_timezone = "America/New_York"
-
-  flexible_time_window {
-    mode = "OFF"
-  }
-
-  target {
-    arn      = aws_lambda_function.writeups.arn
-    role_arn = aws_iam_role.scheduler.arn
-
-    # A retry would re-run a paid call that may have succeeded; the next morning catches up.
-    retry_policy {
-      maximum_retry_attempts = 0
-    }
   }
 }
