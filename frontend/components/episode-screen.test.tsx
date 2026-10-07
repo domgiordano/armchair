@@ -313,7 +313,7 @@ describe("EpisodeScreen", () => {
   it("reloads the episode for the picked group", async () => {
     vi.mocked(getMyGroups).mockResolvedValue([{ id: "fam", name: "Family", inviteCode: "c".repeat(16), members: [] }]);
     render(<EpisodeScreen />);
-    choose(await screen.findByRole("combobox", { name: "Compare with" }), "Family (0)");
+    fireEvent.click(await screen.findByRole("tab", { name: "Family" }));
     await vi.waitFor(() => expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 4, "fam"));
   });
 
@@ -335,7 +335,8 @@ describe("EpisodeScreen", () => {
     expect(seats()).toEqual(["judge", "judge", "you", "crowd"]);
     expect(screen.queryByRole("region", { name: "Family scores" })).toBeNull();
 
-    choose(screen.getByRole("combobox", { name: "Compare with" }), "Family (3)");
+    fireEvent.click(await screen.findByRole("tab", { name: "Family" }));
+    expect(screen.getByText("Comparing with", { exact: false }).textContent).toBe("Comparing with Family");
     const carousel = await screen.findByRole("region", { name: "Family scores" });
     expect(seats()).toEqual(["judge", "judge", "you", "crowd"]);
     // Only Sam scored Tyler's tango: 9 against the judges' 7.75.
