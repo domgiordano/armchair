@@ -267,9 +267,10 @@ function Hero({ o, season, reload }: ViewProps) {
           </button>
         </div>
       );
-    } else {
+    } else if (e.ep !== latest.ep) {
       cta = start(h.fresh ? `Start with ${weekName(e, o.episodes)}` : "Catch up", GOLD);
     }
+    // Otherwise the episode to finish is this week's, and the panel below the copy has its button.
   } else if (h.kind === "upNext") {
     headline = "all caught up.";
     body = "Every dance so far has your paddle on it. The next episode opens for scoring at showtime.";
