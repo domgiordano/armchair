@@ -21,17 +21,16 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
   getEpisodeState: vi.fn(),
   submitScore: vi.fn(),
   revealAll: vi.fn(),
-  skipBefore: vi.fn(),
 }));
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn() }));
 
+import { ApiError } from "@armchair/app-core/api/client";
 import { getMyGroups } from "@armchair/app-core/api/groups";
 import { getOverview, type Overview, type OverviewEpisode } from "@/lib/api/overview";
 import {
   getEpisodeState,
   getSeason,
   revealAll,
-  skipBefore,
   submitScore,
   type EpisodeState,
   type Season,
@@ -258,6 +257,39 @@ describe("EpisodeScreen", () => {
     await vi.waitFor(() => expect(within(amber()).getByRole("group", { name: /Judges' desk/ })).toBeTruthy());
   });
 
+  it("shows a closed episode read-only, with unscored dances missed", async () => {
+    const missed = { ...STATE.performances[1], key: "amber-glenn#1", contestants: ["amber-glenn"], mine: null };
+    episodes({
+      4: {
+        complete: true,
+        answered: 1,
+        performances: [missed, STATE.performances[1]],
+        window: { opensAt: "2026-09-30T00:00:00Z", closesAt: "2026-10-01T00:00:00Z", open: false },
+      },
+    });
+    render(<EpisodeScreen />);
+    const status = await screen.findByText("Scoring closed");
+    expect(status.parentElement?.textContent).toBe(
+      "Scoring closed Wed 8:00 PM ET. You scored 1 of 2; the rest are marked missed. Every score is open to see.",
+    );
+    expect(within(screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" })).getByText("Missed")).toBeTruthy();
+    expect(within(screen.getByRole("article", { name: /Tyler Cameron/ })).queryByText("Missed")).toBeNull();
+    expect(screen.queryByRole("button", { name: "Reveal all" })).toBeNull();
+    expect(screen.queryByRole("button", { name: /^Score \d/ })).toBeNull();
+  });
+
+  it("counts down an open window and says so when a lock-in lands after it closed", async () => {
+    episodes({ 4: { window: { opensAt: "2026-09-30T00:00:00Z", closesAt: "2026-10-06T00:00:00Z", open: true } } });
+    vi.mocked(submitScore).mockRejectedValue(new ApiError(409, "This episode closed for scoring", { code: "episode_closed" }));
+    render(<EpisodeScreen />);
+    expect(await screen.findByText("Closes in 4d 12h")).toBeTruthy();
+    const amber = screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    fireEvent.click(within(amber).getByRole("button", { name: /^Score 8 / }));
+    fireEvent.click(within(amber).getByRole("button", { name: "Lock in 8" }));
+    expect((await within(amber).findByRole("alert")).textContent).toBe("Not saved: scoring for this episode has closed");
+    expect(window.localStorage.getItem("armchair.sealed")).toBe("[]");
+  });
+
   it("lets a locked team dance be scored like any couple", async () => {
     vi.mocked(submitScore).mockResolvedValue({});
     const team = { ...LOCKED, key: "amber-glenn+tyler-cameron#1", contestants: ["amber-glenn", "tyler-cameron"] };
@@ -359,7 +391,7 @@ describe("catching up", () => {
     episodes({ 5: { ep: 5, theme: "Mariah Carey" } });
   });
 
-  it("offers catch up week by week or skip while week 3 is unfinished", async () => {
+  it("offers catch up week by week while week 3 is unfinished", async () => {
     overview({ 4: 1 }, NEXT);
     render(<EpisodeScreen />);
 
@@ -369,33 +401,7 @@ describe("catching up", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Catch up on 1 earlier episode" }));
     expect(replace).toHaveBeenCalledWith("/episode/?ep=4");
-    expect(skipBefore).not.toHaveBeenCalled();
-  });
-
-  it("skips to week 4 only after the confirm, then opens it", async () => {
-    overview({ 4: 1 }, NEXT);
-    vi.mocked(skipBefore).mockResolvedValue({ revealed: [{ ep: 4, keys: ["amber-glenn#1"] }] });
-    render(<EpisodeScreen />);
-
-    fireEvent.click(await screen.findByRole("button", { name: "Skip to week 4" }));
-    const confirm = screen.getByRole("group", { name: "Skip 1 earlier episode?" });
-    expect(within(confirm).getByText(/won.t count toward your accuracy/)).toBeTruthy();
-    expect(skipBefore).not.toHaveBeenCalled();
-
-    fireEvent.click(within(confirm).getByRole("button", { name: "Skip to week 4" }));
-    expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
-    expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 5);
-  });
-
-  it("stays on the question and says so when the skip fails", async () => {
-    overview({ 4: 1 }, NEXT);
-    vi.mocked(skipBefore).mockRejectedValue(new Error("Internal error"));
-    render(<EpisodeScreen />);
-
-    fireEvent.click(await screen.findByRole("button", { name: "Skip to week 4" }));
-    fireEvent.click(within(screen.getByRole("group")).getByRole("button", { name: "Skip to week 4" }));
-    expect((await screen.findByRole("alert")).textContent).toBe("Nothing skipped: Internal error");
-    expect(screen.queryByRole("heading", { name: "Mariah Carey" })).toBeNull();
+    expect(screen.queryByRole("button", { name: /Skip/ })).toBeNull();
   });
 
   it("can still open week 4 and leave week 3 scorable", async () => {
@@ -405,21 +411,16 @@ describe("catching up", () => {
 
     expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
     expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 5, null);
-    expect(skipBefore).not.toHaveBeenCalled();
   });
 
-  it("offers browse or score from the start once the season is over", async () => {
+  it("offers score from the start or open anyway once the season is over", async () => {
     overview({ 4: 0, 5: 0 });
-    vi.mocked(skipBefore).mockResolvedValue({ revealed: [] });
     render(<EpisodeScreen />);
 
-    expect(await screen.findByRole("heading", { name: "Browse or score this season?" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "Score from the start" })).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "Just browse" }));
-    fireEvent.click(screen.getByRole("button", { name: "Browse the season" }));
-
+    fireEvent.click(await screen.findByRole("button", { name: "Score from the start" }));
+    expect(replace).toHaveBeenCalledWith("/episode/?ep=4");
+    fireEvent.click(screen.getByRole("button", { name: "Open week 4 and leave week 3 for later" }));
     expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
-    expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 6);
   });
 
   it("opens a past season straight to every score: no catch-up, no paddles", async () => {

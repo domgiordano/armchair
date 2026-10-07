@@ -55,4 +55,27 @@ describe("scoreTarget", () => {
     expect(scoreTarget(overview([ep(1)], { next }), Date.parse("2026-09-01T00:00:00Z"))).toEqual({ kind: "upcoming", next });
     expect(scoreTarget(overview([ep(1, { aired: true })], { open: true }), Date.now())).toBeNull();
   });
+
+  it("follows the server's active episode and its close time once the API sends windows", () => {
+    const active = { ep: 2, opensAt: "2026-10-02T00:00:00Z", closesAt: "2026-10-03T00:00:00Z", answered: 5, rateable: 8 };
+    const o = overview([ep(1, { aired: true, rateable: 8, answered: 8, complete: true }), ep(2, { aired: true }), ep(3)], {
+      activeEpisode: active,
+    });
+    expect(scoreTarget(o, Date.parse("2026-10-02T12:00:00Z"))).toMatchObject({
+      kind: "score",
+      episode: { ep: 2 },
+      answered: 5,
+      rateable: 8,
+      closesAt: "2026-10-03T00:00:00Z",
+    });
+    expect(scoreTarget({ ...o, activeEpisode: { ...active, answered: 8 } }, Date.parse("2026-10-02T12:00:00Z"))).toMatchObject({
+      kind: "done",
+    });
+  });
+
+  it("points past a closed, unfinished episode to the next show when nothing takes answers", () => {
+    const next = { ep: 3, week: 3, theme: null, airDate: "2026-10-02", startsAt: "2026-10-03T00:00:00Z" };
+    const o = overview([ep(1, { aired: true, rateable: 8, answered: 2, complete: false })], { activeEpisode: null, next });
+    expect(scoreTarget(o, Date.parse("2026-10-02T12:00:00Z"))).toEqual({ kind: "upcoming", next });
+  });
 });
