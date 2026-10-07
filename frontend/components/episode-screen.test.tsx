@@ -131,6 +131,7 @@ beforeEach(() => {
   vi.mocked(getEpisodeState).mockResolvedValue(STATE);
   vi.mocked(getMyGroups).mockResolvedValue([]);
   overview({});
+  window.localStorage.clear();
 });
 
 afterEach(() => {
@@ -211,6 +212,50 @@ describe("EpisodeScreen", () => {
 
     await vi.waitFor(() => expect(getEpisodeState).toHaveBeenCalledTimes(2));
     expect(submitScore).toHaveBeenCalledWith("dwts-35", 4, STATE.performances[0], { value: 8 });
+  });
+
+  it("keeps the judges face down after a lock-in until you reveal them, across a reload", async () => {
+    vi.mocked(submitScore).mockResolvedValue({});
+    const revealed = { ...STATE.performances[1], key: "amber-glenn#1", contestants: ["amber-glenn"], mine: { value: 8 } };
+    vi.mocked(getEpisodeState).mockResolvedValueOnce(STATE).mockResolvedValue({ ...STATE, answered: 2, performances: [revealed, STATE.performances[1]] });
+    const { unmount } = render(<EpisodeScreen />);
+    const amber = () => screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    await screen.findByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    fireEvent.click(within(amber()).getByRole("button", { name: /^Score 8 / }));
+    fireEvent.click(within(amber()).getByRole("button", { name: "Lock in 8" }));
+
+    const sheet = await screen.findByRole("dialog", { name: "Locked in" });
+    expect(sheet.textContent).toContain("You gave Amber Glenn an 8.");
+    await vi.waitFor(() => expect(within(amber()).getByText("Locked in at 8.", { exact: false })).toBeTruthy());
+    expect(within(amber()).queryByRole("group", { name: /Judges' desk/ })).toBeNull();
+    fireEvent.click(within(sheet).getByRole("button", { name: "Not yet" }));
+    expect(screen.queryByRole("dialog", { name: "Locked in" })).toBeNull();
+
+    unmount();
+    render(<EpisodeScreen />);
+    const again = await screen.findByRole("button", { name: "Reveal judges' scores" });
+    expect(within(amber()).queryByRole("group", { name: /Judges' desk/ })).toBeNull();
+    fireEvent.click(again);
+    expect(within(amber()).getByRole("group", { name: /Judges' desk/ })).toBeTruthy();
+    expect(window.localStorage.getItem("armchair.sealed")).toBe("[]");
+  });
+
+  it("reveals from the sheet, and seals nothing when the lock-in fails", async () => {
+    vi.mocked(submitScore).mockRejectedValueOnce(new Error("Network down")).mockResolvedValue({});
+    const revealed = { ...STATE.performances[1], key: "amber-glenn#1", contestants: ["amber-glenn"], mine: { value: 8 } };
+    render(<EpisodeScreen />);
+    const amber = () => screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    await screen.findByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    fireEvent.click(within(amber()).getByRole("button", { name: /^Score 8 / }));
+    fireEvent.click(within(amber()).getByRole("button", { name: "Lock in 8" }));
+    expect((await within(amber()).findByRole("alert")).textContent).toBe("Not saved: Network down");
+    expect(window.localStorage.getItem("armchair.sealed")).toBe("[]");
+
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, performances: [revealed, STATE.performances[1]] });
+    fireEvent.click(within(amber()).getByRole("button", { name: "Lock in 8" }));
+    const sheet = await screen.findByRole("dialog", { name: "Locked in" });
+    fireEvent.click(within(sheet).getByRole("button", { name: "Reveal judges' scores" }));
+    await vi.waitFor(() => expect(within(amber()).getByRole("group", { name: /Judges' desk/ })).toBeTruthy());
   });
 
   it("lets a locked team dance be scored like any couple", async () => {
