@@ -83,9 +83,11 @@ def couple(d: dict, cid: str) -> dict:
     return next(c for c in d["couples"] if c["id"] == cid)
 
 
+@pytest.mark.scoring_window
 def test_a_new_user_sees_the_schedule_and_nothing_scored(show):
     d = data()
-    assert d["progress"] == {"aired": 5, "total": 12, "couples": 16, "couplesLeft": 16}
+    # Episodes 1-4 have closed, so their eliminations show though nothing was answered.
+    assert d["progress"] == {"aired": 5, "total": 12, "couples": 16, "couplesLeft": 12}
     assert [j["id"] for j in d["judges"]] == sorted(SEASON["defaultPanel"])
     assert d["judges"][0]["name"] == "Bruno Tonioli"
     assert d["me"] == {"scored": 0, "count": 0, "mae": None, "closestJudge": None, "streak": 0}
@@ -97,7 +99,8 @@ def test_a_new_user_sees_the_schedule_and_nothing_scored(show):
         "startsAt": "2026-10-14T00:00Z",
     }
     assert d["reveals"] == []
-    assert all(c["average"] is None and c["eliminated"] is None for c in d["couples"])
+    # Closed episode 4's judges show; nothing of the live episode 5 does.
+    assert couple(d, X)["average"] == 8 and couple(d, X)["dances"] == 1
     ep5 = d["episodes"][4]
     assert ep5["aired"] and ep5["answered"] == 0 and not ep5["complete"]
     assert ep5["startsAt"] == "2026-10-07T00:00Z" and ep5["endsAt"] == "2026-10-07T02:00Z"
@@ -109,7 +112,24 @@ def test_a_new_user_sees_the_schedule_and_nothing_scored(show):
         "startsAt": "2026-10-14T00:00Z",
         "endsAt": "2026-10-14T02:00Z",
         "aired": False,
+        "window": {"opensAt": "2026-10-14T00:00Z", "closesAt": "2026-10-21T00:00Z", "open": False},
     }
+    assert ep5["window"] == {
+        "opensAt": "2026-10-07T00:00Z",
+        "closesAt": "2026-10-14T00:00Z",
+        "open": True,
+    }
+    assert d["activeEpisode"] == {
+        "ep": 5,
+        "pk": "EP#dwts#35#05",
+        "opensAt": "2026-10-07T00:00Z",
+        "closesAt": "2026-10-14T00:00Z",
+        "answered": 0,
+        "rateable": ep5["rateable"],
+    }
+    # Closed with nothing answered: missed, and the results are open.
+    ep4 = d["episodes"][3]
+    assert ep4["complete"] and ep4["answered"] == 0 and not ep4["window"]["open"]
 
 
 def test_judge_values_only_where_the_caller_answered_and_never_anyone_elses(show):
