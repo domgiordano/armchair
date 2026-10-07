@@ -15,7 +15,7 @@ import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { VotePanel } from "@/components/vote-panel";
-import type { GroupMember } from "@armchair/app-core/api/groups";
+import type { Group } from "@armchair/app-core/api/groups";
 import { revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
@@ -59,7 +59,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
       episode={episode}
       now={now}
       group={filter.group}
-      members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
+      picked={filter.groups?.find((g) => g.id === filter.group) ?? null}
     />
   );
 
@@ -108,10 +108,10 @@ interface EpisodeViewProps {
   episode: Episode;
   now: number;
   group: string | null;
-  members: GroupMember[] | null;
+  picked: Group | null;
 }
 
-function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps) {
+function EpisodeView({ season, episode, now, group, picked }: EpisodeViewProps) {
   const { data, error, reload } = useEpisodeState(season.season, season.timezone, episode, group);
   const contestants = useMemo(() => new Map(season.contestants.map((c) => [c.id, c])), [season]);
   const judges = useMemo(() => new Map(season.judges.map((j) => [j.id, j])), [season]);
@@ -211,7 +211,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
       {data.performances.length === 0 ? (
         <EmptyState title="No dances yet">Performances appear here once the running order is in.</EmptyState>
       ) : (
-        <ul className="stagger grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="stagger grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
           {data.performances.map((card) => (
             <li key={card.key}>
               <PerformanceCard
@@ -221,7 +221,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
                 contestants={contestants}
                 judges={judges}
                 airsOn={airsOn}
-                members={members}
+                group={picked}
                 onSubmit={submit}
                 sealed={!card.locked && sealed(card.key)}
                 onReveal={() => unseal(season.season, episode.ep, card.key)}

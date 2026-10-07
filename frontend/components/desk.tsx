@@ -8,28 +8,18 @@ import { initials } from "@/components/avatar";
 import { headshotUrl } from "@/components/headshot";
 import { formatScore } from "@/components/performance-card";
 import { getMe, type Me } from "@armchair/app-core/api/client";
-import { profileHref } from "@/lib/api/people";
 import type { Judge, RevealedCard } from "@/lib/api/show";
 import { personHref } from "@/lib/show/people";
 import { FOCUS } from "@/lib/ui";
 
-export interface DeskMember {
-  sub: string;
-  name: string;
-  picture: string | null;
-  value: number;
-}
-
 interface DeskProps {
   card: RevealedCard;
   judges: Map<string, Judge>;
-  /** A group's seats. Without them the desk shows one everyone-average seat. */
-  members?: DeskMember[];
   /** The plain number list, kept under "Details". */
   children: ReactNode;
 }
 
-type Tone = "judge" | "you" | "crowd" | "member";
+type Tone = "judge" | "you" | "crowd";
 
 interface SeatModel {
   key: string;
@@ -40,7 +30,7 @@ interface SeatModel {
   provisional: boolean;
   caption: string | null;
   tone: Tone;
-  /** The judge's page or the member's profile; the plate links there. */
+  /** The judge's page; the plate links there. */
   href?: string;
 }
 
@@ -68,7 +58,7 @@ function useMe() {
 
 const firstWord = (name: string) => name.trim().split(/\s+/)[0] ?? name;
 
-export function Desk({ card, judges, members, children }: DeskProps) {
+export function Desk({ card, judges, children }: DeskProps) {
   const me = useMe();
   const { mine, aggregate } = card;
 
@@ -105,32 +95,18 @@ export function Desk({ card, judges, members, children }: DeskProps) {
   };
 
   const scores = `${aggregate.count} ${aggregate.count === 1 ? "score" : "scores"}`;
-  const crowd: SeatModel[] = members
-    ? members.map((m, i) => ({
-        key: `member-${i}`,
-        plate: firstWord(m.name),
-        spoken: `${m.name} ${m.value}`,
-        face: { src: m.picture, name: m.name },
-        value: m.value,
-        provisional: false,
-        caption: null,
-        tone: "member",
-        href: profileHref(m.sub),
-      }))
-    : [
-        {
-          key: "everyone",
-          plate: "All",
-          spoken: `everyone ${aggregate.mean === null ? "no scores yet" : `${formatScore(aggregate.mean)} from ${scores}`}`,
-          face: "crowd",
-          value: aggregate.mean,
-          provisional: false,
-          caption: scores,
-          tone: "crowd",
-        },
-      ];
+  const crowd: SeatModel = {
+    key: "everyone",
+    plate: "All",
+    spoken: `everyone ${aggregate.mean === null ? "no scores yet" : `${formatScore(aggregate.mean)} from ${scores}`}`,
+    face: "crowd",
+    value: aggregate.mean,
+    provisional: false,
+    caption: scores,
+    tone: "crowd",
+  };
 
-  const seats = [...panel, you, ...crowd];
+  const seats = [...panel, you, crowd];
   const cols = Math.min(seats.length, 6);
   const anyProvisional = panel.some((s) => s.provisional);
 
