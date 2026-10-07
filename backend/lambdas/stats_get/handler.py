@@ -8,14 +8,15 @@ Every number is computed from gate.visible_scores, so a performance the caller
 hasn't answered never counts, for them or for anyone else. `group` narrows
 everyone else to that group's members and is 403 unless the caller is one.
 `eliminated` maps a couple id to the {ep, week} it went home, for episodes in
-range the caller may see results of (gate.results_open). Identity is the
-Cognito sub.
+range the caller may see results of (gate.results_open), a closed scoring
+window (common/window.py) among them. Identity is the Cognito sub.
 """
 
 from __future__ import annotations
 
 from collections import defaultdict
 
+from lambdas.common import window
 from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import ForbiddenError, NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
@@ -41,6 +42,8 @@ def handler(event, context):
         raise NotFoundError("No such season", season=f"{show}-{season}")
     meta = rows["META"]
     contestants = [r for sk, r in rows.items() if sk.startswith("CONTESTANT#")]
+    spans = window.spans(meta, rows.values())
+    now = window.now()
     episodes = sorted(
         (int(sk.removeprefix("EP#")), r) for sk, r in rows.items() if sk.startswith("EP#")
     )
@@ -62,7 +65,8 @@ def handler(event, context):
     for i, (n, episode) in enumerate(episodes):
         score_rows, perfs = found[2 * i], found[2 * i + 1]
         gone = eliminated(n, contestants)
-        if gone and results_open(sub, n, meta, episode, contestants, perfs, score_rows):
+        closed = window.closed(meta, spans[n], now)
+        if gone and results_open(sub, n, meta, episode, contestants, perfs, score_rows, closed):
             out.update({c: {"ep": n, "week": episode.get("week")} for c in gone})
         if not answered(sub, score_rows):
             continue

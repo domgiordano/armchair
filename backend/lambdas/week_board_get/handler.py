@@ -8,7 +8,8 @@ Every number comes from common/couples.py over performances the caller paddled.
 A couple the caller hasn't paddled is listed as locked, with no numbers, in
 alphabetical order as gate.episode_view lists unanswered cards. `eliminated`
 is who went home that night, once gate.results_open lets the caller know. A
-past season (gate.is_open) ranks every couple and locks none; `you` is None
+past season (gate.is_open), or an episode whose scoring window has closed
+(common/window.py, `window`), ranks every couple and locks none; `you` is None
 where the caller has no paddle. Other people appear only as means over at least
 couples.MIN_RATERS of them. `scope=global` is everyone; `scope=friends` narrows
 everyone to the caller's friends; `scope=group` narrows both friends and
@@ -20,9 +21,17 @@ from __future__ import annotations
 
 from collections import defaultdict
 
+from lambdas.common import window
 from lambdas.common.api import ValidationError, api_handler, caller_sub, ok, query, require
 from lambdas.common.couples import crowd, dances, friends, group_pool, mean, people
-from lambdas.common.episodes_dynamo import catalog, episode_pk, performances, ref, scores
+from lambdas.common.episodes_dynamo import (
+    episode_pk,
+    episode_rows,
+    performances,
+    ref,
+    scores,
+    season_rows,
+)
 from lambdas.common.gate import answered, cid, eliminated, is_open, rateable, results_open
 
 DISAGREEMENTS = 3
@@ -48,14 +57,18 @@ def handler(event, context):
     else:
         raise ValidationError("scope must be global, friends or group", field="scope")
 
-    meta, episode, contestants = catalog(show, season, ep)
+    items = season_rows(show, season)
+    meta, episode, contestants = episode_rows(items, show, season, ep)
+    span = window.spans(meta, items)[ep]
+    now = window.now()
+    closed = window.closed(meta, span, now)
     pk = episode_pk(show, season, ep)
     perfs = performances(pk)
     score_rows = scores(pk)
     panel = episode.get("panel") or meta["defaultPanel"]
     keys = rateable(ep, episode, contestants, perfs)
     done = answered(sub, score_rows)
-    opened = is_open(meta)
+    opened = is_open(meta) or closed
 
     by_couple = defaultdict(list)
     for d in dances(sub, episode, panel, perfs, score_rows, pool, opened):
@@ -107,14 +120,15 @@ def handler(event, context):
             "panel": panel,
             "scope": scope,
             "group": gid,
-            "open": opened,
+            "open": is_open(meta),
+            "window": window.view(meta, span, now),
             "rateable": len(keys),
             "answered": sum(k in done for k in keys),
             "couples": rows,
             "locked": locked,
             "disagreements": [r["id"] for r in split[:DISAGREEMENTS]],
             "eliminated": eliminated(ep, contestants)
-            if results_open(sub, ep, meta, episode, contestants, perfs, score_rows)
+            if results_open(sub, ep, meta, episode, contestants, perfs, score_rows, closed)
             else [],
         }
     )

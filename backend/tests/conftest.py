@@ -40,6 +40,23 @@ def fandom_offline(monkeypatch):
     monkeypatch.setattr(urllib.request, "urlopen", offline)
 
 
+@pytest.fixture(autouse=True)
+def no_scoring_window(request, monkeypatch):
+    """
+    Every episode of the current season takes answers, as before scoring
+    windows, unless a test is marked scoring_window. Most tests replay a past
+    season as the current one on today's clock, where every window closed long
+    ago, or answer S35 nights still to air; they test the gate, not the clock.
+    """
+    if request.node.get_closest_marker("scoring_window"):
+        return
+    from lambdas.common import window
+    from lambdas.common.gate import is_open
+
+    monkeypatch.setattr(window, "is_live", lambda meta, span, at: not is_open(meta))
+    monkeypatch.setattr(window, "closed", lambda meta, span, at: is_open(meta))
+
+
 @pytest.fixture
 def aws(monkeypatch):
     """A moto account with the tables Terraform creates."""
