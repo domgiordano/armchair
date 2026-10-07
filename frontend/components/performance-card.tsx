@@ -1,7 +1,8 @@
 "use client";
 
 import { CoupleLink, CoupleNames, PersonLink } from "@/components/couple-names";
-import { Desk, type DeskMember } from "@/components/desk";
+import { Desk } from "@/components/desk";
+import { GroupCarousel, type GroupScore } from "@/components/group-carousel";
 import { EliminatedStamp } from "@/components/eliminated";
 import { Headshot } from "@/components/headshot";
 import type { Elimination } from "@/lib/api/couples";
@@ -19,8 +20,8 @@ interface PerformanceCardProps {
   contestants: Map<string, Contestant>;
   judges: Map<string, Judge>;
   airsOn: string | null;
-  /** The filtering group's members, or null for everyone. */
-  members: GroupMember[] | null;
+  /** The filtering group, or null for everyone. */
+  group: { name: string; members: GroupMember[] } | null;
   onSubmit: (card: LockedCard, answer: Answer) => Promise<void>;
   /** The couple went home this episode, and the caller may know it. */
   out?: Elimination;
@@ -35,14 +36,19 @@ const celebrity = (c: Contestant | undefined): Member | undefined =>
 /** 8, 7.5, 7.3: judges score in halves and averages need one decimal. */
 export const formatScore = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 
-// `others` never holds the caller, who has their own seat. A member who hasn't
-// scored this dance, or revealed it without scoring, gets no seat.
-function memberSeats(card: RevealedCard, members: GroupMember[]): DeskMember[] {
+// `others` never holds the caller. A member who hasn't scored this dance, or
+// revealed it without scoring, isn't in it.
+function groupScores(card: RevealedCard, members: GroupMember[]): GroupScore[] {
   const values = new Map(card.others.map((o) => [o.sub, o.value]));
   return members.flatMap((m) => {
     const value = values.get(m.sub);
     return value === undefined ? [] : [{ sub: m.sub, name: m.name ?? "Member", picture: m.picture, value }];
   });
+}
+
+function panelMean(card: RevealedCard): number | null {
+  const values = card.judges.map((j) => j.value);
+  return values.length > 0 && values.every((v) => v !== null) ? values.reduce<number>((a, v) => a + (v ?? 0), 0) / values.length : null;
 }
 
 export function PerformanceCard({
@@ -51,7 +57,7 @@ export function PerformanceCard({
   contestants,
   judges,
   airsOn,
-  members,
+  group,
   onSubmit,
   out,
   sealed = false,
@@ -109,11 +115,15 @@ export function PerformanceCard({
       {!card.locked && sealed ? (
         <Sealed card={card} onReveal={onReveal} />
       ) : !card.locked ? (
-        <Desk card={card} judges={judges} members={members ? memberSeats(card, members) : undefined}>
+        <Desk card={card} judges={judges}>
           <Scores card={card} judges={judges} />
         </Desk>
       ) : (
         <PaddlePicker label={title} airsOn={airsOn} onSubmit={(answer) => onSubmit(card, answer)} />
+      )}
+      {!card.locked && group && (
+        // Others' paddles once yours is locked; their gap to the judges only once you've looked.
+        <GroupCarousel group={group.name} scores={groupScores(card, group.members)} panelMean={sealed ? null : panelMean(card)} />
       )}
       {!sealed && <WhatHappened writeup={card.writeup} judges={[...judges.values()]} />}
     </article>

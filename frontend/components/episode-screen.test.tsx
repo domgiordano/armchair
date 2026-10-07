@@ -317,7 +317,7 @@ describe("EpisodeScreen", () => {
     await vi.waitFor(() => expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 4, "fam"));
   });
 
-  it("seats the picked group's members who scored, and everyone's average without a group", async () => {
+  it("turns through the picked group's scores beside the desk, and keeps everyone's average on it", async () => {
     const member = (sub: string, name: string) => ({ sub, name, picture: null, avatarKind: "initials" as const });
     vi.mocked(getMyGroups).mockResolvedValue([
       {
@@ -329,16 +329,19 @@ describe("EpisodeScreen", () => {
     ]);
     window.localStorage.clear();
     const { container } = render(<EpisodeScreen />);
-    const seats = () => [...container.querySelectorAll<HTMLElement>("[data-seat]")];
+    const seats = () => [...container.querySelectorAll<HTMLElement>("[data-seat]")].map((s) => s.dataset.seat);
 
     await screen.findByRole("heading", { name: "Yacht Rock" });
-    expect(seats().map((s) => s.dataset.seat)).toEqual(["judge", "judge", "you", "crowd"]);
+    expect(seats()).toEqual(["judge", "judge", "you", "crowd"]);
+    expect(screen.queryByRole("region", { name: "Family scores" })).toBeNull();
 
     choose(screen.getByRole("combobox", { name: "Compare with" }), "Family (3)");
-    await vi.waitFor(() => expect(seats().map((s) => s.dataset.seat)).toEqual(["judge", "judge", "you", "member"]));
-    const sam = seats()[3];
-    expect(within(sam).getByText("Sam")).toBeTruthy();
-    expect(sam.querySelector("[data-paddle]")?.textContent).toBe("9");
+    const carousel = await screen.findByRole("region", { name: "Family scores" });
+    expect(seats()).toEqual(["judge", "judge", "you", "crowd"]);
+    // Only Sam scored Tyler's tango: 9 against the judges' 7.75.
+    const slides = within(carousel).getAllByRole("group");
+    expect(slides.map((s) => s.textContent)).toEqual(["SFSam Friend1.3 above the judgesscored 99"]);
+    expect(within(carousel).queryByRole("button", { name: "Next" })).toBeNull();
   });
 
   it("hides Reveal all once everything is answered", async () => {
