@@ -44,16 +44,16 @@ describe("FriendsRoute", () => {
 
   it("sends a bare /friends/ to your friends list", () => {
     render(<FriendsRoute />);
-    expect(nav.replace).toHaveBeenCalledWith("/profile/?sheet=friends");
+    expect(nav.replace).toHaveBeenCalledWith("/social/?view=friends");
   });
 });
 
 describe("legacyTarget", () => {
   it.each([
-    ["tab=requests", "/profile/?sheet=requests"],
-    ["tab=groups", "/profile/?sheet=groups"],
+    ["tab=requests", "/social/?view=requests"],
+    ["tab=groups", "/social/?view=groups"],
     ["tab=groups&group=abc", "/groups/?id=abc"],
-    ["", "/profile/?sheet=friends"],
+    ["", "/social/?view=friends"],
   ])("%s goes to %s", (query, to) => {
     expect(legacyTarget(new URLSearchParams(query))).toBe(to);
   });

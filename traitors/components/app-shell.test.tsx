@@ -175,3 +175,13 @@ it("lists every Armchair Judge app in the header menu and the footer, the others
   expect(footer.getByText(/coming soon/)).toBeTruthy();
   expect(screen.getByText(/Not affiliated with The Traitors/)).toBeTruthy();
 });
+
+it("links Friends & Groups in the account menu to the DWTS social page, signed in", async () => {
+  shell();
+  await screen.findByText("Showing tus-5");
+  fireEvent.click(screen.getByRole("button", { name: "Account" }));
+  expect(screen.getByRole("link", { name: "Friends & Groups" }).getAttribute("href")).toBe(
+    "https://dwts.armchairjudge.com/social/?sso=1",
+  );
+  expect(screen.getByRole("button", { name: "Sign out" })).toBeTruthy();
+});
