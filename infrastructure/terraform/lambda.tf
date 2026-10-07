@@ -7,6 +7,7 @@ locals {
     { name = "update", description = "Set the caller's display name and photo choice", path_part = "update", http_method = "PATCH", authorization = "COGNITO_USER_POOLS" },
     { name = "avatar_upload", description = "Presign an S3 POST for one profile photo", path_part = "avatar-upload", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "get", description = "A profile with its season summary, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "delete", description = "Delete the caller's account and everything that names them", path_part = "delete", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
   scores_lambdas = [
     { name = "submit", description = "Record the caller's final answer on one performance", path_part = "submit", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -118,7 +119,7 @@ locals {
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     groups_create      = ["groups:PutItem"]
     groups_join        = ["groups:GetItem", "groups:UpdateItem", "groups:PutItem", "social:PutItem"]
-    groups_mine        = ["groups:Query", "users:BatchGetItem"]
+    groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query"]
     seasons_list       = ["catalog:Query"]
     overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
     friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem"]
@@ -151,6 +152,17 @@ locals {
     traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
     traitors_credits   = ["catalog:Query"]
+    users_delete       = ["groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
+  }
+
+  # Env a single function needs beyond lambda_variables.
+  api_env = {
+    users_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+  }
+
+  # users_delete scans four tables for rows naming the caller.
+  api_timeout = {
+    users_delete = 60
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
@@ -159,6 +171,7 @@ locals {
   avatar_grants = {
     users_avatar_upload = ["s3:PutObject"]
     users_update        = ["s3:DeleteObject"]
+    users_delete        = ["s3:DeleteObject"]
   }
 }
 
@@ -200,6 +213,31 @@ data "aws_iam_policy_document" "api" {
     }
   }
 
+  # users_delete lists the caller's prefix to find photos never chosen, too.
+  dynamic "statement" {
+    for_each = each.key == "users_delete" ? [1] : []
+    content {
+      sid       = "ListAvatars"
+      actions   = ["s3:ListBucket"]
+      resources = [aws_s3_bucket.avatars.arn]
+      condition {
+        test     = "StringLike"
+        variable = "s3:prefix"
+        values   = ["avatars/*"]
+      }
+    }
+  }
+
+  # The pool belongs to xomware-infrastructure, but the grant lives on this role.
+  dynamic "statement" {
+    for_each = each.key == "users_delete" ? [1] : []
+    content {
+      sid       = "DeleteLogin"
+      actions   = ["cognito-idp:AdminDeleteUser"]
+      resources = [data.aws_ssm_parameter.cognito_user_pool_arn.value]
+    }
+  }
+
   # Admin handlers read the admin list on every call (common/admins.py).
   dynamic "statement" {
     for_each = startswith(each.key, "admin_") ? [1] : []
@@ -235,13 +273,13 @@ resource "aws_lambda_function" "api" {
   handler       = "handler.handler"
   runtime       = var.lambda_runtime
   memory_size   = 1024 # CPU scales with memory; at 256 MB a cold start took ~2 s
-  timeout       = 10
+  timeout       = try(local.api_timeout[each.key], 10)
   layers        = [aws_lambda_layer_version.lambda_layer.arn]
 
   filename         = "./templates/lambda_stub.zip"
   source_code_hash = filebase64sha256("./templates/lambda_stub.zip")
 
-  environment { variables = local.lambda_variables }
+  environment { variables = merge(local.lambda_variables, try(local.api_env[each.key], {})) }
 
   depends_on = [aws_cloudwatch_log_group.api]
 

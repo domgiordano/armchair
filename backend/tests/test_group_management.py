@@ -47,6 +47,18 @@ def group_notes(sub) -> list[dict]:
     return [n for n in notes(sub)[0] if n["type"].startswith("group_")]
 
 
+def test_mine_gives_each_person_the_callers_relation(family):
+    join(family["inviteCode"], sub=B)
+    join(family["inviteCode"], sub=C)
+    ask(A, C)
+
+    def relations(sub):
+        return {m["sub"]: m["relation"] for m in mine(sub)[0]["members"]}
+
+    assert relations(A) == {A: None, B: "friend", C: "outgoing"}
+    assert relations(C) == {A: "incoming", B: None, C: None}
+
+
 def test_invite_notifies_the_friend_once_and_accepting_joins(family):
     gid = family["id"]
     assert invite(gid, B)[1]["data"] == {"status": "invited"}

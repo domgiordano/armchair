@@ -80,3 +80,6 @@ export interface Me {
 }
 
 export const getMe = () => request<Me>("/users/me");
+
+/** Deletes the caller's account and everything about them. Sign out afterwards: the token outlives the user. */
+export const deleteAccount = () => request<{ ok: true }>("/users/delete", { method: "POST" });
