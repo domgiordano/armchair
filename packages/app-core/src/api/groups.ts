@@ -1,7 +1,12 @@
 import { request } from "./client";
-import type { Person } from "./social";
+import type { Person, Relation } from "./social";
 
 export type GroupMember = Person;
+
+/** Someone listed on a group, with the caller's relation to them; null for the caller. */
+export interface GroupPerson extends Person {
+  relation: Relation;
+}
 
 export interface Group {
   id: string;
@@ -12,13 +17,14 @@ export interface Group {
 
 /** The same /groups/mine rows with everything the management screens need. */
 export interface GroupDetail extends Group {
+  members: GroupPerson[];
   /** The owner's sub. */
   owner: string;
   /** Whether the invite link files a request for the owner to approve. */
   approval: boolean;
-  invited: GroupMember[];
+  invited: GroupPerson[];
   /** Join requests; filled for the owner only. */
-  requests: GroupMember[];
+  requests: GroupPerson[];
 }
 
 export const getMyGroups = () => request<Group[]>("/groups/mine");
