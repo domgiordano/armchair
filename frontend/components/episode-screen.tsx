@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 
 import { CatchUp } from "@/components/catch-up";
 import { PageLoader } from "@/components/disco-loader";
-import { GroupPicker } from "@/components/group-picker";
+import { GroupPicker, scopeName } from "@/components/group-picker";
 import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
 import { RevealSheet } from "@/components/reveal-sheet";
@@ -25,6 +25,8 @@ import { useNow } from "@armchair/app-core/show/use-now";
 import { withSeason } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 import { TEXT_LINK } from "@/lib/ui";
+
+const PANEL = "scorecard";
 
 export function EpisodeScreen() {
   return (
@@ -60,12 +62,13 @@ function EpisodePicker({ season }: EpisodePickerProps) {
       now={now}
       group={filter.group}
       picked={filter.groups?.find((g) => g.id === filter.group) ?? null}
+      scope={scopeName(filter)}
     />
   );
 
   return (
     <>
-      <div className="grid gap-3 md:grid-cols-2 md:items-end">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:items-end">
         <Select
           label="Episode"
           value={String(episode.ep)}
@@ -76,21 +79,23 @@ function EpisodePicker({ season }: EpisodePickerProps) {
           }))}
           onChange={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
         />
-        <GroupPicker {...filter} />
+        <GroupPicker {...filter} panelId={PANEL} />
       </div>
-      {season.open ? (
-        view
-      ) : (
-        <CatchUp
-          key={episode.ep}
-          season={season.season}
-          episodes={season.episodes}
-          episode={episode}
-          onCatchUp={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
-        >
-          {view}
-        </CatchUp>
-      )}
+      <div id={PANEL} className="contents">
+        {season.open ? (
+          view
+        ) : (
+          <CatchUp
+            key={episode.ep}
+            season={season.season}
+            episodes={season.episodes}
+            episode={episode}
+            onCatchUp={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
+          >
+            {view}
+          </CatchUp>
+        )}
+      </div>
       <div className="flex flex-wrap gap-x-6 border-t border-silver/10 pt-2">
         <Link href="/stats/" className={`${TEXT_LINK} inline-flex min-h-11 items-center`}>
           Your accuracy
@@ -109,9 +114,10 @@ interface EpisodeViewProps {
   now: number;
   group: string | null;
   picked: Group | null;
+  scope: string;
 }
 
-function EpisodeView({ season, episode, now, group, picked }: EpisodeViewProps) {
+function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeViewProps) {
   const { data, error, reload } = useEpisodeState(season.season, season.timezone, episode, group);
   const contestants = useMemo(() => new Map(season.contestants.map((c) => [c.id, c])), [season]);
   const judges = useMemo(() => new Map(season.judges.map((j) => [j.id, j])), [season]);
@@ -173,6 +179,9 @@ function EpisodeView({ season, episode, now, group, picked }: EpisodeViewProps) 
             <h1 id="episode-title" className="text-2xl leading-tight font-semibold tracking-tight text-pearl">
               {episode.theme ?? episodeLabel(episode, season.episodes)}
             </h1>
+            <p className="text-sm text-silver-dim">
+              Comparing with <span className="font-medium text-pearl">{scope}</span>
+            </p>
           </div>
           <p className="shrink-0 pb-0.5 text-sm text-silver-dim tabular-nums">
             {data.open ? "Past season · view only" : `${data.answered} of ${data.rateable} answered`}

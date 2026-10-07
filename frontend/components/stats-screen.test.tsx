@@ -18,7 +18,6 @@ import { getMyGroups } from "@armchair/app-core/api/groups";
 import { getSeason, type Season } from "@/lib/api/show";
 import { getStats, type Stats } from "@/lib/api/stats";
 import { StatsScreen } from "./stats-screen";
-import { choose } from "./ui/select-test-utils";
 
 const SEASON: Season = {
   season: "dwts-35",
@@ -91,10 +90,12 @@ describe("StatsScreen", () => {
     vi.mocked(getMyGroups).mockResolvedValue([{ id: "fam", name: "Family", inviteCode: "c".repeat(16), members: [] }]);
     window.localStorage.setItem("armchair.group", "fam");
     render(<StatsScreen />);
-    const picker = await screen.findByRole("combobox", { name: "Compare with" });
+    const family = await screen.findByRole("tab", { name: "Family" });
+    expect(family.getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByText("Comparing with", { exact: false }).textContent).toBe("Comparing with Family");
     expect(getStats).toHaveBeenLastCalledWith("dwts-35", "fam");
 
-    choose(picker, "Everyone");
+    fireEvent.click(screen.getByRole("tab", { name: "Global" }));
     await vi.waitFor(() => expect(getStats).toHaveBeenLastCalledWith("dwts-35", null));
   });
 
