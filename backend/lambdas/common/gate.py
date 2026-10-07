@@ -84,12 +84,14 @@ def results_open(
     contestants: list[dict],
     performances: list[dict],
     scores: list[dict],
+    closed: bool = False,
 ) -> bool:
     """
     Whether the caller may see the episode's results, eliminations among them:
-    an open season, or every rateable performance answered.
+    an open season, an episode `closed` for answers (common/window.py), or
+    every rateable performance answered.
     """
-    if is_open(meta):
+    if is_open(meta) or closed:
         return True
     keys = rateable(ep, episode, contestants, performances)
     done = answered(sub, scores)
@@ -134,22 +136,24 @@ def episode_view(
     scores: list[dict],
     members: set[str] | None = None,
     writeups: list[dict] | None = None,
+    closed: bool = False,
 ) -> dict:
     """
     The whole episode as the caller may see it. A dance's AI write-up carries
     the judges' reactions, so it opens with the dance: a locked card says only
-    that one exists.
+    that one exists. An episode `closed` for answers shows whole, like an open
+    season, and its unanswered dances stay missed: `mine` None.
     """
     perfs = {perf_key(p["sk"]): p for p in performances}
     notes = {perf_key(w["sk"]): public(w) for w in writeups or [] if w["sk"].startswith("PERF#")}
     keys = rateable(ep, episode, contestants, performances)
-    opened = is_open(meta)
+    opened = is_open(meta) or closed
     mine = {}
     for row in scores:
         key, owner = score_owner(row)
         if owner == sub:
             mine[key] = row
-    complete = results_open(sub, ep, meta, episode, contestants, performances, scores)
+    complete = results_open(sub, ep, meta, episode, contestants, performances, scores, closed)
     panel = episode.get("panel") or meta["defaultPanel"]
 
     values = defaultdict(list)
@@ -168,7 +172,7 @@ def episode_view(
         "airDate": episode.get("airDate"),
         "theme": episode.get("theme"),
         "panel": panel,
-        "open": opened,
+        "open": is_open(meta),
         "rateable": len(keys),
         "answered": sum(k in mine for k in keys),
         "complete": complete,
