@@ -12,6 +12,7 @@ import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/compone
 import { PageLoader } from "@/components/disco-loader";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
+import { ScoreCta } from "@/components/score-cta";
 import { SkipConfirm } from "@/components/skip-confirm";
 import { CountUp } from "@/components/ui/count-up";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -212,11 +213,6 @@ function Hero({ o, season, reload }: ViewProps) {
         turn over.
       </>
     );
-    cta = (
-      <Link href={withSeason(`/episode/?ep=${e.ep}`, season)} className={GOLD}>
-        Score now
-      </Link>
-    );
   } else if (h.kind === "catchUp") {
     const e = h.episode;
     const where = `${weekName(e, o.episodes)}${e.theme ? `, ${e.theme}` : ""}`;
@@ -308,6 +304,8 @@ function Hero({ o, season, reload }: ViewProps) {
         </h1>
         <p className="max-w-xl text-base leading-relaxed text-silver-dim">{body}</p>
         {cta && <div className="flex">{cta}</div>}
+        {/* First thing under the headline on a phone, above the countdown: where to score this week's show. */}
+        <ScoreCta overview={o} onlyToScore className="max-w-xl" />
       </div>
       <NextEpisode o={o} now={now} />
     </section>

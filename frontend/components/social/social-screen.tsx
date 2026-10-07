@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState, type FormEvent, type ReactNode } from "react";
 
+import { ScoreCta } from "@/components/score-cta";
 import { SignedIn } from "@/components/signed-in";
 import {
   ConfirmButton,
@@ -250,7 +251,7 @@ function GroupsView() {
         ) : (
           <ul className="stagger flex flex-col gap-2">
             {groups.value.map((g) => (
-              <li key={g.id}>
+              <li key={g.id} className="flex flex-col gap-1.5">
                 <GroupLink
                   id={g.id}
                   name={g.name}
@@ -258,6 +259,7 @@ function GroupsView() {
                   owner={me.kind === "ready" && g.owner === me.value}
                   waiting={g.requests.length}
                 />
+                <ScoreCta compact onlyToScore group={g.id} groupName={g.name} className="ml-3" />
               </li>
             ))}
           </ul>

@@ -61,7 +61,7 @@ export function formatAirDate(date: string | null): string | null {
 }
 
 /** "Week 4", or "Week 1, night 2" when two episodes share a week. */
-export function episodeLabel(e: Episode, episodes: Episode[]): string {
+export function episodeLabel<E extends Pick<Episode, "week">>(e: E, episodes: E[]): string {
   const nights = episodes.filter((o) => o.week === e.week);
   if (nights.length < 2) return `Week ${e.week}`;
   return `Week ${e.week}, night ${nights.indexOf(e) + 1}`;

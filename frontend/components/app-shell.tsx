@@ -36,7 +36,7 @@ const SOCIAL = "/social/";
 
 export const TABS: Tab[] = [
   { href: "/", label: "Overview", match: ["/"] },
-  { href: "/episode/", label: "Episodes", match: ["/episode"] },
+  { href: "/episode/", label: "Score", match: ["/episode"] },
   { href: "/leaderboard/", label: "Leaderboard", match: ["/leaderboard"] },
   { href: "/stats/", label: "Stats", match: ["/stats"] },
   { href: "/couples/", label: "Couples", match: ["/couples"] },
@@ -83,7 +83,7 @@ function Shell({ title, wide, children }: AppShellProps) {
   const search = params.toString();
   const season = useSeasonId();
   const current = activeTab(pathname);
-  // Episodes is a tab, but every scorecard link lands on it, so it keeps a way back.
+  // Score is a tab, but every scorecard link lands on it, so it keeps a way back.
   const back = bare(pathname) === "/episode" || !TABS.some((t) => bare(t.href) === bare(pathname));
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);

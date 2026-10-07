@@ -19,6 +19,7 @@ vi.mock("@/lib/api/leaderboard", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/leaderboard")>()),
   getLeaderboard: vi.fn(),
 }));
+vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn() }));
 vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@armchair/app-core/api/groups")>()),
   getMyGroups: vi.fn(),
@@ -26,6 +27,7 @@ vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
 
 import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
 import { getLeaderboard, type Leaderboard, type Ranked } from "@/lib/api/leaderboard";
+import { getOverview, type Overview } from "@/lib/api/overview";
 import { getSeason, type Season } from "@/lib/api/show";
 import { judgeName, LeaderboardScreen } from "./leaderboard-screen";
 import { choose } from "./ui/select-test-utils";
@@ -65,6 +67,7 @@ beforeEach(() => {
   vi.mocked(getSeason).mockResolvedValue(SEASON);
   vi.mocked(getLeaderboard).mockResolvedValue(BOARD);
   vi.mocked(getMyGroups).mockResolvedValue([]);
+  vi.mocked(getOverview).mockRejectedValue(new Error("offline"));
   window.localStorage.clear();
 });
 
@@ -113,6 +116,22 @@ describe("LeaderboardScreen", () => {
     expect(within(you).getByText("Unranked")).toBeTruthy();
     expect(within(you).getByText("2 of 5 dances to rank")).toBeTruthy();
     expect(screen.getByText("3/5")).toBeTruthy();
+  });
+
+  it("asks an unranked caller with dances left to score the show", async () => {
+    vi.mocked(getLeaderboard).mockResolvedValue({ ...BOARD, me: { ...person("me", "Me"), rank: null, count: 2, mae: 1, closestJudge: null } });
+    vi.mocked(getOverview).mockResolvedValue({
+      open: false,
+      timezone: "America/New_York",
+      next: null,
+      episodes: [
+        { ep: 5, week: 4, theme: null, airDate: "2026-10-06", startsAt: "2026-10-07T00:00:00Z", endsAt: null, aired: true, rateable: 8, answered: 0, complete: false },
+      ],
+    } as unknown as Overview);
+    render(<LeaderboardScreen />);
+    const show = await screen.findByRole("region", { name: "This week's show" });
+    expect(show.textContent).toContain("Score the show to get on the board: 3 more dances to rank.");
+    expect(within(show).getByRole("link", { name: "Score this week's show" })).toBeTruthy();
   });
 
   it("reads season and group from the URL", async () => {

@@ -185,13 +185,15 @@ describe("Overview", () => {
     expect(screen.queryByRole("link", { name: /^Score|^Catch up/ })).toBeNull();
   });
 
-  it("says Score now while an episode is on air", async () => {
+  it("points the live show's panel at the episode on air", async () => {
     vi.setSystemTime(new Date("2026-10-14T01:00:00Z"));
     vi.mocked(getOverview).mockResolvedValue(data({ episodes: episodes(4, [1, 2, 3, 4]), me: { scored: 40, count: 40, mae: 1, closestJudge: null, streak: 4 } }));
     render(<Overview />);
 
     expect(await screen.findByRole("heading", { level: 1, name: "you're on air." })).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Score now" }).getAttribute("href")).toMatch(/\?ep=5$/);
+    const show = screen.getByRole("region", { name: "This week's show" });
+    expect(within(show).getByText("Live now")).toBeTruthy();
+    expect(within(show).getByRole("link", { name: "Score this week's show" }).getAttribute("href")).toMatch(/\?ep=5$/);
   });
 
   it("shows a reveal as the judges' paddles beside yours", async () => {
