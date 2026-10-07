@@ -91,7 +91,10 @@ const off = (mae: number) => `${formatScore(mae)} off`;
 function StatsView({ season, stats }: { season: Season; stats: Stats }) {
   const { mine } = stats;
   const [showOut, setShowOut] = useShowEliminated("stats");
-  const judgeName = (id: string) => season.judges.find((j) => j.id === id)?.name ?? id;
+  const judgeName = (id: string) => {
+    const j = season.judges.find((x) => x.id === id);
+    return j ? `${j.name}${j.guest ? " (guest)" : ""}` : id;
+  };
   const label = (ep: number) => {
     const e = season.episodes.find((x) => x.ep === ep);
     return e ? episodeLabel(e, season.episodes) : `Episode ${ep}`;

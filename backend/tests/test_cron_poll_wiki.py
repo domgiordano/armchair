@@ -6,6 +6,7 @@ from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import parse_qs, urlsplit
 
+import boto3
 import pytest
 
 from lambdas.cron_poll_wiki import handler as poller
@@ -320,3 +321,181 @@ def test_a_team_dance_is_rateable_and_its_missing_result_holds_nothing_up(db):
     results = catalog(db, "EP#05")["results"]
     assert results["eliminated"] == ["tyler-cameron"]
     assert results["totals"] == {"tyler-cameron": 24}
+
+
+S34 = json.loads((SEASONS / "dwts-34.json").read_text(), parse_float=Decimal)
+S34_REV = ("s34-1375977389.wikitext", S34["revid"], S34["revTimestamp"])
+SITE_BUCKET = "t-armchair-site"
+CHERYL = {
+    "summary": {
+        "type": "standard",
+        "title": "Cheryl Burke",
+        "wikibase_item": "Q2085395",
+        "description": "American dancer (born 1984)",
+        "extract": "Cheryl Burke is an American dancer and television personality. "
+        "She is best known as a professional dancer on Dancing with the Stars. "
+        "She won seasons two and three. She later hosted a podcast.",
+        "content_urls": {"desktop": {"page": "https://en.wikipedia.org/wiki/Cheryl_Burke"}},
+    },
+    "entity": {
+        "entities": {
+            "Q2085395": {
+                "claims": {
+                    "P31": [{"mainsnak": {"datavalue": {"value": {"id": "Q5"}}}}],
+                    "P18": [{"mainsnak": {"datavalue": {"value": "Cheryl Burke 2009.jpg"}}}],
+                }
+            }
+        }
+    },
+    "file": {
+        "query": {
+            "pages": [
+                {
+                    "imagerepository": "local",
+                    "imageinfo": [
+                        {
+                            "mime": "image/jpeg",
+                            "sha1": "0123456789abcdef",
+                            "thumburl": "https://upload.wikimedia.org/thumb/Cheryl_Burke_2009.jpg",
+                            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Cheryl_Burke_2009.jpg",
+                            "extmetadata": {
+                                "Artist": {"value": "<a href='x'>Toglenn</a>"},
+                                "LicenseShortName": {"value": "CC BY-SA 3.0"},
+                            },
+                        }
+                    ],
+                }
+            ]
+        }
+    },
+}
+
+
+@pytest.fixture
+def s34(aws, monkeypatch):
+    """S34 as the live season with week 7's guest, Cheryl Burke, not yet in the catalog."""
+    monkeypatch.setattr(poller, "SEASON", 34)
+    monkeypatch.setattr(poller, "SEASON_PK", "SEASON#dwts#34")
+    monkeypatch.setenv("SITE_BUCKET", SITE_BUCKET)
+    boto3.client("s3").create_bucket(Bucket=SITE_BUCKET)
+    rows = [r for r in items(S34) if r["sk"] != "JUDGE#cheryl-burke"]
+    write(
+        aws.Table(CATALOG_TABLE), [{**r, "panel": None} if r["sk"] == "EP#07" else r for r in rows]
+    )
+    return aws
+
+
+def commons(monkeypatch, answers: dict | None = None):
+    """Stubs Wikipedia, Wikidata and Commons for guest_judges; None leaves them offline."""
+    import urllib.request
+
+    seen = []
+
+    def urlopen(req, timeout=None):
+        url = req.full_url
+        seen.append(url)
+        if answers is None:
+            raise OSError(f"offline: {url}")
+        if "/page/summary/" in url:
+            return io.BytesIO(json.dumps(answers["summary"]).encode())
+        if "wikidata.org" in url:
+            return io.BytesIO(json.dumps(answers["entity"]).encode())
+        if "commons.wikimedia.org/w/api.php" in url:
+            return io.BytesIO(json.dumps(answers["file"]).encode())
+        return io.BytesIO(b"\xff\xd8 a jpeg")
+
+    monkeypatch.setattr(urllib.request, "urlopen", urlopen)
+    return seen
+
+
+def item(db, pk: str, sk: str = "META") -> dict:
+    return db.Table(CATALOG_TABLE).get_item(Key={"pk": pk, "sk": sk})["Item"]
+
+
+def s34_catalog(db, sk: str) -> dict:
+    return item(db, "SEASON#dwts#34", sk)
+
+
+def test_an_unknown_guest_scores_four_seats_and_gets_a_photo_and_page(s34, monkeypatch):
+    commons(monkeypatch, CHERYL)
+    Wiki(monkeypatch).tick(S34_REV, epoch("2026-01-01T00:00:00Z"), event={"backfill": True})
+
+    panel = ["carrie-ann-inaba", "derek-hough", "cheryl-burke", "bruno-tonioli"]
+    assert s34_catalog(s34, "EP#07")["panel"] == panel
+    alix = perfs(s34, "EP#dwts#34#07")["alix-earle#1"]
+    assert {j: e["value"] for j, e in alix["judges"].items()} == dict(zip(panel, (10, 10, 9, 10)))
+    assert s34_catalog(s34, "EP#07")["results"]["totals"]["alix-earle"] == 39
+
+    judge = s34_catalog(s34, "JUDGE#cheryl-burke")
+    assert judge["name"] == "Cheryl Burke"
+    shot = judge["headshot"]
+    assert shot["image"].startswith("auto/cheryl-burke-") and shot["image"].endswith(".jpg")
+    assert (shot["author"], shot["license"], shot["source"]) == ("Toglenn", "CC BY-SA 3.0", "auto")
+    body = boto3.client("s3").get_object(Bucket=SITE_BUCKET, Key=f"headshots/{shot['image']}")
+    assert body["ContentType"] == "image/jpeg"
+
+    person = item(s34, "PERSON#dwts#cheryl-burke")
+    assert person["roles"] == ["judge"] and person["seasons"] == [{"season": 34, "role": "judge"}]
+    assert person["bio"]["extract"].count(".") == 3
+    assert item(s34, "PEOPLE#dwts", "PERSON#cheryl-burke")["headshot"] == shot["image"]
+
+
+def test_a_guest_lookup_that_fails_never_holds_up_scores_and_retries(s34, monkeypatch):
+    commons(monkeypatch)
+    wiki = Wiki(monkeypatch)
+    wiki.tick(S34_REV, epoch("2026-01-01T00:00:00Z"), event={"backfill": True})
+
+    assert len(perfs(s34, "EP#dwts#34#07")) == 9
+    judge = s34_catalog(s34, "JUDGE#cheryl-burke")
+    assert "headshot" not in judge and "profiledAt" not in judge
+
+    seen = commons(monkeypatch, CHERYL)
+    wiki.tick(S34_REV, epoch("2026-01-01T00:00:00Z"), event={"backfill": True})
+    assert s34_catalog(s34, "JUDGE#cheryl-burke")["headshot"]["source"] == "auto"
+    calls = len(seen)
+
+    wiki.tick(S34_REV, epoch("2026-01-01T00:00:00Z"), event={"backfill": True})
+    assert len(seen) == calls
+
+
+def test_a_guest_already_in_the_person_index_keeps_their_photo(s34, monkeypatch):
+    seen = commons(monkeypatch, CHERYL)
+    shot = next(j for j in S34["judges"] if j["id"] == "cheryl-burke")["headshot"]
+    s34.Table(CATALOG_TABLE).put_item(
+        Item={
+            "pk": "PERSON#dwts#cheryl-burke",
+            "sk": "META",
+            "name": "Cheryl Burke",
+            "roles": ["pro"],
+            "headshot": shot,
+            "seasons": [{"season": 2, "role": "pro", "couple": "drew-lachey"}],
+        }
+    )
+    Wiki(monkeypatch).tick(S34_REV, epoch("2026-01-01T00:00:00Z"), event={"backfill": True})
+
+    assert seen == []
+    assert s34_catalog(s34, "JUDGE#cheryl-burke")["headshot"] == shot
+    person = item(s34, "PERSON#dwts#cheryl-burke")
+    assert person["roles"] == ["judge", "pro"]
+    assert [s["role"] for s in person["seasons"]] == ["pro", "judge"]
+
+
+def test_a_name_that_leads_to_no_person_is_marked_and_left_to_initials(s34, monkeypatch):
+    commons(monkeypatch, {**CHERYL, "summary": {**CHERYL["summary"], "type": "disambiguation"}})
+    Wiki(monkeypatch).tick(S34_REV, epoch("2026-01-01T00:00:00Z"), event={"backfill": True})
+
+    judge = s34_catalog(s34, "JUDGE#cheryl-burke")
+    assert "headshot" not in judge and judge["profiledAt"]
+    person = item(s34, "PERSON#dwts#cheryl-burke")
+    assert person["bio"] is None and person["headshot"] is None
+
+
+def test_a_non_free_photo_gives_a_bio_and_no_headshot(s34, monkeypatch):
+    info = CHERYL["file"]["query"]["pages"][0]["imageinfo"][0]
+    meta = {**info["extmetadata"], "LicenseShortName": {"value": "Fair use"}}
+    page = {"imagerepository": "local", "imageinfo": [{**info, "extmetadata": meta}]}
+    commons(monkeypatch, {**CHERYL, "file": {"query": {"pages": [page]}}})
+    Wiki(monkeypatch).tick(S34_REV, epoch("2026-01-01T00:00:00Z"), event={"backfill": True})
+
+    assert "headshot" not in s34_catalog(s34, "JUDGE#cheryl-burke")
+    assert item(s34, "PERSON#dwts#cheryl-burke")["bio"]["title"] == "Cheryl Burke"

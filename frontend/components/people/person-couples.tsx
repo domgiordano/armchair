@@ -213,7 +213,10 @@ export function JudgedSeasons({ stints, stats, onLoad }: JudgedSeasonsProps) {
           return (
             <li key={s.season} className={cn(CARD, "h-full")}>
               <div className="flex items-baseline justify-between gap-2">
-                <p className={EYEBROW}>{seasonLabel(s.season)}</p>
+                <p className={cn(EYEBROW, "flex items-center gap-2")}>
+                  {seasonLabel(s.season)}
+                  {s.guest && <Badge tone="magenta">{s.weeks?.length ? `Guest, week ${s.weeks.join(", ")}` : "Guest"}</Badge>}
+                </p>
                 {numbers && (
                   <p className="text-xs text-silver-dim tabular-nums">
                     avg{" "}

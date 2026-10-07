@@ -15,6 +15,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { ApiError } from "@armchair/app-core/api/client";
 import { getPerson, type PersonPage, type Role } from "@/lib/api/people";
+import { guestLabel } from "@/lib/show/people";
 import { seasonLabel } from "@/lib/show/seasons";
 import { SECONDARY, TEXT_LINK } from "@/lib/ui";
 
@@ -191,6 +192,10 @@ function Person({ data, season }: { data: PersonPage; season?: string }) {
 
 function Hero({ data }: { data: PersonPage }) {
   const facts = data.facts;
+  const judging = data.seasons.filter((s) => s.role === "judge");
+  const guests = judging.filter((s) => s.guest);
+  // Only ever a guest: the role badge says so. A regular who once guested stays "Judge".
+  const onlyGuest = guests.length > 0 && guests.length === judging.length;
   const line = [
     facts?.born && `Born ${date(facts.born)}`,
     facts?.died && `died ${date(facts.died)}`,
@@ -206,11 +211,19 @@ function Hero({ data }: { data: PersonPage }) {
           <div className="flex flex-wrap gap-1.5">
             {data.roles.map((r) => (
               <Badge key={r} tone={r === "judge" ? "magenta" : "gold"}>
-                {ROLE[r]}
+                {r === "judge" && onlyGuest ? "Guest judge" : ROLE[r]}
               </Badge>
             ))}
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-pearl sm:text-4xl">{data.name}</h1>
+          {guests.length > 0 && (
+            <p className="text-sm font-medium text-gold-light">
+              {[...guests]
+                .sort((a, b) => b.number - a.number)
+                .map((g) => `${guestLabel(g.weeks)}, ${seasonLabel(g.season)}`)
+                .join(" · ")}
+            </p>
+          )}
           {data.bio?.description && <p className="text-silver first-letter:uppercase">{data.bio.description}</p>}
           {line.length > 0 && <p className="text-sm text-silver-dim">{line.join(" · ")}</p>}
           {facts && facts.occupations.length > 0 && (

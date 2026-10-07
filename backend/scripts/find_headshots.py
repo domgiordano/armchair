@@ -38,6 +38,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from lambdas.common.guest_judges import FREE, PRESS
 from scripts import faces
 from scripts.build_season import SEASONS, UA, words
 
@@ -45,12 +46,6 @@ REGISTRY = SEASONS.parent / "headshots.json"
 WIKIPEDIA = "https://en.wikipedia.org/w/api.php"
 WIKIDATA = "https://www.wikidata.org/w/api.php"
 COMMONS = "https://commons.wikimedia.org/w/api.php"
-FREE = re.compile(r"^(CC BY(-SA)? \d(\.\d)?|CC0|Public domain|PD\b)", re.IGNORECASE)
-# Network publicity stills have reached Commons under free licenses before being deleted.
-# A record label or studio as author means a publicity still, whatever the license says.
-PRESS = re.compile(
-    r"\b(ABC|Disney|press (photo|release|kit)|publicity|Records|Studios)\b", re.IGNORECASE
-)
 # Some P18 images of people are their signature or their grave.
 # Whole words only: "TomBergeronApr09.jpg" is not a tomb.
 NOT_A_FACE = re.compile(

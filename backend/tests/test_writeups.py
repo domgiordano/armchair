@@ -228,3 +228,24 @@ def test_cost_and_estimate():
     body = writeups.request([facts()], PANEL, 3, None)
     # Every max_tokens output token is in the ceiling.
     assert claude.estimate(body) > writeups.MAX_TOKENS * claude.PRICE[1] / 1_000_000
+
+
+def test_a_guest_makes_a_four_judge_dance_out_of_40():
+    # S34 week 7, Alix and Val: Cheryl Burke guest-judging in the third seat.
+    panel = ["carrie-ann-inaba", "derek-hough", "cheryl-burke", "bruno-tonioli"]
+    judges = {**JUDGES, "cheryl-burke": "Cheryl Burke"}
+    p = {
+        **perf(),
+        "judges": {
+            j: {"value": Decimal(v), "state": "confirmed"} for j, v in zip(panel, (10, 10, 9, 10))
+        },
+    }
+    f = writeups.facts(p, panel, CONTESTANTS, judges, [(URL, EXCERPT)])
+    assert (f["total"], f["max"]) == (39, 40)
+    assert f["judges"][2] == ("cheryl-burke", "Cheryl Burke", 9)
+    prompt = writeups.request([f], panel, 7, "Halloween")["messages"][0]["content"]
+    assert "Cheryl Burke 9, Bruno Tonioli 10; total 39 of 40" in prompt
+
+    assert writeups.flaw("It earned 39 out of 40.", f) is None
+    assert writeups.flaw("It earned 38.", f) == "names a number other than this dance's scores"
+    assert writeups.flaw("A perfect 40 for Alix.", f) == "calls a score perfect that wasn't"

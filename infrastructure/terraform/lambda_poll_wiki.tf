@@ -55,6 +55,13 @@ data "aws_iam_policy_document" "poll_wiki" {
     resources = [aws_dynamodb_table.board.arn]
   }
 
+  # A guest judge's Commons photo (common/guest_judges.py), beside the seeded crops.
+  statement {
+    sid       = "GuestHeadshots"
+    actions   = ["s3:PutObject"]
+    resources = ["arn:aws:s3:::${var.domain_name}/headshots/auto/*"]
+  }
+
   statement {
     sid       = "UseKey"
     actions   = ["kms:Decrypt", "kms:Encrypt", "kms:GenerateDataKey"]
@@ -88,6 +95,7 @@ resource "aws_lambda_function" "poll_wiki" {
       PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
       SCORES_TABLE       = aws_dynamodb_table.scores.id
       BOARD_TABLE        = aws_dynamodb_table.board.id
+      SITE_BUCKET        = var.domain_name
     }
   }
 

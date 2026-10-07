@@ -67,7 +67,8 @@ export function WhatHappened({ writeup, judges, className }: WhatHappenedProps) 
                 <li key={j.id} className="flex items-start gap-2.5">
                   <Headshot person={{ name, headshot: judge?.headshot ?? null }} size={32} />
                   <p className="min-w-0 text-silver">
-                    <span className="font-semibold text-pearl">{name}</span>{" "}
+                    <span className="font-semibold text-pearl">{name}</span>
+                    {judge?.guest && <span className="text-silver-dim"> (guest judge)</span>}{" "}
                     {j.text}
                     {j.quote && <span className="text-gold-light"> &ldquo;{j.quote}&rdquo;</span>}
                   </p>
