@@ -4,7 +4,7 @@ from decimal import Decimal
 
 import pytest
 
-from lambdas.common import episodes_dynamo
+from lambdas.common import episodes_dynamo, window
 from lambdas.common.episodes_dynamo import create_scores
 from lambdas.scores_skip_before import handler as skip
 from lambdas.scores_submit.handler import handler as submit_handler
@@ -87,11 +87,16 @@ def test_touches_nobody_else(show):
     assert list(rows(show, B)) == [("EP#dwts#35#04", ep_keys(4)[0])]
 
 
-def test_never_forfeits_an_episode_still_to_air(show):
+@pytest.mark.scoring_window
+def test_touches_only_the_episode_taking_answers(show, monkeypatch):
+    monkeypatch.setattr(window, "now", lambda: NOW)
     status, body = skip_before(ep="12")
     assert status == 200
-    assert [r["ep"] for r in body["data"]["revealed"]] == [1, 2, 3, 4, 5]
-    assert all(pk <= "EP#dwts#35#05" for pk, _ in rows(show))
+    # 1-4 have closed, so their dances stay missed; 6 onward haven't aired.
+    assert [r["ep"] for r in body["data"]["revealed"]] == [5]
+    assert {pk for pk, _ in rows(show)} == {"EP#dwts#35#05"}
+    closed = state(ep="03")
+    assert closed["complete"] is True and closed["answered"] == 0
 
 
 def test_a_value_after_skipping_is_409(show):
