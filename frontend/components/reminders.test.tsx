@@ -28,6 +28,9 @@ const overview = (answered: number) =>
     ],
   }) as unknown as Overview;
 
+// The overview arrives through a mocked promise, but a loaded full-suite run can still take over a second.
+const SLOW = { timeout: 5000 };
+
 beforeEach(() => {
   vi.useFakeTimers({ toFake: ["Date"] });
   // The morning after the show, Eastern.
@@ -44,7 +47,7 @@ afterEach(() => {
 describe("Reminders", () => {
   it("shows the banner and, once that day, the sheet", async () => {
     const { unmount } = render(<Reminders onScorecard={false} />);
-    const banner = await screen.findByRole("region", { name: "Reminder" });
+    const banner = await screen.findByRole("region", { name: "Reminder" }, SLOW);
     expect(banner.textContent).toContain("Don't forget to score Week 4 · Mariah Carey · 9 left");
     expect(within(banner).getByRole("link", { name: "Score" }).getAttribute("href")).toMatch(/\?ep=5$/);
     const sheet = screen.getByRole("dialog", { name: "Reminder" });
@@ -55,32 +58,32 @@ describe("Reminders", () => {
 
     unmount();
     render(<Reminders onScorecard={false} />);
-    await screen.findByRole("region", { name: "Reminder" });
+    await screen.findByRole("region", { name: "Reminder" }, SLOW);
     expect(screen.queryByRole("dialog", { name: "Reminder" })).toBeNull();
   });
 
   it("remembers a dismissed banner for that episode", async () => {
     window.localStorage.setItem("armchair.reminder.shown", "2026-10-07");
     const { unmount } = render(<Reminders onScorecard={false} />);
-    fireEvent.click(await screen.findByRole("button", { name: "Dismiss reminder" }));
+    fireEvent.click(await screen.findByRole("button", { name: "Dismiss reminder" }, SLOW));
     expect(screen.queryByRole("region", { name: "Reminder" })).toBeNull();
     unmount();
     render(<Reminders onScorecard={false} />);
-    await vi.waitFor(() => expect(getOverview).toHaveBeenCalledTimes(2));
+    await vi.waitFor(() => expect(getOverview).toHaveBeenCalledTimes(2), SLOW);
     expect(screen.queryByRole("region", { name: "Reminder" })).toBeNull();
   });
 
   it("stays quiet two days after the show, once it's scored, and on the scorecard", async () => {
     vi.setSystemTime(Date.parse("2026-10-08T14:00:00Z"));
     const { unmount } = render(<Reminders onScorecard={false} />);
-    await vi.waitFor(() => expect(getOverview).toHaveBeenCalled());
+    await vi.waitFor(() => expect(getOverview).toHaveBeenCalled(), SLOW);
     expect(screen.queryByRole("region", { name: "Reminder" })).toBeNull();
     unmount();
 
     vi.setSystemTime(Date.parse("2026-10-07T14:00:00Z"));
     vi.mocked(getOverview).mockResolvedValue(overview(12));
     const done = render(<Reminders onScorecard={false} />);
-    await vi.waitFor(() => expect(getOverview).toHaveBeenCalledTimes(2));
+    await vi.waitFor(() => expect(getOverview).toHaveBeenCalledTimes(2), SLOW);
     expect(screen.queryByRole("region", { name: "Reminder" })).toBeNull();
     done.unmount();
 
@@ -97,7 +100,7 @@ describe("Reminders", () => {
     const storage = window.localStorage;
     vi.stubGlobal("localStorage", { getItem: refuse, setItem: refuse, removeItem: refuse, clear: () => {} });
     render(<Reminders onScorecard={false} />);
-    expect(await screen.findByRole("region", { name: "Reminder" })).toBeTruthy();
+    expect(await screen.findByRole("region", { name: "Reminder" }, SLOW)).toBeTruthy();
     vi.stubGlobal("localStorage", storage);
   });
 });
