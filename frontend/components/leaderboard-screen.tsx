@@ -23,11 +23,6 @@ import { button, cn } from "@/lib/ui";
 
 type BoardLoad = { kind: "loading" } | { kind: "ready"; board: Leaderboard } | { kind: "error"; message: string };
 
-const SCOPES = [
-  { id: "global", label: "Global" },
-  { id: "friends", label: "Friends" },
-  { id: "group", label: "Groups" },
-] as const;
 const PANEL = "leaderboard-panel";
 
 export const off = (mae: number) => `${mae.toFixed(2)} off`;
@@ -71,6 +66,16 @@ function Controls() {
   };
 
   const scoped = scope === "group" ? group : null;
+  // One tab per group, so a group is one tap away and the tab bar says which board this is.
+  const tabs = [
+    { id: "global", label: "Global" },
+    { id: "friends", label: "Friends" },
+    ...(groups.length > 0 ? groups.map((g) => ({ id: `group:${g.id}`, label: g.name })) : [{ id: "group", label: "Groups" }]),
+  ];
+  const tab = scope === "group" && group ? `group:${group}` : scope;
+  const pickTab = (id: string) =>
+    id.startsWith("group:") ? go({ scope: "group", group: id.slice("group:".length) }) : go({ scope: id as Scope });
+  const scopeLabel = scope === "group" ? (groups.find((g) => g.id === group)?.name ?? "Groups") : scope === "friends" ? "Friends" : "Global";
   const judges = seasonLoad.kind === "ready" ? seasonLoad.season.judges : [];
   const waiting = scope === "group" && filter.groups === null && !filter.failed;
   const noGroups = scope === "group" && (filter.failed || (filter.groups !== null && group === null));
@@ -80,6 +85,7 @@ function Controls() {
       <div className="flex flex-col gap-4">
         <PageHeader
           title="Leaderboard"
+          eyebrow={scopeLabel}
           action={
             <Select
               label="Standings for"
@@ -94,22 +100,10 @@ function Controls() {
             />
           }
         />
-        <div className="md:max-w-md">
-          <Tabs label="Who to rank" tabs={SCOPES} value={scope} onChange={(s) => go({ scope: s })} panelId={PANEL} />
-        </div>
-        {scope === "group" && groups.length > 0 && (
-          <div className="md:max-w-md">
-            <Select
-              label="Group"
-              value={group ?? ""}
-              options={groups.map((g) => ({ value: g.id, label: `${g.name} (${g.members.length})` }))}
-              onChange={(g) => go({ group: g })}
-            />
-          </div>
-        )}
+        <Tabs label="Who to rank" scroll tabs={tabs} value={tab} onChange={pickTab} panelId={PANEL} />
       </div>
 
-      <div id={PANEL} role="tabpanel" aria-labelledby={tabId(PANEL, scope)} className="flex flex-1 flex-col gap-4">
+      <div id={PANEL} role="tabpanel" aria-labelledby={tabId(PANEL, tab)} className="flex flex-1 flex-col gap-4">
         {waiting && <BoardSkeleton label="Loading your groups" />}
         {noGroups && (
           <EmptyState

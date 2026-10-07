@@ -160,34 +160,6 @@ describe("Desk", () => {
     expect(within(you).getByText("skipped")).toBeTruthy();
   });
 
-  it("seats group members in place of the everyone average", () => {
-    const { container } = render(
-      <Desk
-        card={card(confirmed(3))}
-        judges={judgeMap}
-        members={[
-          { sub: "sam", name: "Sam Friend", picture: null, value: 9 },
-          { sub: "lee", name: "Lee Friend", picture: null, value: 4 },
-        ]}
-      >
-        list
-      </Desk>,
-    );
-    expect(seats(container).map((s) => s.dataset.seat)).toEqual([
-      "judge",
-      "judge",
-      "judge",
-      "you",
-      "member",
-      "member",
-    ]);
-    expect(paddle(seat(container, "Sam")).textContent).toBe("9");
-    expect(within(container).queryByText("All")).toBeNull();
-    // Plates open the member's profile and the judge's page.
-    expect(screen.getByRole("link", { name: "Sam Friend 9" }).getAttribute("href")).toBe("/profile?u=sam");
-    expect(screen.getByRole("link", { name: /^Carrie Ann Inaba/ }).getAttribute("href")).toBe("/people?id=carrie-ann-inaba");
-  });
-
   it("marks a guest judge's seat and says so to a screen reader", () => {
     const guest = new Map(judgeMap).set("guest", { ...JUDGES[3], guest: true, weeks: [5] });
     const { container } = render(

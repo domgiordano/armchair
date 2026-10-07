@@ -1,6 +1,6 @@
 import { request } from "@armchair/app-core/api/client";
 import type { Elimination } from "./couples";
-import type { Answer, Headshot, JudgeSeat, Member } from "./show";
+import type { ActiveEpisode, Answer, Headshot, JudgeSeat, Member, ScoringWindow } from "./show";
 
 export interface OverviewEpisode {
   ep: number;
@@ -17,6 +17,7 @@ export interface OverviewEpisode {
   complete?: boolean;
   scored?: number;
   mae?: number | null;
+  window?: ScoringWindow;
 }
 
 export interface Reveal {
@@ -53,6 +54,7 @@ export interface Overview {
   };
   next: { ep: number; week: number; theme: string | null; airDate: string; startsAt: string } | null;
   episodes: OverviewEpisode[];
+  activeEpisode?: ActiveEpisode | null;
   reveals: Reveal[];
   couples: CoupleStanding[];
 }

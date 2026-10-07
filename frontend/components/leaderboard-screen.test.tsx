@@ -139,13 +139,14 @@ describe("LeaderboardScreen", () => {
     search = new URLSearchParams({ season: "all", scope: "group", group: "fam" });
     render(<LeaderboardScreen />);
     await vi.waitFor(() => expect(getLeaderboard).toHaveBeenCalledWith("all", "group", "fam"));
-    expect(screen.getByRole("tab", { name: "Groups" }).getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByRole("tab", { name: "Family" }).getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByRole("heading", { level: 1 }).closest("header")?.textContent).toContain("Family");
   });
 
   it("switching tab or season rewrites the URL", async () => {
     vi.mocked(getMyGroups).mockResolvedValue([FAMILY]);
     render(<LeaderboardScreen />);
-    fireEvent.click(await screen.findByRole("tab", { name: "Groups" }));
+    fireEvent.click(await screen.findByRole("tab", { name: "Family" }));
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=dwts-35&scope=group&group=fam");
     choose(screen.getByRole("combobox", { name: "Standings for" }), "All-time");
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=all&scope=global");

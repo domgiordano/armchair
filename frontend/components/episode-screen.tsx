@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 
 import { CatchUp } from "@/components/catch-up";
 import { PageLoader } from "@/components/disco-loader";
-import { GroupPicker } from "@/components/group-picker";
+import { GroupPicker, scopeName } from "@/components/group-picker";
 import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
 import { RevealSheet } from "@/components/reveal-sheet";
@@ -15,16 +15,20 @@ import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { VotePanel } from "@/components/vote-panel";
-import type { GroupMember } from "@armchair/app-core/api/groups";
-import { revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
+import type { Group } from "@armchair/app-core/api/groups";
+import { CLOSED, revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
 import { seal, unseal, useSealed } from "@/lib/show/sealed";
 import { useEpisodeState } from "@/lib/show/use-episode-state";
 import { useNow } from "@armchair/app-core/show/use-now";
+import { ApiError } from "@armchair/app-core/api/client";
+import { closesIn, closesOn, isClosed } from "@/lib/show/window";
 import { withSeason } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 import { TEXT_LINK } from "@/lib/ui";
+
+const PANEL = "scorecard";
 
 export function EpisodeScreen() {
   return (
@@ -59,38 +63,47 @@ function EpisodePicker({ season }: EpisodePickerProps) {
       episode={episode}
       now={now}
       group={filter.group}
-      members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
+      picked={filter.groups?.find((g) => g.id === filter.group) ?? null}
+      scope={scopeName(filter)}
     />
   );
 
   return (
     <>
-      <div className="grid gap-3 md:grid-cols-2 md:items-end">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:items-end">
         <Select
           label="Episode"
           value={String(episode.ep)}
           options={season.episodes.map((e) => ({
             value: String(e.ep),
             label: [episodeLabel(e, season.episodes), e.theme].filter(Boolean).join(" · "),
-            detail: formatAirDate(e.airDate) ?? undefined,
+            detail:
+              [
+                formatAirDate(e.airDate),
+                e.window?.open ? "Open now" : isClosed(e.window, now) ? "Closed" : null,
+              ]
+                .filter(Boolean)
+                .join(" · ") || undefined,
           }))}
           onChange={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
         />
-        <GroupPicker {...filter} />
+        <GroupPicker {...filter} panelId={PANEL} />
       </div>
-      {season.open ? (
-        view
-      ) : (
-        <CatchUp
-          key={episode.ep}
-          season={season.season}
-          episodes={season.episodes}
-          episode={episode}
-          onCatchUp={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
-        >
-          {view}
-        </CatchUp>
-      )}
+      <div id={PANEL} className="contents">
+        {season.open ? (
+          view
+        ) : (
+          <CatchUp
+            key={episode.ep}
+            season={season.season}
+            episodes={season.episodes}
+            episode={episode}
+            onCatchUp={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
+          >
+            {view}
+          </CatchUp>
+        )}
+      </div>
       <div className="flex flex-wrap gap-x-6 border-t border-silver/10 pt-2">
         <Link href="/stats/" className={`${TEXT_LINK} inline-flex min-h-11 items-center`}>
           Your accuracy
@@ -108,10 +121,11 @@ interface EpisodeViewProps {
   episode: Episode;
   now: number;
   group: string | null;
-  members: GroupMember[] | null;
+  picked: Group | null;
+  scope: string;
 }
 
-function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps) {
+function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeViewProps) {
   const { data, error, reload } = useEpisodeState(season.season, season.timezone, episode, group);
   const contestants = useMemo(() => new Map(season.contestants.map((c) => [c.id, c])), [season]);
   const judges = useMemo(() => new Map(season.judges.map((j) => [j.id, j])), [season]);
@@ -142,6 +156,8 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
       if (value !== null) setLocked({ key: card.key, title: names(card.contestants), value });
     } catch (e) {
       if (value !== null) unseal(season.season, episode.ep, card.key);
+      // The reload below turns the page read-only; this says why the paddle didn't stick.
+      if (e instanceof ApiError && e.detail?.code === CLOSED) throw new Error("scoring for this episode has closed");
       throw e;
     } finally {
       // Also after a 409: the answer from another device is what the card should show.
@@ -154,6 +170,10 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
     (id) => contestants.get(id) ?? [],
   );
   const sealed = (key: string) => isSealed(season.season, episode.ep, key);
+  // From the episode state when the API sends windows; the season catalog may be cached.
+  const win = data.window ?? episode.window;
+  const closed = isClosed(win, now);
+  const closesAt = !closed && win?.open ? win.closesAt : null;
   // The episode's result arrives with the last answer, which may still be face down.
   const anySealed = data.performances.some((c) => !c.locked && sealed(c.key));
   const eliminated = anySealed ? [] : (data.eliminated ?? []);
@@ -173,9 +193,15 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
             <h1 id="episode-title" className="text-2xl leading-tight font-semibold tracking-tight text-pearl">
               {episode.theme ?? episodeLabel(episode, season.episodes)}
             </h1>
+            <p className="text-sm text-silver-dim">
+              Comparing with <span className="font-medium text-pearl">{scope}</span>
+            </p>
           </div>
-          <p className="shrink-0 pb-0.5 text-sm text-silver-dim tabular-nums">
+          <p className="shrink-0 pb-0.5 text-right text-sm text-silver-dim tabular-nums">
             {data.open ? "Past season · view only" : `${data.answered} of ${data.rateable} answered`}
+            {closesAt && (
+              <span className="block text-xs font-medium text-gold-light">Closes in {closesIn(closesAt, now)}</span>
+            )}
           </p>
         </div>
         {!data.open && (
@@ -194,7 +220,16 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
           </div>
         )}
       </div>
-      {!data.open && airsOn === null && data.answered < data.rateable && (
+      {closed && (
+        <p role="status" className="rounded-lg border border-silver/15 bg-ink/40 px-3 py-2.5 text-sm text-silver">
+          <span className="font-semibold text-pearl">Scoring closed</span>
+          {win?.closesAt && ` ${closesOn(win.closesAt, season.timezone)}`}.{" "}
+          {data.answered < data.rateable
+            ? `You scored ${data.answered} of ${data.rateable}; the rest are marked missed. Every score is open to see.`
+            : "Every score is open to see."}
+        </p>
+      )}
+      {!data.open && !closed && airsOn === null && data.answered < data.rateable && (
         <RevealAll open={data.rateable - data.answered} onConfirm={revealRest} />
       )}
       {error !== null && (
@@ -211,7 +246,7 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
       {data.performances.length === 0 ? (
         <EmptyState title="No dances yet">Performances appear here once the running order is in.</EmptyState>
       ) : (
-        <ul className="stagger grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="stagger grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
           {data.performances.map((card) => (
             <li key={card.key}>
               <PerformanceCard
@@ -221,9 +256,10 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
                 contestants={contestants}
                 judges={judges}
                 airsOn={airsOn}
-                members={members}
+                group={picked}
                 onSubmit={submit}
                 sealed={!card.locked && sealed(card.key)}
+                missed={closed && !card.locked && card.mine === null}
                 onReveal={() => unseal(season.season, episode.ep, card.key)}
               />
             </li>

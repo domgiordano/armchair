@@ -81,7 +81,7 @@ function Couples({ season }: { season: Season }) {
           </div>
         ) : (
           <div className="col-span-2 row-start-2 animate-fade-in md:w-80">
-            <GroupPicker {...filter} />
+            <GroupPicker {...filter} panelId={PANEL} />
           </div>
         )}
         <div className={cn("flex flex-col gap-1.5 md:w-80", compare !== "off" && "col-span-2 row-start-1")}>

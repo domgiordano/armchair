@@ -5,7 +5,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 
 import { PageLoader } from "@/components/disco-loader";
 import { BarList, Histogram, Legend, TrendChart } from "@/components/stats-charts";
-import { GroupPicker } from "@/components/group-picker";
+import { GroupPicker, scopeName } from "@/components/group-picker";
 import { CoupleLink, CoupleNames } from "@/components/couple-names";
 import { OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { formatScore } from "@/components/performance-card";
@@ -46,11 +46,15 @@ function StatsLoader({ season }: { season: Season }) {
   const filter = useGroupFilter();
   return (
     <>
-      <PageHeader title="Your accuracy" />
+      <PageHeader title="Your accuracy">
+        Comparing with <span className="font-medium text-pearl">{scopeName(filter)}</span>
+      </PageHeader>
       <div className="md:max-w-md">
-        <GroupPicker {...filter} />
+        <GroupPicker {...filter} panelId="stats-panel" />
       </div>
-      <StatsFetcher season={season} group={filter.group} />
+      <div id="stats-panel" className="contents">
+        <StatsFetcher season={season} group={filter.group} />
+      </div>
     </>
   );
 }

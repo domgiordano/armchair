@@ -9,6 +9,7 @@ import { saveGroup } from "@/lib/show/group-filter";
 import { showTime } from "@/lib/show/overview";
 import { episodeLabel, formatAirDate } from "@/lib/show/schedule";
 import { scoreTarget, type ScoreTarget } from "@/lib/show/score-target";
+import { closesIn, closesOn } from "@/lib/show/window";
 import { useSeasonId, withSeason } from "@/lib/show/seasons";
 import { useNow } from "@armchair/app-core/show/use-now";
 import { button, cn } from "@/lib/ui";
@@ -24,6 +25,7 @@ export function useScoreTarget(given?: Overview): {
   target: ScoreTarget | null;
   overview: Overview | null;
   season: string;
+  now: number;
 } {
   const season = useSeasonId();
   const now = useNow();
@@ -43,7 +45,7 @@ export function useScoreTarget(given?: Overview): {
   }, [season, given]);
 
   const overview = given ?? (load.kind === "ready" ? load.overview : null);
-  return { load: given ? "ready" : load.kind, target: overview && scoreTarget(overview, now), overview, season };
+  return { load: given ? "ready" : load.kind, target: overview && scoreTarget(overview, now), overview, season, now };
 }
 
 interface ScoreCtaProps {
@@ -64,7 +66,7 @@ interface ScoreCtaProps {
 
 /** "Score this week's show", with your progress, wherever people land before they've scored. */
 export function ScoreCta({ overview: given, group, groupName, note, compact = false, onlyToScore = false, className }: ScoreCtaProps) {
-  const { load, target, overview, season } = useScoreTarget(given);
+  const { load, target, overview, season, now } = useScoreTarget(given);
 
   if (load === "loading") {
     if (onlyToScore) return null;
@@ -84,7 +86,7 @@ export function ScoreCta({ overview: given, group, groupName, note, compact = fa
   };
   const when = (n: NonNullable<Overview["next"]>) => `${formatAirDate(n.airDate)}, ${showTime(n.startsAt, overview.timezone)}`;
 
-  if (compact) return <CompactCta target={target} groupName={groupName} name={name} when={when} href={href} onGo={remember} className={className} />;
+  if (compact) return <CompactCta target={target} now={now} groupName={groupName} name={name} when={when} href={href} onGo={remember} className={className} />;
 
   let eyebrow: ReactNode = "This week's show";
   let title: string;
@@ -108,6 +110,17 @@ export function ScoreCta({ overview: given, group, groupName, note, compact = fa
     body = rateable
       ? `${rateable - (answered ?? 0)} of ${rateable} dances still need your paddle.`
       : "Dances appear as the running order comes in.";
+    if (target.closesAt) {
+      body = (
+        <>
+          {body}{" "}
+          <span className="font-medium text-gold-light">
+            Closes in {closesIn(target.closesAt, now)}
+          </span>{" "}
+          ({closesOn(target.closesAt, overview.timezone)}).
+        </>
+      );
+    }
     action = (
       <Link href={href(episode.ep)} onClick={remember} className={cn(button("primary"), "group")}>
         {started ? "Keep scoring" : "Score this week's show"}
@@ -116,10 +129,11 @@ export function ScoreCta({ overview: given, group, groupName, note, compact = fa
     );
   } else if (target.kind === "done") {
     title = name(target.episode);
-    body = target.next
-      ? `Every dance is scored. ${name(target.next)} airs ${when(target.next)}.`
-      : "Every dance is scored.";
-    progress = target.episode.rateable ? { answered: target.episode.rateable, rateable: target.episode.rateable } : null;
+    const { answered = 0, rateable = 0 } = target.episode;
+    // A closed window also ends here, with whatever was left missed.
+    const scored = answered >= rateable ? "Every dance is scored." : `Scoring closed. You scored ${answered} of ${rateable}.`;
+    body = target.next ? `${scored} ${name(target.next)} airs ${when(target.next)}.` : scored;
+    progress = rateable ? { answered, rateable } : null;
     action = (
       <Link href={href(target.episode.ep)} onClick={remember} className={button("secondary")}>
         See your scorecard
@@ -178,6 +192,7 @@ export function ScoreCta({ overview: given, group, groupName, note, compact = fa
 
 interface CompactCtaProps {
   target: ScoreTarget;
+  now: number;
   groupName?: string;
   name: (e: { week: number; ep: number; theme: string | null }) => string;
   when: (n: NonNullable<Overview["next"]>) => string;
@@ -186,7 +201,7 @@ interface CompactCtaProps {
   className?: string;
 }
 
-function CompactCta({ target, groupName, name, when, href, onGo, className }: CompactCtaProps) {
+function CompactCta({ target, now, groupName, name, when, href, onGo, className }: CompactCtaProps) {
   const box = "flex min-h-11 items-center gap-3 rounded-lg border px-3 py-2 text-sm";
   if (target.kind === "upcoming") {
     return (
@@ -197,7 +212,7 @@ function CompactCta({ target, groupName, name, when, href, onGo, className }: Co
   }
   const done = target.kind === "done";
   const { answered, rateable } = done
-    ? { answered: target.episode.rateable ?? null, rateable: target.episode.rateable ?? null }
+    ? { answered: target.episode.answered ?? null, rateable: target.episode.rateable ?? null }
     : target;
 
   return (
@@ -220,6 +235,9 @@ function CompactCta({ target, groupName, name, when, href, onGo, className }: Co
             ? `Score week ${target.episode.week} with ${groupName}`
             : `Score ${name(target.episode)}`}
       </span>
+      {target.kind === "score" && target.closesAt && (
+        <span className="hidden shrink-0 text-xs text-silver-dim sm:inline">closes in {closesIn(target.closesAt, now)}</span>
+      )}
       {rateable ? (
         <span className="shrink-0 tabular-nums text-silver-dim">
           {answered ?? 0}/{rateable}

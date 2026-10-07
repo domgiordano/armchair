@@ -10,6 +10,7 @@ import { AppsMenu } from "@/components/apps-menu";
 import { Brand } from "@/components/brand";
 import { NavSheet } from "@/components/nav-sheet";
 import { NotificationsBell } from "@/components/notifications";
+import { Reminders } from "@/components/reminders";
 import { SiteFooter } from "@/components/site-footer";
 import { HeaderSearch } from "@/components/search/header-search";
 import { useLoad, useWaiting } from "@/components/social/parts";
@@ -181,6 +182,7 @@ function Shell({ title, wide, children }: AppShellProps) {
           <AppList />
         </div>
       </NavSheet>
+      <Reminders onScorecard={bare(pathname) === "/episode"} />
       <main
         id="main"
         aria-label={title}
