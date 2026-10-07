@@ -18,6 +18,7 @@ import {
   message,
   useAction,
   useLoad,
+  useWaiting,
 } from "@/components/social/parts";
 import { FriendTag, GroupLink, type SocialView } from "@/components/social/social-sheet";
 import { Badge } from "@/components/ui/badge";
@@ -67,9 +68,7 @@ function SocialRoute() {
   const router = useRouter();
   const view = VIEWS.find((v) => v === params.get("view")) ?? "friends";
   const [friends, reload] = useLoad(getFriends);
-  const { items } = useNotifications();
-  const invites = items.filter((n) => n.type === "group_invite" && n.state === "pending").length;
-  const waiting = (friends.kind === "ready" ? friends.value.incoming.length : 0) + invites;
+  const waiting = useWaiting(friends);
   const tabs: TabItem<SocialView>[] = [
     { id: "friends", label: "Friends" },
     { id: "groups", label: "Groups" },

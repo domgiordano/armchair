@@ -7,6 +7,7 @@ import { EmptyState } from "@/components/ui/states";
 import { useToast } from "@/components/ui/toast";
 import { UserLink } from "@/components/user-link";
 import type { Friends, Person, Relation } from "@armchair/app-core/api/social";
+import { useNotifications } from "@armchair/app-core/social/notifications";
 import { button, cn, EYEBROW, INPUT } from "@/lib/ui";
 
 export { FOCUS, INPUT } from "@/lib/ui";
@@ -28,6 +29,13 @@ export function relationOf(friends: Friends, sub: string): Relation {
 }
 
 export type Load<T> = { kind: "loading" } | { kind: "ready"; value: T } | { kind: "error"; message: string };
+
+/** Friend requests and group invites waiting on you: the Requests badge everywhere it shows. */
+export function useWaiting(friends: Load<Friends>): number {
+  const { items } = useNotifications();
+  const invites = items.filter((n) => n.type === "group_invite" && n.state === "pending").length;
+  return (friends.kind === "ready" ? friends.value.incoming.length : 0) + invites;
+}
 
 export const message = (e: unknown) => (e instanceof Error ? e.message : "Request failed");
 

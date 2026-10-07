@@ -10,7 +10,7 @@ import { FavoritesTab } from "@/components/profile/favorites-tab";
 import { HistoryTab } from "@/components/profile/history-tab";
 import { OverviewTab } from "@/components/profile/overview-tab";
 import { ProfileHeader, type HeaderSocial } from "@/components/profile/profile-header";
-import { relationOf, useLoad as useFetch } from "@/components/social/parts";
+import { relationOf, useLoad as useFetch, useWaiting } from "@/components/social/parts";
 import { TheirSocialSheet, type SocialView } from "@/components/social/social-sheet";
 import { Redirect } from "@/components/redirect";
 import { SignedIn } from "@/components/signed-in";
@@ -22,7 +22,6 @@ import { ApiError } from "@armchair/app-core/api/client";
 import { getMyProfile, getProfile, type MyProfile, type Profile } from "@/lib/api/profile";
 import type { Season } from "@/lib/api/show";
 import { getFriends, type Relation } from "@armchair/app-core/api/social";
-import { useNotifications } from "@armchair/app-core/social/notifications";
 import { seasonLabel } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 import { SECONDARY } from "@/lib/ui";
@@ -115,7 +114,7 @@ const ALL = "all";
 function ProfileView({ season, sub }: { season: Season; sub: string | null }) {
   const [load, retry, setBase] = useLoad(() => loadBase(season.season, sub), "base");
   const [friends, reloadFriends] = useFetch(getFriends);
-  const { items } = useNotifications();
+  const waiting = useWaiting(friends);
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<SocialView>("friends");
   // What a friend action just changed it to, over what the list said on load.
@@ -157,8 +156,6 @@ function ProfileView({ season, sub }: { season: Season; sub: string | null }) {
   const now = relation !== undefined ? relation : listed;
   // Their count moves with yours as you friend or unfriend them, without a refetch.
   const shift = listed === undefined || now === undefined ? 0 : Number(now === "friend") - Number(listed === "friend");
-  const invites = items.filter((n) => n.type === "group_invite" && n.state === "pending").length;
-  const waiting = (friends.kind === "ready" ? friends.value.incoming.length : 0) + invites;
   const social: HeaderSocial = own
     ? {
         own: true,
