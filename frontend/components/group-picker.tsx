@@ -11,7 +11,7 @@ export function GroupPicker({ groups, failed, group, pick }: GroupFilter) {
   if (groups === null) return null;
   if (groups.length === 0) {
     return (
-      <Link href="/profile/?sheet=groups" className={`${TEXT_LINK} inline-flex min-h-11 items-center self-start`}>
+      <Link href="/social/?view=groups" className={`${TEXT_LINK} inline-flex min-h-11 items-center self-start`}>
         Start a group to compare with friends
       </Link>
     );
@@ -29,7 +29,7 @@ export function GroupPicker({ groups, failed, group, pick }: GroupFilter) {
         ]}
         onChange={(id) => pick(id || null)}
       />
-      <Link href={group ? groupHref(group) : "/profile/?sheet=groups"} className={button("ghost", "sm")}>
+      <Link href={group ? groupHref(group) : "/social/?view=groups"} className={button("ghost", "sm")}>
         {group ? "Group" : "Groups"}
       </Link>
     </div>

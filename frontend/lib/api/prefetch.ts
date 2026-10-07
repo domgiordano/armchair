@@ -53,5 +53,7 @@ export function prefetchPage(href: string, season: string): void {
       return start(getGroupDetails(), getFriends());
     case "/profile/":
       return start(getFriends());
+    case "/social/":
+      return start(getFriends(), getGroupDetails());
   }
 }
