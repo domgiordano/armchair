@@ -119,7 +119,7 @@ locals {
     scores_submit      = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem", "board:PutItem", "board:UpdateItem"]
     scores_reveal_all  = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
     episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "writeups:Query"]
-    seasons_get        = ["catalog:Query"]
+    seasons_get        = ["catalog:Query", "performances:Query", "scores:Query"]
     admin_keyword      = ["catalog:UpdateItem"]
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     groups_create      = ["groups:PutItem"]

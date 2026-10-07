@@ -8,7 +8,10 @@ built from what it returns: judge values only on performances the caller has
 answered, eliminations only from episodes they have finished, and no other
 user's value. So couples' averages and "couples left" are as of the caller's
 own scorecard, not the broadcast. A past season (gate.is_open) shows all of
-it, and its episodes come back complete. The schedule is public; seasons_get
+it, and its episodes come back complete, as does an episode whose scoring
+window (common/window.py) has closed. Each episode carries its `window`
+{opensAt, closesAt, open}; `activeEpisode` is the one taking answers now with
+the caller's progress on it, or null. The schedule is public; seasons_get
 serves it too. The season leaderboard is leaderboard_get's.
 """
 
@@ -18,6 +21,7 @@ from collections import defaultdict
 from datetime import UTC, datetime
 from zoneinfo import ZoneInfo
 
+from lambdas.common import window
 from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
@@ -52,6 +56,7 @@ def handler(event, context):
     judges = {sk.removeprefix("JUDGE#"): r for sk, r in by_sk.items() if sk.startswith("JUDGE#")}
     tz = ZoneInfo(meta["timezone"])
     now = _now()
+    spans = window.spans(meta, rows)
 
     schedule = []
     for n, ep in sorted(
@@ -70,12 +75,14 @@ def handler(event, context):
             "endsAt": ends and _iso(ends),
             # A past season's fixture has no start times, and every episode of it has aired.
             "aired": is_open(meta) or (starts is not None and starts <= now),
+            "window": window.view(meta, spans[n], now),
         }
         schedule.append((n, ep, entry))
     episodes = [entry for _, _, entry in schedule]
 
     # Every aired episode's reads in parallel, rather than two after another per episode.
-    past = [(n, ep, entry) for n, ep, entry in schedule if entry["aired"]]
+    # A live window always has a view, even on a night with no start time to say it aired.
+    past = [(n, ep, e) for n, ep, e in schedule if e["aired"] or e["window"]["open"]]
     pks = [episode_pk(show, season, n) for n, _, _ in past]
     found = query_many([(t, pk) for pk in pks for t in ("PERFORMANCES_TABLE", "SCORES_TABLE")])
 
@@ -85,7 +92,16 @@ def handler(event, context):
     out: dict[str, dict] = {}
     for i, (n, ep, entry) in enumerate(past):
         perfs, score_rows = found[2 * i], found[2 * i + 1]
-        view = episode_view(sub, n, meta, ep, contestants, perfs, score_rows)
+        view = episode_view(
+            sub,
+            n,
+            meta,
+            ep,
+            contestants,
+            perfs,
+            score_rows,
+            closed=window.closed(meta, spans[n], now),
+        )
         # An empty member set leaves only the caller's own rows.
         errs = errors(view["panel"], perfs, visible_scores(sub, score_rows, set())).get(sub, [])
         mine += errs
@@ -116,6 +132,12 @@ def handler(event, context):
     me = summary(mine)
     closest = min(me["judges"].items(), key=lambda kv: kv[1]["mae"], default=None)
     upcoming = next((e for e in episodes if not e["aired"]), None)
+    live = window.active(meta, spans, now)
+    current = None
+    if live is not None:
+        e = next(e for e in episodes if e["ep"] == live)
+        pk = episode_pk(show, season, live)
+        current = window.summary(live, pk, spans[live], e["rateable"], e["answered"])
     return ok(
         {
             "season": f"{show}-{season}",
@@ -145,6 +167,7 @@ def handler(event, context):
             "next": upcoming
             and {k: upcoming[k] for k in ("ep", "week", "theme", "airDate", "startsAt")},
             "episodes": episodes,
+            "activeEpisode": current,
             "reveals": [
                 _reveal(n, card)
                 for _, n, card in sorted(reveals, key=lambda r: r[:2], reverse=True)[:LATEST]

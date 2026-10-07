@@ -5,15 +5,16 @@ Body: {"season": "dwts-35", "ep": "05", "contestant": "<cid>", "n": 1, "value": 
 or the same with {"forfeit": true} in place of value ("Reveal without scoring").
 
 Answers are final. A retry with the same answer returns the stored row; a
-different one is 409. A past season is view-only (gate.is_open): 403. Identity
-is the Cognito sub.
+different one is 409. A past season is view-only (gate.is_open): 403. An
+episode outside its scoring window (common/window.py) is 409 with detail.code
+episode_closed or episode_not_open. Identity is the Cognito sub.
 """
 
 from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from lambdas.common import board_dynamo
+from lambdas.common import board_dynamo, window
 from lambdas.common.accuracy import judged
 from lambdas.common.api import (
     ConflictError,
@@ -27,7 +28,14 @@ from lambdas.common.api import (
     text,
     whole,
 )
-from lambdas.common.episodes_dynamo import catalog, create_score, episode_pk, performances, ref
+from lambdas.common.episodes_dynamo import (
+    create_score,
+    episode_pk,
+    episode_rows,
+    performances,
+    ref,
+    season_rows,
+)
 from lambdas.common.gate import cid, is_open, perf_key, rateable
 
 
@@ -48,9 +56,11 @@ def handler(event, context):
     n = whole(data, "n", 1, 9)
     given = answer(data)
 
-    meta, episode, contestants = catalog(show, season, ep)
+    rows = season_rows(show, season)
+    meta, episode, contestants = episode_rows(rows, show, season, ep)
     if is_open(meta):
         raise ForbiddenError("Past seasons are view-only", season=f"{show}-{season}")
+    window.require_live(meta, window.spans(meta, rows)[ep], window.now())
     pk = episode_pk(show, season, ep)
     perfs = performances(pk)
     key = f"{contestant}#{n}"
