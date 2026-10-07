@@ -119,7 +119,7 @@ locals {
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     groups_create      = ["groups:PutItem"]
     groups_join        = ["groups:GetItem", "groups:UpdateItem", "groups:PutItem", "social:PutItem"]
-    groups_mine        = ["groups:Query", "users:BatchGetItem"]
+    groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query"]
     seasons_list       = ["catalog:Query"]
     overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
     friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem"]
@@ -158,6 +158,11 @@ locals {
   # Env a single function needs beyond lambda_variables.
   api_env = {
     users_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+  }
+
+  # users_delete scans four tables for rows naming the caller.
+  api_timeout = {
+    users_delete = 60
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
@@ -268,7 +273,7 @@ resource "aws_lambda_function" "api" {
   handler       = "handler.handler"
   runtime       = var.lambda_runtime
   memory_size   = 1024 # CPU scales with memory; at 256 MB a cold start took ~2 s
-  timeout       = 10
+  timeout       = try(local.api_timeout[each.key], 10)
   layers        = [aws_lambda_layer_version.lambda_layer.arn]
 
   filename         = "./templates/lambda_stub.zip"

@@ -24,6 +24,7 @@ from datetime import UTC, datetime
 from lambdas.common import notifications_dynamo as notifications
 from lambdas.common.api import ForbiddenError, NotFoundError, ValidationError, text
 from lambdas.common.dynamo import query_all, resource, table, transact
+from lambdas.common.social_dynamo import peers, status
 from lambdas.common.users_dynamo import cards
 
 GID = re.compile(r"[A-Za-z0-9_-]{12}")
@@ -285,7 +286,8 @@ def _subs(rows: list[dict], kind: str) -> list[str]:
 def mine(sub: str) -> list[dict]:
     """
     The caller's groups, oldest first, each with its members' names and avatars,
-    who is invited, and, for the owner only, who is asking to join.
+    who is invited, and, for the owner only, who is asking to join. Everyone
+    listed carries the caller's `relation` to them, None for the caller.
     """
     tbl = table("GROUPS_TABLE")
     links = sorted(query_all(tbl, f"USER#{sub}"), key=lambda r: r["joinedAt"])
@@ -315,7 +317,8 @@ def mine(sub: str) -> list[dict]:
 
     lists = ("members", "invited", "requests")
     profiles = cards({s for g in groups for k in lists for s in g[k]})
+    relations = {s: status(item) for s, item in peers(sub).items()}
     for g in groups:
         for k in lists:
-            g[k] = [profiles[s] for s in g[k]]
+            g[k] = [{**profiles[s], "relation": relations.get(s)} for s in g[k]]
     return groups
