@@ -20,7 +20,8 @@ where the caller has a dance counted on the leaderboard.
 
 With someone else's `sub` it is that user's numbers, over only the dances the
 caller has answered too, so nothing comes from a performance the gate keeps
-from the caller; on a past season (gate.is_open) it keeps nothing back. Even
+from the caller; on a past season (gate.is_open), or an episode whose scoring
+window has closed (common/window.py), it keeps nothing back. Even
 then no single dance goes out: couples lose their best, worst and per-week
 rows. A block either way answers 404, like an unknown sub, and `group` can't be
 combined with it. Identity is the Cognito sub.
@@ -30,7 +31,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from lambdas.common import board_dynamo
+from lambdas.common import board_dynamo, window
 from lambdas.common.api import (
     NotFoundError,
     ValidationError,
@@ -50,7 +51,7 @@ from lambdas.common.episodes_dynamo import (
     season_rows,
     show_ref,
 )
-from lambdas.common.gate import answered, cid, eliminated, is_open, results_open, visible_scores
+from lambdas.common.gate import answered, cid, eliminated, results_open, visible_scores
 from lambdas.common.social_dynamo import peer, status
 
 HIGHLIGHTS = 3
@@ -91,7 +92,8 @@ def handler(event, context):
         roster = {cid(r): r for sk, r in rows.items() if sk.startswith("CONTESTANT#")}
         contestants = list(roster.values())
         meta = rows["META"]
-        opened = is_open(meta)
+        spans = window.spans(meta, rows.values())
+        now = window.now()
         by_couple = defaultdict(list)
         out = {}
         for sk, episode in sorted(rows.items()):
@@ -101,12 +103,13 @@ def handler(event, context):
             pk = episode_pk(show, season, n)
             score_rows = scores(pk)
             perfs = None
+            opened = window.closed(meta, spans[n], now)
             gone = eliminated(n, contestants)
             # The caller's results, not the owner's: someone else having finished
             # an episode tells the caller nothing.
             if gone and (opened or answered(caller, score_rows)):
                 perfs = performances(pk)
-                if results_open(caller, n, meta, episode, contestants, perfs, score_rows):
+                if results_open(caller, n, meta, episode, contestants, perfs, score_rows, opened):
                     out.update({c: {"ep": n, "week": episode.get("week")} for c in gone})
             if not own:
                 # Members None: every row on what the caller answered, the owner's among them.
