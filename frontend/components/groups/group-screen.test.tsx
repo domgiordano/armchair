@@ -55,7 +55,7 @@ import { resetNotifications } from "@armchair/app-core/social/notifications";
 import { readGroup } from "@/lib/show/group-filter";
 import { GroupRoute } from "./group-screen";
 
-const person = (sub: string, name: string) => ({ sub, name, picture: null, avatarKind: "initials" as const });
+const person = (sub: string, name: string) => ({ sub, name, picture: null, avatarKind: "initials" as const, relation: null });
 const GID = "g".repeat(12);
 const ME = "me";
 

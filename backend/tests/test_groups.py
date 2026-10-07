@@ -107,9 +107,16 @@ def test_mine_lists_members_with_avatars_and_no_email(aws):
         "name": "Test Viewer",
         "picture": PICTURE,
         "avatarKind": "google",
+        "relation": None,
     }
     # B never called /users/me, so there is no profile to show yet.
-    assert members[B] == {"sub": B, "name": None, "picture": None, "avatarKind": None}
+    assert members[B] == {
+        "sub": B,
+        "name": None,
+        "picture": None,
+        "avatarKind": None,
+        "relation": None,
+    }
     assert "viewer@example.com" not in json.dumps(groups)
     assert sorted(g["name"] for g in mine(sub=B)) == ["Family", "Work"]
 
