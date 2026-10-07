@@ -28,6 +28,7 @@ import {
 import { skipBefore } from "@/lib/api/show";
 import { skipTarget, unfinishedBefore } from "@/lib/show/catch-up";
 import { eliminatedLast, useShowEliminated } from "@/lib/show/eliminated";
+import { useSealed } from "@/lib/show/sealed";
 import { countdown, hero, showTime } from "@/lib/show/overview";
 import { coupleHref, personSlug } from "@/lib/show/people";
 import { formatAirDate } from "@/lib/show/schedule";
@@ -100,6 +101,8 @@ function OverviewView({ o, season, reload }: ViewProps) {
   const judgeName = (id: string) => o.judges.find((j) => j.id === id)?.name ?? id;
   const fresh = o.me.scored === 0;
   const firstOpen = o.episodes.find((e) => e.aired && !e.complete);
+  const isSealed = useSealed();
+  const reveals = o.reveals.filter((r) => !isSealed(season, r.ep, r.key));
 
   return (
     <div className="flex flex-col gap-8 pb-8">
@@ -158,15 +161,15 @@ function OverviewView({ o, season, reload }: ViewProps) {
               <h2 id="reveals" className="text-lg font-semibold text-pearl">
                 Latest reveals
               </h2>
-              {o.reveals.length > 0 && (
+              {reveals.length > 0 && (
                 <Link href={withSeason("/stats/", season)} className={TEXT_LINK}>
                   All your stats
                 </Link>
               )}
             </div>
-            {o.reveals.length > 0 ? (
+            {reveals.length > 0 ? (
               <ul className="stagger grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                {o.reveals.map((r) => (
+                {reveals.map((r) => (
                   <li key={`${r.ep}-${r.key}`}>
                     <MiniDesk
                       reveal={r}

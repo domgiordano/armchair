@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { CatchUp } from "@/components/catch-up";
 import { PageLoader } from "@/components/disco-loader";
 import { GroupPicker } from "@/components/group-picker";
 import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
+import { RevealSheet } from "@/components/reveal-sheet";
 import { SignedIn } from "@/components/signed-in";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,6 +19,7 @@ import type { GroupMember } from "@armchair/app-core/api/groups";
 import { revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
+import { seal, unseal, useSealed } from "@/lib/show/sealed";
 import { useEpisodeState } from "@/lib/show/use-episode-state";
 import { useNow } from "@armchair/app-core/show/use-now";
 import { withSeason } from "@/lib/show/seasons";
@@ -113,6 +115,10 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
   const { data, error, reload } = useEpisodeState(season.season, season.timezone, episode, group);
   const contestants = useMemo(() => new Map(season.contestants.map((c) => [c.id, c])), [season]);
   const judges = useMemo(() => new Map(season.judges.map((j) => [j.id, j])), [season]);
+  const isSealed = useSealed();
+  const names = (ids: string[]) =>
+    ids.map((id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id).join(", ");
+  const [locked, setLocked] = useState<{ key: string; title: string; value: number } | null>(null);
 
   if (data === null) {
     if (error !== null) return <ErrorState what="this episode" message={error} retry={reload} />;
@@ -128,8 +134,15 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
     }
   };
   const submit = async (card: LockedCard, answer: Answer) => {
+    // Sealed before the request, so no poll landing in between can turn the judges over.
+    const value = "value" in answer ? answer.value : null;
+    if (value !== null) seal(season.season, episode.ep, card.key);
     try {
       await submitScore(season.season, episode.ep, card, answer);
+      if (value !== null) setLocked({ key: card.key, title: names(card.contestants), value });
+    } catch (e) {
+      if (value !== null) unseal(season.season, episode.ep, card.key);
+      throw e;
     } finally {
       // Also after a 409: the answer from another device is what the card should show.
       reload();
@@ -140,8 +153,12 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
   const couples = [...new Set(data.performances.flatMap((card) => card.contestants))].flatMap(
     (id) => contestants.get(id) ?? [],
   );
-  const gone = new Set(data.eliminated);
-  const out = (data.eliminated ?? []).map(
+  const sealed = (key: string) => isSealed(season.season, episode.ep, key);
+  // The episode's result arrives with the last answer, which may still be face down.
+  const anySealed = data.performances.some((c) => !c.locked && sealed(c.key));
+  const eliminated = anySealed ? [] : (data.eliminated ?? []);
+  const gone = new Set(eliminated);
+  const out = eliminated.map(
     (id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id,
   );
 
@@ -206,12 +223,22 @@ function EpisodeView({ season, episode, now, group, members }: EpisodeViewProps)
                 airsOn={airsOn}
                 members={members}
                 onSubmit={submit}
+                sealed={!card.locked && sealed(card.key)}
+                onReveal={() => unseal(season.season, episode.ep, card.key)}
               />
             </li>
           ))}
         </ul>
       )}
       <VotePanel episode={episode} tz={season.timezone} couples={couples} now={now} />
+      <RevealSheet
+        locked={locked}
+        onReveal={() => {
+          if (locked) unseal(season.season, episode.ep, locked.key);
+          setLocked(null);
+        }}
+        onClose={() => setLocked(null)}
+      />
     </section>
   );
 }
