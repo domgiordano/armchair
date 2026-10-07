@@ -118,7 +118,7 @@ locals {
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     groups_create      = ["groups:PutItem"]
     groups_join        = ["groups:GetItem", "groups:UpdateItem", "groups:PutItem", "social:PutItem"]
-    groups_mine        = ["groups:Query", "users:BatchGetItem"]
+    groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query"]
     seasons_list       = ["catalog:Query"]
     overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
     friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem"]
