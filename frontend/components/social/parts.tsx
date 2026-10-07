@@ -153,14 +153,15 @@ const noop = () => () => {};
 const canShare = () => typeof navigator !== "undefined" && typeof navigator.share === "function";
 
 /** A read-only link with Copy, and Share where the device has a share sheet. */
-export function CopyLink({ label, link, share }: { label: string; link: string; share?: string }) {
+export function CopyLink({ label, link, share }: { label: string; link: string; share?: { title: string; text: string } }) {
   const [copied, setCopied] = useState(false);
   const id = useId();
   const toast = useToast();
   const sharable = useSyncExternalStore(noop, canShare, () => false) && share !== undefined;
   const send = async () => {
     try {
-      await navigator.share({ title: share, url: link });
+      // iMessage and WhatsApp drop `title`; `text` is what lands in the message body.
+      await navigator.share({ ...share, url: link });
     } catch (e) {
       // Closing the share sheet rejects with AbortError; that's a choice, not a failure.
       if (!(e instanceof DOMException && e.name === "AbortError")) toast("Couldn't open sharing. Copy the link instead.", "error");
