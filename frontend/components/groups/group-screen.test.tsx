@@ -181,6 +181,18 @@ describe("GroupRoute", () => {
     expect(inviteToGroup).toHaveBeenCalledWith(GID, "c");
   });
 
+  it("shares the group link with a message body, not just a title", async () => {
+    const share = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, "share", { value: share, configurable: true });
+    render(<GroupRoute />);
+    fireEvent.click(await screen.findByRole("button", { name: "Invite" }));
+    fireEvent.click(within(screen.getByRole("dialog", { name: "Invite to Family" })).getByRole("button", { name: "Share" }));
+    expect(share).toHaveBeenCalledWith(
+      expect.objectContaining({ text: "Join Family on Armchair Judge. Rate Dancing with the Stars with us." }),
+    );
+    Reflect.deleteProperty(navigator, "share");
+  });
+
   it("keeps renaming, approval and delete in the owner's settings", async () => {
     vi.mocked(manageGroup).mockResolvedValue({ ok: true });
     vi.mocked(deleteGroup).mockResolvedValue({ ok: true });

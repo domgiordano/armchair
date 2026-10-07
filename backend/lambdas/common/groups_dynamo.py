@@ -239,6 +239,41 @@ def delete(gid: str) -> None:
             notifications.drop(group["createdBy"], r.get("notif"))
 
 
+def forget(sub: str) -> None:
+    """
+    Takes a deleted account out of every group it's in. A group it owns passes
+    to the member who joined first, or goes entirely when nobody else is left.
+    """
+    tbl = table("GROUPS_TABLE")
+    for link in query_all(tbl, f"USER#{sub}"):
+        gid = link["sk"].removeprefix("GROUP#")
+        rows = query_all(tbl, f"GROUP#{gid}")
+        group = next((r for r in rows if r["sk"] == "META"), None)
+        items = _leaves(gid, sub)
+        if group and group["createdBy"] == sub:
+            heirs = sorted(
+                (r["joinedAt"], r["sk"].removeprefix("MEMBER#"))
+                for r in rows
+                if r["sk"].startswith("MEMBER#") and r["sk"] != f"MEMBER#{sub}"
+            )
+            if not heirs:
+                delete(gid)
+                continue
+            items.append(
+                (
+                    "Update",
+                    {
+                        "Key": _key(gid, "META"),
+                        "UpdateExpression": "SET createdBy = :heir",
+                        "ConditionExpression": "createdBy = :sub",
+                        "ExpressionAttributeValues": {":heir": heirs[0][1], ":sub": sub},
+                    },
+                )
+            )
+        if not transact(items, "GROUPS_TABLE"):
+            raise RuntimeError(f"handing over group {gid} conflicted")
+
+
 def members(gid: str) -> set[str]:
     rows = query_all(table("GROUPS_TABLE"), f"GROUP#{gid}")
     return {r["sk"].removeprefix("MEMBER#") for r in rows if r["sk"].startswith("MEMBER#")}

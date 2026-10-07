@@ -193,7 +193,11 @@ function FriendsView({ data, reload }: { data: Friends; reload: () => void }) {
       )}
       {query.length >= 2 && <MoreMatches q={query} skip={data.friends} onChange={reload} />}
       <div className="flex flex-col gap-3 rounded-xl border border-silver/10 bg-ballroom/45 p-4">
-        <CopyLink label="Your invite link" link={friendLink(data.inviteCode)} share="Add me on Armchair Judge" />
+        <CopyLink
+          label="Your invite link"
+          link={friendLink(data.inviteCode)}
+          share={{ title: "Add me on Armchair Judge", text: "Add me on Armchair Judge so we can compare Dancing with the Stars scores." }}
+        />
         <Link href="/discover/" className={`${TEXT_LINK} self-start`}>
           Browse people on Discover
         </Link>

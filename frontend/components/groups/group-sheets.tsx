@@ -57,7 +57,14 @@ export function InviteSheet({ open, onClose, group, friends, reloadFriends, onIn
           <Title note={group.approval ? "You'll approve anyone who joins by the link." : "Anyone with the link can join."}>
             {`Invite to ${group.name}`}
           </Title>
-          <CopyLink label="Group link" link={inviteLink(group.inviteCode)} share={`Join ${group.name} on Armchair Judge`} />
+          <CopyLink
+            label="Group link"
+            link={inviteLink(group.inviteCode)}
+            share={{
+              title: `Join ${group.name} on Armchair Judge`,
+              text: `Join ${group.name} on Armchair Judge. Rate Dancing with the Stars with us.`,
+            }}
+          />
           {friends.kind === "loading" && <SkeletonList label="Loading your friends" rows={3} avatar />}
           {friends.kind === "error" && <ErrorState what="your friends" message={friends.message} retry={reloadFriends} />}
           {friends.kind === "ready" && <InviteFriends group={group} friends={friends.value.friends} onInvited={onInvited} />}
