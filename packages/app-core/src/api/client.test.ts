@@ -6,7 +6,7 @@ const { fetchAuthSession } = vi.hoisted(() => {
 });
 vi.mock("aws-amplify/auth", () => ({ fetchAuthSession }));
 
-import { ApiError, getMe } from "./client";
+import { ApiError, deleteAccount, getMe } from "./client";
 
 function respond(status: number, body: unknown) {
   const fetchMock = vi.fn(async () => new Response(JSON.stringify(body), { status }));
@@ -46,6 +46,16 @@ describe("api client", () => {
     const [url, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit];
     expect(url).toBe("https://api.test/users/me");
     expect(new Headers(init.headers).get("Authorization")).toBe("id-token");
+  });
+
+  it("deleteAccount posts to /users/delete", async () => {
+    const fetchMock = respond(200, { data: { ok: true }, error: null, meta: null });
+
+    await expect(deleteAccount()).resolves.toEqual({ ok: true });
+
+    const [url, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toBe("https://api.test/users/delete");
+    expect(init.method).toBe("POST");
   });
 
   it("throws the envelope error", async () => {
