@@ -44,7 +44,7 @@ beforeEach(() => {
       inviteCode: "i",
       owner: "me",
       approval: false,
-      members: [{ sub: "me", name: "Test Viewer", picture: null, avatarKind: "initials" }],
+      members: [{ sub: "me", name: "Test Viewer", picture: null, avatarKind: "initials", relation: null }],
       invited: [],
       requests: [],
     },
