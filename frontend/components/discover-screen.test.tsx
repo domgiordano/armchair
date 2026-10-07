@@ -104,7 +104,7 @@ describe("DiscoverScreen", () => {
     vi.mocked(getMyGroups).mockResolvedValue([]);
     render(<DiscoverScreen />);
     const friends = await screen.findByRole("region", { name: "Your friends" });
-    expect(href(within(friends).getByRole("link", { name: "Find friends" }))).toBe("/profile?sheet=friends");
+    expect(href(within(friends).getByRole("link", { name: "Find friends" }))).toBe("/social?view=friends&find=1");
     expect(screen.queryByRole("region", { name: "From your groups" })).toBeNull();
   });
 

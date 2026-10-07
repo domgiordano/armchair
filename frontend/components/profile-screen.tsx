@@ -11,7 +11,8 @@ import { HistoryTab } from "@/components/profile/history-tab";
 import { OverviewTab } from "@/components/profile/overview-tab";
 import { ProfileHeader, type HeaderSocial } from "@/components/profile/profile-header";
 import { relationOf, useLoad as useFetch } from "@/components/social/parts";
-import { OwnSocialSheet, TheirSocialSheet, type SocialView } from "@/components/social/social-sheet";
+import { TheirSocialSheet, type SocialView } from "@/components/social/social-sheet";
+import { Redirect } from "@/components/redirect";
 import { SignedIn } from "@/components/signed-in";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -42,12 +43,13 @@ const VIEWS: SocialView[] = ["friends", "groups", "requests"];
 function ProfileRoute() {
   const params = useSearchParams();
   const sub = params.get("u");
-  // /profile/?sheet=groups opens a list straight away: old Friends & Groups links land there.
-  const sheet = VIEWS.find((v) => v === params.get("sheet")) ?? null;
+  // Your lists moved to /social/; older links still say /profile/?sheet=groups.
+  const sheet = VIEWS.find((v) => v === params.get("sheet"));
   const load = useSeason();
+  if (sheet && !sub) return <Redirect to={`/social/?view=${sheet}`} />;
   if (load.kind === "loading") return <PageLoader label="Loading the profile" />;
   if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
-  return <ProfileView key={`${sub}|${load.season.season}`} season={load.season} sub={sub} sheet={sheet} />;
+  return <ProfileView key={`${sub}|${load.season.season}`} season={load.season} sub={sub} />;
 }
 
 type Load<T> =
@@ -110,12 +112,12 @@ const SCOPED: Tab[] = ["overview", "favorites", "accuracy"];
 const PANEL = "profile-panel";
 const ALL = "all";
 
-function ProfileView({ season, sub, sheet }: { season: Season; sub: string | null; sheet: SocialView | null }) {
+function ProfileView({ season, sub }: { season: Season; sub: string | null }) {
   const [load, retry, setBase] = useLoad(() => loadBase(season.season, sub), "base");
   const [friends, reloadFriends] = useFetch(getFriends);
   const { items } = useNotifications();
-  const [open, setOpen] = useState(sheet !== null);
-  const [view, setView] = useState<SocialView>(sheet ?? "friends");
+  const [open, setOpen] = useState(false);
+  const [view, setView] = useState<SocialView>("friends");
   // What a friend action just changed it to, over what the list said on load.
   const [relation, setRelation] = useState<Relation | undefined>(undefined);
   const [tab, setTab] = useState<Tab>("overview");
@@ -163,7 +165,6 @@ function ProfileView({ season, sub, sheet }: { season: Season; sub: string | nul
         friends: friends.kind === "ready" ? friends.value.friends.length : profile.friendCount,
         groups: profile.groupCount ?? 0,
         waiting,
-        open: show,
       }
     : {
         own: false,
@@ -180,17 +181,7 @@ function ProfileView({ season, sub, sheet }: { season: Season; sub: string | nul
   return (
     <div className="flex flex-col gap-6">
       <ProfileHeader profile={profile} me={me} onMe={(next) => setBase({ profile, me: next })} social={social} />
-      {own ? (
-        <OwnSocialSheet
-          open={open}
-          view={view}
-          onView={setView}
-          onClose={() => setOpen(false)}
-          friends={friends}
-          reload={reloadFriends}
-          waiting={waiting}
-        />
-      ) : (
+      {!own && (
         <TheirSocialSheet
           open={open}
           view={view}

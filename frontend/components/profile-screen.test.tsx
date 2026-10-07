@@ -1,11 +1,11 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const { search } = vi.hoisted(() => ({ search: { value: new URLSearchParams() } }));
+const { search, replace } = vi.hoisted(() => ({ search: { value: new URLSearchParams() }, replace: vi.fn() }));
 
 vi.mock("next/navigation", () => ({
   usePathname: () => "/profile/",
-  useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+  useRouter: () => ({ push: vi.fn(), replace }),
   useSearchParams: () => search.value,
 }));
 vi.mock("@armchair/app-core/auth/use-auth", () => ({
@@ -249,9 +249,9 @@ describe("ProfileScreen, your own", () => {
     const glance = screen.getByRole("list", { name: "At a glance" });
     expect(within(glance).getByRole("link", { name: "Rank #2 of 14, Season 35" }).textContent).toBe("#2of 14 · S35");
     // The count follows your friends list once it lands.
-    expect(await within(glance).findByRole("button", { name: "1 friend" })).toBeTruthy();
-    expect(within(glance).getByRole("button", { name: "2 groups" })).toBeTruthy();
-    expect(screen.queryByRole("button", { name: /Requests/ })).toBeNull();
+    expect(await within(glance).findByRole("link", { name: "1 friend" })).toBeTruthy();
+    expect(within(glance).getByRole("link", { name: "2 groups" })).toBeTruthy();
+    expect(screen.queryByRole("link", { name: /Requests/ })).toBeNull();
     expect(screen.queryByRole("button", { name: "Sign out" })).toBeNull();
 
     const overview = screen.getByRole("tabpanel");
@@ -319,35 +319,15 @@ describe("ProfileScreen, your own", () => {
     expect(screen.queryByRole("combobox", { name: "Seasons" })).toBeNull();
   });
 
-  it("opens your friends and groups from the counts, as a sheet", async () => {
+  it("links your counts to your lists on /social/", async () => {
     render(<ProfileScreen />);
-    fireEvent.click(await screen.findByRole("button", { name: "1 friend" }));
-    const sheet = screen.getByRole("dialog", { name: "Your friends and groups" });
-    expect(within(sheet).getByRole("tab", { name: "Friends", selected: true })).toBeTruthy();
-    expect(within(sheet).getByRole("link", { name: "Cara" }).getAttribute("href")).toMatch(/^\/profile\/?\?u=c$/);
-    expect(within(sheet).getAllByRole("tab").map((t) => t.textContent)).toEqual(["Friends", "Groups", "Requests"]);
-
-    fireEvent.click(within(sheet).getByRole("tab", { name: "Groups" }));
-    const family = await within(sheet).findByRole("link", { name: /Family/ });
-    expect(family.getAttribute("href")).toMatch(/^\/groups\/?\?id=g1$/);
-    expect(await within(sheet).findByText(/1 member · Owner/)).toBeTruthy();
-    expect(within(sheet).getByRole("textbox", { name: "Start a group" })).toBeTruthy();
+    const glance = await screen.findByRole("list", { name: "At a glance" });
+    expect((await within(glance).findByRole("link", { name: "1 friend" })).getAttribute("href")).toMatch(/^\/social\/?\?view=friends$/);
+    expect(within(glance).getByRole("link", { name: "2 groups" }).getAttribute("href")).toMatch(/^\/social\/?\?view=groups$/);
+    expect(screen.queryByRole("dialog")).toBeNull();
   });
 
-  it("filters friends in the sheet and unfriends in place", async () => {
-    vi.mocked(removeFriend).mockResolvedValue({ status: null });
-    render(<ProfileScreen />);
-    fireEvent.click(await screen.findByRole("button", { name: "1 friend" }));
-    const sheet = screen.getByRole("dialog", { name: "Your friends and groups" });
-    fireEvent.change(within(sheet).getByRole("searchbox", { name: /Search friends/ }), { target: { value: "zz" } });
-    expect(within(sheet).queryByRole("button", { name: "Remove" })).toBeNull();
-    fireEvent.change(within(sheet).getByRole("searchbox", { name: /Search friends/ }), { target: { value: "car" } });
-    fireEvent.click(within(sheet).getByRole("button", { name: "Remove" }));
-    fireEvent.click(within(sheet).getByRole("button", { name: "Unfriend" }));
-    await vi.waitFor(() => expect(removeFriend).toHaveBeenCalledWith("c"));
-  });
-
-  it("shows a Requests pill that opens the requests list", async () => {
+  it("shows a Requests pill that links to the requests list", async () => {
     vi.mocked(getFriends).mockResolvedValue({
       inviteCode: "x",
       friends: [],
@@ -355,20 +335,15 @@ describe("ProfileScreen, your own", () => {
       outgoing: [],
       blocked: [],
     });
-    vi.mocked(acceptFriend).mockResolvedValue({ status: "friend" });
     render(<ProfileScreen />);
-    fireEvent.click(await screen.findByRole("button", { name: "Requests, 1 waiting" }));
-    const sheet = screen.getByRole("dialog", { name: "Your friends and groups" });
-    expect(within(sheet).getByRole("tab", { name: "Requests, 1 waiting", selected: true })).toBeTruthy();
-    fireEvent.click(within(sheet).getByRole("button", { name: "Accept" }));
-    await vi.waitFor(() => expect(acceptFriend).toHaveBeenCalledWith("d"));
+    const pill = await screen.findByRole("link", { name: "Requests, 1 waiting" });
+    expect(pill.getAttribute("href")).toMatch(/^\/social\/?\?view=requests$/);
   });
 
-  it("opens a list straight away from ?sheet=", async () => {
+  it("sends an old ?sheet= link on to /social/", async () => {
     search.value = new URLSearchParams({ sheet: "groups" });
     render(<ProfileScreen />);
-    const sheet = await screen.findByRole("dialog", { name: "Your friends and groups" });
-    expect(within(sheet).getByRole("tab", { name: "Groups", selected: true })).toBeTruthy();
+    await vi.waitFor(() => expect(replace).toHaveBeenCalledWith("/social/?view=groups"));
   });
 
   it("saves a new display name and returns to the heading", async () => {

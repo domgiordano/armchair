@@ -117,7 +117,7 @@ describe("GroupRoute", () => {
   it("sends a bare /groups/ to your groups list", () => {
     nav.params = new URLSearchParams();
     render(<GroupRoute />);
-    expect(nav.replace).toHaveBeenCalledWith("/profile/?sheet=groups");
+    expect(nav.replace).toHaveBeenCalledWith("/social/?view=groups");
   });
 
   it("heads the page with the group, its people and your role", async () => {
@@ -182,7 +182,7 @@ describe("GroupRoute", () => {
     await vi.waitFor(() => expect(manageGroup).toHaveBeenCalledWith(GID, { action: "approval", approval: true }));
     fireEvent.click(within(again).getByRole("button", { name: "Delete group" }));
     fireEvent.click(within(again).getByRole("button", { name: "Delete for everyone" }));
-    await vi.waitFor(() => expect(nav.push).toHaveBeenCalledWith("/profile/?sheet=groups"));
+    await vi.waitFor(() => expect(nav.push).toHaveBeenCalledWith("/social/?view=groups"));
     expect(deleteGroup).toHaveBeenCalledWith(GID);
   });
 
@@ -196,7 +196,7 @@ describe("GroupRoute", () => {
     fireEvent.click(screen.getByRole("menuitem", { name: "Leave group" }));
     const sheet = screen.getByRole("dialog", { name: "Leave Family?" });
     fireEvent.click(within(sheet).getByRole("button", { name: "Leave group" }));
-    await vi.waitFor(() => expect(nav.push).toHaveBeenCalledWith("/profile/?sheet=groups"));
+    await vi.waitFor(() => expect(nav.push).toHaveBeenCalledWith("/social/?view=groups"));
     expect(leaveGroup).toHaveBeenCalledWith(GID);
   });
 
@@ -224,7 +224,7 @@ describe("GroupRoute", () => {
     vi.mocked(getGroupDetails).mockResolvedValue([]);
     render(<GroupRoute />);
     expect(await screen.findByText("You're not in this group")).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Your groups" }).getAttribute("href")).toMatch(/^\/profile\/?\?sheet=groups$/);
+    expect(screen.getByRole("link", { name: "Your groups" }).getAttribute("href")).toMatch(/^\/social\/?\?view=groups$/);
   });
 
   it("offers a retry when the groups fail to load", async () => {

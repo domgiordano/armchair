@@ -54,7 +54,7 @@ function Joiner() {
           Asked to join <span className="font-semibold text-pearl">{pending}</span>. You&apos;ll get a notification when the owner
           lets you in.
         </p>
-        <Link href="/profile/?sheet=groups" className={SECONDARY}>
+        <Link href="/social/?view=groups" className={SECONDARY}>
           Your groups
         </Link>
       </div>
