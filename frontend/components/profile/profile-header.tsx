@@ -15,9 +15,9 @@ import { cn, FOCUS } from "@/lib/ui";
 
 const AVATAR = 112;
 
-/** What the header can do about your people: open the lists, and on someone else's, the friend action. */
+/** What the header can do about your people: link to your lists, or on someone else's, open theirs and the friend action. */
 export type HeaderSocial =
-  | { own: true; friends: number; groups: number; waiting: number; open: (view: SocialView) => void }
+  | { own: true; friends: number; groups: number; waiting: number }
   | {
       own: false;
       friends: number;
@@ -94,39 +94,28 @@ export function ProfileHeader({ profile, me, onMe, social }: ProfileHeaderProps)
               </Link>
             </li>
             <li className="flex">
-              <button
-                type="button"
-                aria-label={plural(social.friends, "friend")}
-                onClick={opener(() => social.open("friends"))}
-                className={STAT}
-              >
+              <SocialStat social={social} view="friends" label={plural(social.friends, "friend")}>
                 <StatValue>
                   <CountUp value={social.friends} />
                 </StatValue>
                 <StatLabel>{social.friends === 1 ? "Friend" : "Friends"}</StatLabel>
-              </button>
+              </SocialStat>
             </li>
             <li className="flex">
-              <button
-                type="button"
-                aria-label={plural(social.groups, social.own ? "group" : "shared group")}
-                onClick={opener(() => social.open("groups"))}
-                className={STAT}
-              >
+              <SocialStat social={social} view="groups" label={plural(social.groups, social.own ? "group" : "shared group")}>
                 <StatValue>
                   <CountUp value={social.groups} />
                 </StatValue>
                 <StatLabel>{social.own ? (social.groups === 1 ? "Group" : "Groups") : "Shared groups"}</StatLabel>
-              </button>
+              </SocialStat>
             </li>
           </ul>
 
           {social.own ? (
             social.waiting > 0 && (
-              <button
-                type="button"
+              <Link
+                href="/social/?view=requests"
                 aria-label={`Requests, ${social.waiting} waiting`}
-                onClick={opener(() => social.open("requests"))}
                 className={cn(
                   "inline-flex min-h-10 items-center gap-2 rounded-full border border-brand-magenta/45 bg-brand-magenta/10 pr-1.5 pl-4 text-sm font-medium text-pearl transition-colors hover:bg-brand-magenta/20 active:bg-brand-magenta/25 animate-pop-in",
                   FOCUS,
@@ -136,7 +125,7 @@ export function ProfileHeader({ profile, me, onMe, social }: ProfileHeaderProps)
                 <span className="flex h-7 min-w-7 items-center justify-center rounded-full bg-brand-magenta px-2 text-xs font-semibold tabular-nums">
                   {social.waiting}
                 </span>
-              </button>
+              </Link>
             )
           ) : (
             <div className="flex w-full flex-col items-center gap-3 sm:items-start">
@@ -162,6 +151,22 @@ const STAT = cn(
   "flex min-h-16 w-full flex-col items-center justify-center gap-0.5 rounded-xl px-2 py-2 transition-colors hover:bg-silver/10 active:bg-silver/15 sm:items-start sm:px-3",
   FOCUS,
 );
+
+/** Your counts link to your lists; theirs open the sheet of what you share. */
+function SocialStat({ social, view, label, children }: { social: HeaderSocial; view: SocialView; label: string; children: ReactNode }) {
+  if (social.own) {
+    return (
+      <Link href={`/social/?view=${view}`} aria-label={label} className={STAT}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <button type="button" aria-label={label} onClick={opener(() => social.open(view))} className={STAT}>
+      {children}
+    </button>
+  );
+}
 
 function StatValue({ gold = false, children }: { gold?: boolean; children: ReactNode }) {
   return (

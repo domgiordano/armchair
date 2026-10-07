@@ -25,7 +25,7 @@ import { search } from "@/lib/search/match";
 import { button, EYEBROW, PRIMARY } from "@/lib/ui";
 
 const NAME_MAX = 40;
-const HOME = "/profile/?sheet=groups";
+const HOME = "/social/?view=groups";
 
 interface SheetProps {
   open: boolean;

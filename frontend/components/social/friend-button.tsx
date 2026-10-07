@@ -13,6 +13,8 @@ interface FriendButtonProps {
   person: Person;
   relation: Relation;
   onChange: (next: Relation) => void;
+  /** Small, for a list row rather than a profile header. */
+  compact?: boolean;
 }
 
 type Confirm = "remove" | "block" | null;
@@ -20,11 +22,13 @@ type Confirm = "remove" | "block" | null;
 const WIDE = "min-w-32 justify-center";
 
 /** The one action on someone else's profile, following where you stand with them. */
-export function FriendButton({ person, relation, onChange }: FriendButtonProps) {
+export function FriendButton({ person, relation, onChange, compact = false }: FriendButtonProps) {
   const [busy, setBusy] = useState(false);
   const [confirm, setConfirm] = useState<Confirm>(null);
   const toast = useToast();
   const name = displayName(person);
+  const size = compact ? "sm" : "md";
+  const wide = !compact && WIDE;
 
   const run = async (fn: () => Promise<Relation>, done?: string) => {
     setBusy(true);
@@ -61,7 +65,7 @@ export function FriendButton({ person, relation, onChange }: FriendButtonProps) 
             <Caret />
           </>
         }
-        triggerClassName={cn(button("secondary"), WIDE)}
+        triggerClassName={cn(button("secondary", size), wide)}
       >
         <MenuItem onSelect={() => setConfirm("remove")}>Remove friend</MenuItem>
         <MenuItem onSelect={() => setConfirm("block")} className="text-red-200 hover:text-red-100 focus:text-red-100">
@@ -79,7 +83,7 @@ export function FriendButton({ person, relation, onChange }: FriendButtonProps) 
             <Caret />
           </>
         }
-        triggerClassName={cn(button("secondary"), WIDE, "text-silver")}
+        triggerClassName={cn(button("secondary", size), wide, "text-silver")}
       >
         <MenuItem onSelect={() => void remove("Request cancelled")}>Cancel request</MenuItem>
       </Menu>
@@ -87,10 +91,10 @@ export function FriendButton({ person, relation, onChange }: FriendButtonProps) 
   } else if (relation === "incoming") {
     control = (
       <span className="flex gap-2">
-        <button type="button" disabled={busy} onClick={() => void accept()} className={cn(button("primary"), WIDE)}>
+        <button type="button" disabled={busy} onClick={() => void accept()} className={cn(button("primary", size), wide)}>
           {busy ? "Accepting..." : "Accept"}
         </button>
-        <button type="button" disabled={busy} onClick={() => void remove()} className={button("secondary")}>
+        <button type="button" disabled={busy} onClick={() => void remove()} className={button("secondary", size)}>
           Decline
         </button>
       </span>
@@ -101,14 +105,14 @@ export function FriendButton({ person, relation, onChange }: FriendButtonProps) 
         type="button"
         disabled={busy}
         onClick={() => void run(() => setBlocked(person.sub, false).then(() => null), `Unblocked ${name}`)}
-        className={cn(button("secondary"), WIDE)}
+        className={cn(button("secondary", size), wide)}
       >
         Unblock
       </button>
     );
   } else {
     control = (
-      <button type="button" disabled={busy} onClick={() => void add()} className={cn(button("primary"), WIDE)}>
+      <button type="button" disabled={busy} onClick={() => void add()} className={cn(button("primary", size), wide)}>
         <PlusIcon />
         {busy ? "Adding..." : "Add friend"}
       </button>

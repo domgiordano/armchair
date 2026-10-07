@@ -54,10 +54,11 @@ interface SearchInputProps {
   placeholder?: string;
   maxLength?: number;
   busy?: boolean;
+  autoFocus?: boolean;
 }
 
 /** A search field with a magnifier, a spinner while busy, and a clear button once there's text. */
-export function SearchInput({ label, value, onChange, placeholder, maxLength, busy }: SearchInputProps) {
+export function SearchInput({ label, value, onChange, placeholder, maxLength, busy, autoFocus }: SearchInputProps) {
   const id = useId();
   return (
     <div className="flex flex-col gap-1.5">
@@ -84,6 +85,7 @@ export function SearchInput({ label, value, onChange, placeholder, maxLength, bu
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           maxLength={maxLength}
+          autoFocus={autoFocus}
           autoComplete="off"
           className={cn(INPUT, "pr-11 pl-10 [&::-webkit-search-cancel-button]:hidden")}
         />

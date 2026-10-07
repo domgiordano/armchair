@@ -1,6 +1,6 @@
 "use client";
 
-import type { MouseEvent, ReactNode } from "react";
+import { useState, type MouseEvent, type ReactNode } from "react";
 
 import {
   ConfirmButton,
@@ -11,8 +11,9 @@ import {
   SMALL_SECONDARY,
   useAction,
 } from "@/components/social/parts";
+import { FriendButton } from "@/components/social/friend-button";
 import { Badge } from "@/components/ui/badge";
-import { manageGroup, type GroupDetail, type GroupMember } from "@armchair/app-core/api/groups";
+import { manageGroup, type GroupDetail, type GroupMember, type GroupPerson } from "@armchair/app-core/api/groups";
 import { button } from "@/lib/ui";
 
 interface GroupMembersProps {
@@ -58,8 +59,13 @@ export function GroupMembers({ group, me, owner, reload, onInvite }: GroupMember
               detail={m.sub === group.owner ? <Badge tone="gold">Owner</Badge> : m.sub === me ? "You" : undefined}
             >
               {(a) =>
-                owner && m.sub !== me ? (
-                  <ConfirmButton label="Remove" confirm="Remove" busy={a.busy !== null} onConfirm={() => void a.run("remove", change(m.sub, "remove"))} />
+                me !== null && m.sub !== me ? (
+                  <>
+                    <MemberFriend person={m} />
+                    {owner && (
+                      <ConfirmButton label="Remove" confirm="Remove" busy={a.busy !== null} onConfirm={() => void a.run("remove", change(m.sub, "remove"))} />
+                    )}
+                  </>
                 ) : null
               }
             </Row>
@@ -104,4 +110,9 @@ function Row({
       {children(a)}
     </PersonRow>
   );
+}
+
+function MemberFriend({ person }: { person: GroupPerson }) {
+  const [relation, setRelation] = useState(person.relation);
+  return <FriendButton person={person} relation={relation} onChange={setRelation} compact />;
 }

@@ -33,8 +33,8 @@ export function legacyTarget(params: URLSearchParams): string {
   const tab = params.get("tab");
   const group = params.get("group");
   if (tab === "groups" && group) return groupHref(group);
-  if (tab === "groups" || tab === "requests") return `/profile/?sheet=${tab}`;
-  return "/profile/?sheet=friends";
+  if (tab === "groups" || tab === "requests") return `/social/?view=${tab}`;
+  return "/social/?view=friends";
 }
 
 function AddByLink({ code }: { code: string }) {
