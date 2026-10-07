@@ -14,6 +14,8 @@ vi.mock("next/navigation", () => ({
 const signOut = vi.hoisted(() => vi.fn(() => Promise.resolve()));
 vi.mock("@armchair/app-core/auth/use-auth", () => ({ useAuth: () => ({ signOut }) }));
 vi.mock("@armchair/app-core/api/client", () => ({ getMe: vi.fn() }));
+// The reminders' overview read; never answering keeps them out of these tests.
+vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn(() => new Promise(() => {})) }));
 vi.mock("@armchair/app-core/api/social", () => ({ getFriends: vi.fn() }));
 const unread = vi.hoisted(() => ({ n: 0, items: [] as unknown[] }));
 vi.mock("@armchair/app-core/social/notifications", () => ({

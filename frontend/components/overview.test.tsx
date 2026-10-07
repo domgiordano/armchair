@@ -150,7 +150,12 @@ describe("Overview", () => {
     expect(skipBefore).not.toHaveBeenCalled();
 
     fireEvent.click(within(confirm).getByRole("button", { name: "Skip to Week 5" }));
-    expect(await screen.findByRole("link", { name: "Start with Week 5" })).toBeTruthy();
+    await vi.waitFor(() => expect(getOverview).toHaveBeenCalledTimes(2));
+    expect(await screen.findByRole("heading", { level: 1, name: "grab your paddle." })).toBeTruthy();
+    // Week 5 is this week's show, so its panel carries the only button for it.
+    const show = screen.getByRole("region", { name: "This week's show" });
+    expect(within(show).getByRole("link", { name: "Score this week's show" }).getAttribute("href")).toMatch(/\?ep=5$/);
+    expect(screen.queryByRole("link", { name: "Start with Week 5" })).toBeNull();
     expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 5);
     expect(getOverview).toHaveBeenCalledTimes(2);
   });
