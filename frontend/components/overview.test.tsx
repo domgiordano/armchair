@@ -2,11 +2,9 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn(), getLeaderboard: vi.fn() }));
-vi.mock("@/lib/api/show", () => ({ skipBefore: vi.fn() }));
 
 import { ApiError } from "@armchair/app-core/api/client";
 import { getLeaderboard, getOverview, type Leaderboard, type Overview as Data } from "@/lib/api/overview";
-import { skipBefore } from "@/lib/api/show";
 import { Overview } from "./overview";
 
 const ME = "sub-me";
@@ -95,7 +93,7 @@ describe("Overview", () => {
     expect(await screen.findByRole("heading", { level: 1, name: "grab your paddle." })).toBeTruthy();
     const start = screen.getByRole("link", { name: "Catch up on 4 earlier episodes" });
     expect(start.getAttribute("href")).toMatch(/^\/episode\/?\?ep=1$/);
-    expect(screen.getByRole("button", { name: "Skip to Week 5" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /Skip/ })).toBeNull();
     expect(screen.getByText("Your numbers start with your first paddle.")).toBeTruthy();
     expect(screen.getByText(/your gap to the judges draws here/)).toBeTruthy();
     expect(screen.getByText(/judges' paddles next to yours/)).toBeTruthy();
@@ -139,40 +137,24 @@ describe("Overview", () => {
     ]);
   });
 
-  it("skips to the latest week after the confirm and reloads", async () => {
-    vi.mocked(getOverview).mockResolvedValueOnce(data()).mockResolvedValueOnce(data({ episodes: episodes(5, [1, 2, 3, 4]) }));
-    vi.mocked(skipBefore).mockResolvedValue({ revealed: [] });
+  it("leaves this week's show to its panel once nothing earlier is open", async () => {
+    vi.mocked(getOverview).mockResolvedValue(data({ episodes: episodes(5, [1, 2, 3, 4]) }));
     render(<Overview />);
-
-    fireEvent.click(await screen.findByRole("button", { name: "Skip to Week 5" }));
-    const confirm = screen.getByRole("group", { name: "Skip 4 earlier episodes?" });
-    expect(within(confirm).getByText(/won.t count toward your accuracy/)).toBeTruthy();
-    expect(skipBefore).not.toHaveBeenCalled();
-
-    fireEvent.click(within(confirm).getByRole("button", { name: "Skip to Week 5" }));
-    await vi.waitFor(() => expect(getOverview).toHaveBeenCalledTimes(2));
     expect(await screen.findByRole("heading", { level: 1, name: "grab your paddle." })).toBeTruthy();
-    // Week 5 is this week's show, so its panel carries the only button for it.
     const show = screen.getByRole("region", { name: "This week's show" });
     expect(within(show).getByRole("link", { name: "Score this week's show" }).getAttribute("href")).toMatch(/\?ep=5$/);
     expect(screen.queryByRole("link", { name: "Start with Week 5" })).toBeNull();
-    expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 5);
-    expect(getOverview).toHaveBeenCalledTimes(2);
   });
 
-  it("offers a finished season to browse or to score from the start", async () => {
+  it("offers a finished season to score from the start", async () => {
     vi.setSystemTime(new Date("2026-12-20T12:00:00Z"));
     vi.mocked(getOverview).mockResolvedValue(
       data({ episodes: episodes(12), next: null, progress: { aired: 12, total: 12, couples: 16, couplesLeft: 16 } }),
     );
-    vi.mocked(skipBefore).mockRejectedValue(new ApiError(500, "Internal error"));
     render(<Overview />);
 
     expect((await screen.findByRole("link", { name: "Score from the start" })).getAttribute("href")).toMatch(/\?ep=1$/);
-    fireEvent.click(screen.getByRole("button", { name: "Just browse" }));
-    fireEvent.click(screen.getByRole("button", { name: "Browse the season" }));
-    expect((await screen.findByRole("alert")).textContent).toBe("Nothing skipped: Internal error");
-    expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 13);
+    expect(screen.queryByRole("button", { name: "Just browse" })).toBeNull();
   });
 
   it("shows a past season as a wrap to browse, with no catch-up or paddle prompts", async () => {

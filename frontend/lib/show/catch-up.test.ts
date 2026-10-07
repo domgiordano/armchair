@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import type { Overview, OverviewEpisode } from "@/lib/api/overview";
-import { skipTarget, unfinishedBefore } from "./catch-up";
+import { unfinishedBefore } from "./catch-up";
 
 const ep = (n: number, extra: Partial<OverviewEpisode>): OverviewEpisode => ({
   ep: n,
@@ -34,18 +34,5 @@ describe("unfinishedBefore", () => {
 
   it("does not count an episode with nothing rateable as unfinished", () => {
     expect(unfinishedBefore(overview([ep(1, { rateable: 0, answered: 0 })]), 2)).toEqual([]);
-  });
-});
-
-describe("skipTarget", () => {
-  const eps = [ep(1, {}), ep(2, {}), ep(3, {})];
-  const next = { ep: 3, week: 3, theme: null, airDate: "2026-09-29", startsAt: "2026-09-30T00:00:00Z" };
-
-  it("stops before the episode given while the season is on", () => {
-    expect(skipTarget(overview(eps, next), 2)).toBe(2);
-  });
-
-  it("runs past the last episode once nothing is left to air", () => {
-    expect(skipTarget(overview(eps), 2)).toBe(4);
   });
 });

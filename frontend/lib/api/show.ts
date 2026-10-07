@@ -161,10 +161,3 @@ export const revealAll = (season: string, ep: number) =>
     method: "POST",
     body: JSON.stringify({ season, ep: epParam(ep) }),
   });
-
-/** Forfeits every unanswered dance in the aired episodes before `ep`; one past the last skips the season. */
-export const skipBefore = (season: string, ep: number) =>
-  request<{ revealed: { ep: number; keys: string[] }[] }>("/scores/skip-before", {
-    method: "POST",
-    body: JSON.stringify({ season, ep: epParam(ep) }),
-  });

@@ -21,7 +21,6 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
   getEpisodeState: vi.fn(),
   submitScore: vi.fn(),
   revealAll: vi.fn(),
-  skipBefore: vi.fn(),
 }));
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn() }));
 
@@ -32,7 +31,6 @@ import {
   getEpisodeState,
   getSeason,
   revealAll,
-  skipBefore,
   submitScore,
   type EpisodeState,
   type Season,
@@ -393,7 +391,7 @@ describe("catching up", () => {
     episodes({ 5: { ep: 5, theme: "Mariah Carey" } });
   });
 
-  it("offers catch up week by week or skip while week 3 is unfinished", async () => {
+  it("offers catch up week by week while week 3 is unfinished", async () => {
     overview({ 4: 1 }, NEXT);
     render(<EpisodeScreen />);
 
@@ -403,33 +401,7 @@ describe("catching up", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Catch up on 1 earlier episode" }));
     expect(replace).toHaveBeenCalledWith("/episode/?ep=4");
-    expect(skipBefore).not.toHaveBeenCalled();
-  });
-
-  it("skips to week 4 only after the confirm, then opens it", async () => {
-    overview({ 4: 1 }, NEXT);
-    vi.mocked(skipBefore).mockResolvedValue({ revealed: [{ ep: 4, keys: ["amber-glenn#1"] }] });
-    render(<EpisodeScreen />);
-
-    fireEvent.click(await screen.findByRole("button", { name: "Skip to week 4" }));
-    const confirm = screen.getByRole("group", { name: "Skip 1 earlier episode?" });
-    expect(within(confirm).getByText(/won.t count toward your accuracy/)).toBeTruthy();
-    expect(skipBefore).not.toHaveBeenCalled();
-
-    fireEvent.click(within(confirm).getByRole("button", { name: "Skip to week 4" }));
-    expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
-    expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 5);
-  });
-
-  it("stays on the question and says so when the skip fails", async () => {
-    overview({ 4: 1 }, NEXT);
-    vi.mocked(skipBefore).mockRejectedValue(new Error("Internal error"));
-    render(<EpisodeScreen />);
-
-    fireEvent.click(await screen.findByRole("button", { name: "Skip to week 4" }));
-    fireEvent.click(within(screen.getByRole("group")).getByRole("button", { name: "Skip to week 4" }));
-    expect((await screen.findByRole("alert")).textContent).toBe("Nothing skipped: Internal error");
-    expect(screen.queryByRole("heading", { name: "Mariah Carey" })).toBeNull();
+    expect(screen.queryByRole("button", { name: /Skip/ })).toBeNull();
   });
 
   it("can still open week 4 and leave week 3 scorable", async () => {
@@ -439,21 +411,16 @@ describe("catching up", () => {
 
     expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
     expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 5, null);
-    expect(skipBefore).not.toHaveBeenCalled();
   });
 
-  it("offers browse or score from the start once the season is over", async () => {
+  it("offers score from the start or open anyway once the season is over", async () => {
     overview({ 4: 0, 5: 0 });
-    vi.mocked(skipBefore).mockResolvedValue({ revealed: [] });
     render(<EpisodeScreen />);
 
-    expect(await screen.findByRole("heading", { name: "Browse or score this season?" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "Score from the start" })).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "Just browse" }));
-    fireEvent.click(screen.getByRole("button", { name: "Browse the season" }));
-
+    fireEvent.click(await screen.findByRole("button", { name: "Score from the start" }));
+    expect(replace).toHaveBeenCalledWith("/episode/?ep=4");
+    fireEvent.click(screen.getByRole("button", { name: "Open week 4 and leave week 3 for later" }));
     expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
-    expect(skipBefore).toHaveBeenCalledExactlyOnceWith("dwts-35", 6);
   });
 
   it("opens a past season straight to every score: no catch-up, no paddles", async () => {
