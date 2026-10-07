@@ -76,6 +76,10 @@ locals {
     { name = "stats", description = "The caller's own Traitors points by event and episode", path_part = "stats", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "credits", description = "Who made each Traitors headshot in a season, and its license", path_part = "credits", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  # Public: chat apps fetch it for the link preview, and they carry no token.
+  invite_lambdas = [
+    { name = "preview", description = "Link-preview card for a group invite, then on to /join/", path_part = "preview", http_method = "GET", authorization = "NONE" },
+  ]
 
   all_api_lambdas = merge(
     { for l in local.users_lambdas : "users_${l.name}" => l },
@@ -93,6 +97,7 @@ locals {
     { for l in local.week_board_lambdas : "week_board_${l.name}" => l },
     { for l in local.people_lambdas : "people_${l.name}" => l },
     { for l in local.traitors_lambdas : "traitors_${l.name}" => l },
+    { for l in local.invite_lambdas : "invite_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -152,6 +157,7 @@ locals {
     traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
     traitors_credits   = ["catalog:Query"]
+    invite_preview     = ["groups:GetItem"]
     users_delete       = ["groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
   }
 

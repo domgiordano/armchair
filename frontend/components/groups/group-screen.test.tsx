@@ -134,6 +134,7 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.clearAllMocks();
+  vi.unstubAllEnvs();
 });
 
 describe("GroupRoute", () => {
@@ -199,10 +200,13 @@ describe("GroupRoute", () => {
 
   it("invites friends who aren't in yet, and shows the link", async () => {
     vi.mocked(inviteToGroup).mockResolvedValue({ status: "invited" });
+    vi.stubEnv("NEXT_PUBLIC_API_URL", "https://api.test");
     render(<GroupRoute />);
     fireEvent.click(await screen.findByRole("button", { name: "Invite" }));
     const sheet = screen.getByRole("dialog", { name: "Invite to Family" });
-    expect((within(sheet).getByRole("textbox", { name: "Group link" }) as HTMLInputElement).value).toContain(`/join/?code=${"c".repeat(16)}`);
+    expect((within(sheet).getByRole("textbox", { name: "Group link" }) as HTMLInputElement).value).toBe(
+      `https://api.test/invite/preview?code=${"c".repeat(16)}`,
+    );
     expect(within(sheet).queryByText("Bea Arthur")).toBeNull();
     fireEvent.click(await within(sheet).findByRole("button", { name: "Invite" }));
     expect(await within(sheet).findByText("Invited")).toBeTruthy();
