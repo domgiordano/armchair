@@ -160,6 +160,11 @@ locals {
     users_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
   }
 
+  # users_delete scans four tables for rows naming the caller.
+  api_timeout = {
+    users_delete = 60
+  }
+
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
   # signed with the upload function's own credentials, so its PutObject is
   # what S3 checks the browser's upload against.
@@ -268,7 +273,7 @@ resource "aws_lambda_function" "api" {
   handler       = "handler.handler"
   runtime       = var.lambda_runtime
   memory_size   = 1024 # CPU scales with memory; at 256 MB a cold start took ~2 s
-  timeout       = 10
+  timeout       = try(local.api_timeout[each.key], 10)
   layers        = [aws_lambda_layer_version.lambda_layer.arn]
 
   filename         = "./templates/lambda_stub.zip"
