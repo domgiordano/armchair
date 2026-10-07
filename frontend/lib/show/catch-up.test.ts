@@ -27,6 +27,11 @@ describe("unfinishedBefore", () => {
     expect(unfinishedBefore(overview(eps), 1)).toEqual([]);
   });
 
+  it("lets a closed episode's missed dances go: the API returns it complete", () => {
+    const closed = [ep(1, { answered: 3, complete: true }), ep(2, { answered: 4 })];
+    expect(unfinishedBefore(overview(closed), 3).map((e) => e.ep)).toEqual([2]);
+  });
+
   it("does not count an episode with nothing rateable as unfinished", () => {
     expect(unfinishedBefore(overview([ep(1, { rateable: 0, answered: 0 })]), 2)).toEqual([]);
   });

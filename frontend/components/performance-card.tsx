@@ -11,6 +11,7 @@ import type { GroupMember } from "@armchair/app-core/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { Paddle as PaddleArt } from "@/components/paddle";
 import { PaddlePicker } from "@/components/paddle-picker";
+import { Badge } from "@/components/ui/badge";
 import { button } from "@/lib/ui";
 import { WhatHappened } from "@/components/what-happened";
 
@@ -28,6 +29,8 @@ interface PerformanceCardProps {
   /** Locked in here but not revealed yet: the judges stay face down. */
   sealed?: boolean;
   onReveal?: () => void;
+  /** Its window closed before you scored it. */
+  missed?: boolean;
 }
 
 const celebrity = (c: Contestant | undefined): Member | undefined =>
@@ -62,6 +65,7 @@ export function PerformanceCard({
   out,
   sealed = false,
   onReveal,
+  missed = false,
 }: PerformanceCardProps) {
   const team = card.contestants.length > 1;
   const couple = contestants.get(card.contestants[0]);
@@ -111,6 +115,11 @@ export function PerformanceCard({
           </h3>
           {details.length > 0 && <p className="text-sm text-silver-dim">{details.join(" · ")}</p>}
         </div>
+        {missed && (
+          <Badge tone="muted" className="ml-auto self-start">
+            Missed
+          </Badge>
+        )}
       </div>
       {!card.locked && sealed ? (
         <Sealed card={card} onReveal={onReveal} />

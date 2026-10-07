@@ -30,7 +30,27 @@ export interface Judge extends Person {
   id: string;
 }
 
+/** When an episode takes answers: from air time until the next episode airs. */
+export interface ScoringWindow {
+  opensAt: string | null;
+  closesAt: string | null;
+  open: boolean;
+}
+
+/** The episode taking answers now, with the caller's progress on it. */
+export interface ActiveEpisode {
+  ep: number;
+  opensAt: string | null;
+  closesAt: string | null;
+  answered: number;
+  rateable: number;
+}
+
+/** A 409 from a write to an episode outside its window. */
+export const CLOSED = "episode_closed";
+
 // A past season's fixture has no start or end times, and some lack the air date.
+// `window` and `activeEpisode` are absent from an API older than scoring windows.
 export interface Episode {
   ep: number;
   week: number;
@@ -38,6 +58,7 @@ export interface Episode {
   start: string | null;
   end: string | null;
   theme: string | null;
+  window?: ScoringWindow;
 }
 
 export interface Season {
@@ -48,6 +69,7 @@ export interface Season {
   episodes: Episode[];
   judges: Judge[];
   contestants: Contestant[];
+  activeEpisode?: ActiveEpisode | null;
 }
 
 export type Answer = { value: number } | { forfeit: true };
@@ -106,6 +128,8 @@ export interface EpisodeState {
   complete: boolean;
   performances: Card[];
   eliminated?: string[];
+  window?: ScoringWindow;
+  activeEpisode?: ActiveEpisode | null;
 }
 
 export const epParam = (ep: number) => String(ep).padStart(2, "0");

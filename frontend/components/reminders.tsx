@@ -8,6 +8,7 @@ import { Sheet } from "@/components/ui/sheet";
 import { localDate, reminderFor } from "@/lib/show/reminder";
 import { episodeLabel } from "@/lib/show/schedule";
 import { withSeason } from "@/lib/show/seasons";
+import { closesOn } from "@/lib/show/window";
 import { useNow } from "@armchair/app-core/show/use-now";
 import { button, cn, FOCUS } from "@/lib/ui";
 
@@ -64,6 +65,7 @@ function Due() {
   const href = withSeason(`/episode/?ep=${due.episode.ep}`, season);
   const left = due.rateable ? due.rateable - (due.answered ?? 0) : null;
   const tonight = due.episode.airDate === today;
+  const closes = due.closesAt && closesOn(due.closesAt, overview.timezone);
 
   return (
     <>
@@ -77,6 +79,7 @@ function Due() {
             <p className="min-w-0 flex-1 text-sm text-pearl">
               Don&apos;t forget to score <span className="font-semibold">{name}</span>
               {left !== null && <span className="text-silver-dim"> · {left} left</span>}
+              {closes && <span className="text-silver-dim"> · closes {closes}</span>}
             </p>
             <Link href={href} className={cn(button("primary", "sm"), "shrink-0")}>
               Score
@@ -111,6 +114,7 @@ function Due() {
             <p className="text-sm text-silver-dim">
               {name}:{" "}
               {left === null ? "score each dance before you see the judges." : `${left} ${left === 1 ? "dance still needs" : "dances still need"} your paddle.`}
+              {closes && ` Scoring closes ${closes}.`}
             </p>
           </div>
           <div className="flex w-full flex-col gap-2 sm:flex-row-reverse sm:justify-center">

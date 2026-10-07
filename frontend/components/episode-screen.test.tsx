@@ -25,6 +25,7 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
 }));
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn() }));
 
+import { ApiError } from "@armchair/app-core/api/client";
 import { getMyGroups } from "@armchair/app-core/api/groups";
 import { getOverview, type Overview, type OverviewEpisode } from "@/lib/api/overview";
 import {
@@ -256,6 +257,39 @@ describe("EpisodeScreen", () => {
     const sheet = await screen.findByRole("dialog", { name: "Locked in" });
     fireEvent.click(within(sheet).getByRole("button", { name: "Reveal judges' scores" }));
     await vi.waitFor(() => expect(within(amber()).getByRole("group", { name: /Judges' desk/ })).toBeTruthy());
+  });
+
+  it("shows a closed episode read-only, with unscored dances missed", async () => {
+    const missed = { ...STATE.performances[1], key: "amber-glenn#1", contestants: ["amber-glenn"], mine: null };
+    episodes({
+      4: {
+        complete: true,
+        answered: 1,
+        performances: [missed, STATE.performances[1]],
+        window: { opensAt: "2026-09-30T00:00:00Z", closesAt: "2026-10-01T00:00:00Z", open: false },
+      },
+    });
+    render(<EpisodeScreen />);
+    const status = await screen.findByText("Scoring closed");
+    expect(status.parentElement?.textContent).toBe(
+      "Scoring closed Wed 8:00 PM ET. You scored 1 of 2; the rest are marked missed. Every score is open to see.",
+    );
+    expect(within(screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" })).getByText("Missed")).toBeTruthy();
+    expect(within(screen.getByRole("article", { name: /Tyler Cameron/ })).queryByText("Missed")).toBeNull();
+    expect(screen.queryByRole("button", { name: "Reveal all" })).toBeNull();
+    expect(screen.queryByRole("button", { name: /^Score \d/ })).toBeNull();
+  });
+
+  it("counts down an open window and says so when a lock-in lands after it closed", async () => {
+    episodes({ 4: { window: { opensAt: "2026-09-30T00:00:00Z", closesAt: "2026-10-06T00:00:00Z", open: true } } });
+    vi.mocked(submitScore).mockRejectedValue(new ApiError(409, "This episode closed for scoring", { code: "episode_closed" }));
+    render(<EpisodeScreen />);
+    expect(await screen.findByText("Closes in 4d 12h")).toBeTruthy();
+    const amber = screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    fireEvent.click(within(amber).getByRole("button", { name: /^Score 8 / }));
+    fireEvent.click(within(amber).getByRole("button", { name: "Lock in 8" }));
+    expect((await within(amber).findByRole("alert")).textContent).toBe("Not saved: scoring for this episode has closed");
+    expect(window.localStorage.getItem("armchair.sealed")).toBe("[]");
   });
 
   it("lets a locked team dance be scored like any couple", async () => {

@@ -16,12 +16,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { VotePanel } from "@/components/vote-panel";
 import type { Group } from "@armchair/app-core/api/groups";
-import { revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
+import { CLOSED, revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
 import { seal, unseal, useSealed } from "@/lib/show/sealed";
 import { useEpisodeState } from "@/lib/show/use-episode-state";
 import { useNow } from "@armchair/app-core/show/use-now";
+import { ApiError } from "@armchair/app-core/api/client";
+import { closesIn, closesOn, isClosed } from "@/lib/show/window";
 import { withSeason } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 import { TEXT_LINK } from "@/lib/ui";
@@ -75,7 +77,13 @@ function EpisodePicker({ season }: EpisodePickerProps) {
           options={season.episodes.map((e) => ({
             value: String(e.ep),
             label: [episodeLabel(e, season.episodes), e.theme].filter(Boolean).join(" · "),
-            detail: formatAirDate(e.airDate) ?? undefined,
+            detail:
+              [
+                formatAirDate(e.airDate),
+                e.window?.open ? "Open now" : isClosed(e.window, now) ? "Closed" : null,
+              ]
+                .filter(Boolean)
+                .join(" · ") || undefined,
           }))}
           onChange={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
         />
@@ -148,6 +156,8 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
       if (value !== null) setLocked({ key: card.key, title: names(card.contestants), value });
     } catch (e) {
       if (value !== null) unseal(season.season, episode.ep, card.key);
+      // The reload below turns the page read-only; this says why the paddle didn't stick.
+      if (e instanceof ApiError && e.detail?.code === CLOSED) throw new Error("scoring for this episode has closed");
       throw e;
     } finally {
       // Also after a 409: the answer from another device is what the card should show.
@@ -160,6 +170,10 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
     (id) => contestants.get(id) ?? [],
   );
   const sealed = (key: string) => isSealed(season.season, episode.ep, key);
+  // From the episode state when the API sends windows; the season catalog may be cached.
+  const win = data.window ?? episode.window;
+  const closed = isClosed(win, now);
+  const closesAt = !closed && win?.open ? win.closesAt : null;
   // The episode's result arrives with the last answer, which may still be face down.
   const anySealed = data.performances.some((c) => !c.locked && sealed(c.key));
   const eliminated = anySealed ? [] : (data.eliminated ?? []);
@@ -183,8 +197,11 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
               Comparing with <span className="font-medium text-pearl">{scope}</span>
             </p>
           </div>
-          <p className="shrink-0 pb-0.5 text-sm text-silver-dim tabular-nums">
+          <p className="shrink-0 pb-0.5 text-right text-sm text-silver-dim tabular-nums">
             {data.open ? "Past season · view only" : `${data.answered} of ${data.rateable} answered`}
+            {closesAt && (
+              <span className="block text-xs font-medium text-gold-light">Closes in {closesIn(closesAt, now)}</span>
+            )}
           </p>
         </div>
         {!data.open && (
@@ -203,7 +220,16 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
           </div>
         )}
       </div>
-      {!data.open && airsOn === null && data.answered < data.rateable && (
+      {closed && (
+        <p role="status" className="rounded-lg border border-silver/15 bg-ink/40 px-3 py-2.5 text-sm text-silver">
+          <span className="font-semibold text-pearl">Scoring closed</span>
+          {win?.closesAt && ` ${closesOn(win.closesAt, season.timezone)}`}.{" "}
+          {data.answered < data.rateable
+            ? `You scored ${data.answered} of ${data.rateable}; the rest are marked missed. Every score is open to see.`
+            : "Every score is open to see."}
+        </p>
+      )}
+      {!data.open && !closed && airsOn === null && data.answered < data.rateable && (
         <RevealAll open={data.rateable - data.answered} onConfirm={revealRest} />
       )}
       {error !== null && (
@@ -233,6 +259,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
                 group={picked}
                 onSubmit={submit}
                 sealed={!card.locked && sealed(card.key)}
+                missed={closed && !card.locked && card.mine === null}
                 onReveal={() => unseal(season.season, episode.ep, card.key)}
               />
             </li>
