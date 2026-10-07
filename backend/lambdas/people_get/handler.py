@@ -11,7 +11,8 @@ behind it. A season's result shows once the caller has finished
 every aired episode up to it, the episode rule; until then it is
 {locked: true, season, ep} with the first episode left. Every all-time number
 is over dances the caller has answered; friends are their accepted friends.
-A past season (gate.is_open) has no gate, so its dances and results all show.
+A past season (gate.is_open) has no gate, so its dances and results all show;
+nor does an episode whose scoring window has closed (common/window.py).
 
 A judge or a long-serving pro spans hundreds of nights, so only some seasons
 are read (`loaded`): the person's latest, the current one, `season`, every
@@ -35,7 +36,7 @@ from collections import Counter, defaultdict
 from datetime import UTC, datetime
 from zoneinfo import ZoneInfo
 
-from lambdas.common import board_dynamo, people
+from lambdas.common import board_dynamo, people, window
 from lambdas.common.api import NotFoundError, ValidationError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_partitions
 from lambdas.common.episodes_dynamo import episode_pk, season_index, season_ref, show_ref
@@ -163,6 +164,9 @@ def _seasons(show: str, numbers: set[int]) -> dict[int, dict]:
             "episodes": episodes,
             "contestants": contestants,
             "aired": sorted(n for n, e in episodes.items() if _aired(meta, e, tz, now)),
+            "closed": {
+                n for n, span in window.spans(meta, items).items() if window.closed(meta, span, now)
+            },
             # Each couple's dancers as people: a pro's id is their name's slug.
             "dancers": {
                 cid(c): [
@@ -221,6 +225,7 @@ def _views(sub: str, show: str, seasons: dict[int, dict], eps: list[tuple[int, i
             perfs[pk],
             scores[pk],
             writeups=notes[pk],
+            closed=ep in s["closed"],
         )
     return out
 

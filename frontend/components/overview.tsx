@@ -12,6 +12,7 @@ import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/compone
 import { PageLoader } from "@/components/disco-loader";
 import { MiniDesk } from "@/components/mini-desk";
 import { formatScore } from "@/components/performance-card";
+import { ScoreCta } from "@/components/score-cta";
 import { SkipConfirm } from "@/components/skip-confirm";
 import { CountUp } from "@/components/ui/count-up";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -27,6 +28,7 @@ import {
 import { skipBefore } from "@/lib/api/show";
 import { skipTarget, unfinishedBefore } from "@/lib/show/catch-up";
 import { eliminatedLast, useShowEliminated } from "@/lib/show/eliminated";
+import { useSealed } from "@/lib/show/sealed";
 import { countdown, hero, showTime } from "@/lib/show/overview";
 import { coupleHref, personSlug } from "@/lib/show/people";
 import { formatAirDate } from "@/lib/show/schedule";
@@ -99,6 +101,8 @@ function OverviewView({ o, season, reload }: ViewProps) {
   const judgeName = (id: string) => o.judges.find((j) => j.id === id)?.name ?? id;
   const fresh = o.me.scored === 0;
   const firstOpen = o.episodes.find((e) => e.aired && !e.complete);
+  const isSealed = useSealed();
+  const reveals = o.reveals.filter((r) => !isSealed(season, r.ep, r.key));
 
   return (
     <div className="flex flex-col gap-8 pb-8">
@@ -157,15 +161,15 @@ function OverviewView({ o, season, reload }: ViewProps) {
               <h2 id="reveals" className="text-lg font-semibold text-pearl">
                 Latest reveals
               </h2>
-              {o.reveals.length > 0 && (
+              {reveals.length > 0 && (
                 <Link href={withSeason("/stats/", season)} className={TEXT_LINK}>
                   All your stats
                 </Link>
               )}
             </div>
-            {o.reveals.length > 0 ? (
+            {reveals.length > 0 ? (
               <ul className="stagger grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                {o.reveals.map((r) => (
+                {reveals.map((r) => (
                   <li key={`${r.ep}-${r.key}`}>
                     <MiniDesk
                       reveal={r}
@@ -211,11 +215,6 @@ function Hero({ o, season, reload }: ViewProps) {
         {e.theme ? `${e.theme} night is on.` : "The show is on."} Score each couple before the judges&apos; paddles
         turn over.
       </>
-    );
-    cta = (
-      <Link href={withSeason(`/episode/?ep=${e.ep}`, season)} className={GOLD}>
-        Score now
-      </Link>
     );
   } else if (h.kind === "catchUp") {
     const e = h.episode;
@@ -308,6 +307,8 @@ function Hero({ o, season, reload }: ViewProps) {
         </h1>
         <p className="max-w-xl text-base leading-relaxed text-silver-dim">{body}</p>
         {cta && <div className="flex">{cta}</div>}
+        {/* First thing under the headline on a phone, above the countdown: where to score this week's show. */}
+        <ScoreCta overview={o} onlyToScore className="max-w-xl" />
       </div>
       <NextEpisode o={o} now={now} />
     </section>

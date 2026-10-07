@@ -1,5 +1,9 @@
 import json
+from datetime import UTC, datetime
 
+import pytest
+
+from lambdas.common import window
 from lambdas.seasons_get.handler import handler
 from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE
@@ -25,7 +29,10 @@ def seed(aws):
     return tbl
 
 
-def test_returns_schedule_roster_and_credits(aws):
+@pytest.mark.scoring_window
+def test_returns_schedule_roster_and_credits(aws, monkeypatch):
+    # The morning after episode 5 aired.
+    monkeypatch.setattr(window, "now", lambda: datetime(2026, 10, 7, 12, tzinfo=UTC))
     seed(aws)
     status, body = call({"season": "dwts-35"})
     assert status == 200, body
@@ -40,6 +47,16 @@ def test_returns_schedule_roster_and_credits(aws):
         "start": "20:00",
         "end": "22:00",
         "theme": "Super Bowl",
+        "window": {"opensAt": "2026-10-14T00:00Z", "closesAt": "2026-10-21T00:00Z", "open": False},
+    }
+    assert data["episodes"][4]["window"]["open"] is True
+    assert data["activeEpisode"] == {
+        "ep": 5,
+        "pk": "EP#dwts#35#05",
+        "opensAt": "2026-10-07T00:00Z",
+        "closesAt": "2026-10-14T00:00Z",
+        "answered": 0,
+        "rateable": 12,
     }
     assert {j["id"] for j in data["judges"]} == set(SEASON["defaultPanel"])
     tyler = next(c for c in data["contestants"] if c["id"] == "tyler-cameron")

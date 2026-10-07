@@ -9,7 +9,9 @@ import type { Elimination } from "@/lib/api/couples";
 import { personSlug } from "@/lib/show/people";
 import type { GroupMember } from "@armchair/app-core/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
+import { Paddle as PaddleArt } from "@/components/paddle";
 import { PaddlePicker } from "@/components/paddle-picker";
+import { button } from "@/lib/ui";
 import { WhatHappened } from "@/components/what-happened";
 
 interface PerformanceCardProps {
@@ -23,6 +25,9 @@ interface PerformanceCardProps {
   onSubmit: (card: LockedCard, answer: Answer) => Promise<void>;
   /** The couple went home this episode, and the caller may know it. */
   out?: Elimination;
+  /** Locked in here but not revealed yet: the judges stay face down. */
+  sealed?: boolean;
+  onReveal?: () => void;
 }
 
 const celebrity = (c: Contestant | undefined): Member | undefined =>
@@ -41,7 +46,18 @@ function memberSeats(card: RevealedCard, members: GroupMember[]): DeskMember[] {
   });
 }
 
-export function PerformanceCard({ card, season, contestants, judges, airsOn, members, onSubmit, out }: PerformanceCardProps) {
+export function PerformanceCard({
+  card,
+  season,
+  contestants,
+  judges,
+  airsOn,
+  members,
+  onSubmit,
+  out,
+  sealed = false,
+  onReveal,
+}: PerformanceCardProps) {
   const team = card.contestants.length > 1;
   const couple = contestants.get(card.contestants[0]);
   const faces = team
@@ -91,15 +107,39 @@ export function PerformanceCard({ card, season, contestants, judges, airsOn, mem
           {details.length > 0 && <p className="text-sm text-silver-dim">{details.join(" · ")}</p>}
         </div>
       </div>
-      {!card.locked ? (
+      {!card.locked && sealed ? (
+        <Sealed card={card} onReveal={onReveal} />
+      ) : !card.locked ? (
         <Desk card={card} judges={judges} members={members ? memberSeats(card, members) : undefined}>
           <Scores card={card} judges={judges} />
         </Desk>
       ) : (
         <PaddlePicker label={title} airsOn={airsOn} onSubmit={(answer) => onSubmit(card, answer)} />
       )}
-      <WhatHappened writeup={card.writeup} judges={[...judges.values()]} />
+      {!sealed && <WhatHappened writeup={card.writeup} judges={[...judges.values()]} />}
     </article>
+  );
+}
+
+/** Your paddle up, the panel's face down, and the one button that turns them over. */
+function Sealed({ card, onReveal }: { card: RevealedCard; onReveal?: () => void }) {
+  const mine = card.mine !== null && "value" in card.mine ? card.mine.value : null;
+  return (
+    <div className="flex flex-col items-center gap-3 rounded-lg border border-gold/25 bg-ink/40 px-3 py-4 animate-fade-in">
+      <div className="flex items-end gap-2" aria-hidden="true">
+        {card.judges.map((j) => (
+          <PaddleArt key={j.id} face="?" tone="pending" size="sm" className="w-10" />
+        ))}
+        <span className="mx-1 h-10 w-px self-start bg-gold/25" />
+        <PaddleArt face={mine === null ? "-" : String(mine)} tone="you" size="sm" className="w-10" />
+      </div>
+      <p className="text-center text-sm text-silver-dim">
+        {mine === null ? "Locked in." : `Locked in at ${mine}.`} The judges stay face down until you look.
+      </p>
+      <button type="button" onClick={onReveal} className={button("primary", "sm")}>
+        Reveal judges&apos; scores
+      </button>
+    </div>
   );
 }
 

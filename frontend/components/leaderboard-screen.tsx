@@ -6,6 +6,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 
 import { Avatar } from "@/components/avatar";
 import { UserLink } from "@/components/user-link";
+import { ScoreCta } from "@/components/score-cta";
 import { SignedIn } from "@/components/signed-in";
 import { CountUp } from "@/components/ui/count-up";
 import { PageHeader } from "@/components/ui/page-header";
@@ -170,7 +171,23 @@ function BoardFetcher({
     };
     return <ErrorState what="the leaderboard" message={load.message} retry={retry} />;
   }
-  return <LeaderboardView board={load.board} judges={judges} />;
+  const { me, minDances } = load.board;
+  return (
+    <>
+      {season !== ALL_TIME && (
+        <ScoreCta
+          onlyToScore
+          group={group ?? undefined}
+          note={
+            me.rank === null
+              ? `Score the show to get on the board: ${Math.max(0, minDances - me.count)} more ${minDances - me.count === 1 ? "dance" : "dances"} to rank.`
+              : "Score the show to keep your place on the board."
+          }
+        />
+      )}
+      <LeaderboardView board={load.board} judges={judges} />
+    </>
+  );
 }
 
 interface LeaderboardViewProps {

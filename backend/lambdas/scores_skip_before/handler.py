@@ -3,9 +3,9 @@ POST /scores/skip-before - forfeit every rateable performance the caller hasn't
 answered in the aired episodes before `ep`, for a viewer who would rather start
 from this week than catch up week by week.
 
-Body: {"season": "dwts-35", "ep": "05"}. `ep` needn't exist, so one past the
-last episode skips a finished season whole. An episode still to air is never
-touched, so a stray `ep` can't forfeit dances nobody has danced. Each forfeit
+Body: {"season": "dwts-35", "ep": "05"}. Only an episode inside its scoring
+window (common/window.py) is touched: one closed already shows whole with its
+dances missed, and one still to air has nothing danced. Each forfeit
 is the conditional put /scores/submit makes: an answer already stored stands,
 and a repeat call reveals nothing new. A past season has nothing to skip and is 403.
 """
@@ -13,8 +13,8 @@ and a repeat call reveals nothing new. A past season has nothing to skip and is 
 from __future__ import annotations
 
 from datetime import UTC, datetime
-from zoneinfo import ZoneInfo
 
+from lambdas.common import window
 from lambdas.common.api import ForbiddenError, NotFoundError, api_handler, body, caller_sub, ok
 from lambdas.common.episodes_dynamo import (
     create_scores,
@@ -31,14 +31,6 @@ def _now() -> datetime:
     return datetime.now(UTC)
 
 
-def aired(episode: dict, tz: ZoneInfo, now: datetime) -> bool:
-    if not episode.get("airDate") or not episode.get("start"):
-        return False
-    return (
-        datetime.fromisoformat(f"{episode['airDate']}T{episode['start']}").replace(tzinfo=tz) <= now
-    )
-
-
 @api_handler("scores_skip_before")
 def handler(event, context):
     sub = caller_sub(event)
@@ -51,7 +43,7 @@ def handler(event, context):
     if is_open(meta):
         raise ForbiddenError("Past seasons are view-only", season=f"{show}-{season}")
     contestants = [r for r in rows if r["sk"].startswith("CONTESTANT#")]
-    tz = ZoneInfo(meta["timezone"])
+    spans = window.spans(meta, rows)
     now = _now()
     stamp = now.isoformat(timespec="seconds")
 
@@ -60,7 +52,7 @@ def handler(event, context):
         if not sk.startswith("EP#"):
             continue
         n = int(sk.removeprefix("EP#"))
-        if n >= ep or not aired(episode, tz, now):
+        if n >= ep or not window.is_live(meta, spans[n], now):
             continue
         pk = episode_pk(show, season, n)
         done = answered(sub, scores(pk))
