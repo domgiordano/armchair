@@ -24,6 +24,7 @@ import { ToastProvider } from "@/components/ui/toast";
 import { seasonName, seasonNumber, withSeason, type Edition } from "@/lib/seasons";
 import { cn, EYEBROW, FOCUS, ICON_BUTTON } from "@/lib/ui";
 import { getMe, type Me } from "@armchair/app-core/api/client";
+import { appLink } from "@armchair/app-core/apps";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
 
 interface Tab {
@@ -293,6 +294,8 @@ function SeasonPicker({ hideLabel = false }: { hideLabel?: boolean }) {
   );
 }
 
+const MENU_ITEM = `${FOCUS} flex min-h-11 items-center rounded-sm px-3 text-left text-parchment transition-colors hover:bg-cloak hover:text-bone active:bg-cloak/70`;
+
 function AccountMenu() {
   const router = useRouter();
   const { signOut } = useAuth();
@@ -330,11 +333,11 @@ function AccountMenu() {
       {open && (
         <div className="absolute top-full right-0 z-40 mt-2 flex w-56 flex-col gap-1 rounded-sm border border-gilt/50 bg-stone p-1.5 shadow-xl shadow-night/70 animate-pop-in">
           {me && <p className="truncate border-b border-gilt/20 px-3 pt-1.5 pb-2.5 text-bone">{me.name ?? me.email}</p>}
-          <button
-            type="button"
-            onClick={() => void signOut().then(() => router.push("/"))}
-            className={`${FOCUS} flex min-h-11 items-center rounded-sm px-3 text-left text-parchment transition-colors hover:bg-cloak hover:text-bone active:bg-cloak/70`}
-          >
+          {/* Friends and groups are family-wide; DWTS hosts them until the hub does. */}
+          <a href={appLink("dwts", "/social/") ?? undefined} className={MENU_ITEM}>
+            Friends &amp; Groups
+          </a>
+          <button type="button" onClick={() => void signOut().then(() => router.push("/"))} className={MENU_ITEM}>
             Sign out
           </button>
         </div>
