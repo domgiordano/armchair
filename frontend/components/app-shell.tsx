@@ -12,11 +12,13 @@ import { NavSheet } from "@/components/nav-sheet";
 import { NotificationsBell } from "@/components/notifications";
 import { SiteFooter } from "@/components/site-footer";
 import { HeaderSearch } from "@/components/search/header-search";
+import { useLoad, useWaiting } from "@/components/social/parts";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { Select } from "@/components/ui/select";
 import { Specks } from "@/components/ui/specks";
 import { ToastProvider } from "@/components/ui/toast";
 import { getMe, type Me } from "@armchair/app-core/api/client";
+import { getFriends } from "@armchair/app-core/api/social";
 import { prefetchPage } from "@/lib/api/prefetch";
 import { useAuth } from "@armchair/app-core/auth/use-auth";
 import { canGoBack, parentOf, trackHistory } from "@/lib/nav/back";
@@ -30,6 +32,8 @@ interface Tab {
   match: string[];
 }
 
+const SOCIAL = "/social/";
+
 export const TABS: Tab[] = [
   { href: "/", label: "Overview", match: ["/"] },
   { href: "/episode/", label: "Episodes", match: ["/episode"] },
@@ -37,6 +41,7 @@ export const TABS: Tab[] = [
   { href: "/stats/", label: "Stats", match: ["/stats"] },
   { href: "/couples/", label: "Couples", match: ["/couples"] },
   { href: "/discover/", label: "Discover", match: ["/discover", "/people"] },
+  { href: SOCIAL, label: "Friends & Groups", match: ["/social", "/groups", "/friends"] },
 ];
 
 const bare = (path: string) => path.replace(/\/+$/, "") || "/";
@@ -82,6 +87,9 @@ function Shell({ title, wide, children }: AppShellProps) {
   const back = bare(pathname) === "/episode" || !TABS.some((t) => bare(t.href) === bare(pathname));
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburger = useRef<HTMLButtonElement>(null);
+  const [friends] = useLoad(getFriends);
+  const waiting = useWaiting(friends);
+  const badge = (t: Tab) => (t.href === SOCIAL ? waiting : 0);
 
   // Effects run child first, so the page's own first reads are already in
   // flight and this adds the ones it would only make after its season loads.
@@ -125,14 +133,14 @@ function Shell({ title, wide, children }: AppShellProps) {
               <AppsMenu />
             </div>
             <NotificationsBell />
-            <AccountMenu />
+            <AccountMenu waiting={waiting} />
           </div>
         </div>
         <nav aria-label="Main" className="mx-auto hidden max-w-6xl px-2 md:block lg:px-4">
           <ul className="flex gap-1">
             {TABS.map((t) => (
               <li key={t.href}>
-                <TabLink tab={t} season={season} active={t === current} />
+                <TabLink tab={t} season={season} active={t === current} badge={badge(t)} />
               </li>
             ))}
           </ul>
@@ -155,13 +163,14 @@ function Shell({ title, wide, children }: AppShellProps) {
                   aria-current={t === current ? "page" : undefined}
                   onPointerEnter={() => prefetchPage(t.href, season)}
                   onClick={() => setMenuOpen(false)}
-                  className={`flex min-h-12 items-center rounded-md border-l-2 px-3 text-base font-medium transition-colors ${FOCUS} ${
+                  className={`flex min-h-12 items-center justify-between gap-3 rounded-md border-l-2 px-3 text-base font-medium transition-colors ${FOCUS} ${
                     t === current
                       ? "border-gold bg-ballroom text-gold-light"
                       : "border-transparent text-silver hover:bg-ballroom/60 hover:text-pearl active:bg-ballroom"
                   }`}
                 >
                   {t.label}
+                  <Count n={badge(t)} />
                 </Link>
               </li>
             ))}
@@ -205,21 +214,38 @@ function BackLink({ parent }: { parent: string }) {
   );
 }
 
-function TabLink({ tab, season, active }: { tab: Tab; season: string; active: boolean }) {
+function TabLink({ tab, season, active, badge }: { tab: Tab; season: string; active: boolean; badge: number }) {
   return (
     <Link
       href={withSeason(tab.href, season)}
       aria-current={active ? "page" : undefined}
       onPointerEnter={() => prefetchPage(tab.href, season)}
       onFocus={() => prefetchPage(tab.href, season)}
-      className={`relative flex min-h-11 items-center rounded-t-md px-3 text-sm font-medium whitespace-nowrap transition-colors ${FOCUS} after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:rounded-full after:transition-transform after:duration-300 ${
+      className={`relative flex min-h-11 items-center gap-1.5 rounded-t-md px-3 text-sm font-medium whitespace-nowrap transition-colors ${FOCUS} after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:rounded-full after:transition-transform after:duration-300 ${
         active
           ? "text-gold-light after:scale-x-100 after:bg-gold after:shadow-[0_0_10px_rgb(232_194_104/0.7)]"
           : "text-silver-dim after:scale-x-0 after:bg-silver/50 hover:text-pearl hover:after:scale-x-100 active:text-silver"
       }`}
     >
       {tab.label}
+      <Count n={badge} />
     </Link>
+  );
+}
+
+/** The requests pill on Friends & Groups, read out as "N waiting". */
+function Count({ n }: { n: number }) {
+  if (n === 0) return null;
+  return (
+    <>
+      <span
+        aria-hidden="true"
+        className="flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-magenta px-1.5 text-[11px] leading-none font-semibold text-pearl tabular-nums animate-pop-in"
+      >
+        {n > 9 ? "9+" : n}
+      </span>
+      <span className="sr-only">, {n} waiting</span>
+    </>
   );
 }
 
@@ -241,7 +267,7 @@ function SeasonPicker({ season }: { season: string }) {
   );
 }
 
-function AccountMenu() {
+function AccountMenu({ waiting }: { waiting: number }) {
   const router = useRouter();
   const { signOut } = useAuth();
   const me = useMe();
@@ -264,6 +290,12 @@ function AccountMenu() {
         </p>
       )}
       <MenuItem href="/profile/">Your profile</MenuItem>
+      <MenuItem href={SOCIAL} className="justify-between">
+        Friends &amp; Groups
+        <Count n={waiting} />
+      </MenuItem>
+      <MenuItem href="/social/?view=friends&find=1">Find people</MenuItem>
+      <MenuItem href="/profile/#settings">Settings</MenuItem>
       <MenuItem onSelect={() => void signOut().then(() => router.push("/"))}>Sign out</MenuItem>
     </Menu>
   );
