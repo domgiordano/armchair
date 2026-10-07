@@ -2,8 +2,9 @@
 GET /groups/mine - the caller's groups with each member's name and avatar.
 
 Returns [{id, name, inviteCode, owner, approval, members, invited, requests}],
-where the three lists hold {sub, name, picture, avatarKind} and `requests` is
-filled for the owner only. No emails. Identity is the Cognito sub.
+where the three lists hold {sub, name, picture, avatarKind, relation} and
+`requests` is filled for the owner only. `relation` is the caller's
+friend | outgoing | incoming | blocked to that person, or null. No emails. Identity is the Cognito sub.
 """
 
 from __future__ import annotations

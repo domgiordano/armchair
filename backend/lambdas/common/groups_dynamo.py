@@ -24,6 +24,7 @@ from datetime import UTC, datetime
 from lambdas.common import notifications_dynamo as notifications
 from lambdas.common.api import ForbiddenError, NotFoundError, ValidationError, text
 from lambdas.common.dynamo import query_all, resource, table, transact
+from lambdas.common.social_dynamo import peers, status
 from lambdas.common.users_dynamo import cards
 
 GID = re.compile(r"[A-Za-z0-9_-]{12}")
@@ -238,6 +239,41 @@ def delete(gid: str) -> None:
             notifications.drop(group["createdBy"], r.get("notif"))
 
 
+def forget(sub: str) -> None:
+    """
+    Takes a deleted account out of every group it's in. A group it owns passes
+    to the member who joined first, or goes entirely when nobody else is left.
+    """
+    tbl = table("GROUPS_TABLE")
+    for link in query_all(tbl, f"USER#{sub}"):
+        gid = link["sk"].removeprefix("GROUP#")
+        rows = query_all(tbl, f"GROUP#{gid}")
+        group = next((r for r in rows if r["sk"] == "META"), None)
+        items = _leaves(gid, sub)
+        if group and group["createdBy"] == sub:
+            heirs = sorted(
+                (r["joinedAt"], r["sk"].removeprefix("MEMBER#"))
+                for r in rows
+                if r["sk"].startswith("MEMBER#") and r["sk"] != f"MEMBER#{sub}"
+            )
+            if not heirs:
+                delete(gid)
+                continue
+            items.append(
+                (
+                    "Update",
+                    {
+                        "Key": _key(gid, "META"),
+                        "UpdateExpression": "SET createdBy = :heir",
+                        "ConditionExpression": "createdBy = :sub",
+                        "ExpressionAttributeValues": {":heir": heirs[0][1], ":sub": sub},
+                    },
+                )
+            )
+        if not transact(items, "GROUPS_TABLE"):
+            raise RuntimeError(f"handing over group {gid} conflicted")
+
+
 def members(gid: str) -> set[str]:
     rows = query_all(table("GROUPS_TABLE"), f"GROUP#{gid}")
     return {r["sk"].removeprefix("MEMBER#") for r in rows if r["sk"].startswith("MEMBER#")}
@@ -250,7 +286,8 @@ def _subs(rows: list[dict], kind: str) -> list[str]:
 def mine(sub: str) -> list[dict]:
     """
     The caller's groups, oldest first, each with its members' names and avatars,
-    who is invited, and, for the owner only, who is asking to join.
+    who is invited, and, for the owner only, who is asking to join. Everyone
+    listed carries the caller's `relation` to them, None for the caller.
     """
     tbl = table("GROUPS_TABLE")
     links = sorted(query_all(tbl, f"USER#{sub}"), key=lambda r: r["joinedAt"])
@@ -280,7 +317,8 @@ def mine(sub: str) -> list[dict]:
 
     lists = ("members", "invited", "requests")
     profiles = cards({s for g in groups for k in lists for s in g[k]})
+    relations = {s: status(item) for s, item in peers(sub).items()}
     for g in groups:
         for k in lists:
-            g[k] = [profiles[s] for s in g[k]]
+            g[k] = [{**profiles[s], "relation": relations.get(s)} for s in g[k]]
     return groups
