@@ -64,8 +64,8 @@ afterEach(() => {
 describe("activeTab", () => {
   it.each([
     ["/", "Overview"],
-    ["/episode/", "Episodes"],
-    ["/episode", "Episodes"],
+    ["/episode/", "Score"],
+    ["/episode", "Score"],
     ["/stats/", "Stats"],
     ["/couples/", "Couples"],
     ["/discover/", "Discover"],
@@ -94,7 +94,7 @@ describe("AppShell", () => {
     expect(href(current)).toBe("/discover");
     expect(tabs().getAllByRole("link").map((a) => a.textContent)).toEqual([
       "Overview",
-      "Episodes",
+      "Score",
       "Leaderboard",
       "Stats",
       "Couples",
@@ -109,7 +109,7 @@ describe("AppShell", () => {
     renderShell();
     await screen.findByRole("img", { name: "Ada Lovelace" });
 
-    expect(href(tabs().getByRole("link", { name: "Episodes" }))).toBe("/episode?season=dwts-34");
+    expect(href(tabs().getByRole("link", { name: "Score" }))).toBe("/episode?season=dwts-34");
     const [picker] = screen.getAllByRole("combobox", { name: "Season" });
     expect(picker.textContent).toBe("Season 34");
 
@@ -205,7 +205,7 @@ describe("AppShell", () => {
     fireEvent.click(hamburger);
     const sheet = screen.getByRole("dialog", { name: "Menu" });
     expect(sheet.hasAttribute("open")).toBe(true);
-    expect(within(sheet).getByRole("link", { current: "page" }).textContent).toBe("Episodes");
+    expect(within(sheet).getByRole("link", { current: "page" }).textContent).toBe("Score");
     expect(within(sheet).getByRole("combobox", { name: "Season" })).toBeTruthy();
 
     act(() => within(sheet).getByRole("button", { name: "Close menu" }).click());
@@ -264,14 +264,14 @@ describe("Back", () => {
     expect(screen.queryByRole("link", { name: "Back" })).toBeNull();
   });
 
-  it("keeps Back on the Episodes tab, up to the overview", async () => {
+  it("keeps Back on the Score tab, up to the overview", async () => {
     nav.pathname = "/episode/";
     nav.search = new URLSearchParams("season=dwts-34&ep=04");
     renderShell();
     await screen.findByRole("img", { name: "Ada Lovelace" });
 
     expect(screen.getByRole("link", { name: "Back" }).getAttribute("href")).toBe("/?season=dwts-34");
-    expect(tabs().getByRole("link", { name: "Episodes" }).getAttribute("aria-current")).toBe("page");
+    expect(tabs().getByRole("link", { name: "Score" }).getAttribute("aria-current")).toBe("page");
   });
 
   it("links up to the parent on a page opened without in-app history", async () => {

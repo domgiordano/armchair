@@ -8,6 +8,7 @@ import { GroupBoard } from "@/components/groups/group-board";
 import { GroupMembers } from "@/components/groups/group-members";
 import { InviteSheet, LeaveSheet, SettingsSheet } from "@/components/groups/group-sheets";
 import { Redirect } from "@/components/redirect";
+import { ScoreCta } from "@/components/score-cta";
 import { SignedIn } from "@/components/signed-in";
 import { AvatarStack, GroupMark, useAction, useLoad } from "@/components/social/parts";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +18,6 @@ import { EmptyState, ErrorState } from "@/components/ui/states";
 import { tabId, Tabs } from "@/components/ui/tabs";
 import { getGroupDetails, type GroupDetail } from "@armchair/app-core/api/groups";
 import { getFriends, mySub } from "@armchair/app-core/api/social";
-import { saveGroup } from "@/lib/show/group-filter";
 import { useNotifications } from "@armchair/app-core/social/notifications";
 import { button, cn, FOCUS } from "@/lib/ui";
 
@@ -87,9 +87,6 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
                 <InviteIcon />
                 Invite
               </button>
-              <Link href="/episode/" onClick={() => saveGroup(group.id)} className={button("secondary")}>
-                Scorecard
-              </Link>
               <Menu
                 label="Group options"
                 trigger={<DotsIcon />}
@@ -110,6 +107,8 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
           </div>
         </div>
       </header>
+
+      <ScoreCta group={group.id} note={`Every dance you score counts on ${group.name}'s leaderboard.`} />
 
       <div className="md:max-w-sm">
         <Tabs

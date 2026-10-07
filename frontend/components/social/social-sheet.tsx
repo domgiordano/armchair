@@ -22,6 +22,7 @@ import {
   useLoad,
   type Load,
 } from "@/components/social/parts";
+import { ScoreCta } from "@/components/score-cta";
 import { Badge } from "@/components/ui/badge";
 import { Input, SearchInput } from "@/components/ui/field";
 import { Sheet } from "@/components/ui/sheet";
@@ -324,7 +325,7 @@ function GroupsView() {
         ) : (
           <ul className="stagger flex flex-col gap-2">
             {groups.value.map((g) => (
-              <li key={g.id}>
+              <li key={g.id} className="flex flex-col gap-1.5">
                 <GroupLink
                   id={g.id}
                   name={g.name}
@@ -332,6 +333,7 @@ function GroupsView() {
                   owner={me.kind === "ready" && g.owner === me.value}
                   waiting={g.requests.length}
                 />
+                <ScoreCta compact onlyToScore group={g.id} groupName={g.name} className="ml-3" />
               </li>
             ))}
           </ul>

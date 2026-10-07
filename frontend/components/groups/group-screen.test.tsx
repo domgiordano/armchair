@@ -18,6 +18,7 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/show")>()),
   getSeason: vi.fn(),
 }));
+vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn() }));
 vi.mock("@/lib/api/leaderboard", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/leaderboard")>()),
   getLeaderboard: vi.fn(),
@@ -49,6 +50,7 @@ import {
   type GroupDetail,
 } from "@armchair/app-core/api/groups";
 import { getLeaderboard, type Leaderboard } from "@/lib/api/leaderboard";
+import { getOverview, type Overview } from "@/lib/api/overview";
 import { getSeason, type Season } from "@/lib/api/show";
 import { getFriends, getNotifications, mySub, type Friends, type Notification } from "@armchair/app-core/api/social";
 import { resetNotifications } from "@armchair/app-core/social/notifications";
@@ -82,6 +84,26 @@ const FRIENDS: Friends = {
   blocked: [],
 };
 
+const THIS_WEEK = {
+  open: false,
+  timezone: "America/New_York",
+  next: null,
+  episodes: [
+    {
+      ep: 5,
+      week: 4,
+      theme: "Mariah Carey",
+      airDate: "2026-10-06",
+      startsAt: "2026-10-07T00:00:00Z",
+      endsAt: "2026-10-07T02:00:00Z",
+      aired: true,
+      rateable: 8,
+      answered: 3,
+      complete: false,
+    },
+  ],
+} as unknown as Overview;
+
 const SEASON: Season = { season: "dwts-35", open: false, timezone: "America/New_York", episodes: [], judges: [], contestants: [] };
 
 const BOARD: Leaderboard = {
@@ -104,6 +126,7 @@ beforeEach(() => {
   vi.mocked(getFriends).mockResolvedValue(FRIENDS);
   vi.mocked(getSeason).mockResolvedValue(SEASON);
   vi.mocked(getLeaderboard).mockResolvedValue(BOARD);
+  vi.mocked(getOverview).mockResolvedValue(THIS_WEEK);
   vi.mocked(getNotifications).mockResolvedValue({ items: [], unread: 0, next: null });
   resetNotifications();
   window.localStorage.clear();
@@ -114,6 +137,29 @@ afterEach(() => {
 });
 
 describe("GroupRoute", () => {
+  it("leads with this week's show and opens the scorecard compared with the group", async () => {
+    render(<GroupRoute />);
+    const show = await screen.findByRole("region", { name: "This week's show" });
+    expect(show.textContent).toContain("Week 4 · Mariah Carey");
+    expect(within(show).getByRole("progressbar").getAttribute("aria-valuenow")).toBe("3");
+    const go = within(show).getByRole("link", { name: "Keep scoring" });
+    expect(go.getAttribute("href")).toMatch(/^\/episode\/?\?ep=5$/);
+    fireEvent.click(go);
+    expect(readGroup()).toBe(GID);
+  });
+
+  it("lists every member's way onto the board", async () => {
+    vi.mocked(getGroupDetails).mockResolvedValue([group({ members: [...group().members, person("c", "Carol Burnett")] })]);
+    vi.mocked(getLeaderboard).mockResolvedValue({ ...BOARD, ranked: BOARD.ranked.slice(1), unranked: [{ ...person("b", "Bea Arthur"), count: 3 }] });
+    render(<GroupRoute />);
+    const rows = within(await screen.findByRole("region", { name: "Members' progress" })).getAllByRole("listitem");
+    expect(rows.map((r) => r.textContent)).toEqual([
+      "MMMe Myself (you)#26 dances",
+      "BABea Arthur32 to rank",
+      "CBCarol Burnett05 to rank",
+    ]);
+  });
+
   it("sends a bare /groups/ to your groups list", () => {
     nav.params = new URLSearchParams();
     render(<GroupRoute />);
@@ -126,8 +172,7 @@ describe("GroupRoute", () => {
     expect(screen.getByText("2 members")).toBeTruthy();
     expect(screen.getByText("Owner")).toBeTruthy();
     expect(screen.getByRole("tab", { name: "Members, 1 waiting" })).toBeTruthy();
-    fireEvent.click(screen.getByRole("link", { name: "Scorecard" }));
-    expect(readGroup()).toBe(GID);
+
   });
 
   it("opens on the group's leaderboard and numbers", async () => {
