@@ -25,6 +25,7 @@ vi.mock("@/lib/api/leaderboard", async (importOriginal) => ({
 vi.mock("@armchair/app-core/api/social", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@armchair/app-core/api/social")>()),
   getFriends: vi.fn(),
+  addFriend: vi.fn(),
   mySub: vi.fn(),
   getNotifications: vi.fn(),
   markNotificationsRead: vi.fn(),
@@ -50,7 +51,7 @@ import {
 } from "@armchair/app-core/api/groups";
 import { getLeaderboard, type Leaderboard } from "@/lib/api/leaderboard";
 import { getSeason, type Season } from "@/lib/api/show";
-import { getFriends, getNotifications, mySub, type Friends, type Notification } from "@armchair/app-core/api/social";
+import { addFriend, getFriends, getNotifications, mySub, type Friends, type Notification } from "@armchair/app-core/api/social";
 import { resetNotifications } from "@armchair/app-core/social/notifications";
 import { readGroup } from "@/lib/show/group-filter";
 import { GroupRoute } from "./group-screen";
@@ -151,6 +152,22 @@ describe("GroupRoute", () => {
     fireEvent.click(within(panel).getByRole("button", { name: "Remove" }));
     fireEvent.click(within(panel).getByRole("button", { name: "Remove" }));
     await vi.waitFor(() => expect(manageGroup).toHaveBeenCalledWith(GID, { action: "remove", sub: "b" }));
+  });
+
+  it("puts a friend action on every member but you, beside the owner's Remove", async () => {
+    vi.mocked(getGroupDetails).mockResolvedValue([
+      group({ members: [person(ME, "Me Myself"), { ...person("b", "Bea Arthur"), relation: "friend" }, person("c", "Carol Burnett")] }),
+    ]);
+    vi.mocked(addFriend).mockResolvedValue({ status: "outgoing", user: person("c", "Carol Burnett") });
+    render(<GroupRoute />);
+    fireEvent.click(await screen.findByRole("tab", { name: "Members, 1 waiting" }));
+    const members = within(screen.getByRole("tabpanel")).getAllByRole("listitem").slice(-3);
+    expect(within(members[0]).queryByRole("button")).toBeNull();
+    expect(within(members[1]).getByRole("button", { name: "Friends" })).toBeTruthy();
+    expect(within(members[2]).getByRole("button", { name: "Remove" })).toBeTruthy();
+    fireEvent.click(within(members[2]).getByRole("button", { name: "Add friend" }));
+    expect(await within(members[2]).findByRole("button", { name: "Requested" })).toBeTruthy();
+    expect(addFriend).toHaveBeenCalledWith({ sub: "c" });
   });
 
   it("invites friends who aren't in yet, and shows the link", async () => {
