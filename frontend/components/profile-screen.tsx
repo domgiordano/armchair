@@ -10,6 +10,7 @@ import { FavoritesTab } from "@/components/profile/favorites-tab";
 import { HistoryTab } from "@/components/profile/history-tab";
 import { OverviewTab } from "@/components/profile/overview-tab";
 import { ProfileHeader, type HeaderSocial } from "@/components/profile/profile-header";
+import { AccountSettings } from "@/components/profile/settings";
 import { relationOf, useLoad as useFetch } from "@/components/social/parts";
 import { TheirSocialSheet, type SocialView } from "@/components/social/social-sheet";
 import { Redirect } from "@/components/redirect";
@@ -224,6 +225,8 @@ function ProfileView({ season, sub }: { season: Season; sub: string | null }) {
       >
         {panel()}
       </div>
+
+      {own && <AccountSettings />}
     </div>
   );
 }
