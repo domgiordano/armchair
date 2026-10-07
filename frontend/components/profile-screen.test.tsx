@@ -253,6 +253,9 @@ describe("ProfileScreen, your own", () => {
     expect(within(glance).getByRole("button", { name: "2 groups" })).toBeTruthy();
     expect(screen.queryByRole("button", { name: /Requests/ })).toBeNull();
     expect(screen.queryByRole("button", { name: "Sign out" })).toBeNull();
+    const settings = screen.getByRole("region", { name: "Settings" });
+    expect(settings.id).toBe("settings");
+    expect(within(settings).getByRole("button", { name: "Delete account" })).toBeTruthy();
 
     const overview = screen.getByRole("tabpanel");
     const tiles = within(overview).getAllByRole("definition").map((d) => d.textContent);
@@ -489,6 +492,7 @@ describe("ProfileScreen, someone else's", () => {
     expect(screen.getByText(/accuracy shows once they've scored 5 dances/)).toBeTruthy();
     expect(screen.queryByRole("button", { name: "Edit display name" })).toBeNull();
     expect(screen.queryByRole("button", { name: "Change photo" })).toBeNull();
+    expect(screen.queryByRole("region", { name: "Settings" })).toBeNull();
   });
 
   it("is your own view when the link carries your own id", async () => {
