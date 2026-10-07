@@ -4,6 +4,7 @@ import { CoupleLink, CoupleNames, PersonLink } from "@/components/couple-names";
 import { Desk, type DeskMember } from "@/components/desk";
 import { EliminatedStamp } from "@/components/eliminated";
 import { Headshot } from "@/components/headshot";
+import { Badge } from "@/components/ui/badge";
 import type { Elimination } from "@/lib/api/couples";
 import { personSlug } from "@/lib/show/people";
 import type { GroupMember } from "@armchair/app-core/api/groups";
@@ -120,6 +121,7 @@ function Scores({ card, judges }: ScoresProps) {
           key={j.id}
           label={judges.get(j.id)?.name ?? j.id}
           value={j.value === null ? "Pending" : formatScore(j.value)}
+          tag={judges.get(j.id)?.guest ? "Guest" : null}
           note={j.state === "provisional" ? "unconfirmed" : null}
           muted={j.value === null}
         />
@@ -146,14 +148,23 @@ interface RowProps {
   label: string;
   value: string;
   note?: string | null;
+  /** A badge after the label: a guest judge's. */
+  tag?: string | null;
   muted?: boolean;
   strong?: boolean;
 }
 
-function Row({ label, value, note, muted, strong }: RowProps) {
+function Row({ label, value, note, tag, muted, strong }: RowProps) {
   return (
     <>
-      <dt className={strong ? "font-medium text-pearl" : "text-silver-dim"}>{label}</dt>
+      <dt className={strong ? "font-medium text-pearl" : "text-silver-dim"}>
+        {label}
+        {tag && (
+          <Badge tone="magenta" className="ml-2 align-middle">
+            {tag}
+          </Badge>
+        )}
+      </dt>
       <dd className={`text-right tabular-nums ${muted ? "text-silver-dim/70" : strong ? "font-semibold text-pearl" : "text-silver"}`}>
         {value}
         {note && <span className="ml-2 text-xs font-normal text-silver-dim">{note}</span>}

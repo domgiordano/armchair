@@ -317,4 +317,25 @@ describe("PersonScreen", () => {
     fireEvent.click(within(s34).getByRole("button", { name: "Open Season 34" }));
     expect(replace).toHaveBeenCalledWith("/people/?id=derek-hough&season=dwts-34", { scroll: false });
   });
+
+  it("says a guest judge is one, and for which week", async () => {
+    search.value = new URLSearchParams("id=cheryl-burke");
+    vi.mocked(getPerson).mockResolvedValue({
+      ...PAGE,
+      id: "cheryl-burke",
+      name: "Cheryl Burke",
+      roles: ["judge"],
+      similar: null,
+      seasons: [{ season: "dwts-34", number: 34, role: "judge", loaded: true, dances: 9, locked: 9, guest: true, weeks: [7] }],
+      performances: [],
+      judged: { season: "dwts-34", rows: [] },
+      stats: { dancer: null, judge: null },
+    });
+    render(<PersonScreen />);
+    await screen.findByRole("heading", { level: 1, name: "Cheryl Burke" });
+    expect(screen.getAllByText("Guest judge").length).toBeGreaterThan(0);
+    expect(screen.getByText("Guest judge, week 7, Season 34")).toBeTruthy();
+    const seasons = screen.getByRole("region", { name: "Seasons judged" });
+    expect(within(seasons).getByText("Guest, week 7")).toBeTruthy();
+  });
 });

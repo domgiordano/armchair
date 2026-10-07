@@ -34,6 +34,7 @@ import {
   skipBefore,
   submitScore,
   type EpisodeState,
+  type RevealedCard,
   type Season,
 } from "@/lib/api/show";
 import { EpisodeScreen } from "./episode-screen";
@@ -182,6 +183,35 @@ describe("EpisodeScreen", () => {
     render(<EpisodeScreen />);
     await screen.findByRole("article", { name: "Tyler Cameron & Sharna Burgess" });
     expect(screen.queryByText("Eliminated", { exact: false })).toBeNull();
+  });
+
+  it("lists a guest as a fourth judge with a badge and averages all four", async () => {
+    vi.mocked(getSeason).mockResolvedValue({
+      ...SEASON,
+      judges: [...SEASON.judges, { id: "cheryl-burke", ...person("Cheryl Burke"), guest: true, weeks: [3] }],
+    });
+    const tyler = STATE.performances[1] as RevealedCard;
+    vi.mocked(getEpisodeState).mockResolvedValue({
+      ...STATE,
+      panel: ["carrie-ann-inaba", "derek-hough", "cheryl-burke"],
+      performances: [
+        {
+          ...tyler,
+          judges: [
+            { id: "carrie-ann-inaba", value: 8, state: "confirmed" },
+            { id: "derek-hough", value: 8, state: "confirmed" },
+            { id: "cheryl-burke", value: 9, state: "confirmed" },
+          ],
+        },
+      ],
+    });
+    render(<EpisodeScreen />);
+    const card = await screen.findByRole("article", { name: "Tyler Cameron & Sharna Burgess" });
+    const guest = within(card).getByText("Cheryl Burke", { selector: "dt" });
+    expect(within(guest).getByText("Guest")).toBeTruthy();
+    expect(guest.nextElementSibling?.textContent).toBe("9");
+    expect(within(card).queryByText("Carrie Ann Inaba", { selector: "dt" })?.textContent).toBe("Carrie Ann Inaba");
+    expect(value(card, "Judges' average")).toBe("8.3");
   });
 
   it("shows a revealed card as a plain number list", async () => {

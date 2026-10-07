@@ -15,7 +15,7 @@ import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
 import { profileHref } from "@/lib/api/people";
 import type { Season } from "@/lib/api/show";
 import { getFriends, mySub, type Friends, type Person } from "@armchair/app-core/api/social";
-import { personHref, personSlug } from "@/lib/show/people";
+import { guestLabel, personHref, personSlug } from "@/lib/show/people";
 import { seasonLabel } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 import { cn, FOCUS, TEXT_LINK } from "@/lib/ui";
@@ -148,7 +148,7 @@ function SeasonPeople({ season }: { season: Season }) {
                 <Headshot person={j} size={48} />
                 <span className="flex min-w-0 flex-col">
                   <span className="truncate font-medium text-pearl group-hover:text-gold-light">{j.name}</span>
-                  <span className="text-xs text-silver-dim">Judge</span>
+                  <span className="text-xs text-silver-dim">{j.guest ? guestLabel(j.weeks) : "Judge"}</span>
                 </span>
               </Link>
             </li>

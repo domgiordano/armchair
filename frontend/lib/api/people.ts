@@ -93,6 +93,9 @@ export interface Stint {
   cast?: number;
   dances?: number;
   locked?: number;
+  /** A judge's stint: off that season's regular panel, and the weeks they sat in. */
+  guest?: boolean;
+  weeks?: number[];
 }
 
 export interface DancerStats {

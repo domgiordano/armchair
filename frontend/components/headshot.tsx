@@ -36,7 +36,8 @@ export function Headshot({ person, size = 48 }: HeadshotProps) {
           unoptimized
           loading="lazy"
           onError={() => setFailed(image)}
-          className="size-full rounded-full bg-ballroom object-cover"
+          // Seeded photos are square face crops; a guest's same-night photo is a portrait, face high.
+          className="size-full rounded-full bg-ballroom object-cover object-[50%_20%]"
         />
       ) : (
         <span

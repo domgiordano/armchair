@@ -274,6 +274,17 @@ def test_the_current_season_lists_only_aired_nights(aws, monkeypatch):
     assert {r["ep"] for r in judged["rows"]} == {1, 2, 3}
 
 
+def test_a_guest_judge_stint_says_guest_and_which_weeks(aws):
+    s34 = json.loads((SEASONS / "dwts-34.json").read_text(), parse_float=Decimal)
+    table = aws.Table(CATALOG_TABLE)
+    write(table, items(s34))
+    write(table, person_index([s34], {}))
+    (stint,) = data("cheryl-burke")["seasons"]
+    assert (stint["role"], stint["guest"], stint["weeks"]) == ("judge", True, [7])
+    (regular,) = data("bruno-tonioli")["seasons"]
+    assert regular["guest"] is False and "weeks" not in regular
+
+
 SEVEN = [
     json.loads((SEASONS / f"dwts-{n}.json").read_text(), parse_float=Decimal) for n in (5, 6, 7)
 ]

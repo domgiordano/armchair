@@ -12,6 +12,7 @@ from __future__ import annotations
 from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.episodes_dynamo import season_ref, season_rows
 from lambdas.common.gate import is_open
+from lambdas.common.guest_judges import seat
 
 
 def _pick(item: dict, *fields: str) -> dict:
@@ -30,6 +31,8 @@ def handler(event, context):
     def kind(prefix: str) -> list[tuple[str, dict]]:
         return [(r["sk"].removeprefix(prefix), r) for r in rows if r["sk"].startswith(prefix)]
 
+    episodes = [e for _, e in kind("EP#")]
+
     return ok(
         {
             "season": f"{show}-{season}",
@@ -39,7 +42,14 @@ def handler(event, context):
                 {"ep": int(ep), **_pick(e, "week", "airDate", "start", "end", "theme")}
                 for ep, e in kind("EP#")
             ],
-            "judges": [{"id": jid, **_pick(j, "name", "headshot")} for jid, j in kind("JUDGE#")],
+            "judges": [
+                {
+                    "id": jid,
+                    **_pick(j, "name", "headshot"),
+                    **seat(jid, meta["defaultPanel"], episodes),
+                }
+                for jid, j in kind("JUDGE#")
+            ],
             "contestants": [
                 {
                     "id": cid,

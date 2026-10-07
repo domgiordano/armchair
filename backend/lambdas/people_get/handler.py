@@ -40,6 +40,7 @@ from lambdas.common.api import NotFoundError, ValidationError, api_handler, call
 from lambdas.common.dynamo import query_partitions
 from lambdas.common.episodes_dynamo import episode_pk, season_index, season_ref, show_ref
 from lambdas.common.gate import cid, episode_view, is_open
+from lambdas.common.guest_judges import seat
 from lambdas.common.social_dynamo import peers, status
 
 ID = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
@@ -100,6 +101,9 @@ def handler(event, context):
             entry["result"] = None
             if "place" in stint and n not in current:
                 entry |= {"place": int(stint["place"]), "cast": int(stint["cast"])}
+        if stint["role"] == "judge" and n in seasons:
+            regulars = seasons[n]["meta"]["defaultPanel"]
+            entry |= seat(pid, regulars, list(seasons[n]["episodes"].values()))
         if eps is None:
             timeline.append(entry)
             continue

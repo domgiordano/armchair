@@ -75,18 +75,19 @@ export function Desk({ card, judges, members, children }: DeskProps) {
   const panel: SeatModel[] = card.judges.map((j) => {
     const judge = judges.get(j.id);
     const name = judge?.name ?? j.id;
+    const who = judge?.guest ? `${name}, guest judge,` : name;
     const provisional = j.value !== null && j.state === "provisional";
     return {
       key: `judge-${j.id}`,
       plate: firstWord(name),
       spoken:
         j.value === null
-          ? `${name} pending`
-          : `${name} ${formatScore(j.value)}${provisional ? " unconfirmed" : ""}`,
+          ? `${who} pending`
+          : `${who} ${formatScore(j.value)}${provisional ? " unconfirmed" : ""}`,
       face: { src: judge?.headshot?.image ? headshotUrl(judge.headshot.image) : null, name },
       value: j.value,
       provisional,
-      caption: j.value === null ? "pending" : null,
+      caption: j.value === null ? "pending" : judge?.guest ? "guest" : null,
       tone: "judge",
       href: personHref(j.id),
     };
@@ -288,7 +289,7 @@ function Face({ face, muted, you }: FaceProps) {
           unoptimized
           referrerPolicy="no-referrer"
           onError={() => setFailed(src)}
-          className="object-cover"
+          className="object-cover object-[50%_20%]"
         />
       </span>
     );

@@ -83,3 +83,18 @@ def test_a_past_season_is_open(aws):
     seed(aws)
     close(aws, SEASON)
     assert call({"season": "dwts-35"})[1]["data"]["open"] is True
+
+
+def test_a_guest_judge_is_flagged_with_the_weeks_they_sat(aws):
+    s34 = json.loads((SEASONS / "dwts-34.json").read_text())
+    write(aws.Table(CATALOG_TABLE), items(s34))
+    judges = {j["id"]: j for j in call({"season": "dwts-34"})[1]["data"]["judges"]}
+    assert len(judges) == 8
+    assert (
+        judges["carrie-ann-inaba"]["guest"] is False and "weeks" not in judges["carrie-ann-inaba"]
+    )
+    assert {k: judges["cheryl-burke"][k] for k in ("guest", "weeks")} == {
+        "guest": True,
+        "weeks": [7],
+    }
+    assert judges["cheryl-burke"]["headshot"]["image"] == "cheryl-burke-e812ea50ef.webp"

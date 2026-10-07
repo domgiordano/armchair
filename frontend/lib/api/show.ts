@@ -8,7 +8,8 @@ export interface Headshot {
   author: string;
   license: string;
   sourceUrl: string | null;
-  source?: "supplied";
+  // "auto": the poller copied a guest judge's Commons thumbnail on the night, uncropped.
+  source?: "supplied" | "auto";
 }
 
 export interface Person {
@@ -28,6 +29,10 @@ export interface Contestant {
 
 export interface Judge extends Person {
   id: string;
+  /** Off the season's regular panel. */
+  guest?: boolean;
+  /** A guest's weeks on the panel, aired ones only. */
+  weeks?: number[];
 }
 
 // A past season's fixture has no start or end times, and some lack the air date.

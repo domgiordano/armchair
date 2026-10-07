@@ -117,6 +117,7 @@ function Board({ board, season, column }: { board: WeekBoard; season: Season; co
           {board.panel.map((j, i) => (
             <span key={j}>
               <PersonLink id={j} name={judgeName(j, season.judges)} className="text-silver" />
+              {season.judges.find((x) => x.id === j)?.guest && <span className="text-silver-dim"> (guest)</span>}
               {i < board.panel.length - 1 && <span aria-hidden="true"> ·</span>}
             </span>
           ))}

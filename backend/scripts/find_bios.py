@@ -17,7 +17,6 @@ seed_season.py copies the registry into each person's catalog item.
 from __future__ import annotations
 
 import json
-import re
 import sys
 import time
 import urllib.error
@@ -27,36 +26,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from lambdas.common.guest_judges import sentences
 from scripts.build_season import UA
 from scripts.find_headshots import articles, claim, everyone, fixtures, get, labels
 
 REGISTRY = Path(__file__).resolve().parents[2] / "fixtures" / "bios.json"
 SUMMARY = "https://en.wikipedia.org/api/rest_v1/page/summary/"
 WIKIDATA = "https://www.wikidata.org/w/api.php"
-SENTENCES = 3
-MAX_CHARS = 420
-# A full stop after these is not the end of a sentence: "Dr. Oz", "Jr.", "U.S.".
-ABBREV = re.compile(r"(\b[A-Z]|\b(?:Mr|Mrs|Ms|Dr|Jr|Sr|St|Mt|No|vs|U\.S|Inc|Ltd|Co))\.$")
-
-
-def sentences(extract: str) -> str:
-    """The first SENTENCES sentences, fewer when they would run past MAX_CHARS."""
-    out: list[str] = []
-    rest = " ".join(extract.split())
-    while rest and len(out) < SENTENCES:
-        cut = _sentence_end(rest)
-        sentence, rest = rest[:cut].strip(), rest[cut:].strip()
-        if out and len(" ".join([*out, sentence])) > MAX_CHARS:
-            break
-        out.append(sentence)
-    return " ".join(out)
-
-
-def _sentence_end(text: str) -> int:
-    for m in re.finditer(r"[.!?](?=\s+[\"'(A-Z0-9])", text):
-        if not ABBREV.search(text[: m.end()]):
-            return m.end()
-    return len(text)
 
 
 def day(value: dict | None) -> str | None:

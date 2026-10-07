@@ -188,6 +188,18 @@ describe("Desk", () => {
     expect(screen.getByRole("link", { name: /^Carrie Ann Inaba/ }).getAttribute("href")).toBe("/people?id=carrie-ann-inaba");
   });
 
+  it("marks a guest judge's seat and says so to a screen reader", () => {
+    const guest = new Map(judgeMap).set("guest", { ...JUDGES[3], guest: true, weeks: [5] });
+    const { container } = render(
+      <Desk card={card([...confirmed(3), { id: "guest", value: 9, state: "confirmed" }])} judges={guest}>
+        list
+      </Desk>,
+    );
+    expect(within(seat(container, "Guest")).getByText("guest")).toBeTruthy();
+    expect(within(seat(container, "Carrie")).queryByText("guest")).toBeNull();
+    expect(screen.getByRole("link", { name: "Guest Judge, guest judge, 9" })).toBeTruthy();
+  });
+
   it("keeps the number list under Details", () => {
     render(
       <Desk card={card(confirmed(2))} judges={judgeMap}>

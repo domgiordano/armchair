@@ -24,10 +24,11 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
-from lambdas.common import board_dynamo, confirm
+from lambdas.common import board_dynamo, confirm, guest_judges
 from lambdas.common.dynamo import query_all, table, update
 from lambdas.common.episodes_dynamo import episode_pk, performances
 from lambdas.common.logger import get_logger
+from lambdas.common.people import slug
 from lambdas.common.wiki_parse import norm, parse_week
 
 SHOW, SEASON = "dwts", 35
@@ -87,7 +88,8 @@ def judge_ids(names: list[str], judges: list[dict]) -> list[str]:
     for name in names:
         jid = known.get(norm(name))
         if jid is None:
-            jid = re.sub(r"[^a-z0-9]+", "-", name.casefold()).strip("-")
+            # people.slug, so the id is the guest's person id: "/people/?id=" finds them.
+            jid = slug(name)
             update(
                 "CATALOG_TABLE",
                 {"pk": SEASON_PK, "sk": f"JUDGE#{jid}"},
@@ -96,6 +98,21 @@ def judge_ids(names: list[str], judges: list[dict]) -> list[str]:
             )
         ids.append(jid)
     return ids
+
+
+def profile_guests(seated: dict[str, str], judges: list[dict], regulars: list[str], t: int) -> None:
+    """A photo and bio for each guest on tonight's panels not yet looked up. Runs after
+    every score is written, so a slow or failed lookup costs only the guest's photo."""
+    stored = {j["sk"].removeprefix("JUDGE#"): j for j in judges}
+    for jid, name in seated.items():
+        j = stored.get(jid, {})
+        if jid in regulars or j.get("headshot") or j.get("profiledAt"):
+            continue
+        try:
+            guest_judges.profile(SHOW, SEASON, jid, j.get("name", name), t)
+        # Recovery is the next tick: profiledAt stays unset, and the desk shows initials meanwhile.
+        except Exception:
+            log.exception("could not profile guest judge %s", jid)
 
 
 def publish(
@@ -218,6 +235,7 @@ def handler(event, context):
     todo = due(episodes, meta["timezone"], t, backfill)
     pending = False
     processed = []
+    seated: dict[str, str] = {}
     for w in sorted({int(e["week"]) for e in todo}):
         week = parse_week(text, w, aliases)
         if week is None:
@@ -227,6 +245,7 @@ def handler(event, context):
             key = tuple(p["panel"])
             if key not in ids:
                 ids[key] = judge_ids(p["panel"], judges)
+                seated |= dict(zip(ids[key], p["panel"]))
         # Two-night weeks are two EP items in air order; the parser numbers the nights.
         nights = [e for e in episodes if int(e["week"]) == w]
         for night, episode in enumerate(nights, start=1):
@@ -238,7 +257,7 @@ def handler(event, context):
                 if p["night"] == night
             ]
             panel = perfs[0]["panel"] if perfs else ids[tuple(week["panel"])]
-            pending |= publish(episode, panel, perfs, revid, t, window)
+            pending |= publish(episode, panel, perfs, revid, t, window, season=(SHOW, SEASON))
             ep = int(episode["sk"].removeprefix("EP#"))
             board_dynamo.reconcile(SHOW, SEASON, ep, panel)
             processed.append(ep)
@@ -249,6 +268,8 @@ def handler(event, context):
             {"pk": SEASON_PK, "sk": "META"},
             {"lastRevid": revid, "lastRunAt": t, "pending": pending},
         )
+
+    profile_guests(seated, judges, meta["defaultPanel"], t)
 
     week = current_week(text, aliases)
     print(

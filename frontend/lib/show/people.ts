@@ -16,3 +16,10 @@ export function coupleHref(members: { name: string; role: string }[], season: st
   const star = members.find((m) => m.role === "celebrity") ?? members[0];
   return `/couples/couple/?id=${encodeURIComponent(personSlug(star.name))}&season=${encodeURIComponent(season)}`;
 }
+
+/** "Guest judge, week 5", "Guest judge, weeks 5 and 7", or "Guest judge" before they've sat. */
+export function guestLabel(weeks: number[] = []): string {
+  if (weeks.length === 0) return "Guest judge";
+  const list = weeks.length === 1 ? String(weeks[0]) : `${weeks.slice(0, -1).join(", ")} and ${weeks.at(-1)}`;
+  return `Guest judge, week${weeks.length === 1 ? "" : "s"} ${list}`;
+}
