@@ -115,6 +115,12 @@ def owned(gid: str, sub: str) -> dict:
     return group
 
 
+def by_code(code: str) -> dict | None:
+    """The META of the group an invite code opens, or None."""
+    invite = table("GROUPS_TABLE").get_item(Key={"pk": f"INVITE#{code}", "sk": "GROUP"}).get("Item")
+    return invite and _get(invite["gid"], "META")
+
+
 def join(sub: str, code: str) -> dict:
     """
     Adds the caller by invite code, or files a join request when the group

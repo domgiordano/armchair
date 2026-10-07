@@ -58,5 +58,7 @@ export const leaveGroup = (group: string) => post<{ ok: true }>("/groups/leave",
 
 export const groupHref = (id: string) => `/groups/?id=${encodeURIComponent(id)}`;
 
+// The API page names the group in the link preview, which the static /join/
+// can't, then redirects to /join/?code= (backend/lambdas/invite_preview).
 export const inviteLink = (code: string) =>
-  `${window.location.origin}/join/?code=${encodeURIComponent(code)}`;
+  `${process.env.NEXT_PUBLIC_API_URL}/invite/preview?code=${encodeURIComponent(code)}`;

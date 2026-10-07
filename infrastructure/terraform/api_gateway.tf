@@ -74,6 +74,11 @@ locals {
       invoke_arn = aws_lambda_function.api["people_${l.name}"].invoke_arn
     })
   ]
+  invite_endpoints = [
+    for l in local.invite_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["invite_${l.name}"].invoke_arn
+    })
+  ]
 }
 
 module "api" {
@@ -86,7 +91,8 @@ module "api" {
 
   # The module defaults to "CUSTOM", which provisions a Lambda authorizer this
   # stack does not have and fails the plan. Every endpoint also sets it
-  # explicitly, so no route can inherit something weaker.
+  # explicitly, so no route can inherit something weaker; invite/preview is
+  # the one public route.
   authorization          = "COGNITO_USER_POOLS"
   cognito_user_pool_arns = [data.aws_ssm_parameter.cognito_user_pool_arn.value]
 
@@ -117,5 +123,6 @@ module "api" {
     week_board    = { path_prefix = "week-board", endpoints = local.week_board_endpoints }
     people        = { path_prefix = "people", endpoints = local.people_endpoints }
     traitors      = { path_prefix = "traitors", endpoints = local.traitors_endpoints }
+    invite        = { path_prefix = "invite", endpoints = local.invite_endpoints }
   }
 }
