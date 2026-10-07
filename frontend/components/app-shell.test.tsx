@@ -14,13 +14,15 @@ vi.mock("next/navigation", () => ({
 const signOut = vi.hoisted(() => vi.fn(() => Promise.resolve()));
 vi.mock("@armchair/app-core/auth/use-auth", () => ({ useAuth: () => ({ signOut }) }));
 vi.mock("@armchair/app-core/api/client", () => ({ getMe: vi.fn() }));
-const unread = vi.hoisted(() => ({ n: 0 }));
+vi.mock("@armchair/app-core/api/social", () => ({ getFriends: vi.fn() }));
+const unread = vi.hoisted(() => ({ n: 0, items: [] as unknown[] }));
 vi.mock("@armchair/app-core/social/notifications", () => ({
-  useNotifications: () => ({ unread: unread.n, items: [], loaded: true, error: null, more: false }),
+  useNotifications: () => ({ unread: unread.n, items: unread.items, loaded: true, error: null, more: false }),
   useMarkAllReadOnView: () => {},
 }));
 
 import { getMe } from "@armchair/app-core/api/client";
+import { getFriends } from "@armchair/app-core/api/social";
 import { parentOf, resetHistory } from "@/lib/nav/back";
 import { activeTab, AppShell } from "./app-shell";
 
@@ -41,8 +43,11 @@ const shell = () => (
   </AppShell>
 );
 
+const NO_FRIENDS = { inviteCode: "x", friends: [], incoming: [], outgoing: [], blocked: [] };
+
 function renderShell() {
   vi.mocked(getMe).mockResolvedValue(ME);
+  if (!vi.mocked(getFriends).getMockImplementation()) vi.mocked(getFriends).mockResolvedValue(NO_FRIENDS);
   return render(shell());
 }
 
@@ -57,6 +62,8 @@ afterEach(() => {
   nav.pathname = "/";
   nav.search = new URLSearchParams();
   unread.n = 0;
+  unread.items = [];
+  vi.mocked(getFriends).mockReset();
   resetHistory();
   window.history.replaceState(null, "");
 });
@@ -70,6 +77,9 @@ describe("activeTab", () => {
     ["/couples/", "Couples"],
     ["/discover/", "Discover"],
     ["/people/", "Discover"],
+    ["/social/", "Friends & Groups"],
+    ["/groups/", "Friends & Groups"],
+    ["/friends/", "Friends & Groups"],
   ])("%s lights %s", (path, label) => {
     expect(activeTab(path)?.label).toBe(label);
   });
@@ -78,13 +88,11 @@ describe("activeTab", () => {
     expect(activeTab("/notifications/")).toBeUndefined();
     expect(activeTab("/credits/")).toBeUndefined();
     expect(activeTab("/profile/")).toBeUndefined();
-    expect(activeTab("/groups/")).toBeUndefined();
-    expect(activeTab("/friends/")).toBeUndefined();
   });
 });
 
 describe("AppShell", () => {
-  it("marks the current tab, with friends and groups on profiles rather than a tab", async () => {
+  it("marks the current tab", async () => {
     nav.pathname = "/discover/";
     renderShell();
     await screen.findByRole("img", { name: "Ada Lovelace" });
@@ -99,6 +107,7 @@ describe("AppShell", () => {
       "Stats",
       "Couples",
       "Discover",
+      "Friends & Groups",
     ]);
     expect(screen.getByRole("main", { name: "Groups" }).textContent).toBe("page body");
   });
@@ -136,7 +145,23 @@ describe("AppShell", () => {
     expect(bell.textContent).toBe("9+");
   });
 
-  it("opens the account menu with Your profile and Sign out, and Escape closes it back onto its button", async () => {
+  it("counts friend requests and group invites waiting on you on the Friends & Groups tab", async () => {
+    vi.mocked(getFriends).mockResolvedValue({
+      ...NO_FRIENDS,
+      incoming: [{ sub: "d", name: "Dan", picture: null, avatarKind: "initials", at: null }],
+    });
+    unread.items = [
+      { id: "n1", type: "group_invite", state: "pending" },
+      { id: "n2", type: "group_invite", state: "accepted" },
+    ];
+    renderShell();
+    const tab = await tabs().findByRole("link", { name: "Friends & Groups, 2 waiting" });
+    expect(href(tab)).toBe("/social");
+    fireEvent.click(screen.getByRole("button", { name: "Account" }));
+    expect(screen.getByRole("menuitem", { name: "Friends & Groups, 2 waiting" })).toBeTruthy();
+  });
+
+  it("opens the account menu with your people, settings and Sign out, and Escape closes it back onto its button", async () => {
     renderShell();
     await screen.findByRole("img", { name: "Ada Lovelace" });
     const account = screen.getByRole("button", { name: "Account" });
@@ -148,8 +173,15 @@ describe("AppShell", () => {
     const profile = within(menu).getByRole("menuitem", { name: "Your profile" });
     expect(href(profile)).toBe("/profile");
     expect(document.activeElement).toBe(profile);
+    expect(within(menu).getAllByRole("menuitem").map((m) => [m.textContent, href(m) ?? null])).toEqual([
+      ["Your profile", "/profile"],
+      ["Friends & Groups", "/social"],
+      ["Find people", "/social?view=friends&find=1"],
+      ["Settings", "/profile#settings"],
+      ["Sign out", null],
+    ]);
 
-    fireEvent.keyDown(menu, { key: "ArrowDown" });
+    fireEvent.keyDown(menu, { key: "ArrowUp" });
     expect(document.activeElement).toBe(within(menu).getByRole("menuitem", { name: "Sign out" }));
     fireEvent.keyDown(menu, { key: "ArrowDown" });
     expect(document.activeElement).toBe(profile);
@@ -244,8 +276,8 @@ describe("parentOf", () => {
     ["/couples/couple/", "id=amber-glenn", "/couples/"],
     ["/couples/couple/", "id=amber-glenn&season=dwts-34", "/couples/?season=dwts-34"],
     ["/people/", "id=derek-hough", "/discover/"],
-    ["/groups/", "id=g1", "/profile/"],
-    ["/friends/", "", "/profile/"],
+    ["/groups/", "id=g1", "/social/"],
+    ["/friends/", "", "/social/"],
     ["/profile/", "", "/"],
     ["/profile/", "u=abc", "/discover/"],
     ["/notifications/", "", "/"],

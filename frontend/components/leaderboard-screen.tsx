@@ -115,7 +115,7 @@ function Controls() {
           <EmptyState
             title={filter.failed ? "Couldn't load your groups" : "You're not in a group yet"}
             action={
-              <Link href="/profile/?sheet=groups" className={button("primary", "sm")}>
+              <Link href="/social/?view=groups" className={button("primary", "sm")}>
                 Start or join one
               </Link>
             }

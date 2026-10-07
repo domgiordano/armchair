@@ -24,7 +24,7 @@ import { button, cn, FOCUS } from "@/lib/ui";
 /** /groups/?id=: one group's page. Without an id, your groups list on your profile. */
 export function GroupRoute() {
   const id = useSearchParams().get("id");
-  if (!id) return <Redirect to="/profile/?sheet=groups" />;
+  if (!id) return <Redirect to="/social/?view=groups" />;
   return (
     <SignedIn title="Group" wide>
       <GroupScreen key={id} id={id} />
@@ -173,7 +173,7 @@ function NotIn({ id, onJoined }: { id: string; onJoined: () => void }) {
               <button
                 type="button"
                 disabled={act.busy !== null}
-                onClick={() => void act.run("decline", () => answer(invite, false).then(() => router.push("/profile/?sheet=groups")))}
+                onClick={() => void act.run("decline", () => answer(invite, false).then(() => router.push("/social/?view=groups")))}
                 className={button("secondary", "sm")}
               >
                 Decline
@@ -197,7 +197,7 @@ function NotIn({ id, onJoined }: { id: string; onJoined: () => void }) {
       <EmptyState
         title="You're not in this group"
         action={
-          <Link href="/profile/?sheet=groups" className={button("secondary", "sm")}>
+          <Link href="/social/?view=groups" className={button("secondary", "sm")}>
             Your groups
           </Link>
         }

@@ -36,7 +36,7 @@ export function parentOf(pathname: string, params: URLSearchParams, season: stri
       return withSeason("/discover/", season);
     case "/groups":
     case "/friends":
-      return "/profile/";
+      return "/social/";
     case "/profile":
       return params.get("u") ? withSeason("/discover/", season) : withSeason("/", season);
   }
