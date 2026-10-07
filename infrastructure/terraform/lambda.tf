@@ -7,6 +7,7 @@ locals {
     { name = "update", description = "Set the caller's display name and photo choice", path_part = "update", http_method = "PATCH", authorization = "COGNITO_USER_POOLS" },
     { name = "avatar_upload", description = "Presign an S3 POST for one profile photo", path_part = "avatar-upload", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "get", description = "A profile with its season summary, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "delete", description = "Delete the caller's account and everything that names them", path_part = "delete", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
   scores_lambdas = [
     { name = "submit", description = "Record the caller's final answer on one performance", path_part = "submit", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -151,6 +152,12 @@ locals {
     traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
     traitors_credits   = ["catalog:Query"]
+    users_delete       = ["groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
+  }
+
+  # Env a single function needs beyond lambda_variables.
+  api_env = {
+    users_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
@@ -159,6 +166,7 @@ locals {
   avatar_grants = {
     users_avatar_upload = ["s3:PutObject"]
     users_update        = ["s3:DeleteObject"]
+    users_delete        = ["s3:DeleteObject"]
   }
 }
 
@@ -197,6 +205,31 @@ data "aws_iam_policy_document" "api" {
       sid       = "Avatars"
       actions   = local.avatar_grants[each.key]
       resources = ["${aws_s3_bucket.avatars.arn}/avatars/*"]
+    }
+  }
+
+  # users_delete lists the caller's prefix to find photos never chosen, too.
+  dynamic "statement" {
+    for_each = each.key == "users_delete" ? [1] : []
+    content {
+      sid       = "ListAvatars"
+      actions   = ["s3:ListBucket"]
+      resources = [aws_s3_bucket.avatars.arn]
+      condition {
+        test     = "StringLike"
+        variable = "s3:prefix"
+        values   = ["avatars/*"]
+      }
+    }
+  }
+
+  # The pool belongs to xomware-infrastructure, but the grant lives on this role.
+  dynamic "statement" {
+    for_each = each.key == "users_delete" ? [1] : []
+    content {
+      sid       = "DeleteLogin"
+      actions   = ["cognito-idp:AdminDeleteUser"]
+      resources = [data.aws_ssm_parameter.cognito_user_pool_arn.value]
     }
   }
 
@@ -241,7 +274,7 @@ resource "aws_lambda_function" "api" {
   filename         = "./templates/lambda_stub.zip"
   source_code_hash = filebase64sha256("./templates/lambda_stub.zip")
 
-  environment { variables = local.lambda_variables }
+  environment { variables = merge(local.lambda_variables, try(local.api_env[each.key], {})) }
 
   depends_on = [aws_cloudwatch_log_group.api]
 

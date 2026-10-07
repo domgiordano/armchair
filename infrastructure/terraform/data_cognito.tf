@@ -5,3 +5,8 @@
 data "aws_ssm_parameter" "cognito_user_pool_arn" {
   name = "/armchair/shared/cognito/user-pool-arn"
 }
+
+locals {
+  # arn:aws:cognito-idp:<region>:<account>:userpool/<id>
+  cognito_user_pool_id = element(split("/", data.aws_ssm_parameter.cognito_user_pool_arn.value), 1)
+}

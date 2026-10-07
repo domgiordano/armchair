@@ -64,3 +64,18 @@ def presigned_post(key: str, content_type: str) -> dict:
 
 def delete(key: str) -> None:
     s3().delete_object(Bucket=bucket(), Key=key)
+
+
+def delete_all(sub: str) -> None:
+    """Every photo under the sub's prefix, the chosen one and any presigned but never used."""
+    pages = (
+        s3().get_paginator("list_objects_v2").paginate(Bucket=bucket(), Prefix=f"avatars/{sub}/")
+    )
+    for page in pages:
+        keys = [{"Key": o["Key"]} for o in page.get("Contents", [])]
+        if not keys:
+            continue
+        # A refused key comes back in Errors, not as an exception.
+        res = s3().delete_objects(Bucket=bucket(), Delete={"Objects": keys, "Quiet": True})
+        if res.get("Errors"):
+            raise RuntimeError(f"S3 kept {len(res['Errors'])} of {sub}'s photos")
