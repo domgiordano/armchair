@@ -3,6 +3,8 @@ import { Archivo_Black, Poppins } from "next/font/google";
 
 import { SESSION_HINT_SCRIPT } from "@armchair/app-core/auth/session-hint";
 
+import { SITE_NAME } from "@/lib/share-meta";
+
 import "./globals.css";
 
 import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
@@ -26,10 +28,19 @@ export const metadata: Metadata = {
   // Resolves the Open Graph image to an absolute URL for link previews.
   metadataBase: new URL("https://dwts.armchairjudge.com"),
   title: {
-    default: "Armchair Judge · Dancing with the Stars",
-    template: "%s · Armchair Judge",
+    default: "Dancing with the Stars · Armchair Judge",
+    template: "%s · DWTS · Armchair Judge",
   },
-  description: "Score Dancing with the Stars like a judge, blind until you answer.",
+  description: "Score every Dancing with the Stars dance before the judges do, then see how close you came.",
+  applicationName: "Armchair Judge · DWTS",
+  // Each route's card is its own opengraph-image.jpg, rendered by scripts/og/render.mjs.
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: "Dancing with the Stars · Armchair Judge",
+    description: "Score every dance before the judges do, then see how close you came.",
+  },
+  twitter: { card: "summary_large_image" },
   // A friends-only app: keep it out of search results.
   robots: { index: false, follow: false },
 };
