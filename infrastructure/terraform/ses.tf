@@ -104,9 +104,11 @@ resource "random_password" "email_unsubscribe_secret" {
 }
 
 resource "aws_ssm_parameter" "email_unsubscribe_secret" {
-  name  = "/${var.app_name}/email-unsubscribe-secret"
-  type  = "SecureString"
-  value = random_password.email_unsubscribe_secret.result
+  name = "/${var.app_name}/email-unsubscribe-secret"
+  type = "SecureString"
+  # Named, not omitted: key_id is computed, so leaving it out keeps whatever key it has.
+  key_id = "alias/aws/ssm"
+  value  = random_password.email_unsubscribe_secret.result
 
   lifecycle {
     ignore_changes = [value]
