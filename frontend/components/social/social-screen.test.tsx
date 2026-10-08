@@ -26,7 +26,13 @@ vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
   getGroupDetails: vi.fn(),
 }));
 
+vi.mock("@/lib/api/leaderboard", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/api/leaderboard")>()),
+  getLeaderboard: vi.fn(),
+}));
+
 import { getGroupDetails, getMyGroups } from "@armchair/app-core/api/groups";
+import { getLeaderboard } from "@/lib/api/leaderboard";
 import { acceptFriend, getFriends, getNotifications, mySub, removeFriend } from "@armchair/app-core/api/social";
 import { resetNotifications } from "@armchair/app-core/social/notifications";
 import { SocialScreen } from "./social-screen";
@@ -50,6 +56,17 @@ beforeEach(() => {
     },
   ]);
   vi.mocked(mySub).mockResolvedValue("me");
+  const viewer = { sub: "me", name: "Test Viewer", picture: null, avatarKind: "initials" as const, count: 9, closestJudge: null };
+  vi.mocked(getLeaderboard).mockResolvedValue({
+    season: "dwts-35",
+    scope: "group",
+    group: "g1",
+    minDances: 5,
+    ranked: [{ ...viewer, rank: 1, mae: 1.1 }],
+    unranked: [],
+    me: { ...viewer, rank: 1, mae: 1.1 },
+    week: { ep: 6, week: 5, rateable: 11, answered: { me: 11 } },
+  });
   vi.mocked(getNotifications).mockResolvedValue({ items: [], unread: 0, next: null });
   resetNotifications();
 });
@@ -70,13 +87,28 @@ describe("SocialScreen", () => {
     expect(nav.replace).toHaveBeenCalledWith("/social/?view=groups", { scroll: false });
   });
 
-  it("lists your groups with a way to start one", async () => {
+  it("shows each group as a card with your place, the leader and this week", async () => {
     nav.search = new URLSearchParams({ view: "groups" });
     render(<SocialScreen />);
     const family = await screen.findByRole("link", { name: /Family/ });
     expect(family.getAttribute("href")).toMatch(/^\/groups\/?\?id=g1$/);
-    expect(await screen.findByText(/1 member · Owner/)).toBeTruthy();
-    expect(screen.getByRole("textbox", { name: "Start a group" })).toBeTruthy();
+    expect(await within(family).findByText("#1")).toBeTruthy();
+    expect(within(family).getByText("Test Viewer", { selector: "dd" })).toBeTruthy();
+    expect(within(family).getByText(/of 1 scored week 5/)).toBeTruthy();
+    expect(within(family).getByText(/Dancing with the Stars/)).toBeTruthy();
+    expect(screen.getByRole("textbox", { name: "Group name" })).toBeTruthy();
+  });
+
+  it("joins from a pasted group link, and says when it isn't one", async () => {
+    nav.search = new URLSearchParams({ view: "groups" });
+    render(<SocialScreen />);
+    const box = await screen.findByRole("textbox", { name: "Group link or code" });
+    fireEvent.change(box, { target: { value: "hello" } });
+    fireEvent.click(screen.getByRole("button", { name: "Join" }));
+    expect(await screen.findByText(/doesn't look like a group link/)).toBeTruthy();
+    fireEvent.change(box, { target: { value: "https://api.test/invite/preview?code=AbCdEfGh_jKl-123" } });
+    fireEvent.click(screen.getByRole("button", { name: "Join" }));
+    expect(nav.push).toHaveBeenCalledWith("/join/?code=AbCdEfGh_jKl-123");
   });
 
   it("filters friends and unfriends in place", async () => {

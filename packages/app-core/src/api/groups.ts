@@ -6,6 +6,8 @@ export type GroupMember = Person;
 /** Someone listed on a group, with the caller's relation to them; null for the caller. */
 export interface GroupPerson extends Person {
   relation: Relation;
+  /** Members only. Missing from an API older than the group cards. */
+  joinedAt?: string | null;
 }
 
 export interface Group {

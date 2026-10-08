@@ -150,16 +150,19 @@ describe("GroupRoute", () => {
     expect(readGroup()).toBe(GID);
   });
 
-  it("lists every member's way onto the board", async () => {
+  it("says who has scored this week's show", async () => {
     vi.mocked(getGroupDetails).mockResolvedValue([group({ members: [...group().members, person("c", "Carol Burnett")] })]);
-    vi.mocked(getLeaderboard).mockResolvedValue({ ...BOARD, ranked: BOARD.ranked.slice(1), unranked: [{ ...person("b", "Bea Arthur"), count: 3 }] });
+    vi.mocked(getLeaderboard).mockResolvedValue({ ...BOARD, week: { ep: 6, week: 5, rateable: 11, answered: { me: 11, b: 3 } } });
     render(<GroupRoute />);
-    const rows = within(await screen.findByRole("region", { name: "Members' progress" })).getAllByRole("listitem");
-    expect(rows.map((r) => r.textContent)).toEqual([
-      "MMMe Myself (you)#26 dances",
-      "BABea Arthur32 to rank",
-      "CBCarol Burnett05 to rank",
-    ]);
+    const week = await screen.findByRole("region", { name: /^Week 5/ });
+    expect(within(week).getByText("1 of 3 have scored every dance.")).toBeTruthy();
+    const names = (label: string) =>
+      within(week)
+        .getByText(label)
+        .nextElementSibling?.textContent;
+    expect(names("Scored the show")).toContain("You");
+    expect(names("Partway")).toContain("Bea");
+    expect(names("Not started")).toContain("Carol");
   });
 
   it("sends a bare /groups/ to your groups list", () => {
