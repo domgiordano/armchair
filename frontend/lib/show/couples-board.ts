@@ -2,6 +2,7 @@ import type { Elimination } from "@/lib/api/couples";
 import { getOverview, type OverviewEpisode } from "@/lib/api/overview";
 import { getEpisodeState, type EpisodeState, type Member, type Season } from "@/lib/api/show";
 import { currentSeals } from "@/lib/show/sealed";
+import type { OddsEntry } from "@armchair/app-core/favorites/odds";
 
 /*
  * The Couples leaderboard: every couple ranked over the weeks the viewer has
@@ -51,12 +52,17 @@ export interface BoardCouple {
   perfect: number;
   weeks: WeekScore[];
   eliminated: Elimination | null;
+  /** favorites_get's entry for the board's week; null for a couple out by then, or before odds exist. */
+  odds: Odds | null;
 }
 
-export type BoardSort = "average" | "last" | "best" | "crowd" | "delta" | "trend" | "dances" | "perfect";
+export type Odds = Pick<OddsEntry<unknown>, "odds" | "chance" | "move">;
+
+export type BoardSort = "odds" | "average" | "last" | "best" | "crowd" | "delta" | "trend" | "dances" | "perfect";
 
 export const BOARD_SORTS: { value: BoardSort; label: string }[] = [
   { value: "average", label: "Judges' average" },
+  { value: "odds", label: "Odds to win" },
   { value: "last", label: "This week's score" },
   { value: "best", label: "Best score" },
   { value: "crowd", label: "Crowd average" },
@@ -67,6 +73,7 @@ export const BOARD_SORTS: { value: BoardSort; label: string }[] = [
 ];
 
 const VALUE: Record<BoardSort, (c: BoardCouple) => number | null> = {
+  odds: (c) => c.odds?.chance ?? null,
   average: (c) => c.average,
   last: (c) => c.last,
   best: (c) => c.best,
@@ -130,7 +137,13 @@ interface Contestant {
 }
 
 /** Every couple's numbers over the dances of weeks up to `week`, unranked. */
-function standings(roster: Contestant[], dances: Dance[], outs: Map<string, Elimination>, week: number): BoardCouple[] {
+function standings(
+  roster: Contestant[],
+  dances: Dance[],
+  outs: Map<string, Elimination>,
+  week: number,
+  odds: Map<string, Odds>,
+): BoardCouple[] {
   return roster.map((c) => {
     const mine = dances.filter((d) => d.couple === c.id && d.week <= week);
     const byWeek = new Map<number, Dance[]>();
@@ -161,6 +174,7 @@ function standings(roster: Contestant[], dances: Dance[], outs: Map<string, Elim
       perfect: mine.filter((d) => d.perfect).length,
       weeks,
       eliminated: out && (out.week ?? out.ep) <= week ? out : null,
+      odds: odds.get(c.id) ?? null,
     };
   });
 }
@@ -179,6 +193,8 @@ export interface BoardOptions {
   week: number;
   by: BoardSort;
   showOut: boolean;
+  /** The odds board for `week`, by couple. */
+  odds?: Map<string, Odds>;
 }
 
 /**
@@ -187,14 +203,16 @@ export interface BoardOptions {
  * most recently out first. `move` compares each place with the same sort a
  * week earlier.
  */
-export function board({ roster, dances, outs, week, by, showOut }: BoardOptions): BoardCouple[] {
-  const now = standings(roster, dances, outs, week);
+export function board({ roster, dances, outs, week, by, showOut, odds = new Map() }: BoardOptions): BoardCouple[] {
+  const now = standings(roster, dances, outs, week, odds);
   const places = ranked(now, by);
-  const before = week > 1 ? ranked(standings(roster, dances, outs, week - 1), by) : new Map<string, number>();
+  // The odds board carries its own movement; there's no other week's odds in hand to rank.
+  const before = week > 1 && by !== "odds" ? ranked(standings(roster, dances, outs, week - 1, odds), by) : new Map<string, number>();
   const rows = now.map((c) => {
     const rank = places.get(c.id) ?? null;
     const then = before.get(c.id);
-    return { ...c, rank, move: rank !== null && then !== undefined ? then - rank : null };
+    const move = by === "odds" ? (c.odds?.move?.rank ?? null) : rank !== null && then !== undefined ? then - rank : null;
+    return { ...c, rank, move };
   });
   const name = (a: BoardCouple, b: BoardCouple) => celebrityName(a.members).localeCompare(celebrityName(b.members));
   const tiebreak = (a: BoardCouple, b: BoardCouple) => (b.average ?? -1) - (a.average ?? -1) || name(a, b);
@@ -232,6 +250,8 @@ export function highlights(opts: Omit<BoardOptions, "by" | "showOut">): Highligh
 export interface BoardWeek {
   week: number;
   theme: string | null;
+  /** The week's last episode: the odds snapshot that goes with the board as of this week. */
+  lastEp: number;
 }
 
 export interface BoardData {
@@ -254,12 +274,15 @@ export async function loadBoard(season: Season): Promise<BoardData> {
   const states = await Promise.all(shown.map((e) => getEpisodeState(season.season, e.ep)));
   const outs = new Map<string, Elimination>();
   for (const s of states) for (const id of s.eliminated ?? []) outs.set(id, { ep: s.ep, week: s.week });
-  const weeks = new Map<number, string | null>();
-  for (const e of shown) if (!weeks.has(weekOf(e))) weeks.set(weekOf(e), e.theme);
+  const weeks = new Map<number, BoardWeek>();
+  for (const e of shown) {
+    const w = weekOf(e);
+    weeks.set(w, { week: w, theme: weeks.get(w)?.theme ?? e.theme, lastEp: Math.max(e.ep, weeks.get(w)?.lastEp ?? 0) });
+  }
   const held = overview.episodes.find((e) => e.aired && weekOf(e) > (through ?? 0) && (e.complete !== true || sealed(e.ep)));
   return {
     through,
-    weeks: [...weeks].map(([week, theme]) => ({ week, theme })),
+    weeks: [...weeks.values()],
     dances: states.flatMap(dancesOf),
     outs,
     next: held ? { ep: held.ep, week: weekOf(held), sealed: held.complete === true } : null,
