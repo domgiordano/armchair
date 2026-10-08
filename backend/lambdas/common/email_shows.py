@@ -17,6 +17,7 @@ from lambdas.common import board_dynamo
 from lambdas.common.dynamo import query_all, query_partitions, table
 from lambdas.common.episodes_dynamo import episode_pk, season_index, season_rows
 from lambdas.common.gate import score_owner
+from lambdas.common.events_dynamo import active_users
 from lambdas.common.group_shows import members_playing
 from lambdas.common.traitors_catalog import EDITIONS
 from lambdas.common.traitors_gate import ep_number, pick_owner
@@ -90,7 +91,13 @@ class Dwts:
         played = {
             score_owner(r)[1] for rows in self.scores(list(self.episodes)).values() for r in rows
         }
-        return played | set(board_dynamo.rows("dwts", board_dynamo.ALL)) | members_playing("dwts")
+        return (
+            played
+            | set(board_dynamo.rows("dwts", board_dynamo.ALL))
+            | members_playing("dwts")
+            # Activity tracking (events_dynamo) only reaches back to its launch; the tables above cover before.
+            | active_users("dwts", 30, action="scores_submit")
+        )
 
 
 class Traitors:
@@ -144,6 +151,7 @@ class Traitors:
             | {b["sk"].removeprefix("USER#") for b in bets}
             | set(board_dynamo.rows(self.edition, board_dynamo.ALL))
             | members_playing("traitors")
+            | active_users("traitors", 30, action="traitors_pick")
         )
 
 
