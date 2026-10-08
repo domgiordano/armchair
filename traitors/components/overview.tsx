@@ -9,6 +9,7 @@ import { Outcome } from "@/components/outcome";
 import { PlayerChip } from "@/components/player-chip";
 import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
 import { SealedScroll } from "@/components/recap";
+import { YourPicks } from "@/components/your-picks";
 import { Credit } from "@/components/writeup";
 import { errorText, useSeasonView } from "@/components/season-data";
 import { useSeasonName } from "@/components/season-provider";
@@ -59,6 +60,7 @@ export function Overview() {
         <ProgressCard episodes={view.episodes} now={now} />
         <StandingCard view={view} />
       </div>
+      <WinnerPicks view={view} />
       {due.length > 0 && (
         <Card tone="cloak" tartan className="flex flex-col items-start gap-3">
           <p className={cn(EYEBROW, "text-ember")}>Your calls</p>
@@ -78,7 +80,7 @@ export function Overview() {
           Latest in the castle
         </h2>
         {latest ? (
-          <LatestResults key={latest.ep} season={view.season} episode={latest} />
+          <LatestResults key={latest.ep} season={view.season} episode={latest} cast={view.cast} />
         ) : (
           <EmptyState title="Nothing unsealed yet">
             What happened in an episode shows here once you&apos;ve made every call in it.
@@ -92,7 +94,7 @@ export function Overview() {
           </h2>
           <ol className="flex flex-col">
             {earlier.map((e) => (
-              <Previously key={e.ep} season={view.season} episode={e} />
+              <Previously key={e.ep} season={view.season} episode={e} cast={view.cast} />
             ))}
           </ol>
         </section>
@@ -207,43 +209,76 @@ function StandingCard({ view }: { view: SeasonView }) {
           </p>
         </>
       )}
-      <BetLine view={view} />
     </Card>
   );
 }
 
-function BetLine({ view }: { view: SeasonView }) {
-  const { needed, open } = useBet();
+const PLACES = ["1st", "2nd", "3rd"];
+
+/** Your ranked winners: each sealed place with what it's worth, and a way to fill the empty ones. */
+function WinnerPicks({ view }: { view: SeasonView }) {
+  const { needed, incomplete, open } = useBet();
   if (needed) {
     return (
-      <p className="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-gilt/20 pt-2 text-parchment">
-        No winner bet yet.
-        <button type="button" onClick={() => open()} className={button("outline", "sm")}>
+      <Card tone="blood" className="flex flex-col items-start gap-3">
+        <p className={cn(EYEBROW, "text-flame")}>Your winner picks</p>
+        <p className="text-lg text-bone">You haven&apos;t picked your winners yet. Your calls open once your 1st is sealed.</p>
+        <button type="button" onClick={() => open()} className={button("gold", "sm")}>
           Lock in your winners
         </button>
-      </p>
+      </Card>
     );
   }
   if (!view.bet) return null;
   const { picks } = view.bet;
+  const won = new Set((view.winners ?? []).map((w) => w.id));
+  const hrefOf = seasonPlayerHref(view.season);
   return (
-    <p className="border-t border-gilt/20 pt-2 text-parchment">
-      Your winner bet:{" "}
-      {picks.map((p, i) => (
-        <span key={p.player}>
-          {i > 0 && (i === picks.length - 1 ? " and " : ", ")}
-          <PlayerChip player={playerOf(p.player, view.cast)} href={seasonPlayerHref(view.season)(p.player)} size={28} />{" "}
-          as {p.faction === "Traitor" ? "a Traitor" : "a Faithful"}
-        </span>
-      ))}
-      , worth <span className="nums">{Math.round(multiplier(view.episodes.length, view.bet.released) * 100)}%</span>.
-    </p>
+    <Card as="section" aria-labelledby="winner-picks" className="flex flex-col gap-3">
+      <h2 id="winner-picks" className={EYEBROW}>
+        Your winner picks
+      </h2>
+      <ol className="flex flex-col gap-2">
+        {PLACES.map((place, i) => {
+          const p = picks[i];
+          return (
+            <li key={place} className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-bone/10 pb-2 last:border-b-0 last:pb-0">
+              <span className="w-8 font-display text-lg text-gilt">{roman(i + 1)}</span>
+              {p ? (
+                <>
+                  <PlayerChip player={playerOf(p.player, view.cast)} href={hrefOf(p.player)} size={32} />
+                  <span className="text-parchment">as {p.faction === "Traitor" ? "a Traitor" : "a Faithful"}</span>
+                  <span className="ml-auto text-sm text-ash">
+                    {won.has(p.player) ? (
+                      <span className="text-candle">Won</span>
+                    ) : (
+                      <>
+                        worth <span className="nums">{Math.round(multiplier(view.episodes.length, p.released) * 100)}%</span>
+                      </>
+                    )}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="text-ash">Your {place} choice is empty</span>
+                  {incomplete && i === picks.length && (
+                    <button type="button" onClick={() => open()} className={cn(button("outline", "sm"), "ml-auto")}>
+                      Add your {place} choice
+                    </button>
+                  )}
+                </>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </Card>
   );
 }
 
 const EVENT_NAMES: Record<EpisodeEvent["type"], string> = { MURDER: "Murdered", RT: "Banished", RECRUIT: "Recruited" };
 
-function LatestResults({ season, episode }: { season: string; episode: SeasonEpisode }) {
+function LatestResults({ season, episode, cast }: { season: string; episode: SeasonEpisode; cast: CastMember[] }) {
   const { load, retry } = useEpisode(season, episode.ep);
   const href = withSeason(`/episode/?ep=${episode.ep}`, season);
 
@@ -254,6 +289,7 @@ function LatestResults({ season, episode }: { season: string; episode: SeasonEpi
         <h3 id="latest-title" className={cn(HEADING, "text-xl leading-tight")}>
           {episodeLabel(episode)}
         </h3>
+        <YourPicks mine={episode.mine} players={cast} className="pt-1" />
       </div>
       {load.kind === "loading" && (
         <div role="status" className="flex flex-col gap-2">
@@ -295,7 +331,7 @@ function LatestResults({ season, episode }: { season: string; episode: SeasonEpi
 }
 
 /** One earlier episode: the opening of its recap, or the sealed scroll until your calls are in. */
-function Previously({ season, episode }: { season: string; episode: SeasonEpisode }) {
+function Previously({ season, episode, cast }: { season: string; episode: SeasonEpisode; cast: CastMember[] }) {
   const open = unlocked(episode);
   // A finished season's schedule carries its recaps; a live one's need the episode read.
   const known = episode.recap !== undefined;
@@ -316,6 +352,7 @@ function Previously({ season, episode }: { season: string; episode: SeasonEpisod
             {episodeLabel(episode)}
           </Link>
         </h3>
+        <YourPicks mine={episode.mine} players={cast} className="pt-1" />
       </div>
       {!open ? (
         <SealedScroll bare href={href} />

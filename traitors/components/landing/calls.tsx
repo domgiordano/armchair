@@ -68,9 +68,10 @@ export function Calls() {
             <p className="font-display text-xs font-semibold tracking-[0.2em] text-candle uppercase">Once a season</p>
             <h3 className="font-display text-2xl font-semibold text-bone">The winners</h3>
             <p className="leading-relaxed">
-              Back up to {WORDS[WINNERS]} winners, and say whether each wins as a Faithful or a Traitor. It&rsquo;s the first
-              thing you do in a season, and it&rsquo;s worth the most: lock it in before the premiere for full points, because
-              every episode that airs first takes a share off.
+              Rank your top {WORDS[WINNERS]} winners, and say whether each wins as a Faithful or a Traitor. Your 1st choice
+              earns the most if they win, your 2nd 60% of that, your 3rd 30%. It&rsquo;s the first thing you do in a season,
+              and it&rsquo;s worth the most: seal it before the premiere for full points, because every episode that airs
+              first takes a share off.
             </p>
           </div>
         </div>
