@@ -2,6 +2,8 @@
 
 import { useEffect, useId, useState } from "react";
 
+import { track } from "@armchair/app-core/activity/track";
+
 import {
   acceptFriend,
   addFriend,
@@ -229,6 +231,7 @@ function InviteLink({ link }: { link: string }) {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(link);
+      track("action", "share", { via: "copy" });
       setCopied("yes");
     } catch {
       // Clipboard refused: the link stays on screen to copy by hand.
