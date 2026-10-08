@@ -91,7 +91,7 @@ def test_backfill_one_past_season(db):
         Item={
             "pk": "WIN#tus#4",
             "sk": "USER#a",
-            "picks": [{"player": "rob-rausch", "faction": "Traitor"}],
+            "picks": [{"player": "rob-rausch", "faction": "Traitor", "released": 0}],
             "released": 0,
         }
     )

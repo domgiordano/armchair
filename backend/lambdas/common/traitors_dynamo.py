@@ -1,6 +1,8 @@
-"""Reads for a Traitors season. Nothing here decides visibility: see common/traitors_gate.py."""
+"""Reads for a Traitors season, and the winner bet. Nothing here decides visibility: see common/traitors_gate.py."""
 
 from __future__ import annotations
+
+from botocore.exceptions import ClientError
 
 from lambdas.common.api import NotFoundError, ValidationError
 from lambdas.common.dynamo import table
@@ -38,3 +40,19 @@ def bet_key(show: str, number: int, sub: str) -> dict:
 
 def bet(show: str, number: int, sub: str) -> dict | None:
     return table("SCORES_TABLE").get_item(Key=bet_key(show, number, sub)).get("Item")
+
+
+def extend_bet(show: str, number: int, sub: str, have: int, added: list[dict]) -> bool:
+    """Appends ranked slots to a sealed bet. False when the bet no longer holds `have` picks."""
+    try:
+        table("SCORES_TABLE").update_item(
+            Key=bet_key(show, number, sub),
+            UpdateExpression="SET picks = list_append(picks, :added)",
+            ConditionExpression="size(picks) = :have",
+            ExpressionAttributeValues={":added": added, ":have": have},
+        )
+    except ClientError as e:
+        if e.response["Error"]["Code"] != "ConditionalCheckFailedException":
+            raise
+        return False
+    return True
