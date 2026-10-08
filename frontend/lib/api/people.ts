@@ -1,4 +1,7 @@
 import { request } from "@armchair/app-core/api/client";
+
+import { sealPerson } from "@/lib/show/seal-views";
+import { currentSeals } from "@/lib/show/sealed";
 import type { Answer, Headshot, JudgeSeat, LockedWriteup, Writeup } from "./show";
 import type { Match } from "@armchair/app-core/api/social";
 
@@ -51,6 +54,8 @@ interface RowBase {
 /** A dance the caller hasn't answered: what the pre-show table says, and nothing else. */
 export interface LockedRow extends RowBase {
   locked: true;
+  /** Answered, but you haven't revealed the judges yet (lib/show/seal-views.ts). */
+  sealed?: true;
   writeup?: LockedWriteup | null;
 }
 
@@ -173,7 +178,7 @@ export interface PersonPage {
 export const getPerson = (id: string, season?: string) => {
   const query = new URLSearchParams({ id });
   if (season) query.set("season", season);
-  return request<PersonPage>(`/people/get?${query}`);
+  return request<PersonPage>(`/people/get?${query}`).then((p) => sealPerson(p, currentSeals()));
 };
 
 /** Who someone is and every season they danced, with no dances read: cheap enough to fetch beside another page. */

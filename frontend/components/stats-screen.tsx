@@ -23,7 +23,7 @@ import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel } from "@/lib/show/schedule";
 import { useSeason } from "@/lib/show/use-season";
 import { byStyle, distribution, extremes, type Bar } from "@/lib/show/stats-summary";
-import { button, cn } from "@/lib/ui";
+import { button, cn, TEXT_LINK } from "@/lib/ui";
 
 type StatsLoad = { kind: "loading" } | { kind: "ready"; stats: Stats } | { kind: "error"; message: string };
 
@@ -88,6 +88,9 @@ function StatsFetcher({ season, group }: { season: Season; group: string | null 
 
 const off = (mae: number) => `${formatScore(mae)} off`;
 
+const sealedNote = (n: number) =>
+  `${n === 1 ? "1 dance you locked in is" : `${n} dances you locked in are`} left out until you reveal the judges.`;
+
 function StatsView({ season, stats }: { season: Season; stats: Stats }) {
   const { mine } = stats;
   const [showOut, setShowOut] = useShowEliminated("stats");
@@ -112,6 +115,7 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
           }
         >
           Stats count dances you scored once every judge&apos;s score is confirmed.
+          {stats.sealed ? ` ${sealedNote(stats.sealed)}` : ""}
         </EmptyState>
       </>
     );
@@ -156,6 +160,15 @@ function StatsView({ season, stats }: { season: Season; stats: Stats }) {
           {stats.others.length > 0 && ` You rank ${rank} of ${stats.others.length + 1} on the dances you've scored.`}
         </p>
       </section>
+
+      {stats.sealed ? (
+        <p className="text-sm text-silver-dim">
+          {sealedNote(stats.sealed)}{" "}
+          <Link href="/episode/" className={TEXT_LINK}>
+            Reveal on the scorecard
+          </Link>
+        </p>
+      ) : null}
 
       <ShowEliminated checked={showOut} onChange={setShowOut} count={gone} />
 
