@@ -16,6 +16,7 @@ import { Writeup } from "@/components/writeup";
 import { getPlayer, type Career, type PlayerProfile, type StoryEpisode } from "@/lib/api/history";
 import { finishText, playerHref } from "@/lib/history";
 import { nameOf, roman } from "@/lib/players";
+import { useFaceDownAny } from "@/lib/sealed";
 import { isShow, seasonLabel, seasonNumber, withSeason, type Show } from "@/lib/seasons";
 import { cn, EYEBROW, HEADING, TEXT_LINK } from "@/lib/ui";
 
@@ -148,7 +149,10 @@ interface StoryProps {
  * What the player did each episode you may see: their vote, the votes against them, a
  * shield, how they left, and as a Traitor whom they murdered and recruited.
  */
-function Story({ show, story, seasons, people }: StoryProps) {
+function Story({ show, story: all, seasons, people }: StoryProps) {
+  // An episode you've called but not turned over stays out of their story.
+  const faceDown = useFaceDownAny();
+  const story = all.filter((s) => !faceDown(s.season, s.ep));
   const order = seasons.map((s) => s.season);
   const groups = [...new Set(story.map((s) => s.season))]
     .sort((a, b) => order.indexOf(a) - order.indexOf(b))
@@ -157,7 +161,7 @@ function Story({ show, story, seasons, people }: StoryProps) {
       return {
         season,
         label: seasonLabel({ id: season, number: career?.number ?? seasonNumber(season) }),
-        traitorFrom: career?.traitorFrom ?? null,
+        traitorFrom: career?.traitorFrom && !faceDown(season, career.traitorFrom) ? career.traitorFrom : null,
         episodes: story.filter((s) => s.season === season).sort((a, b) => a.ep - b.ep),
       };
     });

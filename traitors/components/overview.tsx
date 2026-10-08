@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { useBet } from "@/components/bet";
 import { CastTable } from "@/components/cast-wall";
+import { FaceDownNotice } from "@/components/face-down";
 import { Outcome } from "@/components/outcome";
 import { PlayerChip } from "@/components/player-chip";
 import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
@@ -23,6 +24,7 @@ import { playerOf, roman } from "@/lib/players";
 import { multiplier, placeWorth } from "@/lib/points";
 import { excerpt } from "@/lib/recap";
 import { countdown, episodeLabel, formatRelease, latestUnlocked, nextRelease, released, toCall, unlocked } from "@/lib/schedule";
+import { useFaceDown } from "@/lib/sealed";
 import { showOf, withSeason } from "@/lib/seasons";
 import { useEpisode } from "@/lib/use-episode";
 import { button, cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
@@ -174,6 +176,7 @@ function ProgressCard({ episodes, now }: { episodes: SeasonEpisode[]; now: numbe
 }
 
 function StandingCard({ view }: { view: SeasonView }) {
+  const faceDown = useFaceDown(view.season);
   const [load, setLoad] = useState<{ me: Standing } | { error: string } | null>(null);
 
   useEffect(() => {
@@ -190,23 +193,29 @@ function StandingCard({ view }: { view: SeasonView }) {
   return (
     <Card className="flex flex-col gap-2">
       <p className={EYEBROW}>Your standing</p>
-      {load === null && <Skeleton className="h-12 w-32" />}
-      {load !== null && "error" in load && <p className="text-ash">Points couldn&apos;t load: {load.error}</p>}
-      {load !== null && "me" in load && (
+      {faceDown.eps.length > 0 ? (
+        <FaceDownNotice season={view.season} ep={faceDown.eps[0]} what="Your points" bare />
+      ) : (
         <>
-          <p className="flex items-baseline gap-3">
-            <span className="font-display text-5xl font-semibold text-candle nums">{load.me.points}</span>
-            <span className="text-ash">points</span>
-            {load.me.points > 0 && (
-              <span className="ml-auto font-display text-xl text-bone">
-                Rank <span className="nums">{load.me.rank}</span>
-              </span>
-            )}
-          </p>
-          <p className="text-ash">
-            <span className="nums">{load.me.events}</span> calls scored · <span className="nums">{load.me.banishHits}</span>{" "}
-            banishments called
-          </p>
+          {load === null && <Skeleton className="h-12 w-32" />}
+          {load !== null && "error" in load && <p className="text-ash">Points couldn&apos;t load: {load.error}</p>}
+          {load !== null && "me" in load && (
+            <>
+              <p className="flex items-baseline gap-3">
+                <span className="font-display text-5xl font-semibold text-candle nums">{load.me.points}</span>
+                <span className="text-ash">points</span>
+                {load.me.points > 0 && (
+                  <span className="ml-auto font-display text-xl text-bone">
+                    Rank <span className="nums">{load.me.rank}</span>
+                  </span>
+                )}
+              </p>
+              <p className="text-ash">
+                <span className="nums">{load.me.events}</span> calls scored · <span className="nums">{load.me.banishHits}</span>{" "}
+                banishments called
+              </p>
+            </>
+          )}
         </>
       )}
     </Card>
@@ -284,7 +293,8 @@ function WinnerPicks({ view }: { view: SeasonView }) {
 const EVENT_NAMES: Record<EpisodeEvent["type"], string> = { MURDER: "Murdered", RT: "Banished", RECRUIT: "Recruited" };
 
 function LatestResults({ season, episode, cast }: { season: string; episode: SeasonEpisode; cast: CastMember[] }) {
-  const { load, retry } = useEpisode(season, episode.ep);
+  const hidden = useFaceDown(season).episode(episode.ep);
+  const { load, retry } = useEpisode(season, hidden ? null : episode.ep);
   const href = withSeason(`/episode/?ep=${episode.ep}`, season);
 
   return (
@@ -296,15 +306,16 @@ function LatestResults({ season, episode, cast }: { season: string; episode: Sea
         </h3>
         <YourPicks mine={episode.mine} players={cast} className="pt-1" />
       </div>
-      {load.kind === "loading" && (
+      {hidden && <FaceDownNotice season={season} ep={episode.ep} what="Its results" bare />}
+      {!hidden && load.kind === "loading" && (
         <div role="status" className="flex flex-col gap-2">
           <span className="sr-only">Loading the episode...</span>
           <Skeleton className="h-16" />
           <Skeleton className="h-24" />
         </div>
       )}
-      {load.kind === "error" && <ErrorState what="the results" message={load.message} retry={retry} />}
-      {load.kind === "ready" && (
+      {!hidden && load.kind === "error" && <ErrorState what="the results" message={load.message} retry={retry} />}
+      {!hidden && load.kind === "ready" && (
         <>
           <dl className="flex flex-col gap-2">
             {load.episode.events.map((e) => (
@@ -337,7 +348,9 @@ function LatestResults({ season, episode, cast }: { season: string; episode: Sea
 
 /** One earlier episode: the opening of its recap, or the sealed scroll until your calls are in. */
 function Previously({ season, episode, cast }: { season: string; episode: SeasonEpisode; cast: CastMember[] }) {
-  const open = unlocked(episode);
+  // Until every call is in, the recap is sealed anyway.
+  const hidden = useFaceDown(season).episode(episode.ep) && unlocked(episode);
+  const open = unlocked(episode) && !hidden;
   // A finished season's schedule carries its recaps; a live one's need the episode read.
   const known = episode.recap !== undefined;
   const { load, retry } = useEpisode(season, open && !known ? episode.ep : null);
@@ -359,7 +372,9 @@ function Previously({ season, episode, cast }: { season: string; episode: Season
         </h3>
         <YourPicks mine={episode.mine} players={cast} className="pt-1" />
       </div>
-      {!open ? (
+      {hidden ? (
+        <FaceDownNotice season={season} ep={episode.ep} what="Its recap" bare />
+      ) : !open ? (
         <SealedScroll bare href={href} />
       ) : recap === undefined ? (
         load.kind === "error" ? (
