@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
+import { getMyGroups, plays, type Group } from "@armchair/app-core/api/groups";
 
 const KEY = "armchair.group";
 
@@ -45,7 +45,8 @@ export function useGroupFilter(): GroupFilter {
   useEffect(() => {
     let cancelled = false;
     getMyGroups().then(
-      (g) => !cancelled && setGroups(g),
+      // Only groups playing DWTS have a board here to compare with.
+      (g) => !cancelled && setGroups(g.filter((x) => plays(x, "dwts"))),
       () => !cancelled && setFailed(true),
     );
     return () => {

@@ -39,6 +39,7 @@ vi.mock("@armchair/app-core/api/groups", async (importOriginal) => ({
   leaveGroup: vi.fn(),
   deleteGroup: vi.fn(),
   respondToInvite: vi.fn(),
+  setGroupShow: vi.fn(),
 }));
 
 import {
@@ -48,6 +49,7 @@ import {
   leaveGroup,
   manageGroup,
   respondToInvite,
+  setGroupShow,
   type GroupDetail,
 } from "@armchair/app-core/api/groups";
 import { getLeaderboard, type Leaderboard } from "@/lib/api/leaderboard";
@@ -148,6 +150,35 @@ describe("GroupRoute", () => {
     expect(go.getAttribute("href")).toMatch(/^\/episode\/?\?ep=5$/);
     fireEvent.click(go);
     expect(readGroup()).toBe(GID);
+  });
+
+  it("offers to start DWTS for a group that isn't playing it, with no board", async () => {
+    const off = { app: "dwts" as const, active: false, by: null, at: null, playing: [] };
+    const traitors = { app: "traitors" as const, active: true, by: "b", at: "2026-10-01T00:00:00Z", playing: ["b"] };
+    vi.mocked(getGroupDetails).mockResolvedValue([group({ shows: [off, traitors] })]);
+    vi.mocked(setGroupShow).mockResolvedValue({ app: "dwts", active: true, started: true });
+    render(<GroupRoute />);
+    const start = await screen.findByRole("region", { name: /isn't playing Dancing with the Stars yet/ });
+    expect(screen.queryByRole("tab", { name: "Leaderboard" })).toBeNull();
+    expect(screen.getByRole("tab", { name: /Members/, selected: true })).toBeTruthy();
+    const others = screen.getByRole("region", { name: "On other shows" });
+    expect(within(others).getByRole("link", { name: "Open in The Traitors" }).getAttribute("href")).toBe(
+      `https://traitors.armchairjudge.com/groups/?id=${GID}&sso=1`,
+    );
+    expect(within(others).getByText(/You haven't played The Traitors yet/)).toBeTruthy();
+    fireEvent.click(within(start).getByRole("button", { name: "Start it with this group" }));
+    await vi.waitFor(() => expect(setGroupShow).toHaveBeenCalledWith(GID, "dwts", true));
+  });
+
+  it("starts another show for the group from the panel", async () => {
+    const dwts = { app: "dwts" as const, active: true, by: ME, at: "2026-10-01T00:00:00Z", playing: [ME] };
+    const off = { app: "traitors" as const, active: false, by: null, at: null, playing: [] };
+    vi.mocked(getGroupDetails).mockResolvedValue([group({ shows: [dwts, off] })]);
+    vi.mocked(setGroupShow).mockResolvedValue({ app: "traitors", active: true, started: true });
+    render(<GroupRoute />);
+    const others = await screen.findByRole("region", { name: "On other shows" });
+    fireEvent.click(within(others).getByRole("button", { name: "Start The Traitors with this group" }));
+    await vi.waitFor(() => expect(setGroupShow).toHaveBeenCalledWith(GID, "traitors", true));
   });
 
   it("says who has scored this week's show", async () => {
