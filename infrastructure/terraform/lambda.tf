@@ -113,6 +113,7 @@ locals {
     board        = aws_dynamodb_table.board.arn
     social       = aws_dynamodb_table.social.arn
     writeups     = aws_dynamodb_table.writeups.arn
+    email        = aws_dynamodb_table.email.arn
   }
   api_grants = {
     users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]

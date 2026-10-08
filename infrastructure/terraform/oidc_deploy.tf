@@ -214,3 +214,28 @@ resource "aws_iam_role_policy" "deploy_seed_performances" {
   role   = aws_iam_role.deploy.id
   policy = data.aws_iam_policy_document.deploy_seed_performances.json
 }
+
+# The Email Ops workflow reports whether SES is still in the sandbox and whether
+# the domain identity verified. Neither action has a resource-level form for the
+# account, and GetEmailIdentity is scoped to the one identity.
+data "aws_iam_policy_document" "deploy_email_status" {
+  statement {
+    sid       = "ReadSesAccount"
+    effect    = "Allow"
+    actions   = ["ses:GetAccount"]
+    resources = ["*"]
+  }
+
+  statement {
+    sid       = "ReadSesIdentity"
+    effect    = "Allow"
+    actions   = ["ses:GetEmailIdentity"]
+    resources = ["arn:aws:ses:${var.aws_region}:${local.account_id}:identity/${local.email_domain}"]
+  }
+}
+
+resource "aws_iam_role_policy" "deploy_email_status" {
+  name   = "email-status"
+  role   = aws_iam_role.deploy.id
+  policy = data.aws_iam_policy_document.deploy_email_status.json
+}
