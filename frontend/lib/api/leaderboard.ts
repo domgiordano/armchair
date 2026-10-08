@@ -1,6 +1,8 @@
 import { request } from "@armchair/app-core/api/client";
 import type { GroupMember } from "@armchair/app-core/api/groups";
 
+import { sealedParam } from "@/lib/show/sealed";
+
 export type Scope = "global" | "friends" | "group";
 
 export interface Standing extends GroupMember {
@@ -39,5 +41,7 @@ export const ALL_TIME = "all";
 export const getLeaderboard = (season: string, scope: Scope, group: string | null) => {
   const query = new URLSearchParams({ season, scope });
   if (group) query.set("group", group);
+  const sealed = sealedParam(season);
+  if (sealed) query.set("sealed", sealed);
   return request<Leaderboard>(`/leaderboard/get?${query}`);
 };

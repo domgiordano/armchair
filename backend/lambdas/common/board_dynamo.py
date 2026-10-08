@@ -26,10 +26,17 @@ from decimal import Decimal
 
 from botocore.exceptions import ClientError
 
+from lambdas.common import window
 from lambdas.common.accuracy import judged
-from lambdas.common.dynamo import query_all, resource, table
-from lambdas.common.episodes_dynamo import episode_pk, performances, scores
-from lambdas.common.gate import perf_key, score_owner
+from lambdas.common.dynamo import query_all, query_many, resource, table
+from lambdas.common.episodes_dynamo import (
+    episode_pk,
+    performances,
+    scores,
+    season_index,
+    season_rows,
+)
+from lambdas.common.gate import answered, perf_key, score_owner, sees
 
 ALL = "all"
 ATTEMPTS = 3
@@ -179,3 +186,69 @@ def seasons_with(sub: str, show: str, seasons: list[int]) -> list[int]:
             found |= {r["pk"] for r in page["Responses"].get(tbl.name, []) if r.get("n")}
             request = page.get("UnprocessedKeys")
     return [s for s in seasons if board_pk(show, s) in found]
+
+
+def unseen(viewer: str, show: str, season: int, sealed: set[tuple[int, str]]) -> dict[str, dict]:
+    """
+    Per sub, the share of their BOARD sums from dances the viewer may not see
+    (gate.sees): unanswered in an episode still taking answers, or `sealed`,
+    locked in without revealing. A closed episode or a past season shows every
+    dance, so it hides nothing but a seal. Read from the ERR items, which are
+    per dance.
+    """
+    catalog = season_rows(show, season)
+    meta = next((r for r in catalog if r["sk"] == "META"), None)
+    if meta is None:
+        return {}
+    spans = window.spans(meta, catalog)
+    at = window.now()
+    eps = {n for n, span in spans.items() if not window.closed(meta, span, at)}
+    eps |= {ep for ep, _ in sealed}
+    eps = sorted(n for n in eps if n in spans)
+    found = query_many(
+        [
+            pair
+            for n in eps
+            for pair in (
+                ("BOARD_TABLE", err_pk(show, season, n)),
+                ("SCORES_TABLE", episode_pk(show, season, n)),
+            )
+        ]
+    )
+    out: dict[str, dict] = defaultdict(lambda: defaultdict(Decimal))
+    for i, n in enumerate(eps):
+        errs, score_rows = found[2 * i], found[2 * i + 1]
+        mine = answered(viewer, score_rows)
+        opened = window.closed(meta, spans[n], at)
+        for item in errs:
+            key, _, sub = item["sk"].partition("#USER#")
+            if sees(n, key, mine, opened, sealed):
+                continue
+            delta = out[sub]
+            delta["n"] += 1
+            delta["err"] += item["err"]
+            for j, e in item["judges"].items():
+                delta[f"J#{j}#n"] += 1
+                delta[f"J#{j}#err"] += e
+    return out
+
+
+def seen_rows(
+    viewer: str,
+    show: str,
+    season: int | str,
+    sealed: set[tuple[int, str]],
+    subs: set[str] | None = None,
+) -> dict[str, dict]:
+    """
+    rows() less every dance the viewer may not see, in the show's current
+    season: the one season anyone is still answering. `sealed` is that season's.
+    """
+    out = rows(show, season, subs)
+    current = next((int(s["number"]) for s in season_index(show) if s.get("current")), None)
+    if current is None or season not in (ALL, current):
+        return out
+    for sub, delta in unseen(viewer, show, current, sealed).items():
+        if sub in out:
+            out[sub] = {**out[sub], **{k: out[sub].get(k, 0) - v for k, v in delta.items()}}
+    return out

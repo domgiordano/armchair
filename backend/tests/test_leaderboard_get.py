@@ -119,9 +119,39 @@ def test_ties_go_to_more_dances_then_share_a_rank(show):
     answer_many(A, exact, count=6)
     answer_many(B, exact)
     answer_many(C, exact, count=6)
-    ranks = [(r["sub"], r["rank"]) for r in board()["ranked"]]
+    ranks = [(r["sub"], r["rank"]) for r in board(B)["ranked"]]
     assert ranks[0] == (B, 1)
     assert sorted(ranks[1:]) == sorted([(A, 2), (C, 2)])
+
+
+def test_others_count_only_dances_the_caller_has_seen(show):
+    answer_many(B, lambda cid: 9 if cid == X else 6)
+    answer_many(A, lambda cid: 8, count=3)
+    ranked = {r["sub"]: (r["count"], r["mae"]) for r in board(A, scope="global")["ranked"]}
+    unranked = {r["sub"]: r["count"] for r in board(A)["unranked"]}
+    assert ranked == {} and unranked == {A: 3, B: 3}
+    assert board(A, season="all")["unranked"][0]["count"] == 3
+    # B saw everything, so B's board counts all ten of B's and A's three.
+    assert {r["sub"]: r["count"] for r in board(B)["ranked"]} == {B: 10}
+
+
+def test_sealed_dances_leave_everyones_numbers(show):
+    answer_many(A, lambda cid: 8 if cid == X else 6, count=6)
+    answer_many(B, lambda cid: 10, count=6)
+    sealed = f"{DANCES[0][0]}:{DANCES[0][1]}#1"
+    data = board(sealed=sealed)
+    assert {r["sub"]: r["count"] for r in data["ranked"]} == {A: 5, B: 5}
+    assert data["me"]["count"] == 5
+    assert board(season="all", sealed=sealed)["me"]["count"] == 5
+    assert board()["me"]["count"] == 6
+
+
+def test_a_closed_episode_shows_everyone(show, monkeypatch):
+    from lambdas.common import window
+
+    answer_many(B, lambda cid: 8)
+    monkeypatch.setattr(window, "closed", lambda meta, span, at: True)
+    assert [(r["sub"], r["count"]) for r in board()["ranked"]] == [(B, 10)]
 
 
 def test_caller_with_no_dances_is_still_in_me(show):
