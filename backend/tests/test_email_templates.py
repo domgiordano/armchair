@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 
 from lambdas.common import mailer
-from scripts.email_samples import SAMPLES
+from lambdas.common.email_samples import SAMPLES
 
 SNAPSHOTS = Path(__file__).parent / "snapshots" / "emails"
 SUB = "00000000-0000-4000-8000-000000000000"

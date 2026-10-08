@@ -29,17 +29,33 @@ SAMPLES = {
     "dwts-tonight": (
         "dwts",
         "tonight",
-        {"label": "Week 4", "when": "8:00 pm ET", "verb": "score", "url": f"{DWTS}/episode/?season=dwts-35&ep=04"},
+        {
+            "label": "Week 4",
+            "when": "8:00 pm ET",
+            "verb": "score",
+            "url": f"{DWTS}/episode/?season=dwts-35&ep=04",
+        },
     ),
     "traitors-tonight": (
         "traitors",
         "tonight",
-        {"label": "Episode 6", "when": "9:00 pm ET", "verb": "pick", "url": f"{TRAITORS}/episode/?ep=6&season=tus-5"},
+        {
+            "label": "Episode 6",
+            "when": "9:00 pm ET",
+            "verb": "pick",
+            "url": f"{TRAITORS}/episode/?ep=6&season=tus-5",
+        },
     ),
     "dwts-closing": (
         "dwts",
         "closing",
-        {"label": "Week 4", "days": 2, "answered": 5, "rateable": 11, "url": f"{DWTS}/episode/?season=dwts-35&ep=04"},
+        {
+            "label": "Week 4",
+            "days": 2,
+            "answered": 5,
+            "rateable": 11,
+            "url": f"{DWTS}/episode/?season=dwts-35&ep=04",
+        },
     ),
     "dwts-digest": (
         "dwts",
@@ -153,11 +169,19 @@ SAMPLES = {
     "dwts-group-activated": (
         "dwts",
         "group_activated",
-        {"actor": "Maya R.", "group": "Ballroom Bandits", "url": f"{DWTS}/groups/?group=SAMPLEGROUP1"},
+        {
+            "actor": "Maya R.",
+            "group": "Ballroom Bandits",
+            "url": f"{DWTS}/groups/?group=SAMPLEGROUP1",
+        },
     ),
     "traitors-group-activated": (
         "traitors",
         "group_activated",
-        {"actor": "Priya K.", "group": "Round Table Regulars", "url": f"{TRAITORS}/groups/?group=SAMPLEGROUP1"},
+        {
+            "actor": "Priya K.",
+            "group": "Round Table Regulars",
+            "url": f"{TRAITORS}/groups/?group=SAMPLEGROUP1",
+        },
     ),
 }

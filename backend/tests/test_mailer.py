@@ -4,7 +4,7 @@ import pytest
 from botocore.exceptions import ClientError
 
 from lambdas.common import email_dynamo, mailer
-from scripts.email_samples import SAMPLES
+from lambdas.common.email_samples import SAMPLES
 
 NOW = datetime(2026, 10, 8, 12, tzinfo=UTC)
 USER = {"sub": "s1", "email": "Fan@Example.com"}

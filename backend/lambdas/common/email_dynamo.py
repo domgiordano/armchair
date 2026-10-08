@@ -86,7 +86,8 @@ def record_run(kind: str, event: str, counts: dict[str, int], now: datetime) -> 
     values = {f":c{i}": n for i, n in enumerate(counts.values())}
     table("EMAIL_TABLE").update_item(
         Key={"pk": f"RUN#{kind}", "sk": event},
-        UpdateExpression="ADD " + ", ".join(f"{n} :c{n[2:]}" for n in names)
+        UpdateExpression="ADD "
+        + ", ".join(f"{n} :c{n[2:]}" for n in names)
         + " SET lastAt = :at, expiresAt = :exp",
         ExpressionAttributeNames=names,
         ExpressionAttributeValues={

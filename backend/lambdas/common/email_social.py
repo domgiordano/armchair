@@ -17,8 +17,8 @@ import os
 from botocore.exceptions import BotoCoreError, ClientError
 
 from lambdas.common import email_dynamo, mailer
-from lambdas.common.logger import get_logger
 from lambdas.common.groups_dynamo import members, meta
+from lambdas.common.logger import get_logger
 from lambdas.common.users_dynamo import card, recipient
 from lambdas.common.window import now
 
@@ -41,7 +41,9 @@ def _send(show: str, kind: str, to: str, key: str, ctx: dict) -> str:
         address = (user.get("email") or "").lower()
         blocked = {address} if address and email_dynamo.is_suppressed(address) else set()
         outcome = mailer.deliver(user, show, kind, key, ctx, at, blocked)
-        email_dynamo.record_run(mailer.pref_type(show, kind), at.date().isoformat(), {outcome: 1}, at)
+        email_dynamo.record_run(
+            mailer.pref_type(show, kind), at.date().isoformat(), {outcome: 1}, at
+        )
     except (BotoCoreError, ClientError):
         log.exception("%s email to %s not sent; the in-app notification stands", kind, to)
         return "error"

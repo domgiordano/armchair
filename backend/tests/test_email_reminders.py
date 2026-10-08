@@ -89,8 +89,14 @@ def test_traitors_night_with_two_episodes_is_one_email(aws, at, outbox):
     t = aws.Table(CATALOG_TABLE)
     pk = "SEASON#tus#5"
     t.put_item(Item={"pk": pk, "sk": "META", "current": True, "openAt": "2026-10-01T00:00:00Z"})
-    t.put_item(Item={"pk": "SEASONS#tus", "sk": "SEASON#005", "id": "tus-5", "number": 5, "current": True})
-    for n, release in ((1, "2026-10-09T01:00:00Z"), (2, "2026-10-16T01:00:00Z"), (3, "2026-10-16T02:00:00Z")):
+    t.put_item(
+        Item={"pk": "SEASONS#tus", "sk": "SEASON#005", "id": "tus-5", "number": 5, "current": True}
+    )
+    for n, release in (
+        (1, "2026-10-09T01:00:00Z"),
+        (2, "2026-10-16T01:00:00Z"),
+        (3, "2026-10-16T02:00:00Z"),
+    ):
         t.put_item(Item={"pk": pk, "sk": f"EP#{n:02d}", "releaseAt": release})
     sign_in(A, "Ada")
     sign_in(B, "Bea")
