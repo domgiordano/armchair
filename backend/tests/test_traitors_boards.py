@@ -49,7 +49,7 @@ def db(aws):
         Item={
             "pk": "WIN#tus#5",
             "sk": f"USER#{A}",
-            "picks": [{"player": "cat", "faction": "Traitor"}],
+            "picks": [{"player": "cat", "faction": "Traitor", "released": 0}],
             "released": 0,
         }
     )

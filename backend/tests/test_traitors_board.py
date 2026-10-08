@@ -74,7 +74,7 @@ def test_winners(aws):
         Item={
             "pk": "WIN#tus#5",
             "sk": "USER#a",
-            "picks": [{"player": "cat", "faction": "Traitor"}],
+            "picks": [{"player": "cat", "faction": "Traitor", "released": 0}],
             "released": 0,
         }
     )
@@ -82,10 +82,23 @@ def test_winners(aws):
         Item={
             "pk": "WIN#tus#5",
             "sk": "USER#b",
-            "picks": [{"player": "cat", "faction": "Faithful"}],
+            "picks": [{"player": "cat", "faction": "Faithful", "released": 6}],
             "released": 6,
         }
     )
     assert reconcile_winners("tus", 5, {"cat": "Traitor"}, 12) == 2
     assert reconcile_winners("tus", 5, {"cat": "Traitor"}, 12) == 0
-    assert board(aws) == {"a": {"pts": 30}, "b": {"pts": 10}}
+    s.put_item(
+        Item={
+            "pk": "WIN#tus#5",
+            "sk": "USER#c",
+            "picks": [
+                {"player": "dan", "faction": "Faithful", "released": 0},
+                {"player": "cat", "faction": "Traitor", "released": 4},
+            ],
+            "released": 0,
+        }
+    )
+    assert reconcile_winners("tus", 5, {"cat": "Traitor"}, 12) == 1
+    # c's 2nd place, filled after four episodes: 30 * 0.6 * 8/12.
+    assert board(aws) == {"a": {"pts": 30}, "b": {"pts": 10}, "c": {"pts": 12}}
