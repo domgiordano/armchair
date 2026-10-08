@@ -5,7 +5,7 @@ import { getOverview } from "@/lib/api/overview";
 import { getPerson } from "@/lib/api/people";
 import { getEpisodeState, getSeason } from "@/lib/api/show";
 import { getFriends } from "@armchair/app-core/api/social";
-import { getStats } from "@/lib/api/stats";
+import { getPersonStats } from "@/lib/api/stats";
 import { readGroup } from "@/lib/show/group-filter";
 
 /**
@@ -36,7 +36,7 @@ export function prefetchPage(href: string, season: string): void {
       return;
     }
     case "/stats/":
-      return start(getSeason(season), getMyGroups(), getStats(season, group));
+      return start(getSeason(season), getMyGroups(), getPersonStats(season));
     case "/couples/": {
       const compare = url.searchParams.get("compare") ?? (url.searchParams.get("view") === "week" ? "week" : null);
       start(getSeason(season), getMyGroups());

@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
-import { StatsScreen } from "@/components/stats-screen";
+import { StatsScreen } from "@/components/stats/stats-screen";
 
 export const metadata: Metadata = {
-  title: "Accuracy",
+  title: "Stats",
 };
 
+// The view lives in the query string, so the static HTML is a fallback until the client renders.
 export default function StatsPage() {
-  return <StatsScreen />;
+  return (
+    <Suspense>
+      <StatsScreen />
+    </Suspense>
+  );
 }
