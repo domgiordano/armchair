@@ -9,6 +9,7 @@ import { GroupMembers } from "@/components/groups/group-members";
 import { InviteSheet, LeaveSheet, SettingsSheet } from "@/components/groups/group-sheets";
 import { Redirect } from "@/components/redirect";
 import { GroupActivity, GroupWeek } from "@/components/groups/group-side";
+import { OtherShows, StartHere } from "@/components/groups/group-shows";
 import { ShowIcon } from "@/components/show-icon";
 import { SignedIn } from "@/components/signed-in";
 import { AvatarStack, GroupMark, useAction, useLoad } from "@/components/social/parts";
@@ -17,11 +18,10 @@ import { Menu, MenuItem } from "@/components/ui/menu";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { tabId, Tabs } from "@/components/ui/tabs";
-import { getGroupDetails, type GroupDetail } from "@armchair/app-core/api/groups";
+import { getGroupDetails, plays, type GroupDetail } from "@armchair/app-core/api/groups";
 import { getFriends, mySub } from "@armchair/app-core/api/social";
 import { useNotifications } from "@armchair/app-core/social/notifications";
-import { appLink } from "@armchair/app-core/apps";
-import { button, cn, FOCUS, TEXT_LINK } from "@/lib/ui";
+import { button, cn, FOCUS } from "@/lib/ui";
 
 /** /groups/?id=: one group's page. Without an id, your groups list on your profile. */
 export function GroupRoute() {
@@ -51,11 +51,13 @@ function GroupScreen({ id }: { id: string }) {
 
 function GroupView({ group, me, reload }: { group: GroupDetail; me: string | null; reload: () => void }) {
   const owner = group.owner === me;
-  const [tab, setTab] = useState<Tab>("board");
+  const here = plays(group, "dwts");
+  const [picked, setTab] = useState<Tab>("board");
+  // A group not playing DWTS has no board here, only its members.
+  const tab: Tab = here ? picked : "members";
   const [sheet, setSheet] = useState<Sheet>(null);
   const [friends, reloadFriends] = useLoad(getFriends);
   const count = group.members.length;
-  const traitors = appLink("traitors", "/leaderboard/");
 
   // Safari doesn't focus a clicked button, and the sheet hands focus back to whatever had it on close.
   const open = (which: Sheet) => (e: MouseEvent<HTMLElement>) => {
@@ -121,19 +123,15 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
       {/* Phones read this week first and the activity last; wide screens keep both beside the board. */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
         <div className="lg:col-start-2 lg:row-start-1">
-          <GroupWeek group={group} me={me} />
+          {here ? <GroupWeek group={group} me={me} /> : <StartHere group={group} onStarted={reload} />}
         </div>
         <div className="flex min-w-0 flex-col gap-4 lg:col-start-1 lg:row-span-2 lg:row-start-1">
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-silver-dim">
             <ShowIcon show="dwts" size={22} />
             <span>
-              Showing <span className="font-medium text-pearl">{group.name}</span> on Dancing with the Stars.
+              {here ? "Showing" : "Members of"} <span className="font-medium text-pearl">{group.name}</span>
+              {here ? " on Dancing with the Stars." : ". The same people on every Armchair Judge show."}
             </span>
-            {traitors && (
-              <a href={traitors} className={TEXT_LINK}>
-                The same group on The Traitors
-              </a>
-            )}
           </p>
           {count === 1 && (
             <div className="flex flex-col gap-3 rounded-xl border border-gold/35 bg-gold/[0.06] p-4 sm:flex-row sm:items-center sm:justify-between">
@@ -151,7 +149,7 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
             <Tabs
               label="Group sections"
               tabs={[
-                { id: "board", label: "Leaderboard" },
+                ...(here ? [{ id: "board" as const, label: "Leaderboard" }] : []),
                 {
                   id: "members",
                   label: "Members",
@@ -177,8 +175,9 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
             )}
           </div>
         </div>
-        <div className="lg:col-start-2 lg:row-start-2">
+        <div className="flex flex-col gap-6 lg:col-start-2 lg:row-start-2">
           <GroupActivity group={group} me={me} owner={owner} />
+          <OtherShows group={group} me={me} reload={reload} />
         </div>
       </div>
 
