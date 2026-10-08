@@ -119,10 +119,18 @@ TPK = "SEASON#tus#5"
 def traitors(aws, at, outbox):
     t = aws.Table(CATALOG_TABLE)
     t.put_item(Item={"pk": TPK, "sk": "META", "current": True, "openAt": "2026-10-01T00:00:00Z"})
-    t.put_item(Item={"pk": "SEASONS#tus", "sk": "SEASON#005", "id": "tus-5", "number": 5, "current": True})
+    t.put_item(
+        Item={"pk": "SEASONS#tus", "sk": "SEASON#005", "id": "tus-5", "number": 5, "current": True}
+    )
     # Episode 1 released before the season opened in the app, so it's closed for everyone.
-    for n, release in ((1, "2026-09-24T01:00:00Z"), (2, "2026-10-08T01:00:00Z"), (3, "2026-10-08T02:00:00Z")):
-        t.put_item(Item={"pk": TPK, "sk": f"EP#{n:02d}", "releaseAt": release, "noRoundTable": n == 1})
+    for n, release in (
+        (1, "2026-09-24T01:00:00Z"),
+        (2, "2026-10-08T01:00:00Z"),
+        (3, "2026-10-08T02:00:00Z"),
+    ):
+        t.put_item(
+            Item={"pk": TPK, "sk": f"EP#{n:02d}", "releaseAt": release, "noRoundTable": n == 1}
+        )
     at(datetime(2026, 10, 8, 16, tzinfo=UTC))
     for sub, name in ((A, "Ada"), (B, "Bea")):
         sign_in(sub, name)
@@ -130,11 +138,22 @@ def traitors(aws, at, outbox):
     for n in (1, 2, 3):
         events = ("MURDER", "RECRUIT") if n == 1 else ("MURDER", "RT", "RECRUIT")
         for e in events:
-            scores.put_item(Item={"pk": f"EP#tus#5#{n:02d}", "sk": f"EVT#{e}#USER#{A}", "picks": ["x"]})
-            board.put_item(Item={"pk": f"PTS#tus#5#{n:02d}", "sk": f"{e}#USER#{A}", "pts": Decimal(4 if n > 1 else 1), "hit": False})
+            scores.put_item(
+                Item={"pk": f"EP#tus#5#{n:02d}", "sk": f"EVT#{e}#USER#{A}", "picks": ["x"]}
+            )
+            board.put_item(
+                Item={
+                    "pk": f"PTS#tus#5#{n:02d}",
+                    "sk": f"{e}#USER#{A}",
+                    "pts": Decimal(4 if n > 1 else 1),
+                    "hit": False,
+                }
+            )
     # Bea picked episode 1 only.
     scores.put_item(Item={"pk": "EP#tus#5#01", "sk": f"EVT#MURDER#USER#{B}", "picks": ["x"]})
-    board.put_item(Item={"pk": "PTS#tus#5#01", "sk": f"MURDER#USER#{B}", "pts": Decimal(4), "hit": False})
+    board.put_item(
+        Item={"pk": "PTS#tus#5#01", "sk": f"MURDER#USER#{B}", "pts": Decimal(4), "hit": False}
+    )
     return aws
 
 

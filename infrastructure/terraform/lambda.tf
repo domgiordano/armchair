@@ -40,6 +40,8 @@ locals {
     { name = "user", description = "Admin: one user's profile, groups, friends and activity log", path_part = "user", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "events", description = "Admin: the newest activity events across every site", path_part = "events", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "audit", description = "Admin: the log of admin support actions", path_part = "audit", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "email_test", description = "Admin: preview any email template, or send it to yourself", path_part = "email-test", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "email_log", description = "Admin: each email type's runs, and one run's readers", path_part = "email-log", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "profile", description = "Admin: change someone's display name or reset their photo", path_part = "profile", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "membership", description = "Admin: add, remove, repair or re-invite someone in a group", path_part = "membership", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "friendship", description = "Admin: undo a block or friendship between two users", path_part = "friendship", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -201,6 +203,7 @@ locals {
     traitors_record    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:BatchGetItem"]
     invite_preview     = ["groups:GetItem"]
     email_prefs        = ["users:GetItem", "email:GetItem"]
+    admin_email_log    = ["email:Query", "users:BatchGetItem"]
     email_prefs_set    = ["users:GetItem", "users:UpdateItem", "email:GetItem"]
     email_unsubscribe  = ["users:GetItem", "users:UpdateItem"]
     admin_overview     = ["events:Query", "users:Scan", "catalog:Query", "scores:Query"]
@@ -223,11 +226,12 @@ locals {
 
   # Env a single function needs beyond lambda_variables.
   api_env = {
-    users_delete    = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
-    admin_delete    = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
-    groups_invite   = local.email_env
-    friends_request = local.email_env
-    groups_shows    = local.email_env
+    users_delete     = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+    admin_delete     = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+    groups_invite    = local.email_env
+    friends_request  = local.email_env
+    groups_shows     = local.email_env
+    admin_email_test = local.email_env
   }
 
   # users_delete scans four tables for rows naming the caller; the admin reports
@@ -244,7 +248,7 @@ locals {
   unsubscribe_signers = ["email_unsubscribe"]
 
   # Functions that send email (common/email_social.py), with send_email's grants.
-  email_senders = ["groups_invite", "friends_request", "groups_shows"]
+  email_senders = ["groups_invite", "friends_request", "groups_shows", "admin_email_test"]
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
   # signed with the upload function's own credentials, so its PutObject is

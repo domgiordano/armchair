@@ -3,6 +3,11 @@ name: Email Ops
 # `status` reports whether this account's SES is out of the sandbox and whether
 # armchairjudge.com's identity, DKIM and MAIL FROM verified. In the sandbox SES
 # delivers only to verified addresses, and the mailer sends to admins only.
+#
+# `test` sends sample emails (backend/lambdas/common/email_samples.py) through
+# armchair-admin-email-test to the first address in ADMIN_EMAILS, so no address
+# is ever typed into this public repo's run inputs. Its unsubscribe links point
+# at a placeholder account and change nothing.
 
 on:
   workflow_dispatch:
@@ -10,8 +15,11 @@ on:
       op:
         description: What to do
         type: choice
-        options: [status]
+        options: [status, test]
         default: status
+      template:
+        description: For test, one sample name (e.g. dwts-digest), or all
+        default: all
 
 permissions:
   contents: read
@@ -38,3 +46,30 @@ jobs:
           aws sesv2 get-account --query '{production:ProductionAccessEnabled,sending:SendingEnabled,enforcement:EnforcementStatus,review:Details.ReviewDetails.Status,quota:SendQuota}'
           aws sesv2 get-email-identity --email-identity "$DOMAIN" \
             --query '{verified:VerifiedForSendingStatus,dkim:DkimAttributes.Status,mailFrom:MailFromAttributes.MailFromDomainStatus,configSet:ConfigurationSetName}'
+      - name: Test sends
+        if: inputs.op == 'test'
+        env:
+          TEMPLATE: ${{ inputs.template }}
+        run: |
+          to="${ADMIN_EMAILS%%,*}"
+          echo "::add-mask::$to"
+          invoke() {
+            body=$(jq -cn --arg t "$1" '{template: $t, send: true}')
+            jq -cn --arg b "$body" --arg e "$to" \
+              '{httpMethod: "POST", headers: {}, body: $b,
+                requestContext: {authorizer: {claims: {sub: "email-ops-test", email: $e}}}}' > event.json
+            aws lambda invoke --function-name armchair-admin-email-test \
+              --cli-binary-format raw-in-base64-out --payload file://event.json out.json > /dev/null
+            jq -r '.body | fromjson | if .error then "\(.error.message) \(.error.detail // {})" else "\(.data.template): \(.data.subject) (sent: \(.data.sent))" end' out.json
+          }
+          if [ "$TEMPLATE" = all ]; then
+            body=$(jq -cn '{template: "", send: false}')
+            jq -cn --arg b "$body" --arg e "$to" \
+              '{httpMethod: "POST", headers: {}, body: $b,
+                requestContext: {authorizer: {claims: {sub: "email-ops-test", email: $e}}}}' > event.json
+            aws lambda invoke --function-name armchair-admin-email-test \
+              --cli-binary-format raw-in-base64-out --payload file://event.json out.json > /dev/null
+            for t in $(jq -r '.body | fromjson | .error.detail.templates[]' out.json); do invoke "$t"; done
+          else
+            invoke "$TEMPLATE"
+          fi

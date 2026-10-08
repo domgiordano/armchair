@@ -1,5 +1,5 @@
 """
-Renders every sample email (email_samples.py) to HTML, text and a phone-width
+Renders every sample email (common/email_samples.py) to HTML, text and a phone-width
 PNG for review. Needs `pip install playwright` and a Chromium; pass
 --chromium to reuse one already on disk.
 
@@ -14,7 +14,7 @@ from pathlib import Path
 from unittest import mock
 
 from lambdas.common import mailer
-from scripts.email_samples import SAMPLES
+from lambdas.common.email_samples import SAMPLES
 
 ENV = {
     "API_URL": "https://api.dwts.armchairjudge.com",

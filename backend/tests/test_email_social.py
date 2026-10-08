@@ -11,7 +11,9 @@ TRAITORS = "https://traitors.armchairjudge.com"
 
 
 def request_from(origin, frm, to):
-    event = authorized_event(path="/friends/request", method="POST", sub=frm, body={"sub": to}, origin=origin)
+    event = authorized_event(
+        path="/friends/request", method="POST", sub=frm, body={"sub": to}, origin=origin
+    )
     return call(request_handler, event)
 
 
