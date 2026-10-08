@@ -206,15 +206,15 @@ function Pick({ couple: c, pick }: { couple: BoardCouple; pick: Picking }) {
 
 // Fixed widths: the couple column takes what is left, so a long name truncates instead of widening the table.
 const COLUMNS: { by: BoardSort; label: string; className: string }[] = [
-  { by: "odds", label: "Odds", className: "w-24 text-right" },
+  { by: "odds", label: "Odds", className: "w-20 text-right" },
   { by: "average", label: "Avg", className: "w-14 text-right" },
   { by: "last", label: "This week", className: "w-36 text-left" },
   { by: "best", label: "Best", className: "w-16 text-right" },
   { by: "crowd", label: "Crowd", className: "w-16 text-right" },
   { by: "delta", label: "Crowd vs judges", className: "w-20 text-right" },
   { by: "trend", label: "Trend", className: "w-28 text-left" },
-  { by: "dances", label: "Dances", className: "w-18 text-right" },
-  { by: "perfect", label: "Perfect", className: "w-18 text-right" },
+  { by: "dances", label: "Dances", className: "w-14 text-right" },
+  { by: "perfect", label: "Perfect", className: "w-16 text-right" },
 ];
 
 function BoardTable({ rows, week, floor, sort, onSort, label, season, pick }: BoardProps & { onSort: (by: BoardSort) => void }) {
@@ -252,7 +252,7 @@ function BoardTable({ rows, week, floor, sort, onSort, label, season, pick }: Bo
                 </button>
               </th>
             ))}
-            <th scope="col" className="w-32 py-2 pr-4 text-left font-medium">
+            <th scope="col" className="w-28 py-2 pr-4 text-left font-medium">
               Status
             </th>
           </tr>
