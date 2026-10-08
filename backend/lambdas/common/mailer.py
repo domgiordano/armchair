@@ -34,7 +34,10 @@ from lambdas.common.users_dynamo import profiles
 
 log = get_logger(__file__)
 
+# Mail about people rather than one show: from noreply@, under the social type.
 SOCIAL = {"group_invite", "friend_request"}
+# Kinds whose prefs type isn't "{show}.{kind}".
+KIND_TYPE = {"group_invite": "social", "friend_request": "social", "group_activated": "groups"}
 
 
 class Job(NamedTuple):
@@ -65,7 +68,7 @@ def _admins() -> frozenset[str]:
 
 
 def pref_type(show: str, kind: str) -> str:
-    return "social" if kind in SOCIAL else f"{show}.{kind}"
+    return KIND_TYPE.get(kind, f"{show}.{kind}")
 
 
 def sender(show: str, kind: str) -> str:
@@ -77,9 +80,10 @@ def sender(show: str, kind: str) -> str:
 
 def footer_links(sub: str, show: str, kind: str) -> list[tuple[str, str]]:
     ptype = pref_type(show, kind)
-    if ptype == "social":
+    if ptype in ("social", "groups"):
+        what = "invites and requests" if ptype == "social" else "group activity"
         return [
-            ("Unsubscribe from invites and requests", link(sub, "social", show)),
+            (f"Unsubscribe from {what}", link(sub, ptype, show)),
             ("Unsubscribe from all Armchair Judge email", link(sub, "all", show)),
         ]
     return [
@@ -99,8 +103,8 @@ def send(address: str, sub: str, show: str, kind: str, email: Email) -> None:
     msg["Reply-To"] = f"noreply@{os.environ['EMAIL_DOMAIN']}"
     msg["Subject"] = email.subject
     # Mail clients present this as "unsubscribe from this sender": the whole show,
-    # or for noreply@, invites and requests.
-    scope = "social" if kind in SOCIAL else show
+    # or for mail about people, just that type.
+    scope = KIND_TYPE.get(kind, show)
     msg["List-Unsubscribe"] = f"<{link(sub, scope, show)}>"
     msg["List-Unsubscribe-Post"] = "List-Unsubscribe=One-Click"
     msg.set_content(email.text)

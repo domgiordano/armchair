@@ -1,6 +1,6 @@
 from botocore.exceptions import ClientError
 
-from lambdas.common import groups_dynamo, mailer
+from lambdas.common import email_social, groups_dynamo, mailer
 from lambdas.common.users_dynamo import set_email_settings
 from lambdas.friends_request.handler import handler as request_handler
 from lambdas.groups_invite.handler import handler as invite_handler
@@ -66,3 +66,21 @@ def test_a_mail_failure_never_fails_the_request(people, outbox, monkeypatch):
     monkeypatch.setattr(mailer, "deliver", broken)
     status, out = ask(A, B)
     assert status == 200 and out["data"]["status"] == "outgoing"
+
+
+def test_group_activated_mails_the_other_members_once(people, outbox):
+    group = groups_dynamo.create(A, "Round Table")
+    groups_dynamo.join(B, group["inviteCode"])
+    groups_dynamo.join(C, group["inviteCode"])
+    set_email_settings(C, {"groups": False}, None)
+
+    assert email_social.send_group_activated(group["id"], "traitors", A) == {"sent": 1, "off": 1}
+    assert email_social.send_group_activated(group["id"], "traitors", A) == {"dup": 1, "off": 1}
+    (mail,) = outbox
+    assert (mail["sub"], mail["kind"], mail["show"]) == (B, "group_activated", "traitors")
+    assert mail["email"].subject == "Ada Lovelace started The Traitors for Round Table"
+    assert f"{TRAITORS}/groups/?group={group['id']}" in mail["email"].text
+    assert "Join on The Traitors" in mail["email"].html
+
+    # The same group starting DWTS is a new email.
+    assert email_social.send_group_activated(group["id"], "dwts", B)["sent"] == 1
