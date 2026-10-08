@@ -4,9 +4,12 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState, type ReactNode } from "react";
 
+import { Avatar } from "@/components/avatar";
+import { timeAgo } from "@/components/notifications";
 import { SignedIn } from "@/components/signed-in";
+import { FriendCard } from "@/components/social/friend-card";
+import { UserLink } from "@/components/user-link";
 import {
-  ConfirmButton,
   CopyLink,
   Empty,
   ListSection,
@@ -19,17 +22,15 @@ import {
   message,
   useAction,
   useLoad,
-  useWaiting,
 } from "@/components/social/parts";
 import { GroupCard } from "@/components/groups/group-card";
 import { GroupInviteCard, JoinByLink, StartGroup } from "@/components/groups/group-actions";
 import { ShowIcon } from "@/components/show-icon";
 import { FriendTag, type SocialView } from "@/components/social/social-sheet";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { SearchInput } from "@/components/ui/field";
 import { PageHeader } from "@/components/ui/page-header";
-import { SkeletonList } from "@/components/ui/skeleton";
+import { Skeleton, SkeletonList } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { tabId, Tabs, type TabItem } from "@/components/ui/tabs";
 import { getGroupDetails } from "@armchair/app-core/api/groups";
@@ -47,7 +48,9 @@ import {
   type Match,
   type Person,
 } from "@armchair/app-core/api/social";
+import { getLeaderboard, type Leaderboard } from "@/lib/api/leaderboard";
 import { search } from "@/lib/search/match";
+import { useSeasonId } from "@/lib/show/seasons";
 import { useNotifications } from "@armchair/app-core/social/notifications";
 import { cn, TEXT_LINK } from "@/lib/ui";
 
@@ -55,7 +58,7 @@ const VIEWS: SocialView[] = ["friends", "groups", "requests"];
 const PANEL = "social-panel";
 const SEARCH_DELAY_MS = 250;
 
-/** /social/: your friends, groups and requests. ?view= picks the list; ?find=1 starts you in the search. */
+/** /social/: your friends and requests, and your groups. ?view= picks the tab; ?find=1 starts you in the search. */
 export function SocialScreen() {
   return (
     <SignedIn title="Friends & Groups" wide>
@@ -73,11 +76,14 @@ function SocialRoute() {
   const router = useRouter();
   const view = VIEWS.find((v) => v === params.get("view")) ?? "friends";
   const [friends, reload] = useLoad(getFriends);
-  const waiting = useWaiting(friends);
+  const { items } = useNotifications();
+  const asking = friends.kind === "ready" ? friends.value.incoming.length : 0;
+  const invites = items.filter((n) => n.type === "group_invite" && n.state === "pending").length;
+  // Requests live in the Friends tab now; old ?view=requests links land there.
+  const shown: SocialView = view === "requests" ? "friends" : view;
   const tabs: TabItem<SocialView>[] = [
-    { id: "friends", label: "Friends" },
-    { id: "groups", label: "Groups" },
-    { id: "requests", label: "Requests", badge: waiting || undefined },
+    { id: "friends", label: "Friends", badge: asking || undefined },
+    { id: "groups", label: "Groups", badge: invites || undefined },
   ];
 
   return (
@@ -86,25 +92,26 @@ function SocialRoute() {
         <Tabs
           label="Your people"
           tabs={tabs}
-          value={view}
+          value={shown}
           onChange={(v) => router.replace(`/social/?view=${v}`, { scroll: false })}
           panelId={PANEL}
         />
       </div>
       <div
-        key={view}
+        key={shown}
         role="tabpanel"
         id={PANEL}
-        aria-labelledby={tabId(PANEL, view)}
-        className={cn("flex flex-col gap-5 animate-fade-in", view !== "groups" && "max-w-2xl")}
+        aria-labelledby={tabId(PANEL, shown)}
+        className="flex flex-col gap-6 animate-fade-in"
       >
-        {friends.kind === "loading" && <SkeletonList label="Loading your friends" rows={5} avatar />}
-        {friends.kind === "error" && <ErrorState what="your friends" message={friends.message} retry={reload} />}
-        {friends.kind === "ready" && view === "friends" && (
+        {shown === "friends" && friends.kind === "loading" && <FriendCardsSkeleton />}
+        {shown === "friends" && friends.kind === "error" && (
+          <ErrorState what="your friends" message={friends.message} retry={reload} />
+        )}
+        {shown === "friends" && friends.kind === "ready" && (
           <FriendsView data={friends.value} reload={reload} find={params.get("find") === "1"} />
         )}
-        {view === "groups" && <GroupsView />}
-        {friends.kind === "ready" && view === "requests" && <RequestsView data={friends.value} reload={reload} />}
+        {shown === "groups" && <GroupsView />}
       </div>
     </>
   );
@@ -114,30 +121,119 @@ function FriendsView({ data, reload, find }: { data: Friends; reload: () => void
   const [q, setQ] = useState("");
   const query = q.trim();
   const mine = query ? search(data.friends, query, displayName, data.friends.length) : data.friends;
+  const season = useSeasonId();
+  const [board, setBoard] = useState<Leaderboard | null>(null);
+  const [groups] = useLoad(getGroupDetails);
+  const [me] = useLoad(mySub);
+
+  useEffect(() => {
+    let cancelled = false;
+    // The cards still work without it: they just leave the numbers out.
+    getLeaderboard(season, "friends", null).then(
+      (b) => !cancelled && setBoard(b),
+      () => {},
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [season, data.friends.length]);
+
+  const mineGroups = groups.kind === "ready" ? groups.value : [];
+  const shared = (sub: string) => mineGroups.filter((g) => g.members.some((m) => m.sub === sub)).map((g) => g.name);
+  const known = new Set([...data.friends, ...data.incoming, ...data.outgoing, ...data.blocked].map((p) => p.sub));
+  const suggestions = [
+    ...new Map(
+      mineGroups
+        .flatMap((g) => g.members.map((m) => ({ m, g: g.name })))
+        .filter(({ m }) => !known.has(m.sub) && m.sub !== (me.kind === "ready" ? me.value : null))
+        .map(({ m, g }) => [m.sub, { person: m, group: g }]),
+    ).values(),
+  ];
 
   return (
     <>
-      <SearchInput
-        label="Search friends or find someone new"
-        value={q}
-        onChange={setQ}
-        maxLength={40}
-        autoFocus={find}
-      />
-      {data.friends.length === 0 && !query && (
-        <Empty>No friends yet. Search for someone by name, or send your invite link.</Empty>
+      <div className="max-w-2xl">
+        <SearchInput
+          label="Search friends or find someone new"
+          value={q}
+          onChange={setQ}
+          maxLength={40}
+          autoFocus={find}
+        />
+      </div>
+      {query.length >= 2 && (
+        <div className="max-w-2xl">
+          <MoreMatches q={query} skip={data.friends} onChange={reload} />
+        </div>
       )}
-      {mine.length > 0 && (
-        <ListSection title={query ? "Your friends" : "Friends"} count={mine.length}>
-          {mine.map((f) => (
-            <li key={f.sub}>
-              <FriendRow friend={f} reload={reload} />
+
+      {data.incoming.length > 0 && !query && (
+        <CardSection title="Friend requests" count={data.incoming.length}>
+          {data.incoming.map((p) => (
+            <li key={p.sub}>
+              <RequestCard person={p} reload={reload} />
             </li>
           ))}
-        </ListSection>
+        </CardSection>
       )}
-      {query.length >= 2 && <MoreMatches q={query} skip={data.friends} onChange={reload} />}
-      <div className="flex flex-col gap-3 rounded-xl border border-silver/10 bg-ballroom/45 p-4">
+
+      {mine.length > 0 ? (
+        <CardSection title={query ? "Your friends" : "Friends"} count={mine.length}>
+          {mine.map((f) => (
+            <li key={f.sub}>
+              <FriendCard friend={f} groups={shared(f.sub)} board={board} onChange={reload} />
+            </li>
+          ))}
+        </CardSection>
+      ) : (
+        !query && (
+          <Empty>No friends yet. Add people from your groups below, search by name, or send your invite link.</Empty>
+        )
+      )}
+
+      {suggestions.length > 0 && !query && (
+        <section aria-labelledby="suggested" className="flex max-w-2xl flex-col">
+          <h2 id="suggested" className={SECTION_TITLE}>
+            People from your groups <span className="text-gold tabular-nums">{suggestions.length}</span>
+          </h2>
+          <ul className="stagger divide-y divide-silver/10">
+            {suggestions.map(({ person, group }) => (
+              <li key={person.sub}>
+                <SuggestionRow person={person} group={group} onAdded={reload} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {data.outgoing.length > 0 && !query && (
+        <section className="max-w-2xl">
+          <ListSection title="Sent, waiting on them" count={data.outgoing.length}>
+            {data.outgoing.map((p) => (
+              <li key={p.sub}>
+                <ActionRow person={p} detail={p.at ? `Sent ${timeAgo(p.at)}` : undefined}>
+                  {(a) => (
+                    <button
+                      type="button"
+                      disabled={a.busy !== null}
+                      onClick={() => void a.run("cancel", () => removeFriend(p.sub).then(reload))}
+                      className={QUIET}
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </ActionRow>
+              </li>
+            ))}
+          </ListSection>
+        </section>
+      )}
+
+      <section className="flex max-w-2xl flex-col gap-3 rounded-2xl border border-gold/25 bg-gradient-to-br from-gold/[0.07] via-ballroom/55 to-ballroom/30 p-4 sm:p-5">
+        <div className="flex flex-col gap-0.5">
+          <h2 className="font-semibold text-pearl">Invite someone</h2>
+          <p className="text-sm text-silver-dim">Anyone who opens your link sends you a friend request.</p>
+        </div>
         <CopyLink
           label="Your invite link"
           link={friendLink(data.inviteCode)}
@@ -149,22 +245,123 @@ function FriendsView({ data, reload, find }: { data: Friends; reload: () => void
         <Link href="/discover/" className={`${TEXT_LINK} self-start`}>
           Browse people on Discover
         </Link>
-      </div>
+      </section>
+
+      {data.blocked.length > 0 && !query && (
+        <section className="max-w-2xl">
+          <ListSection title="Blocked" count={data.blocked.length}>
+            {data.blocked.map((p) => (
+              <li key={p.sub}>
+                <ActionRow person={p}>
+                  {(a) => (
+                    <button
+                      type="button"
+                      disabled={a.busy !== null}
+                      onClick={() => void a.run("unblock", () => setBlocked(p.sub, false).then(reload))}
+                      className={QUIET}
+                    >
+                      Unblock
+                    </button>
+                  )}
+                </ActionRow>
+              </li>
+            ))}
+          </ListSection>
+        </section>
+      )}
     </>
   );
 }
 
-function FriendRow({ friend, reload }: { friend: Person; reload: () => void }) {
+function CardSection({ title, count, children }: { title: string; count: number; children: ReactNode }) {
+  return (
+    <section className="flex flex-col gap-2">
+      <h2 className={SECTION_TITLE}>
+        {title} <span className="text-gold tabular-nums">{count}</span>
+      </h2>
+      <ul className="stagger grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">{children}</ul>
+    </section>
+  );
+}
+
+/** Someone asking to be your friend: big enough to answer with a thumb. */
+function RequestCard({ person, reload }: { person: Person; reload: () => void }) {
+  const a = useAction();
+  const name = displayName(person);
+  return (
+    <article
+      aria-label={`Friend request from ${name}`}
+      className="flex h-full flex-col gap-3 rounded-2xl border border-brand-magenta/35 bg-gradient-to-br from-brand-magenta/10 via-ballroom/60 to-ink p-4"
+    >
+      <div className="flex items-center gap-3">
+        <Avatar name={name} email="" picture={person.picture} size={44} />
+        <div className="flex min-w-0 flex-col">
+          <p className="truncate font-semibold text-pearl">
+            <UserLink sub={person.sub}>{name}</UserLink>
+          </p>
+          <p className="text-xs text-silver-dim">Wants to be friends</p>
+        </div>
+      </div>
+      <div className="flex gap-2">
+        <button
+          type="button"
+          disabled={a.busy !== null}
+          onClick={() => void a.run("accept", () => acceptFriend(person.sub).then(reload))}
+          className={cn(SMALL_PRIMARY, "flex-1")}
+        >
+          {a.busy === "accept" ? "Accepting..." : "Accept"}
+        </button>
+        <button
+          type="button"
+          disabled={a.busy !== null}
+          onClick={() => void a.run("decline", () => removeFriend(person.sub).then(reload))}
+          className={cn(SMALL_SECONDARY, "flex-1")}
+        >
+          Decline
+        </button>
+      </div>
+      {a.error && (
+        <p role="alert" className="text-sm text-red-300">
+          {a.error}
+        </p>
+      )}
+    </article>
+  );
+}
+
+function SuggestionRow({ person, group, onAdded }: { person: Person; group: string; onAdded: () => void }) {
   const { busy, error, run } = useAction();
   return (
-    <PersonRow person={friend} error={error}>
-      <ConfirmButton
-        label="Remove"
-        confirm="Unfriend"
-        busy={busy !== null}
-        onConfirm={() => void run("remove", () => removeFriend(friend.sub).then(reload))}
-      />
+    <PersonRow person={person} detail={`In ${group}`} error={error}>
+      <button
+        type="button"
+        disabled={busy !== null}
+        onClick={() => void run("add", () => addFriend({ sub: person.sub }).then(onAdded))}
+        className={SMALL_PRIMARY}
+      >
+        {busy ? "Adding..." : "Add"}
+      </button>
     </PersonRow>
+  );
+}
+
+function FriendCardsSkeleton() {
+  return (
+    <div role="status" className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
+      <span className="sr-only">Loading your friends...</span>
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="flex flex-col gap-3 rounded-2xl border border-silver/10 p-4">
+          <div className="flex items-center gap-3">
+            <Skeleton className="size-12 rounded-full" />
+            <div className="flex flex-1 flex-col gap-2">
+              <Skeleton className="h-4 w-32" />
+              <Skeleton className="h-3 w-40" />
+            </div>
+          </div>
+          <Skeleton className="h-12 rounded-lg" />
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -342,118 +539,6 @@ function GroupCardsSkeleton() {
         </div>
       ))}
     </div>
-  );
-}
-
-function RequestsView({ data, reload }: { data: Friends; reload: () => void }) {
-  const { items, answer } = useNotifications();
-  const invites = items.filter((n) => n.type === "group_invite" && n.state === "pending");
-  const nothing = data.incoming.length + data.outgoing.length + data.blocked.length + invites.length === 0;
-
-  if (nothing) return <Empty>No requests right now. New ones show up here and under the bell.</Empty>;
-  return (
-    <>
-      {data.incoming.length > 0 && (
-        <ListSection title="Friend requests" count={data.incoming.length}>
-          {data.incoming.map((p) => (
-            <li key={p.sub}>
-              <ActionRow person={p}>
-                {(a) => (
-                  <>
-                    <button
-                      type="button"
-                      disabled={a.busy !== null}
-                      onClick={() => void a.run("accept", () => acceptFriend(p.sub).then(reload))}
-                      className={SMALL_PRIMARY}
-                    >
-                      Accept
-                    </button>
-                    <button
-                      type="button"
-                      disabled={a.busy !== null}
-                      onClick={() => void a.run("decline", () => removeFriend(p.sub).then(reload))}
-                      className={SMALL_SECONDARY}
-                    >
-                      Decline
-                    </button>
-                  </>
-                )}
-              </ActionRow>
-            </li>
-          ))}
-        </ListSection>
-      )}
-      {invites.length > 0 && (
-        <ListSection title="Group invites" count={invites.length}>
-          {invites.map((n) => (
-            <li key={n.id}>
-              <ActionRow person={n.from} detail={`Invited you to ${n.group?.name ?? "a group"}`}>
-                {(a) => (
-                  <>
-                    <button
-                      type="button"
-                      disabled={a.busy !== null}
-                      onClick={() => void a.run("join", () => answer(n, true))}
-                      className={SMALL_PRIMARY}
-                    >
-                      Join
-                    </button>
-                    <button
-                      type="button"
-                      disabled={a.busy !== null}
-                      onClick={() => void a.run("decline", () => answer(n, false))}
-                      className={SMALL_SECONDARY}
-                    >
-                      Decline
-                    </button>
-                  </>
-                )}
-              </ActionRow>
-            </li>
-          ))}
-        </ListSection>
-      )}
-      {data.outgoing.length > 0 && (
-        <ListSection title="Sent" count={data.outgoing.length}>
-          {data.outgoing.map((p) => (
-            <li key={p.sub}>
-              <ActionRow person={p}>
-                {(a) => (
-                  <button
-                    type="button"
-                    disabled={a.busy !== null}
-                    onClick={() => void a.run("cancel", () => removeFriend(p.sub).then(reload))}
-                    className={QUIET}
-                  >
-                    Cancel
-                  </button>
-                )}
-              </ActionRow>
-            </li>
-          ))}
-        </ListSection>
-      )}
-      {data.blocked.length > 0 && (
-        <ListSection title="Blocked" count={data.blocked.length}>
-          {data.blocked.map((p) => (
-            <li key={p.sub}>
-              <ActionRow person={p}>
-                {(a) => (
-                  <button
-                    type="button"
-                    disabled={a.busy !== null}
-                    onClick={() => void a.run("unblock", () => setBlocked(p.sub, false).then(reload))}
-                    className={QUIET}
-                  >
-                    Unblock
-                  </button>
-                )}
-              </ActionRow>
-            </li>
-          ))}
-        </ListSection>
-      )}
-    </>
   );
 }
 
