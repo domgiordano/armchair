@@ -2,7 +2,7 @@
 GET /notifications/list?cursor=<n>&limit=<1-50> - the caller's notifications, unread first.
 
 Returns data [{id, type, read, state, at, from: {sub, name, picture,
-avatarKind}, group: {id, name} | null}] and meta {unread, next}; pass `next`
+avatarKind}, group: {id, name} | null, show}] and meta {unread, next}; pass `next`
 back as `cursor` for the following page, null on the last. `state` is
 pending | accepted | declined on requests and invites, else null. Identity is
 the Cognito sub.
@@ -48,6 +48,7 @@ def handler(event, context):
             "at": r["sk"].partition("#")[0],
             "from": senders[r["from"]],
             "group": {"id": r["group"], "name": r.get("groupName")} if r.get("group") else None,
+            "show": r.get("show"),
         }
         for r in page
     ]
