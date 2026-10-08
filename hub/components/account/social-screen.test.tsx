@@ -77,6 +77,33 @@ describe("social tab", () => {
     expect(JSON.parse(calls(fetchMock, "/groups/create")[0][1]?.body as string)).toEqual({ name: "Paddle Pals" });
   });
 
+  it("shows the group on each show: open where it plays, start where it doesn't", async () => {
+    const show = (app: string, active: boolean, playing: string[]) => ({ app, active, by: null, at: null, playing });
+    fetchMock = stubApi({
+      "/groups/mine": () => ({
+        data: [
+          {
+            id: "g-1",
+            name: "Couch Crew",
+            inviteCode: "G1",
+            members: [{ sub: "me-1", name: "Pat Couch", picture: null, avatarKind: null, joinedAt: "2026-10-01T00:00:00Z" }],
+            shows: [show("dwts", true, ["me-1"]), show("traitors", false, [])],
+          },
+        ],
+      }),
+      "/groups/shows": () => ({ data: { app: "traitors", active: true, started: true } }),
+    });
+    render(<SocialScreen />);
+    const crew = await screen.findByRole("list", { name: "Couch Crew on each show" });
+    expect(within(crew).getByRole("link", { name: "Open in DWTS" }).getAttribute("href")).toBe(
+      "https://dwts.armchairjudge.com/groups/?id=g-1&sso=1",
+    );
+    expect(within(crew).getByRole("link", { name: "Start watching The Traitors" })).toBeTruthy();
+    fireEvent.click(within(crew).getByRole("button", { name: "Start The Traitors with this group" }));
+    await waitFor(() => expect(calls(fetchMock, "/groups/shows")).toHaveLength(1));
+    expect(JSON.parse(calls(fetchMock, "/groups/shows")[0][1]?.body as string)).toEqual({ group: "g-1", app: "traitors", active: true });
+  });
+
   it("shows a retry when a panel fails, and keeps the rest", async () => {
     fetchMock = stubApi({ "/friends/list": () => ({ status: 500 }) });
     render(<SocialScreen />);

@@ -1,5 +1,7 @@
 import { fetchAuthSession } from "aws-amplify/auth";
 
+import { trackRequest } from "@armchair/app-core/activity/track";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 interface Envelope<T> {
@@ -39,6 +41,7 @@ export async function requestWithMeta<T>(
     ...init,
     headers: { "Content-Type": "application/json", Authorization: token },
   });
+  trackRequest(path, init.method ?? "GET", res.status);
   // A rejection from the authorizer itself is { message }, not our envelope.
   const body = (await res.json()) as Partial<Envelope<T>>;
   if (!res.ok || body.error) {

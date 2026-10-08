@@ -5,13 +5,14 @@ import { useState, type ReactNode } from "react";
 
 import { FaceDownNotice, RevealSheet } from "@/components/face-down";
 import { Outcome } from "@/components/outcome";
+import { PeoplePicks } from "@/components/people-picks";
 import { PlayerChip } from "@/components/player-chip";
 import { seasonPlayerHref } from "@/components/player-link";
 import { RecapCard, SealedScroll } from "@/components/recap";
 import { RoundTable } from "@/components/round-table";
 import { ShieldMark, Tally } from "@/components/table-art";
 import { errorText } from "@/components/season-data";
-import { Avatar, Headshot } from "@/components/ui/avatar";
+import { Headshot } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SkeletonList } from "@/components/ui/skeleton";
@@ -26,6 +27,7 @@ import {
   type Episode,
   type EpisodeEvent,
   type EventType,
+  type Person,
   type Player,
   type SeasonEpisode,
 } from "@/lib/api/traitors";
@@ -329,7 +331,14 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet, onLo
         <FaceDownCall season={season} event={event} roster={episode.roster} ep={episode.ep} />
       ) : (
         <>
-          <Reveal season={season} event={event} roster={episode.roster} members={members} closed={episode.closed} />
+          <Reveal
+            season={season}
+            event={event}
+            roster={episode.roster}
+            members={members}
+            named={episode.people}
+            closed={episode.closed}
+          />
           {ballots && <Votes season={season} ballots={ballots} shields={shields} roster={episode.roster} />}
         </>
       )}
@@ -605,13 +614,15 @@ interface RevealProps {
   event: EpisodeEvent;
   roster: Player[];
   members: GroupMember[] | null;
+  /** The episode's names for the people in `event.group`, when `members` doesn't have them. */
+  named?: Record<string, Person>;
   closed: boolean;
 }
 
-function Reveal({ season, event, roster, members, closed }: RevealProps) {
+function Reveal({ season, event, roster, members, named, closed }: RevealProps) {
   const points = eventPoints(event);
   const rows = consensusRows(event);
-  const people = new Map((members ?? []).map((m) => [m.sub, m]));
+  const people = new Map<string, Person>(members ? members.map((m) => [m.sub, m]) : Object.entries(named ?? {}));
   const mine = event.mine;
 
   return (
@@ -663,35 +674,13 @@ function Reveal({ season, event, roster, members, closed }: RevealProps) {
       )}
 
       {event.group && (
-        <Card as="section" aria-labelledby="group-title" className="flex flex-col gap-2">
-          <h3 id="group-title" className={EYEBROW}>
-            Your group
-          </h3>
-          {event.group.length === 0 ? (
-            <p className="text-ash">Nobody else in the group has made this call yet.</p>
-          ) : (
-            <ul className="flex flex-col gap-2">
-              {event.group.map((g) => {
-                const who = people.get(g.sub);
-                return (
-                  <li key={g.sub} className="flex items-center gap-3">
-                    <Avatar name={who?.name ?? null} picture={who?.picture ?? null} size={32} />
-                    <span className="w-24 shrink-0 truncate text-bone">{who?.name ?? "Someone"}</span>
-                    {g.picks ? (
-                      <Chalk className="flex min-w-0 flex-wrap gap-x-3 gap-y-1 text-xl">
-                        {g.picks.map((id) => (
-                          <PlayerChip key={id} player={playerOf(id, roster)} href={seasonPlayerHref(season)(id)} size={24} />
-                        ))}
-                      </Chalk>
-                    ) : (
-                      <span className="text-ash italic">No pick</span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </Card>
+        <PeoplePicks
+          season={season}
+          event={event}
+          roster={roster}
+          people={people}
+          title={members ? "Your group" : "Your friends"}
+        />
       )}
     </>
   );

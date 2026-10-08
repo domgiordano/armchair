@@ -1,0 +1,40 @@
+name: Email Ops
+
+# `status` reports whether this account's SES is out of the sandbox and whether
+# armchairjudge.com's identity, DKIM and MAIL FROM verified. In the sandbox SES
+# delivers only to verified addresses, and the mailer sends to admins only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      op:
+        description: What to do
+        type: choice
+        options: [status]
+        default: status
+
+permissions:
+  contents: read
+  id-token: write # mint the OIDC token traded for the deploy role
+
+env:
+  AWS_REGION: us-east-1
+  DOMAIN: armchairjudge.com
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Xomware/github-actions/actions/load-infisical-secrets@v1
+        with:
+          path: /armchair
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Status
+        if: inputs.op == 'status'
+        run: |
+          aws sesv2 get-account --query '{production:ProductionAccessEnabled,sending:SendingEnabled,enforcement:EnforcementStatus,review:Details.ReviewDetails.Status,quota:SendQuota}'
+          aws sesv2 get-email-identity --email-identity "$DOMAIN" \
+            --query '{verified:VerifiedForSendingStatus,dkim:DkimAttributes.Status,mailFrom:MailFromAttributes.MailFromDomainStatus,configSet:ConfigurationSetName}'

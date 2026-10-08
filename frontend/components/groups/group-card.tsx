@@ -8,7 +8,7 @@ import { AvatarStack, GroupMark, displayName } from "@/components/social/parts";
 import { Chevron } from "@/components/social/social-sheet";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { groupHref, type GroupDetail } from "@armchair/app-core/api/groups";
+import { groupHref, plays, type GroupDetail } from "@armchair/app-core/api/groups";
 import type { Leaderboard } from "@/lib/api/leaderboard";
 import { joins, standing, weekProgress } from "@/lib/social/group-summary";
 import { seasonLabel, useSeasonId } from "@/lib/show/seasons";
@@ -26,6 +26,7 @@ export function GroupCard({ group, me }: GroupCardProps) {
   const owner = group.owner === me;
   const count = group.members.length;
   const latest = joins(group)[0];
+  const here = plays(group, "dwts");
 
   return (
     <Link
@@ -60,17 +61,20 @@ export function GroupCard({ group, me }: GroupCardProps) {
 
       <div className="relative flex flex-col gap-3 border-t border-silver/10 pt-3">
         <p className={EYEBROW}>Dancing with the Stars · {seasonLabel(season)}</p>
-        {load.kind === "loading" && (
+        {!here && (
+          <p className="text-sm text-silver-dim">Not playing Dancing with the Stars yet. Open it to start.</p>
+        )}
+        {here && load.kind === "loading" && (
           <div role="status" className="flex flex-col gap-2">
             <span className="sr-only">Loading {group.name}&apos;s leaderboard...</span>
             <Skeleton className="h-10 rounded-lg" />
             <Skeleton className="h-3 w-2/3" />
           </div>
         )}
-        {load.kind === "error" && (
+        {here && load.kind === "error" && (
           <p className="text-sm text-silver-dim">Couldn&apos;t load the leaderboard. Open the group to try again.</p>
         )}
-        {load.kind === "ready" && <Numbers group={group} board={load.board} />}
+        {here && load.kind === "ready" && <Numbers group={group} board={load.board} />}
       </div>
 
       {latest && (

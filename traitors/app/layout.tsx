@@ -7,6 +7,8 @@ import "./globals.css";
 
 import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
 
+import { Activity } from "@/components/activity";
+
 const garamond = EB_Garamond({ subsets: ["latin"], variable: "--font-garamond", display: "swap" });
 const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel", display: "swap" });
 const cinzelDecorative = Cinzel_Decorative({
@@ -46,6 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full bg-night font-serif text-parchment">
         <SsoHandoff />
+        <Activity />
         {children}
       </body>
     </html>

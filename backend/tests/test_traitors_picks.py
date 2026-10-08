@@ -365,6 +365,16 @@ def test_season_lists_my_progress(db):
         (2, False, 3, 1),
         (3, False, 3, 0),
     ]
+    assert eps[1]["mine"] == {"MURDER": {"picks": ["dan"]}}
+    pick(A, "RECRUIT", forfeit=True)
+    bet(B)
+    assert pick(B, "RT", ["bob", "cat", "dan"])[0] == 200
+    _, res = get(season_handler, "/traitors/season", A)
+    # Only the caller's own picks, never anyone else's.
+    assert res["data"]["episodes"][1]["mine"] == {
+        "MURDER": {"picks": ["dan"]},
+        "RECRUIT": {"forfeit": True},
+    }
 
 
 def test_not_a_traitors_season(db):
