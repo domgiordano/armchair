@@ -5,11 +5,15 @@ docs/features/traitors/PLAN.md, "Points" and "Events".
 
 from __future__ import annotations
 
+from fractions import Fraction
+
 BANISHED = 5
 EXACT = {2: 3, 3: 2}
 IN_TOP3 = 1
 NIGHT = 4
 WINNER, FACTION = 20, 10
+# A winner bet is ranked: a right 2nd choice earns 60% of a right 1st, a 3rd 30%.
+RANK_SHARE = (Fraction(1), Fraction(3, 5), Fraction(3, 10))
 
 
 def ranks(first_vote: dict[str, int]) -> dict[str, tuple[int, int]]:
@@ -50,18 +54,22 @@ def score(kind: str, picks: list[str], result: dict) -> int:
     return night(picks[0], result.get("victims" if kind == "MURDER" else "recruits") or [])
 
 
-def multiplier(episodes: int, released: int) -> float:
-    """A bet made before the premiere is worth everything; each episode out takes a share off."""
-    return (episodes - released) / episodes if episodes else 0.0
-
-
-def winner(bet: list[dict], winners: dict[str, str], episodes: int, released: int) -> int:
-    """`winners` maps each winner's id to the faction they won as."""
-    m = multiplier(episodes, released)
-    total = 0.0
-    for p in bet:
-        if p["player"] in winners:
-            total += WINNER * m
-            if winners[p["player"]] == p["faction"]:
-                total += FACTION * m
-    return round(total)
+def winner(bet: list[dict], winners: dict[str, str], episodes: int) -> int:
+    """
+    `bet` is the ranked picks, each with the `released` count it was sealed at. A slot
+    sealed before the premiere is worth everything; each episode out by then takes a
+    share off, (episodes - released) / episodes. `winners` maps each winner's id
+    to the faction they won as; joint winners each score their own slot.
+    """
+    if not episodes:
+        return 0
+    # Exact, then half up, so a slot worth 13.5 is 14 here and in the app's Math.round.
+    total = Fraction(0)
+    for share, p in zip(RANK_SHARE, bet):
+        if p["player"] not in winners:
+            continue
+        m = share * Fraction(episodes - int(p["released"]), episodes)
+        total += WINNER * m
+        if winners[p["player"]] == p["faction"]:
+            total += FACTION * m
+    return int(total + Fraction(1, 2))

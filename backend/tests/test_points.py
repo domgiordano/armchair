@@ -38,22 +38,39 @@ def test_nights():
     assert score("RECRUIT", ["katie"], {}) == 0
 
 
-def test_winner():
-    winners = {"rachel": "Traitor", "stephen": "Traitor"}
-    bet = [{"player": "rachel", "faction": "Traitor"}, {"player": "jack", "faction": "Faithful"}]
-    assert winner(bet, winners, 12, 0) == 30
-    assert winner([{"player": "stephen", "faction": "Faithful"}], winners, 12, 0) == 20
-    assert winner(bet, winners, 12, 6) == 15
-    assert winner(bet, winners, 12, 11) == round(30 / 12)
+def slot(player, faction, released=0):
+    return {"player": player, "faction": faction, "released": released}
 
 
-def test_winner_bet_of_three():
-    # UK series 4 had joint winners; each correct pick scores on its own.
+def test_winner_ranked_shares():
+    winners = {"rachel": "Traitor"}
+    # 1st: 20 + 10. 2nd: 60% of that. 3rd: 30%.
+    assert winner([slot("rachel", "Traitor")], winners, 12) == 30
+    assert winner([slot("jack", "Faithful"), slot("rachel", "Traitor")], winners, 12) == 18
+    assert (
+        winner(
+            [slot("a", "Faithful"), slot("b", "Faithful"), slot("rachel", "Traitor")], winners, 12
+        )
+        == 9
+    )
+    # The winner on the wrong side earns only the winner share.
+    assert winner([slot("rachel", "Faithful")], winners, 12) == 20
+    assert winner([slot("jack", "Faithful")], winners, 12) == 0
+
+
+def test_winner_multiplier_per_slot():
     winners = {"rachel": "Traitor", "stephen": "Traitor"}
-    bet = [
-        {"player": "rachel", "faction": "Traitor"},
-        {"player": "stephen", "faction": "Faithful"},
-        {"player": "jack", "faction": "Faithful"},
-    ]
-    assert winner(bet, winners, 12, 0) == 30 + 20
-    assert winner(bet, winners, 12, 6) == 25
+    assert winner([slot("rachel", "Traitor", 6)], winners, 12) == 15
+    # 2.5 rounds half up, as Math.round does in the app.
+    assert winner([slot("rachel", "Traitor", 11)], winners, 12) == 3
+    assert winner([slot("jack", "Faithful"), slot("rachel", "Traitor", 3)], winners, 12) == 14
+    # A 2nd place filled after six episodes: 18 * 6/12.
+    bet = [slot("jack", "Faithful", 0), slot("stephen", "Traitor", 6)]
+    assert winner(bet, winners, 12) == 9
+
+
+def test_winner_joint_winners_score_each_slot():
+    # UK series 1 had three joint winners; each named one scores at its own rank.
+    winners = {"aaron": "Faithful", "hannah": "Faithful", "meryl": "Faithful"}
+    bet = [slot("hannah", "Faithful"), slot("aaron", "Traitor"), slot("meryl", "Faithful")]
+    assert winner(bet, winners, 12) == 30 + 12 + 9

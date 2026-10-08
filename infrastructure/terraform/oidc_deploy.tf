@@ -214,3 +214,24 @@ resource "aws_iam_role_policy" "deploy_seed_performances" {
   role   = aws_iam_role.deploy.id
   policy = data.aws_iam_policy_document.deploy_seed_performances.json
 }
+
+# Migrate Traitors Bets rewrites winner-bet rows, and only those: WIN# partitions.
+data "aws_iam_policy_document" "deploy_migrate_bets" {
+  statement {
+    sid       = "MigrateWinnerBets"
+    effect    = "Allow"
+    actions   = ["dynamodb:Query", "dynamodb:UpdateItem"]
+    resources = [aws_dynamodb_table.scores.arn]
+    condition {
+      test     = "ForAllValues:StringLike"
+      variable = "dynamodb:LeadingKeys"
+      values   = ["WIN#*"]
+    }
+  }
+}
+
+resource "aws_iam_role_policy" "deploy_migrate_bets" {
+  name   = "migrate-traitors-bets"
+  role   = aws_iam_role.deploy.id
+  policy = data.aws_iam_policy_document.deploy_migrate_bets.json
+}

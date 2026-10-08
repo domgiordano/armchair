@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { FaceDownNotice } from "@/components/face-down";
 import { errorText, useSeasonView } from "@/components/season-data";
 import { useSeasonName } from "@/components/season-provider";
 import { Avatar } from "@/components/ui/avatar";
@@ -14,6 +15,7 @@ import { TartanBand } from "@/components/ui/tartan-band";
 import { tabId, Tabs } from "@/components/ui/tabs";
 import { getRanks, type Ranks, type Scope, type Standing } from "@/lib/api/traitors";
 import { useGroupFilter } from "@/lib/group-filter";
+import { useFaceDown } from "@/lib/sealed";
 import { showOf } from "@/lib/seasons";
 import { cn, HEADING, TEXT_LINK } from "@/lib/ui";
 
@@ -38,6 +40,7 @@ export function LeaderboardScreen() {
   const group = groups.find((g) => g.id === (picked ?? filter.group))?.id ?? groups[0]?.id ?? null;
   const waiting = scope === "group" && filter.groups === null && !filter.failed;
   const noGroup = scope === "group" && !waiting && group === null;
+  const faceDown = useFaceDown(view.season);
 
   return (
     <>
@@ -75,7 +78,8 @@ export function LeaderboardScreen() {
             ; the same groups work in every Armchair Judge show.
           </EmptyState>
         )}
-        {!waiting && !noGroup && (
+        {faceDown.eps.length > 0 && <FaceDownNotice season={view.season} ep={faceDown.eps[0]} what="The board" />}
+        {!waiting && !noGroup && faceDown.eps.length === 0 && (
           <Board
             key={`${range}|${scope}|${group}`}
             season={range}

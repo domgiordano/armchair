@@ -1,4 +1,7 @@
 import { request } from "@armchair/app-core/api/client";
+
+import { sealBoard, sealFavorites, sealPerformers } from "@/lib/show/seal-views";
+import { currentSeals } from "@/lib/show/sealed";
 import type { Headshot, Member } from "./show";
 
 /** Other people's mean on the caller's dances; null under two raters, so one paddle never shows. */
@@ -81,14 +84,14 @@ export const ALL_SEASONS = "all";
 export const getPerformers = (season: string, group: string | null) => {
   const query = new URLSearchParams({ season });
   if (group) query.set("group", group);
-  return request<Performers>(`/performers/get?${query}`);
+  return request<Performers>(`/performers/get?${query}`).then((p) => sealPerformers(p, currentSeals()));
 };
 
 /** A profile's favorites: the owner's numbers, over only dances the caller scored too. */
 export const getFavorites = (season: string, sub: string | null) => {
   const query = new URLSearchParams({ season });
   if (sub) query.set("sub", sub);
-  return request<Performers<CoupleSummary>>(`/performers/get?${query}`);
+  return request<Performers<CoupleSummary>>(`/performers/get?${query}`).then((p) => sealFavorites(p, currentSeals()));
 };
 
 export type BoardColumn = "judges" | "you" | "friends" | "everyone";
@@ -126,6 +129,8 @@ export interface WeekBoard {
   disagreements: string[];
   /** Who went home this episode, once the caller has finished it. */
   eliminated: string[];
+  /** Couples whose judges are left out: you locked their dance in without revealing it. */
+  sealed?: string[];
 }
 
 export const getWeekBoard = (season: string, ep: number, group: string | null) => {
@@ -135,5 +140,5 @@ export const getWeekBoard = (season: string, ep: number, group: string | null) =
     scope: group ? "group" : "global",
   });
   if (group) query.set("group", group);
-  return request<WeekBoard>(`/week-board/get?${query}`);
+  return request<WeekBoard>(`/week-board/get?${query}`).then((b) => sealBoard(b, currentSeals()));
 };

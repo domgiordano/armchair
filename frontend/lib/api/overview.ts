@@ -1,4 +1,7 @@
 import { request } from "@armchair/app-core/api/client";
+
+import { sealOverview } from "@/lib/show/seal-views";
+import { currentSeals } from "@/lib/show/sealed";
 import type { Elimination } from "./couples";
 import type { ActiveEpisode, Answer, Headshot, JudgeSeat, Member, ScoringWindow } from "./show";
 
@@ -60,7 +63,7 @@ export interface Overview {
 }
 
 export const getOverview = (season: string) =>
-  request<Overview>(`/overview/get?season=${encodeURIComponent(season)}`);
+  request<Overview>(`/overview/get?season=${encodeURIComponent(season)}`).then((o) => sealOverview(o, currentSeals()));
 
 export interface Standing {
   rank: number;

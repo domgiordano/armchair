@@ -101,6 +101,7 @@ function CoupleRoute() {
 function Couple({ couple, season, person }: { couple: Contestant; season: Season; person: PersonPage }) {
   const rows = person.performances.filter((r) => r.season === season.season);
   const totals = coupleTotals(rows);
+  const sealed = rows.filter((r) => r.locked && r.sealed).length;
   const result = coupleResult(person, season.season);
   const open = rows.filter((r): r is OpenRow => !r.locked && (r.panelMean !== null || paddle(r) !== null));
   const self = couple.members.map((m) => (m.role === "celebrity" ? couple.id : personSlug(m.name)));
@@ -141,7 +142,15 @@ function Couple({ couple, season, person }: { couple: Contestant; season: Season
           <Tile
             label="Dances"
             value={totals.locked ? `${totals.dances - totals.locked}/${totals.dances}` : totals.dances}
-            note={totals.locked ? `${totals.locked} still to score` : totals.dances ? "All revealed" : "None aired yet"}
+            note={
+              sealed && sealed === totals.locked
+                ? `${sealed} waiting on your reveal`
+                : totals.locked
+                  ? `${totals.locked} still to score`
+                  : totals.dances
+                    ? "All revealed"
+                    : "None aired yet"
+            }
           />
           <Tile label="Judges' avg" value={avg(totals.judges)} note={totals.judged ? `over ${plural(totals.judged, "dance")}` : "Score to see their marks"} />
           <Tile

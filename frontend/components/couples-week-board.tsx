@@ -22,7 +22,7 @@ import { coupleHref } from "@/lib/show/people";
 import { episodeLabel, hasAired, latestAired } from "@/lib/show/schedule";
 import { withSeason } from "@/lib/show/seasons";
 import { useReducedMotion } from "@/lib/motion";
-import { button, cn, EYEBROW } from "@/lib/ui";
+import { button, cn, EYEBROW, TEXT_LINK } from "@/lib/ui";
 
 type Load = { kind: "loading" } | { kind: "ready"; board: WeekBoard } | { kind: "error"; message: string };
 
@@ -108,6 +108,9 @@ function Board({ board, season, column }: { board: WeekBoard; season: Season; co
   const byId = new Map(board.couples.map((r) => [r.id, r]));
   const split = board.disagreements.flatMap((id) => byId.get(id) ?? []);
   const left = board.open ? 0 : board.rateable - board.answered;
+  // Sealed couples are unranked by the judges too, but for their own reason.
+  const sealed = column === "judges" ? (board.sealed?.length ?? 0) : 0;
+  const pending = unranked.length - sealed;
 
   return (
     <>
@@ -142,9 +145,19 @@ function Board({ board, season, column }: { board: WeekBoard; season: Season; co
           <section aria-label={`Ranked by ${VERB[column]}`} className="flex flex-col gap-2">
             <ShowEliminated checked={showOut} onChange={setShowOut} count={gone.size} />
             <Ranking rows={ranked} eliminated={eliminated} out={out} season={season.season} column={column} />
-            {unranked.length > 0 && (
+            {sealed > 0 && (
               <p className="px-1 text-xs text-silver-dim">
-                {unranked.length} more without a {column === "judges" ? "confirmed panel" : "number"} yet
+                {sealed === 1 ? "1 couple you locked in sits" : `${sealed} couples you locked in sit`} out of the judges&apos;
+                ranking until you{" "}
+                <Link href={scoreHref} className={TEXT_LINK}>
+                  reveal {sealed === 1 ? "it" : "them"}
+                </Link>
+                .
+              </p>
+            )}
+            {pending > 0 && (
+              <p className="px-1 text-xs text-silver-dim">
+                {pending} more without a {column === "judges" ? "confirmed panel" : "number"} yet
                 {column === "friends" || column === "everyone" ? ": an average needs two people." : "."}
               </p>
             )}
