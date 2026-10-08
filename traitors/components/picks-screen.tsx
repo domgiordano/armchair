@@ -14,11 +14,13 @@ import { Select } from "@/components/ui/select";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { FRIENDS, getRecord, type EventType, type PersonRecord, type RecordCall } from "@/lib/api/traitors";
-import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
 import { firstName, playerOf, roman } from "@/lib/players";
 import { accuracy, headToHead, mostPicked, percent, pointsOverTime, total, type Rate } from "@/lib/record";
+import { released } from "@/lib/schedule";
 import { useFaceDown } from "@/lib/sealed";
 import { cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
+import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
+import { useNow } from "@armchair/app-core/show/use-now";
 
 const SHORT: Record<EventType, string> = { MURDER: "Murder", RT: "Banish", RECRUIT: "Recruit" };
 const ORDER: EventType[] = ["MURDER", "RT", "RECRUIT"];
@@ -65,7 +67,8 @@ export function PicksScreen() {
   }, [view.season, scope, key]);
 
   const current = load?.key === key ? load.value : { kind: "loading" as const };
-  const eps = view.episodes.map((e) => e.ep);
+  const now = useNow();
+  const eps = view.episodes.filter((e) => released(e, now)).map((e) => e.ep);
 
   return (
     <>
@@ -156,7 +159,7 @@ function Breakdown({ season, eps, people, chosen, onChoose, players }: Breakdown
             <Trend eps={eps} person={person} me={person.me ? null : me ?? null} />
             <Winners season={season} person={person} players={players} />
             <Usual season={season} calls={person.calls} players={players} />
-            <Timeline season={season} calls={person.calls} players={players} />
+            <Timeline season={season} calls={person.calls} players={players} you={person.me} />
           </>
         )}
       </section>
@@ -413,13 +416,23 @@ function Usual({ season, calls, players }: { season: string; calls: RecordCall[]
 }
 
 /** Who they chose, when: every episode's calls with what each pick scored. */
-function Timeline({ season, calls, players }: { season: string; calls: RecordCall[]; players: BreakdownProps["players"] }) {
+function Timeline({
+  season,
+  calls,
+  players,
+  you,
+}: {
+  season: string;
+  calls: RecordCall[];
+  players: BreakdownProps["players"];
+  you: boolean;
+}) {
   const eps = [...new Set(calls.map((c) => c.ep))].sort((a, b) => b - a);
   if (eps.length === 0) return null;
   return (
     <section aria-labelledby="timeline-title" className="flex flex-col gap-2">
       <h3 id="timeline-title" className={EYEBROW}>
-        Who they chose, episode by episode
+        Who {you ? "you" : "they"} chose, episode by episode
       </h3>
       <ol className="flex flex-col gap-2">
         {eps.map((ep) => {
