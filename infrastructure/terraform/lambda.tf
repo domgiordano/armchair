@@ -33,6 +33,12 @@ locals {
   ]
   admin_lambdas = [
     { name = "keyword", description = "Set a couple's SMS keyword override", path_part = "keyword", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "me", description = "Whether the caller is a site admin", path_part = "me", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "overview", description = "Admin dashboard: active users, signups, retention, funnel, participation", path_part = "overview", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "users", description = "Admin: every user with their recent activity", path_part = "users", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "user", description = "Admin: one user's profile, groups, friends and activity log", path_part = "user", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "events", description = "Admin: the newest activity events across every site", path_part = "events", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "audit", description = "Admin: the log of admin support actions", path_part = "audit", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
   stats_lambdas = [
     { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
@@ -169,6 +175,11 @@ locals {
     traitors_credits   = ["catalog:Query"]
     traitors_record    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:BatchGetItem"]
     invite_preview     = ["groups:GetItem"]
+    admin_overview     = ["events:Query", "users:Scan", "catalog:Query", "scores:Query"]
+    admin_users        = ["events:Query", "users:Scan", "groups:Scan"]
+    admin_user         = ["users:GetItem", "users:BatchGetItem", "events:Query", "events_index:Query", "groups:Query", "social:Query"]
+    admin_events       = ["events:Query", "users:BatchGetItem"]
+    admin_audit        = ["events:Query"]
     events_track       = ["events:UpdateItem", "events:BatchWriteItem"]
     events_anon        = ["events:UpdateItem", "events:BatchWriteItem"]
     users_delete       = ["events:Query", "events_index:Query", "events:BatchWriteItem", "events:UpdateItem", "groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
@@ -179,9 +190,12 @@ locals {
     users_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
   }
 
-  # users_delete scans four tables for rows naming the caller.
+  # users_delete scans four tables for rows naming the caller; the admin reports
+  # scan users and read up to 13 weeks of rollups, and API Gateway stops at 29 s.
   api_timeout = {
-    users_delete = 60
+    users_delete   = 60
+    admin_overview = 29
+    admin_users    = 29
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
