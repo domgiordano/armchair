@@ -119,6 +119,7 @@ locals {
     board        = aws_dynamodb_table.board.arn
     social       = aws_dynamodb_table.social.arn
     writeups     = aws_dynamodb_table.writeups.arn
+    email        = aws_dynamodb_table.email.arn
     events       = aws_dynamodb_table.events.arn
     events_index = "${aws_dynamodb_table.events.arn}/index/*"
   }
