@@ -96,16 +96,18 @@ resource "aws_sesv2_configuration_set_event_destination" "bounce_complaint" {
 
 # HMAC key for unsubscribe links (backend/lambdas/common/unsubscribe.py).
 # Changing it breaks every link already sent, so Terraform never rewrites the
-# value; rotate it by hand only if it leaks.
+# value; rotate it by hand only if it leaks. Under the AWS-managed aws/ssm key,
+# not the app CMK: the Terraform plan role reads it on refresh and can't use the CMK.
 resource "random_password" "email_unsubscribe_secret" {
   length  = 64
   special = false
 }
 
 resource "aws_ssm_parameter" "email_unsubscribe_secret" {
-  name   = "/${var.app_name}/email-unsubscribe-secret"
-  type   = "SecureString"
-  key_id = aws_kms_key.app.arn
+  name = "/${var.app_name}/email-unsubscribe-secret"
+  type = "SecureString"
+  # Named, not omitted: key_id is computed, so leaving it out keeps whatever key it has.
+  key_id = "alias/aws/ssm"
   value  = random_password.email_unsubscribe_secret.result
 
   lifecycle {

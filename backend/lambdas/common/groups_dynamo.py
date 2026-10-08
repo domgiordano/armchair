@@ -6,6 +6,7 @@ Items, per PLAN.md "Data model":
     GROUP#{gid}  MEMBER#{sub}   joinedAt
     GROUP#{gid}  INVITED#{sub}  by, at, notif   a member invited a friend
     GROUP#{gid}  REQUEST#{sub}  at, notif       a code-holder asked to join
+    GROUP#{gid}  SHOW#{app}     by, at          the group plays that show (group_shows.py)
     USER#{sub}   GROUP#{gid}    joinedAt   (the caller's groups)
     INVITE#{code} GROUP         gid
 
@@ -21,6 +22,7 @@ import re
 import secrets
 from datetime import UTC, datetime
 
+from lambdas.common import group_shows
 from lambdas.common import notifications_dynamo as notifications
 from lambdas.common.api import ForbiddenError, NotFoundError, ValidationError, text
 from lambdas.common.dynamo import query_all, resource, table, transact
@@ -34,18 +36,21 @@ def _now() -> str:
     return datetime.now(UTC).isoformat(timespec="seconds")
 
 
-def create(sub: str, name: str) -> dict:
+def create(sub: str, name: str, app: str | None = None) -> dict:
     gid = secrets.token_urlsafe(9)
     # 96 bits: the code is the only thing standing between a stranger and the group.
     code = secrets.token_urlsafe(12)
     now = _now()
     tbl = table("GROUPS_TABLE").name
     items = [
-        {"pk": f"GROUP#{gid}", "sk": "META", "name": name, "createdBy": sub, "inviteCode": code},
+        # A new group starts on the show it was made in, or none from the hub.
+        {"pk": f"GROUP#{gid}", "sk": "META", "name": name, "createdBy": sub, "inviteCode": code, "showsSeeded": True},
         {"pk": f"INVITE#{code}", "sk": "GROUP", "gid": gid},
         {"pk": f"GROUP#{gid}", "sk": f"MEMBER#{sub}", "joinedAt": now},
         {"pk": f"USER#{sub}", "sk": f"GROUP#{gid}", "joinedAt": now},
     ]
+    if app:
+        items.append({"pk": f"GROUP#{gid}", "sk": f"SHOW#{app}", "by": sub, "at": now})
     resource().meta.client.transact_write_items(
         TransactItems=[
             {
@@ -214,6 +219,35 @@ def set_approval(gid: str, on: bool) -> None:
     )
 
 
+def add(gid: str, sub: str) -> None:
+    """
+    Puts a user in a group, or completes a half-written membership: both rows, the
+    first joinedAt kept. A pending invite or join request for them goes, with its
+    notification.
+    """
+    rows = {r["sk"]: r for r in query_all(table("GROUPS_TABLE"), f"GROUP#{gid}")}
+    if "META" not in rows:
+        raise NotFoundError("No such group")
+    pending = [rows[sk] for sk in (f"INVITED#{sub}", f"REQUEST#{sub}") if sk in rows]
+    transact(
+        [*_joins(gid, sub), *(("Delete", {"Key": _key(gid, r["sk"])}) for r in pending)],
+        "GROUPS_TABLE",
+    )
+    for r in pending:
+        owner = sub if r["sk"].startswith("INVITED#") else rows["META"]["createdBy"]
+        notifications.drop(owner, r.get("notif"))
+
+
+def reinvite(gid: str, sub: str) -> str:
+    """Sends a fresh invite from the owner, replacing any earlier one and its notification."""
+    group = meta(gid)
+    old = _get(gid, f"INVITED#{sub}")
+    if old:
+        table("GROUPS_TABLE").delete_item(Key=_key(gid, f"INVITED#{sub}"))
+        notifications.drop(sub, old.get("notif"))
+    return invite(gid, group["createdBy"], sub)
+
+
 def remove(gid: str, sub: str) -> None:
     """Takes a member out; the owner's own membership is never removed this way."""
     transact(_leaves(gid, sub), "GROUPS_TABLE")
@@ -233,7 +267,7 @@ def delete(gid: str) -> None:
             kind, _, sub = r["sk"].partition("#")
             if kind == "MEMBER":
                 batch.delete_item(Key={"pk": f"USER#{sub}", "sk": f"GROUP#{gid}"})
-            if kind in ("MEMBER", "INVITED", "REQUEST"):
+            if kind in ("MEMBER", "INVITED", "REQUEST", "SHOW"):
                 batch.delete_item(Key=_key(gid, r["sk"]))
         batch.delete_item(Key={"pk": f"INVITE#{group['inviteCode']}", "sk": "GROUP"})
     tbl.delete_item(Key=_key(gid, "META"))
@@ -300,6 +334,7 @@ def mine(sub: str) -> list[dict]:
     links = sorted(query_all(tbl, f"USER#{sub}"), key=lambda r: r["joinedAt"])
     groups = []
     joined: dict[str, dict[str, str | None]] = {}
+    shows: dict[str, dict[str, dict]] = {}
     for link in links:
         gid = link["sk"].removeprefix("GROUP#")
         rows = query_all(tbl, f"GROUP#{gid}")
@@ -309,6 +344,7 @@ def mine(sub: str) -> list[dict]:
             continue
         owner = group["createdBy"]
         members = _subs(rows, "MEMBER#")
+        shows[gid] = group_shows.seed(gid, group, set(members), group_shows.from_rows(rows))
         joined[gid] = {
             r["sk"].removeprefix("MEMBER#"): r.get("joinedAt")
             for r in rows
@@ -335,4 +371,17 @@ def mine(sub: str) -> list[dict]:
         for k in lists:
             g[k] = [{**profiles[s], "relation": relations.get(s)} for s in g[k]]
         g["members"] = [{**m, "joinedAt": joined[g["id"]].get(m["sub"])} for m in g["members"]]
+    # Who in each group has played each show, for "3 playing" and "Start watching".
+    plays = group_shows.playing({m["sub"] for g in groups for m in g["members"]})
+    for g in groups:
+        subs = {m["sub"] for m in g["members"]}
+        g["shows"] = [
+            {
+                "app": app,
+                "active": app in shows[g["id"]],
+                **shows[g["id"]].get(app, {"by": None, "at": None}),
+                "playing": sorted(subs & plays[app]),
+            }
+            for app in group_shows.APPS
+        ]
     return groups

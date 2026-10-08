@@ -29,6 +29,7 @@ locals {
     WRITEUPS_TABLE     = aws_dynamodb_table.writeups.id
     EMAIL_TABLE        = aws_dynamodb_table.email.id
     EVENTS_TABLE       = aws_dynamodb_table.events.id
+    FAVORITES_TABLE    = aws_dynamodb_table.favorites.id
     AVATARS_BUCKET     = aws_s3_bucket.avatars.id
     AVATARS_URL        = "https://${aws_cloudfront_distribution.avatars.domain_name}"
   }

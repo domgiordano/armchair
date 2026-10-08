@@ -2,7 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
-const api = vi.hoisted(() => ({ getRanks: vi.fn(), getStats: vi.fn(), getEpisode: vi.fn() }));
+const api = vi.hoisted(() => ({ getRanks: vi.fn(), getStats: vi.fn(), getEpisode: vi.fn(), FRIENDS: "friends" }));
 vi.mock("@/lib/api/traitors", () => api);
 vi.mock("@armchair/app-core/api/groups", () => ({ getMyGroups: vi.fn(async () => []) }));
 vi.mock("next/navigation", () => ({ useSearchParams: () => new URLSearchParams() }));
