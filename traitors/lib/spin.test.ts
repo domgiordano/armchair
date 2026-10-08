@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { arcOf, HEAD, headShare, offset, perimeter, pointAt, ringFor, SEAT, snapIndex, turnToward } from "./spin";
+import { arcOf, faceSize, HEAD, headShare, offset, pointAt, ringFor, SEAT, snapIndex, turnToward } from "./spin";
 
 describe("spin", () => {
   it("brings a seat to the head the short way round", () => {
@@ -36,41 +36,43 @@ describe("spin", () => {
     const right = pointAt(r, arcOf(r, 1, 12));
     const left = pointAt(r, arcOf(r, -1, 12));
     expect(top.x).toBeCloseTo(r.cx);
-    expect(top.y).toBeCloseTo(r.cy - r.ry);
+    expect(top.y).toBeCloseTo(r.cy - r.r);
     expect(right.x).toBeGreaterThan(r.cx);
     expect(left.x).toBeLessThan(r.cx);
     expect(right.y).toBeCloseTo(left.y);
   });
 
-  for (const width of [288, 343, 398, 440]) {
-    for (const n of [12, 22]) {
-      it(`fits ${n} faces in ${width}px, a tap target apart`, () => {
-        const r = ringFor(width, n);
-        expect(r.width).toBe(width);
+  // 382 is a 390 phone's sheet with the table run into its gutters; 700 a desktop's.
+  for (const size of [382, 440, 700]) {
+    for (const n of [12, 21]) {
+      it(`fits ${n} faces round a ${size}px table, a tap target apart`, () => {
+        const r = ringFor(size, n);
+        expect(r.seat).toBeGreaterThanOrEqual(SEAT);
         const spots = Array.from({ length: n }, (_, i) => {
           const k = offset(i, 0, n);
-          return { ...pointAt(r, arcOf(r, k, n)), size: SEAT + (HEAD - SEAT) * headShare(k) };
+          return { ...pointAt(r, arcOf(r, k, n)), size: faceSize(r, k) };
         });
         for (const s of spots) {
           expect(s.x - s.size / 2).toBeGreaterThanOrEqual(0);
-          expect(s.x + s.size / 2).toBeLessThanOrEqual(width);
+          expect(s.x + s.size / 2).toBeLessThanOrEqual(size);
           expect(s.y - s.size / 2).toBeGreaterThanOrEqual(0);
-          expect(s.y + s.size / 2).toBeLessThanOrEqual(r.height);
+          expect(s.y + s.size / 2).toBeLessThanOrEqual(size);
         }
         // Round faces: centres at least the two radii apart never overlap.
         spots.forEach((a, i) => {
           const b = spots[(i + 1) % n];
-          expect(Math.hypot(a.x - b.x, a.y - b.y)).toBeGreaterThanOrEqual((a.size + b.size) / 2);
+          expect(Math.hypot(a.x - b.x, a.y - b.y)).toBeGreaterThanOrEqual((a.size + b.size) / 2 - 0.01);
         });
       });
     }
   }
 
-  it("keeps a dozen round and stretches a big cast into an oval", () => {
-    const twelve = ringFor(343, 12);
-    expect(twelve.ry).toBeLessThan(twelve.rx);
-    const big = ringFor(288, 22);
-    expect(big.ry).toBeGreaterThan(big.rx);
-    expect(perimeter(big)).toBeGreaterThanOrEqual(22 * SEAT);
+  it("is a circle, with bigger faces on a bigger table", () => {
+    const phone = ringFor(382, 21);
+    const desk = ringFor(700, 21);
+    expect(phone.cx).toBe(phone.cy);
+    expect(desk.seat).toBeGreaterThan(phone.seat);
+    expect(desk.head).toBeGreaterThan(phone.head);
+    expect(HEAD).toBeGreaterThan(SEAT);
   });
 });

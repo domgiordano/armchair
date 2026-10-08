@@ -63,9 +63,11 @@ If the event doesn't happen, the pick voids: 0 points, no penalty. Edge-case rul
 - **End game.** End-game votes are a result, not a pick. The winner bet covers the finale.
 
 ### Winner bet
-- On first entering a current season you are asked to pick 1 to 3 winners and, for each, whether they win as a Faithful or a Traitor.
-- The bet is final. Without it you can browse the season, but every open event stays locked and nothing can be picked.
-- The multiplier is `(E - r) / E`, where `E` is the episode count and `r` the episodes already released when you lock. A bet made before the premiere is worth full points.
+- On first entering a current season you are asked for your ranked top 3 winners and, for each, whether they win as a Faithful or a Traitor. Sealing 1st alone is enough to start picking.
+- Each sealed place is final. An empty 2nd or 3rd can be filled later, while the season is current. Without a 1st you can browse the season, but every open event stays locked and nothing can be picked.
+- The multiplier is `(E - r) / E` per place, where `E` is the episode count and `r` the episodes already released when that place was sealed. A place sealed before the premiere is worth full points.
+- Bets sealed before ranking (10/8) keep their order: a single pick is 1st with 2nd and 3rd empty (`scripts/migrate_traitors_bets.py`).
+- No partial credit for finishing position. The show has no finishing order: the pot goes to whoever is left, and Wikipedia's finale labels (`Runner-up`, `Banished (Episode 12)`) vary by season.
 
 ### Points (confirmed)
 | Call | Points |
@@ -75,8 +77,8 @@ If the event doesn't happen, the pick voids: 0 points, no penalty. Edge-case rul
 | RT any pick in top 3, wrong slot | 1 |
 | Murder victim | 4 |
 | Recruit | 4 |
-| Winner, per correct pick (up to 3) | 20 × multiplier |
-| Winner's faction, per correct pick | +10 × multiplier |
+| Winner, by your rank for them: 1st / 2nd / 3rd | 20 / 12 / 6 × multiplier |
+| Winner's faction, by rank | +10 / +6 / +3 × multiplier |
 
 Leaderboards rank by total. Ties go to more correct banishments, then to the earliest first pick. A per-event average is shown beside the total.
 

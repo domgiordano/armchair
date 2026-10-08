@@ -206,6 +206,22 @@ def test_group_scope_is_members_only(show):
     assert {r["sub"] for r in board()["ranked"]} == {A, B, C}
 
 
+def test_group_board_counts_each_members_answers_this_week(show, monkeypatch):
+    from lambdas.common import window
+
+    monkeypatch.setattr(window, "active", lambda meta, spans, at: 3)
+    family = create_group(A, "Family")
+    join_group(B, family["inviteCode"])
+    answer_many(A, lambda cid: 8, count=2)
+    answer_many(C, lambda cid: 8, count=2)
+    week = board(scope="group", group=family["id"])["week"]
+    assert week["ep"] == 3
+    assert week["rateable"] > 2
+    assert week["answered"] == {A: 2, B: 0}
+    assert "week" not in board(scope="group", group=family["id"], season="all")
+    assert "week" not in board()
+
+
 def test_friends_scope_is_the_caller_and_accepted_friends(show):
     request(A, B)
     accept(B, A)

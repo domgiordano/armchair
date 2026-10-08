@@ -119,7 +119,7 @@ def reconcile_winners(show: str, season: int, winners: dict[str, str], episodes:
     want = {
         f"WIN#{b['sk']}": {
             "sig": sig(winners),
-            "pts": points.winner(b["picks"], winners, episodes, int(b["released"])),
+            "pts": points.winner(b["picks"], winners, episodes),
         }
         for b in bets
     }

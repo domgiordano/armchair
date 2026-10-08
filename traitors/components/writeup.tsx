@@ -1,6 +1,7 @@
 import { useId } from "react";
 
 import type { Writeup as Text } from "@/lib/api/traitors";
+import { cleanBio } from "@/lib/bio";
 import { cn, EYEBROW, TEXT_LINK } from "@/lib/ui";
 
 /** The attribution CC BY-SA asks for, naming the wiki the text came from. */
@@ -40,7 +41,7 @@ export function Writeup({ title, writeup, className }: { title: string; writeup:
       <h2 id={id} className={EYEBROW}>
         {title}
       </h2>
-      <p className="text-lg leading-relaxed whitespace-pre-line text-parchment">{writeup.text}</p>
+      <p className="text-lg leading-relaxed whitespace-pre-line text-parchment">{cleanBio(writeup.text)}</p>
       <Credit writeup={writeup} />
     </section>
   );

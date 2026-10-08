@@ -7,11 +7,12 @@ GET /traitors/season?season=tus-5 - a Traitors season's schedule and the caller'
                  recap: {text, source, sourceUrl} | null}],
      cast: [{id, name, headshot, faction, exit: {ep, how} | null}],
      winners: [{id, name, headshot, faction}]      past seasons only
-     betRoster: [{id, name, headshot}]}            when needsBet only
+     betRoster: [{id, name, headshot}]}            while the bet has an empty place
 
 Each episode carries how many of its events the caller has answered, which needs no gate:
 it's the caller's own rows. A current season can be browsed before the winner bet;
-`needsBet` says picking waits for it and `betRoster` is who it may name. `cast` follows
+`needsBet` says picking waits for it. `bet.picks` is ranked, each with the `released` it was
+sealed at; a bet of one or two can be completed later, and `betRoster` is who it may name. `cast` follows
 traitors_gate.wall: in a current season only exits from closed episodes show. `summary`
 is the season article's lead, attributed by `sourceUrl` (CC BY-SA), written by discovery.
 A recap reveals its episode's results, so it follows traitors_gate.seen like the episode
@@ -26,6 +27,7 @@ import time
 from lambdas.common.api import api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, season_pk
+from lambdas.common.points import RANK_SHARE
 from lambdas.common.traitors_dynamo import bet, season_parts, traitors_ref
 from lambdas.common.traitors_gate import (
     bet_roster,
@@ -93,6 +95,6 @@ def handler(event, context):
             for p in cast
             if (p["exit"] or {}).get("how") == "winner"
         ]
-    if data["needsBet"]:
+    if data["current"] and len((own_bet or {}).get("picks", [])) < len(RANK_SHARE):
         data["betRoster"] = bet_roster(meta, episodes, players)
     return ok(data)

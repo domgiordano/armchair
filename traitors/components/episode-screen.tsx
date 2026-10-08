@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Ballot } from "@/components/ballot";
 import { PICK_PROMPT, useBet } from "@/components/bet";
 import { CatchUp } from "@/components/catch-up";
+import { FaceDownBefore } from "@/components/face-down";
 import { GroupPicker } from "@/components/group-picker";
 import { useSeasonView } from "@/components/season-data";
 import { useSeasonName } from "@/components/season-provider";
@@ -48,17 +49,19 @@ export function EpisodeScreen() {
         <GroupPicker {...filter} />
       </div>
       <CatchUp key={episode.ep} episodes={view.episodes} episode={episode} now={now} onCatchUp={go}>
-        <Ballot
-          key={episode.ep}
-          season={view.season}
-          episode={episode}
-          group={filter.group}
-          members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
-          seasonTitle={name.title}
-          onNeedBet={() => bet.open(PICK_PROMPT)}
-          cast={view.cast}
-          onSealed={reload}
-        />
+        <FaceDownBefore key={episode.ep} season={view.season} ep={episode.ep}>
+          <Ballot
+            key={episode.ep}
+            season={view.season}
+            episode={episode}
+            group={filter.group}
+            members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
+            seasonTitle={name.title}
+            onNeedBet={() => bet.open(PICK_PROMPT)}
+            cast={view.cast}
+            onSealed={reload}
+          />
+        </FaceDownBefore>
       </CatchUp>
     </>
   );

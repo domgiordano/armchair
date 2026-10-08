@@ -55,7 +55,7 @@ export function BetProvider({ view, onSealed, children }: BetProviderProps) {
       {needed && <BetBanner worth={multiplier(view.episodes.length, out)} onOpen={() => open()} />}
       {children}
       {needed && (
-        <Sheet open={prompt !== null} onClose={close} label="Your winner bet">
+        <Sheet open={prompt !== null} onClose={close} label="Your winner bet" size="large">
           <div className="-mb-3 flex justify-end">
             <button type="button" aria-label="Not now" onClick={close} className={ICON_BUTTON}>
               <CloseIcon />

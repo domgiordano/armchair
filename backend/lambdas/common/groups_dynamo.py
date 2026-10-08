@@ -293,11 +293,13 @@ def mine(sub: str) -> list[dict]:
     """
     The caller's groups, oldest first, each with its members' names and avatars,
     who is invited, and, for the owner only, who is asking to join. Everyone
-    listed carries the caller's `relation` to them, None for the caller.
+    listed carries the caller's `relation` to them, None for the caller;
+    members also carry when they joined.
     """
     tbl = table("GROUPS_TABLE")
     links = sorted(query_all(tbl, f"USER#{sub}"), key=lambda r: r["joinedAt"])
     groups = []
+    joined: dict[str, dict[str, str | None]] = {}
     for link in links:
         gid = link["sk"].removeprefix("GROUP#")
         rows = query_all(tbl, f"GROUP#{gid}")
@@ -307,6 +309,11 @@ def mine(sub: str) -> list[dict]:
             continue
         owner = group["createdBy"]
         members = _subs(rows, "MEMBER#")
+        joined[gid] = {
+            r["sk"].removeprefix("MEMBER#"): r.get("joinedAt")
+            for r in rows
+            if r["sk"].startswith("MEMBER#")
+        }
         groups.append(
             {
                 "id": gid,
@@ -327,4 +334,5 @@ def mine(sub: str) -> list[dict]:
     for g in groups:
         for k in lists:
             g[k] = [{**profiles[s], "relation": relations.get(s)} for s in g[k]]
+        g["members"] = [{**m, "joinedAt": joined[g["id"]].get(m["sub"])} for m in g["members"]]
     return groups
