@@ -10,6 +10,7 @@ GROUPS_TABLE = "t-armchair-groups"
 BOARD_TABLE = "t-armchair-board"
 SOCIAL_TABLE = "t-armchair-social"
 WRITEUPS_TABLE = "t-armchair-writeups"
+EMAIL_TABLE = "t-armchair-email"
 EVENTS_TABLE = "t-armchair-events"
 AVATARS_BUCKET = "t-armchair-avatars"
 AVATARS_URL = "https://avatars.example.net"
@@ -74,6 +75,7 @@ def aws(monkeypatch):
         "BOARD_TABLE": BOARD_TABLE,
         "SOCIAL_TABLE": SOCIAL_TABLE,
         "WRITEUPS_TABLE": WRITEUPS_TABLE,
+        "EMAIL_TABLE": EMAIL_TABLE,
         "EVENTS_TABLE": EVENTS_TABLE,
         "AVATARS_BUCKET": AVATARS_BUCKET,
         "AVATARS_URL": AVATARS_URL,
@@ -91,7 +93,7 @@ def aws(monkeypatch):
             BillingMode="PAY_PER_REQUEST",
         )
         tables = (CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE, GROUPS_TABLE, BOARD_TABLE)
-        for name in (*tables, SOCIAL_TABLE, WRITEUPS_TABLE):
+        for name in (*tables, SOCIAL_TABLE, WRITEUPS_TABLE, EMAIL_TABLE):
             client.create_table(TableName=name, BillingMode="PAY_PER_REQUEST", **PK_SK)
         client.create_table(
             TableName=EVENTS_TABLE,

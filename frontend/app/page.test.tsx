@@ -16,10 +16,10 @@ describe("shell", () => {
     expect(screen.getByRole("button", { name: "Skip intro" })).toBeTruthy();
   });
 
-  it("titles pages as Armchair Judge for the show", () => {
+  it("titles pages for the show first", () => {
     expect(metadata.title).toEqual({
-      default: "Armchair Judge · Dancing with the Stars",
-      template: "%s · Armchair Judge",
+      default: "Dancing with the Stars · Armchair Judge",
+      template: "%s · DWTS · Armchair Judge",
     });
   });
 
