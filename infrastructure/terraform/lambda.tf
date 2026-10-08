@@ -76,6 +76,13 @@ locals {
     { name = "stats", description = "The caller's own Traitors points by event and episode", path_part = "stats", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "credits", description = "Who made each Traitors headshot in a season, and its license", path_part = "credits", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  # unsubscribe is public: the signed token in the link is its only credential, and
+  # ANY because one path serves the GET confirmation and the POST (form and RFC 8058 one-click).
+  email_lambdas = [
+    { name = "prefs", description = "The caller's email address and each email type on or off", path_part = "prefs", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "prefs_set", description = "Turn email types on or off, or dismiss the first-run notice", path_part = "prefs-set", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "unsubscribe", description = "Unsubscribe from email by signed token", path_part = "unsubscribe", http_method = "ANY", authorization = "NONE" },
+  ]
   # Public: chat apps fetch it for the link preview, and they carry no token.
   invite_lambdas = [
     { name = "preview", description = "Link-preview card for a group invite, then on to /join/", path_part = "preview", http_method = "GET", authorization = "NONE" },
@@ -98,6 +105,7 @@ locals {
     { for l in local.people_lambdas : "people_${l.name}" => l },
     { for l in local.traitors_lambdas : "traitors_${l.name}" => l },
     { for l in local.invite_lambdas : "invite_${l.name}" => l },
+    { for l in local.email_lambdas : "email_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -159,6 +167,9 @@ locals {
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
     traitors_credits   = ["catalog:Query"]
     invite_preview     = ["groups:GetItem"]
+    email_prefs        = ["users:GetItem", "email:GetItem"]
+    email_prefs_set    = ["users:GetItem", "users:UpdateItem", "email:GetItem"]
+    email_unsubscribe  = ["users:GetItem", "users:UpdateItem"]
     users_delete       = ["groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
   }
 
@@ -171,6 +182,9 @@ locals {
   api_timeout = {
     users_delete = 60
   }
+
+  # Functions that sign or check unsubscribe links (common/unsubscribe.py).
+  unsubscribe_signers = ["email_unsubscribe"]
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
   # signed with the upload function's own credentials, so its PutObject is
@@ -252,6 +266,16 @@ data "aws_iam_policy_document" "api" {
       sid       = "ReadAdmins"
       actions   = ["ssm:GetParameter"]
       resources = [aws_ssm_parameter.admin_emails.arn]
+    }
+  }
+
+  # A SecureString under the app CMK, which UseKey below decrypts.
+  dynamic "statement" {
+    for_each = contains(local.unsubscribe_signers, each.key) ? [1] : []
+    content {
+      sid       = "UnsubscribeSecret"
+      actions   = ["ssm:GetParameter"]
+      resources = [aws_ssm_parameter.email_unsubscribe_secret.arn]
     }
   }
 

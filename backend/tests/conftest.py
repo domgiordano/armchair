@@ -80,6 +80,9 @@ def aws(monkeypatch):
         "RECAPS_BUCKET": AVATARS_BUCKET,
         "APP_NAME": "armchair",
         "CORS_ALLOW_ORIGIN": "https://dwts.armchairjudge.com,http://localhost:3000",
+        "API_URL": "https://api.dwts.armchairjudge.com",
+        "DWTS_URL": "https://dwts.armchairjudge.com",
+        "TRAITORS_URL": "https://traitors.armchairjudge.com",
     }.items():
         monkeypatch.setenv(k, v)
     with mock_aws():
@@ -121,3 +124,16 @@ def people(aws):
     sign_in(A, "Ada Lovelace")
     sign_in(B, "Bea Arthur", picture=None)
     sign_in(C, "Adam Driver")
+
+
+@pytest.fixture
+def unsubscribe_secret(aws):
+    """The SecureString common/unsubscribe.py signs with, and a fresh cache of it."""
+    from lambdas.common import unsubscribe
+
+    boto3.client("ssm").put_parameter(
+        Name="/armchair/email-unsubscribe-secret", Type="SecureString", Value="test-secret"
+    )
+    unsubscribe._secret.cache_clear()
+    yield
+    unsubscribe._secret.cache_clear()
