@@ -3,6 +3,7 @@
 import { useSyncExternalStore } from "react";
 
 import { AppShell } from "@/components/app-shell";
+import { EmailNotice } from "@/components/email-notice";
 import { Landing } from "@/components/landing";
 import { Overview } from "@/components/overview";
 import { likelySignedIn } from "@armchair/app-core/auth/session-hint";
@@ -21,6 +22,7 @@ export function Home() {
   if (status === "signedIn") {
     return (
       <AppShell title="Overview" wide>
+        <EmailNotice />
         <Overview />
       </AppShell>
     );
