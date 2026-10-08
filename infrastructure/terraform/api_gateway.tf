@@ -74,6 +74,11 @@ locals {
       invoke_arn = aws_lambda_function.api["people_${l.name}"].invoke_arn
     })
   ]
+  events_endpoints = [
+    for l in local.events_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["events_${l.name}"].invoke_arn
+    })
+  ]
   invite_endpoints = [
     for l in local.invite_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["invite_${l.name}"].invoke_arn
@@ -124,5 +129,6 @@ module "api" {
     people        = { path_prefix = "people", endpoints = local.people_endpoints }
     traitors      = { path_prefix = "traitors", endpoints = local.traitors_endpoints }
     invite        = { path_prefix = "invite", endpoints = local.invite_endpoints }
+    events        = { path_prefix = "events", endpoints = local.events_endpoints }
   }
 }
