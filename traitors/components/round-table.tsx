@@ -21,7 +21,7 @@ import { Headshot } from "@/components/ui/avatar";
 import type { EventType, Exit, Faction, Player } from "@/lib/api/traitors";
 import { finishText } from "@/lib/history";
 import { firstName, nameOf } from "@/lib/players";
-import { arcOf, HEAD, headShare, offset, perimeter, pointAt, ringFor, SEAT, wrap, type Point, type Ring } from "@/lib/spin";
+import { arcOf, faceSize, headShare, offset, perimeter, pointAt, ringFor, wrap, type Point, type Ring } from "@/lib/spin";
 import { button, cn, FOCUS } from "@/lib/ui";
 import { useSpin } from "@/lib/use-spin";
 
@@ -222,21 +222,34 @@ function stateOf(kind: TableKind, result: TableResult | null, id: string): SeatS
 
 const labelOf = (p: Seated, notes: Notes) => [p.name, ...notes.status].join(", ");
 
-/** The table's width in px, kept live. Before it's measured, a phone's. */
-function useWidth(ref: RefObject<HTMLDivElement | null>): number {
-  const [width, setWidth] = useState(343);
+// The tallest the table gets: a desktop window shows it whole with its arrows under it.
+const MAX_SIZE = 760;
+const BELOW = 150;
+
+/**
+ * The table's size in px, kept live: the width it's given, and no taller than
+ * the window leaves room for. Before it's measured, a phone's.
+ */
+function useSize(ref: RefObject<HTMLDivElement | null>): number {
+  const [size, setSize] = useState(358);
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (el.clientWidth > 0) setWidth(el.clientWidth);
-    if (typeof ResizeObserver === "undefined") return;
-    const observer = new ResizeObserver(([entry]) => {
-      if (entry.contentRect.width > 0) setWidth(Math.round(entry.contentRect.width));
-    });
+    const measure = () => {
+      if (el.clientWidth === 0) return;
+      setSize(Math.round(Math.min(el.clientWidth, MAX_SIZE, Math.max(320, window.innerHeight - BELOW))));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    if (typeof ResizeObserver === "undefined") return () => window.removeEventListener("resize", measure);
+    const observer = new ResizeObserver(measure);
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, [ref]);
-  return width;
+  return size;
 }
 
 /** A point `share` of the way from a seat to the table's middle, for what's set in front of it. */
@@ -261,12 +274,13 @@ interface TableProps {
 }
 
 function Table({ roster, name, kind, season, notesOf, faction, onTap, actions, hrefOf, ballots, shields, cast }: TableProps) {
+  const frame = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const keyed = useRef(false);
   const hint = useId();
   const n = roster.length;
-  const width = useWidth(stage);
-  const ring = useMemo(() => ringFor(width, n), [width, n]);
+  const size = useSize(frame);
+  const ring = useMemo(() => ringFor(size, n), [size, n]);
   // A night with a result opens on it: the banished, the murdered or the recruit at the head.
   const spin = useSpin(n, Math.max(0, roster.findIndex((p) => notesOf(p).state !== null)));
   const head = wrap(spin.head, n);
@@ -295,83 +309,87 @@ function Table({ roster, name, kind, season, notesOf, faction, onTap, actions, h
   };
 
   return (
-    <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_15rem] md:items-start md:gap-6">
-      <FocusCard
-        id={lead.id}
-        name={lead.name}
-        season={season}
-        status={leadNotes.status}
-        unmasked={leadNotes.unmasked}
-        href={hrefOf?.(lead.id)}
-        actions={actions?.(lead)}
-        className="md:order-2 md:pt-2"
-      />
-      <div className="flex flex-col gap-1 md:order-1">
-        <div
-          ref={stage}
-          role="group"
-          aria-label={name}
-          aria-describedby={hint}
-          tabIndex={0}
-          onKeyDown={onKeyDown}
-          {...spin.bind(perimeter(ring) / n)}
-          className={cn(FOCUS, "relative w-full touch-pan-y rounded-sm select-none")}
-          style={{ height: ring.height }}
-        >
-          <p id={hint} className="sr-only">
-            Left and right arrow keys turn the table.
-          </p>
-          <TableTop ring={ring} angle={(-spin.turn / n) * 360} seats={spots} />
-          {ballots && !spin.moving && <VoteLines roster={roster} ring={ring} spots={spots} ballots={ballots} />}
-          {roster.map((p, i) => {
-            const notes = notesOf(p);
-            return (
-              <div key={p.id}>
-                {/* With the votes drawn, your slate tokens would sit on the arrows; the slate below still lists them. */}
-                {notes.rank >= 0 && !ballots && (
-                  <Placed at={toward(ring, spots[i], 0.3 + 0.2 * headShare(spots[i].k))} z={5}>
-                    <Token kind={kind} rank={notes.rank} />
-                  </Placed>
-                )}
-                {notes.count > 0 && (
-                  <Placed at={toward(ring, spots[i], 0.5 + 0.15 * headShare(spots[i].k))} z={4}>
-                    <Tally count={notes.count} />
-                  </Placed>
-                )}
-              </div>
-            );
-          })}
-          {roster.map((p, i) => (
-            <TableSeat
-              key={p.id}
-              index={i}
-              player={p}
-              spot={spots[i]}
-              notes={notesOf(p)}
-              head={i === head}
-              faction={faction}
-              voting={Boolean(onTap)}
-              href={hrefOf?.(p.id)}
-              shield={shields.includes(p.id)}
-              cast={cast}
-              onTap={() => (i === head ? onTap?.(p.id) : spin.rotateTo(i))}
-            />
-          ))}
+    // Side by side only with room for both: a page's column stacks them, so the table keeps its seats.
+    <div className="@container">
+      <div className="flex flex-col gap-5 @4xl:grid @4xl:grid-cols-[minmax(0,1fr)_minmax(17rem,22rem)] @4xl:items-center @4xl:gap-8">
+        {/* On a phone the table runs into the sheet's gutters: 24 more px of rim is a seat. */}
+        <div ref={frame} className="flex flex-col items-center gap-1 max-sm:-mx-3">
+          <div
+            ref={stage}
+            role="group"
+            aria-label={name}
+            aria-describedby={hint}
+            tabIndex={0}
+            onKeyDown={onKeyDown}
+            {...spin.bind(perimeter(ring) / n)}
+            className={cn(FOCUS, "relative shrink-0 touch-pan-y rounded-full select-none")}
+            style={{ width: ring.size, height: ring.size }}
+          >
+            <p id={hint} className="sr-only">
+              Left and right arrow keys turn the table.
+            </p>
+            <TableTop ring={ring} angle={(-spin.turn / n) * 360} seats={spots} />
+            {ballots && !spin.moving && <VoteLines roster={roster} ring={ring} spots={spots} ballots={ballots} />}
+            {roster.map((p, i) => {
+              const notes = notesOf(p);
+              return (
+                <div key={p.id}>
+                  {/* With the votes drawn, your slate tokens would sit on the arrows; the slate below still lists them. */}
+                  {notes.rank >= 0 && !ballots && (
+                    <Placed at={toward(ring, spots[i], 0.3 + 0.2 * headShare(spots[i].k))} z={5}>
+                      <Token kind={kind} rank={notes.rank} />
+                    </Placed>
+                  )}
+                  {notes.count > 0 && (
+                    <Placed at={toward(ring, spots[i], 0.5 + 0.15 * headShare(spots[i].k))} z={4}>
+                      <Tally count={notes.count} />
+                    </Placed>
+                  )}
+                </div>
+              );
+            })}
+            {roster.map((p, i) => (
+              <TableSeat
+                key={p.id}
+                index={i}
+                ring={ring}
+                player={p}
+                spot={spots[i]}
+                notes={notesOf(p)}
+                head={i === head}
+                faction={faction}
+                voting={Boolean(onTap)}
+                href={hrefOf?.(p.id)}
+                shield={shields.includes(p.id)}
+                cast={cast}
+                onTap={() => (i === head ? onTap?.(p.id) : spin.rotateTo(i))}
+              />
+            ))}
+          </div>
+          <div className="flex items-center justify-between gap-3 max-sm:px-3" style={{ width: ring.size }}>
+            <SpinButton label="Turn to the previous player" onClick={() => spin.step(-1)}>
+              <path d="m15 6-6 6 6 6" />
+            </SpinButton>
+            <p aria-live="polite" className="min-w-0 truncate text-center text-sm text-ash">
+              <span className="sr-only">{lead.name} at the head of the table. </span>
+              <span aria-hidden="true">
+                <span className="nums">{head + 1}</span> of <span className="nums">{n}</span>
+              </span>
+            </p>
+            <SpinButton label="Turn to the next player" onClick={() => spin.step(1)}>
+              <path d="m9 6 6 6-6 6" />
+            </SpinButton>
+          </div>
         </div>
-        <div className="flex items-center justify-between gap-3">
-          <SpinButton label="Turn to the previous player" onClick={() => spin.step(-1)}>
-            <path d="m15 6-6 6 6 6" />
-          </SpinButton>
-          <p aria-live="polite" className="min-w-0 truncate text-center text-sm text-ash">
-            <span className="sr-only">{lead.name} at the head of the table. </span>
-            <span aria-hidden="true">
-              <span className="nums">{head + 1}</span> of <span className="nums">{n}</span>
-            </span>
-          </p>
-          <SpinButton label="Turn to the next player" onClick={() => spin.step(1)}>
-            <path d="m9 6 6 6-6 6" />
-          </SpinButton>
-        </div>
+        <FocusCard
+          id={lead.id}
+          name={lead.name}
+          season={season}
+          status={leadNotes.status}
+          unmasked={leadNotes.unmasked}
+          href={hrefOf?.(lead.id)}
+          actions={actions?.(lead)}
+        />
       </div>
     </div>
   );
@@ -425,7 +443,7 @@ function VoteLines({ roster, ring, spots, ballots }: VoteLinesProps) {
   const filter = useId();
   const seat = new Map(roster.map((p, i) => [p.id, i]));
   // Ends stop at the face's rim.
-  const face = (i: number) => ({ ...spots[i], r: (SEAT + (HEAD - SEAT) * headShare(spots[i].k)) / 2 + 3 });
+  const face = (i: number) => ({ ...spots[i], r: faceSize(ring, spots[i].k) / 2 + 3 });
   const centre = { x: ring.cx, y: ring.cy };
   const paths = Object.entries(ballots).flatMap(([voter, target]) => {
     const a = seat.get(voter);
@@ -459,9 +477,9 @@ function VoteLines({ roster, ring, spots, ballots }: VoteLinesProps) {
     <svg
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-[5] overflow-visible"
-      width={ring.width}
-      height={ring.height}
-      viewBox={`0 0 ${ring.width} ${ring.height}`}
+      width={ring.size}
+      height={ring.size}
+      viewBox={`0 0 ${ring.size} ${ring.size}`}
     >
       <defs>
         <filter id={filter}>
@@ -549,6 +567,7 @@ function Face({ player, notes, size, cast }: FaceProps) {
 
 interface TableSeatProps {
   index: number;
+  ring: Ring;
   player: Seated;
   spot: Point & { k: number };
   notes: Notes;
@@ -566,9 +585,9 @@ interface TableSeatProps {
  * elsewhere, so a face coming round to the head grows without going soft.
  * Only the head shows a name; the rest carry theirs in their label.
  */
-function TableSeat({ index, player, spot, notes, head, faction, voting, href, shield, cast, onTap }: TableSeatProps) {
+function TableSeat({ index, ring: r, player, spot, notes, head, faction, voting, href, shield, cast, onTap }: TableSeatProps) {
   const share = headShare(spot.k);
-  const size = SEAT + (HEAD - SEAT) * share;
+  const size = faceSize(r, spot.k);
   const picked = notes.rank >= 0;
   const ring = cn(
     "absolute inset-0 rounded-full ring-[3px] transition-shadow duration-150",
@@ -582,16 +601,16 @@ function TableSeat({ index, player, spot, notes, head, faction, voting, href, sh
   const style = {
     left: spot.x,
     top: spot.y,
-    width: HEAD,
-    height: HEAD,
-    transform: `translate(-50%, -50%) scale(${(size / HEAD).toFixed(4)})`,
+    width: r.head,
+    height: r.head,
+    transform: `translate(-50%, -50%) scale(${(size / r.head).toFixed(4)})`,
     // The head on top, then the nearest to it, so a neighbour never covers the face coming round.
     zIndex: 10 + Math.round(share * 20),
   };
   const body = (
     <>
       <span className="absolute inset-0 overflow-hidden rounded-full">
-        <Face player={player} notes={notes} size={HEAD} cast={cast} />
+        <Face player={player} notes={notes} size={r.head} cast={cast} />
       </span>
       <span aria-hidden="true" className={ring} />
       {shield && <ShieldMark className="absolute -top-1 -right-1 h-8 w-7 drop-shadow-[0_2px_2px_rgb(0_0_0/0.8)]" />}
