@@ -20,8 +20,9 @@ from lambdas.common.api import allow_origin, api_handler, query
 from lambdas.common.groups_dynamo import by_code
 
 CODE = re.compile(r"[A-Za-z0-9_-]{16}")
-DESCRIPTION = "Rate Dancing with the Stars with your friends on Armchair Judge"
+DESCRIPTION = "Score every Dancing with the Stars dance together, then see who called it closest."
 TRAITORS = "Call The Traitors with your friends on Armchair Judge"
+DWTS_SITE_NAME = "Armchair Judge · Dancing with the Stars"
 
 PAGE = """<!doctype html>
 <html lang="en">
@@ -30,10 +31,13 @@ PAGE = """<!doctype html>
 <title>{title}</title>
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Armchair Judge">
+<meta name="theme-color" content="#02081e">
+<meta property="og:site_name" content="{site_name}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="{image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
@@ -63,10 +67,21 @@ def handler(event, context):
     # og:url is this page, not /join/: Facebook re-scrapes og:url and would
     # land on the static card.
     host = event["requestContext"]["domainName"]
+    traitors = "traitors" in site
+    if not traitors:
+        title += " · Dancing with the Stars"
+    # DWTS gets its /join/ card (frontend/scripts/og). The Traitors site has no
+    # card of its own yet, so its links show the hub's family card.
+    image = (
+        f"{primary.replace('://dwts.', '://', 1)}/opengraph-image.jpg"
+        if traitors
+        else f"{primary}/join/opengraph-image.jpg"
+    )
     page = PAGE.format(
         title=escape(title),
-        description=escape(TRAITORS if "traitors" in site else DESCRIPTION),
-        image=f"{primary}/opengraph-image.jpg",
+        description=escape(TRAITORS if traitors else DESCRIPTION),
+        site_name="Armchair Judge" if traitors else escape(DWTS_SITE_NAME),
+        image=image,
         url=escape(f"https://{host}/invite/preview?code={param}"),
         target=escape(target),
         target_js=json.dumps(target),

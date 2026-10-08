@@ -8,6 +8,7 @@ import "./account.css";
 
 import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
 
+import { Activity } from "@/components/activity";
 import { Backdrop } from "@/components/backdrop";
 import { ACCOUNT_HINT_SCRIPT } from "@/lib/account-hint-script";
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full bg-night font-display text-text">
         <SsoHandoff />
+        <Activity />
         <Backdrop />
         {children}
       </body>

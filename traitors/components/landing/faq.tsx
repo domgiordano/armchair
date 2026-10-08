@@ -24,7 +24,7 @@ const QUESTIONS = [
   },
   {
     q: "How do the winner picks work?",
-    a: `You back up to ${WINNERS}, each as a Faithful or a Traitor, when you first open a season. The earlier you lock them, the more they're worth.`,
+    a: `You rank your top ${WINNERS}, each as a Faithful or a Traitor, when you first open a season. A right 1st choice scores 20, a 2nd 12 and a 3rd 6, plus 10, 6 or 3 for their side. Sealing your 1st opens your calls; you can fill 2nd and 3rd later. Each place is final once sealed, and the earlier you seal it, the more it's worth.`,
   },
   {
     q: "Which shows?",
