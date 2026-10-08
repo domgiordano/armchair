@@ -384,6 +384,7 @@ function Table({ roster, name, kind, season, notesOf, faction, onTap, actions, h
         <FocusCard
           id={lead.id}
           name={lead.name}
+          headshot={lead.headshot}
           season={season}
           status={leadNotes.status}
           unmasked={leadNotes.unmasked}

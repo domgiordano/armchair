@@ -9,3 +9,11 @@ vi.stubGlobal("sessionStorage", jsdomWindow.sessionStorage);
 // Testing Library only auto-cleans when the runner exposes a global afterEach;
 // vitest does not unless `globals: true`.
 afterEach(cleanup);
+
+// jsdom has <dialog> but not its modal methods.
+HTMLDialogElement.prototype.showModal = function (this: HTMLDialogElement) {
+  this.open = true;
+};
+HTMLDialogElement.prototype.close = function (this: HTMLDialogElement) {
+  this.open = false;
+};
