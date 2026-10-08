@@ -102,6 +102,8 @@ def test_mine_lists_members_with_avatars_and_no_email(aws):
     assert [g["name"] for g in groups] == ["Family"]
     assert groups[0]["inviteCode"] == family["inviteCode"]
     members = {m["sub"]: m for m in groups[0]["members"]}
+    joined = {sub: m.pop("joinedAt") for sub, m in members.items()}
+    assert all(joined.values())
     assert members[SUB] == {
         "sub": SUB,
         "name": "Test Viewer",
