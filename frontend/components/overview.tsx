@@ -11,6 +11,7 @@ import { CoupleLink, PersonLink } from "@/components/couple-names";
 import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { PageLoader } from "@/components/disco-loader";
 import { MiniDesk } from "@/components/mini-desk";
+import { OddsBoard } from "@/components/odds-board";
 import { formatScore } from "@/components/performance-card";
 import { ScoreCta } from "@/components/score-cta";
 import { CountUp } from "@/components/ui/count-up";
@@ -185,6 +186,7 @@ function OverviewView({ o, season }: ViewProps) {
         </div>
 
         <div className="grid items-start gap-8 md:grid-cols-2 lg:flex lg:flex-col lg:items-stretch">
+          {!o.open && <OddsBoard season={season} />}
           <LeaderboardTop season={season} />
           <Standings couples={o.couples} season={season} />
         </div>

@@ -94,3 +94,13 @@ export function useSealed(): (season: string, ep: number, key: string) => boolea
   const ids = new Set(parse(snapshot));
   return (season, ep, key) => ids.has(id(season, ep, key));
 }
+
+/** Episodes of `season` holding a sealed dance: what the odds board must not count yet. */
+export function useSealedEpisodes(season: string): number[] {
+  const snapshot = useSyncExternalStore(subscribe, raw, () => "[]");
+  const eps = parse(snapshot)
+    .map((x) => x.split("|"))
+    .filter(([s]) => s === season)
+    .map(([, ep]) => Number(ep));
+  return [...new Set(eps)].sort((a, b) => a - b);
+}

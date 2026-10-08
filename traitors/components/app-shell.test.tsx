@@ -13,6 +13,8 @@ vi.mock("next/navigation", () => ({
 vi.mock("@armchair/app-core/auth/use-auth", () => ({ useAuth: () => ({ signOut: vi.fn(async () => {}) }) }));
 vi.mock("@armchair/app-core/api/client", () => ({
   getMe: vi.fn(async () => ({ sub: "me", email: "me@example.com", name: "Me Myself", picture: null })),
+  // The odds board stays loading.
+  request: () => new Promise(() => {}),
 }));
 vi.mock("@/lib/api/traitors", () => traitors);
 vi.mock("@/lib/api/history", () => history);
