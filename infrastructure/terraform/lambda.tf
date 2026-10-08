@@ -185,7 +185,7 @@ locals {
     groups_manage      = ["groups:GetItem", "groups:UpdateItem", "groups:DeleteItem", "social:PutItem", "social:UpdateItem"]
     groups_delete      = ["groups:GetItem", "groups:Query", "groups:BatchWriteItem", "groups:DeleteItem", "social:DeleteItem"]
     groups_leave       = ["groups:GetItem", "groups:DeleteItem"]
-    groups_shows       = ["groups:GetItem", "groups:Query", "groups:PutItem", "groups:DeleteItem", "social:PutItem"]
+    groups_shows       = ["groups:GetItem", "groups:Query", "groups:PutItem", "groups:DeleteItem", "social:PutItem", "users:GetItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
     scores_skip_before = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem"]
     performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem", "users:GetItem", "social:GetItem"]
     week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
@@ -230,6 +230,7 @@ locals {
     admin_delete     = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
     groups_invite    = local.email_env
     friends_request  = local.email_env
+    groups_shows     = local.email_env
     admin_email_test = local.email_env
   }
 
@@ -247,7 +248,7 @@ locals {
   unsubscribe_signers = ["email_unsubscribe"]
 
   # Functions that send email (common/email_social.py), with send_email's grants.
-  email_senders = ["groups_invite", "friends_request", "admin_email_test"]
+  email_senders = ["groups_invite", "friends_request", "groups_shows", "admin_email_test"]
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
   # signed with the upload function's own credentials, so its PutObject is

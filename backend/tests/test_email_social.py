@@ -86,3 +86,19 @@ def test_group_activated_mails_the_other_members_once(people, outbox):
 
     # The same group starting DWTS is a new email.
     assert email_social.send_group_activated(group["id"], "dwts", B)["sent"] == 1
+
+
+def test_starting_a_show_through_the_api_emails_the_group(people, outbox):
+    from lambdas.groups_shows.handler import handler as shows_handler
+
+    group = groups_dynamo.create(A, "Round Table", "dwts")
+    groups_dynamo.join(B, group["inviteCode"])
+
+    def start():
+        body = {"group": group["id"], "app": "traitors", "active": True}
+        return call(shows_handler, authorized_event(path="/groups/shows", method="POST", sub=A, body=body))
+
+    assert start()[1]["data"]["started"] is True
+    assert start()[1]["data"]["started"] is False
+    (mail,) = outbox
+    assert (mail["sub"], mail["kind"], mail["show"]) == (B, "group_activated", "traitors")
