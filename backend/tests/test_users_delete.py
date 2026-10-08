@@ -200,3 +200,27 @@ def test_no_username_is_401_and_deletes_nothing(aws, pool):
     status, _ = delete(**{"cognito:username": None})
     assert status == 401
     assert everything(aws) == before
+
+
+def test_delete_takes_the_callers_activity_events_with_it(aws, pool):
+    from lambdas.events_track.handler import handler as track
+    from tests.conftest import EVENTS_TABLE
+
+    for sub in (A, B):
+        payload = {
+            "app": "dwts",
+            "did": "device-0001",
+            "session": "session-01",
+            "device": "phone",
+            "events": [{"kind": "view", "name": "page", "route": "/"}],
+        }
+        assert (
+            call(
+                track, authorized_event(path="/events/track", method="POST", sub=sub, body=payload)
+            )[0]
+            == 200
+        )
+    deletes_login(pool)
+    assert delete()[0] == 200
+    left = [i for i in aws.Table(EVENTS_TABLE).scan()["Items"] if i["pk"].startswith("DAY#")]
+    assert [i["uid"] for i in left] == [B]
