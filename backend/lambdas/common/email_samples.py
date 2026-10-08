@@ -97,7 +97,16 @@ SAMPLES = {
                 "cells": [("Season", "1.29 off"), ("Rank", "#6 of 35")],
                 "line": "Through Week 3 you were 1.29 points off the judges on average.",
             },
-            "groups": [{**_dwts_group, "note": "Through Week 3."}],
+            "groups": [
+                {
+                    "name": "Ballroom Bandits",
+                    "rows": [
+                        {"rank": 1, "name": "Maya R.", "value": "1.18 off", "move": 0},
+                        {"rank": 2, "name": "Sam T.", "value": "1.24 off", "move": 1},
+                        {"rank": 3, "name": "Jordan P.", "value": "1.29 off", "move": -1, "me": True},
+                    ],
+                }
+            ],
             "global": None,
             "top": None,
         },
@@ -141,7 +150,16 @@ SAMPLES = {
                 "cells": [("Season", "27 pts"), ("Rank", "#5 of 22")],
                 "line": "Through Episode 3 you had 27 points.",
             },
-            "groups": [{**_traitors_group, "note": "Through Episode 3."}],
+            "groups": [
+                {
+                    "name": "Round Table Regulars",
+                    "rows": [
+                        {"rank": 1, "name": "Priya K.", "value": "31 pts", "move": 0},
+                        {"rank": 2, "name": "Jordan P.", "value": "27 pts", "move": 1, "me": True},
+                        {"rank": 3, "name": "Leo M.", "value": "22 pts", "move": -1},
+                    ],
+                }
+            ],
             "global": None,
             "top": None,
         },
