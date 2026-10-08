@@ -4,8 +4,7 @@ import type { BoardRow, CoupleStats, Performers, WeekBoard } from "@/lib/api/cou
 import type { Overview } from "@/lib/api/overview";
 import type { OpenRow, PersonPage } from "@/lib/api/people";
 import type { Profile } from "@/lib/api/profile";
-import type { Stats } from "@/lib/api/stats";
-import { sealBoard, sealOverview, sealPerformers, sealPerson, sealProfile, sealStats } from "@/lib/show/seal-views";
+import { sealBoard, sealOverview, sealPerformers, sealPerson, sealProfile } from "@/lib/show/seal-views";
 import { sealsFrom } from "@/lib/show/sealed";
 
 const S = "dwts-35";
@@ -20,42 +19,6 @@ describe("sealsFrom", () => {
     expect(team.couple(S, "bo")).toBe(true);
     expect(team.couple("dwts-34", "bo")).toBe(false);
     expect(team.episode(S, 7)).toBe(true);
-  });
-});
-
-describe("sealStats", () => {
-  const stats: Stats = {
-    season: S,
-    ep: null,
-    mine: { count: 3, mae: 1, judges: {} },
-    episodes: [
-      { ep: 5, count: 1, mae: 1, judges: {} },
-      { ep: 6, count: 2, mae: 1, judges: {} },
-    ],
-    dances: [
-      { ep: 5, key: "bo#1", paddle: 7, panelMean: 8, error: 1, style: "Tango", judges: { a: 8, b: 8 } },
-      { ep: 6, key: "bo#1", paddle: 9, panelMean: 8.5, error: 0.5, style: "Jive", judges: { a: 9, b: 8 } },
-      { ep: 6, key: "ada#1", paddle: 4, panelMean: 10, error: 6, style: "Rumba", judges: { a: 10, b: 10 } },
-    ],
-    others: [{ sub: "u2", count: 3, mae: 2 }],
-    eliminated: { cy: { ep: 6, week: 5 }, dee: { ep: 4, week: 3 } },
-  };
-
-  it("leaves the sealed dance out of every number and hides that night's exits", () => {
-    const out = sealStats(stats, seals);
-    expect(out.dances.map((d) => d.key)).toEqual(["bo#1", "bo#1"]);
-    expect(out.mine).toEqual({ count: 2, mae: 0.75, judges: { a: { count: 2, mae: 0.5 }, b: { count: 2, mae: 1 } } });
-    expect(out.episodes).toEqual([
-      { ep: 5, count: 1, mae: 1, judges: {} },
-      { ep: 6, count: 1, mae: 0.5, judges: { a: { count: 1, mae: 0 }, b: { count: 1, mae: 1 } } },
-    ]);
-    expect(out.others).toEqual([]);
-    expect(out.eliminated).toEqual({ dee: { ep: 4, week: 3 } });
-    expect(out.sealed).toBe(1);
-  });
-
-  it("returns the stats untouched with nothing sealed", () => {
-    expect(sealStats(stats, sealsFrom([]))).toBe(stats);
   });
 });
 

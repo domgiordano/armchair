@@ -2,7 +2,6 @@ import type { BoardRow, CoupleDance, CoupleStats, CoupleSummary, Performers, Wee
 import type { Overview } from "@/lib/api/overview";
 import type { PerformanceRow, PersonPage } from "@/lib/api/people";
 import type { Profile } from "@/lib/api/profile";
-import type { Accuracy, Dance, Stats } from "@/lib/api/stats";
 import type { Seals } from "@/lib/show/sealed";
 
 /*
@@ -11,45 +10,6 @@ import type { Seals } from "@/lib/show/sealed";
  * either. Each read below drops or blanks what a sealed dance would give away:
  * its judges' numbers, any average with them in it, and that night's eliminations.
  */
-
-const round2 = (n: number) => Math.round(n * 100) / 100;
-const mean = (xs: number[]) => (xs.length ? round2(xs.reduce((a, b) => a + b, 0) / xs.length) : null);
-
-/** Mean error overall and per judge, as common/accuracy.py summary() computes it. */
-function accuracy(dances: Dance[]): Accuracy {
-  const perJudge = new Map<string, number[]>();
-  for (const d of dances) {
-    for (const [j, v] of Object.entries(d.judges)) perJudge.set(j, [...(perJudge.get(j) ?? []), Math.abs(d.paddle - v)]);
-  }
-  return {
-    count: dances.length,
-    mae: mean(dances.map((d) => d.error)),
-    judges: Object.fromEntries([...perJudge].map(([j, es]) => [j, { count: es.length, mae: mean(es) ?? 0 }])),
-  };
-}
-
-export function sealStats(stats: Stats, seals: Seals): Stats {
-  if (seals.none) return stats;
-  const held = stats.dances.filter((d) => seals.dance(stats.season, d.ep, d.key));
-  if (held.length === 0) return stats;
-  const dances = stats.dances.filter((d) => !held.includes(d));
-  const eps = new Set(held.map((d) => d.ep));
-  const episodes = stats.episodes.flatMap((e) => {
-    if (!eps.has(e.ep)) return [e];
-    const left = dances.filter((d) => d.ep === e.ep);
-    return left.length ? [{ ep: e.ep, ...accuracy(left) }] : [];
-  });
-  return {
-    ...stats,
-    mine: accuracy(dances),
-    episodes,
-    dances,
-    // Everyone else's numbers include the sealed dances, so a rank against them would too.
-    others: [],
-    eliminated: Object.fromEntries(Object.entries(stats.eliminated).filter(([, out]) => !eps.has(out.ep))),
-    sealed: held.length,
-  };
-}
 
 /** Highest first; ties share a rank and the next one skips, as week_board_get ranks. */
 function ranks(values: (number | null)[]): (number | null)[] {

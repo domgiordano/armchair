@@ -1,6 +1,10 @@
 import type { CSSProperties } from "react";
 
-import type { Bar } from "@/lib/show/stats-summary";
+export interface Bar {
+  label: string;
+  value: number;
+  count: number;
+}
 
 const W = 320;
 const H = 150;
