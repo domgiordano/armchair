@@ -99,6 +99,9 @@ locals {
     { name = "track", description = "Store a signed-in visitor's batch of activity events", path_part = "track", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "anon", description = "Store a signed-out visitor's batch of activity events", path_part = "anon", http_method = "POST", authorization = "NONE" },
   ]
+  favorites_lambdas = [
+    { name = "get", description = "Odds to win a season, as of the last episode the caller has revealed", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+  ]
   # Public: chat apps fetch it for the link preview, and they carry no token.
   invite_lambdas = [
     { name = "preview", description = "Link-preview card for a group invite, then on to /join/", path_part = "preview", http_method = "GET", authorization = "NONE" },
@@ -122,6 +125,7 @@ locals {
     { for l in local.traitors_lambdas : "traitors_${l.name}" => l },
     { for l in local.invite_lambdas : "invite_${l.name}" => l },
     { for l in local.events_lambdas : "events_${l.name}" => l },
+    { for l in local.favorites_lambdas : "favorites_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -140,6 +144,7 @@ locals {
     email        = aws_dynamodb_table.email.arn
     events       = aws_dynamodb_table.events.arn
     events_index = "${aws_dynamodb_table.events.arn}/index/*"
+    favorites    = aws_dynamodb_table.favorites.arn
   }
   api_grants = {
     users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
@@ -202,6 +207,7 @@ locals {
     events_track       = ["events:UpdateItem", "events:BatchWriteItem"]
     events_anon        = ["events:UpdateItem", "events:BatchWriteItem"]
     users_delete       = ["events:Query", "events_index:Query", "events:BatchWriteItem", "events:UpdateItem", "groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
+    favorites_get      = ["catalog:Query", "performances:Query", "scores:Query", "favorites:Query"]
   }
 
   # Env a single function needs beyond lambda_variables.
