@@ -4,13 +4,16 @@ POST /friends/request - ask someone to be friends, by their sub or their invite 
 Body: {"sub": "<cognito sub>"} or {"code": "<personal invite code>"}.
 Returns {status, user: {sub, name, picture, avatarKind}}; status is outgoing,
 or friend when they had already asked the caller. Asking again is a 200 with
-the same status. A blocked or unknown user is 404. Identity is the Cognito sub.
+the same status. A blocked or unknown user is 404. A new request also emails
+them unless they turned it off (common/email_social.py). Identity is the
+Cognito sub.
 """
 
 from __future__ import annotations
 
 import re
 
+from lambdas.common import email_social
 from lambdas.common.api import NotFoundError, ValidationError, api_handler, body, caller_sub, ok
 from lambdas.common.social_dynamo import code_owner, request, target
 from lambdas.common.users_dynamo import card
@@ -36,4 +39,7 @@ def handler(event, context):
     user = card(other)
     if user is None:
         raise NotFoundError("No such user")
-    return ok({"status": request(sub, other), "user": user})
+    result = request(sub, other)
+    if result == "outgoing":
+        email_social.friend_request(event, sub, other)
+    return ok({"status": result, "user": user})

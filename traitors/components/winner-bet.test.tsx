@@ -5,6 +5,8 @@ const api = vi.hoisted(() => ({ submitWinner: vi.fn() }));
 vi.mock("@/lib/api/traitors", () => api);
 vi.mock("@/lib/api/history", () => ({ getPlayer: () => new Promise(() => {}) }));
 vi.mock("@armchair/app-core/api/client", () => ({
+  // The odds board on the screen stays loading.
+  request: () => new Promise(() => {}),
   ApiError: class ApiError extends Error {
     constructor(
       readonly status: number,

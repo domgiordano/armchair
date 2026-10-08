@@ -18,7 +18,9 @@ def test_hard_bounce_and_complaint_suppress_the_address(aws):
         "notificationType": "Complaint",
         "complaint": {"complainedRecipients": [{"emailAddress": "Loud@Example.com"}]},
     }
-    assert handler(sns(bounce("Permanent", "gone@example.com"), complaint), None) == {"suppressed": 2}
+    assert handler(sns(bounce("Permanent", "gone@example.com"), complaint), None) == {
+        "suppressed": 2
+    }
     assert suppressed() == {"gone@example.com", "loud@example.com"}
 
 
