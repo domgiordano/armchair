@@ -16,11 +16,13 @@ import { useNow } from "@armchair/app-core/show/use-now";
 interface Bet {
   /** The season waits on your winners before any call. */
   needed: boolean;
+  /** A 1st is sealed but a 2nd or 3rd is still empty. */
+  incomplete: boolean;
   /** Opens the bet sheet; `prompt` says why it came up. */
   open: (prompt?: string) => void;
 }
 
-const BetContext = createContext<Bet>({ needed: false, open: () => {} });
+const BetContext = createContext<Bet>({ needed: false, incomplete: false, open: () => {} });
 
 export const useBet = () => useContext(BetContext);
 
@@ -32,13 +34,15 @@ interface BetProviderProps {
   children: ReactNode;
 }
 
-/** The winner bet as a sheet any page can open, and a banner asking for it until it's sealed. */
+/** The winner bet as a sheet any page can open while a place is empty, and a banner asking for it until a 1st is sealed. */
 export function BetProvider({ view, onSealed, children }: BetProviderProps) {
   const toast = useToast();
   const now = useNow();
   const [prompt, setPrompt] = useState<string | null>(null);
   const opener = useRef<Element | null>(null);
-  const needed = view.needsBet && view.betRoster !== undefined;
+  const fillable = view.betRoster !== undefined;
+  const needed = view.needsBet && fillable;
+  const incomplete = !view.needsBet && fillable && view.bet !== null;
   const out = view.episodes.filter((e) => released(e, now)).length;
 
   const open = (why?: string) => {
@@ -51,10 +55,10 @@ export function BetProvider({ view, onSealed, children }: BetProviderProps) {
   };
 
   return (
-    <BetContext value={{ needed, open }}>
+    <BetContext value={{ needed, incomplete, open }}>
       {needed && <BetBanner worth={multiplier(view.episodes.length, out)} onOpen={() => open()} />}
       {children}
-      {needed && (
+      {fillable && (
         <Sheet open={prompt !== null} onClose={close} label="Your winner bet" size="large">
           <div className="-mb-3 flex justify-end">
             <button type="button" aria-label="Not now" onClick={close} className={ICON_BUTTON}>
@@ -65,12 +69,13 @@ export function BetProvider({ view, onSealed, children }: BetProviderProps) {
             <WinnerBet
               season={view.season}
               roster={view.betRoster ?? []}
+              sealed={view.bet?.picks ?? []}
               episodes={view.episodes.length}
               released={out}
               prompt={prompt || undefined}
               onSealed={() => {
                 setPrompt(null);
-                toast("Sealed. Your calls are open.", "success");
+                toast(needed ? "Sealed. Your calls are open." : "Sealed. Your top 3 is updated.", "success");
                 onSealed();
               }}
             />

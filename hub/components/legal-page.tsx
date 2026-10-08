@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
-export const LAST_UPDATED = "2026-09-30";
+export const LAST_UPDATED = "2026-10-08";
 export const ISSUES_URL = "https://github.com/domgiordano/armchair/issues";
 
 interface LegalPageProps {
