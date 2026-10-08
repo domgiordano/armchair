@@ -6,6 +6,7 @@ import { Avatar } from "@/components/avatar";
 import { EmptyState } from "@/components/ui/states";
 import { useToast } from "@/components/ui/toast";
 import { UserLink } from "@/components/user-link";
+import { track } from "@armchair/app-core/activity/track";
 import type { Friends, Person, Relation } from "@armchair/app-core/api/social";
 import { useNotifications } from "@armchair/app-core/social/notifications";
 import { button, cn, EYEBROW, INPUT } from "@/lib/ui";
@@ -162,6 +163,7 @@ export function CopyLink({ label, link, share }: { label: string; link: string; 
     try {
       // iMessage and WhatsApp drop `title`; `text` is what lands in the message body.
       await navigator.share({ ...share, url: link });
+      track("action", "share", { via: "sheet" });
     } catch (e) {
       // Closing the share sheet rejects with AbortError; that's a choice, not a failure.
       if (!(e instanceof DOMException && e.name === "AbortError")) toast("Couldn't open sharing. Copy the link instead.", "error");
@@ -170,6 +172,7 @@ export function CopyLink({ label, link, share }: { label: string; link: string; 
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(link);
+      track("action", "share", { via: "copy" });
       setCopied(true);
       toast("Link copied");
     } catch {

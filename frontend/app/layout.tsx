@@ -7,6 +7,8 @@ import "./globals.css";
 
 import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
 
+import { Activity } from "@/components/activity";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
@@ -50,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full bg-ink font-sans text-pearl">
         <SsoHandoff />
+        <Activity />
         {children}
       </body>
     </html>
