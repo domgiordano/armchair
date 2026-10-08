@@ -293,6 +293,9 @@ def traitors(
     top_backed = _rank({pid: inputs[pid]["backing"] or None for pid in alive})
     suspects = _rank({pid: inputs[pid]["suspected"] or None for pid in alive})
     lead_backed, lead_suspect = _leader(top_backed), _leader(suspects)
+    # A chip half the board wears says nothing about anyone.
+    popular = sum(r <= 3 for r in top_backed.values()) * 2 < len(alive)
+    unvoted = sum(inputs[pid]["votes"] == 0 for pid in alive) * 2 < len(alive)
     return [
         {
             "id": pid,
@@ -300,10 +303,10 @@ def traitors(
             "inputs": inputs[pid],
             "why": _traitors_why(
                 inputs[pid],
-                top_backed.get(pid),
+                top_backed.get(pid) if popular else None,
                 pid == lead_backed,
                 pid == lead_suspect,
-                bool(votes),
+                bool(votes) and unvoted,
             ),
         }
         for pid in alive
