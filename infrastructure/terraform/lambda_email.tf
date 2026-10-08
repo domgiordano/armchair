@@ -154,6 +154,13 @@ data "aws_iam_policy_document" "cron_email" {
     ]
   }
 
+  # Groups that play a show: a scan for SHOW rows (common/group_shows.py).
+  statement {
+    sid       = "GroupsPlaying"
+    actions   = ["dynamodb:Scan"]
+    resources = [aws_dynamodb_table.groups.arn]
+  }
+
   statement {
     sid       = "Recipients"
     actions   = ["dynamodb:Scan", "dynamodb:BatchGetItem"]
