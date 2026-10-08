@@ -222,7 +222,7 @@ describe("GroupRoute", () => {
     fireEvent.click(await screen.findByRole("button", { name: "Invite" }));
     const sheet = screen.getByRole("dialog", { name: "Invite to Family" });
     expect((within(sheet).getByRole("textbox", { name: "Group link" }) as HTMLInputElement).value).toBe(
-      `https://api.test/invite/preview?code=${"c".repeat(16)}`,
+      `https://api.test/invite/preview?code=${"c".repeat(16)}&site=${encodeURIComponent(window.location.origin)}`,
     );
     expect(within(sheet).queryByText("Bea Arthur")).toBeNull();
     fireEvent.click(await within(sheet).findByRole("button", { name: "Invite" }));
