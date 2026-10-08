@@ -15,6 +15,21 @@ export interface Group {
   name: string;
   inviteCode: string;
   members: GroupMember[];
+  /** Missing from an API older than per-group shows. */
+  shows?: GroupShow[];
+}
+
+export type ShowApp = "dwts" | "traitors";
+
+/** A show the group can play. Membership is shared; each show is switched on per group. */
+export interface GroupShow {
+  app: ShowApp;
+  active: boolean;
+  /** Who started it, and when. Null while it's off. */
+  by: string | null;
+  at: string | null;
+  /** Members with anything counted on that show. */
+  playing: string[];
 }
 
 /** The same /groups/mine rows with everything the management screens need. */
@@ -33,8 +48,23 @@ export const getMyGroups = () => request<Group[]>("/groups/mine");
 
 export const getGroupDetails = () => request<GroupDetail[]>("/groups/mine");
 
-export const createGroup = (name: string) =>
-  request<Omit<Group, "members">>("/groups/create", { method: "POST", body: JSON.stringify({ name }) });
+/** `app` is the show it's made in, which it starts out playing; none from the hub. */
+export const createGroup = (name: string, app?: ShowApp) =>
+  request<Omit<Group, "members">>("/groups/create", { method: "POST", body: JSON.stringify({ name, app }) });
+
+/** Any member starts a show for the group, and the others are told; only the owner stops one. */
+export const setGroupShow = (group: string, app: ShowApp, active: boolean) =>
+  request<{ app: ShowApp; active: boolean; started: boolean }>("/groups/shows", {
+    method: "POST",
+    body: JSON.stringify({ group, app, active }),
+  });
+
+/**
+ * Whether the group plays `app`. A group from an API older than shows has
+ * none listed and reads as playing everything, as it did before.
+ */
+export const plays = (group: { shows?: GroupShow[] }, app: ShowApp) =>
+  group.shows?.find((s) => s.app === app)?.active ?? true;
 
 export const joinGroup = (code: string) =>
   request<Pick<Group, "id" | "name"> & { pending: boolean }>("/groups/join", {
