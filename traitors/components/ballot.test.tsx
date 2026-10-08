@@ -211,3 +211,38 @@ it("draws who voted for whom on the table, lists the votes by target and badges 
   expect(screen.getByRole("link", { name: "Ava Stone, banished, Faithful" })).toBeTruthy();
   expect(screen.getByRole("link", { name: "Eli Park, held a shield" })).toBeTruthy();
 });
+
+it("keeps a call's result face down after the seal until you choose to reveal it", async () => {
+  const sealedMurder = {
+    type: "MURDER",
+    picks: 1,
+    locked: false,
+    mine: { picks: ["ben"], submittedAt: "" },
+    result: { victims: ["ben"] },
+    consensus: { voters: 4, picks: { ben: 3, cal: 1 } },
+  } as EpisodeEvent;
+  api.getEpisode
+    .mockResolvedValueOnce(episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]))
+    .mockResolvedValue(episode([sealedMurder, locked("RT"), locked("RECRUIT")]));
+  ballot();
+  await screen.findByRole("tab", { name: "Murder" });
+  fireEvent.click(seat("Ben Hart"));
+  fireEvent.click(seat("Ben Hart"));
+  fireEvent.click(seal());
+
+  const sheet = within(await screen.findByRole("dialog", { name: "Locked in" }));
+  expect(sheet.getByRole("heading", { name: "Ready to see what happened?" })).toBeTruthy();
+  fireEvent.click(sheet.getByRole("button", { name: "Not yet" }));
+  expect(screen.queryByRole("dialog")).toBeNull();
+
+  fireEvent.click(await screen.findByRole("tab", { name: "Murder, sealed" }));
+  expect(await screen.findByText(/face down until you choose to look/)).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Ben Hart, your pick" })).toBeTruthy();
+  expect(screen.queryByText(/murdered/)).toBeNull();
+  expect(screen.queryByRole("region", { name: /Everyone's calls/ })).toBeNull();
+  expect(screen.queryByText(/\+\d+ points?/)).toBeNull();
+
+  fireEvent.click(screen.getByRole("button", { name: "Reveal what happened" }));
+  expect(await screen.findByRole("link", { name: /^Ben Hart, your pick, murdered/ })).toBeTruthy();
+  expect(screen.getByRole("region", { name: /Everyone's calls/ })).toBeTruthy();
+});
