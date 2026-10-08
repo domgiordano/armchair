@@ -40,8 +40,8 @@ export function prefetchPage(href: string, season: string): void {
     case "/couples/": {
       const compare = url.searchParams.get("compare") ?? (url.searchParams.get("view") === "week" ? "week" : null);
       start(getSeason(season), getMyGroups());
-      // The roster reads performers for the caller alone; the season comparison, for the group.
-      if (compare === null) start(getOverview(season), getPerformers(season, null));
+      // The leaderboard reads the overview first, then each episode it shows; the season comparison, performers for the group.
+      if (compare === null) start(getOverview(season));
       if (compare === "season") start(getPerformers(season, group));
       return;
     }
