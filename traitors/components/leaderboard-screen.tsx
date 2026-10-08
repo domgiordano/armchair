@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { FaceDownNotice } from "@/components/face-down";
@@ -15,7 +17,7 @@ import { getRanks, type Ranks, type Scope, type Standing } from "@/lib/api/trait
 import { useGroupFilter } from "@/lib/group-filter";
 import { useFaceDown } from "@/lib/sealed";
 import { showOf } from "@/lib/seasons";
-import { cn, HEADING } from "@/lib/ui";
+import { cn, HEADING, TEXT_LINK } from "@/lib/ui";
 
 const SCOPES = [
   { id: "global", label: "Everyone" },
@@ -30,8 +32,10 @@ export function LeaderboardScreen() {
   const name = useSeasonName(view.season, view.title);
   const filter = useGroupFilter();
   const [range, setRange] = useState<string>(view.season);
-  const [scope, setScope] = useState<Scope>("global");
-  const [picked, setPicked] = useState<string | null>(null);
+  // A group's "Group board" link opens on that group.
+  const asked = useSearchParams().get("group");
+  const [scope, setScope] = useState<Scope>(asked ? "group" : "global");
+  const [picked, setPicked] = useState<string | null>(asked);
   const groups = filter.groups ?? [];
   const group = groups.find((g) => g.id === (picked ?? filter.group))?.id ?? groups[0]?.id ?? null;
   const waiting = scope === "group" && filter.groups === null && !filter.failed;
@@ -67,7 +71,11 @@ export function LeaderboardScreen() {
         {waiting && <SkeletonList label="Loading your groups" />}
         {noGroup && (
           <EmptyState title={filter.failed ? "Couldn't load your groups" : "You're not in a group yet"}>
-            A group ranks just the people in it. Start one from the Armchair Judge DWTS app; it works here too.
+            A group ranks just the people in it.{" "}
+            <Link href="/groups/" className={TEXT_LINK}>
+              Start one or join one
+            </Link>
+            ; the same groups work in every Armchair Judge show.
           </EmptyState>
         )}
         {faceDown.eps.length > 0 && <FaceDownNotice season={view.season} ep={faceDown.eps[0]} what="The board" />}

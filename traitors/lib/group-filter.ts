@@ -19,7 +19,7 @@ function readGroup(): string | null {
   }
 }
 
-function saveGroup(id: string | null): void {
+export function saveGroup(id: string | null): void {
   try {
     // Friends is Traitors-only: the shared key holds only group ids, which DWTS reads too.
     if (id === FRIENDS) return window.localStorage.setItem(FRIENDS_KEY, "1");

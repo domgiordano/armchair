@@ -1,10 +1,12 @@
 """
-GET /invite/preview?code=<inviteCode> - the link preview for a group invite.
+GET /invite/preview?code=<inviteCode>&site=<origin> - the link preview for a group invite.
 
 Public, since chat apps fetch it without a token. The site is a static export,
 so /join/ has one Open Graph card for every group; this page names the group,
-then sends the browser on to /join/?code=. An unknown code gets the generic
-card and the same redirect, and the join screen says the link is bad.
+then sends the browser on to /join/?code= on the show site that made the link
+(`site`, one of the allowed origins; any other value means DWTS). An unknown
+code gets the generic card and the same redirect, and the join screen says the
+link is bad.
 """
 
 from __future__ import annotations
@@ -19,6 +21,7 @@ from lambdas.common.groups_dynamo import by_code
 
 CODE = re.compile(r"[A-Za-z0-9_-]{16}")
 DESCRIPTION = "Rate Dancing with the Stars with your friends on Armchair Judge"
+TRAITORS = "Call The Traitors with your friends on Armchair Judge"
 
 PAGE = """<!doctype html>
 <html lang="en">
@@ -51,9 +54,10 @@ def handler(event, context):
     code = query(event).get("code") or ""
     group = by_code(code) if CODE.fullmatch(code) else None
     title = f"Join {group['name']}" if group else "Join a group on Armchair Judge"
-    # The first allowed origin is the DWTS site (locals.tf), the same fallback
-    # allow_origin uses for a request with no Origin.
-    site = allow_origin({})
+    # The first allowed origin is the DWTS site (locals.tf): the card's image, and
+    # where a link from before `site` existed goes.
+    primary = allow_origin({})
+    site = allow_origin({"headers": {"origin": query(event).get("site")}})
     param = quote(code, safe="")
     target = f"{site}/join/?code={param}"
     # og:url is this page, not /join/: Facebook re-scrapes og:url and would
@@ -61,8 +65,8 @@ def handler(event, context):
     host = event["requestContext"]["domainName"]
     page = PAGE.format(
         title=escape(title),
-        description=escape(DESCRIPTION),
-        image=f"{site}/opengraph-image.jpg",
+        description=escape(TRAITORS if "traitors" in site else DESCRIPTION),
+        image=f"{primary}/opengraph-image.jpg",
         url=escape(f"https://{host}/invite/preview?code={param}"),
         target=escape(target),
         target_js=json.dumps(target),

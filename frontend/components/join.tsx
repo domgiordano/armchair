@@ -5,11 +5,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { SignedIn } from "@/components/signed-in";
-import { PageHeader } from "@/components/ui/page-header";
 import { PageLoader } from "@/components/disco-loader";
 import { groupHref, joinGroup } from "@armchair/app-core/api/groups";
 import { saveGroup } from "@/lib/show/group-filter";
-import { SECONDARY } from "@/lib/ui";
+import { EmptyState } from "@/components/ui/states";
+import { ApiError } from "@armchair/app-core/api/client";
+import { button, SECONDARY } from "@/lib/ui";
+
+const GONE = "gone";
 
 export function JoinScreen() {
   return (
@@ -39,7 +42,9 @@ function Joiner() {
         saveGroup(group.id);
         router.replace(groupHref(group.id));
       },
-      (e: unknown) => !cancelled && setError(e instanceof Error ? e.message : "Request failed"),
+      (e: unknown) =>
+        !cancelled &&
+        setError(e instanceof ApiError && e.status === 404 ? GONE : e instanceof Error ? e.message : "Request failed"),
     );
     return () => {
       cancelled = true;
@@ -48,29 +53,40 @@ function Joiner() {
 
   if (pending !== null) {
     return (
-      <div role="status" className="flex flex-col items-start gap-4 rounded-xl border border-gold/30 bg-gold/5 p-5 animate-pop-in">
-        <PageHeader title="Request sent" />
-        <p className="text-silver">
-          Asked to join <span className="font-semibold text-pearl">{pending}</span>. You&apos;ll get a notification when the owner
-          lets you in.
-        </p>
-        <Link href="/social/?view=groups" className={SECONDARY}>
-          Your groups
-        </Link>
-      </div>
+      <EmptyState
+        title={`Asked to join ${pending}`}
+        action={
+          <Link href="/social/?view=groups" className={SECONDARY}>
+            Your groups
+          </Link>
+        }
+      >
+        The owner approves new members. You&apos;ll get a notification when you&apos;re in.
+      </EmptyState>
     );
   }
-  if (code && error === null) {
-    return (
-      <PageLoader label="Joining the group" />
-    );
-  }
+  if (code && error === null) return <PageLoader label="Joining the group" />;
   return (
-    <div role="alert" className="flex flex-col items-start gap-4 rounded-xl border border-red-300/25 bg-red-400/5 p-5">
-      <p className="text-pearl">{code ? `Couldn't join: ${error}` : "This invite link is missing its code."}</p>
-      <Link href="/" className={SECONDARY}>
-        Go home
-      </Link>
+    <div role="alert">
+      <EmptyState
+        title={code ? "This link didn't open a group" : "This invite link is missing its code"}
+        action={
+          <div className="flex flex-wrap justify-center gap-2">
+            <Link href="/social/?view=groups" className={SECONDARY}>
+              Paste another link
+            </Link>
+            <Link href="/" className={button("ghost")}>
+              Go home
+            </Link>
+          </div>
+        }
+      >
+        {!code
+          ? "Ask whoever sent it to copy the whole link and send it again."
+          : error === GONE
+            ? "The group may have been deleted, or the link got cut off. Ask whoever sent it for a fresh one."
+            : `Something went wrong: ${error}`}
+      </EmptyState>
     </div>
   );
 }

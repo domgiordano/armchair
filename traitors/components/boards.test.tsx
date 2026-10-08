@@ -5,6 +5,7 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 const api = vi.hoisted(() => ({ getRanks: vi.fn(), getStats: vi.fn(), getEpisode: vi.fn(), FRIENDS: "friends" }));
 vi.mock("@/lib/api/traitors", () => api);
 vi.mock("@armchair/app-core/api/groups", () => ({ getMyGroups: vi.fn(async () => []) }));
+vi.mock("next/navigation", () => ({ useSearchParams: () => new URLSearchParams() }));
 vi.mock("@/components/season-provider", () => ({
   useShellSeason: () => ({ seasons: [{ id: "tus-5", number: 5, year: 2026, current: true }] }),
   useSeasonName: () => ({ title: "Season 5", eyebrow: "US", numbered: null }),

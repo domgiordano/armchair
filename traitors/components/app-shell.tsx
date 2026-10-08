@@ -334,12 +334,15 @@ function AccountMenu() {
       {open && (
         <div className="absolute top-full right-0 z-40 mt-2 flex w-56 flex-col gap-1 rounded-sm border border-gilt/50 bg-stone p-1.5 shadow-xl shadow-night/70 animate-pop-in">
           {me && <p className="truncate border-b border-gilt/20 px-3 pt-1.5 pb-2.5 text-bone">{me.name ?? me.email}</p>}
-          {/* Friends and groups are family-wide; DWTS hosts them until the hub does. */}
-          <Link href="/picks/" className={MENU_ITEM}>
+          <Link href="/picks/" onClick={() => setOpen(false)} className={MENU_ITEM}>
             Your picks
           </Link>
-          <a href={appLink("dwts", "/social/") ?? undefined} className={MENU_ITEM}>
-            Friends &amp; Groups
+          <Link href="/groups/" onClick={() => setOpen(false)} className={MENU_ITEM}>
+            Your groups
+          </Link>
+          {/* Friends are family-wide, kept on the Armchair Judge hub. */}
+          <a href={appLink("hub", "/social/") ?? undefined} className={MENU_ITEM}>
+            Friends
           </a>
           <button type="button" onClick={() => void signOut().then(() => router.push("/"))} className={MENU_ITEM}>
             Sign out
