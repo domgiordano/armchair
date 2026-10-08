@@ -214,6 +214,35 @@ def set_approval(gid: str, on: bool) -> None:
     )
 
 
+def add(gid: str, sub: str) -> None:
+    """
+    Puts a user in a group, or completes a half-written membership: both rows, the
+    first joinedAt kept. A pending invite or join request for them goes, with its
+    notification.
+    """
+    rows = {r["sk"]: r for r in query_all(table("GROUPS_TABLE"), f"GROUP#{gid}")}
+    if "META" not in rows:
+        raise NotFoundError("No such group")
+    pending = [rows[sk] for sk in (f"INVITED#{sub}", f"REQUEST#{sub}") if sk in rows]
+    transact(
+        [*_joins(gid, sub), *(("Delete", {"Key": _key(gid, r["sk"])}) for r in pending)],
+        "GROUPS_TABLE",
+    )
+    for r in pending:
+        owner = sub if r["sk"].startswith("INVITED#") else rows["META"]["createdBy"]
+        notifications.drop(owner, r.get("notif"))
+
+
+def reinvite(gid: str, sub: str) -> str:
+    """Sends a fresh invite from the owner, replacing any earlier one and its notification."""
+    group = meta(gid)
+    old = _get(gid, f"INVITED#{sub}")
+    if old:
+        table("GROUPS_TABLE").delete_item(Key=_key(gid, f"INVITED#{sub}"))
+        notifications.drop(sub, old.get("notif"))
+    return invite(gid, group["createdBy"], sub)
+
+
 def remove(gid: str, sub: str) -> None:
     """Takes a member out; the owner's own membership is never removed this way."""
     transact(_leaves(gid, sub), "GROUPS_TABLE")
