@@ -19,7 +19,16 @@ import { Sheet } from "@/components/ui/sheet";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { useToast } from "@/components/ui/toast";
-import { deleteGroup, inviteLink, inviteToGroup, leaveGroup, manageGroup, type GroupDetail } from "@armchair/app-core/api/groups";
+import {
+  deleteGroup,
+  inviteLink,
+  inviteToGroup,
+  leaveGroup,
+  manageGroup,
+  setGroupShow,
+  type GroupDetail,
+} from "@armchair/app-core/api/groups";
+import { showRows } from "@armchair/app-core/social/group-shows";
 import type { Friends, Person } from "@armchair/app-core/api/social";
 import { search } from "@/lib/search/match";
 import { button, EYEBROW, PRIMARY } from "@/lib/ui";
@@ -188,6 +197,7 @@ function Settings({ group, reload, onClose }: { group: GroupDetail; reload: () =
           </p>
         )}
       </div>
+      <Shows group={group} reload={reload} />
       <div className="flex flex-col items-start gap-2 border-t border-silver/10 pt-4">
         <p className="text-sm text-silver-dim">Deleting removes the group for everyone in it. Scores stay.</p>
         <ConfirmButton
@@ -208,6 +218,38 @@ function Settings({ group, reload, onClose }: { group: GroupDetail; reload: () =
           </p>
         )}
       </div>
+    </div>
+  );
+}
+
+/** Owner only: which shows the group plays. Turning one on tells the group; off just hides its board. */
+function Shows({ group, reload }: { group: GroupDetail; reload: () => void }) {
+  const rows = showRows(group, null);
+  const act = useAction();
+  if (rows.length === 0) return null;
+  return (
+    <div className="flex flex-col gap-1 border-t border-silver/10 pt-4">
+      <p className={EYEBROW}>Shows</p>
+      {rows.map((r) => (
+        <Toggle
+          key={r.app}
+          label={r.name}
+          hint={r.active ? `${r.playing} playing` : "Off: no board for the group there"}
+          checked={r.active}
+          disabled={act.busy !== null}
+          onChange={(on) =>
+            void act.run(r.app, async () => {
+              await setGroupShow(group.id, r.app, on);
+              reload();
+            })
+          }
+        />
+      ))}
+      {act.error && (
+        <p role="alert" className="text-sm text-red-300">
+          {act.error}
+        </p>
+      )}
     </div>
   );
 }
