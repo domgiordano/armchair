@@ -8,6 +8,7 @@ import { message, useLoad } from "@/lib/load";
 import { Avatar, ErrorNote, QUIET, SECONDARY, Skeleton } from "../account/ui";
 import { AuditList } from "./audit-tab";
 import { BarChart, CARD, day, EventLine, when } from "./parts";
+import { AddToGroup, AnswerFixer, FriendActions, GroupActions, ProfileTools, ViewAsPanel } from "./support";
 
 const STATUS: Record<string, string> = {
   friend: "Friends",
@@ -37,7 +38,13 @@ export function UserView({ sub, onBack }: { sub: string; onBack: () => void }) {
       )}
       {load.kind === "error" && <ErrorNote what="this user" message={load.message} retry={retry} />}
       {load.kind === "ready" && (
-        <UserBody sub={sub} detail={load.value.data} next={(load.value.meta?.next as string | null) ?? null} reload={retry} />
+        <UserBody
+          sub={sub}
+          detail={load.value.data}
+          next={(load.value.meta?.next as string | null) ?? null}
+          reload={retry}
+          onDeleted={onBack}
+        />
       )}
     </div>
   );
@@ -48,9 +55,10 @@ interface BodyProps {
   detail: UserDetail;
   next: string | null;
   reload: () => void;
+  onDeleted: () => void;
 }
 
-function UserBody({ sub, detail, next, reload }: BodyProps) {
+function UserBody({ sub, detail, next, reload, onDeleted }: BodyProps) {
   const { profile } = detail;
   return (
     <>
@@ -74,6 +82,8 @@ function UserBody({ sub, detail, next, reload }: BodyProps) {
           <dd className="truncate">{profile.googleName ?? "--"}</dd>
         </dl>
       </section>
+
+      <ProfileTools key={profile.name ?? ""} profile={profile} onDone={reload} onDeleted={onDeleted} />
 
       <div className="grid gap-6 lg:grid-cols-2">
         <section aria-labelledby="daily-title" className={CARD}>
@@ -117,24 +127,30 @@ function UserBody({ sub, detail, next, reload }: BodyProps) {
           {detail.groups.length ? (
             <ul className="flex flex-col divide-y divide-line/70 text-sm">
               {detail.groups.map((g) => (
-                <li key={g.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
-                  <span className="min-w-0">
-                    <span className="font-medium">{g.name ?? "Deleted group"}</span>
-                    <span className="ml-2 text-xs text-muted">
-                      {g.owner ? "owner · " : ""}
-                      {g.members} members · joined {day(g.joinedAt)}
+                <li key={g.id} className="flex flex-col gap-2 py-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="min-w-0">
+                      <span className="font-medium">{g.name ?? "Deleted group"}</span>
+                      <span className="ml-2 text-xs text-muted">
+                        {g.owner ? "owner · " : ""}
+                        {g.members} members · joined {day(g.joinedAt)}
+                      </span>
                     </span>
-                  </span>
-                  {!g.exists && <span className="rounded-full bg-magenta/15 px-2 py-0.5 text-xs text-magenta">Group gone</span>}
-                  {g.exists && !g.member && (
-                    <span className="rounded-full bg-magenta/15 px-2 py-0.5 text-xs text-magenta">Stuck join</span>
-                  )}
+                    {!g.exists && <span className="rounded-full bg-magenta/15 px-2 py-0.5 text-xs text-magenta">Group gone</span>}
+                    {g.exists && !g.member && (
+                      <span className="rounded-full bg-magenta/15 px-2 py-0.5 text-xs text-magenta">Stuck join</span>
+                    )}
+                  </div>
+                  <GroupActions sub={sub} group={g} onDone={reload} />
                 </li>
               ))}
             </ul>
           ) : (
             <p className="text-sm text-muted">In no groups.</p>
           )}
+          <div className="mt-4">
+            <AddToGroup sub={sub} onDone={reload} />
+          </div>
         </section>
 
         <section aria-labelledby="friends-title" className={CARD}>
@@ -144,14 +160,17 @@ function UserBody({ sub, detail, next, reload }: BodyProps) {
           {detail.friends.length ? (
             <ul className="flex flex-col divide-y divide-line/70 text-sm">
               {detail.friends.map((f) => (
-                <li key={f.sub} className="flex items-center justify-between gap-2 py-2">
-                  <span className="flex min-w-0 items-center gap-2">
-                    <Avatar name={f.name} picture={f.picture} size={28} decorative />
-                    <span className="truncate">{f.name ?? "No name"}</span>
-                  </span>
-                  <span className={`text-xs ${f.status === "blocked" ? "text-magenta" : "text-muted"}`}>
-                    {f.status === "blocked" ? (f.blocking ? "Blocked them" : "Blocked by them") : STATUS[f.status]}
-                  </span>
+                <li key={f.sub} className="flex flex-col gap-2 py-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="flex min-w-0 items-center gap-2">
+                      <Avatar name={f.name} picture={f.picture} size={28} decorative />
+                      <span className="truncate">{f.name ?? "No name"}</span>
+                    </span>
+                    <span className={`text-xs ${f.status === "blocked" ? "text-magenta" : "text-muted"}`}>
+                      {f.status === "blocked" ? (f.blocking ? "Blocked them" : "Blocked by them") : STATUS[f.status]}
+                    </span>
+                  </div>
+                  <FriendActions sub={sub} friend={f} onDone={reload} />
                 </li>
               ))}
             </ul>
@@ -159,6 +178,11 @@ function UserBody({ sub, detail, next, reload }: BodyProps) {
             <p className="text-sm text-muted">No friends or requests.</p>
           )}
         </section>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <AnswerFixer sub={sub} />
+        <ViewAsPanel sub={sub} />
       </div>
 
       <section aria-labelledby="user-audit-title" className={CARD}>
@@ -173,7 +197,17 @@ function UserBody({ sub, detail, next, reload }: BodyProps) {
   );
 }
 
-function ActivityLog({ sub, first, next, onReload }: { sub: string; first: ActivityEvent[]; next: string | null; onReload: () => void }) {
+function ActivityLog({
+  sub,
+  first,
+  next,
+  onReload,
+}: {
+  sub: string;
+  first: ActivityEvent[];
+  next: string | null;
+  onReload: () => void;
+}) {
   const [rows, setRows] = useState(first);
   const [cursor, setCursor] = useState(next);
   const [error, setError] = useState<string | null>(null);

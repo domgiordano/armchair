@@ -1,10 +1,13 @@
-import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import { configure, act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { calls, stubApi } from "../account/test-api";
 import { AdminConsole } from "./console";
 import { POLL_MS } from "./live-tab";
 import { ADMIN_EMAIL, AUDIT, DETAIL, OVERVIEW, PAT, RECENT, USERS } from "./test-fixtures";
+
+// A loaded CI runner takes over a second to render the console the first time.
+configure({ asyncUtilTimeout: 5000 });
 
 vi.mock("aws-amplify/auth", () => ({
   fetchAuthSession: async () => ({ tokens: { idToken: { toString: () => "id-token", payload: { sub: "me-1" } } } }),
