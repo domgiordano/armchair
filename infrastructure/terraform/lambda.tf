@@ -75,6 +75,7 @@ locals {
     { name = "ranks", description = "Users ranked by Traitors points, from per-user sums", path_part = "ranks", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "stats", description = "The caller's own Traitors points by event and episode", path_part = "stats", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "credits", description = "Who made each Traitors headshot in a season, and its license", path_part = "credits", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "record", description = "Every Traitors call the caller may see in a season, by person, with points", path_part = "record", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
   # anon is public: a signed-out visitor has no token (common/events_dynamo.py).
   events_lambdas = [
@@ -158,7 +159,7 @@ locals {
     people_search      = ["catalog:Query", "social:Query", "users:BatchGetItem"]
     people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query", "writeups:Query"]
     traitors_season    = ["catalog:Query", "scores:Query", "scores:GetItem", "performances:Query"]
-    traitors_episode   = ["catalog:Query", "performances:Query", "scores:Query", "scores:GetItem", "groups:Query"]
+    traitors_episode   = ["catalog:Query", "performances:Query", "scores:Query", "scores:GetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     traitors_pick      = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:Query", "performances:Query", "board:Query", "board:PutItem", "board:UpdateItem", "board:DeleteItem"]
     traitors_winner    = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:UpdateItem"]
     traitors_player    = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query"]
@@ -166,6 +167,7 @@ locals {
     traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
     traitors_credits   = ["catalog:Query"]
+    traitors_record    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:BatchGetItem"]
     invite_preview     = ["groups:GetItem"]
     events_track       = ["events:UpdateItem", "events:BatchWriteItem"]
     events_anon        = ["events:UpdateItem", "events:BatchWriteItem"]
