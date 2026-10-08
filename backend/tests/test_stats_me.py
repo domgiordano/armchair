@@ -86,7 +86,8 @@ def test_breakdown_by_week_style_judge_and_couple(show):
         "Tango": (3, 0.33),
         "Waltz": (1, 0),
     }
-    assert {j["id"]: j["mae"] for j in data["judges"]} == {CARRIE: 1.75, DEREK: 1.25, BRUNO: 0.75}
+    assert {j["id"]: j["mae"] for j in data["byJudge"]} == {CARRIE: 1.75, DEREK: 1.25, BRUNO: 0.75}
+    assert (data["paddle"], data["judges"]) == (7.5, 7.25)
     assert data["favorites"] == [X] and data["leastFavorites"] == [Z]
     assert data["styleLikes"] == ["Tango"] and data["styleDislikes"] == []
     assert [c["key"] for c in data["best"]] == [f"{Y}#1", f"{X}#1", f"{Z}#1"]
