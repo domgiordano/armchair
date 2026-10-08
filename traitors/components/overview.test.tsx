@@ -10,6 +10,7 @@ vi.mock("@/components/season-provider", () => ({
 
 import type { SeasonView } from "@/lib/api/traitors";
 
+import { BetProvider } from "./bet";
 import { Overview } from "./overview";
 import { SeasonDataContext } from "./season-data";
 
@@ -21,7 +22,7 @@ const VIEW: SeasonView = {
   title: "The Traitors: New Blood",
   current: true,
   needsBet: false,
-  bet: { picks: [{ player: "ava-stone", faction: "Traitor" }], released: 0 },
+  bet: { picks: [{ player: "ava-stone", faction: "Traitor", released: 0 }], released: 0 },
   summary: null,
   episodes: [1, 2, 3, 4].map((ep) => ({
     ep,
@@ -115,4 +116,57 @@ it("leads with the latest unlocked episode's recap, then earlier ones, sealed wh
   expect(within(rows[1]).getByText("Make your calls to unseal the recap.")).toBeTruthy();
   expect(await within(rows[2]).findByText("Cal walked in first.")).toBeTruthy();
   expect(api.getEpisode.mock.calls.map((c) => c[1]).sort()).toEqual([1, 3]);
+});
+
+it("shows your ranked winner picks and offers the next empty place", () => {
+  api.getRanks.mockReturnValue(new Promise(() => {}));
+  api.getEpisode.mockReturnValue(new Promise(() => {}));
+  const view: SeasonView = {
+    ...VIEW,
+    bet: {
+      picks: [
+        { player: "ava-stone", faction: "Traitor", released: 0 },
+        { player: "dee-moss", faction: "Faithful", released: 2 },
+      ],
+      released: 0,
+    },
+    betRoster: VIEW.cast,
+  };
+  render(
+    <SeasonDataContext value={{ view, reload: vi.fn() }}>
+      <BetProvider view={view} onSealed={vi.fn()}>
+        <Overview />
+      </BetProvider>
+    </SeasonDataContext>,
+  );
+  const card = within(screen.getByRole("region", { name: "Your winner picks" }));
+  const places = card.getAllByRole("listitem");
+  expect(places[0].textContent).toMatch(/Ava Stone.*as a Traitor.*up to 30 pts/);
+  // 2nd was sealed with two of four episodes out.
+  expect(places[1].textContent).toMatch(/Dee Moss.*as a Faithful.*up to 9 pts/);
+  expect(places[2].textContent).toMatch(/3rd choice is empty/);
+  expect(card.getByRole("button", { name: "Add your 3rd choice" })).toBeTruthy();
+  // No nag banner once a 1st is sealed.
+  expect(screen.queryByRole("complementary", { name: "Winner bet" })).toBeNull();
+});
+
+it("shows what you picked in each episode summary", () => {
+  api.getRanks.mockReturnValue(new Promise(() => {}));
+  api.getEpisode.mockReturnValue(new Promise(() => {}));
+  const episodes = VIEW.episodes.map((e) => ({
+    ...e,
+    releaseAt: new Date(now - (5 - e.ep) * DAY).toISOString(),
+    closed: false,
+    answered: 3,
+    mine: e.ep === 4 ? { MURDER: { picks: ["dee-moss"] }, RT: { picks: ["ben-hart", "ava-stone", "cal-reyes"] }, RECRUIT: { forfeit: true } } : {},
+  }));
+  render(
+    <SeasonDataContext value={{ view: { ...VIEW, episodes }, reload: vi.fn() }}>
+      <Overview />
+    </SeasonDataContext>,
+  );
+  const latest = within(screen.getByRole("region", { name: "Latest in the castle" }));
+  expect(latest.getByText("You picked").parentElement?.textContent).toMatch(
+    /^You pickedMurder.*Dee.*Banish.*I.*Ben.*II.*Ava.*III.*Cal.*Recruitno pick$/,
+  );
 });
