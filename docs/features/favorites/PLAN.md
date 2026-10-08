@@ -29,21 +29,26 @@ contestants still on the board. The model prices everyone the market doesn't lis
 the whole board when there is no market, labelled "Armchair odds (model)". Both are
 returned per entry so the UI can show the model beside the market.
 
-DWTS strength, as z-scores across couples still in:
+DWTS strength, as z-scores across couples still in (each divides by at least a floor
+spread, `FLOORS`, so a field a tenth of a point apart doesn't read as far apart):
 - judges' season average per dance (1.0), last episode's average (0.5), trend over the
   last three episodes (0.3), our crowd's average score (0.6)
 - +0.25 per night in the judges' bottom two survived: the fan vote carried them. True
   bottom-two (jeopardy) data isn't published anywhere we can read.
 
 Traitors strength:
-- our crowd's winner bets, each bet split across its picks (1.0)
+- our crowd's winner bets, each split across its picks still in, as the log of a share
+  smoothed by one pseudo-bet per player: a handful of bets nudges, a landslide moves
 - round-table first votes received, the last two round tables doubled (-0.6)
 - share of our crowd who picked them to be banished at the latest round table (-0.4)
 - +0.2 per shield held
 - Factions are never read: a current season hides them until a banishment the caller
   has seen, so the board can't lean on them either.
 
-Chance = softmax(1.2 x strength). Odds are American, rounded to 5.
+Chance = softmax(1.2 x strength) for DWTS, 0.7 for Traitors' bigger, noisier cast.
+Odds are American, rounded to 5, 50 or 100 by size. A "top" chip needs a sole leader.
+Movement compares snapshots of the same source only: a board gaining a market moves
+by source, not news.
 
 ## Spoiler rules
 

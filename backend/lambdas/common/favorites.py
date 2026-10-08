@@ -23,9 +23,22 @@ from statistics import mean, pstdev
 # Strength = sum of weight * z-score across the couples still in. A missing input
 # (no crowd scores yet) contributes 0, the field's average.
 DWTS_WEIGHTS = {"average": 1.0, "last": 0.5, "trend": 0.3, "crowd": 0.6}
+# The smallest spread a z-score divides by, in the input's own units: without it a
+# field a tenth of a point apart reads as several deviations apart.
+FLOORS = {
+    "average": 0.25,
+    "last": 0.25,
+    "trend": 0.25,
+    "crowd": 0.25,
+    "votes": 1.0,
+    "suspected": 0.15,
+}
+# Winner bets enter as the log of a smoothed share, one pseudo-bet per player, so a
+# handful of bets nudges the board and a landslide moves it.
+BET_PRIOR = 1.0
 # Survived a night in the judges' bottom two: the fan vote carried them.
 SAVE_BONUS = 0.25
-TRAITORS_WEIGHTS = {"backing": 1.0, "votes": -0.6, "suspected": -0.4}
+TRAITORS_WEIGHTS = {"votes": -0.6, "suspected": -0.4}
 SHIELD_BONUS = 0.2
 # Softmax temperature: higher spreads the board further apart. A Traitors cast is
 # bigger and its signals noisier, so its board stays flatter.
@@ -37,11 +50,11 @@ TREND_CHIP = 0.25
 CHIPS = 3
 
 
-def _z(values: dict[str, float | None]) -> dict[str, float]:
+def _z(values: dict[str, float | None], floor: float) -> dict[str, float]:
     known = [v for v in values.values() if v is not None]
-    if len(known) < 2 or pstdev(known) == 0:
+    if len(known) < 2:
         return dict.fromkeys(values, 0.0)
-    mu, sd = mean(known), pstdev(known)
+    mu, sd = mean(known), max(pstdev(known), floor)
     return {k: 0.0 if v is None else (v - mu) / sd for k, v in values.items()}
 
 
@@ -63,11 +76,15 @@ def _slope(points: list[tuple[int, float]]) -> float | None:
     return sum((x - mx) * (y - my) for x, y in points) / den
 
 
-def _rank(values: dict[str, float | None], reverse: bool = True) -> dict[str, int]:
-    known = sorted((v, k) for k, v in values.items() if v is not None)
-    if reverse:
-        known.reverse()
-    return {k: i + 1 for i, (_, k) in enumerate(known)}
+def _rank(values: dict[str, float | None]) -> dict[str, int]:
+    """Highest first; ties share a place, and a place 1 two share has no leader."""
+    known = {k: v for k, v in values.items() if v is not None}
+    return {k: 1 + sum(o > v for o in known.values()) for k, v in known.items()}
+
+
+def _leader(ranks: dict[str, int]) -> str | None:
+    top = [k for k, r in ranks.items() if r == 1]
+    return top[0] if len(top) == 1 else None
 
 
 def stamp(iso: str) -> str:
@@ -155,7 +172,7 @@ def dwts(
     if not any(i["average"] is not None or i["crowd"] is not None for i in inputs.values()):
         return [{"id": cid, "model": None, "inputs": inputs[cid], "why": []} for cid in alive]
 
-    zs = {k: _z({cid: inputs[cid][k] for cid in alive}) for k in DWTS_WEIGHTS}
+    zs = {k: _z({cid: inputs[cid][k] for cid in alive}, FLOORS[k]) for k in DWTS_WEIGHTS}
     strength = {
         cid: sum(w * zs[k][cid] for k, w in DWTS_WEIGHTS.items())
         + SAVE_BONUS * inputs[cid]["saves"]
@@ -163,30 +180,35 @@ def dwts(
     }
     model = _softmax(strength, SHARPNESS["dwts"])
     ranks = {k: _rank({cid: inputs[cid][k] for cid in alive}) for k in ("average", "last", "crowd")}
+    leaders = {k: _leader(r) for k, r in ranks.items()}
     return [
         {
             "id": cid,
             "model": round(model[cid], 4),
             "inputs": inputs[cid],
-            "why": _dwts_why(inputs[cid], {k: r.get(cid) for k, r in ranks.items()}),
+            "why": _dwts_why(
+                inputs[cid],
+                {k: r.get(cid) for k, r in ranks.items()},
+                {k for k, who in leaders.items() if who == cid},
+            ),
         }
         for cid in alive
     ]
 
 
-def _dwts_why(i: dict, rank: dict) -> list[str]:
+def _dwts_why(i: dict, rank: dict, leads: set[str]) -> list[str]:
     chips = []
-    if rank["average"] == 1:
+    if "average" in leads:
         chips.append("Top judges' average")
     elif rank["average"] is not None and rank["average"] <= 3:
         chips.append("Top 3 judges' average")
-    if rank["last"] == 1:
+    if "last" in leads:
         chips.append("Top score last time")
     if i["trend"] is not None and i["trend"] >= TREND_CHIP:
         chips.append("Rising")
     elif i["trend"] is not None and i["trend"] <= -TREND_CHIP:
         chips.append("Slipping")
-    if rank["crowd"] == 1:
+    if "crowd" in leads:
         chips.append("Crowd favorite")
     if i["saves"]:
         chips.append("Saved from the bottom two" + (f" x{i['saves']}" if i["saves"] > 1 else ""))
@@ -259,31 +281,40 @@ def traitors(
     if not any(backing.values()) and not any(votes.values()) and not suspected:
         return [{"id": pid, "model": None, "inputs": inputs[pid], "why": []} for pid in alive]
 
-    zs = {k: _z({pid: inputs[pid][k] for pid in alive}) for k in TRAITORS_WEIGHTS}
+    zs = {k: _z({pid: inputs[pid][k] for pid in alive}, FLOORS[k]) for k in TRAITORS_WEIGHTS}
+    pool = sum(inputs[pid]["backing"] for pid in alive) + BET_PRIOR * len(alive)
     strength = {
-        pid: sum(w * zs[k][pid] for k, w in TRAITORS_WEIGHTS.items())
+        pid: math.log((inputs[pid]["backing"] + BET_PRIOR) / pool)
+        + sum(w * zs[k][pid] for k, w in TRAITORS_WEIGHTS.items())
         + SHIELD_BONUS * inputs[pid]["shields"]
         for pid in alive
     }
     model = _softmax(strength, SHARPNESS["traitors"])
     top_backed = _rank({pid: inputs[pid]["backing"] or None for pid in alive})
-    top_suspected = _rank({pid: inputs[pid]["suspected"] or None for pid in alive})
+    suspects = _rank({pid: inputs[pid]["suspected"] or None for pid in alive})
+    lead_backed, lead_suspect = _leader(top_backed), _leader(suspects)
     return [
         {
             "id": pid,
             "model": round(model[pid], 4),
             "inputs": inputs[pid],
             "why": _traitors_why(
-                inputs[pid], top_backed.get(pid), top_suspected.get(pid), bool(votes)
+                inputs[pid],
+                top_backed.get(pid),
+                pid == lead_backed,
+                pid == lead_suspect,
+                bool(votes),
             ),
         }
         for pid in alive
     ]
 
 
-def _traitors_why(i: dict, backed: int | None, suspected: int | None, voted: bool) -> list[str]:
+def _traitors_why(
+    i: dict, backed: int | None, top: bool, suspected: bool, voted: bool
+) -> list[str]:
     chips = []
-    if backed == 1:
+    if top:
         chips.append("Crowd's top winner pick")
     elif backed is not None and backed <= 3:
         chips.append("Popular winner pick")
@@ -291,7 +322,7 @@ def _traitors_why(i: dict, backed: int | None, suspected: int | None, voted: boo
         chips.append("No votes against yet")
     if i["lastVotes"]:
         chips.append(f"{i['lastVotes']} vote{'s' if i['lastVotes'] != 1 else ''} last round table")
-    if suspected == 1:
+    if suspected:
         chips.append("Most suspected")
     if i["shields"]:
         chips.append("Has held a shield")
