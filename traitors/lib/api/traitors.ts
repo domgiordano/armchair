@@ -72,7 +72,22 @@ export interface SeasonView {
   cast: CastMember[];
 }
 
-export interface Mine {
+/** Why one pick scored what it did. */
+export type CallWhy = "banished" | "exact" | "top3" | "hit" | "miss" | "void";
+
+export interface Call {
+  player: string;
+  points: number;
+  why: CallWhy;
+}
+
+/** Sent with an answer once the event's result is confirmed. */
+export interface Scored {
+  points?: number;
+  calls?: Call[];
+}
+
+export interface Mine extends Scored {
   picks?: string[];
   forfeit?: boolean;
   submittedAt: string;
@@ -85,10 +100,15 @@ export interface Consensus {
   first?: Record<string, number>;
 }
 
-export interface GroupPick {
+export interface GroupPick extends Scored {
   sub: string;
   picks: string[] | null;
   forfeit: boolean;
+}
+
+export interface Person {
+  name: string | null;
+  picture: string | null;
 }
 
 // Only a confirmed result is sent, and only the fields the poller has filled.
@@ -140,6 +160,8 @@ export interface Episode {
   events: EpisodeEvent[];
   /** Sent only once you've made every call, or the episode is closed. */
   recap?: Writeup;
+  /** Names and photos of everyone in each event's `group`, with friends or a group. */
+  people?: Record<string, Person>;
 }
 
 export const epParam = (ep: number) => String(ep).padStart(2, "0");
@@ -154,9 +176,13 @@ export const submitWinner = (season: string, picks: WinnerPick[]) =>
     body: JSON.stringify({ season, picks }),
   });
 
+/** Stands in for a group id: the caller's friends. */
+export const FRIENDS = "friends";
+
 export const getEpisode = (season: string, ep: number, group: string | null = null) => {
   const query = new URLSearchParams({ season, ep: epParam(ep) });
-  if (group) query.set("group", group);
+  if (group === FRIENDS) query.set("scope", FRIENDS);
+  else if (group) query.set("group", group);
   return request<Episode>(`/traitors/episode?${query}`);
 };
 
@@ -219,4 +245,27 @@ export function getRanks(season: string, show: string, scope: Scope, group: stri
   if (season === "all") query.set("show", show);
   if (scope === "group" && group) query.set("group", group);
   return request<Ranks>(`/traitors/ranks?${query}`);
+}
+
+export interface RecordCall extends Scored {
+  ep: number;
+  type: EventType;
+  picks: string[] | null;
+  forfeit: boolean;
+}
+
+export interface PersonRecord extends Person {
+  sub: string;
+  me: boolean;
+  /** Theirs once yours has all three places, or the season is over; always your own. */
+  winner: SealedPick[] | null;
+  calls: RecordCall[];
+}
+
+/** Every call you may see in a season, by person: you, plus your friends or a group's members. */
+export function getRecord(season: string, group: string | null) {
+  const query = new URLSearchParams({ season });
+  if (group === FRIENDS) query.set("scope", FRIENDS);
+  else if (group) query.set("group", group);
+  return request<{ season: string; people: PersonRecord[] }>(`/traitors/record?${query}`);
 }
