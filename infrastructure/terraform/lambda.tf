@@ -26,6 +26,7 @@ locals {
     { name = "manage", description = "Owner: rename, remove a member, approval, answer join requests", path_part = "manage", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "delete", description = "Owner: delete a group for everyone", path_part = "delete", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "leave", description = "Leave a group", path_part = "leave", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "shows", description = "Start or stop a show for a group, telling its members", path_part = "shows", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
   seasons_lambdas = [
     { name = "get", description = "Schedule, roster, judges and headshot credits for one season", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
@@ -150,7 +151,7 @@ locals {
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
     groups_create      = ["groups:PutItem"]
     groups_join        = ["groups:GetItem", "groups:UpdateItem", "groups:PutItem", "social:PutItem"]
-    groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query"]
+    groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query", "board:BatchGetItem", "groups:PutItem", "groups:UpdateItem"]
     seasons_list       = ["catalog:Query"]
     overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
     friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem"]
@@ -169,6 +170,7 @@ locals {
     groups_manage      = ["groups:GetItem", "groups:UpdateItem", "groups:DeleteItem", "social:PutItem", "social:UpdateItem"]
     groups_delete      = ["groups:GetItem", "groups:Query", "groups:BatchWriteItem", "groups:DeleteItem", "social:DeleteItem"]
     groups_leave       = ["groups:GetItem", "groups:DeleteItem"]
+    groups_shows       = ["groups:GetItem", "groups:Query", "groups:PutItem", "groups:DeleteItem", "social:PutItem"]
     scores_skip_before = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem"]
     performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem", "users:GetItem", "social:GetItem"]
     week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
