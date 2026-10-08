@@ -1,0 +1,18 @@
+<!doctype html>
+<!-- The DWTS app icon: the intro's mirror ball on a midnight tile. render.mjs sets the size. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; background: transparent; }
+  .tile { position: relative; width: var(--s); height: var(--s); overflow: hidden; border-radius: var(--r);
+    background: radial-gradient(ellipse 75% 60% at 50% 0%, rgb(243 217 139 / 0.4), transparent 70%), linear-gradient(170deg, #22357f, #0d1748 55%, #050a24); }
+  .cord { position: absolute; left: 50%; top: 0; width: calc(var(--s) * 0.022); height: calc(var(--s) * 0.2); margin-left: calc(var(--s) * -0.011); background: #d9c79a; }
+  .ball { position: absolute; left: 50%; top: 55%; width: calc(var(--s) * 0.74); height: calc(var(--s) * 0.74); transform: translate(-50%, -50%);
+    background: url(../../components/intro-assets/ball.webp) center / contain no-repeat; filter: drop-shadow(0 0 calc(var(--s) * 0.04) rgb(243 217 139 / 0.35)); }
+</style>
+</head>
+<body>
+<div class="tile"><div class="cord"></div><div class="ball"></div></div>
+</body>
+</html>

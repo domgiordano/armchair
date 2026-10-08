@@ -61,8 +61,8 @@ export function InviteSheet({ open, onClose, group, friends, reloadFriends, onIn
             label="Group link"
             link={inviteLink(group.inviteCode)}
             share={{
-              title: `Join ${group.name} on Armchair Judge`,
-              text: `Join ${group.name} on Armchair Judge. Rate Dancing with the Stars with us.`,
+              title: `Join ${group.name} for Dancing with the Stars`,
+              text: `Join ${group.name} on Armchair Judge and score every Dancing with the Stars dance with us.`,
             }}
           />
           {friends.kind === "loading" && <SkeletonList label="Loading your friends" rows={3} avatar />}
