@@ -144,7 +144,7 @@ locals {
     groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query"]
     seasons_list       = ["catalog:Query"]
     overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
-    friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem"]
+    friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
     friends_accept     = ["social:UpdateItem", "social:GetItem", "social:PutItem"]
     friends_remove     = ["social:GetItem", "social:UpdateItem", "social:DeleteItem"]
     friends_block      = ["social:GetItem", "social:UpdateItem", "social:DeleteItem"]
@@ -155,7 +155,7 @@ locals {
     leaderboard_get    = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem", "performances:Query", "scores:Query"]
     notifications_list = ["social:Query", "users:BatchGetItem"]
     notifications_read = ["social:Query", "social:UpdateItem"]
-    groups_invite      = ["groups:GetItem", "groups:PutItem", "social:GetItem", "social:PutItem"]
+    groups_invite      = ["groups:GetItem", "groups:PutItem", "social:GetItem", "social:PutItem", "users:GetItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
     groups_respond     = ["groups:GetItem", "groups:DeleteItem", "groups:UpdateItem", "social:UpdateItem"]
     groups_manage      = ["groups:GetItem", "groups:UpdateItem", "groups:DeleteItem", "social:PutItem", "social:UpdateItem"]
     groups_delete      = ["groups:GetItem", "groups:Query", "groups:BatchWriteItem", "groups:DeleteItem", "social:DeleteItem"]
@@ -185,7 +185,9 @@ locals {
 
   # Env a single function needs beyond lambda_variables.
   api_env = {
-    users_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+    users_delete    = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+    groups_invite   = local.email_env
+    friends_request = local.email_env
   }
 
   # users_delete scans four tables for rows naming the caller.
@@ -195,6 +197,9 @@ locals {
 
   # Functions that sign or check unsubscribe links (common/unsubscribe.py).
   unsubscribe_signers = ["email_unsubscribe"]
+
+  # Functions that send email (common/email_social.py), with send_email's grants.
+  email_senders = ["groups_invite", "friends_request"]
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
   # signed with the upload function's own credentials, so its PutObject is
@@ -220,6 +225,8 @@ resource "aws_iam_role" "api" {
 
 data "aws_iam_policy_document" "api" {
   for_each = local.all_api_lambdas
+
+  source_policy_documents = contains(local.email_senders, each.key) ? [data.aws_iam_policy_document.send_email.json] : []
 
   statement {
     sid       = "Logs"
