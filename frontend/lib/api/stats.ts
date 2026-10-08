@@ -1,4 +1,7 @@
 import { request } from "@armchair/app-core/api/client";
+
+import { sealStats } from "@/lib/show/seal-views";
+import { currentSeals } from "@/lib/show/sealed";
 import type { Elimination } from "./couples";
 
 export interface Accuracy {
@@ -27,10 +30,12 @@ export interface Stats {
   others: { sub: string; count: number; mae: number }[];
   /** By couple id, once the caller has finished the episode they went home. */
   eliminated: Record<string, Elimination>;
+  /** Dances left out because you locked them in without revealing the judges (lib/show/seal-views.ts). */
+  sealed?: number;
 }
 
 export const getStats = (season: string, group: string | null = null) => {
   const query = new URLSearchParams({ season });
   if (group) query.set("group", group);
-  return request<Stats>(`/stats/get?${query}`);
+  return request<Stats>(`/stats/get?${query}`).then((s) => sealStats(s, currentSeals()));
 };

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { FaceDownNotice } from "@/components/face-down";
 import { errorText, useSeasonView } from "@/components/season-data";
 import { useSeasonName } from "@/components/season-provider";
 import { Card } from "@/components/ui/card";
@@ -9,6 +10,7 @@ import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { getStats, type EventType, type Stats } from "@/lib/api/traitors";
 import { roman } from "@/lib/players";
+import { useFaceDown } from "@/lib/sealed";
 import { cn, EYEBROW, HEADING } from "@/lib/ui";
 
 const EVENTS: { type: EventType; label: string }[] = [
@@ -24,6 +26,7 @@ export function StatsScreen() {
   const name = useSeasonName(view.season, view.title);
   const [load, setLoad] = useState<Load>({ kind: "loading" });
   const [attempt, setAttempt] = useState(0);
+  const faceDown = useFaceDown(view.season);
 
   useEffect(() => {
     let cancelled = false;
@@ -42,6 +45,14 @@ export function StatsScreen() {
       <h1 className={cn(HEADING, "text-2xl")}>Your ledger</h1>
     </div>
   );
+  if (faceDown.eps.length > 0) {
+    return (
+      <>
+        {heading}
+        <FaceDownNotice season={view.season} ep={faceDown.eps[0]} what="Your ledger" />
+      </>
+    );
+  }
   if (load.kind === "loading") {
     return (
       <>

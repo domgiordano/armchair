@@ -110,7 +110,9 @@ def test_season_cast_hides_exits_still_open_to_picks(db):
     bet(A)
     _, res = get(season_handler, "/traitors/season", A)
     data = res["data"]
-    assert "betRoster" not in data and data["needsBet"] is False
+    # One of three places sealed: the rest can still be filled from betRoster.
+    assert data["needsBet"] is False
+    assert [p["id"] for p in data["betRoster"]] == ["bob", "cat", "dan", "eve"]
     assert data["summary"] is None
     cast = {p["id"]: p for p in data["cast"]}
     assert cast["ann"] == {
@@ -201,7 +203,55 @@ def test_bet_takes_up_to_three(db):
     assert bet(B, [])[0] == 400
     status, res = bet(B, three)
     assert status == 200
-    assert res["data"]["picks"] == three
+    assert res["data"]["picks"] == [{**p, "released": 2} for p in three]
+    _, res = get(season_handler, "/traitors/season", B)
+    assert "betRoster" not in res["data"]
+
+
+def test_bet_of_one_is_first_place_and_can_be_completed(db, monkeypatch):
+    cat = {"player": "cat", "faction": "Traitor"}
+    dan = {"player": "dan", "faction": "Faithful"}
+    eve = {"player": "eve", "faction": "Faithful"}
+    assert bet(A, [cat])[0] == 200
+    # A later episode out: the new place is sealed at its own multiplier.
+    monkeypatch.setattr("lambdas.traitors_winner.handler.released", lambda eps, t: 3)
+    status, res = bet(A, [cat, dan])
+    assert status == 200
+    assert res["data"]["picks"] == [{**cat, "released": 2}, {**dan, "released": 3}]
+    assert res["data"]["released"] == 2
+    # The same bet again is a retry, not a change.
+    assert bet(A, [cat, dan])[1]["data"]["picks"][1]["released"] == 3
+    _, res = get(season_handler, "/traitors/season", A)
+    assert [p["player"] for p in res["data"]["bet"]["picks"]] == ["cat", "dan"]
+    assert bet(A, [cat, dan, eve])[0] == 200
+
+
+def test_sealed_places_are_final(db):
+    cat = {"player": "cat", "faction": "Traitor"}
+    dan = {"player": "dan", "faction": "Faithful"}
+    bet(A, [cat])
+    # Reordering, swapping a side, replacing 1st, or dropping it are all changes.
+    assert bet(A, [dan, cat])[0] == 409
+    assert bet(A, [{**cat, "faction": "Faithful"}, dan])[0] == 409
+    assert bet(A, [dan])[0] == 409
+    assert bet(A, [cat, cat])[0] == 400
+    # A new place still has to name someone in the game: Ann left in closed episode 1.
+    assert bet(A, [cat, {"player": "ann", "faction": "Faithful"}])[0] == 400
+
+
+def test_completing_a_bet_that_changed_underneath_is_409(db, monkeypatch):
+    from lambdas.common.traitors_dynamo import extend_bet
+    from lambdas.traitors_winner import handler as winner
+
+    cat = {"player": "cat", "faction": "Traitor"}
+    bet(A, [cat])
+    eve = {"player": "eve", "faction": "Faithful", "released": 2}
+    assert extend_bet("tus", 5, A, 2, [eve]) is False
+    assert extend_bet("tus", 5, A, 1, [eve]) is True
+    assert extend_bet("tus", 5, A, 1, [eve]) is False
+    # Another tab filled 2nd between this request's read and its write.
+    monkeypatch.setattr(winner, "extend_bet", lambda *a: False)
+    assert bet(A, [cat, eve, {"player": "dan", "faction": "Faithful"}])[0] == 409
 
 
 def test_locked_until_answered(db):

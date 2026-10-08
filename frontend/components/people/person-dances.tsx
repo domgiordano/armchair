@@ -123,13 +123,17 @@ export function Nudge({ night, count, partial }: { night: Night; count: number; 
   const what = night.label.replace(/^Week/, "week");
   const styles = night.rows.flatMap((r) => (r.locked && r.style ? [r.style] : []));
   const told = night.rows.some((r) => r.locked && r.writeup);
+  // Locked in on this device, judges still face down: nothing left to score, only to reveal.
+  const sealed = night.rows.every((r) => !r.locked || r.sealed);
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-dashed border-gold/30 bg-gold/[0.04] px-4 py-3">
       <div className="flex min-w-0 items-start gap-3">
         <LockIcon />
         <div className="min-w-0">
           <p className="text-sm text-pearl">
-            {partial
+            {sealed
+              ? `${count === 1 ? "1 dance" : `${count} dances`} from ${what} locked in, judges face down until you reveal`
+              : partial
               ? `${count} more ${count === 1 ? "dance" : "dances"} from ${what} to score`
               : `To see ${what} scores, score ${count === 1 ? "it" : "them"} first`}
           </p>
@@ -138,7 +142,7 @@ export function Nudge({ night, count, partial }: { night: Night; count: number; 
         </div>
       </div>
       <Link href={episodeHref(night.season, night.ep)} prefetch={false} className={button("primary", "sm")}>
-        Score {what}
+        {sealed ? `Reveal ${what}` : `Score ${what}`}
       </Link>
     </div>
   );
