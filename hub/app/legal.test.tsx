@@ -8,7 +8,9 @@ describe("legal pages", () => {
   it("privacy never promises an email contact and links to issues", () => {
     const { container } = render(<PrivacyPage />);
     expect(screen.getByRole("heading", { level: 1, name: "Privacy policy" })).toBeTruthy();
-    expect(screen.getByText("Last updated 2026-09-30")).toBeTruthy();
+    expect(screen.getByText("Last updated 2026-10-08")).toBeTruthy();
+    expect(screen.getByText(/no third-party analytics, advertising or tracking/)).toBeTruthy();
+    expect(screen.getByText(/Do-Not-Track or Global Privacy Control, we record nothing/)).toBeTruthy();
     expect(container.querySelector('a[href^="mailto:"]')).toBeNull();
     expect(screen.getAllByRole("link", { name: "GitHub issues page" })[0].getAttribute("href")).toBe(
       "https://github.com/domgiordano/armchair/issues",

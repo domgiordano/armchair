@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { useSeasonView } from "@/components/season-data";
 import { EmptyState } from "@/components/ui/states";
+import { YourPicks } from "@/components/your-picks";
 import type { SeasonEpisode } from "@/lib/api/traitors";
 import { roman } from "@/lib/players";
 import { episodeLabel, formatRelease, released } from "@/lib/schedule";
@@ -45,6 +46,7 @@ export function EpisodesScreen() {
                     {e.title && `Episode ${e.ep} · `}
                     {formatRelease(e.releaseAt)}
                   </span>
+                  <YourPicks mine={e.mine} players={view.cast} className="pt-1" />
                 </span>
                 <Status episode={e} now={now} />
               </Link>

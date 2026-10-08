@@ -15,6 +15,11 @@ export interface WinnerPick {
   faction: Faction;
 }
 
+/** A place in the ranked bet, 1st first: `released` is how many episodes were out when it was sealed. */
+export interface SealedPick extends WinnerPick {
+  released: number;
+}
+
 /** How a player left: "banished", "murdered", "winner", or whatever word the page used. */
 export interface Exit {
   ep: number;
@@ -44,6 +49,8 @@ export interface SeasonEpisode {
   closed: boolean;
   events: number;
   answered: number;
+  /** Your own calls, by event. Absent from a backend older than the field. */
+  mine?: Partial<Record<EventType, { picks?: string[]; forfeit?: boolean }>>;
   /** A finished season's episode recap. */
   recap?: Writeup | null;
 }
@@ -54,9 +61,10 @@ export interface SeasonView {
   title: string;
   current: boolean;
   needsBet: boolean;
-  /** Who the bet may name, sent while it's needed. */
+  /** Who the bet may name, sent while a place in it is empty. */
   betRoster?: Player[];
-  bet: { picks: WinnerPick[]; released: number } | null;
+  /** Ranked; fewer than three means the rest can still be filled. */
+  bet: { picks: SealedPick[]; released: number } | null;
   episodes: SeasonEpisode[];
   summary: Writeup | null;
   /** A finished season's champions. */
@@ -139,8 +147,9 @@ export const epParam = (ep: number) => String(ep).padStart(2, "0");
 export const getTraitorsSeason = (season: string) =>
   request<SeasonView>(`/traitors/season?season=${encodeURIComponent(season)}`);
 
+/** Every place in rank order: sealed ones unchanged, then the new ones. Changing a sealed place is 409. */
 export const submitWinner = (season: string, picks: WinnerPick[]) =>
-  request<{ picks: WinnerPick[]; released: number }>("/traitors/winner", {
+  request<{ picks: SealedPick[]; released: number }>("/traitors/winner", {
     method: "POST",
     body: JSON.stringify({ season, picks }),
   });
