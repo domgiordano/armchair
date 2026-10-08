@@ -82,7 +82,7 @@ it("turns with a drag and snaps to the nearest seat, without the drag tapping a 
   expect(["Player B", "Player C", "Player D", "Player E"]).toContain(label);
 });
 
-it("opens the head's page from Read more, while a tap elsewhere only turns the table", async () => {
+it("opens the head's full profile, linking their page, while a tap elsewhere only turns the table", async () => {
   api.getPlayer.mockResolvedValue({
     id: "p2",
     name: "Player C",
@@ -97,11 +97,16 @@ it("opens the head's page from Read more, while a tap elsewhere only turns the t
   const c = screen.getByRole("link", { name: "Player C" });
   expect(fireEvent.click(c)).toBe(false);
   expect(c.getAttribute("aria-current")).toBe("true");
-  expect(within(card()).getByRole("link", { name: "Read more about Player C" }).getAttribute("href")).toBe("/p/p2");
   expect(within(card()).getByText("UK · Series 3")).toBeTruthy();
   expect(await within(card()).findByText("34 · Dayton, Ohio · Teacher")).toBeTruthy();
   expect(within(card()).getByText("A teacher from Ohio who came to win.")).toBeTruthy();
   expect(api.getPlayer).toHaveBeenCalledWith("tuk", "p2");
+  fireEvent.click(within(card()).getByRole("button", { name: "Full profile: Player C" }));
+  const sheet = within(screen.getByRole("dialog", { name: "About Player C" }));
+  expect(sheet.getByText("34 · Teacher · Dayton, Ohio")).toBeTruthy();
+  expect(sheet.getByRole("link", { name: /Their full page/ }).getAttribute("href")).toBe("/p/p2");
+  fireEvent.click(sheet.getByRole("button", { name: "Close" }));
+  expect(screen.queryByRole("dialog")).toBeNull();
   // At the head, the seat is a plain link to their page.
   expect(fireEvent.click(c)).toBe(true);
 });
