@@ -151,6 +151,7 @@ data "aws_iam_policy_document" "cron_email" {
       aws_dynamodb_table.scores.arn,
       aws_dynamodb_table.board.arn,
       aws_dynamodb_table.groups.arn,
+      aws_dynamodb_table.events.arn,
     ]
   }
 
