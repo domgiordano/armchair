@@ -17,7 +17,7 @@ function readGroup(): string | null {
   }
 }
 
-function saveGroup(id: string | null): void {
+export function saveGroup(id: string | null): void {
   try {
     if (id === null) window.localStorage.removeItem(KEY);
     else window.localStorage.setItem(KEY, id);
