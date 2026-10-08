@@ -334,10 +334,31 @@ def friend_request(t: dict, ctx: dict, unsubscribe: list) -> Email:
     )
 
 
+def group_activated(t: dict, ctx: dict, unsubscribe: list) -> Email:
+    """ctx: actor, group, url."""
+    heading = f"{ctx['actor']} started {t['short']} for {ctx['group']}"
+    first = (
+        f"{ctx['actor']} is playing {t['name']} with {ctx['group']} on Armchair Judge. "
+        "Join in and the group gets its own standings every week."
+    )
+    return compose(
+        t,
+        subject=heading,
+        preheader=f"Join {ctx['group']} on {t['short']}.",
+        heading=heading,
+        blocks=[para(t, first)],
+        lines=[first],
+        cta=(f"Join on {t['short']}", ctx["url"]),
+        reason=f"You're getting this because you're in {ctx['group']} on Armchair Judge.",
+        unsubscribe=unsubscribe,
+    )
+
+
 RENDER = {
     "tonight": tonight,
     "closing": closing,
     "digest": digest,
     "group_invite": group_invite,
     "friend_request": friend_request,
+    "group_activated": group_activated,
 }

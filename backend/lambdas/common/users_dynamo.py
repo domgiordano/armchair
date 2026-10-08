@@ -219,3 +219,16 @@ def profiles() -> list[dict]:
         if "LastEvaluatedKey" not in page:
             return rows
         kwargs["ExclusiveStartKey"] = page["LastEvaluatedKey"]
+
+
+def recipient(sub: str) -> dict | None:
+    """What the mailer needs of one user: sub, address and email prefs."""
+    return (
+        table("USERS_TABLE")
+        .get_item(
+            Key={"sub": sub},
+            ProjectionExpression="#sub, email, emailPrefs",
+            ExpressionAttributeNames={"#sub": "sub"},
+        )
+        .get("Item")
+    )

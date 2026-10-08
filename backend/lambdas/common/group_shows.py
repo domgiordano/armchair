@@ -91,8 +91,8 @@ def start(gid: str, name: str, app: str, sub: str, members: set[str]) -> bool:
         notifications.put(m, "group_show_started", sub, group=gid, groupName=name, show=app)[1]
         for m in sorted(members - {sub})
     ]
-    # The email for this belongs here, beside the in-app ones, once the mailer
-    # (PR #213) is merged: send it to the same members after a True.
+    # The email goes from groups_shows after a True: email_social imports this
+    # module through groups_dynamo, so sending from here would be circular.
     return transact(ops, "GROUPS_TABLE")
 
 

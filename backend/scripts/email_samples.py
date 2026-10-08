@@ -168,4 +168,14 @@ SAMPLES = {
         "friend_request",
         {"requester": "Leo M.", "url": f"{TRAITORS}/"},
     ),
+    "dwts-group-activated": (
+        "dwts",
+        "group_activated",
+        {"actor": "Maya R.", "group": "Ballroom Bandits", "url": f"{DWTS}/groups/?group=SAMPLEGROUP1"},
+    ),
+    "traitors-group-activated": (
+        "traitors",
+        "group_activated",
+        {"actor": "Priya K.", "group": "Round Table Regulars", "url": f"{TRAITORS}/groups/?group=SAMPLEGROUP1"},
+    ),
 }

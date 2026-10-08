@@ -46,7 +46,8 @@ def test_every_email_is_show_branded_with_both_unsubscribes(env, name):
     email = mailer.render(SUB, show, kind, ctx)
     other = "traitors" if show == "dwts" else "dwts"
     assert f"/email/{show}-mark.png" in email.html and f"{other}-mark" not in email.html
-    scopes = ("social", "all") if kind in mailer.SOCIAL else (f"{show}.{kind}", show)
+    ptype = mailer.pref_type(show, kind)
+    scopes = (ptype, "all") if ptype in ("social", "groups") else (ptype, show)
     for scope in scopes:
         assert f"https://u.test/{scope}/{show}" in email.html
         assert f"https://u.test/{scope}/{show}" in email.text
