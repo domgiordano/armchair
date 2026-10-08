@@ -73,7 +73,7 @@ describe("Landing", () => {
     render(<Landing />);
     skipIntro();
     expect(screen.getByText(/rank the round table.s top three/i)).toBeTruthy();
-    expect(screen.getByText(/back up to three winners/i)).toBeTruthy();
+    expect(screen.getByText(/rank your top three winners/i)).toBeTruthy();
 
     const ledger = screen.getByRole("table", { name: "Points for each call" });
     const rows = Array.from(ledger.querySelectorAll("tbody tr")).map((tr) => [
@@ -87,8 +87,9 @@ describe("Landing", () => {
       ["A pick in the top three, wrong slot", "1"],
       ["You name the murder victim", "4"],
       ["You name the recruit", "4"],
-      ["A winner, per correct pick", "20 × early"],
-      ["Their faction too, Faithful or Traitor", "+10 × early"],
+      ["Your 1st-choice winner wins", "20 × early"],
+      ["Your 2nd or 3rd choice wins", "12 or 6 × early"],
+      ["Their faction too, Faithful or Traitor", "+10, 6 or 3 × early"],
     ]);
   });
 
