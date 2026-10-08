@@ -39,7 +39,17 @@ locals {
     { name = "user", description = "Admin: one user's profile, groups, friends and activity log", path_part = "user", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "events", description = "Admin: the newest activity events across every site", path_part = "events", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "audit", description = "Admin: the log of admin support actions", path_part = "audit", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "profile", description = "Admin: change someone's display name or reset their photo", path_part = "profile", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "membership", description = "Admin: add, remove, repair or re-invite someone in a group", path_part = "membership", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "friendship", description = "Admin: undo a block or friendship between two users", path_part = "friendship", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "answers", description = "Admin: one user's answers in one episode", path_part = "answers", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "answer", description = "Admin: set or clear one user's score or pick", path_part = "answer", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "delete", description = "Admin: delete someone's account through users_delete", path_part = "delete", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "view", description = "Admin: what one user sees on a screen, read-only", path_part = "view", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  # The read-only screens admin_view may invoke as a user: SCREENS in
+  # backend/lambdas/admin_view/handler.py.
+  admin_view_screens = ["overview_get", "users_get", "episodes_state", "stats_get", "groups_mine", "notifications_list", "leaderboard_get", "week_board_get", "performers_get", "traitors_season", "traitors_episode", "traitors_stats"]
   stats_lambdas = [
     { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
@@ -180,6 +190,13 @@ locals {
     admin_user         = ["users:GetItem", "users:BatchGetItem", "events:Query", "events_index:Query", "groups:Query", "social:Query"]
     admin_events       = ["events:Query", "users:BatchGetItem"]
     admin_audit        = ["events:Query"]
+    admin_profile      = ["users:GetItem", "users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem", "events:PutItem"]
+    admin_membership   = ["groups:GetItem", "groups:Query", "groups:PutItem", "groups:UpdateItem", "groups:DeleteItem", "social:PutItem", "social:DeleteItem", "events:PutItem"]
+    admin_friendship   = ["social:GetItem", "social:UpdateItem", "social:DeleteItem", "events:PutItem"]
+    admin_answers      = ["catalog:Query", "performances:Query", "scores:GetItem"]
+    admin_answer       = ["catalog:Query", "performances:Query", "scores:GetItem", "scores:Query", "scores:PutItem", "scores:DeleteItem", "board:Query", "board:PutItem", "board:UpdateItem", "board:DeleteItem", "events:PutItem"]
+    admin_delete       = ["users:GetItem", "events:PutItem"]
+    admin_view         = ["users:GetItem"]
     events_track       = ["events:UpdateItem", "events:BatchWriteItem"]
     events_anon        = ["events:UpdateItem", "events:BatchWriteItem"]
     users_delete       = ["events:Query", "events_index:Query", "events:BatchWriteItem", "events:UpdateItem", "groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
@@ -188,6 +205,7 @@ locals {
   # Env a single function needs beyond lambda_variables.
   api_env = {
     users_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+    admin_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
   }
 
   # users_delete scans four tables for rows naming the caller; the admin reports
@@ -196,6 +214,8 @@ locals {
     users_delete   = 60
     admin_overview = 29
     admin_users    = 29
+    admin_view     = 29
+    admin_delete   = 75
   }
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
@@ -204,6 +224,7 @@ locals {
   avatar_grants = {
     users_avatar_upload = ["s3:PutObject"]
     users_update        = ["s3:DeleteObject"]
+    admin_profile       = ["s3:DeleteObject"]
     users_delete        = ["s3:DeleteObject"]
   }
 }
@@ -278,6 +299,34 @@ data "aws_iam_policy_document" "api" {
       sid       = "ReadAdmins"
       actions   = ["ssm:GetParameter"]
       resources = [aws_ssm_parameter.admin_emails.arn]
+    }
+  }
+
+  # admin_view runs a read-only screen as the user; admin_delete runs users_delete.
+  dynamic "statement" {
+    for_each = each.key == "admin_view" ? [1] : []
+    content {
+      sid       = "ViewAs"
+      actions   = ["lambda:InvokeFunction"]
+      resources = [for k in local.admin_view_screens : aws_lambda_function.api[k].arn]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = each.key == "admin_delete" ? [1] : []
+    content {
+      sid       = "DeleteAs"
+      actions   = ["lambda:InvokeFunction"]
+      resources = [aws_lambda_function.api["users_delete"].arn]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = each.key == "admin_delete" ? [1] : []
+    content {
+      sid       = "FindLogin"
+      actions   = ["cognito-idp:ListUsers"]
+      resources = [data.aws_ssm_parameter.cognito_user_pool_arn.value]
     }
   }
 
