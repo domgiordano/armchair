@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, type MouseEvent, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
 import {
   ConfirmButton,
-  Empty,
   ListSection,
   PersonRow,
   SMALL_PRIMARY,
@@ -14,18 +13,16 @@ import {
 import { FriendButton } from "@/components/social/friend-button";
 import { Badge } from "@/components/ui/badge";
 import { manageGroup, type GroupDetail, type GroupMember, type GroupPerson } from "@armchair/app-core/api/groups";
-import { button } from "@/lib/ui";
 
 interface GroupMembersProps {
   group: GroupDetail;
   me: string | null;
   owner: boolean;
   reload: () => void;
-  onInvite: (e: MouseEvent<HTMLElement>) => void;
 }
 
 /** Who's in, who's invited and, for the owner, who's asking to join. */
-export function GroupMembers({ group, me, owner, reload, onInvite }: GroupMembersProps) {
+export function GroupMembers({ group, me, owner, reload }: GroupMembersProps) {
   const change = (sub: string, action: "approve" | "deny" | "remove") => () => manageGroup(group.id, { action, sub }).then(reload);
 
   return (
@@ -83,14 +80,6 @@ export function GroupMembers({ group, me, owner, reload, onInvite }: GroupMember
         </ListSection>
       )}
 
-      {group.members.length === 1 && (
-        <Empty>
-          Just you so far.{" "}
-          <button type="button" onClick={onInvite} className={`${button("ghost", "sm")} text-gold-light`}>
-            Invite people
-          </button>
-        </Empty>
-      )}
     </div>
   );
 }

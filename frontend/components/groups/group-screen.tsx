@@ -8,7 +8,8 @@ import { GroupBoard } from "@/components/groups/group-board";
 import { GroupMembers } from "@/components/groups/group-members";
 import { InviteSheet, LeaveSheet, SettingsSheet } from "@/components/groups/group-sheets";
 import { Redirect } from "@/components/redirect";
-import { ScoreCta } from "@/components/score-cta";
+import { GroupActivity, GroupWeek } from "@/components/groups/group-side";
+import { ShowIcon } from "@/components/show-icon";
 import { SignedIn } from "@/components/signed-in";
 import { AvatarStack, GroupMark, useAction, useLoad } from "@/components/social/parts";
 import { Badge } from "@/components/ui/badge";
@@ -19,7 +20,8 @@ import { tabId, Tabs } from "@/components/ui/tabs";
 import { getGroupDetails, type GroupDetail } from "@armchair/app-core/api/groups";
 import { getFriends, mySub } from "@armchair/app-core/api/social";
 import { useNotifications } from "@armchair/app-core/social/notifications";
-import { button, cn, FOCUS } from "@/lib/ui";
+import { appLink } from "@armchair/app-core/apps";
+import { button, cn, FOCUS, TEXT_LINK } from "@/lib/ui";
 
 /** /groups/?id=: one group's page. Without an id, your groups list on your profile. */
 export function GroupRoute() {
@@ -53,6 +55,7 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
   const [sheet, setSheet] = useState<Sheet>(null);
   const [friends, reloadFriends] = useLoad(getFriends);
   const count = group.members.length;
+  const traitors = appLink("traitors", "/leaderboard/");
 
   // Safari doesn't focus a clicked button, and the sheet hands focus back to whatever had it on close.
   const open = (which: Sheet) => (e: MouseEvent<HTMLElement>) => {
@@ -72,8 +75,12 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
           <GroupMark name={group.name} size="lg" />
           <div className="flex w-full min-w-0 flex-1 flex-col items-center gap-3 sm:items-start">
             <div className="flex max-w-full flex-col items-center gap-1.5 sm:items-start">
-              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Group</p>
-              <h1 className="max-w-full truncate text-2xl font-semibold tracking-tight text-pearl sm:text-3xl">{group.name}</h1>
+              <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">
+                Group · every Armchair Judge show
+              </p>
+              <h1 className="max-w-full truncate text-2xl font-semibold tracking-tight text-pearl sm:text-3xl">
+                {group.name}
+              </h1>
               <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-silver-dim sm:justify-start">
                 <AvatarStack people={group.members} size={26} max={5} />
                 <span>
@@ -98,7 +105,10 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
                 {owner ? (
                   <MenuItem onSelect={() => setSheet("settings")}>Group settings</MenuItem>
                 ) : (
-                  <MenuItem onSelect={() => setSheet("leave")} className="text-red-200 hover:text-red-100 focus:text-red-100">
+                  <MenuItem
+                    onSelect={() => setSheet("leave")}
+                    className="text-red-200 hover:text-red-100 focus:text-red-100"
+                  >
                     Leave group
                   </MenuItem>
                 )}
@@ -108,26 +118,68 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
         </div>
       </header>
 
-      <ScoreCta group={group.id} note={`Every dance you score counts on ${group.name}'s leaderboard.`} />
-
-      <div className="md:max-w-sm">
-        <Tabs
-          label="Group sections"
-          tabs={[
-            { id: "board", label: "Leaderboard" },
-            { id: "members", label: "Members", badge: owner && group.requests.length > 0 ? group.requests.length : undefined },
-          ]}
-          value={tab}
-          onChange={setTab}
-          panelId={PANEL}
-        />
-      </div>
-      <div key={tab} role="tabpanel" id={PANEL} aria-labelledby={tabId(PANEL, tab)} className="flex flex-1 flex-col gap-4 animate-fade-in">
-        {tab === "board" ? (
-          <GroupBoard group={group} />
-        ) : (
-          <GroupMembers group={group} me={me} owner={owner} reload={reload} onInvite={open("invite")} />
-        )}
+      {/* Phones read this week first and the activity last; wide screens keep both beside the board. */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div className="lg:col-start-2 lg:row-start-1">
+          <GroupWeek group={group} me={me} />
+        </div>
+        <div className="flex min-w-0 flex-col gap-4 lg:col-start-1 lg:row-span-2 lg:row-start-1">
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-silver-dim">
+            <ShowIcon show="dwts" size={22} />
+            <span>
+              Showing <span className="font-medium text-pearl">{group.name}</span> on Dancing with the Stars.
+            </span>
+            {traitors && (
+              <a href={traitors} className={TEXT_LINK}>
+                The same group on The Traitors
+              </a>
+            )}
+          </p>
+          {count === 1 && (
+            <div className="flex flex-col gap-3 rounded-xl border border-gold/35 bg-gold/[0.06] p-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col gap-0.5">
+                <p className="font-semibold text-pearl">Just you so far</p>
+                <p className="text-sm text-silver-dim">Send the group link to the people you watch with.</p>
+              </div>
+              <button type="button" onClick={open("invite")} className={cn(button("primary"), "shrink-0")}>
+                <InviteIcon />
+                Invite people
+              </button>
+            </div>
+          )}
+          <div className="md:max-w-sm">
+            <Tabs
+              label="Group sections"
+              tabs={[
+                { id: "board", label: "Leaderboard" },
+                {
+                  id: "members",
+                  label: "Members",
+                  badge: owner && group.requests.length > 0 ? group.requests.length : undefined,
+                },
+              ]}
+              value={tab}
+              onChange={setTab}
+              panelId={PANEL}
+            />
+          </div>
+          <div
+            key={tab}
+            role="tabpanel"
+            id={PANEL}
+            aria-labelledby={tabId(PANEL, tab)}
+            className="flex flex-1 flex-col gap-4 animate-fade-in"
+          >
+            {tab === "board" ? (
+              <GroupBoard group={group} />
+            ) : (
+              <GroupMembers group={group} me={me} owner={owner} reload={reload} />
+            )}
+          </div>
+        </div>
+        <div className="lg:col-start-2 lg:row-start-2">
+          <GroupActivity group={group} me={me} owner={owner} />
+        </div>
       </div>
 
       <InviteSheet
@@ -173,7 +225,9 @@ function NotIn({ id, onJoined }: { id: string; onJoined: () => void }) {
               <button
                 type="button"
                 disabled={act.busy !== null}
-                onClick={() => void act.run("decline", () => answer(invite, false).then(() => router.push("/social/?view=groups")))}
+                onClick={() =>
+                  void act.run("decline", () => answer(invite, false).then(() => router.push("/social/?view=groups")))
+                }
                 className={button("secondary", "sm")}
               >
                 Decline
@@ -237,7 +291,16 @@ function GroupSkeleton() {
 
 function InviteIcon() {
   return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      className="size-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.9}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <circle cx="8" cy="7" r="3" />
       <path d="M2.5 16.5c.6-2.8 2.8-4.5 5.5-4.5s4.9 1.7 5.5 4.5M15.5 6v5M13 8.5h5" />
     </svg>
