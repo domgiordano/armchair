@@ -1,10 +1,10 @@
 """
 Notifications, in armchair-social beside the graph they report on:
 
-    NOTIF#{sub}  {iso time}#{rand}  type, from, read, state?, group?, groupName?, expiresAt
+    NOTIF#{sub}  {iso time}#{rand}  type, from, read, state?, group?, groupName?, show?, expiresAt
 
 `type` is friend_request | friend_accepted | group_invite | group_join_request
-| group_join_accepted. The actionable ones (a request or an invite) carry
+| group_join_accepted | group_show_started (`show` is the app id). The actionable ones (a request or an invite) carry
 `state`: pending until answered, then accepted or declined, so the list can
 drop its buttons. DynamoDB TTL deletes each one EXPIRE_DAYS after it was
 written, which keeps a user's partition small enough to read whole.
