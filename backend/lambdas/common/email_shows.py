@@ -17,6 +17,7 @@ from lambdas.common import board_dynamo
 from lambdas.common.dynamo import query_all, query_partitions, table
 from lambdas.common.episodes_dynamo import episode_pk, season_index, season_rows
 from lambdas.common.gate import score_owner
+from lambdas.common.group_shows import members_playing
 from lambdas.common.traitors_catalog import EDITIONS
 from lambdas.common.traitors_gate import ep_number, pick_owner
 from lambdas.common.window import airs_at, spans
@@ -84,9 +85,10 @@ class Dwts:
         return {n: by_pk[self.pk(n)] for n in eps}
 
     def players(self) -> set[str]:
-        """Everyone who has scored this season, or had a dance counted in any DWTS season."""
+        """Everyone who has scored this season, had a dance counted in any DWTS season,
+        or is in a group that plays DWTS."""
         played = {score_owner(r)[1] for rows in self.scores(list(self.episodes)).values() for r in rows}
-        return played | set(board_dynamo.rows("dwts", board_dynamo.ALL))
+        return played | set(board_dynamo.rows("dwts", board_dynamo.ALL)) | members_playing("dwts")
 
 
 class Traitors:
@@ -129,13 +131,15 @@ class Traitors:
         return {n: by_pk[self.pk(n)] for n in eps}
 
     def players(self) -> set[str]:
-        """Everyone with a pick or a winner bet this season, or points in any season of the edition."""
+        """Everyone with a pick or a winner bet this season, points in any season of the
+        edition, or a place in a group that plays The Traitors."""
         picked = {pick_owner(r)[1] for rows in self.picks(list(self.episodes)).values() for r in rows}
         bets = query_all(table("SCORES_TABLE"), f"WIN#{self.edition}#{self.number}")
         return (
             picked
             | {b["sk"].removeprefix("USER#") for b in bets}
             | set(board_dynamo.rows(self.edition, board_dynamo.ALL))
+            | members_playing("traitors")
         )
 
 

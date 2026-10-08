@@ -32,7 +32,7 @@ def show(aws, at, outbox):  # noqa: F811
     write(aws.Table(CATALOG_TABLE), items(SEASON))
     for sub, name in ((A, "Ada"), (B, "Bea"), (C, "Cy")):
         sign_in(sub, name)
-    meta, episode, contestants = catalog("dwts", 35, 5)
+    _, episode, contestants = catalog("dwts", 35, 5)
     keys = rateable(5, episode, contestants, performances("EP#dwts#35#05"))
     scores = aws.Table(SCORES_TABLE)
     # Bea has scored every dance of episode 5, Ada two of them; Cy has never played.
@@ -104,3 +104,16 @@ def test_traitors_night_with_two_episodes_is_one_email(aws, at, outbox):  # noqa
     assert mail["sub"] == A and mail["show"] == "traitors"
     assert mail["email"].subject == "Tonight: The Traitors Episodes 2-3"
     assert "9:00 pm ET" in mail["email"].text
+
+
+def test_a_member_of_a_group_playing_the_show_gets_tonight(show, at, outbox, aws):
+    from tests.conftest import GROUPS_TABLE
+
+    groups = aws.Table(GROUPS_TABLE)
+    groups.put_item(Item={"pk": "GROUP#g1", "sk": f"MEMBER#{C}", "joinedAt": "2026-10-01T00:00:00+00:00"})
+    groups.put_item(Item={"pk": "GROUP#g1", "sk": "SHOW#dwts", "by": C, "at": "2026-10-01T00:00:00+00:00"})
+    groups.put_item(Item={"pk": "GROUP#g2", "sk": "MEMBER#nobody", "joinedAt": "2026-10-01T00:00:00+00:00"})
+    groups.put_item(Item={"pk": "GROUP#g2", "sk": "SHOW#traitors", "by": "nobody", "at": "2026-10-01T00:00:00+00:00"})
+    at(EP6_AIRS - timedelta(hours=1))
+    handler({}, None)
+    assert kinds(outbox) == [("tonight", A), ("tonight", B), ("tonight", C)]
