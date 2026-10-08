@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
+import { getMyGroups, plays, type Group } from "@armchair/app-core/api/groups";
 
 // The same key as the DWTS app: a group is family-wide, so the pick follows you.
 const KEY = "armchair.group";
@@ -45,7 +45,8 @@ export function useGroupFilter(): GroupFilter {
   useEffect(() => {
     let cancelled = false;
     getMyGroups().then(
-      (g) => !cancelled && setGroups(g),
+      // Only groups playing The Traitors have a board here.
+      (g) => !cancelled && setGroups(g.filter((x) => plays(x, "traitors"))),
       () => !cancelled && setFailed(true),
     );
     return () => {
