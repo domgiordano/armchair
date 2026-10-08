@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 
 import { BoardHighlights } from "@/components/couples/board-highlights";
+import { CompareBar, MAX_COMPARE } from "@/components/couples/compare";
 import { Sparkline } from "@/components/couples/sparkline";
 import { EliminatedStamp, OUT_FADE, OUT_STRIKE, ShowEliminated } from "@/components/eliminated";
 import { CoupleAvatars } from "@/components/headshot";
@@ -16,6 +17,7 @@ import { signed } from "@/lib/show/couples";
 import {
   board,
   BOARD_SORTS,
+  celebrityName,
   highlights,
   loadBoard,
   sortValue,
@@ -101,6 +103,7 @@ function Leaderboard({ season, data, through }: { season: Season; data: BoardDat
   const [week, setWeek] = useState(through);
   const [sort, setSort] = useState<BoardSort>("average");
   const [showOut, setShowOut] = useShowEliminated("couples");
+  const [picked, setPicked] = useState<string[]>([]);
   const wide = useMediaQuery("(min-width: 1024px)");
   const base = { roster: season.contestants, dances: data.dances, outs: data.outs, week };
   const rows = board({ ...base, by: sort, showOut });
@@ -108,6 +111,13 @@ function Leaderboard({ season, data, through }: { season: Season; data: BoardDat
   const floor = Math.max(1, Math.floor(Math.min(10, ...rows.flatMap((c) => c.weeks.map((w) => w.score)))) - 1);
   const gone = [...data.outs.values()].filter((o) => (o.week ?? o.ep) <= week).length;
   const label = BOARD_SORTS.find((s) => s.value === sort)?.label ?? "";
+  // Picked couples stay picked while hidden by the switch, and show at the board's week.
+  const everyone = board({ ...base, by: sort, showOut: true });
+  const compare = picked.flatMap((id) => everyone.filter((c) => c.id === id));
+  const pick: Picking = {
+    picked,
+    toggle: (id) => setPicked((now) => (now.includes(id) ? now.filter((x) => x !== id) : now.length < MAX_COMPARE ? [...now, id] : now)),
+  };
   const weekOptions = [...data.weeks].reverse().map((w) => ({
     value: String(w.week),
     label: `Week ${w.week}`,
@@ -133,10 +143,11 @@ function Leaderboard({ season, data, through }: { season: Season; data: BoardDat
           Switch on Show eliminated to see them.
         </EmptyState>
       ) : wide ? (
-        <BoardTable rows={rows} week={week} floor={floor} sort={sort} onSort={setSort} label={label} season={season.season} />
+        <BoardTable rows={rows} week={week} floor={floor} sort={sort} onSort={setSort} label={label} season={season.season} pick={pick} />
       ) : (
-        <BoardList rows={rows} week={week} floor={floor} sort={sort} label={label} season={season.season} />
+        <BoardList rows={rows} week={week} floor={floor} sort={sort} label={label} season={season.season} pick={pick} />
       )}
+      <CompareBar picked={compare} week={week} season={season.season} onClear={() => setPicked([])} />
     </>
   );
 }
@@ -161,6 +172,30 @@ interface BoardProps {
   /** The sort's name, for the list's label. */
   label: string;
   season: string;
+  pick: Picking;
+}
+
+interface Picking {
+  picked: string[];
+  toggle: (id: string) => void;
+}
+
+/** A row's Compare box: 44px to tap, and closed to more once three are picked. */
+function Pick({ couple: c, pick }: { couple: BoardCouple; pick: Picking }) {
+  const on = pick.picked.includes(c.id);
+  const full = !on && pick.picked.length >= MAX_COMPARE;
+  return (
+    <label onClick={(e) => e.stopPropagation()} className={cn("-m-1.5 flex size-11 shrink-0 items-center justify-center", full ? "cursor-not-allowed" : "cursor-pointer")}>
+      <input
+        type="checkbox"
+        checked={on}
+        disabled={full}
+        onChange={() => pick.toggle(c.id)}
+        aria-label={`Compare ${celebrityName(c.members)}`}
+        className="size-5 cursor-[inherit] rounded accent-gold disabled:opacity-35 focus-ring"
+      />
+    </label>
+  );
 }
 
 // Fixed widths: the couple column takes what is left, so a long name truncates instead of widening the table.
@@ -175,7 +210,7 @@ const COLUMNS: { by: BoardSort; label: string; className: string }[] = [
   { by: "perfect", label: "Perfect", className: "w-18 text-right" },
 ];
 
-function BoardTable({ rows, week, floor, sort, onSort, label, season }: BoardProps & { onSort: (by: BoardSort) => void }) {
+function BoardTable({ rows, week, floor, sort, onSort, label, season, pick }: BoardProps & { onSort: (by: BoardSort) => void }) {
   const router = useRouter();
   return (
     <div className="rounded-xl border border-silver/10 bg-ballroom/30">
@@ -183,7 +218,10 @@ function BoardTable({ rows, week, floor, sort, onSort, label, season }: BoardPro
         <caption className="sr-only">{`Couples ranked by ${label.toLowerCase()}, as of week ${week}`}</caption>
         <thead>
           <tr className="border-b border-silver/10 text-xs text-silver-dim">
-            <th scope="col" className="w-16 py-2 pr-2 pl-4 text-center font-medium">
+            <th scope="col" className="w-12 py-2 pl-3">
+              <span className="sr-only">Compare</span>
+            </th>
+            <th scope="col" className="w-14 py-2 pr-2 text-center font-medium">
               Rank
             </th>
             <th scope="col" className="py-2 text-left font-medium">
@@ -224,7 +262,10 @@ function BoardTable({ rows, week, floor, sort, onSort, label, season }: BoardPro
                   c.rank === 1 && "bg-gradient-to-r from-gold/10 to-transparent",
                 )}
               >
-                <td className="py-2.5 pl-4">
+                <td className="py-2.5 pl-3">
+                  <Pick couple={c} pick={pick} />
+                </td>
+                <td className="py-2.5">
                   <Rank couple={c} week={week} />
                 </td>
                 <td className="py-2.5 pr-2">
@@ -267,7 +308,7 @@ function Num({ value, count, strong, out }: { value: number | null; count?: bool
   );
 }
 
-function BoardList({ rows, week, floor, sort, label, season }: BoardProps) {
+function BoardList({ rows, week, floor, sort, label, season, pick }: BoardProps) {
   const router = useRouter();
   return (
     <ol aria-label={`Couples ranked by ${label.toLowerCase()}, as of week ${week}`} className="stagger flex flex-col gap-1.5">
@@ -278,7 +319,7 @@ function BoardList({ rows, week, floor, sort, label, season }: BoardProps) {
             key={c.id}
             onClick={() => router.push(coupleHref(c.members, season))}
             className={cn(
-              "grid cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-1.5 rounded-xl border px-2.5 py-2 transition-colors",
+              "grid cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)_auto_auto] items-center gap-x-2 gap-y-1.5 rounded-xl border px-2.5 py-2 transition-colors",
               out
                 ? "border-dashed border-silver/15 bg-ink/40"
                 : c.rank === 1
@@ -292,7 +333,8 @@ function BoardList({ rows, week, floor, sort, label, season }: BoardProps) {
               <span className="text-lg leading-tight font-semibold text-pearl tabular-nums">{shown(sort, sortValue(c, sort))}</span>
               <span className="text-[11px] text-silver-dim">{CAPTION[sort]}</span>
             </span>
-            <dl className={cn("col-span-3 grid grid-cols-[repeat(4,minmax(0,1fr))_auto] gap-x-2 border-t border-silver/5 pt-1.5", out && "opacity-55")}>
+            <Pick couple={c} pick={pick} />
+            <dl className={cn("col-span-4 grid grid-cols-[repeat(4,minmax(0,1fr))_auto] gap-x-2 border-t border-silver/5 pt-1.5", out && "opacity-55")}>
               {sort === "average" ? <Fact label="Trend" value={<Delta value={c.trend} strong={false} />} /> : <Fact label="Avg" value={show(c.average)} />}
               <Fact label={`Week ${week}`} value={show(c.last)} detail={c.lastStyles.join(", ") || undefined} />
               <Fact label="Best" value={show(c.best)} />

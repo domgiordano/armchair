@@ -176,3 +176,48 @@ describe("Couples leaderboard spoilers", () => {
     expect(screen.queryByText("Ezra Frech")).toBeNull();
   });
 });
+
+describe("Comparing couples", () => {
+  beforeEach(() => screenWidth(true));
+
+  it("picks couples from their rows, without opening their page, and compares them side by side", async () => {
+    serve(2);
+    render(<LeaderboardView season={SEASON} />);
+    await screen.findByRole("table");
+    fireEvent.click(screen.getByRole("checkbox", { name: "Compare Ezra Frech" }));
+    const bar = screen.getByRole("region", { name: "Compare couples" });
+    expect(within(bar).getByText("Pick one more to compare")).toBeTruthy();
+    expect(within(bar).getByRole("button", { name: "Compare 1" }).hasAttribute("disabled")).toBe(true);
+
+    fireEvent.click(screen.getByRole("checkbox", { name: "Compare Taylor Hanson" }));
+    expect(nav.push).not.toHaveBeenCalled();
+    fireEvent.click(within(bar).getByRole("button", { name: "Compare 2" }));
+
+    const sheet = screen.getByRole("dialog", { name: "Compare couples" });
+    const table = within(sheet).getByRole("table", { name: "Ezra Frech, Taylor Hanson compared" });
+    const avg = within(table).getByRole("rowheader", { name: "Judges' avg" }).closest("tr");
+    expect(avg?.textContent).toBe("Judges' avg8.56.5");
+    expect(within(avg as HTMLElement).getByText("8.5").className).toContain("text-gold-light");
+    expect(within(sheet).getByRole("img").getAttribute("aria-label")).toBe("Ezra Frech: week 1 7.0, week 2 10.0; Taylor Hanson: week 1 6.0, week 2 7.0");
+  });
+
+  it("stops at three", async () => {
+    serve(2);
+    const four = { ...SEASON, contestants: [...SEASON.contestants, pair("jenna-dewan", "Jenna Dewan", "Val Chmerkovskiy")] };
+    render(<LeaderboardView season={four} />);
+    await screen.findByRole("table");
+    for (const name of ["Ezra Frech", "Amber Glenn", "Taylor Hanson"]) fireEvent.click(screen.getByRole("checkbox", { name: `Compare ${name}` }));
+    expect((screen.getByRole("checkbox", { name: "Compare Jenna Dewan" }) as HTMLInputElement).disabled).toBe(true);
+    expect(screen.getByRole("button", { name: "Compare 3" }).hasAttribute("disabled")).toBe(false);
+  });
+
+  it("clears the picks", async () => {
+    serve(2);
+    render(<LeaderboardView season={SEASON} />);
+    await screen.findByRole("table");
+    fireEvent.click(screen.getByRole("checkbox", { name: "Compare Amber Glenn" }));
+    fireEvent.click(screen.getByRole("button", { name: "Clear" }));
+    expect(screen.queryByRole("region", { name: "Compare couples" })).toBeNull();
+    expect((screen.getByRole("checkbox", { name: "Compare Amber Glenn" }) as HTMLInputElement).checked).toBe(false);
+  });
+});
