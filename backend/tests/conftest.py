@@ -60,6 +60,16 @@ def no_scoring_window(request, monkeypatch):
     monkeypatch.setattr(window, "closed", lambda meta, span, at: is_open(meta))
 
 
+@pytest.fixture(autouse=True)
+def ses_sandbox(monkeypatch):
+    """Every test runs as if SES were in the sandbox with no admins, so nothing sends
+    unless a test asks: moto has no GetAccount. The outbox fixture lifts it."""
+    from lambdas.common import mailer
+
+    monkeypatch.setattr(mailer, "production", lambda: False)
+    monkeypatch.setattr(mailer, "_admins", lambda: frozenset())
+
+
 @pytest.fixture
 def aws(monkeypatch):
     """A moto account with the tables Terraform creates."""
@@ -84,6 +94,10 @@ def aws(monkeypatch):
         "RECAPS_BUCKET": AVATARS_BUCKET,
         "APP_NAME": "armchair",
         "CORS_ALLOW_ORIGIN": "https://dwts.armchairjudge.com,http://localhost:3000",
+        "API_URL": "https://api.dwts.armchairjudge.com",
+        "DWTS_URL": "https://dwts.armchairjudge.com",
+        "TRAITORS_URL": "https://traitors.armchairjudge.com",
+        "HUB_URL": "https://armchairjudge.com",
     }.items():
         monkeypatch.setenv(k, v)
     with mock_aws():
@@ -144,3 +158,34 @@ def people(aws):
     sign_in(A, "Ada Lovelace")
     sign_in(B, "Bea Arthur", picture=None)
     sign_in(C, "Adam Driver")
+
+
+@pytest.fixture
+def unsubscribe_secret(aws):
+    """The SecureString common/unsubscribe.py signs with, and a fresh cache of it."""
+    from lambdas.common import unsubscribe
+
+    boto3.client("ssm").put_parameter(
+        Name="/armchair/email-unsubscribe-secret", Type="SecureString", Value="test-secret"
+    )
+    unsubscribe._secret.cache_clear()
+    yield
+    unsubscribe._secret.cache_clear()
+
+
+@pytest.fixture
+def outbox(aws, unsubscribe_secret, monkeypatch):
+    """Every send, unsent: production SES access, no admins, a stub in place of SES."""
+    from lambdas.common import mailer
+
+    monkeypatch.setenv("EMAIL_DOMAIN", "armchairjudge.com")
+    monkeypatch.setenv("EMAIL_CONFIG_SET", "armchair-mail")
+    monkeypatch.setattr(mailer, "production", lambda: True)
+    monkeypatch.setattr(mailer, "_admins", lambda: frozenset())
+    sent = []
+
+    def send(address, sub, show, kind, email):
+        sent.append({"to": address, "sub": sub, "show": show, "kind": kind, "email": email})
+
+    monkeypatch.setattr(mailer, "send", send)
+    return sent

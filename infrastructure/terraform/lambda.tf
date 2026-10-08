@@ -40,6 +40,8 @@ locals {
     { name = "user", description = "Admin: one user's profile, groups, friends and activity log", path_part = "user", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "events", description = "Admin: the newest activity events across every site", path_part = "events", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "audit", description = "Admin: the log of admin support actions", path_part = "audit", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "email_test", description = "Admin: preview any email template, or send it to yourself", path_part = "email-test", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "email_log", description = "Admin: each email type's runs, and one run's readers", path_part = "email-log", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "profile", description = "Admin: change someone's display name or reset their photo", path_part = "profile", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "membership", description = "Admin: add, remove, repair or re-invite someone in a group", path_part = "membership", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "friendship", description = "Admin: undo a block or friendship between two users", path_part = "friendship", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -94,6 +96,13 @@ locals {
     { name = "credits", description = "Who made each Traitors headshot in a season, and its license", path_part = "credits", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "record", description = "Every Traitors call the caller may see in a season, by person, with points", path_part = "record", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  # unsubscribe is public: the signed token in the link is its only credential, and
+  # ANY because one path serves the GET confirmation and the POST (form and RFC 8058 one-click).
+  email_lambdas = [
+    { name = "prefs", description = "The caller's email address and each email type on or off", path_part = "prefs", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "prefs_set", description = "Turn email types on or off, or dismiss the first-run notice", path_part = "prefs-set", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "unsubscribe", description = "Unsubscribe from email by signed token", path_part = "unsubscribe", http_method = "ANY", authorization = "NONE" },
+  ]
   # anon is public: a signed-out visitor has no token (common/events_dynamo.py).
   events_lambdas = [
     { name = "track", description = "Store a signed-in visitor's batch of activity events", path_part = "track", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -124,6 +133,7 @@ locals {
     { for l in local.people_lambdas : "people_${l.name}" => l },
     { for l in local.traitors_lambdas : "traitors_${l.name}" => l },
     { for l in local.invite_lambdas : "invite_${l.name}" => l },
+    { for l in local.email_lambdas : "email_${l.name}" => l },
     { for l in local.events_lambdas : "events_${l.name}" => l },
     { for l in local.favorites_lambdas : "favorites_${l.name}" => l },
   )
@@ -159,7 +169,7 @@ locals {
     groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query", "board:BatchGetItem", "groups:PutItem", "groups:UpdateItem"]
     seasons_list       = ["catalog:Query"]
     overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
-    friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem"]
+    friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
     friends_accept     = ["social:UpdateItem", "social:GetItem", "social:PutItem"]
     friends_remove     = ["social:GetItem", "social:UpdateItem", "social:DeleteItem"]
     friends_block      = ["social:GetItem", "social:UpdateItem", "social:DeleteItem"]
@@ -170,12 +180,12 @@ locals {
     leaderboard_get    = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem", "performances:Query", "scores:Query"]
     notifications_list = ["social:Query", "users:BatchGetItem"]
     notifications_read = ["social:Query", "social:UpdateItem"]
-    groups_invite      = ["groups:GetItem", "groups:PutItem", "social:GetItem", "social:PutItem"]
+    groups_invite      = ["groups:GetItem", "groups:PutItem", "social:GetItem", "social:PutItem", "users:GetItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
     groups_respond     = ["groups:GetItem", "groups:DeleteItem", "groups:UpdateItem", "social:UpdateItem"]
     groups_manage      = ["groups:GetItem", "groups:UpdateItem", "groups:DeleteItem", "social:PutItem", "social:UpdateItem"]
     groups_delete      = ["groups:GetItem", "groups:Query", "groups:BatchWriteItem", "groups:DeleteItem", "social:DeleteItem"]
     groups_leave       = ["groups:GetItem", "groups:DeleteItem"]
-    groups_shows       = ["groups:GetItem", "groups:Query", "groups:PutItem", "groups:DeleteItem", "social:PutItem"]
+    groups_shows       = ["groups:GetItem", "groups:Query", "groups:PutItem", "groups:DeleteItem", "social:PutItem", "users:GetItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
     scores_skip_before = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem"]
     performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem", "users:GetItem", "social:GetItem"]
     week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
@@ -192,6 +202,10 @@ locals {
     traitors_credits   = ["catalog:Query"]
     traitors_record    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:BatchGetItem"]
     invite_preview     = ["groups:GetItem"]
+    email_prefs        = ["users:GetItem", "email:GetItem"]
+    admin_email_log    = ["email:Query", "users:BatchGetItem"]
+    email_prefs_set    = ["users:GetItem", "users:UpdateItem", "email:GetItem"]
+    email_unsubscribe  = ["users:GetItem", "users:UpdateItem"]
     admin_overview     = ["events:Query", "users:Scan", "catalog:Query", "scores:Query"]
     admin_users        = ["events:Query", "users:Scan", "groups:Scan"]
     admin_user         = ["users:GetItem", "users:BatchGetItem", "events:Query", "events_index:Query", "groups:Query", "social:Query"]
@@ -212,8 +226,12 @@ locals {
 
   # Env a single function needs beyond lambda_variables.
   api_env = {
-    users_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
-    admin_delete = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+    users_delete     = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+    admin_delete     = { COGNITO_USER_POOL_ID = local.cognito_user_pool_id }
+    groups_invite    = local.email_env
+    friends_request  = local.email_env
+    groups_shows     = local.email_env
+    admin_email_test = local.email_env
   }
 
   # users_delete scans four tables for rows naming the caller; the admin reports
@@ -225,6 +243,12 @@ locals {
     admin_view     = 29
     admin_delete   = 75
   }
+
+  # Functions that sign or check unsubscribe links (common/unsubscribe.py).
+  unsubscribe_signers = ["email_unsubscribe"]
+
+  # Functions that send email (common/email_social.py), with send_email's grants.
+  email_senders = ["groups_invite", "friends_request", "groups_shows", "admin_email_test"]
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
   # signed with the upload function's own credentials, so its PutObject is
@@ -251,6 +275,8 @@ resource "aws_iam_role" "api" {
 
 data "aws_iam_policy_document" "api" {
   for_each = local.all_api_lambdas
+
+  source_policy_documents = contains(local.email_senders, each.key) ? [data.aws_iam_policy_document.send_email.json] : []
 
   statement {
     sid       = "Logs"
@@ -307,6 +333,16 @@ data "aws_iam_policy_document" "api" {
       sid       = "ReadAdmins"
       actions   = ["ssm:GetParameter"]
       resources = [aws_ssm_parameter.admin_emails.arn]
+    }
+  }
+
+  # A SecureString under the AWS-managed aws/ssm key, which SSM decrypts for account principals.
+  dynamic "statement" {
+    for_each = contains(local.unsubscribe_signers, each.key) ? [1] : []
+    content {
+      sid       = "UnsubscribeSecret"
+      actions   = ["ssm:GetParameter"]
+      resources = [aws_ssm_parameter.email_unsubscribe_secret.arn]
     }
   }
 
