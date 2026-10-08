@@ -211,7 +211,7 @@ def _dwts_why(i: dict, rank: dict, leads: set[str]) -> list[str]:
     if "crowd" in leads:
         chips.append("Crowd favorite")
     if i["saves"]:
-        chips.append("Saved from the bottom two" + (f" x{i['saves']}" if i["saves"] > 1 else ""))
+        chips.append("Survived bottom two" + (f" x{i['saves']}" if i["saves"] > 1 else ""))
     return chips
 
 

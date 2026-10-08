@@ -75,7 +75,7 @@ def test_dwts_counts_a_judges_bottom_two_night_survived():
     entries = by_id(fav.dwts(2, COUPLES, EPISODES, None))
     assert entries["bea"]["inputs"]["saves"] + entries["cat"]["inputs"]["saves"] == 1
     assert any(
-        c.startswith("Saved from the bottom two") for e in entries.values() for c in e["why"]
+        c.startswith("Survived bottom two") for e in entries.values() for c in e["why"]
     )
 
 
