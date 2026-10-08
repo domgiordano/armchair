@@ -76,7 +76,7 @@ export function FocusCard({ id, name, season, status, unmasked, href, actions, c
           <p className="min-h-5 truncate text-sm leading-5 text-ash">
             {[about?.age, about?.hometown, about?.occupation].filter(Boolean).join(" · ")}
           </p>
-          <p className={cn("min-h-12 leading-6 text-parchment", !expanded && "line-clamp-2")}>
+          <p className={cn("min-h-12 leading-6 text-parchment", !expanded && "line-clamp-2 @4xl:line-clamp-6")}>
             {bio ?? <span className="text-ash italic">{load.profile ? "No biography yet." : "Their story couldn't load."}</span>}
           </p>
         </>

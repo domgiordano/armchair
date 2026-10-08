@@ -38,19 +38,17 @@ function Star({ r }: { r: number }) {
  * The table: a dark rim with a gilt and marquetry border, a radial-grained wood
  * field under a warm pool of light, the inlaid star and a raised hub. A gilt
  * candle disc sits in front of each seat, and the head of the table, where the
- * host stands, is lit. A cast too big for a round table gets an oval one. The
- * star turns `angle` degrees with the seats.
+ * host stands, is lit. The star turns `angle` degrees with the seats.
  */
 export function TableTop({ ring, angle, seats }: { ring: Ring; angle: number; seats: (Point & { k: number })[] }) {
   const id = useId();
-  const { cx, cy, rx, ry } = ring;
-  const R = rx - 4;
-  const squash = ry / rx;
+  const { cx, cy } = ring;
+  const R = ring.r - 4;
   const field = R * 0.86;
-  // Where a seat's disc sits: in from the face, on the wood, measured before the squash.
+  // Where a seat's disc sits: in from the face, on the wood.
   const disc = (s: Point, inset: number) => {
     const dx = s.x - cx;
-    const dy = (s.y - cy) / squash;
+    const dy = s.y - cy;
     const len = Math.hypot(dx, dy) || 1;
     return { x: (dx * (len - inset)) / len, y: (dy * (len - inset)) / len };
   };
@@ -58,7 +56,7 @@ export function TableTop({ ring, angle, seats }: { ring: Ring; angle: number; se
 
   return (
     <svg
-      viewBox={`0 0 ${ring.width} ${ring.height}`}
+      viewBox={`0 0 ${ring.size} ${ring.size}`}
       aria-hidden="true"
       className="absolute inset-0 h-full w-full overflow-visible"
     >
@@ -93,7 +91,7 @@ export function TableTop({ ring, angle, seats }: { ring: Ring; angle: number; se
         </radialGradient>
       </defs>
 
-      <g transform={`translate(${cx} ${cy}) scale(1 ${squash.toFixed(4)})`}>
+      <g transform={`translate(${cx} ${cy})`}>
         <circle r={R * 1.3} fill={`url(#${ids.light})`} />
         <circle r={R + 3} cy={7} fill="var(--night)" opacity={0.85} />
         <circle r={R} fill={`url(#${ids.rim})`} stroke="var(--gilt)" strokeOpacity={0.7} strokeWidth={1} />
@@ -125,7 +123,7 @@ export function TableTop({ ring, angle, seats }: { ring: Ring; angle: number; se
         </g>
 
         {seats.map((s, i) => {
-          const d = disc(s, 32);
+          const d = disc(s, ring.seat * 0.72);
           return (
             // The head's disc gives way to its name.
             <g key={i} transform={`translate(${d.x.toFixed(1)} ${d.y.toFixed(1)})`} opacity={1 - headShare(s.k)}>
