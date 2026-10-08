@@ -180,14 +180,10 @@ def _context(
             else f"Nothing of yours counted in {labels[p]}."
         )
     ctx["you"] = {"cells": cells, "line": line}
-    note = None if revealed else f"Through {labels[cutoff]}."
     for g in groups:
         rows = _rows(spec, board, before, g["members"], sub, GROUP_ROWS, names)
-        ctx["groups"].append({"name": g["name"], "rows": rows, "note": note})
-    ctx["global"] = {
-        "rows": _rows(spec, board, before, set(board), sub, GLOBAL_ROWS, names),
-        "note": note,
-    }
+        ctx["groups"].append({"name": g["name"], "rows": rows})
+    ctx["global"] = {"rows": _rows(spec, board, before, set(board), sub, GLOBAL_ROWS, names)}
     if revealed:
         top = spec.week_rank(weekly[p])
         best = sorted(top, key=lambda s: top[s])[:3]
