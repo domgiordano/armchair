@@ -20,7 +20,7 @@ import { EmptyState, ErrorState } from "@/components/ui/states";
 import { getRanks, type CastMember, type EpisodeEvent, type SeasonEpisode, type SeasonView, type Standing } from "@/lib/api/traitors";
 import { finishText } from "@/lib/history";
 import { playerOf, roman } from "@/lib/players";
-import { multiplier } from "@/lib/points";
+import { multiplier, placeWorth } from "@/lib/points";
 import { excerpt } from "@/lib/recap";
 import { countdown, episodeLabel, formatRelease, latestUnlocked, nextRelease, released, toCall, unlocked } from "@/lib/schedule";
 import { showOf, withSeason } from "@/lib/seasons";
@@ -215,6 +215,11 @@ function StandingCard({ view }: { view: SeasonView }) {
 
 const PLACES = ["1st", "2nd", "3rd"];
 
+const upTo = (rank: number, share: number) => {
+  const w = placeWorth(rank, share);
+  return w.winner + w.faction;
+};
+
 /** Your ranked winners: each sealed place with what it's worth, and a way to fill the empty ones. */
 function WinnerPicks({ view }: { view: SeasonView }) {
   const { needed, incomplete, open } = useBet();
@@ -253,7 +258,7 @@ function WinnerPicks({ view }: { view: SeasonView }) {
                       <span className="text-candle">Won</span>
                     ) : (
                       <>
-                        worth <span className="nums">{Math.round(multiplier(view.episodes.length, p.released) * 100)}%</span>
+                        up to <span className="nums">{upTo(i, multiplier(view.episodes.length, p.released))}</span> pts
                       </>
                     )}
                   </span>

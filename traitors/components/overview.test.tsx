@@ -141,9 +141,9 @@ it("shows your ranked winner picks and offers the next empty place", () => {
   );
   const card = within(screen.getByRole("region", { name: "Your winner picks" }));
   const places = card.getAllByRole("listitem");
-  expect(places[0].textContent).toMatch(/Ava Stone.*as a Traitor.*worth 100%/);
+  expect(places[0].textContent).toMatch(/Ava Stone.*as a Traitor.*up to 30 pts/);
   // 2nd was sealed with two of four episodes out.
-  expect(places[1].textContent).toMatch(/Dee Moss.*as a Faithful.*worth 50%/);
+  expect(places[1].textContent).toMatch(/Dee Moss.*as a Faithful.*up to 9 pts/);
   expect(places[2].textContent).toMatch(/3rd choice is empty/);
   expect(card.getByRole("button", { name: "Add your 3rd choice" })).toBeTruthy();
   // No nag banner once a 1st is sealed.

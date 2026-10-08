@@ -92,9 +92,8 @@ export function WinnerBet({ season, roster, sealed = [], episodes, released, pro
           {sealed.length ? "Finish your top 3" : "Who takes the pot?"}
         </h2>
         <p className="text-lg leading-relaxed text-parchment">
-          Rank three winners, and say whether each wins as a Faithful or a Traitor. Your 1st choice is worth the most if
-          they win, your 2nd 60% of that, your 3rd 30%. Each place is final once sealed. Seal your 1st to open your calls;
-          you can add the others later, at what they&apos;re worth then.
+          Rank three winners, each as a Faithful or a Traitor. A right 2nd choice earns 60% of a 1st, a 3rd 30%. Each place
+          is final once sealed; seal your 1st to open your calls and add the rest later.
         </p>
         <div className="flex items-center gap-4 pt-1">
           <BetCandle share={m} />
@@ -114,7 +113,7 @@ export function WinnerBet({ season, roster, sealed = [], episodes, released, pro
 
       <fieldset className="flex flex-col gap-3">
         <legend className={cn(EYEBROW, "mb-3")}>
-          {room === 0 ? "Your top 3 is sealed" : `Your ${PLACES[sealed.length + picks.length] ?? "places are full"}${picks.length < room ? " choice" : ""}`}
+          {room === 0 ? "Your top 3 is sealed" : picks.length >= room ? "Every place is chosen" : `Your ${PLACES[sealed.length + picks.length]} choice`}
         </legend>
         <p className="text-parchment">
           Turn the table to a player and pick them as a Faithful or a Traitor winner. They take your next empty place.
@@ -224,6 +223,11 @@ function FactionChoice({
   );
 }
 
+const upTo = (rank: number, share: number) => {
+  const w = placeWorth(rank, share);
+  return w.winner + w.faction;
+};
+
 /** The three places in rank order: sealed, being picked, or still empty. */
 function Places({
   sealed,
@@ -265,7 +269,9 @@ function Places({
                 {done ? (
                   <span className="shrink-0 text-right text-sm text-parchment">
                     Sealed
-                    <span className="block text-ash nums">worth {Math.round(multiplier(episodes, done.released) * 100)}%</span>
+                    <span className="block text-ash">
+                      up to <span className="nums">{upTo(i, multiplier(episodes, done.released))}</span> pts
+                    </span>
                   </span>
                 ) : (
                   <span className="shrink-0 text-sm text-candle">Not sealed yet</span>

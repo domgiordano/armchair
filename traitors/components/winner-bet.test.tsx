@@ -92,7 +92,7 @@ it("fills the empty places after a sealed 1st, which stays put", async () => {
   render(<WinnerBet {...BET} sealed={sealed} onSealed={onSealed} />);
   expect(screen.getByRole("heading", { name: "Finish your top 3" })).toBeTruthy();
   const places = within(screen.getByRole("list", { name: "Your top 3" })).getAllByRole("listitem");
-  expect(places[0].textContent).toMatch(/Ava Stone.*Sealed.*worth 100%/);
+  expect(places[0].textContent).toMatch(/Ava Stone.*Sealed.*up to 30 pts/);
   expect(places[1].textContent).toMatch(/2nd choice: empty/);
 
   // A tap on the sealed 1st doesn't take it off.
