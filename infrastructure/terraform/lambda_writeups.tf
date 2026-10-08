@@ -1,8 +1,6 @@
-# AI write-ups of each dance from published recaps. Nothing schedules it: the
-# Anthropic API path has no credits, so an outside writer drives its prepare and
-# store modes (lambdas/cron_writeups/handler.py). Recap text is cached under
-# recaps/ in the avatars bucket, which its CloudFront distribution can't read
-# (avatars.tf grants it avatars/* only).
+# AI write-ups of each dance from published recaps, Wednesdays after the show.
+# Recap text is cached under recaps/ in the avatars bucket, which its
+# CloudFront distribution can't read (avatars.tf grants it avatars/* only).
 
 locals {
   writeups_name = "${var.app_name}-cron-writeups"
@@ -106,6 +104,9 @@ resource "aws_lambda_function" "writeups" {
       PERFORMANCES_TABLE = aws_dynamodb_table.performances.id
       WRITEUPS_TABLE     = aws_dynamodb_table.writeups.id
       RECAPS_BUCKET      = aws_s3_bucket.avatars.id
+      # Each model needs a price in common/claude.py PRICES. Haiku takes no effort: set it to "".
+      WRITEUPS_MODEL  = "claude-sonnet-5-5"
+      WRITEUPS_EFFORT = "low"
     }
   }
 
@@ -114,5 +115,41 @@ resource "aws_lambda_function" "writeups" {
   # Code ownership belongs to CI after the first apply.
   lifecycle {
     ignore_changes = [description, filename, source_code_hash, layers]
+  }
+}
+
+data "aws_iam_policy_document" "scheduler_writeups" {
+  statement {
+    sid       = "InvokeWriteups"
+    actions   = ["lambda:InvokeFunction"]
+    resources = [aws_lambda_function.writeups.arn]
+  }
+}
+
+resource "aws_iam_role_policy" "scheduler_writeups" {
+  name   = "invoke-writeups"
+  role   = aws_iam_role.scheduler.id
+  policy = data.aws_iam_policy_document.scheduler_writeups.json
+}
+
+resource "aws_scheduler_schedule" "writeups" {
+  name        = local.writeups_name
+  description = "Wednesdays 9:07 am ET, and 6:07 pm for recaps that publish late"
+  # The evening run only pays for dances the morning found no recap for.
+  schedule_expression          = "cron(7 9,18 ? * WED *)"
+  schedule_expression_timezone = "America/New_York"
+
+  flexible_time_window {
+    mode = "OFF"
+  }
+
+  target {
+    arn      = aws_lambda_function.writeups.arn
+    role_arn = aws_iam_role.scheduler.arn
+
+    # A retry would re-run a paid call that may have succeeded; the evening run catches up.
+    retry_policy {
+      maximum_retry_attempts = 0
+    }
   }
 }
