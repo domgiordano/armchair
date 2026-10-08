@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from lambdas.common import board_dynamo, traitors_board, window
+from lambdas.common import board_dynamo, digest, traitors_board, window
 from lambdas.common.api import ConflictError, ValidationError
 from lambdas.common.dynamo import table
 from lambdas.common.episodes_dynamo import episode_pk, episode_rows, performances, ref, season_rows
@@ -164,6 +164,7 @@ class Episode:
                 self.ep,
                 self.episode.get("panel") or self.meta["defaultPanel"],
             )
+            digest.forget(self.show, self.season, self.ep)
         else:
             traitors_board.reconcile(self.show, self.season, self.ep)
         return before, self.answer(key)

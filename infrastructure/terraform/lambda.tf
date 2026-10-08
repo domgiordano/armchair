@@ -55,6 +55,8 @@ locals {
   admin_view_screens = ["overview_get", "users_get", "episodes_state", "stats_get", "groups_mine", "notifications_list", "leaderboard_get", "week_board_get", "performers_get", "traitors_season", "traitors_episode", "traitors_stats"]
   stats_lambdas = [
     { name = "get", description = "The caller's accuracy against the judges, and everyone's, through the gate", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "me", description = "One person's breakdown against the judges by week, style, judge and couple, through the gate", path_part = "me", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "crowd", description = "Leaders by week, couple votes, divisive dances and head-to-heads for a scope, through the gate", path_part = "crowd", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
   leaderboard_lambdas = [
     { name = "get", description = "Users ranked by accuracy against the judges, from per-user sums", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
@@ -164,6 +166,8 @@ locals {
     seasons_get        = ["catalog:Query", "performances:Query", "scores:Query"]
     admin_keyword      = ["catalog:UpdateItem"]
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
+    stats_me           = ["catalog:Query", "performances:Query", "scores:Query", "board:Query", "board:PutItem", "users:GetItem", "social:GetItem"]
+    stats_crowd        = ["catalog:Query", "performances:Query", "scores:Query", "board:Query", "board:PutItem", "groups:Query", "social:Query", "users:BatchGetItem"]
     groups_create      = ["groups:PutItem"]
     groups_join        = ["groups:GetItem", "groups:UpdateItem", "groups:PutItem", "social:PutItem"]
     groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query", "board:BatchGetItem", "groups:PutItem", "groups:UpdateItem"]

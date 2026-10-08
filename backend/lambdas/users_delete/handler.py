@@ -35,13 +35,14 @@ def purge(env_var: str, sub: str) -> None:
     Deletes every row whose keys contain the sub, or whose from, sub or by is it:
     friend edges on both sides, notifications to and from them, their search row
     and invite code, invites and join requests, scores, picks, ERR, PTS and BOARD
-    rows. No index is keyed by user across all of these, so this is a Scan.
+    rows, and every stats digest holding their answers (common/digest.py). No
+    index is keyed by user across all of these, so this is a Scan.
     """
     tbl = table(env_var)
     kwargs = {
         "FilterExpression": "contains(pk, :sub) OR contains(sk, :sub)"
-        " OR #from = :sub OR #sub = :sub OR #by = :sub",
-        "ExpressionAttributeNames": {"#from": "from", "#sub": "sub", "#by": "by"},
+        " OR #from = :sub OR #sub = :sub OR #by = :sub OR attribute_exists(answers.#me)",
+        "ExpressionAttributeNames": {"#from": "from", "#sub": "sub", "#by": "by", "#me": sub},
         "ExpressionAttributeValues": {":sub": sub},
         "ProjectionExpression": "pk, sk",
     }

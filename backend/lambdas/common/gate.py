@@ -126,6 +126,15 @@ def visible_scores(
     return out
 
 
+def sees(ep: int, key: str, mine: set[str] | dict, opened: bool, sealed: set) -> bool:
+    """
+    visible_scores' rule for one dance, for reads off a digest (common/stats.py):
+    answered, or its episode opened. A dance the caller locked in without
+    revealing (`sealed`, as (ep, key), from the client) stays unseen.
+    """
+    return (ep, key) not in sealed and (opened or key in mine)
+
+
 def episode_view(
     sub: str,
     ep: int,
