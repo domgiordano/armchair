@@ -340,6 +340,9 @@ function AccountMenu() {
           <a href={appLink("hub", "/social/") ?? undefined} className={MENU_ITEM}>
             Friends
           </a>
+          <Link href="/settings/" onClick={() => setOpen(false)} className={MENU_ITEM}>
+            Settings
+          </Link>
           <button type="button" onClick={() => void signOut().then(() => router.push("/"))} className={MENU_ITEM}>
             Sign out
           </button>
