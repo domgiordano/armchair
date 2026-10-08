@@ -17,6 +17,7 @@ from __future__ import annotations
 from collections import Counter
 from datetime import UTC, datetime
 
+from lambdas.common.points import RANK_SHARE, calls
 from lambdas.common.traitors_recap import written
 
 # Show order: the breakfast reveal, the round table, then the night's recruitment.
@@ -105,6 +106,16 @@ def shown(row: dict | None) -> dict | None:
     return out | {k: row[k] for k in NOTES.get(row["sk"].removeprefix("EVT#"), ()) if k in row}
 
 
+def answer(row: dict, settled: dict | None) -> dict:
+    """One person's answer to an event, and once its result is in, what each pick scored and why."""
+    out = {"picks": row.get("picks"), "forfeit": row.get("forfeit", False)}
+    if settled is not None and row.get("picks"):
+        kind = row["sk"].removeprefix("EVT#").partition("#USER#")[0]
+        out["calls"] = calls(kind, list(row["picks"]), settled)
+        out["points"] = sum(c["points"] for c in out["calls"])
+    return out
+
+
 def consensus(kind: str, rows: list[dict]) -> dict:
     """Everyone's picks for one event, counted. Forfeits count toward nothing."""
     chosen = [r["picks"] for r in rows if r.get("picks")]
@@ -129,13 +140,14 @@ def episode_view(
     players: list[dict],
     results: list[dict],
     picks: list[dict],
-    group: set[str] | None,
+    people: set[str] | None,
 ) -> dict:
     """
-    One episode as the caller may see it. An event's result, consensus and group
-    members' picks show once the caller has picked or forfeited it, or the episode is
-    closed. A group narrows the people shown; it never opens a locked event. The recap
-    tells the whole episode, so it waits for every event to be answered.
+    One episode as the caller may see it. An event's result, consensus and `people`'s
+    picks (a group's members or the caller's friends) show once the caller has picked or
+    forfeited it, or the episode is closed. `people` narrows who is shown; it never opens
+    a locked event. Each answer carries its points once the result is confirmed. The
+    recap tells the whole episode, so it waits for every event to be answered.
     """
     ep = ep_number(episode)
     is_closed = closed(meta, episode)
@@ -148,22 +160,26 @@ def episode_view(
     cards = []
     for kind in events(episode):
         row = own.get(kind)
+        locked = row is None and not is_closed
+        settled = None if locked else result(results_by.get(kind))
         card = {
             "type": kind,
             "picks": PICKS[kind],
-            "mine": row and {k: row[k] for k in ("picks", "forfeit", "submittedAt") if k in row},
-            "locked": row is None and not is_closed,
+            "mine": row
+            and {k: row[k] for k in ("picks", "forfeit", "submittedAt") if k in row}
+            | {k: v for k, v in answer(row, settled).items() if k in ("calls", "points")},
+            "locked": locked,
         }
-        if not card["locked"]:
+        if not locked:
             rows = by_kind.get(kind, [])
             card["result"] = shown(results_by.get(kind))
             card["consensus"] = consensus(kind, rows)
-            if group is not None:
+            if people is not None:
                 card["group"] = [
-                    {"sub": owner, "picks": r.get("picks"), "forfeit": r.get("forfeit", False)}
+                    {"sub": owner, **answer(r, settled)}
                     for r in rows
                     for _, owner in [pick_owner(r)]
-                    if owner in group
+                    if owner in people
                 ]
         cards.append(card)
 
@@ -176,6 +192,34 @@ def episode_view(
         "roster": roster(ep, players),
         "events": cards,
     }
+
+
+def visible_calls(
+    sub: str, meta: dict, episode: dict, results: list[dict], picks: list[dict], people: set[str]
+) -> list[tuple[str, dict]]:
+    """
+    (owner, call) for each answer in one episode by `people` that the caller may see: their
+    own always, anyone else's once the caller has answered that event or the episode is
+    closed, the same line episode_view draws. A call carries `ep` and `type`, and once
+    the result is confirmed its points and why.
+    """
+    n = ep_number(episode)
+    own = mine(sub, picks)
+    settled = {r["sk"].removeprefix("EVT#"): result(r) for r in results}
+    out = []
+    for row in picks:
+        kind, owner = pick_owner(row)
+        if owner not in people:
+            continue
+        if owner != sub and kind not in own and not closed(meta, episode):
+            continue
+        out.append((owner, {"ep": n, "type": kind, **answer(row, settled.get(kind))}))
+    return out
+
+
+def bets_shown(meta: dict, own: dict | None) -> bool:
+    """Others' winner bets: once the caller's own has every place, or the season is over."""
+    return not meta.get("current") or len((own or {}).get("picks", [])) >= len(RANK_SHARE)
 
 
 def released(episodes: list[dict], t: int) -> int:

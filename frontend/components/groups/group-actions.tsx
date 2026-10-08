@@ -52,7 +52,7 @@ export function StartGroup() {
   const submit = (e: FormEvent) => {
     e.preventDefault();
     void run("create", async () => {
-      const group = await createGroup(name.trim());
+      const group = await createGroup(name.trim(), "dwts");
       router.push(groupHref(group.id));
     });
   };

@@ -2,6 +2,8 @@
 
 import type { Notification } from "@/lib/api/social";
 import { dwtsLink } from "@/lib/links";
+import { appLink } from "@armchair/app-core/apps";
+import { showName } from "@armchair/app-core/social/group-shows";
 import { useAction } from "@/lib/load";
 import { useNotifications } from "@/lib/notifications";
 
@@ -15,10 +17,12 @@ const TEXT: Record<Notification["type"], string> = {
   group_invite: "Invited you to",
   group_join_request: "Asked to join",
   group_join_accepted: "Let you into",
+  group_show_started: "Started",
 };
 
 export function describe(n: Notification): string {
   const group = n.group ? ` ${n.group.name ?? "a group"}` : "";
+  if (n.type === "group_show_started") return `Started ${showName(n.show)} for${group}`;
   return `${TEXT[n.type]}${group}`;
 }
 
@@ -108,6 +112,11 @@ function Item({ item }: { item: Notification }) {
             Decline
           </button>
         </>
+      )}
+      {item.type === "group_show_started" && item.group && (item.show === "dwts" || item.show === "traitors") && (
+        <a href={appLink(item.show, "/groups/", { id: item.group.id }) ?? undefined} className={PRIMARY}>
+          Join on {item.show === "dwts" ? "DWTS" : showName(item.show)}
+        </a>
       )}
       {!item.read && !actionable && (
         <span aria-hidden="true" className="size-2 rounded-full bg-magenta shadow-[0_0_8px_var(--color-magenta)]" />

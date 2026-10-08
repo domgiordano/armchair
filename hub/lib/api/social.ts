@@ -47,7 +47,8 @@ export type NotificationType =
   | "friend_accepted"
   | "group_invite"
   | "group_join_request"
-  | "group_join_accepted";
+  | "group_join_accepted"
+  | "group_show_started";
 
 export interface Notification {
   id: string;
@@ -57,6 +58,8 @@ export interface Notification {
   at: string;
   from: Person;
   group: { id: string; name: string | null } | null;
+  /** group_show_started: the app id of the show that was started. */
+  show?: string | null;
 }
 
 export interface NotificationPage {
