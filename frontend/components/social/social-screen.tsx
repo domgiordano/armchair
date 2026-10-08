@@ -238,8 +238,8 @@ function FriendsView({ data, reload, find }: { data: Friends; reload: () => void
           label="Your invite link"
           link={friendLink(data.inviteCode)}
           share={{
-            title: "Add me on Armchair Judge",
-            text: "Add me on Armchair Judge so we can compare Dancing with the Stars scores.",
+            title: "Add me for Dancing with the Stars on Armchair Judge",
+            text: "Add me on Armchair Judge: we both score every Dancing with the Stars dance and see who's closer to the judges.",
           }}
         />
         <Link href="/discover/" className={`${TEXT_LINK} self-start`}>

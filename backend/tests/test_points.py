@@ -1,6 +1,6 @@
 import pytest
 
-from lambdas.common.points import ranks, round_table, score, winner
+from lambdas.common.points import calls, ranks, score, winner
 
 # US season 4, episode 9: Stephen 5, Johnny 2, Tara 2.
 RT = {"banished": "stephen", "firstVote": {"stephen": 5, "johnny": 2, "tara": 2}}
@@ -21,14 +21,14 @@ def test_shared_ranks():
     ],
 )
 def test_round_table(picks, points):
-    assert round_table(picks, RT) == points
+    assert score("RT", picks, RT) == points
 
 
 def test_fate_banishes_someone_who_wasnt_top():
     # UK series 4, episode 5: Amanda and Reece tied 5-5, then Fate took Amanda.
     result = {"banished": "amanda", "firstVote": {"amanda": 5, "reece": 5, "stephen": 3, "x": 1}}
-    assert round_table(["amanda", "reece", "stephen"], result) == 5 + 3 + 2
-    assert round_table(["reece", "amanda", "stephen"], result) == 1 + 3 + 2
+    assert score("RT", ["amanda", "reece", "stephen"], result) == 5 + 3 + 2
+    assert score("RT", ["reece", "amanda", "stephen"], result) == 1 + 3 + 2
 
 
 def test_nights():
@@ -74,3 +74,25 @@ def test_winner_joint_winners_score_each_slot():
     winners = {"aaron": "Faithful", "hannah": "Faithful", "meryl": "Faithful"}
     bet = [slot("hannah", "Faithful"), slot("aaron", "Traitor"), slot("meryl", "Faithful")]
     assert winner(bet, winners, 12) == 30 + 12 + 9
+
+
+def test_calls_say_why_each_pick_scored():
+    assert calls("RT", ["stephen", "tara", "rob"], RT) == [
+        {"player": "stephen", "points": 5, "why": "banished"},
+        {"player": "tara", "points": 3, "why": "exact"},
+        {"player": "rob", "points": 0, "why": "miss"},
+    ]
+    assert calls("RT", ["johnny", "stephen", "tara"], RT) == [
+        {"player": "johnny", "points": 1, "why": "top3"},
+        {"player": "stephen", "points": 1, "why": "top3"},
+        {"player": "tara", "points": 2, "why": "exact"},
+    ]
+    assert calls("MURDER", ["dan"], {"victims": ["dan"]}) == [
+        {"player": "dan", "points": 4, "why": "hit"}
+    ]
+    assert calls("MURDER", ["dan"], {"victims": ["eve"]}) == [
+        {"player": "dan", "points": 0, "why": "miss"}
+    ]
+    assert calls("RECRUIT", ["katie"], {"recruits": []}) == [
+        {"player": "katie", "points": 0, "why": "void"}
+    ]

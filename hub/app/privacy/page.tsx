@@ -61,8 +61,21 @@ export default function PrivacyPage() {
         addresses, to deliver the site and protect it from abuse.
       </p>
       <p>
-        We use no analytics, no advertising and no tracking cookies. The only sign-in data in your browser is the session
-        tokens that the Cognito sign-in library (AWS Amplify) keeps in browser storage to keep you signed in.
+        <strong>Activity on the sites.</strong> We keep our own record of how the sites are used, so we can see what
+        works and help you if something gets stuck. It is first-party: no third-party analytics, advertising or tracking
+        script, pixel or cookie. Each record holds which site and page you were on (with show and episode ids, never an
+        invite code), what you did there (for example, opened a page, submitted a score, made a pick, joined a group,
+        shared a link, switched sites) or an error you hit, the time, whether you were on a phone, tablet or desktop
+        (from the screen width), and random ids for your browser and visit. When you are signed in it is tied to your
+        account. We store no IP address, browser fingerprint or location with it.
+      </p>
+      <p>
+        If you are signed out and your browser sends Do-Not-Track or Global Privacy Control, we record nothing. Signed in,
+        your activity is recorded with your account either way, because it is part of the account data described here.
+      </p>
+      <p>
+        The only sign-in data in your browser is the session tokens that the Cognito sign-in library (AWS Amplify) keeps
+        in browser storage to keep you signed in, beside the random browser and visit ids above.
       </p>
 
       <h2>How we use it</h2>
@@ -74,6 +87,11 @@ export default function PrivacyPage() {
         </li>
         <li>To show your name and profile picture to the other members of groups you create or join.</li>
         <li>To work out accuracy stats: how close your scores are to the judges&rsquo;, and how you compare with others.</li>
+        <li>
+          To run the service: the site&rsquo;s administrator sees activity records and account details in a private admin
+          console, to count usage and to fix problems with an account, such as a stuck score or group membership, when
+          you ask. Every change made there is logged.
+        </li>
         <li>
           Your email address is used only to identify your account. It is never shown to other users, and we send no
           marketing email.
@@ -109,8 +127,10 @@ export default function PrivacyPage() {
       <ul>
         <li>Your profile, scores and group memberships are kept for as long as your account exists.</li>
         <li>Server logs are deleted after 30 days.</li>
+        <li>Activity records are deleted 400 days after they happen. Daily totals made from them are kept.</li>
         <li>
-          When you ask us to delete your account, we delete its data within 30 days. Encrypted database backups roll off
+          When you ask us to delete your account, we delete its data, including its activity records and its place in
+          the daily totals, within 30 days. Encrypted database backups roll off
           within a further 35 days.
         </li>
       </ul>

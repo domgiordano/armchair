@@ -28,30 +28,43 @@ def ranks(first_vote: dict[str, int]) -> dict[str, tuple[int, int]]:
     }
 
 
-def round_table(picks: list[str], result: dict) -> int:
+def round_table(picks: list[str], result: dict) -> list[dict]:
     """Slot 1 scores against who actually left; slots 2 and 3 against the first vote's ranks."""
     spans = ranks(result.get("firstVote") or {})
-    total = 0
+    out = []
     for slot, p in enumerate(picks, start=1):
         lo, hi = spans.get(p, (99, 99))
         if slot == 1 and p == result.get("banished"):
-            total += BANISHED
+            out.append({"player": p, "points": BANISHED, "why": "banished"})
         elif slot > 1 and lo <= slot <= hi:
-            total += EXACT[slot]
+            out.append({"player": p, "points": EXACT[slot], "why": "exact"})
         elif lo <= 3:
-            total += IN_TOP3
-    return total
+            out.append({"player": p, "points": IN_TOP3, "why": "top3"})
+        else:
+            out.append({"player": p, "points": 0, "why": "miss"})
+    return out
 
 
-def night(pick: str, happened: list[str]) -> int:
-    """MURDER against the victims, RECRUIT against the recruits. A night without one voids the pick."""
-    return NIGHT if pick in happened else 0
+def night(pick: str, happened: list[str]) -> list[dict]:
+    """
+    MURDER against the victims, RECRUIT against the recruits. A night without one voids
+    the pick: no points, and it counts as neither a hit nor a miss.
+    """
+    if not happened:
+        return [{"player": pick, "points": 0, "why": "void"}]
+    hit = pick in happened
+    return [{"player": pick, "points": NIGHT if hit else 0, "why": "hit" if hit else "miss"}]
 
 
-def score(kind: str, picks: list[str], result: dict) -> int:
+def calls(kind: str, picks: list[str], result: dict) -> list[dict]:
+    """Each pick of one event with the points it earned and why: the breakdown shown to people."""
     if kind == "RT":
         return round_table(picks, result)
     return night(picks[0], result.get("victims" if kind == "MURDER" else "recruits") or [])
+
+
+def score(kind: str, picks: list[str], result: dict) -> int:
+    return sum(c["points"] for c in calls(kind, picks, result))
 
 
 def winner(bet: list[dict], winners: dict[str, str], episodes: int) -> int:
