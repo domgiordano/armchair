@@ -212,7 +212,7 @@ def _jobs(
         # weekly[i]: each player's sums for period i; open_: episodes each reader has revealed.
         weekly, open_, readers = load(p)
         cums = [_add(weekly[: i + 1]) for i in range(p + 1)]
-        groups = {sub: memberships(sub) for sub in readers}
+        groups = {sub: [g for g in memberships(sub) if show in g["shows"]] for sub in readers}
         # Names for everyone on a board, and everyone in a reader's group.
         mates = {s for gs in groups.values() for g in gs for s in g["members"]}
         everyone = set().union(*weekly) | readers | mates

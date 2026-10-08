@@ -388,7 +388,8 @@ def mine(sub: str) -> list[dict]:
 
 
 def memberships(sub: str) -> list[dict]:
-    """The caller's groups as {id, name, members}, oldest first, with nothing about anyone else."""
+    """The caller's groups as {id, name, members, shows}, oldest first. `shows` are the apps
+    the group has started; a group from before shows reads as DWTS only, unseeded."""
     tbl = table("GROUPS_TABLE")
     links = sorted(query_all(tbl, f"USER#{sub}"), key=lambda r: r["joinedAt"])
     out = []
@@ -397,5 +398,13 @@ def memberships(sub: str) -> list[dict]:
         rows = query_all(tbl, f"GROUP#{gid}")
         meta = next((r for r in rows if r["sk"] == "META"), None)
         if meta is not None:
-            out.append({"id": gid, "name": meta["name"], "members": set(_subs(rows, "MEMBER#"))})
+            shows = set(group_shows.from_rows(rows)) if meta.get("showsSeeded") else {"dwts"}
+            out.append(
+                {
+                    "id": gid,
+                    "name": meta["name"],
+                    "members": set(_subs(rows, "MEMBER#")),
+                    "shows": shows,
+                }
+            )
     return out

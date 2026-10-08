@@ -53,8 +53,10 @@ def season(aws, at, outbox):
     counted(aws, A, 5, keys(5), 0.25)
     counted(aws, C, 5, keys(5), 3.0)
     counted(aws, B, 5, keys(5)[:1], 0.0)
-    group = groups_dynamo.create(A, "Bandits")
+    group = groups_dynamo.create(A, "Bandits", "dwts")
     groups_dynamo.join(B, group["inviteCode"])
+    # A group that only plays The Traitors stays out of the DWTS digest.
+    groups_dynamo.create(A, "Castle Crew", "traitors")
     return aws
 
 
@@ -81,6 +83,7 @@ def test_revealed_reader_gets_the_week(season, outbox):
     # Bea's 0.50 week still leads the season; Ada holds 2nd in the group and overall.
     assert "2. Ada (you)" in email.text and "Rank: #2 of 3" in email.text
     assert "Top of Week 4" in email.text
+    assert "Bandits" in email.text and "Castle Crew" not in email.text
 
 
 def test_unrevealed_reader_sees_only_through_their_last_finished_week(season, outbox):
