@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { OddsBoard } from "@/components/odds-board";
 import { RoundTable } from "@/components/round-table";
 import { Headshot } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
@@ -110,6 +111,7 @@ export function WinnerBet({ season, roster, sealed = [], episodes, released, pro
       </Card>
 
       <Places sealed={sealed} picks={picks} roster={roster} episodes={episodes} />
+      <OddsBoard season={season} top={3} />
 
       <fieldset className="flex flex-col gap-3">
         <legend className={cn(EYEBROW, "mb-3")}>

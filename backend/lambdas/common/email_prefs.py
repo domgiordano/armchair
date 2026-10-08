@@ -18,6 +18,7 @@ TYPES = {
     "traitors.tonight": "Release-night reminder before a new Traitors episode",
     "traitors.digest": "Your weekly Traitors results and standings",
     "social": "Group invites and friend requests",
+    "groups": "When someone in your group starts a show",
 }
 SHOWS = {"dwts": "Dancing with the Stars", "traitors": "The Traitors"}
 # What an unsubscribe link can turn off: one type, a whole show, or everything.

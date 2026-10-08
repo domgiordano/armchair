@@ -108,3 +108,13 @@ export function sealedParam(season: string): string {
     .map(([, ep, key]) => `${ep}:${key}`)
     .join(",");
 }
+
+/** Episodes of `season` holding a sealed dance: what the odds board must not count yet. */
+export function useSealedEpisodes(season: string): number[] {
+  const snapshot = useSyncExternalStore(subscribe, raw, () => "[]");
+  const eps = parse(snapshot)
+    .map((x) => x.split("|"))
+    .filter(([s]) => s === season)
+    .map(([, ep]) => Number(ep));
+  return [...new Set(eps)].sort((a, b) => a - b);
+}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useBet } from "@/components/bet";
 import { CastTable } from "@/components/cast-wall";
 import { FaceDownNotice } from "@/components/face-down";
+import { OddsBoard } from "@/components/odds-board";
 import { Outcome } from "@/components/outcome";
 import { PlayerChip } from "@/components/player-chip";
 import { PlayerLink, seasonPlayerHref } from "@/components/player-link";
@@ -63,6 +64,7 @@ export function Overview() {
         <StandingCard view={view} />
       </div>
       <WinnerPicks view={view} />
+      {view.current && <OddsBoard season={view.season} />}
       {due.length > 0 && (
         <Card tone="cloak" tartan className="flex flex-col items-start gap-3">
           <p className={cn(EYEBROW, "text-ember")}>Your calls</p>

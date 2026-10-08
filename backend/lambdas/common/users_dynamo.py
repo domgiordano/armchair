@@ -202,3 +202,33 @@ def set_email_settings(sub: str, prefs: dict | None, notice_at: str | None) -> d
         values["emailNoticeAt"] = notice_at
     return _write(sub, values)
 
+
+
+def profiles() -> list[dict]:
+    """Every profile's sub, address, name and email prefs: the mailer's recipient list.
+    A scan, read once per mailer run that has something due; the table is one row per user."""
+    tbl = table("USERS_TABLE")
+    kwargs = {
+        "ProjectionExpression": "#sub, email, #name, emailPrefs",
+        "ExpressionAttributeNames": {"#sub": "sub", "#name": "name"},
+    }
+    rows = []
+    while True:
+        page = tbl.scan(**kwargs)
+        rows += page["Items"]
+        if "LastEvaluatedKey" not in page:
+            return rows
+        kwargs["ExclusiveStartKey"] = page["LastEvaluatedKey"]
+
+
+def recipient(sub: str) -> dict | None:
+    """What the mailer needs of one user: sub, address and email prefs."""
+    return (
+        table("USERS_TABLE")
+        .get_item(
+            Key={"sub": sub},
+            ProjectionExpression="#sub, email, emailPrefs",
+            ExpressionAttributeNames={"#sub": "sub"},
+        )
+        .get("Item")
+    )
