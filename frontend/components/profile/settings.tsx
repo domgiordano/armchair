@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import { EmailSettings } from "@/components/profile/email-settings";
 import { message } from "@/components/social/parts";
 import { Input } from "@/components/ui/field";
 import { Sheet } from "@/components/ui/sheet";
@@ -33,7 +34,8 @@ export function AccountSettings() {
       <h2 id="settings-heading" className={EYEBROW}>
         Settings
       </h2>
-      <p className="text-sm text-silver-dim">Delete your account and everything you&apos;ve scored. This can&apos;t be undone.</p>
+      <EmailSettings />
+      <p className="mt-4 text-sm text-silver-dim">Delete your account and everything you&apos;ve scored. This can&apos;t be undone.</p>
       <button type="button" onClick={() => setOpen(true)} className={button("danger")}>
         Delete account
       </button>
