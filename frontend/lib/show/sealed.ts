@@ -62,6 +62,32 @@ function subscribe(fn: () => void) {
   };
 }
 
+/** Lookups over the sealed list, for API reads that must leave those dances' judges out. */
+export interface Seals {
+  none: boolean;
+  dance: (season: string, ep: number, key: string) => boolean;
+  /** Whether any dance of the couple `id` is sealed, in any episode of `season`. */
+  couple: (season: string, id: string) => boolean;
+  episode: (season: string, ep: number) => boolean;
+}
+
+export function sealsFrom(ids: string[]): Seals {
+  const parts = ids.map((x) => {
+    const [season, ep, key] = x.split("|");
+    // A team dance's key names every member couple: "a+b+c#1".
+    return { season, ep: Number(ep), key, couples: key.slice(0, key.lastIndexOf("#")).split("+") };
+  });
+  return {
+    none: ids.length === 0,
+    dance: (season, ep, key) => ids.includes(id(season, ep, key)),
+    couple: (season, cid) => parts.some((p) => p.season === season && p.couples.includes(cid)),
+    episode: (season, ep) => parts.some((p) => p.season === season && p.ep === ep),
+  };
+}
+
+/** The seals as stored right now. Read at fetch time, so a reveal shows on the next read. */
+export const currentSeals = (): Seals => sealsFrom(typeof window === "undefined" ? [] : parse(raw()));
+
 /** Whether a dance in `season` is sealed. Nothing is sealed on the server render. */
 export function useSealed(): (season: string, ep: number, key: string) => boolean {
   const snapshot = useSyncExternalStore(subscribe, raw, () => "[]");
