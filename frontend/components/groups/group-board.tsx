@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { MemberProgress } from "@/components/groups/member-progress";
 import { LeaderboardView, off, seasonLabel } from "@/components/leaderboard-screen";
 import { Tile } from "@/components/profile/parts";
 import { displayName } from "@/components/social/parts";
@@ -70,7 +69,6 @@ export function GroupBoard({ group }: { group: GroupDetail }) {
       {load.kind === "error" && <ErrorState what="the group's leaderboard" message={load.message} retry={retry} />}
       {load.kind === "ready" && (
         <>
-          <MemberProgress board={load.board} members={group.members} />
           <GroupNumbers board={load.board} members={group.members.length} />
           <LeaderboardView board={load.board} judges={judges} you={false} />
         </>
