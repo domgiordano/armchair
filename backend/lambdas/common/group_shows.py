@@ -20,7 +20,7 @@ from botocore.exceptions import ClientError
 from lambdas.common import board_dynamo
 from lambdas.common import notifications_dynamo as notifications
 from lambdas.common.api import ValidationError, text
-from lambdas.common.dynamo import table, transact
+from lambdas.common.dynamo import query_partitions, table, transact
 
 # App id to the catalog shows its boards are kept under.
 APPS = {"dwts": ("dwts",), "traitors": ("tus", "tuk", "tukc")}
@@ -91,10 +91,31 @@ def start(gid: str, name: str, app: str, sub: str, members: set[str]) -> bool:
         notifications.put(m, "group_show_started", sub, group=gid, groupName=name, show=app)[1]
         for m in sorted(members - {sub})
     ]
-    # The email for this belongs here, beside the in-app ones, once the mailer
-    # (PR #213) is merged: send it to the same members after a True.
+    # The email goes from groups_shows after a True: email_social imports this
+    # module through groups_dynamo, so sending from here would be circular.
     return transact(ops, "GROUPS_TABLE")
 
 
 def stop(gid: str, app: str) -> None:
     table("GROUPS_TABLE").delete_item(Key={"pk": f"GROUP#{gid}", "sk": f"SHOW#{app}"})
+
+
+def members_playing(app: str) -> set[str]:
+    """Everyone in a group that has started `app`. A scan for SHOW rows: there is no index by show."""
+    tbl = table("GROUPS_TABLE")
+    kwargs = {
+        "FilterExpression": "sk = :sk",
+        "ExpressionAttributeValues": {":sk": f"SHOW#{app}"},
+        "ProjectionExpression": "pk",
+    }
+    gids = set()
+    while True:
+        page = tbl.scan(**kwargs)
+        gids |= {r["pk"].removeprefix("GROUP#") for r in page["Items"]}
+        if "LastEvaluatedKey" not in page:
+            break
+        kwargs["ExclusiveStartKey"] = page["LastEvaluatedKey"]
+    subs: set[str] = set()
+    for rows in query_partitions("GROUPS_TABLE", [f"GROUP#{g}" for g in sorted(gids)]).values():
+        subs |= {r["sk"].removeprefix("MEMBER#") for r in rows if r["sk"].startswith("MEMBER#")}
+    return subs

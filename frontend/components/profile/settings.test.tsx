@@ -9,6 +9,11 @@ vi.mock("@armchair/app-core/api/client", async (importOriginal) => ({
   deleteAccount: vi.fn(),
 }));
 
+vi.mock("@armchair/app-core/api/email", () => ({
+  getEmailSettings: vi.fn(() => new Promise(() => {})),
+  setEmailSettings: vi.fn(),
+}));
+
 import { ApiError, deleteAccount } from "@armchair/app-core/api/client";
 import { ToastProvider } from "@/components/ui/toast";
 import { AccountSettings } from "./settings";

@@ -234,6 +234,22 @@ data "aws_iam_policy_document" "deploy_email_status" {
   }
 }
 
+# Email Ops `test` invokes admin-email-test directly with the dispatcher's address.
+data "aws_iam_policy_document" "deploy_email_test" {
+  statement {
+    sid       = "InvokeEmailTest"
+    effect    = "Allow"
+    actions   = ["lambda:InvokeFunction"]
+    resources = [aws_lambda_function.api["admin_email_test"].arn]
+  }
+}
+
+resource "aws_iam_role_policy" "deploy_email_test" {
+  name   = "email-test"
+  role   = aws_iam_role.deploy.id
+  policy = data.aws_iam_policy_document.deploy_email_test.json
+}
+
 resource "aws_iam_role_policy" "deploy_email_status" {
   name   = "email-status"
   role   = aws_iam_role.deploy.id
