@@ -85,7 +85,9 @@ class Dwts:
 
     def players(self) -> set[str]:
         """Everyone who has scored this season, or had a dance counted in any DWTS season."""
-        played = {score_owner(r)[1] for rows in self.scores(list(self.episodes)).values() for r in rows}
+        played = {
+            score_owner(r)[1] for rows in self.scores(list(self.episodes)).values() for r in rows
+        }
         return played | set(board_dynamo.rows("dwts", board_dynamo.ALL))
 
 
@@ -130,7 +132,9 @@ class Traitors:
 
     def players(self) -> set[str]:
         """Everyone with a pick or a winner bet this season, or points in any season of the edition."""
-        picked = {pick_owner(r)[1] for rows in self.picks(list(self.episodes)).values() for r in rows}
+        picked = {
+            pick_owner(r)[1] for rows in self.picks(list(self.episodes)).values() for r in rows
+        }
         bets = query_all(table("SCORES_TABLE"), f"WIN#{self.edition}#{self.number}")
         return (
             picked

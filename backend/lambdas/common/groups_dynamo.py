@@ -336,3 +336,17 @@ def mine(sub: str) -> list[dict]:
             g[k] = [{**profiles[s], "relation": relations.get(s)} for s in g[k]]
         g["members"] = [{**m, "joinedAt": joined[g["id"]].get(m["sub"])} for m in g["members"]]
     return groups
+
+
+def memberships(sub: str) -> list[dict]:
+    """The caller's groups as {id, name, members}, oldest first, with nothing about anyone else."""
+    tbl = table("GROUPS_TABLE")
+    links = sorted(query_all(tbl, f"USER#{sub}"), key=lambda r: r["joinedAt"])
+    out = []
+    for link in links:
+        gid = link["sk"].removeprefix("GROUP#")
+        rows = query_all(tbl, f"GROUP#{gid}")
+        meta = next((r for r in rows if r["sk"] == "META"), None)
+        if meta is not None:
+            out.append({"id": gid, "name": meta["name"], "members": set(_subs(rows, "MEMBER#"))})
+    return out

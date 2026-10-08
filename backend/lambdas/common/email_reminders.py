@@ -72,4 +72,3 @@ def closing(season: Dwts, now: datetime) -> list[Job]:
                 "url": season.url(ep),
             }
     return [Job("dwts", "closing", f"{season.id}#{ep:02d}", readers)] if readers else []
-

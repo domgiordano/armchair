@@ -35,8 +35,8 @@ def esc(value: object) -> str:
 
 def _button(t: dict, label: str, url: str) -> str:
     return f"""<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:24px 0 8px">
-<tr><td bgcolor="{t['button']}" style="border-radius:8px;background:{t['button']}">
-<a href="{esc(url)}" style="display:inline-block;padding:14px 26px;font:700 16px/1 {t['body']};color:{t['buttonText']};text-decoration:none;border-radius:8px">{esc(label)}</a>
+<tr><td bgcolor="{t["button"]}" style="border-radius:8px;background:{t["button"]}">
+<a href="{esc(url)}" style="display:inline-block;padding:14px 26px;font:700 16px/1 {t["body"]};color:{t["buttonText"]};text-decoration:none;border-radius:8px">{esc(label)}</a>
 </td></tr></table>"""
 
 
@@ -50,12 +50,12 @@ def stats(t: dict, cells: list[tuple[str, str]]) -> str:
     width = 100 // max(len(cells), 1)
     tds = "".join(
         f"""<td width="{width}%" align="center" valign="top" style="padding:14px 6px">
-<div style="font:24px/1.1 {t['display']};color:{t['accent']}">{esc(value)}</div>
-<div style="margin-top:6px;font:12px/1.3 {t['body']};letter-spacing:0.06em;text-transform:uppercase;color:{t['muted']}">{esc(label)}</div>
+<div style="font:24px/1.1 {t["display"]};color:{t["accent"]}">{esc(value)}</div>
+<div style="margin-top:6px;font:12px/1.3 {t["body"]};letter-spacing:0.06em;text-transform:uppercase;color:{t["muted"]}">{esc(label)}</div>
 </td>"""
         for label, value in cells
     )
-    return f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{t['panel']}" style="background:{t['panel']};border-radius:10px;margin:4px 0 18px">
+    return f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{t["panel"]}" style="background:{t["panel"]};border-radius:10px;margin:4px 0 18px">
 <tr>{tds}</tr></table>"""
 
 
@@ -74,16 +74,16 @@ def standings(t: dict, title: str, rows: list[dict], note: str | None = None) ->
         move = move_text(r.get("move"))
         trs.append(
             f"""<tr>
-<td width="36" style="padding:8px 0;font:700 14px {t['body']};color:{t['muted']}">{esc(r['rank'] or '-')}</td>
-<td style="padding:8px 6px;font:{weight} 15px {t['body']};color:{color}">{esc(r['name'])}{' (you)' if r.get('me') else ''}</td>
-<td align="right" style="padding:8px 0;font:{weight} 15px {t['body']};color:{color};white-space:nowrap">{esc(r['value'])}</td>
-<td align="right" width="64" style="padding:8px 0 8px 8px;font:12px {t['body']};color:{t['muted']};white-space:nowrap">{esc(move)}</td>
+<td width="36" style="padding:8px 0;font:700 14px {t["body"]};color:{t["muted"]}">{esc(r["rank"] or "-")}</td>
+<td style="padding:8px 6px;font:{weight} 15px {t["body"]};color:{color}">{esc(r["name"])}{" (you)" if r.get("me") else ""}</td>
+<td align="right" style="padding:8px 0;font:{weight} 15px {t["body"]};color:{color};white-space:nowrap">{esc(r["value"])}</td>
+<td align="right" width="64" style="padding:8px 0 8px 8px;font:12px {t["body"]};color:{t["muted"]};white-space:nowrap">{esc(move)}</td>
 </tr>"""
         )
     foot = para(t, note, muted=True) if note else ""
-    return f"""<h2 style="margin:22px 0 6px;font:15px/1.3 {t['display']};letter-spacing:0.08em;text-transform:{t['displayCase']};color:{t['accentSoft']}">{esc(title)}</h2>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid {t['rule']}">
-{''.join(trs)}</table>{foot}"""
+    return f"""<h2 style="margin:22px 0 6px;font:15px/1.3 {t["display"]};letter-spacing:0.08em;text-transform:{t["displayCase"]};color:{t["accentSoft"]}">{esc(title)}</h2>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid {t["rule"]}">
+{"".join(trs)}</table>{foot}"""
 
 
 def layout(
@@ -116,28 +116,28 @@ def layout(
 @media (max-width: 620px) {{ .wrap {{ padding: 20px 16px !important; }} }}
 </style>
 </head>
-<body style="margin:0;padding:0;background:{t['page']}" bgcolor="{t['page']}">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:{t['page']}">{esc(preheader)}&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{t['page']}" style="background:{t['page']}">
+<body style="margin:0;padding:0;background:{t["page"]}" bgcolor="{t["page"]}">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:{t["page"]}">{esc(preheader)}&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{t["page"]}" style="background:{t["page"]}">
 <tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px">
 <tr><td align="center" style="padding:6px 0 18px">
 <a href="{esc(site)}/" style="text-decoration:none">
-<img src="{esc(site)}{t['mark']}" width="56" height="56" alt="" style="display:block;margin:0 auto 10px;border:0;border-radius:14px">
-<div style="font:20px/1.1 {t['display']};letter-spacing:0.16em;text-transform:{t['displayCase']};color:{t['accent']}">{esc(t['name'])}</div>
-<div style="margin-top:6px;font:12px/1 {t['body']};letter-spacing:0.22em;text-transform:uppercase;color:{t['muted']}">Armchair Judge</div>
+<img src="{esc(site)}{t["mark"]}" width="56" height="56" alt="" style="display:block;margin:0 auto 10px;border:0;border-radius:14px">
+<div style="font:20px/1.1 {t["display"]};letter-spacing:0.16em;text-transform:{t["displayCase"]};color:{t["accent"]}">{esc(t["name"])}</div>
+<div style="margin-top:6px;font:12px/1 {t["body"]};letter-spacing:0.22em;text-transform:uppercase;color:{t["muted"]}">Armchair Judge</div>
 </a>
 </td></tr>
-<tr><td class="wrap" bgcolor="{t['card']}" style="background:{t['card']};border-top:3px solid {t['accent']};border-radius:14px;padding:28px 28px 24px">
-<h1 style="margin:0 0 16px;font:26px/1.2 {t['display']};color:{t['text']}">{esc(heading)}</h1>
+<tr><td class="wrap" bgcolor="{t["card"]}" style="background:{t["card"]};border-top:3px solid {t["accent"]};border-radius:14px;padding:28px 28px 24px">
+<h1 style="margin:0 0 16px;font:26px/1.2 {t["display"]};color:{t["text"]}">{esc(heading)}</h1>
 {body}
 {_button(t, *cta)}
 </td></tr>
-<tr><td style="padding:22px 8px 8px;font:12px/1.6 {t['body']};color:{t['muted']}">
+<tr><td style="padding:22px 8px 8px;font:12px/1.6 {t["body"]};color:{t["muted"]}">
 <p style="margin:0 0 8px">{esc(reason)}</p>
 <p style="margin:0 0 8px">{links}</p>
-<p style="margin:0 0 8px">Replies to this address aren't read. To reach us, open <a href="{esc(site)}/" style="color:{t['muted']}">{esc(host)}</a>.</p>
-<p style="margin:0">{esc(NOT_AFFILIATED[t['show']])}</p>
+<p style="margin:0 0 8px">Replies to this address aren't read. To reach us, open <a href="{esc(site)}/" style="color:{t["muted"]}">{esc(host)}</a>.</p>
+<p style="margin:0">{esc(NOT_AFFILIATED[t["show"]])}</p>
 </td></tr>
 </table>
 </td></tr></table>
@@ -241,7 +241,7 @@ def digest(t: dict, ctx: dict, unsubscribe: list) -> Email:
       through: the label the standings run through when it isn't `label`, else None
     """
     label = ctx["label"]
-    subject = f"Your {label} {t['short']} results are in"
+    subject = t["digestSubject"].format(label=label)
     blocks, lines = [], []
     if ctx["revealed"]:
         preheader = "Your numbers, your groups and the top of the table."

@@ -137,3 +137,21 @@ def unsubscribe_secret(aws):
     unsubscribe._secret.cache_clear()
     yield
     unsubscribe._secret.cache_clear()
+
+
+@pytest.fixture
+def outbox(aws, unsubscribe_secret, monkeypatch):
+    """Every send, unsent: production SES access, no admins, a stub in place of SES."""
+    from lambdas.common import mailer
+
+    monkeypatch.setenv("EMAIL_DOMAIN", "armchairjudge.com")
+    monkeypatch.setenv("EMAIL_CONFIG_SET", "armchair-mail")
+    monkeypatch.setattr(mailer, "production", lambda: True)
+    monkeypatch.setattr(mailer, "_admins", lambda: frozenset())
+    sent = []
+
+    def send(address, sub, show, kind, email):
+        sent.append({"to": address, "sub": sub, "show": show, "kind": kind, "email": email})
+
+    monkeypatch.setattr(mailer, "send", send)
+    return sent
