@@ -12,7 +12,8 @@ import os
 
 import boto3
 
-from lambdas.common.api import ForbiddenError, caller_email
+from lambdas.common.api import ForbiddenError, ValidationError, caller_email, text
+from lambdas.common.social_dynamo import SUB
 
 _ssm = None
 
@@ -35,3 +36,22 @@ def require_admin(event: dict) -> str:
     if not is_admin(email):
         raise ForbiddenError("Admins only")
     return email
+
+
+REASON_MAX = 300
+
+
+def reason(data: dict) -> str:
+    """Why an admin is changing someone's data. Every support action needs one for the audit log."""
+    value = text(data, "reason")
+    if len(value) > REASON_MAX:
+        raise ValidationError(f"reason must be at most {REASON_MAX} characters", field="reason")
+    return value
+
+
+def target(data: dict, field: str = "sub") -> str:
+    """A user id from the request, the user an admin is acting on."""
+    sub = text(data, field)
+    if not SUB.fullmatch(sub):
+        raise ValidationError(f"{field} is not a user id", field=field)
+    return sub
