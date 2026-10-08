@@ -16,10 +16,13 @@ import {
   inviteLink,
   leaveGroup,
   manageGroup,
+  plays,
+  setGroupShow,
   type GroupDetail,
   type GroupPerson,
 } from "@armchair/app-core/api/groups";
 import { mySub } from "@armchair/app-core/api/social";
+import { showRows } from "@armchair/app-core/social/group-shows";
 import { useNotifications } from "@armchair/app-core/social/notifications";
 
 type Load = { kind: "loading" } | { kind: "ready"; groups: GroupDetail[]; me: string | null } | { kind: "error"; message: string };
@@ -43,6 +46,13 @@ export function GroupsScreen() {
     };
   }, [attempt]);
 
+  // A link from another show's group page lands on that group's card.
+  useEffect(() => {
+    if (load.kind !== "ready") return;
+    const id = new URLSearchParams(window.location.search).get("id");
+    if (id) document.getElementById(`g-${id}`)?.scrollIntoView({ block: "start" });
+  }, [load.kind]);
+
   return (
     <>
       <div className="flex flex-col gap-1">
@@ -60,7 +70,7 @@ export function GroupsScreen() {
           <ul aria-label="Your groups" className="flex flex-col gap-4">
             {load.groups.map((g) => (
               <li key={g.id}>
-                <GroupCard group={g} owner={g.owner === load.me} onChanged={reload} />
+                <GroupCard group={g} owner={g.owner === load.me} me={load.me} onChanged={reload} />
               </li>
             ))}
           </ul>
@@ -113,8 +123,29 @@ function Invites({ onAnswered }: { onAnswered: () => void }) {
 
 const FACES = 8;
 
-function GroupCard({ group: g, owner, onChanged }: { group: GroupDetail; owner: boolean; onChanged: () => void }) {
+function GroupCard({
+  group: g,
+  owner,
+  me,
+  onChanged,
+}: {
+  group: GroupDetail;
+  owner: boolean;
+  me: string | null;
+  onChanged: () => void;
+}) {
   const toast = useToast();
+  const here = plays(g, "traitors");
+  const start = async (app: "dwts" | "traitors", name: string) => {
+    try {
+      await setGroupShow(g.id, app, true);
+      toast(`${g.name} is playing ${name}. Everyone in it has been told.`, "success");
+      onChanged();
+    } catch (e) {
+      toast(`Couldn't start it: ${errorText(e)}`, "error");
+    }
+  };
+  const others = showRows(g, me).filter((r) => r.app !== "traitors");
   const [leaving, setLeaving] = useState(false);
   const link = inviteLink(g.inviteCode);
   const more = g.members.length - FACES;
@@ -149,7 +180,7 @@ function GroupCard({ group: g, owner, onChanged }: { group: GroupDetail; owner: 
   };
 
   return (
-    <Card as="article" tartan aria-labelledby={`group-${g.id}`} className="flex flex-col gap-4">
+    <Card as="article" tartan id={`g-${g.id}`} aria-labelledby={`group-${g.id}`} className="flex scroll-mt-24 flex-col gap-4">
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
         <h2 id={`group-${g.id}`} className={cn(HEADING, "text-xl")}>
           {g.name}
@@ -169,6 +200,37 @@ function GroupCard({ group: g, owner, onChanged }: { group: GroupDetail; owner: 
         {more > 0 && <li className="pl-1 text-sm text-ash nums">+{more}</li>}
       </ul>
       {owner && g.requests.length > 0 && <Requests group={g} onChanged={onChanged} />}
+      {others.length > 0 && (
+        <section aria-label={`${g.name} on other shows`} className="flex flex-col gap-2 border-t border-gilt/20 pt-3">
+          <p className={EYEBROW}>On other shows</p>
+          {others.map((r) => (
+            <div key={r.app} className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="min-w-0 flex-1 text-parchment">
+                <span className="text-bone">{r.name}</span>
+                {" · "}
+                {r.active ? `${r.playing} of ${g.members.length} playing` : "not playing yet"}
+                {!r.youPlay && r.homeHref && (
+                  <>
+                    {" · "}
+                    <a href={r.homeHref} className={cn(FOCUS, "rounded-sm text-gilt underline-offset-4 hover:underline")}>
+                      start watching
+                    </a>
+                  </>
+                )}
+              </span>
+              {r.active && r.groupHref ? (
+                <a href={r.groupHref} className={button("outline", "sm")}>
+                  Open in {r.app === "dwts" ? "DWTS" : r.name}
+                </a>
+              ) : (
+                <button type="button" onClick={() => void start(r.app, r.name)} className={button("outline", "sm")}>
+                  Start it with this group
+                </button>
+              )}
+            </div>
+          ))}
+        </section>
+      )}
       <div className="flex flex-col gap-2">
         <label htmlFor={`link-${g.id}`} className="text-sm text-ash">
           Invite link{g.approval && ", you approve who joins"}
@@ -182,9 +244,15 @@ function GroupCard({ group: g, owner, onChanged }: { group: GroupDetail; owner: 
         />
       </div>
       <div className="flex flex-wrap gap-2">
-        <Link href={`/leaderboard/?group=${encodeURIComponent(g.id)}`} className={button("primary", "sm")}>
-          Group board
-        </Link>
+        {here ? (
+          <Link href={`/leaderboard/?group=${encodeURIComponent(g.id)}`} className={button("primary", "sm")}>
+            Group board
+          </Link>
+        ) : (
+          <button type="button" onClick={() => void start("traitors", "The Traitors")} className={button("primary", "sm")}>
+            Start The Traitors with this group
+          </button>
+        )}
         <button type="button" onClick={() => void share()} className={button("gold", "sm")}>
           Share invite
         </button>
@@ -252,7 +320,7 @@ function NewGroup({ onCreated }: { onCreated: () => void }) {
     setBusy(true);
     setError(null);
     try {
-      await createGroup(trimmed);
+      await createGroup(trimmed, "traitors");
       setName("");
       onCreated();
     } catch (err) {

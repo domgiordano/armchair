@@ -1,4 +1,4 @@
-import type { ActivityEvent, AuditEntry, Overview, UserDetail, UserRow } from "@/lib/api/admin";
+import type { ActivityEvent, Answers, AuditEntry, Overview, UserDetail, UserRow } from "@/lib/api/admin";
 
 // Invented people and numbers for the console's tests and screenshots. No real user appears here.
 
@@ -161,4 +161,33 @@ export const DETAIL: UserDetail = {
   })),
   audit: [AUDIT[0]],
   events: RECENT.events.filter((e) => e.sub === PAT),
+};
+
+export const ANSWERS_DWTS: Answers = {
+  season: "dwts-35",
+  ep: 4,
+  app: "dwts",
+  state: "live",
+  slots: [
+    { key: "jackson-olson#1", label: "Jackson Olson & Partner One", answer: { value: 8, adminBy: ADMIN_EMAIL } },
+    { key: "tyler-cameron#1", label: "Tyler Cameron & Partner Two", answer: null },
+    { key: "ezra-frech#1", label: "Ezra Frech & Partner Three", answer: { forfeit: true } },
+  ],
+};
+
+export const ANSWERS_TRAITORS: Answers = {
+  season: "tus-5",
+  ep: 2,
+  app: "traitors",
+  state: "closed",
+  slots: [
+    { key: "MURDER", label: "MURDER", picks: 1, answer: null },
+    { key: "RT", label: "RT", picks: 3, answer: { picks: ["bob", "cat", "dan"] } },
+  ],
+  roster: [
+    { id: "bob", name: "Bob" },
+    { id: "cat", name: "Cat" },
+    { id: "dan", name: "Dan" },
+    { id: "eve", name: "Eve" },
+  ],
 };
