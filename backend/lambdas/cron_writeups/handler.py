@@ -1,8 +1,8 @@
 """
 AI write-ups for every dance of the current DWTS season's episodes that aired in
 the last WINDOW_DAYS, from published recaps (common/recaps.py, common/writeups.py).
-Nothing schedules the default run since the Anthropic account ran out of credits;
-an outside writer uses the prepare and store modes below instead.
+The scheduler runs it Wednesday at 9:07 and again at 6:07 pm ET for late recaps
+(lambda_writeups.tf); the evening run skips dances the morning wrote.
 
 Invoke with {"backfill": true, "season": "dwts-35", "weeks": [1, 2, 3, 4]} to
 write every aired episode of those weeks; `force: true` rewrites dances that

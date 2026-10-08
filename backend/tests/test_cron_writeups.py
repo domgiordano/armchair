@@ -127,7 +127,7 @@ def test_scheduled_run_writes_the_confirmed_dances_of_last_nights_episode(stubs)
     assert item["model"] == claude.MODEL
     assert "PERF#julia-stiles#1" not in rows
     meta = rows["META"]
-    assert meta["spentUsd"] == Decimal("0.06")
+    assert meta["spentUsd"] == Decimal("0.045")
     assert meta["inputTokens"] == 9000 and meta["runs"] == 1
 
 
@@ -141,7 +141,7 @@ def test_force_rewrites_and_adds_to_the_spend(stubs):
     cron.handler({}, None)
     cron.handler({"backfill": True, "season": "dwts-35", "weeks": [3], "force": True}, None)
     assert len(stubs.bodies) == 2
-    assert stored()["META"]["spentUsd"] == Decimal("0.12")
+    assert stored()["META"]["spentUsd"] == Decimal("0.09")
 
 
 def test_the_cap_stops_a_call_before_it_is_made(stubs, aws):

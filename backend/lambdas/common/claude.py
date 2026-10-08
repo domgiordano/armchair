@@ -22,9 +22,21 @@ log = get_logger(__file__)
 API = "https://api.anthropic.com/v1/messages"
 VERSION = "2023-06-01"
 KEY_PARAM = "/armchair/api/ANTHROPIC_API_KEY"
-MODEL = "claude-opus-5-5"
-# USD per million tokens, input and output, for MODEL (docs.anthropic.com pricing, 2026-10).
-PRICE = (4.00, 20.00)
+# Set by Terraform (lambda_writeups.tf). Haiku 4.5 kept a whole write-up for
+# 28% of ep 5's dances against 94% for Sonnet 5.5 at low effort, almost all on
+# quotes over the word limit, so Sonnet it is. Effort is sent only when set:
+# Haiku rejects the parameter.
+MODEL = os.environ.get("WRITEUPS_MODEL", "claude-sonnet-5-5")
+EFFORT = os.environ.get("WRITEUPS_EFFORT", "low")
+# USD per million tokens, input and output. A model missing here fails at
+# import, before it can spend past the cap. Sonnet 5.5's is assumed from
+# Sonnet's usual price; the Models API doesn't publish prices.
+PRICES = {
+    "claude-sonnet-5-5": (3.00, 15.00),
+    "claude-haiku-4-5-20251001": (1.00, 5.00),
+    "claude-opus-5-5": (4.00, 20.00),
+}
+PRICE = PRICES[MODEL]
 # Overloaded and rate-limited answers are worth another try; a 400 is not.
 RETRY = {429, 500, 502, 503, 504, 529}
 ATTEMPTS = 3

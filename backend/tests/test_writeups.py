@@ -1,5 +1,7 @@
 from decimal import Decimal
 
+import pytest
+
 from lambdas.common import claude, writeups
 
 URL = "https://www.goldderby.com/reality-tv/2026/recap/"
@@ -66,10 +68,11 @@ GOOD = {
 }
 
 
-def test_request_forces_the_strict_tool_with_closed_enums():
+def test_request_offers_the_strict_tool_with_closed_enums():
     body = writeups.request([facts()], PANEL, 3, "Yacht Rock")
     assert body["model"] == claude.MODEL
-    assert body["tool_choice"] == {"type": "tool", "name": writeups.TOOL}
+    assert body["tool_choice"] == {"type": "auto"}
+    assert body["output_config"] == {"effort": claude.EFFORT}
     tool = body["tools"][0]
     assert tool["strict"] is True
     item = tool["input_schema"]["properties"]["writeups"]["items"]["properties"]
@@ -223,8 +226,21 @@ def test_sources_fall_back_to_what_was_given():
     assert got["amber-glenn#1"]["sources"] == [URL]
 
 
-def test_cost_and_estimate():
-    assert claude.cost({"input_tokens": 1_000_000, "output_tokens": 100_000}) == 4.0 + 2.0
+def test_request_leaves_effort_out_when_unset(monkeypatch):
+    monkeypatch.setattr(claude, "EFFORT", "")
+    assert "output_config" not in writeups.request([facts()], PANEL, 3, None)
+
+
+def test_an_answer_without_the_tool_call_fails():
+    # tool_choice is auto, so the model can answer in text instead.
+    text_only = {"stop_reason": "end_turn", "content": [{"type": "text", "text": "Here you go"}]}
+    with pytest.raises(claude.ClaudeError, match="no record_writeups tool call"):
+        claude.tool_input(text_only, writeups.TOOL)
+
+
+def test_cost_and_estimate(monkeypatch):
+    monkeypatch.setattr(claude, "PRICE", (3.00, 15.00))
+    assert claude.cost({"input_tokens": 1_000_000, "output_tokens": 100_000}) == 3.0 + 1.5
     body = writeups.request([facts()], PANEL, 3, None)
     # Every max_tokens output token is in the ceiling.
     assert claude.estimate(body) > writeups.MAX_TOKENS * claude.PRICE[1] / 1_000_000

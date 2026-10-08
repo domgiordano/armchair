@@ -185,12 +185,14 @@ def request(perfs: list[dict], panel: list[str], week: int | None, theme: str | 
         blocks.append("\n".join(parts))
     night = f"Week {week}" + (f", {theme} night" if theme else "")
     urls = sorted({url for f in perfs for url, _ in f["excerpts"]})
-    return {
+    body = {
         "model": claude.MODEL,
         "max_tokens": MAX_TOKENS,
         "system": SYSTEM,
         "tools": [schema([f["key"] for f in perfs], panel, urls)],
-        "tool_choice": {"type": "tool", "name": TOOL},
+        # Sonnet 5.5 refuses a forced tool_choice. With the one tool it calls it
+        # anyway, and claude.tool_input() fails the episode when it doesn't.
+        "tool_choice": {"type": "auto"},
         "messages": [
             {
                 "role": "user",
@@ -199,6 +201,9 @@ def request(perfs: list[dict], panel: list[str], week: int | None, theme: str | 
             }
         ],
     }
+    if claude.EFFORT:
+        body["output_config"] = {"effort": claude.EFFORT}
+    return body
 
 
 def _fold(text: str) -> str:
