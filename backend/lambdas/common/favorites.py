@@ -27,8 +27,9 @@ DWTS_WEIGHTS = {"average": 1.0, "last": 0.5, "trend": 0.3, "crowd": 0.6}
 SAVE_BONUS = 0.25
 TRAITORS_WEIGHTS = {"backing": 1.0, "votes": -0.6, "suspected": -0.4}
 SHIELD_BONUS = 0.2
-# Softmax temperature: higher spreads the board further apart.
-SHARPNESS = 1.2
+# Softmax temperature: higher spreads the board further apart. A Traitors cast is
+# bigger and its signals noisier, so its board stays flatter.
+SHARPNESS = {"dwts": 1.2, "traitors": 0.7}
 # The market's share of a blended chance. Published odds win where a market exists;
 # the model prices only who the market doesn't list, and the whole board without one.
 MARKET_WEIGHT = 1.0
@@ -44,9 +45,9 @@ def _z(values: dict[str, float | None]) -> dict[str, float]:
     return {k: 0.0 if v is None else (v - mu) / sd for k, v in values.items()}
 
 
-def _softmax(strength: dict[str, float]) -> dict[str, float]:
+def _softmax(strength: dict[str, float], sharpness: float) -> dict[str, float]:
     top = max(strength.values())
-    raw = {k: math.exp(SHARPNESS * (s - top)) for k, s in strength.items()}
+    raw = {k: math.exp(sharpness * (s - top)) for k, s in strength.items()}
     total = sum(raw.values())
     return {k: v / total for k, v in raw.items()}
 
@@ -78,12 +79,18 @@ def _before(row: dict, cutoff: str | None) -> bool:
     return cutoff is None or stamp(row.get("submittedAt", "")) < stamp(cutoff)
 
 
+def _book(price: float) -> int:
+    """Rounded the way a board prints it: to 5 under 1000, 50 under 5000, then 100."""
+    step = 5 if price < 1000 else 50 if price < 5000 else 100
+    return round(price / step) * step
+
+
 def american(p: float) -> str:
-    """A chance as American odds, rounded to 5: 0.22 is +355, 0.6 is -150."""
+    """A chance as American odds: 0.22 is +355, 0.6 is -150, 0.07 is +1350."""
     p = min(max(p, 0.001), 0.999)
     if p >= 0.5:
-        return f"-{round(100 * p / (1 - p) / 5) * 5}"
-    return f"+{min(round(100 * (1 - p) / p / 5) * 5, 99900)}"
+        return f"-{_book(100 * p / (1 - p))}"
+    return f"+{_book(100 * (1 - p) / p)}"
 
 
 def dwts(
@@ -154,7 +161,7 @@ def dwts(
         + SAVE_BONUS * inputs[cid]["saves"]
         for cid in alive
     }
-    model = _softmax(strength)
+    model = _softmax(strength, SHARPNESS["dwts"])
     ranks = {k: _rank({cid: inputs[cid][k] for cid in alive}) for k in ("average", "last", "crowd")}
     return [
         {
@@ -241,11 +248,11 @@ def traitors(
 
     inputs = {
         pid: {
-            "backing": round(backing[pid], 2),
-            "votes": round(votes[pid], 2),
+            "backing": round(backing.get(pid, 0.0), 2),
+            "votes": round(votes.get(pid, 0.0), 2),
             "lastVotes": last_votes.get(pid, 0),
             "suspected": round(suspected.get(pid, 0.0), 2),
-            "shields": shields[pid],
+            "shields": shields.get(pid, 0),
         }
         for pid in alive
     }
@@ -258,7 +265,7 @@ def traitors(
         + SHIELD_BONUS * inputs[pid]["shields"]
         for pid in alive
     }
-    model = _softmax(strength)
+    model = _softmax(strength, SHARPNESS["traitors"])
     top_backed = _rank({pid: inputs[pid]["backing"] or None for pid in alive})
     top_suspected = _rank({pid: inputs[pid]["suspected"] or None for pid in alive})
     return [
@@ -352,7 +359,9 @@ def for_viewer(
     if before is not None:
         old = snapshots[before]
         old_market = _safe_market(old.get("market"), next_start.get(before))
-        moved = blend(old["entries"], old_market and old_market["prices"])
+        # A board that just gained or lost its market moved by source, not by news.
+        if bool(old_market) == bool(market):
+            moved = blend(old["entries"], old_market and old_market["prices"])
     order = sorted(snap["entries"], key=lambda e: (-chances.get(e["id"], 0.0), e["id"]))
     old_order = {
         i: r + 1 for r, (i, _) in enumerate(sorted(moved.items(), key=lambda kv: (-kv[1], kv[0])))

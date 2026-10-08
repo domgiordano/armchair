@@ -176,7 +176,15 @@ def test_traitors_drops_bets_after_the_cutoff():
 
 
 @pytest.mark.parametrize(
-    "p,odds", [(0.5, "-100"), (0.6, "-150"), (0.22, "+355"), (0.0001, "+99900"), (0.9, "-900")]
+    "p,odds",
+    [
+        (0.5, "-100"),
+        (0.6, "-150"),
+        (0.22, "+355"),
+        (0.0001, "+99900"),
+        (0.9, "-900"),
+        (0.07, "+1350"),
+    ],
 )
 def test_american(p, odds):
     assert fav.american(p) == odds
@@ -215,7 +223,15 @@ def snapshot(entries, market=None):
 
 
 SNAPS = {
-    1: snapshot([entry("ace", 0.4), entry("bea", 0.35), entry("dan", 0.25)]),
+    1: snapshot(
+        [entry("ace", 0.4), entry("bea", 0.35), entry("dan", 0.25)],
+        {
+            "source": "Polymarket",
+            "url": MARKET,
+            "capturedAt": "2026-09-21T12:00:00Z",
+            "prices": {"ace": 0.4, "bea": 0.35, "dan": 0.25},
+        },
+    ),
     2: snapshot(
         [entry("ace", 0.3), entry("bea", 0.7)],
         {
@@ -262,3 +278,14 @@ def test_market_captured_after_the_next_episode_started_is_dropped():
 def test_nothing_revealed_and_no_snapshot():
     view = fav.for_viewer({1: SNAPS[1]}, revealed=0, latest=1, next_start=STARTS)
     assert view["asOf"] is None and view["entries"] == []
+
+
+def test_no_movement_when_the_board_switches_source():
+    snaps = {**SNAPS, 1: {**SNAPS[1], "market": None}}
+    now = fav.for_viewer(snaps, revealed=2, latest=2, next_start=STARTS)
+    assert {e["move"] is None for e in now["entries"]} == {True}
+
+
+def test_traitors_no_votes_chip_waits_for_a_round_table():
+    entries = by_id(fav.traitors(1, PLAYERS, TRAITORS_EPS, BETS, None))
+    assert not any("No votes against yet" in e["why"] for e in entries.values())
