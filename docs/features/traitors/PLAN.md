@@ -100,6 +100,7 @@ Wikipedia was the fastest structured source measured: about 25 min after the rou
 1. An event's results, other users' picks and the consensus ("62% had Madeline first") show only after the caller has picked or forfeited that event.
 2. Episode results (banished, murdered, recruited, factions, vote counts) show only once every event in that episode is answered.
 3. Stats and leaderboards count only events the caller has answered, and show aggregates only.
+   `/traitors/record` lists friends' and group members' calls per event under rule 1, with each pick's points and why. Others' winner bets show once the caller's has all three places, or the season is over. Breakdowns, accuracy and head-to-head are computed in the app from it.
 4. Submit is a conditional put. An identical retry returns 200; a different pick returns 409.
 5. **Closed** episodes and past seasons are open to everyone and view-only. Submit returns 403.
 6. A current season can be browsed before the caller's winner bet (`needsBet: true`, every open event locked). Submit returns 403 until the bet exists.

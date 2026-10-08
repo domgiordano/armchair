@@ -240,7 +240,7 @@ describe("GroupRoute", () => {
     fireEvent.click(await screen.findByRole("button", { name: "Invite" }));
     fireEvent.click(within(screen.getByRole("dialog", { name: "Invite to Family" })).getByRole("button", { name: "Share" }));
     expect(share).toHaveBeenCalledWith(
-      expect.objectContaining({ text: "Join Family on Armchair Judge. Rate Dancing with the Stars with us." }),
+      expect.objectContaining({ text: "Join Family on Armchair Judge and score every Dancing with the Stars dance with us." }),
     );
     Reflect.deleteProperty(navigator, "share");
   });

@@ -9,6 +9,8 @@ const IN_TOP3 = 1;
 export const NIGHT = 4;
 export const WINNER = 20;
 export const FACTION = 10;
+/** A right 2nd choice earns 60% of a right 1st, a 3rd 30%. */
+export const RANK_SHARE = [1, 0.6, 0.3];
 
 /** Each player's span of first-vote ranks. In 5-2-2 both twos hold 2-3, so either is exact for 2nd or 3rd. */
 export function ranks(firstVote: Record<string, number>): Record<string, [number, number]> {
@@ -49,3 +51,9 @@ export function eventPoints(event: EpisodeEvent): number | null {
 
 /** A bet before the premiere is worth everything; each episode out takes a share off. */
 export const multiplier = (episodes: number, released: number) => (episodes ? (episodes - released) / episodes : 0);
+
+/** What a winner place is worth, rank 0 for 1st: the winner, and the extra for calling their side. */
+export function placeWorth(rank: number, share: number): { winner: number; faction: number } {
+  const m = RANK_SHARE[rank] * share;
+  return { winner: Math.round(WINNER * m), faction: Math.round(FACTION * m) };
+}
