@@ -7,12 +7,13 @@ from tests.test_groups import create
 SITE = "https://dwts.armchairjudge.com"
 
 
-def preview(code) -> dict:
+def preview(code, site=None) -> dict:
+    params = {k: v for k, v in {"code": code, "site": site}.items() if v is not None}
     event = {
         "path": "/invite/preview",
         "httpMethod": "GET",
         "headers": {"Host": "api.dwts.armchairjudge.com"},
-        "queryStringParameters": None if code is None else {"code": code},
+        "queryStringParameters": params or None,
         "requestContext": {"domainName": "api.dwts.armchairjudge.com", "stage": "prod"},
     }
     res = handler(event, None)
@@ -68,3 +69,15 @@ def test_no_code_still_redirects_to_join(aws):
     page = preview(None)["body"]
     assert meta(page, "og:title") == "Join a group on Armchair Judge"
     assert f'location.replace("{SITE}/join/?code=")' in page
+
+
+def test_a_traitors_link_joins_on_the_traitors_site(aws, monkeypatch):
+    traitors = "https://traitors.armchairjudge.com"
+    monkeypatch.setenv("CORS_ALLOW_ORIGIN", f"{SITE},{traitors}")
+    code = create(name="Castle Crew")[1]["data"]["inviteCode"]
+    page = preview(code, site=traitors)["body"]
+    assert meta(page, "og:title") == "Join Castle Crew"
+    assert meta(page, "og:description") == "Call The Traitors with your friends on Armchair Judge"
+    assert f'location.replace("{traitors}/join/?code={code}")' in page
+    # A site that isn't ours falls back to DWTS rather than redirecting anywhere asked.
+    assert f'location.replace("{SITE}/join/?code={code}")' in preview(code, site="https://evil.example")["body"]

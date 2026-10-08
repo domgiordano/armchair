@@ -4,9 +4,9 @@ POST /users/delete - delete the caller's account and everything that names them.
 Groups go first, while the caller's group links still say which groups they're
 in: owned groups pass to the member who joined first, or are deleted when the
 caller is alone. Then every row in scores, board, social and groups that names
-the caller, their photos, their profile, and the Cognito user last. Every step
-is safe to repeat, and the token keeps working until Cognito goes, so a failure
-partway is retried by calling this again.
+the caller, their activity events, their photos, their profile, and the Cognito
+user last. Every step is safe to repeat, and the token keeps working until
+Cognito goes, so a failure partway is retried by calling this again.
 
 Crowd means are computed from score rows at read time and leaderboards from the
 caller's own BOARD rows, so deleting rows is all it takes to leave both.
@@ -20,7 +20,7 @@ import os
 import boto3
 from botocore.exceptions import ClientError
 
-from lambdas.common import avatars
+from lambdas.common import avatars, events_dynamo
 from lambdas.common.api import UnauthorizedError, api_handler, caller_sub, claims, ok
 from lambdas.common.dynamo import table
 from lambdas.common.groups_dynamo import forget
@@ -83,6 +83,7 @@ def handler(event, context):
     forget(sub)
     for env_var in TABLES:
         purge(env_var, sub)
+    events_dynamo.forget(sub)
     avatars.delete_all(sub)
     table("USERS_TABLE").delete_item(Key={"sub": sub})
     delete_login(username)

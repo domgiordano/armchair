@@ -14,6 +14,15 @@ export interface Ranked extends Standing {
   mae: number;
 }
 
+/** On a group's current-season board: this week's episode and each member's answers on it. */
+export interface GroupWeek {
+  ep: number;
+  week: number | null;
+  rateable: number;
+  /** By member sub. */
+  answered: Record<string, number>;
+}
+
 export interface Leaderboard {
   season: string;
   scope: Scope;
@@ -22,6 +31,7 @@ export interface Leaderboard {
   ranked: Ranked[];
   unranked: (GroupMember & { count: number })[];
   me: Standing & { rank: number | null };
+  week?: GroupWeek;
 }
 
 export const ALL_TIME = "all";
