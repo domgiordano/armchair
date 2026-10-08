@@ -76,6 +76,11 @@ locals {
     { name = "stats", description = "The caller's own Traitors points by event and episode", path_part = "stats", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "credits", description = "Who made each Traitors headshot in a season, and its license", path_part = "credits", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  # anon is public: a signed-out visitor has no token (common/events_dynamo.py).
+  events_lambdas = [
+    { name = "track", description = "Store a signed-in visitor's batch of activity events", path_part = "track", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "anon", description = "Store a signed-out visitor's batch of activity events", path_part = "anon", http_method = "POST", authorization = "NONE" },
+  ]
   # Public: chat apps fetch it for the link preview, and they carry no token.
   invite_lambdas = [
     { name = "preview", description = "Link-preview card for a group invite, then on to /join/", path_part = "preview", http_method = "GET", authorization = "NONE" },
@@ -98,6 +103,7 @@ locals {
     { for l in local.people_lambdas : "people_${l.name}" => l },
     { for l in local.traitors_lambdas : "traitors_${l.name}" => l },
     { for l in local.invite_lambdas : "invite_${l.name}" => l },
+    { for l in local.events_lambdas : "events_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -113,6 +119,8 @@ locals {
     board        = aws_dynamodb_table.board.arn
     social       = aws_dynamodb_table.social.arn
     writeups     = aws_dynamodb_table.writeups.arn
+    events       = aws_dynamodb_table.events.arn
+    events_index = "${aws_dynamodb_table.events.arn}/index/*"
   }
   api_grants = {
     users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
@@ -158,7 +166,9 @@ locals {
     traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
     traitors_credits   = ["catalog:Query"]
     invite_preview     = ["groups:GetItem"]
-    users_delete       = ["groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
+    events_track       = ["events:UpdateItem", "events:BatchWriteItem"]
+    events_anon        = ["events:UpdateItem", "events:BatchWriteItem"]
+    users_delete       = ["events:Query", "events_index:Query", "events:BatchWriteItem", "events:UpdateItem", "groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
   }
 
   # Env a single function needs beyond lambda_variables.
