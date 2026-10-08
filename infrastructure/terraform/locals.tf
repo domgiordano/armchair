@@ -28,6 +28,9 @@ locals {
     SOCIAL_TABLE       = aws_dynamodb_table.social.id
     WRITEUPS_TABLE     = aws_dynamodb_table.writeups.id
     EMAIL_TABLE        = aws_dynamodb_table.email.id
+    API_URL            = "https://${local.api_domain_name}"
+    DWTS_URL           = "https://${var.domain_name}"
+    TRAITORS_URL       = "https://${var.traitors_domain_name}"
     EVENTS_TABLE       = aws_dynamodb_table.events.id
     FAVORITES_TABLE    = aws_dynamodb_table.favorites.id
     AVATARS_BUCKET     = aws_s3_bucket.avatars.id

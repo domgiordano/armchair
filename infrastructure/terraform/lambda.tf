@@ -94,6 +94,13 @@ locals {
     { name = "credits", description = "Who made each Traitors headshot in a season, and its license", path_part = "credits", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
     { name = "record", description = "Every Traitors call the caller may see in a season, by person, with points", path_part = "record", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  # unsubscribe is public: the signed token in the link is its only credential, and
+  # ANY because one path serves the GET confirmation and the POST (form and RFC 8058 one-click).
+  email_lambdas = [
+    { name = "prefs", description = "The caller's email address and each email type on or off", path_part = "prefs", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "prefs_set", description = "Turn email types on or off, or dismiss the first-run notice", path_part = "prefs-set", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "unsubscribe", description = "Unsubscribe from email by signed token", path_part = "unsubscribe", http_method = "ANY", authorization = "NONE" },
+  ]
   # anon is public: a signed-out visitor has no token (common/events_dynamo.py).
   events_lambdas = [
     { name = "track", description = "Store a signed-in visitor's batch of activity events", path_part = "track", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
@@ -124,6 +131,7 @@ locals {
     { for l in local.people_lambdas : "people_${l.name}" => l },
     { for l in local.traitors_lambdas : "traitors_${l.name}" => l },
     { for l in local.invite_lambdas : "invite_${l.name}" => l },
+    { for l in local.email_lambdas : "email_${l.name}" => l },
     { for l in local.events_lambdas : "events_${l.name}" => l },
     { for l in local.favorites_lambdas : "favorites_${l.name}" => l },
   )
@@ -192,6 +200,9 @@ locals {
     traitors_credits   = ["catalog:Query"]
     traitors_record    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:BatchGetItem"]
     invite_preview     = ["groups:GetItem"]
+    email_prefs        = ["users:GetItem", "email:GetItem"]
+    email_prefs_set    = ["users:GetItem", "users:UpdateItem", "email:GetItem"]
+    email_unsubscribe  = ["users:GetItem", "users:UpdateItem"]
     admin_overview     = ["events:Query", "users:Scan", "catalog:Query", "scores:Query"]
     admin_users        = ["events:Query", "users:Scan", "groups:Scan"]
     admin_user         = ["users:GetItem", "users:BatchGetItem", "events:Query", "events_index:Query", "groups:Query", "social:Query"]
@@ -225,6 +236,9 @@ locals {
     admin_view     = 29
     admin_delete   = 75
   }
+
+  # Functions that sign or check unsubscribe links (common/unsubscribe.py).
+  unsubscribe_signers = ["email_unsubscribe"]
 
   # Object actions on the avatars bucket (avatars.tf). The presigned POST is
   # signed with the upload function's own credentials, so its PutObject is
@@ -307,6 +321,16 @@ data "aws_iam_policy_document" "api" {
       sid       = "ReadAdmins"
       actions   = ["ssm:GetParameter"]
       resources = [aws_ssm_parameter.admin_emails.arn]
+    }
+  }
+
+  # A SecureString under the AWS-managed aws/ssm key, which SSM decrypts for account principals.
+  dynamic "statement" {
+    for_each = contains(local.unsubscribe_signers, each.key) ? [1] : []
+    content {
+      sid       = "UnsubscribeSecret"
+      actions   = ["ssm:GetParameter"]
+      resources = [aws_ssm_parameter.email_unsubscribe_secret.arn]
     }
   }
 

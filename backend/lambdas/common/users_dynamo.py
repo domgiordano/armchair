@@ -178,3 +178,27 @@ def card(sub: str) -> dict | None:
         .get("Item")
     )
     return {"sub": sub, **{f: row.get(f) for f in CARD_FIELDS}} if row else None
+
+
+def email_settings(sub: str) -> dict | None:
+    """The address, the stored prefs and whether the first-run notice was seen; None with no profile."""
+    row = (
+        table("USERS_TABLE")
+        .get_item(
+            Key={"sub": sub},
+            ProjectionExpression="email, emailPrefs, emailNoticeAt",
+        )
+        .get("Item")
+    )
+    return row
+
+
+def set_email_settings(sub: str, prefs: dict | None, notice_at: str | None) -> dict:
+    """Writes the whole prefs map and/or stamps the notice, returning the updated row."""
+    values = {}
+    if prefs is not None:
+        values["emailPrefs"] = prefs
+    if notice_at is not None:
+        values["emailNoticeAt"] = notice_at
+    return _write(sub, values)
+
