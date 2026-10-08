@@ -12,6 +12,7 @@ SOCIAL_TABLE = "t-armchair-social"
 WRITEUPS_TABLE = "t-armchair-writeups"
 EMAIL_TABLE = "t-armchair-email"
 EVENTS_TABLE = "t-armchair-events"
+FAVORITES_TABLE = "t-armchair-favorites"
 AVATARS_BUCKET = "t-armchair-avatars"
 AVATARS_URL = "https://avatars.example.net"
 
@@ -77,11 +78,15 @@ def aws(monkeypatch):
         "WRITEUPS_TABLE": WRITEUPS_TABLE,
         "EMAIL_TABLE": EMAIL_TABLE,
         "EVENTS_TABLE": EVENTS_TABLE,
+        "FAVORITES_TABLE": FAVORITES_TABLE,
         "AVATARS_BUCKET": AVATARS_BUCKET,
         "AVATARS_URL": AVATARS_URL,
         "RECAPS_BUCKET": AVATARS_BUCKET,
         "APP_NAME": "armchair",
         "CORS_ALLOW_ORIGIN": "https://dwts.armchairjudge.com,http://localhost:3000",
+        "API_URL": "https://api.dwts.armchairjudge.com",
+        "DWTS_URL": "https://dwts.armchairjudge.com",
+        "TRAITORS_URL": "https://traitors.armchairjudge.com",
     }.items():
         monkeypatch.setenv(k, v)
     with mock_aws():
@@ -93,7 +98,7 @@ def aws(monkeypatch):
             BillingMode="PAY_PER_REQUEST",
         )
         tables = (CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE, GROUPS_TABLE, BOARD_TABLE)
-        for name in (*tables, SOCIAL_TABLE, WRITEUPS_TABLE, EMAIL_TABLE):
+        for name in (*tables, SOCIAL_TABLE, WRITEUPS_TABLE, EMAIL_TABLE, FAVORITES_TABLE):
             client.create_table(TableName=name, BillingMode="PAY_PER_REQUEST", **PK_SK)
         client.create_table(
             TableName=EVENTS_TABLE,
@@ -142,3 +147,16 @@ def people(aws):
     sign_in(A, "Ada Lovelace")
     sign_in(B, "Bea Arthur", picture=None)
     sign_in(C, "Adam Driver")
+
+
+@pytest.fixture
+def unsubscribe_secret(aws):
+    """The SecureString common/unsubscribe.py signs with, and a fresh cache of it."""
+    from lambdas.common import unsubscribe
+
+    boto3.client("ssm").put_parameter(
+        Name="/armchair/email-unsubscribe-secret", Type="SecureString", Value="test-secret"
+    )
+    unsubscribe._secret.cache_clear()
+    yield
+    unsubscribe._secret.cache_clear()

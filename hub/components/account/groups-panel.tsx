@@ -2,11 +2,16 @@
 
 import { useEffect, useId, useState, type FormEvent } from "react";
 
+import { listSeasons, currentSeason } from "@/lib/api/dwts";
 import { createGroup, getMyGroups, type Group } from "@/lib/api/groups";
 import type { Notification } from "@/lib/api/social";
 import { dwtsLink, profileLink } from "@/lib/links";
 import { message, useAction, useLoad } from "@/lib/load";
+import { useMe } from "@/lib/me";
 import { onAnswered, useNotifications } from "@/lib/notifications";
+
+import { GroupShows } from "./group-shows";
+import { timeAgo } from "./notifications-panel";
 
 import { Avatar, displayName, Empty, ErrorNote, EYEBROW, FOCUS, INPUT, Panel, PersonRow, PRIMARY, QUIET, SECONDARY, SkeletonRows } from "./ui";
 
@@ -46,7 +51,7 @@ export function GroupsPanel({ index }: { index: number }) {
       )}
       {load.kind === "loading" && <SkeletonRows label="Loading your groups" rows={2} />}
       {load.kind === "error" && <ErrorNote what="your groups" message={load.message} retry={reload} />}
-      {load.kind === "ready" && <GroupList groups={load.value} />}
+      {load.kind === "ready" && <GroupList groups={load.value} reload={reload} />}
       <NewGroup onCreated={reload} />
     </Panel>
   );
@@ -72,21 +77,21 @@ function InviteRow({ invite }: { invite: Notification }) {
   );
 }
 
-function GroupList({ groups }: { groups: Group[] }) {
+function GroupList({ groups, reload }: { groups: Group[]; reload: () => void }) {
+  const me = useMe();
+  const [seasons] = useLoad(listSeasons);
+  const sub = me.kind === "ready" ? me.me.sub : null;
+  const dwtsSeason = seasons.kind === "ready" ? (currentSeason(seasons.value)?.id ?? null) : null;
   if (groups.length === 0) return <Empty>You&rsquo;re not in any groups yet. Start one for your watch party.</Empty>;
   return (
-    <ul className="divide-y divide-line/70">
+    <ul className="flex flex-col gap-4">
       {groups.map((g) => {
         const more = g.members.length - FACES;
+        const latest = [...g.members].filter((m) => m.joinedAt).sort((a, b) => (b.joinedAt ?? "").localeCompare(a.joinedAt ?? ""))[0];
         return (
-          <li key={g.id} className="flex flex-col gap-1 py-3">
+          <li key={g.id} className="flex flex-col gap-3 rounded-3xl border border-line/70 bg-night-2/40 p-4">
             <div className="flex items-baseline justify-between gap-3">
-              <a
-                href={dwtsLink("/friends/", { tab: "groups", group: g.id })}
-                className={`min-w-0 truncate rounded-md font-semibold text-text decoration-gold underline-offset-4 hover:underline ${FOCUS}`}
-              >
-                {g.name}
-              </a>
+              <h3 className="min-w-0 truncate text-lg font-bold tracking-tight text-text">{g.name}</h3>
               <span className="shrink-0 text-xs text-muted tabular-nums">
                 {g.members.length} {g.members.length === 1 ? "member" : "members"}
               </span>
@@ -106,6 +111,12 @@ function GroupList({ groups }: { groups: Group[] }) {
               ))}
               {more > 0 && <li className="pl-1 text-xs text-muted tabular-nums">+{more}</li>}
             </ul>
+            <GroupShows group={g} me={sub} dwtsSeason={dwtsSeason} onChange={reload} />
+            {latest?.joinedAt && (
+              <p className="text-xs text-muted">
+                {latest.sub === sub ? "You" : displayName(latest)} joined {timeAgo(latest.joinedAt)}
+              </p>
+            )}
           </li>
         );
       })}

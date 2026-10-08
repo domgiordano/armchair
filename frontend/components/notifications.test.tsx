@@ -75,6 +75,15 @@ afterEach(() => {
 const card = (name: RegExp) => screen.getByRole("article", { name });
 
 describe("NotificationList", () => {
+  it("says who started a show for a group, with a way to join there", async () => {
+    serve([note({ type: "group_show_started", show: "traitors", group: { id: "g".repeat(12), name: "Family" } })]);
+    render(<NotificationList />);
+    const item = await screen.findByRole("article", { name: "Bea Arthur started The Traitors for Family" });
+    expect(within(item).getByRole("link", { name: "Join on The Traitors" }).getAttribute("href")).toBe(
+      `https://traitors.armchairjudge.com/groups/?id=${"g".repeat(12)}&sso=1`,
+    );
+  });
+
   it("says who did what, and marks everything read once shown", async () => {
     serve([FRIEND, INVITE, DONE]);
     render(<NotificationList />);

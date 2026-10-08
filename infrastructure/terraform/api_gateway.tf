@@ -64,6 +64,11 @@ locals {
       invoke_arn = aws_lambda_function.api["week_board_${l.name}"].invoke_arn
     })
   ]
+  favorites_endpoints = [
+    for l in local.favorites_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["favorites_${l.name}"].invoke_arn
+    })
+  ]
   traitors_endpoints = [
     for l in local.traitors_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["traitors_${l.name}"].invoke_arn
@@ -72,6 +77,11 @@ locals {
   people_endpoints = [
     for l in local.people_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["people_${l.name}"].invoke_arn
+    })
+  ]
+  email_endpoints = [
+    for l in local.email_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["email_${l.name}"].invoke_arn
     })
   ]
   events_endpoints = [
@@ -129,6 +139,8 @@ module "api" {
     people        = { path_prefix = "people", endpoints = local.people_endpoints }
     traitors      = { path_prefix = "traitors", endpoints = local.traitors_endpoints }
     invite        = { path_prefix = "invite", endpoints = local.invite_endpoints }
+    email         = { path_prefix = "email", endpoints = local.email_endpoints }
     events        = { path_prefix = "events", endpoints = local.events_endpoints }
+    favorites     = { path_prefix = "favorites", endpoints = local.favorites_endpoints }
   }
 }

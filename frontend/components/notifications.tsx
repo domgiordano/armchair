@@ -10,6 +10,8 @@ import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { SignedIn } from "@/components/signed-in";
 import { groupHref } from "@armchair/app-core/api/groups";
+import { appLink } from "@armchair/app-core/apps";
+import { showName } from "@armchair/app-core/social/group-shows";
 import type { Notification } from "@armchair/app-core/api/social";
 import { useMarkAllReadOnView, useNotifications } from "@armchair/app-core/social/notifications";
 import { button, TEXT_LINK } from "@/lib/ui";
@@ -35,6 +37,7 @@ export function describe(n: Notification): { who: string; text: string; group: s
     group_invite: "invited you to",
     group_join_request: "asked to join",
     group_join_accepted: "let you into",
+    group_show_started: `started ${showName(n.show)} for`,
   }[n.type];
   return { who, text, group };
 }
@@ -155,6 +158,7 @@ function NotificationItem({ item, fresh, compact }: { item: Notification; fresh:
             </button>
           </div>
         )}
+        {item.type === "group_show_started" && item.group && <PlayThere show={item.show} group={item.group.id} />}
         {item.state === "accepted" && <p className="text-xs font-medium text-gold">Accepted</p>}
         {item.state === "declined" && <p className="text-xs text-silver-dim">Declined</p>}
         {error !== null && (
@@ -165,6 +169,25 @@ function NotificationItem({ item, fresh, compact }: { item: Notification; fresh:
       </div>
       {fresh && <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-full bg-brand-magenta shadow-[0_0_8px_var(--color-brand-magenta)]" />}
     </article>
+  );
+}
+
+/** "Join on The Traitors": that show's page for the group, here or on its own site. */
+function PlayThere({ show, group }: { show: string | null | undefined; group: string }) {
+  const className = `${button("primary", "sm")} self-start`;
+  if (show === "dwts") {
+    return (
+      <Link href={groupHref(group)} className={className}>
+        Open the group
+      </Link>
+    );
+  }
+  const href = show === "traitors" ? appLink("traitors", "/groups/", { id: group }) : null;
+  if (!href) return null;
+  return (
+    <a href={href} className={className}>
+      Join on {showName(show)}
+    </a>
   );
 }
 

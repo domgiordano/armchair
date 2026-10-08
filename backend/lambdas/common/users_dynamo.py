@@ -66,6 +66,25 @@ def update(sub: str, name: str | None, avatar: str | None, upload_key: str | Non
     return view(item)
 
 
+def admin_update(sub: str, changes: dict) -> tuple[dict, dict]:
+    """
+    An admin's change to someone's choices: customName, avatarChoice and
+    uploadKey, each set or, as None, removed. A removed upload is deleted from
+    the bucket. Returns the profile (view) before and after.
+    """
+    old = table("USERS_TABLE").get_item(Key={"sub": sub}).get("Item")
+    if old is None:
+        raise NotFoundError("No such user")
+    item = _settle(_write(sub, changes))
+    if (
+        "uploadKey" in changes
+        and old.get("uploadKey")
+        and old["uploadKey"] != item.get("uploadKey")
+    ):
+        avatars.delete(old["uploadKey"])
+    return view(old), view(item)
+
+
 def effective(item: dict) -> dict:
     """The name, picture and avatarKind everyone sees, from what's stored."""
     choice = item.get("avatarChoice")
@@ -159,3 +178,27 @@ def card(sub: str) -> dict | None:
         .get("Item")
     )
     return {"sub": sub, **{f: row.get(f) for f in CARD_FIELDS}} if row else None
+
+
+def email_settings(sub: str) -> dict | None:
+    """The address, the stored prefs and whether the first-run notice was seen; None with no profile."""
+    row = (
+        table("USERS_TABLE")
+        .get_item(
+            Key={"sub": sub},
+            ProjectionExpression="email, emailPrefs, emailNoticeAt",
+        )
+        .get("Item")
+    )
+    return row
+
+
+def set_email_settings(sub: str, prefs: dict | None, notice_at: str | None) -> dict:
+    """Writes the whole prefs map and/or stamps the notice, returning the updated row."""
+    values = {}
+    if prefs is not None:
+        values["emailPrefs"] = prefs
+    if notice_at is not None:
+        values["emailNoticeAt"] = notice_at
+    return _write(sub, values)
+

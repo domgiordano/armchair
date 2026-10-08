@@ -26,3 +26,8 @@ def suppress(address: str, reason: str) -> None:
 
 def suppressed() -> set[str]:
     return {r["sk"] for r in query_all(table("EMAIL_TABLE"), SUPPRESS)}
+
+
+def is_suppressed(address: str) -> bool:
+    key = {"pk": SUPPRESS, "sk": address.strip().lower()}
+    return "Item" in table("EMAIL_TABLE").get_item(Key=key)
