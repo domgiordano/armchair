@@ -226,6 +226,8 @@ resource "aws_scheduler_schedule" "cron_email" {
   description = "Every 15 minutes: reminders two hours before air, closing reminders, digests"
   # A tick with nothing due is a handful of catalog Queries.
   schedule_expression = "rate(15 minutes)"
+  # Off until the test sends and the apps' email settings are live.
+  state = "DISABLED"
 
   flexible_time_window {
     mode = "OFF"
