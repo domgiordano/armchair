@@ -117,3 +117,19 @@ def test_a_member_of_a_group_playing_the_show_gets_tonight(show, at, outbox, aws
     at(EP6_AIRS - timedelta(hours=1))
     handler({}, None)
     assert kinds(outbox) == [("tonight", A), ("tonight", B), ("tonight", C)]
+
+
+def test_someone_seen_scoring_in_activity_events_gets_tonight(show, at, outbox, monkeypatch):
+    from lambdas.common import email_shows
+
+    asked = []
+
+    def active(app, days, action=None):
+        asked.append((app, days, action))
+        return {C}
+
+    monkeypatch.setattr(email_shows, "active_users", active)
+    at(EP6_AIRS - timedelta(hours=1))
+    handler({}, None)
+    assert ("tonight", C) in kinds(outbox)
+    assert ("dwts", 30, "scores_submit") in asked
