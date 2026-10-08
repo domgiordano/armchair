@@ -33,6 +33,7 @@ locals {
     TRAITORS_URL       = "https://${var.traitors_domain_name}"
     HUB_URL            = "https://${var.hub_domain_name}"
     EVENTS_TABLE       = aws_dynamodb_table.events.id
+    FAVORITES_TABLE    = aws_dynamodb_table.favorites.id
     AVATARS_BUCKET     = aws_s3_bucket.avatars.id
     AVATARS_URL        = "https://${aws_cloudfront_distribution.avatars.domain_name}"
   }
