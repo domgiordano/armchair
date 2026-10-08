@@ -10,7 +10,6 @@ from lambdas.common.users_dynamo import set_email_settings
 from lambdas.cron_email.handler import handler
 from scripts.seed_season import items, write
 from tests.conftest import CATALOG_TABLE, SCORES_TABLE
-from tests.email_helpers import outbox  # noqa: F401
 from tests.social import A, B, C, sign_in
 from tests.test_gate import SEASON
 
@@ -28,7 +27,7 @@ def at(monkeypatch):
 
 
 @pytest.fixture
-def show(aws, at, outbox):  # noqa: F811
+def show(aws, at, outbox):
     write(aws.Table(CATALOG_TABLE), items(SEASON))
     for sub, name in ((A, "Ada"), (B, "Bea"), (C, "Cy")):
         sign_in(sub, name)
@@ -44,11 +43,11 @@ def show(aws, at, outbox):  # noqa: F811
     return keys
 
 
-def kinds(outbox, kind="tonight"):  # noqa: F811
+def kinds(outbox, kind="tonight"):
     return sorted((m["kind"], m["sub"]) for m in outbox if m["kind"] == kind)
 
 
-def test_tonight_goes_two_hours_ahead_to_players_once(show, at, outbox):  # noqa: F811
+def test_tonight_goes_two_hours_ahead_to_players_once(show, at, outbox):
     at(EP6_AIRS - timedelta(hours=3))
     handler({}, None)
     assert kinds(outbox) == []
@@ -66,7 +65,7 @@ def test_tonight_goes_two_hours_ahead_to_players_once(show, at, outbox):  # noqa
     assert len(kinds(outbox)) == 2
 
 
-def test_closing_reminds_only_the_unfinished(show, at, outbox):  # noqa: F811
+def test_closing_reminds_only_the_unfinished(show, at, outbox):
     at(EP6_AIRS - timedelta(days=3))
     handler({}, None)
     assert outbox == []
@@ -79,14 +78,14 @@ def test_closing_reminds_only_the_unfinished(show, at, outbox):  # noqa: F811
     assert f"You've scored 2 of {len(show)} dances" in email.text
 
 
-def test_a_type_turned_off_is_skipped(show, at, outbox):  # noqa: F811
+def test_a_type_turned_off_is_skipped(show, at, outbox):
     set_email_settings(A, {"dwts.tonight": False}, None)
     at(EP6_AIRS - timedelta(hours=1))
     assert handler({}, None)["dwts.tonight dwts-35#06"] == {"off": 1, "sent": 1}
     assert kinds(outbox) == [("tonight", B)]
 
 
-def test_traitors_night_with_two_episodes_is_one_email(aws, at, outbox):  # noqa: F811
+def test_traitors_night_with_two_episodes_is_one_email(aws, at, outbox):
     t = aws.Table(CATALOG_TABLE)
     pk = "SEASON#tus#5"
     t.put_item(Item={"pk": pk, "sk": "META", "current": True, "openAt": "2026-10-01T00:00:00Z"})
