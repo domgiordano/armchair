@@ -224,7 +224,7 @@ def closing(t: dict, ctx: dict, unsubscribe: list) -> Email:
         heading=heading,
         blocks=[
             para(t, first),
-            stats(t, [("Scored", str(ctx["answered"])), ("Left", str(left)), ("Locks", when)]),
+            stats(t, [("Scored", str(ctx["answered"])), ("Left", str(left)), ("Days to lock", str(days))]),
         ],
         lines=[first],
         cta=(f"Finish {ctx['label']}", ctx["url"]),
