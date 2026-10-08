@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 
+import { FaceDownNotice, RevealSheet } from "@/components/face-down";
 import { Outcome } from "@/components/outcome";
 import { PlayerChip } from "@/components/player-chip";
 import { seasonPlayerHref } from "@/components/player-link";
@@ -34,6 +35,7 @@ import { firstName, nameOf, playerOf, roman } from "@/lib/players";
 import { eventPoints } from "@/lib/points";
 import { votesByTarget } from "@/lib/recap";
 import { formatRelease } from "@/lib/schedule";
+import { revealCall, sealCall, useFaceDown } from "@/lib/sealed";
 import { useEpisodePoll } from "@/lib/use-episode-poll";
 import { button, cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
 import { ApiError } from "@armchair/app-core/api/client";
@@ -78,6 +80,8 @@ interface BallotProps {
 export function Ballot({ season, episode, group, members, seasonTitle, onSealed, onNeedBet, cast = [] }: BallotProps) {
   const { data, error, reload } = useEpisodePoll(season, episode.ep, episode.releaseAt, group);
   const [tab, setTab] = useState<EventType | null>(null);
+  const [locked, setLocked] = useState<EventType | null>(null);
+  const faceDown = useFaceDown(season);
 
   if (data === null) {
     if (error !== null) return <ErrorState what="this episode" message={error} retry={reload} />;
@@ -135,17 +139,28 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed,
                 reload();
                 onSealed();
               }}
+              onLocked={setLocked}
             />
           </div>
         </>
       )}
-      {data.recap ? (
+      {data.recap && faceDown.episode(data.ep) ? (
+        <FaceDownNotice season={season} ep={data.ep} what="The recap" link={false} />
+      ) : data.recap ? (
         <RecapCard recap={data.recap} />
       ) : data.closed || data.events.every((e) => e.mine) ? (
         <p className="text-ash">The recap isn&apos;t written yet. It appears here once the wiki has it.</p>
       ) : (
         <SealedScroll />
       )}
+      <RevealSheet
+        locked={locked && { what: `Your ${COPY[locked].title.replace(/^The /, "")} call`, ep: data.ep }}
+        onReveal={() => {
+          if (locked) revealCall(season, data.ep, locked);
+          setLocked(null);
+        }}
+        onClose={() => setLocked(null)}
+      />
     </section>
   );
 }
@@ -189,25 +204,33 @@ interface EventPanelProps {
   members: GroupMember[] | null;
   onSealed: () => void;
   onNeedBet?: () => void;
+  /** Sealed just now, on this device: its result stays face down until revealed. */
+  onLocked: (type: EventType) => void;
 }
 
-function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: EventPanelProps) {
+function EventPanel({ season, episode, event, members, onSealed, onNeedBet, onLocked }: EventPanelProps) {
   const toast = useToast();
+  const faceDown = useFaceDown(season);
   const [picks, setPicks] = useState<string[]>([]);
   const [forfeit, setForfeit] = useState(false);
   const [showVotes, setShowVotes] = useState(true);
   const picking = event.locked && !episode.closed;
+  const hidden = !picking && faceDown.call(episode.ep, event.type);
   // Before the winner bet the table looks the same, but a tap asks for the bet.
   const waiting = episode.needsBet ? onNeedBet : undefined;
   const rows = consensusRows(event, Infinity);
-  const ballots = !picking && event.type === "RT" ? (event.result?.ballots ?? null) : null;
-  const shields = !picking && event.type === "RT" ? (event.result?.shields ?? []) : [];
+  const shown = !picking && !hidden && event.type === "RT";
+  const ballots = shown ? (event.result?.ballots ?? null) : null;
+  const shields = shown ? (event.result?.shields ?? []) : [];
   const drawn = ballots && showVotes ? ballots : null;
 
   const submit = async () => {
+    // Sealed before the request, so a poll landing in between can't turn the result over.
+    sealCall(season, episode.ep, event.type);
     try {
       await submitPick(season, episode.ep, event.type, forfeit ? { forfeit: true } : { picks });
     } catch (e) {
+      revealCall(season, episode.ep, event.type);
       if (e instanceof ApiError && (e.status === 409 || e.status === 403)) {
         toast(e.status === 409 ? "You already made this call on another device." : "This episode is closed.", "error");
         onSealed();
@@ -217,6 +240,7 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
       throw e;
     }
     onSealed();
+    onLocked(event.type);
   };
 
   return (
@@ -270,9 +294,9 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
             : undefined
         }
         full={event.picks > 1 && picks.length >= event.picks}
-        result={picking ? null : event.result}
+        result={picking || hidden ? null : event.result}
         tallies={
-          picking
+          picking || hidden
             ? null
             : drawn
               ? Object.fromEntries(votesByTarget(drawn).map((v) => [v.target, v.voters.length]))
@@ -301,6 +325,8 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet }: Ev
           onForfeit={setForfeit}
           onSeal={submit}
         />
+      ) : hidden ? (
+        <FaceDownCall season={season} event={event} roster={episode.roster} ep={episode.ep} />
       ) : (
         <>
           <Reveal season={season} event={event} roster={episode.roster} members={members} closed={episode.closed} />
@@ -533,6 +559,47 @@ function Votes({ season, ballots, shields, roster }: VotesProps) {
   );
 }
 
+interface FaceDownCallProps {
+  season: string;
+  event: EpisodeEvent;
+  roster: Player[];
+  ep: number;
+}
+
+/** Your sealed call with what happened still face down, and the one button that turns it over. */
+function FaceDownCall({ season, event, roster, ep }: FaceDownCallProps) {
+  return (
+    <Slate className="flex flex-col items-start gap-3">
+      <p className={EYEBROW}>Your call · locked in</p>
+      <MyCall season={season} event={event} roster={roster} />
+      <p className="border-t border-bone/10 pt-3 text-parchment">
+        What happened, everyone&apos;s calls and your points are face down until you choose to look.
+      </p>
+      <Button variant="gold" onClick={() => revealCall(season, ep, event.type)}>
+        Reveal what happened
+      </Button>
+    </Slate>
+  );
+}
+
+function MyCall({ season, event, roster }: { season: string; event: EpisodeEvent; roster: Player[] }) {
+  const mine = event.mine;
+  if (mine?.forfeit) return <p className="text-ash italic">No pick</p>;
+  if (!mine?.picks) return null;
+  return (
+    <ol className="flex flex-wrap gap-x-5 gap-y-1">
+      {mine.picks.map((id, i) => (
+        <li key={id} className="flex items-center gap-2">
+          {event.type === "RT" && <span className="font-display text-gilt">{roman(i + 1)}</span>}
+          <Chalk>
+            <PlayerChip player={playerOf(id, roster)} href={seasonPlayerHref(season)(id)} />
+          </Chalk>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 interface RevealProps {
   season: string;
   event: EpisodeEvent;
@@ -551,19 +618,7 @@ function Reveal({ season, event, roster, members, closed }: RevealProps) {
     <>
       <Slate className="flex flex-col gap-3">
         <p className={EYEBROW}>{mine ? "Your call" : "Result"}</p>
-        {mine?.forfeit && <p className="text-ash italic">No pick</p>}
-        {mine?.picks && (
-          <ol className="flex flex-wrap gap-x-5 gap-y-1">
-            {mine.picks.map((id, i) => (
-              <li key={id} className="flex items-center gap-2">
-                {event.type === "RT" && <span className="font-display text-gilt">{roman(i + 1)}</span>}
-                <Chalk>
-                  <PlayerChip player={playerOf(id, roster)} href={seasonPlayerHref(season)(id)} />
-                </Chalk>
-              </li>
-            ))}
-          </ol>
-        )}
+        <MyCall season={season} event={event} roster={roster} />
         {!mine && closed && <p className="text-ash">This episode aired before the season opened here: view only.</p>}
         <p
           className="flex flex-wrap items-baseline gap-x-2 border-t border-bone/10 pt-3 text-lg text-bone"

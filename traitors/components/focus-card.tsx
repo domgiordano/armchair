@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
+import { PlayerSheet } from "@/components/player-sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPlayer, type PlayerProfile } from "@/lib/api/history";
+import { cleanBio } from "@/lib/bio";
 import { seasonName, seasonNumber, showOf } from "@/lib/seasons";
 import { cn, EYEBROW, HEADING, TEXT_LINK } from "@/lib/ui";
 
@@ -36,25 +37,32 @@ function useProfile(season: string, id: string): Load | null {
 interface FocusCardProps {
   id: string;
   name: string;
+  headshot: string | null;
   season: string;
   /** How they're doing, only as far as the table's own data says. */
   status: string[];
   /** An unmasked Traitor: the status is read in red. */
   unmasked: boolean;
-  /** Their page. Without it, while you're picking, "Read more" opens the bio here instead. */
+  /** Their page, linked from the profile; left out while you're picking. */
   href?: string;
   actions?: ReactNode;
   className?: string;
 }
 
 /** Who is at the head of the table: their season, how they're doing, who they are and the start of their story. */
-export function FocusCard({ id, name, season, status, unmasked, href, actions, className }: FocusCardProps) {
+export function FocusCard({ id, name, headshot, season, status, unmasked, href, actions, className }: FocusCardProps) {
   const load = useProfile(season, id);
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+  const opener = useRef<HTMLButtonElement>(null);
   const edition = seasonName({ id: season, number: seasonNumber(season), title: null });
   const about = load?.profile?.about;
   const bio = load?.profile?.bio?.text;
-  const expanded = open === id;
+  // Back to the button once the sheet is gone: while it's up, the page under it is inert.
+  const shown = useRef(false);
+  useEffect(() => {
+    if (open) shown.current = true;
+    else if (shown.current) opener.current?.focus();
+  }, [open]);
 
   return (
     <section aria-label={`At the head of the table: ${name}`} className={cn("flex min-w-0 flex-col gap-1", className)}>
@@ -76,30 +84,38 @@ export function FocusCard({ id, name, season, status, unmasked, href, actions, c
           <p className="min-h-5 truncate text-sm leading-5 text-ash">
             {[about?.age, about?.hometown, about?.occupation].filter(Boolean).join(" · ")}
           </p>
-          <p className={cn("min-h-12 leading-6 text-parchment", !expanded && "line-clamp-2")}>
-            {bio ?? <span className="text-ash italic">{load.profile ? "No biography yet." : "Their story couldn't load."}</span>}
+          <p className="line-clamp-2 min-h-12 leading-6 text-parchment @4xl:line-clamp-6">
+            {bio ? cleanBio(bio) : <span className="text-ash italic">{load.profile ? "No biography yet." : "Their story couldn't load."}</span>}
           </p>
         </>
       )}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-1">
         {actions}
-        {href ? (
-          <Link href={href} className={cn(TEXT_LINK, "inline-flex min-h-11 items-center")}>
-            Read more{" "}<span className="sr-only">about {name}</span>
-          </Link>
-        ) : (
-          bio && (
-            <button
-              type="button"
-              aria-expanded={expanded}
-              onClick={() => setOpen(expanded ? null : id)}
-              className={cn(TEXT_LINK, "inline-flex min-h-11 items-center")}
-            >
-              {expanded ? "Show less" : "Read more"}
-            </button>
-          )
-        )}
+        <button
+          ref={opener}
+          type="button"
+          aria-haspopup="dialog"
+          onClick={() => setOpen(true)}
+          className={cn(TEXT_LINK, "inline-flex min-h-11 items-center")}
+        >
+          Full profile<span className="sr-only">: {name}</span>
+        </button>
       </div>
+      {open && (
+        <PlayerSheet
+          open
+          onClose={() => setOpen(false)}
+          name={name}
+          headshot={headshot}
+          edition={`${edition.eyebrow} · ${edition.title}`}
+          status={status}
+          unmasked={unmasked}
+          profile={load?.profile ?? null}
+          loading={load === null}
+          href={href}
+          actions={actions}
+        />
+      )}
     </section>
   );
 }

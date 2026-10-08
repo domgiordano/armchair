@@ -1,0 +1,49 @@
+name: Migrate Traitors Bets
+
+# Stamps each winner-bet pick with the `released` it was sealed at, so bets made before
+# the ranked top 3 score per place (backend/scripts/migrate_traitors_bets.py). Prints the
+# bets per season by places filled. Re-running is a no-op.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Report only, write nothing
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  id-token: write # mint the OIDC token traded for the deploy role
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+      - run: pip install boto3
+      - uses: Xomware/github-actions/actions/load-infisical-secrets@v1
+        with:
+          path: /armchair
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Migrate
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python scripts/migrate_traitors_bets.py --dry-run
+          else
+            python scripts/migrate_traitors_bets.py
+          fi

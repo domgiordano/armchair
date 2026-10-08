@@ -9,11 +9,15 @@ a count. Ties go to more dances, then share a rank. `season=all` is all-time
 across every season of `show`, dwts by default. `scope=friends` is the caller
 and their accepted friends; `scope=group` is 403 unless the caller is a member.
 The caller's own standing is always in `me`. Identity is the Cognito sub.
+
+A group board on the current season also carries `week`: the episode taking
+answers now, or else the latest aired, with how many of its rateable dances
+each member has answered. Counts only, never a value, so no gate applies.
 """
 
 from __future__ import annotations
 
-from lambdas.common import board_dynamo
+from lambdas.common import board_dynamo, window
 from lambdas.common.api import (
     ForbiddenError,
     NotFoundError,
@@ -24,8 +28,9 @@ from lambdas.common.api import (
     query,
     require,
 )
-from lambdas.common.episodes_dynamo import season_ref, season_rows, show_ref
-from lambdas.common.gate import places, standing
+from lambdas.common.dynamo import query_many
+from lambdas.common.episodes_dynamo import episode_pk, season_ref, season_rows, show_ref
+from lambdas.common.gate import answered, is_open, places, rateable, standing
 from lambdas.common.groups_dynamo import members
 from lambdas.common.social_dynamo import peers, status
 from lambdas.common.users_dynamo import cards
@@ -43,11 +48,13 @@ def handler(event, context):
     else:
         show, season = season_ref(params)
         label = f"{show}-{season}"
-        if not any(r["sk"] == "META" for r in season_rows(show, season)):
+        catalog = season_rows(show, season)
+        if not any(r["sk"] == "META" for r in catalog):
             raise NotFoundError("No such season", season=label)
 
     scope = params.get("scope") or "global"
     gid = None
+    week = None
     if scope == "global":
         rows = board_dynamo.rows(show, season)
     elif scope == "group":
@@ -57,6 +64,8 @@ def handler(event, context):
         if sub not in in_group:
             raise ForbiddenError("Not a member of that group")
         rows = board_dynamo.rows(show, season, in_group)
+        if season != board_dynamo.ALL:
+            week = _week(show, season, catalog, in_group)
     elif scope == "friends":
         friends = {s for s, item in peers(sub).items() if status(item) == "friend"}
         rows = board_dynamo.rows(show, season, friends | {sub})
@@ -88,6 +97,31 @@ def handler(event, context):
             "ranked": [{"rank": ranks[s], **person(s), **board[s]} for s in ranked[:LIMIT]],
             "unranked": [{**person(s), "count": board[s]["count"]} for s in unranked[:LIMIT]],
             "me": {"rank": ranks.get(sub), **person(sub), **board[sub]},
+            **({"week": week} if week else {}),
         },
         meta={"ranked": len(ranked), "unranked": len(unranked)},
     )
+
+
+def _week(show: str, season: int, catalog: list[dict], members: set[str]) -> dict | None:
+    meta = next(r for r in catalog if r["sk"] == "META")
+    if is_open(meta):
+        return None
+    spans = window.spans(meta, catalog)
+    at = window.now()
+    aired = [n for n, (opens, _) in spans.items() if opens is not None and opens <= at]
+    n = window.active(meta, spans, at) or max(aired, default=None)
+    if n is None:
+        return None
+    eps = {int(r["sk"].removeprefix("EP#")): r for r in catalog if r["sk"].startswith("EP#")}
+    episode = eps[n]
+    contestants = [r for r in catalog if r["sk"].startswith("CONTESTANT#")]
+    pk = episode_pk(show, season, n)
+    perfs, scores = query_many([("PERFORMANCES_TABLE", pk), ("SCORES_TABLE", pk)])
+    keys = rateable(n, episode, contestants, perfs)
+    return {
+        "ep": n,
+        "week": episode.get("week"),
+        "rateable": len(keys),
+        "answered": {m: len(answered(m, scores) & set(keys)) for m in sorted(members)},
+    }
