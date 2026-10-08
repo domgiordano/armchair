@@ -39,6 +39,7 @@ export const TABS: Tab[] = [
   { href: "/episodes/", label: "Episodes", match: ["/episodes", "/episode"] },
   { href: "/leaderboard/", label: "Leaderboard", match: ["/leaderboard"] },
   { href: "/stats/", label: "Stats", match: ["/stats"] },
+  { href: "/picks/", label: "Picks", match: ["/picks"] },
   { href: "/players/", label: "Players", match: ["/players"] },
 ];
 
@@ -334,6 +335,9 @@ function AccountMenu() {
         <div className="absolute top-full right-0 z-40 mt-2 flex w-56 flex-col gap-1 rounded-sm border border-gilt/50 bg-stone p-1.5 shadow-xl shadow-night/70 animate-pop-in">
           {me && <p className="truncate border-b border-gilt/20 px-3 pt-1.5 pb-2.5 text-bone">{me.name ?? me.email}</p>}
           {/* Friends and groups are family-wide; DWTS hosts them until the hub does. */}
+          <Link href="/picks/" className={MENU_ITEM}>
+            Your picks
+          </Link>
           <a href={appLink("dwts", "/social/") ?? undefined} className={MENU_ITEM}>
             Friends &amp; Groups
           </a>
