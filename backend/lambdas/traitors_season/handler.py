@@ -4,13 +4,14 @@ GET /traitors/season?season=tus-5 - a Traitors season's schedule and the caller'
     {season, title, current, summary: {text, sourceUrl} | null,
      needsBet, bet: {picks, released} | null, released,
      episodes: [{ep, title, releaseAt, closed, events, answered,
+                 mine: {MURDER|RT|RECRUIT: {picks} | {forfeit: true}},
                  recap: {text, source, sourceUrl} | null}],
      cast: [{id, name, headshot, faction, exit: {ep, how} | null}],
      winners: [{id, name, headshot, faction}]      past seasons only
      betRoster: [{id, name, headshot}]}            while the bet has an empty place
 
-Each episode carries how many of its events the caller has answered, which needs no gate:
-it's the caller's own rows. A current season can be browsed before the winner bet;
+Each episode carries how many of its events the caller has answered, and what they picked,
+which needs no gate: it's the caller's own rows. A current season can be browsed before the winner bet;
 `needsBet` says picking waits for it. `bet.picks` is ranked, each with the `released` it was
 sealed at; a bet of one or two can be completed later, and `betRoster` is who it may name. `cast` follows
 traitors_gate.wall: in a current season only exits from closed episodes show. `summary`
@@ -77,6 +78,10 @@ def handler(event, context):
                 "closed": closed(meta, e),
                 "events": len(events(e)),
                 "answered": len(mine(sub, answers)),
+                "mine": {
+                    kind: {k: row[k] for k in ("picks", "forfeit") if k in row}
+                    for kind, row in mine(sub, answers).items()
+                },
                 "recap": (
                     recap(
                         e, {r["sk"].removeprefix("EVT#"): r for r in results[ep_number(e)]}, players

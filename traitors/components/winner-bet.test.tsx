@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 
 const api = vi.hoisted(() => ({ submitWinner: vi.fn() }));
@@ -31,12 +31,15 @@ const BET = {
 
 afterEach(() => vi.clearAllMocks());
 
-const seal = () => screen.getByRole("button", { name: "Seal your bet" }) as HTMLButtonElement;
+const seal = () => screen.getByRole("button", { name: /^Seal/ }) as HTMLButtonElement;
 
-it("shows what a bet is worth this late", () => {
+it("shows what each place is worth this late", () => {
   render(<WinnerBet {...BET} onSealed={vi.fn()} />);
   expect(screen.getByText("Worth 67% now")).toBeTruthy();
   expect(screen.getByText(/4 of 12 episodes are already out/)).toBeTruthy();
+  // 1st 20 + 10, 2nd 60%, 3rd 30%, all at 8/12.
+  const rows = within(screen.getByRole("table")).getAllByRole("row").slice(1);
+  expect(rows.map((r) => r.textContent)).toEqual(["1st13+7", "2nd8+4", "3rd4+2"]);
 });
 
 it("takes three players at most, each with a side, then seals the bet", async () => {
@@ -65,12 +68,46 @@ it("takes three players at most, each with a side, then seals the bet", async ()
   expect(screen.getAllByRole("radio", { name: "Faithful" })).toHaveLength(3);
   expect(seal().disabled).toBe(false);
 
+  expect(seal().textContent).toMatch(/Seal these 3 places/);
+  const places = within(screen.getByRole("list", { name: "Your top 3" })).getAllByRole("listitem");
+  expect(places.map((li) => li.textContent)).toEqual([
+    expect.stringMatching(/^I[^I].*Ava Stone.*as a Traitor.*Not sealed yet/),
+    expect.stringMatching(/^II[^I].*Cal Reyes.*as a Faithful/),
+    expect.stringMatching(/^III.*Dee Moss.*as a Faithful/),
+  ]);
+
   fireEvent.click(seal());
   await vi.waitFor(() => expect(onSealed).toHaveBeenCalledOnce());
   expect(api.submitWinner).toHaveBeenCalledWith("tus-5", [
     { player: "ava-stone", faction: "Traitor" },
     { player: "cal-reyes", faction: "Faithful" },
     { player: "dee-moss", faction: "Faithful" },
+  ]);
+});
+
+it("fills the empty places after a sealed 1st, which stays put", async () => {
+  api.submitWinner.mockResolvedValue({});
+  const onSealed = vi.fn();
+  const sealed = [{ player: "ava-stone", faction: "Traitor" as const, released: 0 }];
+  render(<WinnerBet {...BET} sealed={sealed} onSealed={onSealed} />);
+  expect(screen.getByRole("heading", { name: "Finish your top 3" })).toBeTruthy();
+  const places = within(screen.getByRole("list", { name: "Your top 3" })).getAllByRole("listitem");
+  expect(places[0].textContent).toMatch(/Ava Stone.*Sealed.*up to 30 pts/);
+  expect(places[1].textContent).toMatch(/2nd choice: empty/);
+
+  // A tap on the sealed 1st doesn't take it off.
+  fireEvent.click(screen.getByRole("button", { name: /^Ava Stone/ }));
+  expect(screen.getByRole("button", { name: /^Ava Stone/ }).getAttribute("aria-pressed")).toBe("true");
+  expect(screen.queryByRole("radio")).toBeNull();
+
+  fireEvent.click(screen.getByRole("button", { name: "Ben Hart" }));
+  fireEvent.click(screen.getByRole("button", { name: "Pick as winner (Faithful)" }));
+  expect(seal().textContent).toMatch(/Seal this place/);
+  fireEvent.click(seal());
+  await vi.waitFor(() => expect(onSealed).toHaveBeenCalledOnce());
+  expect(api.submitWinner).toHaveBeenCalledWith("tus-5", [
+    { player: "ava-stone", faction: "Traitor" },
+    { player: "ben-hart", faction: "Faithful" },
   ]);
 });
 
