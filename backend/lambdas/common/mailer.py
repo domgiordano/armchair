@@ -15,9 +15,11 @@ from __future__ import annotations
 
 import functools
 import os
+from collections import Counter
 from datetime import datetime
 from email.message import EmailMessage
 from email.utils import formataddr
+from typing import NamedTuple
 
 import boto3
 from botocore.exceptions import ClientError
@@ -28,10 +30,20 @@ from lambdas.common.email_templates import RENDER, Email
 from lambdas.common.email_theme import theme
 from lambdas.common.logger import get_logger
 from lambdas.common.unsubscribe import link
+from lambdas.common.users_dynamo import profiles
 
 log = get_logger(__file__)
 
 SOCIAL = {"group_invite", "friend_request"}
+
+
+class Job(NamedTuple):
+    """One email to many readers, each with their own context."""
+
+    show: str
+    kind: str
+    event: str
+    readers: dict[str, dict]
 
 
 @functools.cache
@@ -134,3 +146,24 @@ def deliver(
         email_dynamo.release(ptype, event, sub)
         return "failed"
     return "sent"
+
+
+def run_jobs(jobs: list[Job], now: datetime) -> dict[str, dict[str, int]]:
+    """Delivers every job and records each one's counts. Returns them by type and event."""
+    if not jobs:
+        return {}
+    users = {u["sub"]: u for u in profiles()}
+    blocked = email_dynamo.suppressed()
+    out = {}
+    for job in jobs:
+        counts = Counter(
+            deliver(users[sub], job.show, job.kind, job.event, ctx, now, blocked)
+            if sub in users
+            else "noprofile"
+            for sub, ctx in job.readers.items()
+        )
+        ptype = pref_type(job.show, job.kind)
+        email_dynamo.record_run(ptype, job.event, dict(counts), now)
+        log.info("%s %s: %s", ptype, job.event, dict(counts))
+        out[f"{ptype} {job.event}"] = dict(counts)
+    return out
