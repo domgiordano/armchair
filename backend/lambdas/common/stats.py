@@ -23,7 +23,7 @@ from lambdas.common import digest, window
 from lambdas.common.api import NotFoundError
 from lambdas.common.couples import MIN_RATERS
 from lambdas.common.episodes_dynamo import ref, season_ref, season_rows
-from lambdas.common.gate import eliminated, places, sees
+from lambdas.common.gate import eliminated, places, sealed_param, sees
 
 # The leaderboard's floor (leaderboard_get): fewer dances than this and a mean is luck.
 MIN_DANCES = 5
@@ -420,22 +420,6 @@ def _head_to_head(cs: list[dict]) -> dict[str, dict[str, list[int]]]:
                 if a != b:
                     out[a][b][0 if ea < eb else 1 if ea > eb else 2] += 1
     return {a: dict(row) for a, row in out.items()}
-
-
-SEALED_MAX = 200
-
-
-def sealed_param(params: dict) -> set[tuple[int, str]]:
-    """
-    `sealed=6:tyler-cameron#1,6:a+b#1`: dances the caller locked in without
-    revealing, from the client's own list. Only ever narrows what they see.
-    """
-    out = set()
-    for part in (params.get("sealed") or "").split(",")[:SEALED_MAX]:
-        ep, _, key = part.partition(":")
-        if ep.isdigit() and "#" in key:
-            out.add((int(ep), key))
-    return out
 
 
 def load(sub: str, params: dict) -> dict:

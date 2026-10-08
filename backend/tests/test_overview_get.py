@@ -67,14 +67,14 @@ def finish(sub, ep):
     assert reveal_all_handler(event, None)["statusCode"] == 200
 
 
-def get(sub=A, season="dwts-35") -> tuple[int, dict]:
-    event = authorized_event(path="/overview/get", sub=sub, query={"season": season})
+def get(sub=A, season="dwts-35", **params) -> tuple[int, dict]:
+    event = authorized_event(path="/overview/get", sub=sub, query={"season": season, **params})
     res = overview.handler(event, None)
     return res["statusCode"], json.loads(res["body"])
 
 
-def data(sub=A) -> dict:
-    status, body = get(sub)
+def data(sub=A, **params) -> dict:
+    status, body = get(sub, **params)
     assert status == 200, body
     return body["data"]
 
@@ -166,6 +166,17 @@ def test_season_numbers_and_closest_judge(show):
     # X: |7-8| = 1, Y: |8-6| = 2.
     assert me["mae"] == 1.5
     assert me["closestJudge"] == {"id": CARRIE, "name": "Carrie Ann Inaba", "mae": 1}
+
+
+def test_sealed_dances_leave_the_callers_numbers_and_reveals(show):
+    answer(A, X, value=7)
+    answer(A, Y, value=8)
+    d = data(sealed=f"5:{Y}#1")
+    assert (d["me"]["count"], d["me"]["mae"]) == (1, 1)
+    assert d["episodes"][4]["mae"] == 1
+    assert [r["key"] for r in d["reveals"]] == [f"{X}#1"]
+    assert couple(d, Y)["average"] is None
+    assert data()["me"]["count"] == 2
 
 
 def test_accuracy_per_episode(show):

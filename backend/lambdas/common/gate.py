@@ -13,6 +13,8 @@ from collections import defaultdict
 
 from lambdas.common.writeups import public
 
+SEALED_MAX = 200
+
 
 def is_open(meta: dict) -> bool:
     """
@@ -126,10 +128,26 @@ def visible_scores(
     return out
 
 
+def sealed_param(params: dict) -> set[tuple[int, str]]:
+    """
+    `sealed=6:tyler-cameron#1,6:a+b#1`: dances of the show's current season,
+    the only one anyone answers, that the caller locked in without revealing,
+    from the client's own list (lib/show/sealed.ts). Only ever narrows what
+    they see.
+    """
+    out = set()
+    for part in (params.get("sealed") or "").split(",")[:SEALED_MAX]:
+        ep, _, key = part.partition(":")
+        if ep.isdigit() and "#" in key:
+            out.add((int(ep), key))
+    return out
+
+
 def sees(ep: int, key: str, mine: set[str] | dict, opened: bool, sealed: set) -> bool:
     """
-    visible_scores' rule for one dance, for reads off a digest (common/stats.py):
-    answered, or its episode opened. A dance the caller locked in without
+    visible_scores' rule for one dance, for reads that hold dances rather than
+    score rows (common/stats.py, board_dynamo.unseen): answered, or its episode
+    opened. A dance the caller locked in without
     revealing (`sealed`, as (ep, key), from the client) stays unseen.
     """
     return (ep, key) not in sealed and (opened or key in mine)

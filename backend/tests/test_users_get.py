@@ -1,5 +1,6 @@
 """/users/get against moto with the real S35 catalog: your own profile carries
-your dances, anyone else's carries aggregates only, and only past the floor."""
+your dances, anyone else's carries aggregates only, only past the floor, and
+only over dances you have seen."""
 
 import json
 from decimal import Decimal
@@ -113,6 +114,7 @@ def test_passing_your_own_sub_is_the_own_view(show):
 def test_someone_else_below_the_floor_shows_a_count_and_no_error(show):
     for cid in COUPLES[:4]:
         answer(B, cid, value=10)
+        answer(A, cid, forfeit=True)
     data = profile(sub=B)
     assert data["name"] == "User 2"
     assert data["season"] == {
@@ -129,6 +131,7 @@ def test_someone_else_below_the_floor_shows_a_count_and_no_error(show):
 def test_someone_else_at_the_floor_shows_aggregates_only(show):
     for cid in COUPLES:
         answer(B, cid, value=10)
+        answer(A, cid, forfeit=True)
     data = profile(sub=B)
     assert data["season"]["count"] == 5
     assert data["season"]["mae"] == 2.0
@@ -152,12 +155,26 @@ def test_forfeits_and_unconfirmed_panels_do_not_count(show):
     assert data["dances"] == []
 
 
-def test_the_viewers_answers_do_not_change_what_they_see_of_others(show):
+def test_someone_elses_numbers_cover_only_dances_the_viewer_has_seen(show):
     for cid in COUPLES:
         answer(B, cid, value=10)
-    before = profile(sub=B)["season"]
+    assert profile(sub=B)["season"]["count"] == 0
+    assert profile(sub=B)["allTime"]["count"] == 0
     answer(A, COUPLES[0], value=1)
-    assert profile(sub=B)["season"] == before
+    assert profile(sub=B)["season"]["count"] == 1
+    assert profile(sub=B)["allTime"]["count"] == 1
+    # B's own view of B counts all five.
+    assert profile(B)["season"]["count"] == 5
+
+
+def test_sealed_dances_leave_the_viewers_numbers(show):
+    answer(A, COUPLES[0], value=10)
+    answer(A, COUPLES[1], value=8)
+    sealed = profile(sealed=f"5:{COUPLES[0]}#1")
+    assert sealed["season"]["count"] == 1 and sealed["season"]["mae"] == 0
+    assert sealed["allTime"]["count"] == 1
+    assert [d["key"] for d in sealed["dances"]] == [f"{COUPLES[1]}#1"]
+    assert profile()["season"]["count"] == 2
 
 
 def test_unknown_user_is_404(show):
@@ -196,6 +213,8 @@ def test_a_block_either_way_hides_the_profile(show):
 
 
 def test_all_time_comes_from_the_leaderboard_row_with_the_same_floor(show):
+    for cid in COUPLES:
+        answer(A, cid, forfeit=True)
     for cid in COUPLES[:4]:
         answer(B, cid, value=10)
     assert profile(sub=B)["allTime"] == {
@@ -214,7 +233,7 @@ def test_all_time_comes_from_the_leaderboard_row_with_the_same_floor(show):
         "ranked": 1,
     }
     # Your own shows below the floor.
-    answer(A, COUPLES[0], value=6)
+    answer(A, COUPLES[0], ep=4, value=6)
     assert profile()["allTime"]["mae"] == 2.0
 
 
@@ -322,6 +341,7 @@ def test_season_rank_and_history_place_against_everyone(show):
 def test_history_keeps_someone_elses_error_and_place_behind_the_floor(show):
     for cid in COUPLES[:3]:
         answer(B, cid, value=8)
+        answer(A, cid, forfeit=True)
     assert profile(sub=B)["history"] == [
         {"season": "dwts-35", "count": 3, "mae": None, "rank": None, "ranked": 0},
     ]

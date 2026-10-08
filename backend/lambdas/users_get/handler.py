@@ -6,11 +6,11 @@ they've scored (`history`). Without `sub`, or with the caller's own, it also
 carries the caller's group count and their scored dances; with anyone else's,
 the friends and groups the two share.
 
-Accuracy is built from gate.visible_scores on the profile owner's side, so it
-only covers dances they answered. Someone else's summary is aggregates only,
-and their mean error and per-judge errors appear once they have MIN_DANCES, the
-leaderboard floor (docs/features/v2/PLAN.md): below it one number can be one
-dance's gap, a per-dance value the viewer may never have answered.
+The season summary covers the owner's dances the viewer may see too: the
+dances `detail` covers. Someone else's mean error and per-judge errors appear
+once they have MIN_DANCES, the leaderboard floor (docs/features/v2/PLAN.md).
+Every number leaves out `sealed=<ep>:<key>,...`, the current season's dances
+the viewer locked in without revealing.
 
 `detail` takes the other route: for someone else it covers only the dances the
 viewer has answered too, which the gate already shows the viewer on each
@@ -19,8 +19,9 @@ an episode whose scoring window has closed (common/window.py), the gate shows
 every dance, so it covers them all. It is still means and counts,
 plus the one dance each side of them the owner called best and worst.
 
-All-time, places and history are the leaderboard's BOARD rows through
-gate.standing and gate.places, with the same floor. `season=all` sums every
+All-time, places and history are the leaderboard's BOARD rows less the
+dances the viewer may not see (board_dynamo.seen_rows), through gate.standing
+and gate.places, with the same floor. `season=all` sums every
 season of `show`, dwts by default, the owner has a dance counted in. Recent
 activity is how many dances they answered and scored per episode: counts,
 never a value.
@@ -51,6 +52,7 @@ from lambdas.common.gate import (
     perf_key,
     places,
     score_owner,
+    sealed_param,
     standing,
     visible_scores,
 )
@@ -75,20 +77,27 @@ def handler(event, context):
     if user is None or (not own and status(peer(caller, sub)) == "blocked"):
         raise NotFoundError("No such user")
 
-    numbers = sorted(int(s["number"]) for s in season_index(show))
+    index = season_index(show)
+    numbers = sorted(int(s["number"]) for s in index)
+    current = next((f"{show}-{int(s['number'])}" for s in index if s.get("current")), None)
+    sealed = sealed_param(params)
+
+    def kept(r: dict) -> bool:
+        return r["season"] != current or (r["ep"], r["key"]) not in sealed
+
     scored = board_dynamo.seasons_with(sub, show, numbers)
     dances, shared, activity = [], [], []
     for n in scored if every else [season]:
         mine, both, acts = _dances(sub, show, n, caller)
-        dances += mine
-        shared += both
+        dances += filter(kept, mine)
+        shared += filter(kept, both)
         activity += acts
 
     boards: dict = {}
 
     def place(key: int | str) -> dict:
         if key not in boards:
-            rows = board_dynamo.rows(show, key)
+            rows = board_dynamo.seen_rows(caller, show, key, sealed)
             board = {s: standing(r) for s, r in rows.items() if r.get("n")}
             boards[key] = (board, places(board, MIN_DANCES))
         board, ranks = boards[key]
@@ -97,7 +106,7 @@ def handler(event, context):
             row = {"count": row["count"], "mae": None, "closestJudge": None}
         return {**row, "rank": ranks.get(sub), "ranked": len(ranks)}
 
-    totals = summary(dances)
+    totals = summary(shared)
     if not own and totals["count"] < MIN_DANCES:
         totals = {"count": totals["count"], "mae": None, "judges": {}}
     here = place(board_dynamo.ALL if every else season)
