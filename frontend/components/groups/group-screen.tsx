@@ -6,6 +6,7 @@ import { useState, type MouseEvent } from "react";
 
 import { GroupBoard } from "@/components/groups/group-board";
 import { GroupMembers } from "@/components/groups/group-members";
+import { GroupCompare, GroupStats } from "@/components/groups/group-stats";
 import { InviteSheet, LeaveSheet, SettingsSheet } from "@/components/groups/group-sheets";
 import { Redirect } from "@/components/redirect";
 import { GroupActivity, GroupWeek } from "@/components/groups/group-side";
@@ -35,7 +36,8 @@ export function GroupRoute() {
 }
 
 type Sheet = "invite" | "settings" | "leave" | null;
-type Tab = "board" | "members";
+type Tab = "board" | "stats" | "compare" | "members";
+const TABS: Tab[] = ["board", "stats", "compare", "members"];
 const PANEL = "group-panel";
 
 function GroupScreen({ id }: { id: string }) {
@@ -46,13 +48,25 @@ function GroupScreen({ id }: { id: string }) {
   if (groups.kind === "error") return <ErrorState what="the group" message={groups.message} retry={reload} />;
   const group = groups.value.find((g) => g.id === id);
   if (!group) return <NotIn id={id} onJoined={reload} />;
-  return <GroupView group={group} me={me.kind === "ready" ? me.value : null} reload={reload} />;
+  const dwts = groups.value.filter((g) => plays(g, "dwts"));
+  return <GroupView group={group} groups={dwts} me={me.kind === "ready" ? me.value : null} reload={reload} />;
 }
 
-function GroupView({ group, me, reload }: { group: GroupDetail; me: string | null; reload: () => void }) {
+function GroupView({
+  group,
+  groups,
+  me,
+  reload,
+}: {
+  group: GroupDetail;
+  groups: GroupDetail[];
+  me: string | null;
+  reload: () => void;
+}) {
   const owner = group.owner === me;
   const here = plays(group, "dwts");
-  const [picked, setTab] = useState<Tab>("board");
+  const asked = useSearchParams().get("tab") as Tab | null;
+  const [picked, setTab] = useState<Tab>(asked && TABS.includes(asked) ? asked : "board");
   // A group not playing DWTS has no board here, only its members.
   const tab: Tab = here ? picked : "members";
   const [sheet, setSheet] = useState<Sheet>(null);
@@ -145,11 +159,17 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
               </button>
             </div>
           )}
-          <div className="md:max-w-sm">
+          <div className="md:max-w-xl">
             <Tabs
               label="Group sections"
               tabs={[
-                ...(here ? [{ id: "board" as const, label: "Leaderboard" }] : []),
+                ...(here
+                  ? [
+                      { id: "board" as const, label: "Board" },
+                      { id: "stats" as const, label: "Stats" },
+                      { id: "compare" as const, label: "Compare" },
+                    ]
+                  : []),
                 {
                   id: "members",
                   label: "Members",
@@ -168,11 +188,10 @@ function GroupView({ group, me, reload }: { group: GroupDetail; me: string | nul
             aria-labelledby={tabId(PANEL, tab)}
             className="flex flex-1 flex-col gap-4 animate-fade-in"
           >
-            {tab === "board" ? (
-              <GroupBoard group={group} />
-            ) : (
-              <GroupMembers group={group} me={me} owner={owner} reload={reload} />
-            )}
+            {tab === "board" && <GroupBoard group={group} />}
+            {tab === "stats" && <GroupStats group={group} />}
+            {tab === "compare" && <GroupCompare group={group} groups={groups} />}
+            {tab === "members" && <GroupMembers group={group} me={me} owner={owner} reload={reload} />}
           </div>
         </div>
         <div className="flex flex-col gap-6 lg:col-start-2 lg:row-start-2">
