@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { CatchUp } from "@/components/catch-up";
 import { PageLoader } from "@/components/disco-loader";
@@ -10,6 +10,7 @@ import { GroupPicker, scopeName } from "@/components/group-picker";
 import { PerformanceCard } from "@/components/performance-card";
 import { RevealAll } from "@/components/reveal-all";
 import { RevealSheet } from "@/components/reveal-sheet";
+import { ResultsReveal } from "@/components/results-reveal";
 import { SignedIn } from "@/components/signed-in";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -19,7 +20,7 @@ import type { Group } from "@armchair/app-core/api/groups";
 import { CLOSED, revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
 import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
-import { seal, unseal, useSealed } from "@/lib/show/sealed";
+import { holdResults, RESULTS, revealResults, seal, unseal, useSealed } from "@/lib/show/sealed";
 import { useEpisodeState } from "@/lib/show/use-episode-state";
 import { useNow } from "@armchair/app-core/show/use-now";
 import { ApiError } from "@armchair/app-core/api/client";
@@ -59,6 +60,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
     latestAired(season.episodes, season.timezone, now);
   const view = (
     <EpisodeView
+      key={episode.ep}
       season={season}
       episode={episode}
       now={now}
@@ -133,6 +135,10 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   const names = (ids: string[]) =>
     ids.map((id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id).join(", ");
   const [locked, setLocked] = useState<{ key: string; title: string; value: number } | null>(null);
+  // Set by the answer that finished the episode, and by "Reveal results" so the reveal plays out after the hold lifts.
+  const [finished, setFinished] = useState(false);
+  const [revealing, setRevealing] = useState(false);
+  const onRevealed = useCallback(() => revealResults(season.season, episode.ep), [season.season, episode.ep]);
 
   if (data === null) {
     if (error !== null) return <ErrorState what="this episode" message={error} retry={reload} />;
@@ -140,9 +146,18 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   }
 
   const airsOn = hasAired(episode, season.timezone, now) ? null : formatAirDate(episode.airDate);
+  // The last answer opens the episode's results; they wait behind "Reveal results" instead.
+  // Held before the request, like a dance's seal, so no poll in between shows who went home.
+  const holds = (left: number) => !data.open && !isClosed(data.window ?? episode.window, now) && data.rateable - data.answered === left;
   const revealRest = async () => {
+    const last = holds(data.rateable - data.answered);
+    if (last) holdResults(season.season, episode.ep);
     try {
       await revealAll(season.season, episode.ep);
+      if (last) setFinished(true);
+    } catch (e) {
+      if (last) void revealResults(season.season, episode.ep);
+      throw e;
     } finally {
       reload();
     }
@@ -150,12 +165,16 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   const submit = async (card: LockedCard, answer: Answer) => {
     // Sealed before the request, so no poll landing in between can turn the judges over.
     const value = "value" in answer ? answer.value : null;
+    const last = holds(1);
     if (value !== null) seal(season.season, episode.ep, card.key);
+    if (last) holdResults(season.season, episode.ep);
     try {
       await submitScore(season.season, episode.ep, card, answer);
       if (value !== null) setLocked({ key: card.key, title: names(card.contestants), value });
+      if (last) setFinished(true);
     } catch (e) {
       if (value !== null) void unseal(season.season, episode.ep, card.key);
+      if (last) void revealResults(season.season, episode.ep);
       // The reload below turns the page read-only; this says why the paddle didn't stick.
       if (e instanceof ApiError && e.detail?.code === CLOSED) throw new Error("scoring for this episode has closed");
       throw e;
@@ -176,7 +195,10 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   const closesAt = !closed && win?.open ? win.closesAt : null;
   // The server holds back the result while a dance is sealed; this covers a seal it hasn't had yet.
   const anySealed = data.performances.some((c) => (c.locked ? c.sealed === true : sealed(c.key)));
-  const eliminated = anySealed ? [] : (data.eliminated ?? []);
+  // Who went home waits for "Reveal results", held here or on another device.
+  const held = isSealed(season.season, episode.ep, RESULTS) || data.resultsHeld === true;
+  const eliminated = anySealed || held ? [] : (data.eliminated ?? []);
+  const curtain = (data.complete && held && !anySealed) || revealing;
   const gone = new Set(eliminated);
   const out = eliminated.map(
     (id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id,
@@ -236,6 +258,17 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
         <p role="status" className="rounded-lg border border-gold/25 bg-gold/5 px-3 py-2 text-sm text-gold-light">
           Couldn&apos;t refresh: {error}. Showing the last scores loaded.
         </p>
+      )}
+      {curtain && (
+        <ResultsReveal
+          label={episodeLabel(episode, season.episodes)}
+          results={data.results ?? null}
+          contestants={contestants}
+          out={{ ep: episode.ep, week: episode.week }}
+          announce={finished && locked === null}
+          onStart={() => setRevealing(true)}
+          onRevealed={onRevealed}
+        />
       )}
       {out.length > 0 && (
         <p className="flex flex-wrap items-center gap-2 rounded-lg border border-silver/15 bg-ink/40 px-3 py-2 text-sm text-silver">

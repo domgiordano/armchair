@@ -16,6 +16,17 @@ export const seal = (season: string, ep: number, key: string): void => store.sea
 
 export const unseal = (season: string, ep: number, key: string): Promise<void> => store.reveal(id(season, ep, key));
 
+/**
+ * An episode's results, held back from its last answer until "Reveal results".
+ * Shaped like a dance key so gate.sealed_param and the server's seal ids take
+ * it as one: the server then keeps that night's eliminations back too.
+ */
+export const RESULTS = "results#0";
+
+export const holdResults = (season: string, ep: number) => seal(season, ep, RESULTS);
+
+export const revealResults = (season: string, ep: number) => unseal(season, ep, RESULTS);
+
 /** Bumps when the server confirms a seal or reveal: gated reads fetch again. */
 export const useSealVersion = store.useVersion;
 
@@ -25,6 +36,7 @@ export interface Seals {
   dance: (season: string, ep: number, key: string) => boolean;
   /** Whether any dance of the couple `id` is sealed, in any episode of `season`. */
   couple: (season: string, id: string) => boolean;
+  /** Whether anything of the episode is face down: a dance, or its results. */
   episode: (season: string, ep: number) => boolean;
 }
 
@@ -32,7 +44,8 @@ export function sealsFrom(ids: readonly string[]): Seals {
   const parts = ids.map((x) => {
     const [season, ep, key] = x.split("|");
     // A team dance's key names every member couple: "a+b+c#1".
-    return { season, ep: Number(ep), key, couples: key.slice(0, key.lastIndexOf("#")).split("+") };
+    const couples = key === RESULTS ? [] : key.slice(0, key.lastIndexOf("#")).split("+");
+    return { season, ep: Number(ep), key, couples };
   });
   return {
     none: ids.length === 0,
