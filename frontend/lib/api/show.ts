@@ -104,6 +104,8 @@ export interface LockedCard {
   /** Answered but kept face down: the server holds the seal and sends only your answer. */
   sealed?: true;
   mine?: Answer | null;
+  /** Its place in the running order, once the night's order is set. */
+  order?: number;
 }
 
 export interface JudgeSeat {
@@ -143,6 +145,10 @@ export interface EpisodeState {
   complete: boolean;
   /** Its results wait behind "Reveal results", held on some device: they come anyway, for the reveal. */
   resultsHeld?: boolean;
+  /** Cards come in running order, numbered. Absent until the night's order is set. */
+  runningOrder?: boolean;
+  /** How many dances from the top of the running order the judges have scored. */
+  danced?: number;
   performances: Card[];
   eliminated?: string[];
   /** With `eliminated`, once the caller has finished the episode; null until the poller writes them. */
