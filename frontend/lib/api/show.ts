@@ -120,6 +120,13 @@ export interface RevealedCard extends Omit<LockedCard, "locked" | "writeup"> {
 
 export type Card = LockedCard | RevealedCard;
 
+/** What the poller writes once every score is confirmed: who went home and each couple's total. */
+export interface EpisodeResults {
+  eliminated: string[];
+  totals: Record<string, number>;
+  bonus: Record<string, number>;
+}
+
 export interface EpisodeState {
   season: string;
   ep: number;
@@ -133,6 +140,8 @@ export interface EpisodeState {
   complete: boolean;
   performances: Card[];
   eliminated?: string[];
+  /** With `eliminated`, once the caller has finished the episode; null until the poller writes them. */
+  results?: EpisodeResults | null;
   window?: ScoringWindow;
   activeEpisode?: ActiveEpisode | null;
 }

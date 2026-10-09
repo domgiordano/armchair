@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const replace = vi.fn();
@@ -266,7 +266,8 @@ describe("EpisodeScreen", () => {
     expect(within(amber()).queryByRole("group", { name: /Judges' desk/ })).toBeNull();
     fireEvent.click(again);
     expect(within(amber()).getByRole("group", { name: /Judges' desk/ })).toBeTruthy();
-    expect(window.localStorage.getItem("armchair.sealed")).toBe("[]");
+    // The last dance of the night: who went home still waits on "Reveal results".
+    expect(window.localStorage.getItem("armchair.sealed")).toBe('["dwts-35|4|results#0"]');
   });
 
   it("reveals from the sheet, and seals nothing when the lock-in fails", async () => {
@@ -412,6 +413,129 @@ describe("EpisodeScreen", () => {
     render(<EpisodeScreen />);
     await screen.findByRole("heading", { name: "Yacht Rock" });
     expect(screen.queryByRole("button", { name: "Reveal all" })).toBeNull();
+  });
+});
+
+describe("the end of an episode", () => {
+  const amberDone = { ...STATE.performances[1], key: "amber-glenn#1", contestants: ["amber-glenn"], mine: { value: 8 } };
+  const results = { eliminated: ["tyler-cameron"], totals: { "amber-glenn": 24, "tyler-cameron": 21 }, bonus: {} };
+  const FINISHED: Partial<EpisodeState> = {
+    answered: 2,
+    complete: true,
+    eliminated: ["tyler-cameron"],
+    results,
+    performances: [amberDone, STATE.performances[1]],
+  };
+
+  /** Locks in Amber's 8, the last dance of the night, and reveals the judges. */
+  async function finish() {
+    vi.mocked(submitScore).mockResolvedValue({});
+    vi.mocked(getEpisodeState).mockResolvedValueOnce(STATE).mockResolvedValue({ ...STATE, ...FINISHED });
+    render(<EpisodeScreen />);
+    const amber = await screen.findByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    fireEvent.click(within(amber).getByRole("button", { name: /^Score 8 / }));
+    fireEvent.click(within(amber).getByRole("button", { name: "Lock in 8" }));
+    const sheet = await screen.findByRole("dialog", { name: "Locked in" });
+    fireEvent.click(within(sheet).getByRole("button", { name: "Reveal judges' scores" }));
+  }
+
+  const stamped = () => screen.queryAllByText("Eliminated", { exact: false });
+
+  beforeEach(() => {
+    // jsdom lays nothing out, so it has no scrollIntoView.
+    Element.prototype.scrollIntoView = vi.fn();
+  });
+
+  it("asks before saying who went home, and says nothing until you do", async () => {
+    await finish();
+    expect(await screen.findByRole("heading", { name: "You've scored every dance." })).toBeTruthy();
+    expect(screen.getByText("Ready to see who's going home?")).toBeTruthy();
+    expect(stamped()).toEqual([]);
+    expect(screen.queryByRole("list", { name: "Couples in the spotlight" })).toBeNull();
+  });
+
+  it("plays the spotlight, then names who went home and stamps their card", async () => {
+    vi.useFakeTimers({ toFake: ["Date", "setTimeout", "clearTimeout"] });
+    vi.setSystemTime(Date.parse("2026-10-01T12:00:00Z"));
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, ...FINISHED });
+    window.localStorage.setItem("armchair.sealed", '["dwts-35|4|results#0"]');
+    render(<EpisodeScreen />);
+    await vi.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(0);
+    fireEvent.click(screen.getByRole("button", { name: "Reveal results" }));
+
+    const stage = screen.getByRole("list", { name: "Couples in the spotlight" });
+    expect(within(stage).getAllByRole("listitem").map((li) => li.lastElementChild?.textContent)).toEqual(["Amber Glenn", "Tyler Cameron"]);
+    expect(screen.getByText("Who's going home?")).toBeTruthy();
+    expect(stamped()).toEqual([]);
+
+    // Two passes of the light over two couples, a hop each.
+    for (let i = 0; i < 4; i++) await act(() => vi.advanceTimersByTimeAsync(420));
+    expect(screen.getByText("Going home: Tyler Cameron & Sharna Burgess.")).toBeTruthy();
+    expect(window.localStorage.getItem("armchair.sealed")).toBe('["dwts-35|4|results#0"]');
+    await act(() => vi.advanceTimersByTimeAsync(1100));
+    expect(window.localStorage.getItem("armchair.sealed")).toBe("[]");
+    const tyler = screen.getByRole("article", { name: "Tyler Cameron & Sharna Burgess" });
+    expect(tyler.textContent).toContain("Eliminated · Week 3");
+    expect(screen.getByText("Going home: Tyler Cameron & Sharna Burgess.")).toBeTruthy();
+  });
+
+  it("goes straight to the verdict with reduced motion", async () => {
+    window.matchMedia = ((q: string) => ({ matches: q.includes("reduce"), addEventListener() {}, removeEventListener() {} })) as unknown as typeof window.matchMedia;
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, ...FINISHED });
+    window.localStorage.setItem("armchair.sealed", '["dwts-35|4|results#0"]');
+    render(<EpisodeScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "Reveal results" }));
+    expect(screen.getByText("Going home: Tyler Cameron & Sharna Burgess.")).toBeTruthy();
+    await vi.waitFor(() => expect(window.localStorage.getItem("armchair.sealed")).toBe("[]"));
+    delete (window as Partial<Window>).matchMedia;
+  });
+
+  it("keeps the results face down on Not yet, across a reload", async () => {
+    await finish();
+    fireEvent.click(await screen.findByRole("button", { name: "Not yet" }));
+    expect(screen.getByRole("heading", { name: "Week 3 results are face down" })).toBeTruthy();
+    expect(stamped()).toEqual([]);
+    cleanup();
+    render(<EpisodeScreen />);
+    expect(await screen.findByRole("heading", { name: "You've scored every dance." })).toBeTruthy();
+    expect(stamped()).toEqual([]);
+  });
+
+  it("waits for the results without a button when they aren't in yet", async () => {
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, ...FINISHED, eliminated: [], results: null });
+    window.localStorage.setItem("armchair.sealed", '["dwts-35|4|results#0"]');
+    render(<EpisodeScreen />);
+    expect(await screen.findByText(/The results land here once the night's scores are final/)).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Reveal results" })).toBeNull();
+  });
+
+  it("holds the results when Reveal all finishes the night, and lets go if it fails", async () => {
+    vi.mocked(revealAll).mockRejectedValueOnce(new Error("Network down")).mockResolvedValue({ revealed: ["amber-glenn#1"] });
+    render(<EpisodeScreen />);
+    fireEvent.click(await screen.findByRole("button", { name: "Reveal all" }));
+    const confirm = () => within(screen.getByRole("group", { name: "Reveal all" })).getByRole("button", { name: "Reveal all" });
+    fireEvent.click(confirm());
+    expect((await screen.findByRole("alert")).textContent).toBe("Not revealed: Network down");
+    expect(window.localStorage.getItem("armchair.sealed")).toBe("[]");
+
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, ...FINISHED });
+    fireEvent.click(confirm());
+    expect(await screen.findByRole("button", { name: "Reveal results" })).toBeTruthy();
+    expect(stamped()).toEqual([]);
+  });
+
+  it("stops a later episode until an earlier one's results are revealed", async () => {
+    vi.setSystemTime(Date.parse("2026-10-07T12:00:00Z"));
+    episodes({ 5: { ep: 5, theme: "Mariah Carey" } });
+    window.localStorage.setItem("armchair.sealed", '["dwts-35|4|results#0"]');
+    render(<EpisodeScreen />);
+    expect(await screen.findByRole("heading", { name: "Week 3 is still face down" })).toBeTruthy();
+    expect(screen.queryByRole("article")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Go to week 3" }));
+    expect(replace).toHaveBeenCalledWith("/episode/?ep=4");
+    fireEvent.click(screen.getByRole("button", { name: "Open week 4 anyway" }));
+    expect(await screen.findByRole("heading", { name: "Mariah Carey" })).toBeTruthy();
   });
 });
 

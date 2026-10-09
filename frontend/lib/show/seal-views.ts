@@ -19,7 +19,7 @@ function ranks(values: (number | null)[]): (number | null)[] {
 export function sealBoard(board: WeekBoard, seals: Seals): WeekBoard {
   if (seals.none) return board;
   const held = board.couples.filter((r) => seals.couple(board.season, r.id) && seals.episode(board.season, board.ep));
-  if (held.length === 0) return board;
+  if (held.length === 0) return seals.episode(board.season, board.ep) ? { ...board, eliminated: [] } : board;
   const ids = new Set(held.map((r) => r.id));
   const blanked = board.couples.map((r): BoardRow => (ids.has(r.id) ? { ...r, judges: null, judgesTotal: null, rankDelta: null } : r));
   const judgeRanks = ranks(blanked.map((r) => r.judges));
@@ -51,17 +51,18 @@ export function sealPerson(page: PersonPage, seals: Seals): PersonPage {
   const changed = (a: PerformanceRow[], b: PerformanceRow[]) => a.some((r, i) => r !== b[i]);
   const dancer = changed(performances, page.performances);
   const judge = page.judged !== null && judged !== null && changed(judged.rows, page.judged.rows);
-  if (!dancer && !judge) return page;
+  const seasons = page.seasons.map((s) =>
+    s.result && "status" in s.result && s.result.status === "out" && seals.episode(s.season, s.result.ep)
+      ? { ...s, result: { locked: true as const, season: s.season, ep: s.result.ep } }
+      : s,
+  );
+  if (!dancer && !judge && seasons.every((s, i) => s === page.seasons[i])) return page;
   const d = page.stats.dancer;
   return {
     ...page,
     performances,
     judged,
-    seasons: page.seasons.map((s) =>
-      s.result && "status" in s.result && s.result.status === "out" && seals.episode(s.season, s.result.ep)
-        ? { ...s, result: { locked: true, season: s.season, ep: s.result.ep } }
-        : s,
-    ),
+    seasons,
     stats: {
       dancer: d && dancer ? { ...d, judges: { ...d.judges, mean: null }, best: null, mine: { ...d.mine, gap: null } } : d,
       judge: judge ? null : page.stats.judge,
@@ -82,8 +83,8 @@ export function sealProfile(profile: Profile, seals: Seals): Profile {
 }
 
 function sealSummary<C extends CoupleSummary>(c: C, seals: Seals): C {
-  if (!seals.couple(c.season, c.id)) return c;
   const out = c.eliminated && seals.episode(c.season, c.eliminated.ep) ? null : c.eliminated;
+  if (!seals.couple(c.season, c.id)) return out === c.eliminated ? c : { ...c, eliminated: out };
   return { ...c, judges: null, gap: null, absGap: null, eliminated: out };
 }
 
@@ -98,8 +99,9 @@ function sealCouples<C extends CoupleSummary>(p: Performers<C>, seals: Seals, se
   if (seals.none) return p;
   const couples = p.couples.map(seal);
   // The lists name couples by ref, `season/id`.
-  const held = new Set(couples.filter((c, i) => c !== p.couples[i]).map((c) => c.ref));
-  if (held.size === 0) return p;
+  if (couples.every((c, i) => c === p.couples[i])) return p;
+  // Only a sealed dance moves a couple's gap; a held exit doesn't.
+  const held = new Set(couples.filter((c) => seals.couple(c.season, c.id)).map((c) => c.ref));
   const keep = (refs: string[]) => refs.filter((r) => !held.has(r));
   return { ...p, couples, softerOn: keep(p.softerOn), tougherOn: keep(p.tougherOn) };
 }
@@ -116,5 +118,7 @@ export function sealOverview(o: Overview, seals: Seals): Overview {
     const average = seals.couple(o.season, c.id) ? null : c.average;
     return out === c.eliminated && average === c.average ? c : { ...c, average, eliminated: out };
   });
-  return couples.every((c, i) => c === o.couples[i]) ? o : { ...o, couples };
+  if (couples.every((c, i) => c === o.couples[i])) return o;
+  const hidden = couples.filter((c, i) => c.eliminated === null && o.couples[i].eliminated !== null).length;
+  return { ...o, couples, progress: { ...o.progress, couplesLeft: o.progress.couplesLeft + hidden } };
 }
