@@ -24,11 +24,14 @@ import {
   type BoardCouple,
   type BoardData,
   type BoardSort,
+  type Odds,
 } from "@/lib/show/couples-board";
 import { eliminatedWhen, useShowEliminated } from "@/lib/show/eliminated";
 import { coupleHref } from "@/lib/show/people";
 import { withSeason } from "@/lib/show/seasons";
 import { useMediaQuery } from "@/lib/motion";
+import { useOdds } from "@/lib/show/use-odds";
+import { moveLabel, percent, trend } from "@armchair/app-core/favorites/odds";
 import { button, cn, FOCUS, TEXT_LINK } from "@/lib/ui";
 
 type Load = { kind: "loading" } | { kind: "ready"; data: BoardData } | { kind: "error"; message: string };
@@ -80,6 +83,7 @@ export function LeaderboardView({ season }: { season: Season }) {
 }
 
 const CAPTION: Record<BoardSort, string> = {
+  odds: "to win",
   average: "avg",
   last: "this week",
   best: "best",
@@ -97,7 +101,7 @@ const COUNT_SORTS: BoardSort[] = ["dances", "perfect"];
 // Scores to one place so a column of them lines up; counts as they are.
 const show = (n: number | null) => (n === null ? "–" : n.toFixed(1));
 const shown = (by: BoardSort, n: number | null) =>
-  n === null ? "–" : SIGNED_SORTS.includes(by) ? signed(n) : COUNT_SORTS.includes(by) ? String(n) : show(n);
+  n === null ? "–" : by === "odds" ? percent(n) : SIGNED_SORTS.includes(by) ? signed(n) : COUNT_SORTS.includes(by) ? String(n) : show(n);
 
 function Leaderboard({ season, data, through }: { season: Season; data: BoardData; through: number }) {
   const [week, setWeek] = useState(through);
@@ -105,7 +109,9 @@ function Leaderboard({ season, data, through }: { season: Season; data: BoardDat
   const [showOut, setShowOut] = useShowEliminated("couples");
   const [picked, setPicked] = useState<string[]>([]);
   const wide = useMediaQuery("(min-width: 1024px)");
-  const base = { roster: season.contestants, dances: data.dances, outs: data.outs, week };
+  const odds = useOdds(season.season, data.weeks.find((w) => w.week === week)?.lastEp);
+  const byCouple = new Map<string, Odds>(odds.kind === "ready" ? odds.board.entries.map((e) => [e.id, e]) : []);
+  const base = { roster: season.contestants, dances: data.dances, outs: data.outs, week, odds: byCouple };
   const rows = board({ ...base, by: sort, showOut });
   // Every sparkline on one scale, from just under the board's lowest week to a perfect 10.
   const floor = Math.max(1, Math.floor(Math.min(10, ...rows.flatMap((c) => c.weeks.map((w) => w.score)))) - 1);
@@ -200,14 +206,15 @@ function Pick({ couple: c, pick }: { couple: BoardCouple; pick: Picking }) {
 
 // Fixed widths: the couple column takes what is left, so a long name truncates instead of widening the table.
 const COLUMNS: { by: BoardSort; label: string; className: string }[] = [
+  { by: "odds", label: "Odds", className: "w-20 text-right" },
   { by: "average", label: "Avg", className: "w-14 text-right" },
   { by: "last", label: "This week", className: "w-36 text-left" },
   { by: "best", label: "Best", className: "w-16 text-right" },
   { by: "crowd", label: "Crowd", className: "w-16 text-right" },
   { by: "delta", label: "Crowd vs judges", className: "w-20 text-right" },
   { by: "trend", label: "Trend", className: "w-28 text-left" },
-  { by: "dances", label: "Dances", className: "w-18 text-right" },
-  { by: "perfect", label: "Perfect", className: "w-18 text-right" },
+  { by: "dances", label: "Dances", className: "w-14 text-right" },
+  { by: "perfect", label: "Perfect", className: "w-16 text-right" },
 ];
 
 function BoardTable({ rows, week, floor, sort, onSort, label, season, pick }: BoardProps & { onSort: (by: BoardSort) => void }) {
@@ -245,7 +252,7 @@ function BoardTable({ rows, week, floor, sort, onSort, label, season, pick }: Bo
                 </button>
               </th>
             ))}
-            <th scope="col" className="w-32 py-2 pr-4 text-left font-medium">
+            <th scope="col" className="w-28 py-2 pr-4 text-left font-medium">
               Status
             </th>
           </tr>
@@ -270,6 +277,9 @@ function BoardTable({ rows, week, floor, sort, onSort, label, season, pick }: Bo
                 </td>
                 <td className="py-2.5 pr-2">
                   <CoupleCell couple={c} season={season} size={40} />
+                </td>
+                <td className={cn("px-2 py-2.5 text-right", out && "opacity-55")}>
+                  <OddsCell odds={c.odds} strong={sort === "odds"} />
                 </td>
                 <Num value={c.average} strong={sort === "average"} out={!!out} />
                 <td className={cn("px-2 py-2.5", out && "opacity-55")}>
@@ -297,6 +307,45 @@ function BoardTable({ rows, week, floor, sort, onSort, label, season, pick }: Bo
         </tbody>
       </table>
     </div>
+  );
+}
+
+/** American odds over the implied chance, with which way they moved since the board before. */
+function OddsCell({ odds, strong }: { odds: Odds | null; strong: boolean }) {
+  if (!odds?.odds || odds.chance === null) return <span className="text-silver-dim">–</span>;
+  return (
+    <span className="inline-flex flex-col items-end tabular-nums">
+      <span className={cn("flex items-center gap-1", strong ? "text-base font-semibold text-gold-light" : "text-pearl")}>
+        <OddsMove move={odds.move} />
+        {odds.odds}
+      </span>
+      <span className="text-[11px] text-silver-dim">{percent(odds.chance)}</span>
+    </span>
+  );
+}
+
+function OddsChip({ odds }: { odds: Odds }) {
+  return (
+    <span className="ml-[46px] inline-flex w-fit items-center gap-1 rounded-full border border-gold/25 bg-gold/5 px-2 py-px text-[11px] text-gold-light tabular-nums">
+      <OddsMove move={odds.move} />
+      {odds.odds}
+      {odds.chance !== null && <span className="text-silver-dim">{percent(odds.chance)}</span>}
+      <span className="sr-only">odds to win</span>
+    </span>
+  );
+}
+
+function OddsMove({ move }: { move: Odds["move"] }) {
+  const t = trend(move);
+  const label = moveLabel(move);
+  if (!t || t === "flat" || !label) return null;
+  return (
+    <span className={cn("inline-flex", t === "up" ? "text-emerald-300" : "text-rose-300")}>
+      <svg viewBox="0 0 10 10" width={8} height={8} aria-hidden="true" className={t === "up" ? "" : "rotate-180"}>
+        <path d="M5 1 9 8H1Z" fill="currentColor" />
+      </svg>
+      <span className="sr-only">{label}</span>
+    </span>
   );
 }
 
@@ -328,10 +377,17 @@ function BoardList({ rows, week, floor, sort, label, season, pick }: BoardProps)
             )}
           >
             <Rank couple={c} week={week} />
-            <CoupleCell couple={c} season={season} size={36} />
+            <span className="flex min-w-0 flex-col gap-1">
+              <CoupleCell couple={c} season={season} size={36} />
+              {c.odds?.odds && sort !== "odds" && <OddsChip odds={c.odds} />}
+            </span>
             <span className={cn("flex flex-col items-end", out && "opacity-55")}>
-              <span className="text-lg leading-tight font-semibold text-pearl tabular-nums">{shown(sort, sortValue(c, sort))}</span>
-              <span className="text-[11px] text-silver-dim">{CAPTION[sort]}</span>
+              <span className="text-lg leading-tight font-semibold text-pearl tabular-nums">
+                {sort === "odds" ? (c.odds?.odds ?? "–") : shown(sort, sortValue(c, sort))}
+              </span>
+              <span className="text-[11px] text-silver-dim">
+                {sort === "odds" && c.odds?.chance != null ? `${percent(c.odds.chance)} to win` : CAPTION[sort]}
+              </span>
             </span>
             <Pick couple={c} pick={pick} />
             <dl className={cn("col-span-4 grid grid-cols-[repeat(4,minmax(0,1fr))_auto] gap-x-2 border-t border-silver/5 pt-1.5", out && "opacity-55")}>

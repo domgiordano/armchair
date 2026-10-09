@@ -8,12 +8,17 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn() }));
+vi.mock("@armchair/app-core/favorites/odds", async (actual) => ({
+  ...(await actual<typeof import("@armchair/app-core/favorites/odds")>()),
+  getOdds: vi.fn(),
+}));
 vi.mock("@/lib/api/show", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/show")>()),
   getEpisodeState: vi.fn(),
 }));
 
 import { getOverview, type Overview, type OverviewEpisode } from "@/lib/api/overview";
+import { getOdds, type OddsBoard } from "@armchair/app-core/favorites/odds";
 import { getEpisodeState, type Card, type EpisodeState, type Season } from "@/lib/api/show";
 import { choose } from "@/components/ui/select-test-utils";
 import { LeaderboardView } from "./leaderboard";
@@ -78,7 +83,20 @@ const rowNames = (container: HTMLElement) =>
     .getAllByRole("link", { name: /& / })
     .map((a) => a.textContent?.split(" & ")[0]);
 
-beforeEach(() => localStorage.clear());
+const odds = (asOf: number, entries: [string, string, number, number][]) =>
+  ({
+    asOf,
+    entries: entries.map(([id, line, chance, rank], i) => ({ id, rank: i + 1, odds: line, chance, move: { rank, chance: 0 } })),
+  }) as unknown as OddsBoard<null>;
+
+beforeEach(() => {
+  localStorage.clear();
+  vi.mocked(getOdds).mockImplementation(async (_s, through) =>
+    through === 1
+      ? odds(1, [["ezra-frech", "+150", 0.4, 0], ["amber-glenn", "+200", 0.33, 0], ["taylor-hanson", "+400", 0.2, 0]])
+      : odds(2, [["ezra-frech", "-150", 0.6, 0], ["amber-glenn", "+150", 0.4, 0]]),
+  );
+});
 afterEach(() => vi.clearAllMocks());
 
 describe("Couples leaderboard on a desktop", () => {
@@ -219,5 +237,30 @@ describe("Comparing couples", () => {
     fireEvent.click(screen.getByRole("button", { name: "Clear" }));
     expect(screen.queryByRole("region", { name: "Compare couples" })).toBeNull();
     expect((screen.getByRole("checkbox", { name: "Compare Amber Glenn" }) as HTMLInputElement).checked).toBe(false);
+  });
+});
+
+describe("Couples leaderboard odds", () => {
+  it("shows each couple's odds and ranks by them, the board's week setting the snapshot", async () => {
+    screenWidth(true);
+    serve(2);
+    render(<LeaderboardView season={SEASON} />);
+    const table = await screen.findByRole("table");
+    await within(table).findByText("-150");
+    expect(getOdds).toHaveBeenLastCalledWith("dwts-35", 2);
+    fireEvent.click(within(table).getByRole("button", { name: "Odds" }));
+    const rows = within(screen.getByRole("table", { name: /odds to win/ })).getAllByRole("row").slice(1);
+    expect(rows[0].textContent).toMatch(/Ezra Frech.*-15060%/);
+    expect(rows[1].textContent).toMatch(/Amber Glenn.*\+15040%/);
+  });
+
+  it("goes back to the odds from before an elimination when the board goes back a week", async () => {
+    screenWidth(false);
+    serve(2);
+    render(<LeaderboardView season={SEASON} />);
+    await screen.findByText("-150");
+    choose(screen.getByRole("combobox", { name: "Board as of" }), /Week 1/);
+    expect(await screen.findByText("+400")).toBeTruthy();
+    expect(getOdds).toHaveBeenLastCalledWith("dwts-35", 1);
   });
 });

@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 
 import { Headshot } from "@/components/headshot";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import type { Headshot as HeadshotData } from "@/lib/api/show";
 import { useSealedEpisodes } from "@/lib/show/sealed";
+import { useOdds } from "@/lib/show/use-odds";
 import { cn, TEXT_LINK } from "@/lib/ui";
 import {
-  getOdds,
   moveLabel,
   percent,
   sourceLabel,
@@ -22,7 +22,6 @@ const PANEL = "rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[ins
 const SHOWN = 5;
 
 type Entry = OddsEntry<HeadshotData | null>;
-type Load = { kind: "loading" } | { kind: "ready"; board: Board<HeadshotData | null> } | { kind: "error"; message: string };
 
 /** "Week 4", or "Week 1, night 2" when a week has two episodes. */
 export function weekLabel(episodes: Board<unknown>["episodes"], ep: number): string {
@@ -37,20 +36,8 @@ export function weekLabel(episodes: Board<unknown>["episodes"], ep: number): str
 export function OddsBoard({ season }: { season: string }) {
   const sealed = useSealedEpisodes(season);
   const through = sealed.length ? sealed[0] - 1 : undefined;
-  const [load, setLoad] = useState<Load>({ kind: "loading" });
-  const [attempt, setAttempt] = useState(0);
+  const load = useOdds(season, through);
   const heading = useId();
-
-  useEffect(() => {
-    let cancelled = false;
-    getOdds<HeadshotData | null>(season, through).then(
-      (board) => !cancelled && setLoad({ kind: "ready", board }),
-      (e: unknown) => !cancelled && setLoad({ kind: "error", message: e instanceof Error ? e.message : "Request failed" }),
-    );
-    return () => {
-      cancelled = true;
-    };
-  }, [season, through, attempt]);
 
   return (
     <section aria-labelledby={heading} className={`${PANEL} flex min-w-0 flex-col gap-3`}>
@@ -70,14 +57,7 @@ export function OddsBoard({ season }: { season: string }) {
           ))}
         </div>
       )}
-      {load.kind === "error" && <ErrorState
-          what="the odds"
-          message={load.message}
-          retry={() => {
-            setLoad({ kind: "loading" });
-            setAttempt((n) => n + 1);
-          }}
-        />}
+      {load.kind === "error" && <ErrorState what="the odds" message={load.message} retry={load.retry} />}
       {load.kind === "ready" && <BoardView board={load.board} />}
     </section>
   );

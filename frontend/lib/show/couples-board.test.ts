@@ -182,7 +182,7 @@ describe("loadBoard", () => {
     const data = await loadBoard(SEASON);
     expect(vi.mocked(getEpisodeState).mock.calls.map((c) => c[1])).toEqual([1, 2]);
     expect(data.through).toBe(1);
-    expect(data.weeks).toEqual([{ week: 1, theme: "Theme 1" }]);
+    expect(data.weeks).toEqual([{ week: 1, theme: "Theme 1", lastEp: 2 }]);
     expect(data.dances.map((d) => d.couple)).toEqual(["ava", "bo"]);
     expect([...data.outs]).toEqual([["di", { ep: 2, week: 1 }]]);
     expect(data.next).toEqual({ ep: 3, week: 2, sealed: false });
