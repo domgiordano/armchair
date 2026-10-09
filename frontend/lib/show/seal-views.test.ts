@@ -5,7 +5,7 @@ import type { Overview } from "@/lib/api/overview";
 import type { OpenRow, PersonPage } from "@/lib/api/people";
 import type { Profile } from "@/lib/api/profile";
 import { sealBoard, sealOverview, sealPerformers, sealPerson, sealProfile } from "@/lib/show/seal-views";
-import { sealsFrom } from "@/lib/show/sealed";
+import { RESULTS, sealsFrom } from "@/lib/show/sealed";
 
 const S = "dwts-35";
 // Ada's dance in episode 6 is locked in, judges not yet revealed.
@@ -167,7 +167,68 @@ describe("sealPerformers and sealOverview", () => {
     expect(out.couples[0].weeks[0].judges).toBeNull();
     expect(out.tougherOn).toEqual([]);
 
-    const o = { season: S, couples: [{ id: "ada", average: 9, eliminated: { ep: 6, week: 5 } }] } as unknown as Overview;
-    expect(sealOverview(o, seals).couples[0]).toMatchObject({ average: null, eliminated: null });
+    const o = {
+      season: S,
+      progress: { couplesLeft: 9 },
+      couples: [{ id: "ada", average: 9, eliminated: { ep: 6, week: 5 } }],
+    } as unknown as Overview;
+    const sealed = sealOverview(o, seals);
+    expect(sealed.couples[0]).toMatchObject({ average: null, eliminated: null });
+    expect(sealed.progress.couplesLeft).toBe(10);
+  });
+});
+
+describe("held results", () => {
+  // Every dance of episode 6 revealed; who went home still waits on "Reveal results".
+  const held = sealsFrom([`${S}|6|${RESULTS}`]);
+
+  it("hold the night without sealing any couple or dance", () => {
+    expect(held.episode(S, 6)).toBe(true);
+    expect(held.couple(S, "results")).toBe(false);
+    expect(held.dance(S, 6, "ada#1")).toBe(false);
+  });
+
+  it("keep the week board's exits back and its judges in", () => {
+    const board = {
+      season: S,
+      ep: 6,
+      couples: [{ id: "ada", judges: 9 }],
+      eliminated: ["ada"],
+    } as unknown as WeekBoard;
+    const out = sealBoard(board, held);
+    expect(out.eliminated).toEqual([]);
+    expect(out.couples).toBe(board.couples);
+  });
+
+  it("keep the exit off the overview, couples and favorites, and the count of couples left", () => {
+    const o = {
+      season: S,
+      progress: { couplesLeft: 9 },
+      couples: [
+        { id: "ada", average: 9, eliminated: { ep: 6, week: 5 } },
+        { id: "bo", average: 7, eliminated: { ep: 5, week: 4 } },
+      ],
+    } as unknown as Overview;
+    const out = sealOverview(o, held);
+    expect(out.couples.map((c) => c.eliminated)).toEqual([null, { ep: 5, week: 4 }]);
+    expect(out.couples[0].average).toBe(9);
+    expect(out.progress.couplesLeft).toBe(10);
+
+    const dance = { ep: 6, week: 5, key: "ada#1", style: null, paddle: 4, judges: 10 };
+    const couple = { ref: `${S}/ada`, id: "ada", season: S, judges: 9, gap: 1, eliminated: { ep: 6, week: 5 }, best: dance, worst: dance, weeks: [dance] };
+    const p = { couples: [couple], softerOn: [`${S}/ada`], tougherOn: [] } as unknown as Performers;
+    const perf = sealPerformers(p, held);
+    expect(perf.couples[0]).toMatchObject({ judges: 9, gap: 1, eliminated: null });
+    expect(perf.softerOn).toEqual([`${S}/ada`]);
+  });
+
+  it("lock the person page's exit", () => {
+    const page = {
+      performances: [],
+      judged: null,
+      seasons: [{ season: S, result: { status: "out", ep: 6 } }],
+      stats: { dancer: null, judge: null },
+    } as unknown as PersonPage;
+    expect(sealPerson(page, held).seasons[0].result).toEqual({ locked: true, season: S, ep: 6 });
   });
 });
