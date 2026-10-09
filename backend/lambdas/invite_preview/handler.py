@@ -21,8 +21,9 @@ from lambdas.common.groups_dynamo import by_code
 
 CODE = re.compile(r"[A-Za-z0-9_-]{16}")
 DESCRIPTION = "Score every Dancing with the Stars dance together, then see who called it closest."
-TRAITORS = "Call The Traitors with your friends on Armchair Judge"
+TRAITORS = "Call The Traitors with the group, episode by episode, then see who saw it coming."
 DWTS_SITE_NAME = "Armchair Judge · Dancing with the Stars"
+TRAITORS_SITE_NAME = "Armchair Judge · The Traitors"
 
 PAGE = """<!doctype html>
 <html lang="en">
@@ -31,7 +32,7 @@ PAGE = """<!doctype html>
 <title>{title}</title>
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#02081e">
+<meta name="theme-color" content="{theme}">
 <meta property="og:site_name" content="{site_name}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
@@ -58,9 +59,8 @@ def handler(event, context):
     code = query(event).get("code") or ""
     group = by_code(code) if CODE.fullmatch(code) else None
     title = f"Join {group['name']}" if group else "Join a group on Armchair Judge"
-    # The first allowed origin is the DWTS site (locals.tf): the card's image, and
-    # where a link from before `site` existed goes.
-    primary = allow_origin({})
+    # The first allowed origin is the DWTS site (locals.tf): where a link from
+    # before `site` existed goes.
     site = allow_origin({"headers": {"origin": query(event).get("site")}})
     param = quote(code, safe="")
     target = f"{site}/join/?code={param}"
@@ -68,20 +68,14 @@ def handler(event, context):
     # land on the static card.
     host = event["requestContext"]["domainName"]
     traitors = "traitors" in site
-    if not traitors:
-        title += " · Dancing with the Stars"
-    # DWTS gets its /join/ card (frontend/scripts/og). The Traitors site has no
-    # card of its own yet, so its links show the hub's family card.
-    image = (
-        f"{primary.replace('://dwts.', '://', 1)}/opengraph-image.jpg"
-        if traitors
-        else f"{primary}/join/opengraph-image.jpg"
-    )
+    title += " · The Traitors" if traitors else " · Dancing with the Stars"
+    # Each show's own /join/ card (frontend/scripts/og, traitors/scripts/og).
     page = PAGE.format(
         title=escape(title),
         description=escape(TRAITORS if traitors else DESCRIPTION),
-        site_name="Armchair Judge" if traitors else escape(DWTS_SITE_NAME),
-        image=image,
+        site_name=escape(TRAITORS_SITE_NAME if traitors else DWTS_SITE_NAME),
+        theme="#0a0d0b" if traitors else "#02081e",
+        image=f"{site}/join/opengraph-image.jpg",
         url=escape(f"https://{host}/invite/preview?code={param}"),
         target=escape(target),
         target_js=json.dumps(target),

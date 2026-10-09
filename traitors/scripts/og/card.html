@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- One Traitors share card, 1200x630. render.mjs fills #headline and #sub per route. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cinzel+Decorative:wght@700;900&family=EB+Garamond:wght@500&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #0a0d0b; }
+  .card { position: relative; width: 1200px; height: 630px; font-family: "EB Garamond", serif; color: #eadbb8; }
+  /* The intro's castle corridor, the cloaks on the right, faded into night under the words. */
+  .hall { position: absolute; top: -30px; right: -360px; width: 1100px; height: 688px; background: url(../../components/intro/poster.webp) center / cover; }
+  .fade { position: absolute; inset: 0; background:
+    linear-gradient(90deg, #0a0d0b 0%, #0a0d0b 36%, rgb(10 13 11 / 0.84) 52%, rgb(10 13 11 / 0) 76%),
+    radial-gradient(ellipse 55% 65% at 8% 0%, rgb(30 74 51 / 0.55), transparent 70%),
+    linear-gradient(0deg, rgb(10 13 11 / 0.9), transparent 32%); }
+  .frame { position: absolute; inset: 22px; border: 1px solid rgb(199 154 58 / 0.35); border-radius: 4px; }
+  .copy { position: absolute; left: 74px; top: 82px; width: 660px; display: flex; flex-direction: column; gap: 24px; }
+  .eyebrow { display: flex; align-items: center; gap: 14px; font-family: Cinzel, serif; font-size: 22px; font-weight: 700; letter-spacing: 0.26em; color: #c79a3a; }
+  .eyebrow i { width: 44px; height: 1px; background: #c79a3a; }
+  h1 { margin: 0; font-family: "Cinzel Decorative", serif; font-weight: 900; font-size: 66px; line-height: 1.04; white-space: nowrap; letter-spacing: -0.01em; }
+  h1 span { display: block; }
+  .gilt { background-image: linear-gradient(180deg, #ffe7a8 0%, #e9b949 38%, #c79a3a 55%, #8a6420 78%, #e9b949 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone;
+    filter: drop-shadow(0 3px 0 rgb(0 0 0 / 0.85)); }
+  .sub { margin: 0; font-size: 31px; line-height: 1.3; color: #eadbb8; max-width: 600px; }
+  .lockup { position: absolute; left: 74px; bottom: 58px; display: flex; align-items: center; gap: 14px; }
+  .lockup img { width: 50px; height: 50px; border-radius: 12px; }
+  .word { font-family: Cinzel, serif; font-size: 27px; font-weight: 700; color: #f4ecda; }
+  .chip { border: 1.5px solid rgb(199 154 58 / 0.6); color: #e9b949; font-family: Cinzel, serif; font-size: 15px; font-weight: 700; letter-spacing: 0.18em; padding: 4px 11px; border-radius: 3px; }
+  .seal { position: absolute; right: 90px; bottom: 70px; width: 150px; height: 150px; transform: rotate(-9deg); filter: drop-shadow(0 16px 26px rgb(0 0 0 / 0.7)); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="hall"></div>
+  <div class="fade"></div>
+  <div class="frame"></div>
+  <div class="copy">
+    <div class="eyebrow"><span>THE TRAITORS</span><i></i></div>
+    <h1 id="headline"></h1>
+    <p class="sub" id="sub"></p>
+  </div>
+  <!-- The app's wax seal (components/ui/wax-seal.tsx): an empty hood, never the show's emblem. -->
+  <svg class="seal" id="seal" viewBox="0 0 100 100" aria-hidden="true"></svg>
+  <div class="lockup">
+    <img src="../../../frontend/public/brand/mark-96.png" alt="">
+    <span class="word">Armchair Judge</span>
+    <span class="chip">THE TRAITORS</span>
+  </div>
+</div>
+<script>
+  const rim = Array.from({ length: 36 }, (_, i) => {
+    const a = (i / 36) * Math.PI * 2;
+    const r = 45 + [2, -1, 1, -2, 0, 1][i % 6];
+    return `${(50 + r * Math.cos(a)).toFixed(1)},${(50 + r * Math.sin(a)).toFixed(1)}`;
+  }).join(" ");
+  document.getElementById("seal").innerHTML = `
+    <polygon points="${rim}" fill="#b3222e" stroke="#4a0e16" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="50" cy="50" r="34" fill="none" stroke="#4a0e16" stroke-width="2.5"/>
+    <circle cx="50" cy="50" r="30" fill="none" stroke="rgb(224 70 79 / 0.6)" stroke-width="1"/>
+    <path d="M50 24c-12 8-17 20-17 33 0 8 4 14 8 17h18c4-3 8-9 8-17 0-13-5-25-17-33Z" fill="#4a0e16"/>
+    <path d="M50 42c-6 4-8 10-8 16 0 4 2 7 4 9h8c2-2 4-5 4-9 0-6-2-12-8-16Z" fill="#0a0d0b"/>
+    <path d="M38 34c3-5 7-8 12-10" fill="none" stroke="rgb(244 236 218 / 0.35)" stroke-width="2" stroke-linecap="round"/>`;
+</script>
+</body>
+</html>
