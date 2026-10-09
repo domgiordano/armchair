@@ -56,6 +56,7 @@ beforeEach(() => {
     current: true,
     needsBet: false,
     bet: null,
+    cast: [],
     episodes: [],
   }));
 });
@@ -135,7 +136,7 @@ it("opens a live season before the winner bet, asking for it in a banner until i
 
 it("shows a finished season's history in place of the tabs", async () => {
   nav.search = "season=tus-4";
-  traitors.getTraitorsSeason.mockImplementation(async (season: string) => ({ season, title: "", current: false, needsBet: false, bet: null, episodes: [] }));
+  traitors.getTraitorsSeason.mockImplementation(async (season: string) => ({ season, title: "", current: false, needsBet: false, bet: null, cast: [], episodes: [] }));
   history.getHistory.mockResolvedValue({ season: "tus-4", title: null, winners: [], players: [], episodes: [] });
   shell();
   expect(await screen.findByRole("heading", { name: "Season 4" })).toBeTruthy();
