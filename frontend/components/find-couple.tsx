@@ -48,6 +48,20 @@ function useHeaderHeight(): number {
  */
 export function FindCouple({ cards, contestants, cues, query, onQuery }: FindCoupleProps) {
   const bar = useRef<HTMLDivElement>(null);
+  const strip = useRef<HTMLUListElement>(null);
+  const anchor = useRef<HTMLDivElement>(null);
+  const onNow = [...cues].find(([, c]) => c !== "next")?.[0];
+  // Bring whoever is on now into the strip's view, where the next taps happen.
+  useEffect(() => {
+    const chip = strip.current?.children[cards.findIndex((c) => c.key === onNow)];
+    const ul = strip.current;
+    if (!(chip instanceof HTMLElement) || !ul) return;
+    const hidden =
+      chip.offsetLeft < ul.scrollLeft || chip.offsetLeft + chip.offsetWidth > ul.scrollLeft + ul.clientWidth;
+    if (hidden) ul.scrollLeft = chip.offsetLeft - 8;
+    // Only when who's on changes, not as a search narrows the strip.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onNow]);
   const top = useHeaderHeight();
   const reduced = useReducedMotion();
 
@@ -61,55 +75,68 @@ export function FindCouple({ cards, contestants, cues, query, onQuery }: FindCou
     });
     target.focus({ preventScroll: true });
   };
+  // Narrowing shortens the page under a reader scrolled far down; bring the results back up to the bar.
+  const type = (q: string) => {
+    onQuery(q);
+    const at = anchor.current?.getBoundingClientRect().top;
+    if (at !== undefined && at < top) window.scrollTo({ top: at + window.scrollY - top - 8 });
+  };
 
   return (
-    <div
-      ref={bar}
-      role="search"
-      aria-label="Find a couple"
-      style={{ top }}
-      className="sticky z-10 flex min-w-0 flex-col gap-2 rounded-xl border border-silver/10 bg-ink/90 p-2 shadow-[0_12px_32px_-16px_rgb(2_8_30/0.9)] backdrop-blur-md"
-    >
-      <SearchInput
-        label="Find a couple"
-        hideLabel
-        value={query}
-        onChange={onQuery}
-        placeholder="Find a celebrity or pro"
-        maxLength={40}
-      />
-      <ul
-        aria-label="Jump to a dance"
-        className="flex min-w-0 gap-1.5 overflow-x-auto overscroll-x-contain [scrollbar-width:none]"
+    <>
+      {/* Where the bar sits before it sticks. The negative margin takes back the list's gap. */}
+      <div ref={anchor} aria-hidden="true" className="-mb-4 h-0" />
+      <div
+        ref={bar}
+        role="search"
+        aria-label="Find a couple"
+        style={{ top }}
+        className="sticky z-10 flex min-w-0 flex-col gap-2 rounded-xl border border-silver/10 bg-ink/95 p-2 shadow-[0_12px_32px_-16px_rgb(2_8_30/0.9)] backdrop-blur-md"
       >
-        {cards.map((c) => {
-          const face = faceOf(c, contestants);
-          const cue = cues.get(c.key);
-          const name = c.contestants
-            .map((id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
-            .join(", ");
-          return (
-            <li key={c.key} className="shrink-0">
-              <button
-                type="button"
-                onClick={() => jump(c.key)}
-                aria-label={[`Jump to ${name}`, c.order && `number ${c.order}`, cue && CUE_LABEL[cue]]
-                  .filter(Boolean)
-                  .join(", ")}
-                className={cn(
-                  "flex min-h-11 items-center gap-1.5 rounded-full border py-1 pr-3 pl-1 text-sm text-silver transition-colors hover:border-silver/40 hover:text-pearl active:bg-silver/10",
-                  cue === "on" ? "border-gold/70 bg-gold/10 text-pearl" : "border-silver/15 bg-ballroom/50",
-                  FOCUS,
-                )}
-              >
-                {face && <Headshot person={face} size={32} />}
-                {c.order !== undefined && <span className="font-semibold text-gold-light tabular-nums">{c.order}</span>}
-                <span className="max-w-[7rem] truncate">{name.split(" ")[0]}</span>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+        <SearchInput
+          label="Find a couple"
+          hideLabel
+          value={query}
+          onChange={type}
+          placeholder="Find a celebrity or pro"
+          maxLength={40}
+        />
+        <ul
+          ref={strip}
+          aria-label="Jump to a dance"
+          className="relative flex min-w-0 gap-1.5 overflow-x-auto overscroll-x-contain [scrollbar-width:none]"
+        >
+          {cards.map((c) => {
+            const face = faceOf(c, contestants);
+            const cue = cues.get(c.key);
+            const name = c.contestants
+              .map((id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id)
+              .join(", ");
+            return (
+              <li key={c.key} className="shrink-0">
+                <button
+                  type="button"
+                  onClick={() => jump(c.key)}
+                  aria-label={[`Jump to ${name}`, c.order && `number ${c.order}`, cue && CUE_LABEL[cue]]
+                    .filter(Boolean)
+                    .join(", ")}
+                  className={cn(
+                    "flex min-h-11 items-center gap-1.5 rounded-full border py-1 pr-3 pl-1 text-sm text-silver transition-colors hover:border-silver/40 hover:text-pearl active:bg-silver/10",
+                    cue === "on" ? "border-gold/70 bg-gold/10 text-pearl" : "border-silver/15 bg-ballroom/50",
+                    FOCUS,
+                  )}
+                >
+                  {face && <Headshot person={face} size={32} />}
+                  {c.order !== undefined && (
+                    <span className="font-semibold text-gold-light tabular-nums">{c.order}</span>
+                  )}
+                  <span className="max-w-[7rem] truncate">{name.split(" ")[0]}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </>
   );
 }
