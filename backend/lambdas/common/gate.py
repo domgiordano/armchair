@@ -177,6 +177,7 @@ def episode_view(
     closed: bool = False,
     sealed: set[str] = frozenset(),
     stage: bool = False,
+    previous: dict | None = None,
 ) -> dict:
     """
     The whole episode as the caller may see it. A dance's AI write-up carries
@@ -190,7 +191,9 @@ def episode_view(
 
     Cards come in running order once the poller has it (`runningOrder`, from the
     episode's `lineup`), each with its `order`, and `danced` counts the leading
-    ones the judges have scored, for "On now". Before then, by celebrity name.
+    ones the judges have scored, for "On now", and where the order came from and
+    when. Before then, in the `previous` episode's running order if it had one,
+    else by celebrity name.
     """
     held = stage and RESULTS in sealed
     if held:
@@ -260,10 +263,21 @@ def episode_view(
     }
     if episode.get("runningOrder"):
         _running(view, lineup, perfs)
+        view["orderSource"] = episode.get("orderSource")
+        view["orderAt"] = episode.get("orderAt")
+    elif (previous or {}).get("runningOrder"):
+        _last_week(view, previous["lineup"])
     if complete:
         view["results"] = episode.get("results")
         view["eliminated"] = eliminated(ep, contestants)
     return view
+
+
+def _last_week(view: dict, lineup: dict) -> None:
+    """Until tonight's order is out, the couples in last week's, and the rest after."""
+    place = {k.rsplit("#", 1)[0]: v["order"] for k, v in lineup.items() if "+" not in k}
+    view["performances"].sort(key=lambda c: place.get(c["contestants"][0], 10**6))
+    view["orderFrom"] = "last-week"
 
 
 def _running(view: dict, lineup: dict, perfs: dict) -> None:

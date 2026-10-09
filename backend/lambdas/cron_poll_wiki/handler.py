@@ -6,10 +6,11 @@ episode's `results` and its contestants' `eliminatedEp` are written once every
 score is confirmed and the Result column is filled.
 
 Every run also writes each episode's lineup from the page: its dances' running
-order, style and song, and whether that order is real yet (`runningOrder`, see
-running()). {"lineup": true}, scheduled through show days, does only that, so
-the cards carry their dance and song before air and sit in running order as
-soon as editors set it.
+order, style and song, whether that order is real yet (`runningOrder`, see
+running()), and where it came from (settle()). {"lineup": true} does only that:
+daily, so the cards carry their dance and song days before air, and with
+"showDay": true every 30 minutes on an air date, then every 5 in the two hours
+before it, so the order lands soon after editors set it, often hours ahead.
 
 Invoke with {"backfill": true} to publish every episode that aired before today
 (ET) with its values confirmed at once. Their revisions are long settled, so
@@ -28,7 +29,7 @@ import json
 import re
 import time
 from collections.abc import Callable
-from datetime import datetime
+from datetime import UTC, datetime
 from urllib.error import URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -123,10 +124,46 @@ def running(rows: list[dict], names: dict[str, str], press: Callable[[], list[st
     return [c for c in press() if c in ids] != ids
 
 
-def lineups(text: str, aliases: dict, episodes: list[dict], names: dict[str, str]) -> list[int]:
+def places(lineup: dict) -> list[str]:
+    return sorted(lineup, key=lambda k: lineup[k]["order"])
+
+
+def settle(episode: dict, lineup: dict, ordered: bool, live: bool, t: int) -> dict:
     """
-    Writes each episode's `lineup`, {key: {order, style, song}}, and `runningOrder`
-    where the page has its rows and they changed. Returns the episodes written.
+    What to write for one night: the page's lineup, unless an order already confirmed
+    (an admin's by hand, or the live show's) outranks it. Then only the page's dances
+    and songs come in, and a dance new to the page goes last. The live show outranks
+    an admin; nothing before air outranks either. `orderAt` moves only with the order.
+    """
+    source = episode.get("orderSource")
+    kept = episode.get("lineup") or {}
+    if source in ("admin", "live") and not live:
+        rest = [k for k in places(lineup) if k not in kept]
+        order = [k for k in places(kept) if k in lineup] + rest
+        lineup = {k: {**lineup[k], "order": i} for i, k in enumerate(order, start=1)}
+        ordered = True
+    else:
+        source = "live" if live else "wikipedia" if ordered else None
+    # A dance added at the end doesn't move anyone already placed.
+    same = [k for k in places(lineup) if k in kept] == places(kept) and episode.get(
+        "orderSource"
+    ) == source
+    stamp = datetime.fromtimestamp(t, UTC).isoformat(timespec="seconds")
+    return {
+        "lineup": lineup,
+        "runningOrder": ordered,
+        "orderSource": source,
+        "orderAt": episode.get("orderAt") if same else stamp if source else None,
+    }
+
+
+def lineups(
+    text: str, aliases: dict, episodes: list[dict], names: dict[str, str], t: int
+) -> list[int]:
+    """
+    Writes each episode's `lineup`, {key: {order, style, song}}, `runningOrder`, and
+    where the order came from and when (settle()), for every night the page has rows
+    for and something changed. Returns the episodes written.
     """
     written = []
     for w in sorted({int(e["week"]) for e in episodes}):
@@ -152,14 +189,11 @@ def lineups(text: str, aliases: dict, episodes: list[dict], names: dict[str, str
                 }
                 for p in rows
             }
-            ordered = running(rows, names, press)
-            if episode.get("lineup") == lineup and episode.get("runningOrder") == ordered:
+            live = any(p["judges"] is not None for p in rows)
+            values = settle(episode, lineup, running(rows, names, press), live, t)
+            if all(episode.get(k) == v for k, v in values.items()):
                 continue
-            update(
-                "CATALOG_TABLE",
-                {"pk": SEASON_PK, "sk": episode["sk"]},
-                {"lineup": lineup, "runningOrder": ordered},
-            )
+            update("CATALOG_TABLE", {"pk": SEASON_PK, "sk": episode["sk"]}, values)
             written.append(int(episode["sk"].removeprefix("EP#")))
     return written
 
@@ -304,6 +338,12 @@ def handler(event, context):
     only_lineup = (event or {}).get("lineup") is True
     rows = query_all(table("CATALOG_TABLE"), SEASON_PK)
     meta = next(r for r in rows if r["sk"] == "META")
+    # The show-day schedules fire every day; only an air date is worth the request.
+    today = datetime.fromtimestamp(now(), ZoneInfo(meta["timezone"])).date().isoformat()
+    if (event or {}).get("showDay") is True and not any(
+        r.get("airDate") == today for r in rows if r["sk"].startswith("EP#")
+    ):
+        return {"showDay": False}
     rev = fetch(meta["wikiTitle"])
     revid = rev["revid"]
     line = {"revid": revid, "timestamp": rev["timestamp"]}
@@ -339,7 +379,7 @@ def handler(event, context):
         for r in rows
         if r["sk"].startswith("CONTESTANT#")
     }
-    ordered = lineups(text, aliases, episodes, names)
+    ordered = lineups(text, aliases, episodes, names, t)
     if only_lineup:
         print(json.dumps({**line, "lineup": ordered}))
         return {"revid": revid, "lineup": ordered}

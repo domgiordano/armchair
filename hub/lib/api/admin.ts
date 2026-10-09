@@ -197,3 +197,31 @@ export const setFriendship = (a: string, b: string, action: "unblock" | "unlink"
 export const setAnswer = (body: Record<string, unknown>) => post<{ answer: Answer | null }>("/admin/answer", body);
 export const deleteUser = (sub: string, reason: string, confirm: string) =>
   post<{ deleted: string }>("/admin/delete", { sub, reason, confirm });
+
+/** One dance of a night, for the running-order screen. `order` is its place, null until it has one. */
+export interface LineupDance {
+  key: string;
+  names: string[];
+  style: string | null;
+  song: string | null;
+  order: number | null;
+}
+
+/** "wikipedia" before air, "admin" set here, "live" once the show is scoring; null while unannounced. */
+export type OrderSource = "wikipedia" | "admin" | "live" | null;
+
+export interface Lineup {
+  season: string;
+  ep: number;
+  airDate: string | null;
+  theme: string | null;
+  runningOrder: boolean;
+  orderSource: OrderSource;
+  orderAt: string | null;
+  dances: LineupDance[];
+}
+
+export const getLineup = (season: string, ep: number) =>
+  request<Lineup>(`/admin/lineup${qs({ season, ep: String(ep).padStart(2, "0") })}`);
+export const setOrder = (season: string, ep: number, keys: string[]) =>
+  post<{ orderSource: OrderSource; orderAt: string }>("/admin/order", { season, ep: String(ep).padStart(2, "0"), keys });
