@@ -8,6 +8,7 @@ import { CatchUp } from "@/components/catch-up";
 import { PageLoader } from "@/components/disco-loader";
 import { GroupPicker, scopeName } from "@/components/group-picker";
 import { PerformanceCard } from "@/components/performance-card";
+import { danceId, FindCouple } from "@/components/find-couple";
 import { RevealAll } from "@/components/reveal-all";
 import { RevealSheet } from "@/components/reveal-sheet";
 import { ResultsReveal } from "@/components/results-reveal";
@@ -19,7 +20,8 @@ import { VotePanel } from "@/components/vote-panel";
 import type { Group } from "@armchair/app-core/api/groups";
 import { CLOSED, revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
 import { useGroupFilter } from "@/lib/show/group-filter";
-import { episodeLabel, formatAirDate, hasAired, latestAired } from "@/lib/show/schedule";
+import { cues as cuesOf, findCards, type Cue } from "@/lib/show/running";
+import { episodeLabel, formatAirDate, hasAired, isLive, latestAired } from "@/lib/show/schedule";
 import { holdResults, RESULTS, revealResults, seal, unseal, useSealed } from "@/lib/show/sealed";
 import { useEpisodeState } from "@/lib/show/use-episode-state";
 import { useNow } from "@armchair/app-core/show/use-now";
@@ -132,6 +134,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   const contestants = useMemo(() => new Map(season.contestants.map((c) => [c.id, c])), [season]);
   const judges = useMemo(() => new Map(season.judges.map((j) => [j.id, j])), [season]);
   const isSealed = useSealed();
+  const [query, setQuery] = useState("");
   const names = (ids: string[]) =>
     ids.map((id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id).join(", ");
   const [locked, setLocked] = useState<{ key: string; title: string; value: number } | null>(null);
@@ -200,6 +203,12 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   const eliminated = anySealed || held ? [] : (data.eliminated ?? []);
   const curtain = (data.complete && held && !anySealed) || revealing;
   const gone = new Set(eliminated);
+  const shown = findCards(data.performances, query, contestants);
+  // Who's dancing now comes from the judges' scores the poller has seen, so only once the order is real.
+  const cues =
+    data.runningOrder && isLive(episode, season.timezone, now)
+      ? cuesOf(data.performances, data.danced ?? 0)
+      : new Map<string, Cue>();
   const out = eliminated.map(
     (id) => contestants.get(id)?.members.find((m) => m.role === "celebrity")?.name ?? id,
   );
@@ -276,12 +285,22 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
           {out.join(", ")}
         </p>
       )}
+      {data.performances.length > 1 && (
+        <FindCouple cards={shown} contestants={contestants} cues={cues} query={query} onQuery={setQuery} />
+      )}
       {data.performances.length === 0 ? (
         <EmptyState title="No dances yet">Performances appear here once the running order is in.</EmptyState>
+      ) : shown.length === 0 ? (
+        <EmptyState title="No one by that name tonight">
+          Nobody dancing in this episode matches &ldquo;{query.trim()}&rdquo;.{" "}
+          <button type="button" onClick={() => setQuery("")} className={`${TEXT_LINK} inline-flex min-h-11 items-center`}>
+            Show every dance
+          </button>
+        </EmptyState>
       ) : (
         <ul className="stagger grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {data.performances.map((card) => (
-            <li key={card.key}>
+          {shown.map((card) => (
+            <li key={card.key} id={danceId(card.key)} tabIndex={-1} className="rounded-xl outline-none focus:ring-2 focus:ring-gold/60">
               <PerformanceCard
                 card={card}
                 season={season.season}
@@ -295,6 +314,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
                 seats={data.panel.length}
                 missed={closed && !card.locked && card.mine === null}
                 onReveal={() => void unseal(season.season, episode.ep, card.key)}
+                cue={cues.get(card.key)}
               />
             </li>
           ))}
