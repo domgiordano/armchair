@@ -156,7 +156,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
       await revealAll(season.season, episode.ep);
       if (last) setFinished(true);
     } catch (e) {
-      if (last) revealResults(season.season, episode.ep);
+      if (last) void revealResults(season.season, episode.ep);
       throw e;
     } finally {
       reload();
@@ -173,8 +173,8 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
       if (value !== null) setLocked({ key: card.key, title: names(card.contestants), value });
       if (last) setFinished(true);
     } catch (e) {
-      if (value !== null) unseal(season.season, episode.ep, card.key);
-      if (last) revealResults(season.season, episode.ep);
+      if (value !== null) void unseal(season.season, episode.ep, card.key);
+      if (last) void revealResults(season.season, episode.ep);
       // The reload below turns the page read-only; this says why the paddle didn't stick.
       if (e instanceof ApiError && e.detail?.code === CLOSED) throw new Error("scoring for this episode has closed");
       throw e;
@@ -193,10 +193,10 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   const win = data.window ?? episode.window;
   const closed = isClosed(win, now);
   const closesAt = !closed && win?.open ? win.closesAt : null;
-  // The episode's result arrives with the last answer, which may still be face down,
-  // and then waits for "Reveal results".
-  const anySealed = data.performances.some((c) => !c.locked && sealed(c.key));
-  const held = isSealed(season.season, episode.ep, RESULTS);
+  // The server holds back the result while a dance is sealed; this covers a seal it hasn't had yet.
+  const anySealed = data.performances.some((c) => (c.locked ? c.sealed === true : sealed(c.key)));
+  // Who went home waits for "Reveal results", held here or on another device.
+  const held = isSealed(season.season, episode.ep, RESULTS) || data.resultsHeld === true;
   const eliminated = anySealed || held ? [] : (data.eliminated ?? []);
   const curtain = (data.complete && held && !anySealed) || revealing;
   const gone = new Set(eliminated);
@@ -292,8 +292,9 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
                 group={picked}
                 onSubmit={submit}
                 sealed={!card.locked && sealed(card.key)}
+                seats={data.panel.length}
                 missed={closed && !card.locked && card.mine === null}
-                onReveal={() => unseal(season.season, episode.ep, card.key)}
+                onReveal={() => void unseal(season.season, episode.ep, card.key)}
               />
             </li>
           ))}
@@ -303,7 +304,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
       <RevealSheet
         locked={locked}
         onReveal={() => {
-          if (locked) unseal(season.season, episode.ep, locked.key);
+          if (locked) void unseal(season.season, episode.ep, locked.key);
           setLocked(null);
         }}
         onClose={() => setLocked(null)}

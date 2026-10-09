@@ -1,4 +1,4 @@
-import type { Player } from "@/lib/api/traitors";
+import type { CastMember, Player } from "@/lib/api/traitors";
 
 /** A player's name from a roster, or from their id, which is their name slugged. */
 export function nameOf(id: string, players: Player[] | null): string {
@@ -30,4 +30,12 @@ export function roman(n: number): string {
     }
   }
   return out;
+}
+
+/**
+ * The cast with exits in face-down episodes taken back off, and the side those exits
+ * revealed. The server sends an exit once its episode closes, sealed calls or not.
+ */
+export function hideExits(cast: CastMember[], down: (ep: number) => boolean): CastMember[] {
+  return cast.map((p) => (p.exit && down(p.exit.ep) ? { ...p, exit: null, faction: null } : p));
 }

@@ -582,3 +582,33 @@ def test_another_users_seal_changes_nothing(show):
     score(A, JUDGED, value=6)
     seal(B, f"dwts-35|5|{JUDGED}")
     assert cards(state())[JUDGED]["locked"] is False
+
+
+def test_held_results_come_to_the_episode_page_flagged_and_nowhere_else(show):
+    show.Table(CATALOG_TABLE).update_item(
+        Key={"pk": "SEASON#dwts#35", "sk": "EP#04"},
+        UpdateExpression="SET results = :r",
+        ExpressionAttributeValues={":r": {"eliminated": ["taylor-hanson"]}},
+    )
+    for key in sorted(cards(state(ep="04"))):
+        score(A, key, ep="04", value=7)
+    seal(A, "dwts-35|4|results#0")
+    view = state(ep="04")
+    assert (view["complete"], view["resultsHeld"], view["eliminated"]) == (
+        True,
+        True,
+        ["taylor-hanson"],
+    )
+    # Read anywhere else, the held episode keeps who went home back.
+    other = episode_view(A, 4, *_ep4_inputs(show), sealed={"results#0"})
+    assert other["complete"] is False and "eliminated" not in other
+    seal(A, f"dwts-35|4|{min(cards(view))}")
+    assert state(ep="04")["complete"] is False
+
+
+def _ep4_inputs(show):
+    from lambdas.common.episodes_dynamo import catalog, performances, scores
+
+    meta, episode, contestants = catalog("dwts", 35, 4)
+    pk = "EP#dwts#35#04"
+    return meta, episode, contestants, performances(pk), scores(pk)

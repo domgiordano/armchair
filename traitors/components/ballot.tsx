@@ -90,7 +90,10 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed,
     return <SkeletonList label="Laying the table" rows={3} row="h-24" />;
   }
 
-  const active = data.events.find((e) => e.type === tab) ?? data.events.find((e) => e.locked) ?? data.events[0];
+  const active =
+    data.events.find((e) => e.type === tab) ?? data.events.find((e) => e.locked && !e.sealed) ?? data.events[0];
+  // The server holds the recap back while a call is sealed; the device may know first.
+  const held = faceDown.episode(data.ep) || data.events.some((e) => e.sealed);
   const sealed = data.events.filter((e) => e.mine).length;
 
   return (
@@ -146,7 +149,7 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed,
           </div>
         </>
       )}
-      {data.recap && faceDown.episode(data.ep) ? (
+      {held && (data.recap || data.events.every((e) => e.mine)) ? (
         <FaceDownNotice season={season} ep={data.ep} what="The recap" link={false} />
       ) : data.recap ? (
         <RecapCard recap={data.recap} />
@@ -216,8 +219,8 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet, onLo
   const [picks, setPicks] = useState<string[]>([]);
   const [forfeit, setForfeit] = useState(false);
   const [showVotes, setShowVotes] = useState(true);
-  const picking = event.locked && !episode.closed;
-  const hidden = !picking && faceDown.call(episode.ep, event.type);
+  const picking = event.locked && !event.sealed && !episode.closed;
+  const hidden = event.sealed === true || (!picking && faceDown.call(episode.ep, event.type));
   // Before the winner bet the table looks the same, but a tap asks for the bet.
   const waiting = episode.needsBet ? onNeedBet : undefined;
   const rows = consensusRows(event, Infinity);

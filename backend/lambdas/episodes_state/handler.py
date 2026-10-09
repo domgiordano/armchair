@@ -13,7 +13,8 @@ Beside the gated view: `window` {opensAt, closesAt, open} for this episode, and
 `activeEpisode`, the episode taking answers now with the caller's progress on
 it ({ep, pk, opensAt, closesAt, answered, rateable}), or null between seasons.
 A dance the caller sealed (common/seals.py) stays locked with their answer and
-`sealed`, and holds back the results. Identity is the Cognito sub; admins get
+`sealed`, and holds back the results. Held behind "Reveal results" alone
+(gate.RESULTS), the results come with `resultsHeld` for the app's reveal. Identity is the Cognito sub; admins get
 the same view as everyone else.
 """
 
@@ -63,6 +64,7 @@ def handler(event, context):
         writeups=notes,
         closed=window.closed(meta, spans[ep], now),
         sealed=seals.keys(seals.of(sub, show, season, params), ep),
+        stage=True,
     )
     live = window.active(meta, spans, now)
     if live is None:

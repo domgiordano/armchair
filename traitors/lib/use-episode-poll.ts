@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { getEpisode, type Episode } from "@/lib/api/traitors";
 import { isLive } from "@/lib/schedule";
+import { useSealVersion } from "@/lib/sealed";
 import { pollInterval } from "@armchair/app-core/show/poll";
 
 export interface EpisodePoll {
@@ -16,11 +17,13 @@ export interface EpisodePoll {
  * Polls one episode's gated view: 10s while visible around its release, 60s
  * otherwise, nothing while the tab is hidden. Coming back into view fetches at
  * once. A failed poll keeps the last good view and reports the error beside it.
+ * A seal or reveal the server confirms, from any device, fetches again.
  */
 export function useEpisodePoll(season: string, ep: number, releaseAt: string, group: string | null): EpisodePoll {
   const [data, setData] = useState<Episode | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
+  const sealed = useSealVersion();
 
   useEffect(() => {
     let cancelled = false;
@@ -57,7 +60,7 @@ export function useEpisodePoll(season: string, ep: number, releaseAt: string, gr
       clearTimeout(timer);
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [season, ep, releaseAt, group, attempt]);
+  }, [season, ep, releaseAt, group, attempt, sealed]);
 
   const reload = useCallback(() => setAttempt((n) => n + 1), []);
   return { data, error, reload };

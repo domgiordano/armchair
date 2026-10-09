@@ -26,8 +26,10 @@ interface PerformanceCardProps {
   onSubmit: (card: LockedCard, answer: Answer) => Promise<void>;
   /** The couple went home this episode, and the caller may know it. */
   out?: Elimination;
-  /** Locked in here but not revealed yet: the judges stay face down. */
+  /** Locked in on this device but not revealed yet: the judges stay face down. */
   sealed?: boolean;
+  /** The panel's size, for the face-down paddles of a card the server sent sealed. */
+  seats: number;
   onReveal?: () => void;
   /** Its window closed before you scored it. */
   missed?: boolean;
@@ -64,9 +66,11 @@ export function PerformanceCard({
   onSubmit,
   out,
   sealed = false,
+  seats,
   onReveal,
   missed = false,
 }: PerformanceCardProps) {
+  const held = card.locked ? card.sealed === true : sealed;
   const team = card.contestants.length > 1;
   const couple = contestants.get(card.contestants[0]);
   const faces = team
@@ -121,8 +125,8 @@ export function PerformanceCard({
           </Badge>
         )}
       </div>
-      {!card.locked && sealed ? (
-        <Sealed card={card} onReveal={onReveal} />
+      {held ? (
+        <Sealed mine={card.mine ?? null} seats={card.locked ? seats : card.judges.length} onReveal={onReveal} />
       ) : !card.locked ? (
         <Desk card={card} judges={judges}>
           <Scores card={card} judges={judges} />
@@ -132,21 +136,27 @@ export function PerformanceCard({
       )}
       {!card.locked && group && (
         // Others' paddles once yours is locked; their gap to the judges only once you've looked.
-        <GroupCarousel group={group.name} scores={groupScores(card, group.members)} panelMean={sealed ? null : panelMean(card)} />
+        <GroupCarousel group={group.name} scores={groupScores(card, group.members)} panelMean={held ? null : panelMean(card)} />
       )}
-      {!sealed && <WhatHappened writeup={card.writeup} judges={[...judges.values()]} />}
+      {!held && <WhatHappened writeup={card.writeup} judges={[...judges.values()]} />}
     </article>
   );
 }
 
+interface SealedProps {
+  mine: Answer | null;
+  seats: number;
+  onReveal?: () => void;
+}
+
 /** Your paddle up, the panel's face down, and the one button that turns them over. */
-function Sealed({ card, onReveal }: { card: RevealedCard; onReveal?: () => void }) {
-  const mine = card.mine !== null && "value" in card.mine ? card.mine.value : null;
+function Sealed({ mine: answer, seats, onReveal }: SealedProps) {
+  const mine = answer !== null && "value" in answer ? answer.value : null;
   return (
     <div className="flex flex-col items-center gap-3 rounded-lg border border-gold/25 bg-ink/40 px-3 py-4 animate-fade-in">
       <div className="flex items-end gap-2" aria-hidden="true">
-        {card.judges.map((j) => (
-          <PaddleArt key={j.id} face="?" tone="pending" size="sm" className="w-10" />
+        {Array.from({ length: seats }, (_, i) => (
+          <PaddleArt key={i} face="?" tone="pending" size="sm" className="w-10" />
         ))}
         <span className="mx-1 h-10 w-px self-start bg-gold/25" />
         <PaddleArt face={mine === null ? "-" : String(mine)} tone="you" size="sm" className="w-10" />
