@@ -162,3 +162,27 @@ resource "aws_scheduler_schedule" "poll_wiki" {
     }
   }
 }
+
+# The lineup pass (cron_poll_wiki {"lineup": true}): dance, song and running
+# order onto each episode's cards before air. Editors list the dances days
+# ahead and set the running order on show day, hours before air or as it starts.
+resource "aws_scheduler_schedule" "poll_wiki_lineup" {
+  name                         = "${local.poll_wiki_name}-lineup"
+  description                  = "Hourly 9 am-7 pm ET: each episode's lineup from the Wikipedia page"
+  schedule_expression          = "cron(0 9-19 * * ? *)"
+  schedule_expression_timezone = "America/New_York"
+
+  flexible_time_window {
+    mode = "OFF"
+  }
+
+  target {
+    arn      = aws_lambda_function.poll_wiki.arn
+    role_arn = aws_iam_role.scheduler.arn
+    input    = jsonencode({ lineup = true })
+
+    retry_policy {
+      maximum_retry_attempts = 0
+    }
+  }
+}

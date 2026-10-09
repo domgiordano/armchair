@@ -181,8 +181,13 @@ def episode_view(
     season, and its unanswered dances stay missed: `mine` None. A dance the
     caller `sealed` stays locked, closed or not, with `sealed` and their own
     answer, and keeps the episode's results back (results_open).
+
+    Cards come in running order once the poller has it (`runningOrder`, from the
+    episode's `lineup`), each with its `order`, and `danced` counts the leading
+    ones the judges have scored, for "On now". Before then, by celebrity name.
     """
     perfs = {perf_key(p["sk"]): p for p in performances}
+    lineup = episode.get("lineup") or {}
     notes = {perf_key(w["sk"]): public(w) for w in writeups or [] if w["sk"].startswith("PERF#")}
     keys = rateable(ep, episode, contestants, performances)
     opened = is_open(meta) or closed
@@ -218,12 +223,21 @@ def episode_view(
         "complete": complete,
         "performances": [
             {
-                **_card(key, perfs.get(key, {}), panel, mine.get(key), values[key], sub, complete),
+                **_card(
+                    key,
+                    perfs.get(key, {}),
+                    lineup.get(key, {}),
+                    panel,
+                    mine.get(key),
+                    values[key],
+                    sub,
+                    complete,
+                ),
                 "writeup": notes.get(key),
             }
             if revealed
             else {
-                **_locked(key, perfs.get(key, {})),
+                **_locked(key, perfs.get(key, {}), lineup.get(key, {})),
                 "writeup": {"locked": True} if notes.get(key) else None,
                 **(
                     {"sealed": True, "mine": _answer(mine[key])}
@@ -234,17 +248,39 @@ def episode_view(
             for key, revealed in _alphabetical(cards, contestants, perfs)
         ],
     }
+    if episode.get("runningOrder"):
+        _running(view, lineup, perfs)
     if complete:
         view["results"] = episode.get("results")
         view["eliminated"] = eliminated(ep, contestants)
     return view
 
 
+def _running(view: dict, lineup: dict, perfs: dict) -> None:
+    """
+    Puts the cards in running order and numbers them. The order comes from the
+    lineup, known before air, so where a card sits says nothing of whether it
+    has aired; `danced` does, on purpose, and only that.
+    """
+    cards = view["performances"]
+    listed = sorted(
+        (c for c in cards if c["key"] in lineup), key=lambda c: lineup[c["key"]]["order"]
+    )
+    for i, card in enumerate(listed, start=1):
+        card["order"] = i
+    view["performances"] = listed + [c for c in cards if c["key"] not in lineup]
+    view["runningOrder"] = True
+    danced = 0
+    for card in listed:
+        judges = (perfs.get(card["key"]) or {}).get("judges") or {}
+        if not any(j.get("value") is not None for j in judges.values()):
+            break
+        danced += 1
+    view["danced"] = danced
+
+
 def _alphabetical(cards: list, contestants: list[dict], perfs: dict) -> list:
-    """
-    By celebrity name, as the pre-show Wikipedia table lists them. Never the
-    running order: where a card sits must not say whether it has aired.
-    """
+    """By celebrity name, as the pre-show Wikipedia table lists them."""
     names = {
         cid(c): next(m["name"] for m in c["members"] if m["role"] == "celebrity")
         for c in contestants
@@ -266,13 +302,14 @@ def _n(key: str) -> int:
     return int(key.rsplit("#", 1)[1])
 
 
-def _locked(key: str, perf: dict) -> dict:
+def _locked(key: str, perf: dict, line: dict) -> dict:
+    """`line` is the dance's lineup entry: its style and song before the poller writes the dance."""
     return {
         "key": key,
         "contestants": _contestants(key, perf),
         "n": _n(key),
-        "style": perf.get("style"),
-        "song": perf.get("song"),
+        "style": perf.get("style") or line.get("style"),
+        "song": perf.get("song") or line.get("song"),
         "locked": True,
     }
 
@@ -280,6 +317,7 @@ def _locked(key: str, perf: dict) -> dict:
 def _card(
     key: str,
     perf: dict,
+    line: dict,
     panel: list[str],
     mine: dict | None,
     values: list[tuple[str, int]],
@@ -288,7 +326,7 @@ def _card(
 ) -> dict:
     judges = perf.get("judges") or {}
     card = {
-        **_locked(key, perf),
+        **_locked(key, perf, line),
         "locked": False,
         "judges": [
             {"id": j, "value": judges[j]["value"], "state": judges[j]["state"]}

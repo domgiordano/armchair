@@ -5,6 +5,12 @@ results yet. Values go provisional -> confirmed through common/confirm.py; an
 episode's `results` and its contestants' `eliminatedEp` are written once every
 score is confirmed and the Result column is filled.
 
+Every run also writes each episode's lineup from the page: its dances' running
+order, style and song, and whether that order is real yet (`runningOrder`, see
+running()). {"lineup": true}, scheduled through show days, does only that, so
+the cards carry their dance and song before air and sit in running order as
+soon as editors set it.
+
 Invoke with {"backfill": true} to publish every episode that aired before today
 (ET) with its values confirmed at once. Their revisions are long settled, so
 there is no window to wait out. Run it from the Backfill Scores workflow.
@@ -16,10 +22,14 @@ board existed.
 
 from __future__ import annotations
 
+import functools
+import html
 import json
 import re
 import time
+from collections.abc import Callable
 from datetime import datetime
+from urllib.error import URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
@@ -68,6 +78,90 @@ def current_week(wikitext: str, aliases: dict[str, str]) -> dict | None:
         if week and (week["performances"] or week["rejected"]):
             return week
     return None
+
+
+# ABC's own release for the week, cited in its section: dances and songs, in a fixed cast order.
+PRESS_URL = re.compile(r"https://www\.detpress\.com/abc/pressrelease/[^\s|}<\]]+")
+PRESS_LINE = re.compile(r"^(.+?) and partner .+? will perform", re.MULTILINE)
+
+
+def section(wikitext: str, week: int) -> str:
+    head = re.search(rf"^===\s*Week {week}(?!\d).*$", wikitext, flags=re.MULTILINE)
+    if not head:
+        return ""
+    rest = wikitext[head.end() :]
+    end = re.search(r"^==", rest, flags=re.MULTILINE)
+    return rest[: end.start() if end else len(rest)]
+
+
+def press_order(url: str, names: dict[str, str]) -> list[str]:
+    """Contestant ids in the order the press release lists the couples; [] if it can't be read."""
+    try:
+        with urlopen(Request(url, headers={"User-Agent": USER_AGENT}), timeout=10) as resp:
+            page = resp.read().decode("utf-8", "replace")
+    # Recovery: an unread release can't rule the order out, so running() goes by the alphabet alone.
+    except URLError:
+        log.warning("could not read the press release %s", url)
+        return []
+    text = html.unescape(re.sub(r"<[^>]+>", "\n", page))
+    ids = {norm(name): cid for cid, name in names.items()}
+    return [ids[norm(m)] for m in PRESS_LINE.findall(text) if norm(m) in ids]
+
+
+def running(rows: list[dict], names: dict[str, str], press: Callable[[], list[str]]) -> bool:
+    """
+    Whether a night's table rows are in the order the couples danced. Until show day
+    the page lists them alphabetically, or in the press release's cast order, and
+    editors reorder them on the day, hours before air or as the show starts. A scored
+    row is always where it danced. `names` maps contestant id to celebrity name.
+    """
+    if any(p["judges"] is not None for p in rows):
+        return True
+    ids = [p["contestants"][0] for p in rows if len(p["contestants"]) == 1]
+    if ids == sorted(ids, key=lambda c: norm(names.get(c, c))):
+        return False
+    return [c for c in press() if c in ids] != ids
+
+
+def lineups(text: str, aliases: dict, episodes: list[dict], names: dict[str, str]) -> list[int]:
+    """
+    Writes each episode's `lineup`, {key: {order, style, song}}, and `runningOrder`
+    where the page has its rows and they changed. Returns the episodes written.
+    """
+    written = []
+    for w in sorted({int(e["week"]) for e in episodes}):
+        week = parse_week(text, w, aliases)
+        if week is None or not week["performances"]:
+            continue
+        url = PRESS_URL.search(section(text, w))
+        # Read at most once a week, and only for a night the alphabet can't settle.
+        press = functools.cache(
+            functools.partial(press_order, url.group(0), names) if url else list
+        )
+
+        nights = [e for e in episodes if int(e["week"]) == w]
+        for night, episode in enumerate(nights, start=1):
+            rows = [p for p in week["performances"] if p["night"] == night]
+            if not rows:
+                continue
+            lineup = {
+                f"{'+'.join(p['contestants'])}#{p['n']}": {
+                    "order": p["order"],
+                    "style": p["style"],
+                    "song": p["song"],
+                }
+                for p in rows
+            }
+            ordered = running(rows, names, press)
+            if episode.get("lineup") == lineup and episode.get("runningOrder") == ordered:
+                continue
+            update(
+                "CATALOG_TABLE",
+                {"pk": SEASON_PK, "sk": episode["sk"]},
+                {"lineup": lineup, "runningOrder": ordered},
+            )
+            written.append(int(episode["sk"].removeprefix("EP#")))
+    return written
 
 
 def due(episodes: list[dict], tz: str, t: int, backfill: bool) -> list[dict]:
@@ -207,6 +301,7 @@ def publish(
 
 def handler(event, context):
     backfill = (event or {}).get("backfill") is True
+    only_lineup = (event or {}).get("lineup") is True
     rows = query_all(table("CATALOG_TABLE"), SEASON_PK)
     meta = next(r for r in rows if r["sk"] == "META")
     rev = fetch(meta["wikiTitle"])
@@ -214,7 +309,12 @@ def handler(event, context):
     line = {"revid": revid, "timestamp": rev["timestamp"]}
 
     # Skip the parse only when nothing is waiting out its confirm window.
-    if not backfill and revid == meta.get("lastRevid") and not meta.get("pending"):
+    if (
+        not backfill
+        and not only_lineup
+        and revid == meta.get("lastRevid")
+        and not meta.get("pending")
+    ):
         # A bare JSON line, not the logger's prefixed format, so Logs Insights
         # discovers the fields without a parse step.
         print(json.dumps({**line, "unchanged": True}))
@@ -231,6 +331,18 @@ def handler(event, context):
     judges = [r for r in rows if r["sk"].startswith("JUDGE#")]
     episodes = sorted((r for r in rows if r["sk"].startswith("EP#")), key=lambda e: e["sk"])
     window = 0 if backfill else confirm.WINDOW
+
+    names = {
+        r["sk"].removeprefix("CONTESTANT#"): next(
+            m["name"] for m in r["members"] if m["role"] == "celebrity"
+        )
+        for r in rows
+        if r["sk"].startswith("CONTESTANT#")
+    }
+    ordered = lineups(text, aliases, episodes, names)
+    if only_lineup:
+        print(json.dumps({**line, "lineup": ordered}))
+        return {"revid": revid, "lineup": ordered}
 
     todo = due(episodes, meta["timezone"], t, backfill)
     pending = False
