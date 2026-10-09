@@ -135,6 +135,8 @@ interface EventBase<T extends EventType, R> {
   mine: Mine | null;
   /** Nothing past the call to pick until you've picked or forfeited. */
   locked: boolean;
+  /** Picked but kept face down: locked, with only your own call. */
+  sealed?: true;
   result?: R | null;
   consensus?: Consensus;
   group?: GroupPick[];

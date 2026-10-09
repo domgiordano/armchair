@@ -101,6 +101,9 @@ export interface LockedCard {
   song: string | null;
   locked: true;
   writeup?: LockedWriteup | null;
+  /** Answered but kept face down: the server holds the seal and sends only your answer. */
+  sealed?: true;
+  mine?: Answer | null;
 }
 
 export interface JudgeSeat {
@@ -109,7 +112,7 @@ export interface JudgeSeat {
   state: "pending" | "provisional" | "confirmed";
 }
 
-export interface RevealedCard extends Omit<LockedCard, "locked" | "writeup"> {
+export interface RevealedCard extends Omit<LockedCard, "locked" | "writeup" | "sealed" | "mine"> {
   locked: false;
   writeup?: Writeup | null;
   judges: JudgeSeat[];
@@ -138,6 +141,8 @@ export interface EpisodeState {
   rateable: number;
   answered: number;
   complete: boolean;
+  /** Its results wait behind "Reveal results", held on some device: they come anyway, for the reveal. */
+  resultsHeld?: boolean;
   performances: Card[];
   eliminated?: string[];
   /** With `eliminated`, once the caller has finished the episode; null until the poller writes them. */

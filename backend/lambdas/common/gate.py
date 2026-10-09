@@ -14,6 +14,9 @@ from collections import defaultdict
 from lambdas.common.writeups import public
 
 SEALED_MAX = 200
+# The episode's own results held behind the app's "Reveal results" (lib/show/sealed.ts),
+# shaped like a dance key so it rides the same seals.
+RESULTS = "results#0"
 
 
 def is_open(meta: dict) -> bool:
@@ -173,6 +176,7 @@ def episode_view(
     writeups: list[dict] | None = None,
     closed: bool = False,
     sealed: set[str] = frozenset(),
+    stage: bool = False,
 ) -> dict:
     """
     The whole episode as the caller may see it. A dance's AI write-up carries
@@ -180,8 +184,13 @@ def episode_view(
     that one exists. An episode `closed` for answers shows whole, like an open
     season, and its unanswered dances stay missed: `mine` None. A dance the
     caller `sealed` stays locked, closed or not, with `sealed` and their own
-    answer, and keeps the episode's results back (results_open).
+    answer, and keeps the episode's results back (results_open). On the `stage`,
+    the episode page where the app plays its "Reveal results", a RESULTS seal
+    alone sends them anyway with `resultsHeld`; every other read keeps them back.
     """
+    held = stage and RESULTS in sealed
+    if held:
+        sealed = sealed - {RESULTS}
     perfs = {perf_key(p["sk"]): p for p in performances}
     notes = {perf_key(w["sk"]): public(w) for w in writeups or [] if w["sk"].startswith("PERF#")}
     keys = rateable(ep, episode, contestants, performances)
@@ -216,6 +225,7 @@ def episode_view(
         "rateable": len(keys),
         "answered": sum(k in mine for k in keys),
         "complete": complete,
+        **({"resultsHeld": True} if held else {}),
         "performances": [
             {
                 **_card(key, perfs.get(key, {}), panel, mine.get(key), values[key], sub, complete),

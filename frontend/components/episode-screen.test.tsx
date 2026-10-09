@@ -23,6 +23,12 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
   revealAll: vi.fn(),
 }));
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn() }));
+// The seals endpoints, as a server holding one user's seals; anything else is offline.
+const { request, held } = vi.hoisted(() => ({ request: vi.fn(), held: new Set<string>() }));
+vi.mock("@armchair/app-core/api/client", async (real) => ({
+  ...(await real<typeof import("@armchair/app-core/api/client")>()),
+  request,
+}));
 
 import { ApiError } from "@armchair/app-core/api/client";
 import { getMyGroups } from "@armchair/app-core/api/groups";
@@ -132,6 +138,14 @@ beforeEach(() => {
   vi.mocked(getMyGroups).mockResolvedValue([]);
   overview({});
   window.localStorage.clear();
+  held.clear();
+  request.mockImplementation(async (path: string, init?: RequestInit) => {
+    const body = init?.body ? (JSON.parse(String(init.body)) as { ids: string[] }) : null;
+    if (path === "/seals/seal") body!.ids.forEach((id) => held.add(id));
+    else if (path === "/seals/reveal") body!.ids.forEach((id) => held.delete(id));
+    else if (!path.startsWith("/seals/list")) throw new Error("offline");
+    return { app: "dwts", sealed: [...held] };
+  });
 });
 
 afterEach(() => {
@@ -239,7 +253,8 @@ describe("EpisodeScreen", () => {
     fireEvent.click(within(amber).getByRole("button", { name: /^Score 8 / }));
     fireEvent.click(within(amber).getByRole("button", { name: "Lock in 8" }));
 
-    await vi.waitFor(() => expect(getEpisodeState).toHaveBeenCalledTimes(2));
+    // Once after the answer, and again as the server confirms its seals.
+    await vi.waitFor(() => expect(vi.mocked(getEpisodeState).mock.calls.length).toBeGreaterThanOrEqual(2));
     expect(submitScore).toHaveBeenCalledWith("dwts-35", 4, STATE.performances[0], { value: 8 });
   });
 
@@ -268,6 +283,39 @@ describe("EpisodeScreen", () => {
     expect(within(amber()).getByRole("group", { name: /Judges' desk/ })).toBeTruthy();
     // The last dance of the night: who went home still waits on "Reveal results".
     expect(window.localStorage.getItem("armchair.sealed")).toBe('["dwts-35|4|results#0"]');
+  });
+
+  it("shows a dance sealed on another device face down, and reveals it for every device", async () => {
+    held.add("dwts-35|4|amber-glenn#1");
+    const sealed = { ...LOCKED, key: "amber-glenn#1", sealed: true as const, mine: { value: 8 } };
+    const revealed = { ...STATE.performances[1], key: "amber-glenn#1", contestants: ["amber-glenn"], mine: { value: 8 } };
+    vi.mocked(getEpisodeState).mockImplementation(async () => ({
+      ...STATE,
+      answered: 2,
+      performances: [held.size > 0 ? sealed : revealed, STATE.performances[1]],
+    }));
+    render(<EpisodeScreen />);
+    const amber = () => screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    await screen.findByText("Locked in at 8.", { exact: false });
+    expect(within(amber()).queryByRole("button", { name: /^Score \d/ })).toBeNull();
+    expect(within(amber()).queryByRole("group", { name: /Judges' desk/ })).toBeNull();
+
+    fireEvent.click(within(amber()).getByRole("button", { name: "Reveal judges' scores" }));
+    await vi.waitFor(() => expect(within(amber()).getByRole("group", { name: /Judges' desk/ })).toBeTruthy());
+    expect(request).toHaveBeenCalledWith("/seals/reveal", {
+      method: "POST",
+      body: JSON.stringify({ app: "dwts", ids: ["dwts-35|4|amber-glenn#1"] }),
+    });
+    expect(held.size).toBe(0);
+  });
+
+  it("tells the server about a lock-in's seal", async () => {
+    vi.mocked(submitScore).mockResolvedValue({});
+    render(<EpisodeScreen />);
+    const amber = await screen.findByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    fireEvent.click(within(amber).getByRole("button", { name: /^Score 8 / }));
+    fireEvent.click(within(amber).getByRole("button", { name: "Lock in 8" }));
+    await vi.waitFor(() => expect([...held]).toEqual(["dwts-35|4|amber-glenn#1"]));
   });
 
   it("reveals from the sheet, and seals nothing when the lock-in fails", async () => {
