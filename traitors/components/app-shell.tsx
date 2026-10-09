@@ -21,6 +21,9 @@ import { SkeletonList } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { TartanBand } from "@/components/ui/tartan-band";
 import { ToastProvider } from "@/components/ui/toast";
+import type { SeasonView } from "@/lib/api/traitors";
+import { hideExits } from "@/lib/players";
+import { useFaceDown } from "@/lib/sealed";
 import { seasonName, seasonNumber, withSeason, type Edition } from "@/lib/seasons";
 import { cn, EYEBROW, FOCUS, ICON_BUTTON } from "@/lib/ui";
 import { getMe, type Me } from "@armchair/app-core/api/client";
@@ -228,12 +231,17 @@ function Content({ load, finished, seasonless, children }: ContentProps) {
   if (data === null && error !== null) return <ErrorState what="this season" message={error} retry={reload} />;
   if (data === null) return <SkeletonList label="Opening the season" rows={3} row="h-20" />;
   return (
-    <SeasonDataContext value={{ view: data, reload }}>
+    <SeasonData view={data} reload={reload}>
       <BetProvider key={data.season} view={data} onSealed={reload}>
         {children}
       </BetProvider>
-    </SeasonDataContext>
+    </SeasonData>
   );
+}
+
+function SeasonData({ view, reload, children }: { view: SeasonView; reload: () => void; children: ReactNode }) {
+  const down = useFaceDown(view.season);
+  return <SeasonDataContext value={{ view: { ...view, cast: hideExits(view.cast, down.episode) }, reload }}>{children}</SeasonDataContext>;
 }
 
 const EDITION_LABELS: { id: Edition; short: string; name: string; Flag: typeof UsFlag }[] = [
