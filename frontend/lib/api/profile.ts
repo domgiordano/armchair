@@ -1,6 +1,6 @@
 import { ApiError, request, type AvatarKind, type Me } from "@armchair/app-core/api/client";
 import { sealProfile } from "@/lib/show/seal-views";
-import { currentSeals } from "@/lib/show/sealed";
+import { currentSeals, sealedParam } from "@/lib/show/sealed";
 import type { Member } from "./show";
 import type { Person } from "@armchair/app-core/api/social";
 
@@ -146,6 +146,8 @@ export const getMyProfile = () => request<MyProfile>("/users/me");
 export const getProfile = (season: string, sub: string | null = null) => {
   const query = new URLSearchParams({ season });
   if (sub) query.set("sub", sub);
+  const sealed = sealedParam(season);
+  if (sealed) query.set("sealed", sealed);
   return request<Profile>(`/users/get?${query}`).then((p) => sealProfile(p, currentSeals()));
 };
 

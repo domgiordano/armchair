@@ -24,7 +24,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
-from lambdas.common import board_dynamo, confirm, guest_judges
+from lambdas.common import board_dynamo, confirm, digest, guest_judges
 from lambdas.common.dynamo import query_all, table, update
 from lambdas.common.episodes_dynamo import episode_pk, performances
 from lambdas.common.logger import get_logger
@@ -260,6 +260,8 @@ def handler(event, context):
             pending |= publish(episode, panel, perfs, revid, t, window, season=(SHOW, SEASON))
             ep = int(episode["sk"].removeprefix("EP#"))
             board_dynamo.reconcile(SHOW, SEASON, ep, panel)
+            # A backfill can rewrite a settled episode's judges.
+            digest.forget(SHOW, SEASON, ep)
             processed.append(ep)
 
     if not backfill:

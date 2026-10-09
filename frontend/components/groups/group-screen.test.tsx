@@ -19,6 +19,7 @@ vi.mock("@/lib/api/show", async (importOriginal) => ({
   getSeason: vi.fn(),
 }));
 vi.mock("@/lib/api/overview", () => ({ getOverview: vi.fn() }));
+vi.mock("@/lib/api/stats", () => ({ getCrowdStats: vi.fn(), getPersonStats: vi.fn() }));
 vi.mock("@/lib/api/leaderboard", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/api/leaderboard")>()),
   getLeaderboard: vi.fn(),
@@ -58,6 +59,8 @@ import { getSeason, type Season } from "@/lib/api/show";
 import { addFriend, getFriends, getNotifications, mySub, type Friends, type Notification } from "@armchair/app-core/api/social";
 import { resetNotifications } from "@armchair/app-core/social/notifications";
 import { readGroup } from "@/lib/show/group-filter";
+import { getCrowdStats, getPersonStats } from "@/lib/api/stats";
+import { CROWD, PERSON } from "@/components/stats/test-fixtures";
 import { GroupRoute } from "./group-screen";
 
 const person = (sub: string, name: string) => ({ sub, name, picture: null, avatarKind: "initials" as const, relation: null });
@@ -343,5 +346,31 @@ describe("GroupRoute", () => {
     vi.mocked(getGroupDetails).mockRejectedValue(new Error("boom"));
     render(<GroupRoute />);
     expect(await screen.findByText("Could not load the group: boom")).toBeTruthy();
+  });
+});
+
+describe("Group stats and compare", () => {
+  beforeEach(() => {
+    vi.mocked(getCrowdStats).mockResolvedValue(CROWD);
+    vi.mocked(getPersonStats).mockResolvedValue(PERSON);
+  });
+
+  it("opens the group's stats from ?tab=stats", async () => {
+    nav.params = new URLSearchParams({ id: GID, tab: "stats" });
+    render(<GroupRoute />);
+    expect(await screen.findByRole("list", { name: "Members" })).toBeTruthy();
+    expect(getCrowdStats).toHaveBeenCalledWith("dwts-35", "group", GID);
+    expect(screen.getByRole("tab", { name: "Stats" }).getAttribute("aria-selected")).toBe("true");
+  });
+
+  it("compares the group with everyone, the better number in gold", async () => {
+    nav.params = new URLSearchParams({ id: GID, tab: "compare" });
+    vi.mocked(getCrowdStats).mockImplementation(async (_s, scope) => (scope === "global" ? { ...CROWD, mae: 1.4, scope: "global" } : CROWD));
+    render(<GroupRoute />);
+    const table = await screen.findByRole("table");
+    const row = within(table).getByRole("row", { name: /Average gap/ });
+    expect(row.textContent).toBe("Average gap1.001.40");
+    expect(within(row).getAllByRole("cell")[0].className).toContain("text-gold-light");
+    expect(getCrowdStats).toHaveBeenCalledWith("dwts-35", "global");
   });
 });

@@ -14,10 +14,9 @@ afterEach(() => {
 });
 
 describe("prefetchPage", () => {
-  it("starts stats with the remembered group, beside the season it would wait for", () => {
-    localStorage.setItem("armchair.group", "g1");
+  it("starts your stats beside the season it would wait for", () => {
     prefetchPage("/stats/?season=dwts-35", "dwts-35");
-    expect(paths()).toEqual(["/seasons/get?season=dwts-35", "/groups/mine", "/stats/get?season=dwts-35&group=g1"]);
+    expect(paths()).toEqual(["/seasons/get?season=dwts-35", "/groups/mine", "/stats/me?season=dwts-35"]);
   });
 
   it("asks the overview for the same global board the leaderboard page does", () => {

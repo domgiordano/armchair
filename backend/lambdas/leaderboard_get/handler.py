@@ -2,8 +2,11 @@
 GET /leaderboard/get?season=dwts-35|all[&show=dwts]&scope=global|friends|group[&group=<gid>]
 - users ranked by mean absolute error against the judges' panel mean.
 
-Reads only the per-user sums common/board_dynamo.py keeps, never a score row,
-and shapes each through gate.standing, so no per-dance value leaves. A user
+Reads the per-user sums common/board_dynamo.py keeps, less every dance the
+caller may not see (board_dynamo.seen_rows): unanswered in an episode still
+taking answers, or in `sealed=<ep>:<key>,...`, the current season's dances they
+locked in without revealing. So no one's number moves on a dance the caller
+hasn't seen. Each is shaped through gate.standing, so no per-dance value leaves. A user
 ranks after MIN_DANCES scored dances; below that they are listed unranked with
 a count. Ties go to more dances, then share a rank. `season=all` is all-time
 across every season of `show`, dwts by default. `scope=friends` is the caller
@@ -30,7 +33,7 @@ from lambdas.common.api import (
 )
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, season_ref, season_rows, show_ref
-from lambdas.common.gate import answered, is_open, places, rateable, standing
+from lambdas.common.gate import answered, is_open, places, rateable, sealed_param, standing
 from lambdas.common.groups_dynamo import members
 from lambdas.common.social_dynamo import peers, status
 from lambdas.common.users_dynamo import cards
@@ -55,20 +58,21 @@ def handler(event, context):
     scope = params.get("scope") or "global"
     gid = None
     week = None
+    sealed = sealed_param(params)
     if scope == "global":
-        rows = board_dynamo.rows(show, season)
+        rows = board_dynamo.seen_rows(sub, show, season, sealed)
     elif scope == "group":
         (gid,) = require(params, "group")
         in_group = members(gid)
         # A group that doesn't exist answers the same, so a guess learns nothing.
         if sub not in in_group:
             raise ForbiddenError("Not a member of that group")
-        rows = board_dynamo.rows(show, season, in_group)
+        rows = board_dynamo.seen_rows(sub, show, season, sealed, in_group)
         if season != board_dynamo.ALL:
             week = _week(show, season, catalog, in_group)
     elif scope == "friends":
         friends = {s for s, item in peers(sub).items() if status(item) == "friend"}
-        rows = board_dynamo.rows(show, season, friends | {sub})
+        rows = board_dynamo.seen_rows(sub, show, season, sealed, friends | {sub})
     else:
         raise ValidationError("scope must be global, friends or group", field="scope")
 

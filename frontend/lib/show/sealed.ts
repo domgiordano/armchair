@@ -95,6 +95,20 @@ export function useSealed(): (season: string, ep: number, key: string) => boolea
   return (season, ep, key) => ids.has(id(season, ep, key));
 }
 
+/**
+ * The `sealed` query param for a read of `season`, "6:key,7:key", so the
+ * server leaves those dances out of every number it sums: your own and
+ * everyone else's. "all" takes every season's; only the current one has any.
+ */
+export function sealedParam(season: string): string {
+  const ids = typeof window === "undefined" ? [] : parse(raw());
+  return ids
+    .map((x) => x.split("|"))
+    .filter(([s]) => season === "all" || s === season)
+    .map(([, ep, key]) => `${ep}:${key}`)
+    .join(",");
+}
+
 /** Episodes of `season` holding a sealed dance: what the odds board must not count yet. */
 export function useSealedEpisodes(season: string): number[] {
   const snapshot = useSyncExternalStore(subscribe, raw, () => "[]");
