@@ -327,6 +327,9 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
             performances.append(
                 {
                     "night": night,
+                    # Where the row sits in its night's table: the running order, once
+                    # editors set it (cron_poll_wiki.running).
+                    "order": 1 + sum(p["night"] == night for p in performances),
                     "contestants": ids,
                     "n": 1 + sum(p["contestants"] == ids for p in performances),
                     # Every dance the judges score counts, a team dance included. One the page

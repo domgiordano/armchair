@@ -271,6 +271,43 @@ def test_cards_stay_alphabetical_by_celebrity_whatever_is_answered(show):
     assert order == sorted(order) and order[0] == "Amber Glenn"
 
 
+def lineup(aws, keys: list[str], ordered: bool = True, ep: str = "EP#05") -> None:
+    line = {
+        k: {"order": i, "style": f"Style {i}", "song": f"Song {i}"} for i, k in enumerate(keys, 1)
+    }
+    aws.Table(CATALOG_TABLE).update_item(
+        Key={"pk": "SEASON#dwts#35", "sk": ep},
+        UpdateExpression="SET lineup = :l, runningOrder = :o",
+        ExpressionAttributeValues={":l": line, ":o": ordered},
+    )
+
+
+def test_cards_come_in_running_order_numbered_once_the_poller_has_it(show):
+    # Tyler danced first and is scored; Amber is on now.
+    running = [JUDGED, "amber-glenn#1"] + [
+        k for k in EP5_KEYS if k not in (JUDGED, "amber-glenn#1")
+    ][::-1]
+    lineup(show, running)
+    view = state()
+    assert [c["key"] for c in view["performances"]] == running
+    assert [c["order"] for c in view["performances"]] == list(range(1, 13))
+    assert (view["runningOrder"], view["danced"]) == (True, 1)
+    # A locked card says nothing more than where it dances.
+    amber = cards(view)["amber-glenn#1"]
+    assert set(amber) == LOCKED | {"order"}
+    assert (amber["style"], amber["song"]) == ("Style 2", "Song 2")
+    # The poller's own style and song win over the lineup's.
+    assert cards(view)[JUDGED]["style"] == "Tango"
+
+
+def test_a_placeholder_lineup_keeps_the_alphabet_but_gives_dance_and_song(show):
+    lineup(show, EP5_KEYS[::-1], ordered=False)
+    view = state()
+    assert view["performances"][0]["key"] == "amber-glenn#1"
+    assert "runningOrder" not in view and "order" not in view["performances"][0]
+    assert view["performances"][0]["song"] == "Song 12"
+
+
 def test_future_episode_uses_the_default_panel_and_one_dance(show):
     view = state(ep="06")
     assert view["panel"] == SEASON["defaultPanel"]

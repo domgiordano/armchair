@@ -120,8 +120,73 @@ def test_one_request_and_the_log_line(wiki, capsys):
     line = last_line(capsys)
     assert line["revid"] == FINAL[1]
     for p in line["week"]["performances"]:
-        del p["style"], p["song"], p["result"]
+        del p["style"], p["song"], p["result"], p["order"]
     assert line["week"] == GOLDEN["S35 week 4 pre-show alphabetical table, empty cells"]
+
+
+def test_lineups_keep_the_running_order_and_know_a_placeholder(wiki, db):
+    wiki.tick(FINAL, epoch(FINAL[2]))
+    # Week 3 is scored, so its table is the order they danced.
+    ep4 = catalog(db, "EP#04")
+    assert ep4["runningOrder"] is True
+    assert min(ep4["lineup"], key=lambda k: ep4["lineup"][k]["order"]) == "amber-glenn#1"
+    assert ep4["lineup"]["amber-glenn#1"]["style"] == "Foxtrot"
+    assert len(ep4["lineup"]) == 13
+    # Week 4 is still the pre-show alphabetical table.
+    ep5 = catalog(db, "EP#05")
+    assert ep5["runningOrder"] is False and len(ep5["lineup"]) == 12
+
+
+def test_a_lineup_run_writes_order_and_publishes_nothing(wiki, db):
+    text = page(FINAL[0])
+    # Week 4 reordered on show day: Ezra & Daniella moved to the top, nothing scored yet.
+    head = text.index("=== Week 4")
+    row = text.index('! scope="row" | Ezra & Daniella', head)
+    end = text.index("|-", row)
+    block = text[row:end]
+    text = text[:row] + text[end + 3 :]
+    first = text.index('! scope="row"', head)
+    text = text[:first] + block + "|-\n" + text[first:]
+    res = wiki.tick(FINAL, epoch("2026-10-06T18:00:00Z"), content=text, event={"lineup": True})
+    assert 5 in res["lineup"]
+    ep5 = catalog(db, "EP#05")
+    assert ep5["runningOrder"] is True
+    assert ep5["lineup"]["ezra-frech#1"]["order"] == 1
+    assert perfs(db, "EP#dwts#35#05") == {} and perfs(db) == {}
+    assert "lastRevid" not in catalog(db, "META")
+    # Nothing changed, nothing written.
+    again = wiki.tick(FINAL, epoch("2026-10-06T19:00:00Z"), content=text, event={"lineup": True})
+    assert again["lineup"] == []
+
+
+def test_the_press_releases_cast_order_is_a_placeholder():
+    rows = [{"contestants": [c], "judges": None} for c in ("b", "a", "c")]
+    names = {"a": "Ann", "b": "Bea", "c": "Cy"}
+    assert poller.running(rows, names, lambda: ["x", "b", "a", "c"]) is False
+    assert poller.running(rows, names, lambda: ["a", "b", "c"]) is True
+    # Alphabetical never needs the release.
+    alpha = sorted(rows, key=lambda r: r["contestants"][0])
+    assert poller.running(alpha, names, lambda: 1 / 0) is False
+    assert poller.running([{**alpha[0], "judges": [8]}, *alpha[1:]], names, list) is True
+
+
+def test_press_order_reads_the_release_couples(monkeypatch):
+    html = (
+        "<p>The couples are the following:</p>"
+        "<p>Jackson Olson and partner Emma Slater will perform a Salsa</p>"
+        "<p>Tyler Cameron and partner Sharna Burgess will perform a Jazz</p>"
+        "<p>Someone Else and partner X will perform</p>"
+    )
+    monkeypatch.setattr(poller, "urlopen", lambda req, timeout: io.BytesIO(html.encode()))
+    names = {"jackson-olson": "Jackson Olson", "tyler-cameron": "Tyler Cameron"}
+    url = "https://www.detpress.com/abc/pressrelease/x/"
+    assert poller.press_order(url, names) == ["jackson-olson", "tyler-cameron"]
+
+    def down(req, timeout):
+        raise HTTPError(req.full_url, 503, "Service Unavailable", {}, None)
+
+    monkeypatch.setattr(poller, "urlopen", down)
+    assert poller.press_order(url, names) == []
 
 
 def test_replay_of_the_week_3_vandal_night(wiki, db):

@@ -30,9 +30,9 @@ def test_golden(case):
     text = (FIXTURES / "wiki" / case["fixture"]).read_text()
     aliases = GOLDEN["aliases"][case["aliases"]]
     week = parse_week(text, case["expected"]["week"], aliases)
-    # The golden predates style, song and result; test_s35_week_3_columns covers those.
+    # The golden predates style, song, result and order; test_s35_week_3_columns covers those.
     for p in week["performances"]:
-        del p["style"], p["song"], p["result"]
+        del p["style"], p["song"], p["result"], p["order"]
     assert week == case["expected"]
 
 
