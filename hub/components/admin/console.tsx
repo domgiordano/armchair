@@ -19,7 +19,7 @@ const TABS = [
   { value: "overview", label: "Overview" },
   { value: "users", label: "Users" },
   { value: "live", label: "Live" },
-  { value: "order", label: "Running order" },
+  { value: "order", label: "Order" },
   { value: "audit", label: "Audit" },
 ] as const;
 type Tab = (typeof TABS)[number]["value"];

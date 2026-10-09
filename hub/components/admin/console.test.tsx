@@ -122,7 +122,7 @@ describe("admin console", () => {
     render(<AdminConsole />);
     const list = await screen.findByRole("list", { name: "Dances in running order" });
     expect(screen.getByText("Not announced yet. The episode page shows last week's order.")).toBeTruthy();
-    const names = () => within(list).getAllByRole("listitem").map((li) => li.textContent?.replace(/UpDown$/, ""));
+    const names = () => within(list).getAllByRole("listitem").map((li) => li.textContent);
 
     fireEvent.click(screen.getByRole("button", { name: "Move Ezra Frech up" }));
     expect(names()).toEqual(["1Amber GlennSamba", "2Ezra Frech", "3Ciara Miller"]);

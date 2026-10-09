@@ -8,7 +8,7 @@ import { currentSeason, listSeasons } from "@/lib/api/dwts";
 import { message, useLoad } from "@/lib/load";
 import { fromPaste } from "@/lib/order-paste";
 
-import { ErrorNote, INPUT, PRIMARY, QUIET, SECONDARY, SkeletonRows } from "../account/ui";
+import { ErrorNote, FOCUS, INPUT, PRIMARY, SECONDARY, SkeletonRows } from "../account/ui";
 import { CARD, when } from "./parts";
 
 interface SeasonEpisode {
@@ -157,12 +157,8 @@ function Arrange({ lineup, onSaved }: { lineup: Lineup; onSaved: (l: Lineup) => 
             </span>
             {!live && (
               <span className="flex shrink-0 gap-1">
-                <button type="button" onClick={() => move(i, i - 1)} disabled={i === 0} aria-label={`Move ${d.names[0]} up`} className={QUIET}>
-                  Up
-                </button>
-                <button type="button" onClick={() => move(i, i + 1)} disabled={i === order.length - 1} aria-label={`Move ${d.names[0]} down`} className={QUIET}>
-                  Down
-                </button>
+                <MoveButton label={`Move ${d.names[0]} up`} disabled={i === 0} onClick={() => move(i, i - 1)} up />
+                <MoveButton label={`Move ${d.names[0]} down`} disabled={i === order.length - 1} onClick={() => move(i, i + 1)} />
               </span>
             )}
           </li>
@@ -197,5 +193,21 @@ function Arrange({ lineup, onSaved }: { lineup: Lineup; onSaved: (l: Lineup) => 
         </p>
       )}
     </div>
+  );
+}
+
+function MoveButton({ label, disabled, onClick, up = false }: { label: string; disabled: boolean; onClick: () => void; up?: boolean }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      className={`flex size-11 items-center justify-center rounded-full text-muted transition-colors hover:bg-line/50 hover:text-text active:bg-line disabled:opacity-30 ${FOCUS}`}
+    >
+      <svg viewBox="0 0 16 16" aria-hidden="true" className={`size-4 ${up ? "" : "rotate-180"}`} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <path d="m3.5 10 4.5-4.5 4.5 4.5" />
+      </svg>
+    </button>
   );
 }
