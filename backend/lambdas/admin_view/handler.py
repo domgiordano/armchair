@@ -3,10 +3,10 @@ GET /admin/view?as=<user>&screen=<screen>[&season=..&ep=..] - what one user sees
 screen, read-only. Admins only.
 
 Invokes the screen's own GET function with the user's identity, so the answer is
-exactly theirs, through the same gate. Only functions that never write are listed,
-which is what keeps this read-only: users_me (refreshes the profile) and friends_list
-(mints an invite code) are left out. Other query parameters pass through for the
-function to validate. Returns {status, data, error} as that function answered.
+exactly theirs, through the same gate and their own seals. Only functions that never
+write are listed, which is what keeps this read-only: users_me (refreshes the profile)
+and friends_list (mints an invite code) are left out. Other query parameters but
+`sealed` pass through for the function to validate. Returns {status, data, error} as that function answered.
 """
 
 from __future__ import annotations
@@ -50,6 +50,8 @@ def handler(event, context):
     if screen not in SCREENS:
         raise ValidationError(f"screen must be one of {', '.join(SCREENS)}", field="screen")
     q.pop("as")
+    # The screen applies the user's own seals (common/seals.py), not the admin's device's.
+    q.pop("sealed", None)
     params = {k: v for k, v in q.items() if isinstance(v, str) and len(v) <= 64}
     profile = table("USERS_TABLE").get_item(Key={"sub": sub}).get("Item")
     if profile is None:

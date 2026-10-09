@@ -26,7 +26,7 @@ from decimal import Decimal
 
 from botocore.exceptions import ClientError
 
-from lambdas.common import window
+from lambdas.common import seals, window
 from lambdas.common.accuracy import judged
 from lambdas.common.dynamo import query_all, query_many, resource, table
 from lambdas.common.episodes_dynamo import (
@@ -237,17 +237,19 @@ def seen_rows(
     viewer: str,
     show: str,
     season: int | str,
-    sealed: set[tuple[int, str]],
+    params: dict,
     subs: set[str] | None = None,
 ) -> dict[str, dict]:
     """
     rows() less every dance the viewer may not see, in the show's current
-    season: the one season anyone is still answering. `sealed` is that season's.
+    season: the one season anyone is still answering, and the only one with
+    seals that hide anything here (common/seals.py, with any `params` names).
     """
     out = rows(show, season, subs)
     current = next((int(s["number"]) for s in season_index(show) if s.get("current")), None)
     if current is None or season not in (ALL, current):
         return out
+    sealed = seals.of(viewer, show, current, params)
     for sub, delta in unseen(viewer, show, current, sealed).items():
         if sub in out:
             out[sub] = {**out[sub], **{k: out[sub].get(k, 0) - v for k, v in delta.items()}}

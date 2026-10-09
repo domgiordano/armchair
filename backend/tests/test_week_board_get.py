@@ -16,6 +16,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import seal
 from tests.seasons import close
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
@@ -223,3 +224,25 @@ def test_unknown_episode_is_404(show):
 @pytest.mark.parametrize("params", [{"ep": "x"}, {"ep": None}, {"season": "35"}])
 def test_bad_reference_is_400(show, params):
     assert get(**params)[0] == 400
+
+
+def test_a_sealed_dance_keeps_the_paddle_and_drops_everything_else(show):
+    for sub in (A, B, C):
+        answer(sub, X, value=9)
+        answer(sub, Y, value=5)
+    seal(A, f"dwts-35|5|{X}#1")
+    data = board()
+    x = row(data, X)
+    assert (x["you"], x["judges"], x["judgesTotal"]) == (9, None, None)
+    assert (x["friends"], x["everyone"]) == (None, None)
+    assert x["ranks"]["judges"] is None and x["rankDelta"] is None
+    assert row(data, Y)["judges"] == 6
+    assert data["sealed"] == [X]
+    assert board(B)["sealed"] == [] and row(board(B), X)["judges"] == 8
+
+
+def test_a_sealed_dance_holds_that_nights_eliminations(show):
+    finish(A, "01")
+    assert board(ep="01")["eliminated"] == ["conner-leavitt"]
+    seal(A, "dwts-35|1|conner-leavitt#1")
+    assert board(ep="01")["eliminated"] == []

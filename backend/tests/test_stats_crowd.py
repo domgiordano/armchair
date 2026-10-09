@@ -12,6 +12,7 @@ from lambdas.stats_crowd.handler import handler
 from tests import test_stats_me
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import VIAS, sealing
 from tests.social import B, C, sign_in
 from tests.test_stats_me import X, Y, Z, answer
 
@@ -108,7 +109,8 @@ def test_most_divisive_dances_by_spread(show):
     assert crowd()["divisive"] == [{"ep": 5, "key": f"{Y}#1"}, {"ep": 5, "key": f"{X}#1"}]
 
 
-def test_sealed_dances_and_that_nights_result_stay_out(show):
+@pytest.mark.parametrize("via", VIAS)
+def test_sealed_dances_and_that_nights_result_stay_out(show, via):
     for sub in (A, B, C):
         answer(sub, X, value=8)
     event = authorized_event(
@@ -116,7 +118,7 @@ def test_sealed_dances_and_that_nights_result_stay_out(show):
     )
     assert reveal_all_handler(event, None)["statusCode"] == 200
     assert crowd()["eliminated"] == {"taylor-hanson": {"ep": 4, "week": 3}}
-    sealed = crowd(sealed=f"5:{X}#1,4:{Z}#1")
+    sealed = crowd(**sealing(via, A, "dwts-35", (5, f"{X}#1"), (4, f"{Z}#1")))
     assert sealed["dances"] == [] and sealed["count"] == 0
     assert sealed["eliminated"] == {}
 

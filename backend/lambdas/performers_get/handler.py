@@ -24,14 +24,16 @@ from the caller; on a past season (gate.is_open), or an episode whose scoring
 window has closed (common/window.py), it keeps nothing back. Even
 then no single dance goes out: couples lose their best, worst and per-week
 rows. A block either way answers 404, like an unknown sub, and `group` can't be
-combined with it. Identity is the Cognito sub.
+combined with it. A dance the caller sealed (common/seals.py) keeps only their
+own paddle, never the judges or anyone else's, and holds back that night's
+eliminations; someone else's page leaves it out. Identity is the Cognito sub.
 """
 
 from __future__ import annotations
 
 from collections import defaultdict
 
-from lambdas.common import board_dynamo, window
+from lambdas.common import board_dynamo, seals, window
 from lambdas.common.api import (
     NotFoundError,
     ValidationError,
@@ -40,7 +42,7 @@ from lambdas.common.api import (
     ok,
     query,
 )
-from lambdas.common.couples import crowd, dances, friends, group_pool, people, summary
+from lambdas.common.couples import blind, crowd, dances, friends, group_pool, people, summary
 from lambdas.common.dynamo import table
 from lambdas.common.episodes_dynamo import (
     episode_pk,
@@ -85,7 +87,9 @@ def handler(event, context):
 
     couples = []
     raw = {}
+    stored = seals.stored(caller)
     for season in seasons:
+        sealed = seals.in_season(stored, show, season)
         rows = {r["sk"]: r for r in season_rows(show, season)}
         if "META" not in rows:
             raise NotFoundError("No such season", season=f"{show}-{season}")
@@ -104,21 +108,24 @@ def handler(event, context):
             score_rows = scores(pk)
             perfs = None
             opened = window.closed(meta, spans[n], now)
+            held = seals.keys(sealed, n)
             gone = eliminated(n, contestants)
             # The caller's results, not the owner's: someone else having finished
             # an episode tells the caller nothing.
             if gone and (opened or answered(caller, score_rows)):
                 perfs = performances(pk)
-                if results_open(caller, n, meta, episode, contestants, perfs, score_rows, opened):
+                if results_open(
+                    caller, n, meta, episode, contestants, perfs, score_rows, opened, held
+                ):
                     out.update({c: {"ep": n, "week": episode.get("week")} for c in gone})
             if not own:
                 # Members None: every row on what the caller answered, the owner's among them.
-                score_rows = visible_scores(caller, score_rows, opened=opened)
+                score_rows = visible_scores(caller, score_rows, opened=opened, sealed=held)
             if not answered(sub, score_rows):
                 continue
             panel = episode.get("panel") or meta["defaultPanel"]
             perfs = perfs if perfs is not None else performances(pk)
-            for d in dances(sub, episode, panel, perfs, score_rows, pool):
+            for d in blind(dances(sub, episode, panel, perfs, score_rows, pool), sealed):
                 by_couple[d["couple"]].append(d)
         for c, ds in by_couple.items():
             if c in roster:

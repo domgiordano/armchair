@@ -12,9 +12,10 @@ it, and its episodes come back complete, as does an episode whose scoring
 window (common/window.py) has closed. Each episode carries its `window`
 {opensAt, closesAt, open}; `activeEpisode` is the one taking answers now with
 the caller's progress on it, or null. The schedule is public; seasons_get
-serves it too. The season leaderboard is leaderboard_get's. `sealed=<ep>:<key>,...`
-lists dances the caller locked in without revealing: they leave the caller's
-numbers, the reveals and the couples' averages.
+serves it too. The season leaderboard is leaderboard_get's. Dances the caller
+locked in without revealing (common/seals.py, plus any a device names in
+`sealed=<ep>:<key>,...`) stay locked: they leave the caller's numbers, the
+reveals, the couples' averages and that night's eliminations.
 """
 
 from __future__ import annotations
@@ -23,7 +24,7 @@ from collections import defaultdict
 from datetime import UTC, datetime
 from zoneinfo import ZoneInfo
 
-from lambdas.common import window
+from lambdas.common import seals, window
 from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
@@ -33,7 +34,6 @@ from lambdas.common.gate import (
     episode_view,
     is_open,
     score_owner,
-    sealed_param,
     visible_scores,
 )
 
@@ -57,7 +57,7 @@ def handler(event, context):
     sub = caller_sub(event)
     params = query(event)
     show, season = season_ref(params)
-    sealed = sealed_param(params)
+    sealed = seals.of(sub, show, season, params)
     rows = season_rows(show, season)
     by_sk = {r["sk"]: r for r in rows}
     meta = by_sk.get("META")
@@ -112,10 +112,11 @@ def handler(event, context):
             perfs,
             score_rows,
             closed=window.closed(meta, spans[n], now),
+            sealed=seals.keys(sealed, n),
         )
         # An empty member set leaves only the caller's own rows.
-        errs = errors(view["panel"], perfs, visible_scores(sub, score_rows, set())).get(sub, [])
-        errs = [e for e in errs if (n, e["key"]) not in sealed]
+        own_rows = visible_scores(sub, score_rows, set(), sealed=seals.keys(sealed, n))
+        errs = errors(view["panel"], perfs, own_rows).get(sub, [])
         mine += errs
         own = [r for r in score_rows if score_owner(r)[1] == sub]
         entry.update(
@@ -130,7 +131,7 @@ def handler(event, context):
 
         submitted = {score_owner(r)[0]: r.get("submittedAt", "") for r in own}
         for card in view["performances"]:
-            if card["locked"] or (n, card["key"]) in sealed:
+            if card["locked"]:
                 continue
             # Team dances are left out: one score split across several couples.
             if _confirmed(card) and len(card["contestants"]) == 1:

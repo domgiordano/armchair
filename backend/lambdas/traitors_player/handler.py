@@ -25,7 +25,8 @@ in an episode still open to picks would spoil it), and has no votes.
 
 `story` is each released episode up to the player's exit, season by season. `voted` and
 `votesReceived` are null without a confirmed round table. A current season's story
-stops before the first episode the caller hasn't seen (traitors_gate.story).
+stops before the first episode the caller hasn't seen (traitors_gate.story), one they
+hold sealed (common/seals.py) among them, whose exits stay hidden too.
 
 `traitorFrom`, `murdered` and `recruited` are a Traitor's tenure, kills and recruits. In
 a current season they stay null until a banishment the caller has seen revealed the
@@ -38,6 +39,7 @@ from __future__ import annotations
 import re
 import time
 
+from lambdas.common import seals
 from lambdas.common.api import NotFoundError, ValidationError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, season_pk
@@ -99,11 +101,13 @@ def handler(event, context):
     picks = dict(zip(live, reads[len(keys) :]))
 
     out, told, faces = [], [], {}
+    sealed = seals.stored(sub) if running else set()
     for n, meta, episodes, players, me, span in seasons:
         current = bool(meta.get("current"))
+        held = seals.episodes(seals.in_season(sealed, show, n))
         exit_ = me.get("exit")
         if current and exit_:
-            shut = {ep_number(e) for e in episodes if closed(meta, e)}
+            shut = {ep_number(e) for e in episodes if closed(meta, e)} - held
             exit_ = exit_ if int(exit_["ep"]) in shut else None
         own = {ep_number(e): stored[n, ep_number(e)] for e in span}
         mine = {ep: picks[n, ep] for m, ep in live if m == n}
@@ -122,11 +126,13 @@ def handler(event, context):
                 # A running season's faction is only ever written by the banishment that ends it.
                 "faction": me.get("faction") if exit_ or not current else None,
                 "votes": None if current else votes,
-                "traitorFrom": traitor_from(sub, meta, span, me, own, mine) if me else None,
+                "traitorFrom": traitor_from(sub, meta, span, me, own, mine, held) if me else None,
             }
         )
         if me:
-            told += [{"season": f"{show}-{n}", **s} for s in story(sub, meta, span, me, own, mine)]
+            told += [
+                {"season": f"{show}-{n}", **s} for s in story(sub, meta, span, me, own, mine, held)
+            ]
             faces |= {c["id"]: c for c in map(card, players)}
     named = {
         who

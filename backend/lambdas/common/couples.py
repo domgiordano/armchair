@@ -87,6 +87,17 @@ def dances(
     return out
 
 
+def blind(ds: list[dict], sealed: set[tuple[int, str]]) -> list[dict]:
+    """
+    Dances the caller sealed (common/seals.py) keep their own paddle and lose
+    what it would be measured against: the judges and everyone else's values.
+    """
+    return [
+        {**d, "judges": None, "total": None, "others": {}} if (d["ep"], d["key"]) in sealed else d
+        for d in ds
+    ]
+
+
 def mean(values: list[float]) -> float | None:
     return round(sum(values) / len(values), 2) if values else None
 

@@ -113,6 +113,11 @@ locals {
   favorites_lambdas = [
     { name = "get", description = "Odds to win a season, as of the last episode the caller has revealed", path_part = "get", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
   ]
+  seals_lambdas = [
+    { name = "list", description = "The caller's answers still face down in one app", path_part = "list", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "seal", description = "Keep answers face down until the caller reveals them", path_part = "seal", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "reveal", description = "Turn face-down answers over: some, or an episode's", path_part = "reveal", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+  ]
   # Public: chat apps fetch it for the link preview, and they carry no token.
   invite_lambdas = [
     { name = "preview", description = "Link-preview card for a group invite, then on to /join/", path_part = "preview", http_method = "GET", authorization = "NONE" },
@@ -138,6 +143,7 @@ locals {
     { for l in local.email_lambdas : "email_${l.name}" => l },
     { for l in local.events_lambdas : "events_${l.name}" => l },
     { for l in local.favorites_lambdas : "favorites_${l.name}" => l },
+    { for l in local.seals_lambdas : "seals_${l.name}" => l },
   )
 
   # One role per function, granted only the table actions its handler makes.
@@ -162,17 +168,17 @@ locals {
     users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     scores_submit      = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem", "board:PutItem", "board:UpdateItem"]
     scores_reveal_all  = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
-    episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "writeups:Query"]
+    episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "writeups:Query", "users:GetItem"]
     seasons_get        = ["catalog:Query", "performances:Query", "scores:Query"]
     admin_keyword      = ["catalog:UpdateItem"]
-    stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query"]
+    stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "users:GetItem"]
     stats_me           = ["catalog:Query", "performances:Query", "scores:Query", "board:Query", "board:PutItem", "users:GetItem", "social:GetItem"]
-    stats_crowd        = ["catalog:Query", "performances:Query", "scores:Query", "board:Query", "board:PutItem", "groups:Query", "social:Query", "users:BatchGetItem"]
+    stats_crowd        = ["catalog:Query", "performances:Query", "scores:Query", "board:Query", "board:PutItem", "groups:Query", "social:Query", "users:BatchGetItem", "users:GetItem"]
     groups_create      = ["groups:PutItem"]
     groups_join        = ["groups:GetItem", "groups:UpdateItem", "groups:PutItem", "social:PutItem"]
     groups_mine        = ["groups:Query", "users:BatchGetItem", "social:Query", "board:BatchGetItem", "groups:PutItem", "groups:UpdateItem"]
     seasons_list       = ["catalog:Query"]
-    overview_get       = ["catalog:Query", "performances:Query", "scores:Query"]
+    overview_get       = ["catalog:Query", "performances:Query", "scores:Query", "users:GetItem"]
     friends_request    = ["social:GetItem", "social:UpdateItem", "users:GetItem", "social:PutItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
     friends_accept     = ["social:UpdateItem", "social:GetItem", "social:PutItem"]
     friends_remove     = ["social:GetItem", "social:UpdateItem", "social:DeleteItem"]
@@ -181,7 +187,7 @@ locals {
     friends_search     = ["social:Query"]
     users_update       = ["users:GetItem", "users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     users_get          = ["users:GetItem", "catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "social:GetItem", "board:BatchGetItem", "board:Query", "groups:GetItem", "users:BatchGetItem"]
-    leaderboard_get    = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem", "performances:Query", "scores:Query"]
+    leaderboard_get    = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem", "performances:Query", "scores:Query", "users:GetItem"]
     notifications_list = ["social:Query", "users:BatchGetItem"]
     notifications_read = ["social:Query", "social:UpdateItem"]
     groups_invite      = ["groups:GetItem", "groups:PutItem", "social:GetItem", "social:PutItem", "users:GetItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
@@ -192,19 +198,19 @@ locals {
     groups_shows       = ["groups:GetItem", "groups:Query", "groups:PutItem", "groups:DeleteItem", "social:PutItem", "users:GetItem", "email:GetItem", "email:PutItem", "email:UpdateItem"]
     scores_skip_before = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem"]
     performers_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "board:BatchGetItem", "users:GetItem", "social:GetItem"]
-    week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query"]
+    week_board_get     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:GetItem"]
     people_search      = ["catalog:Query", "social:Query", "users:BatchGetItem"]
-    people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query", "writeups:Query"]
-    traitors_season    = ["catalog:Query", "scores:Query", "scores:GetItem", "performances:Query"]
-    traitors_episode   = ["catalog:Query", "performances:Query", "scores:Query", "scores:GetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
+    people_get         = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "board:BatchGetItem", "social:Query", "writeups:Query", "users:GetItem"]
+    traitors_season    = ["catalog:Query", "scores:Query", "scores:GetItem", "performances:Query", "users:GetItem"]
+    traitors_episode   = ["catalog:Query", "performances:Query", "scores:Query", "scores:GetItem", "groups:Query", "social:Query", "users:BatchGetItem", "users:GetItem"]
     traitors_pick      = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:Query", "performances:Query", "board:Query", "board:PutItem", "board:UpdateItem", "board:DeleteItem"]
-    traitors_winner    = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:UpdateItem"]
-    traitors_player    = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query"]
+    traitors_winner    = ["catalog:Query", "scores:GetItem", "scores:PutItem", "scores:UpdateItem", "users:GetItem"]
+    traitors_player    = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "users:GetItem"]
     traitors_history   = ["catalog:Query", "performances:Query"]
-    traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem"]
-    traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem"]
+    traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem", "users:GetItem"]
+    traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem", "users:GetItem"]
     traitors_credits   = ["catalog:Query"]
-    traitors_record    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:BatchGetItem"]
+    traitors_record    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:BatchGetItem", "users:GetItem"]
     invite_preview     = ["groups:GetItem"]
     email_prefs        = ["users:GetItem", "email:GetItem"]
     admin_email_log    = ["email:Query", "users:BatchGetItem"]
@@ -225,7 +231,10 @@ locals {
     events_track       = ["events:UpdateItem", "events:BatchWriteItem"]
     events_anon        = ["events:UpdateItem", "events:BatchWriteItem"]
     users_delete       = ["events:Query", "events_index:Query", "events:BatchWriteItem", "events:UpdateItem", "groups:Query", "groups:Scan", "groups:UpdateItem", "groups:DeleteItem", "groups:BatchWriteItem", "scores:Scan", "scores:BatchWriteItem", "board:Scan", "board:BatchWriteItem", "social:Scan", "social:BatchWriteItem", "social:DeleteItem", "users:DeleteItem"]
-    favorites_get      = ["catalog:Query", "performances:Query", "scores:Query", "favorites:Query"]
+    seals_list         = ["users:GetItem"]
+    seals_seal         = ["users:GetItem", "users:UpdateItem"]
+    seals_reveal       = ["users:GetItem", "users:UpdateItem"]
+    favorites_get      = ["catalog:Query", "performances:Query", "scores:Query", "favorites:Query", "users:GetItem"]
   }
 
   # Env a single function needs beyond lambda_variables.

@@ -18,6 +18,8 @@ from lambdas.admin_view import handler as view_module
 from lambdas.admin_view.handler import handler as view_handler
 from lambdas.common import events_dynamo
 from lambdas.common.social_dynamo import peer, search, status
+from lambdas.episodes_state.handler import handler as state_handler
+from lambdas.scores_submit.handler import handler as submit_handler
 from scripts.seed_season import SEASONS, items, write
 from tests.conftest import (
     AVATARS_BUCKET,
@@ -29,6 +31,7 @@ from tests.conftest import (
     set_admins,
 )
 from tests.events import authorized_event
+from tests.sealing import seal
 from tests.social import A, B, C, accept, ask, block, call
 from tests.test_groups import create, mine
 from tests.test_notifications import notes
@@ -512,6 +515,32 @@ def test_view_invokes_the_screen_as_the_user(site, monkeypatch):
     assert sent["event"]["httpMethod"] == "GET"
     assert sent["event"]["queryStringParameters"] == {"season": "dwts-35", "ep": "02"}
     assert sent["event"]["requestContext"]["authorizer"]["claims"]["sub"] == B
+
+
+class LocalScreen:
+    """Runs the invoked screen in-process, so its answer is the real gated one."""
+
+    def invoke(self, FunctionName, Payload):
+        assert FunctionName == "armchair-episodes-state"
+        out = state_handler(json.loads(Payload), None)
+        return {"StatusCode": 200, "Payload": io.BytesIO(json.dumps(out).encode())}
+
+
+def test_view_shows_the_users_own_seals_not_the_admins(dwts, monkeypatch):
+    monkeypatch.setattr(view_module, "lambdas", lambda: LocalScreen())
+    for cid in ("tyler-cameron", "amber-glenn"):
+        body = {"season": "dwts-35", "ep": "05", "contestant": cid, "n": 1, "value": 8}
+        event = authorized_event(path="/scores/submit", method="POST", sub=B, body=body)
+        assert call(submit_handler, event)[0] == 200
+    seal(B, "dwts-35|5|tyler-cameron#1")
+    # The admin's own device list rides along in `sealed`; only B's seals count.
+    query = {"as": B, "screen": "episode", "season": "dwts-35", "ep": "05"}
+    status_code, res = get(view_handler, "/admin/view", {**query, "sealed": "5:amber-glenn#1"})
+    assert status_code == 200, res
+    cards = {c["key"]: c for c in res["data"]["data"]["performances"]}
+    tyler = cards["tyler-cameron#1"]
+    assert (tyler["locked"], tyler["sealed"], tyler["mine"]) == (True, True, {"value": 8})
+    assert cards["amber-glenn#1"]["locked"] is False
 
 
 @pytest.mark.parametrize("screen", ["me", "users_me", "friends_list", "scores_submit", None])

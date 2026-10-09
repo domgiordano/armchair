@@ -2,7 +2,10 @@
 The only code that decides what a caller may see of Traitors picks and results.
 Rules and their reasons: docs/features/traitors/PLAN.md, "Gate".
 
-Inputs are raw DynamoDB items; nothing here reads a table.
+Inputs are raw DynamoDB items; nothing here reads a table. The caller's seals
+(common/seals.py) come in as `sealed`, one episode's event types, or `held`, the
+episodes with any event sealed: a sealed call shows only the caller's own picks, and
+its episode counts as unseen for anything that tells how the night went.
 - catalog `SEASON#{show}#{n}`: META, `EP#{nn}` (releaseAt, noRoundTable, recap),
   `PLAYER#{id}` (`exit: {ep, how}` once the poller writes it).
 - performances `EP#{show}#{n}#{nn}`: `EVT#{type}` with `state` and the result fields
@@ -141,13 +144,16 @@ def episode_view(
     results: list[dict],
     picks: list[dict],
     people: set[str] | None,
+    sealed: set[str] = frozenset(),
 ) -> dict:
     """
     One episode as the caller may see it. An event's result, consensus and `people`'s
     picks (a group's members or the caller's friends) show once the caller has picked or
     forfeited it, or the episode is closed. `people` narrows who is shown; it never opens
     a locked event. Each answer carries its points once the result is confirmed. The
-    recap tells the whole episode, so it waits for every event to be answered.
+    recap tells the whole episode, so it waits for every event to be answered. A
+    `sealed` event stays locked, closed or not, with `sealed` and the caller's own picks
+    but no points, and keeps the recap back.
     """
     ep = ep_number(episode)
     is_closed = closed(meta, episode)
@@ -160,7 +166,8 @@ def episode_view(
     cards = []
     for kind in events(episode):
         row = own.get(kind)
-        locked = row is None and not is_closed
+        held = kind in sealed and row is not None
+        locked = held or (row is None and not is_closed)
         settled = None if locked else result(results_by.get(kind))
         card = {
             "type": kind,
@@ -170,6 +177,8 @@ def episode_view(
             | {k: v for k, v in answer(row, settled).items() if k in ("calls", "points")},
             "locked": locked,
         }
+        if held:
+            card["sealed"] = True
         if not locked:
             rows = by_kind.get(kind, [])
             card["result"] = shown(results_by.get(kind))
@@ -188,20 +197,29 @@ def episode_view(
         "title": episode.get("title"),
         "releaseAt": episode["releaseAt"],
         "closed": is_closed,
-        "recap": recap(episode, results_by, players) if seen(sub, meta, episode, picks) else None,
+        "recap": recap(episode, results_by, players)
+        if seen(sub, meta, episode, picks, bool(sealed))
+        else None,
         "roster": roster(ep, players),
         "events": cards,
     }
 
 
 def visible_calls(
-    sub: str, meta: dict, episode: dict, results: list[dict], picks: list[dict], people: set[str]
+    sub: str,
+    meta: dict,
+    episode: dict,
+    results: list[dict],
+    picks: list[dict],
+    people: set[str],
+    sealed: set[str] = frozenset(),
 ) -> list[tuple[str, dict]]:
     """
     (owner, call) for each answer in one episode by `people` that the caller may see: their
     own always, anyone else's once the caller has answered that event or the episode is
     closed, the same line episode_view draws. A call carries `ep` and `type`, and once
-    the result is confirmed its points and why.
+    the result is confirmed its points and why. On an event the caller `sealed`, only
+    their own call shows, without points.
     """
     n = ep_number(episode)
     own = mine(sub, picks)
@@ -210,6 +228,10 @@ def visible_calls(
     for row in picks:
         kind, owner = pick_owner(row)
         if owner not in people:
+            continue
+        if kind in sealed:
+            if owner == sub:
+                out.append((owner, {"ep": n, "type": kind, **answer(row, None), "sealed": True}))
             continue
         if owner != sub and kind not in own and not closed(meta, episode):
             continue
@@ -227,16 +249,19 @@ def released(episodes: list[dict], t: int) -> int:
     return sum(e["releaseAt"] <= stamp for e in episodes)
 
 
-def shut(meta: dict, episodes: list[dict]) -> set[int]:
-    return {ep_number(e) for e in episodes if closed(meta, e)}
+def shut(meta: dict, episodes: list[dict], held: set[int] = frozenset()) -> set[int]:
+    """Closed episodes, less those the caller holds sealed: their exits stay hidden too."""
+    return {ep_number(e) for e in episodes if closed(meta, e)} - held
 
 
-def bet_roster(meta: dict, episodes: list[dict], players: list[dict]) -> list[dict]:
+def bet_roster(
+    meta: dict, episodes: list[dict], players: list[dict], held: set[int] = frozenset()
+) -> list[dict]:
     """
     Who the winner bet may name: everyone not out in a closed episode. Exits in episodes
     the caller can still pick stay hidden, so a late bet may name someone already gone.
     """
-    gone = shut(meta, episodes)
+    gone = shut(meta, episodes, held)
     return [
         card(p)
         for p in sorted(players, key=lambda p: p["name"])
@@ -244,14 +269,16 @@ def bet_roster(meta: dict, episodes: list[dict], players: list[dict]) -> list[di
     ]
 
 
-def wall(meta: dict, episodes: list[dict], players: list[dict]) -> list[dict]:
+def wall(
+    meta: dict, episodes: list[dict], players: list[dict], held: set[int] = frozenset()
+) -> list[dict]:
     """
     The whole cast with exits crossed out. In a current season an exit, and the faction
     it revealed, shows only from a closed episode, the same line bet_roster draws. A past
     season shows every exit and faction.
     """
     current = bool(meta.get("current"))
-    gone = shut(meta, episodes)
+    gone = shut(meta, episodes, held)
     cast = []
     for p in sorted(players, key=lambda p: p["name"]):
         left = bool(p.get("exit")) and (not current or int(p["exit"]["ep"]) in gone)
@@ -270,9 +297,12 @@ def answered(sub: str, episode: dict, picks: list[dict]) -> bool:
     return set(mine(sub, picks)) >= set(events(episode))
 
 
-def seen(sub: str, meta: dict, episode: dict, picks: list[dict]) -> bool:
-    """The whole episode is the caller's to see: closed, or every event answered."""
-    return closed(meta, episode) or answered(sub, episode, picks)
+def seen(sub: str, meta: dict, episode: dict, picks: list[dict], sealed: bool = False) -> bool:
+    """
+    The whole episode is the caller's to see: closed, or every event answered, and
+    nothing of it `sealed`.
+    """
+    return not sealed and (closed(meta, episode) or answered(sub, episode, picks))
 
 
 def recruited_at(pid: str, stored: dict[int, list[dict]]) -> int | None:
@@ -293,6 +323,7 @@ def traitor_from(
     player: dict,
     stored: dict[int, list[dict]],
     picks: dict[int, list[dict]],
+    held: set[int] = frozenset(),
 ) -> int | None:
     """
     The episode a player became a Traitor, if the caller may know they were one: 1 for
@@ -308,7 +339,9 @@ def traitor_from(
         if not gone or gone["how"] != "banished":
             return None
         ep = int(gone["ep"])
-        if not any(ep_number(e) == ep and seen(sub, meta, e, picks.get(ep, [])) for e in episodes):
+        if ep in held or not any(
+            ep_number(e) == ep and seen(sub, meta, e, picks.get(ep, [])) for e in episodes
+        ):
             return None
     return recruited_at(player_id(player), stored) or 1
 
@@ -320,6 +353,7 @@ def story(
     player: dict,
     stored: dict[int, list[dict]],
     picks: dict[int, list[dict]],
+    held: set[int] = frozenset(),
 ) -> list[dict]:
     """
     One player's season an episode at a time, over `episodes` (released, up to their
@@ -336,16 +370,16 @@ def story(
     """
     pid = player_id(player)
     gone = player.get("exit")
-    traitor = traitor_from(sub, meta, episodes, player, stored, picks) is not None
+    traitor = traitor_from(sub, meta, episodes, player, stored, picks, held) is not None
     night = recruited_at(pid, stored) or 0
     out = []
     for e in episodes:
         n = ep_number(e)
-        if meta.get("current") and not seen(sub, meta, e, picks.get(n, [])):
+        if meta.get("current") and not seen(sub, meta, e, picks.get(n, []), n in held):
             break
         rows = {r["sk"].removeprefix("EVT#"): r for r in stored.get(n, [])}
         rt = shown(rows.get("RT"))
-        held = result(rows.get("SHIELD"))
+        shields = result(rows.get("SHIELD"))
         killed = result(rows.get("MURDER"))
         recruits = result(rows.get("RECRUIT"))
         acting = traitor and n > night
@@ -356,7 +390,7 @@ def story(
                 "title": e.get("title"),
                 "voted": rt and rt.get("ballots", {}).get(pid),
                 "votesReceived": rt and rt["firstVote"].get(pid, 0),
-                "shield": bool(held) and pid in held["shields"],
+                "shield": bool(shields) and pid in shields["shields"],
                 "out": {"how": gone["how"]} if last else None,
                 "murdered": killed["victims"] if acting and killed else None,
                 "recruited": recruits["recruits"] if acting and recruits and not last else None,
@@ -372,17 +406,18 @@ def out(
     players: list[dict],
     ep: int,
     earlier: dict[int, list[dict]],
+    held: set[int] = frozenset(),
 ) -> list[dict]:
     """
     Exits in episodes before `ep` whose results the caller may see, closed or fully
     answered, so their seats can be crossed out. `earlier` maps each of those episodes
     to its scores rows. The roster already drops them; this says how they left.
     """
-    seen = {
+    known = {
         ep_number(e)
         for e in episodes
         if ep_number(e) < ep
-        and (closed(meta, e) or answered(sub, e, earlier.get(ep_number(e), [])))
+        and seen(sub, meta, e, earlier.get(ep_number(e), []), ep_number(e) in held)
     }
     return [
         {
@@ -392,5 +427,5 @@ def out(
             "faction": p.get("faction"),
         }
         for p in sorted(players, key=lambda p: p["name"])
-        if p.get("exit") and int(p["exit"]["ep"]) in seen
+        if p.get("exit") and int(p["exit"]["ep"]) in known
     ]

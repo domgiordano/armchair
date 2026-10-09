@@ -9,6 +9,7 @@ from lambdas.common.gate import rateable
 from lambdas.cron_email.handler import handler
 from scripts.seed_season import items, write
 from tests.conftest import BOARD_TABLE, CATALOG_TABLE, SCORES_TABLE
+from tests.sealing import seal
 from tests.social import A, B, C, sign_in
 from tests.test_gate import SEASON
 
@@ -99,6 +100,30 @@ def test_unrevealed_reader_sees_only_through_their_last_finished_week(season, ou
     assert "season=dwts-35&ep=05" in email.text
 
 
+def test_a_sealed_dance_keeps_the_answered_week_out(season, outbox):
+    seal(A, f"dwts-35|5|{keys(5)[0]}")
+    handler({}, None)
+    email = mail_for(outbox, A)
+    assert email.preheader == "Reveal Week 4 in the app to see how you did."
+    assert "Reveal Week 4 in the app to see your results." in email.text
+    assert "Standings below run through Week 3, the last one you've revealed." in email.text
+    assert "0.25" not in email.html and "This week" not in email.text
+    assert "Top of Week 4" not in email.text
+    assert "Reveal Week 4" in email.html and "season=dwts-35&ep=05" in email.text
+    # Ada's seal is Ada's: Cy's email still has the week.
+    assert "This week" in mail_for(outbox, C).text
+
+
+def test_a_sealed_earlier_week_holds_every_week_after_it(season, outbox):
+    seal(A, f"dwts-35|4|{keys(4)[0]}")
+    handler({}, None)
+    email = mail_for(outbox, A)
+    assert "Reveal Week 3 in the app to see your results." in email.text
+    assert "Standings below run through Week 2" in email.text
+    assert "0.25" not in email.html and "1.00" not in email.html
+    assert "season=dwts-35&ep=04" in email.text
+
+
 def test_no_email_names_a_contestant(season, outbox):
     handler({}, None)
     assert outbox
@@ -166,3 +191,11 @@ def test_traitors_digest_by_release_night(traitors, outbox):
     assert "Standings below run through Episode 1" in bea.text
     assert "24" not in bea.text and "26" not in bea.text
     assert "1. Bea (you)  4 pts" in bea.text
+
+
+def test_a_sealed_traitors_call_holds_the_night(traitors, outbox):
+    seal(A, "tus-5|3|RT")
+    handler({}, None)
+    ada = mail_for(outbox, A)
+    assert "Reveal Episodes 2-3 in the app to see your results." in ada.text
+    assert "24" not in ada.text and "26" not in ada.text

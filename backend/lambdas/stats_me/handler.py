@@ -9,8 +9,8 @@ Built by common/stats.py over the dances the caller may see (gate.sees), so
 someone else's breakdown (`sub`) covers only dances the caller has answered or
 that are open to everyone, as users_get's `detail` does. A block either way
 answers like a sub that doesn't exist. `ep` narrows everything to one episode.
-`sealed` lists the caller's locked-in, unrevealed dances, which no number
-includes. Identity is the Cognito sub.
+The caller's locked-in, unrevealed dances (common/seals.py, and any `sealed`
+names) leave every number. Identity is the Cognito sub.
 """
 
 from __future__ import annotations

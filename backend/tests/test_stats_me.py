@@ -13,6 +13,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import BOARD_TABLE, CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import VIAS, sealing
 from tests.seasons import close
 from tests.social import B, C, accept, ask, block, sign_in
 
@@ -118,13 +119,14 @@ def test_week_rank_is_among_everyone_on_dances_the_caller_saw(show):
     assert me(A, sub=B)["count"] == 1
 
 
-def test_sealed_dances_leave_every_number(show):
+@pytest.mark.parametrize("via", VIAS)
+def test_sealed_dances_leave_every_number(show, via):
     answer(A, X, value=6)
     answer(A, Y, value=6)
-    sealed = me(sealed=f"5:{X}#1")
+    sealed = me(**sealing(via, A, "dwts-35", (5, f"{X}#1")))
     assert sealed["count"] == 1 and sealed["mae"] == 0
     assert all(c["key"] != f"{X}#1" for c in sealed["calls"])
-    assert me()["count"] == 2
+    assert me()["count"] == (1 if via == "server" else 2)
 
 
 def test_someone_blocked_reads_as_missing(show):

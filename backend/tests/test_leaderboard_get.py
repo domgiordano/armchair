@@ -16,6 +16,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import BOARD_TABLE, CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import VIAS, sealing
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
 C = "3f1c2b9a-0000-4000-8000-000000000003"
@@ -135,15 +136,17 @@ def test_others_count_only_dances_the_caller_has_seen(show):
     assert {r["sub"]: r["count"] for r in board(B)["ranked"]} == {B: 10}
 
 
-def test_sealed_dances_leave_everyones_numbers(show):
+@pytest.mark.parametrize("via", VIAS)
+def test_sealed_dances_leave_everyones_numbers(show, via):
     answer_many(A, lambda cid: 8 if cid == X else 6, count=6)
     answer_many(B, lambda cid: 10, count=6)
-    sealed = f"{DANCES[0][0]}:{DANCES[0][1]}#1"
-    data = board(sealed=sealed)
+    sealed = sealing(via, A, "dwts-35", (DANCES[0][0], f"{DANCES[0][1]}#1"))
+    data = board(**sealed)
     assert {r["sub"]: r["count"] for r in data["ranked"]} == {A: 5, B: 5}
     assert data["me"]["count"] == 5
-    assert board(season="all", sealed=sealed)["me"]["count"] == 5
-    assert board()["me"]["count"] == 6
+    assert board(season="all", **sealed)["me"]["count"] == 5
+    # A's seals narrow only A's view.
+    assert board(B)["me"]["count"] == 6
 
 
 def test_a_closed_episode_shows_everyone(show, monkeypatch):

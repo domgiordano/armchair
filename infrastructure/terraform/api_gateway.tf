@@ -69,6 +69,11 @@ locals {
       invoke_arn = aws_lambda_function.api["favorites_${l.name}"].invoke_arn
     })
   ]
+  seals_endpoints = [
+    for l in local.seals_lambdas : merge(l, {
+      invoke_arn = aws_lambda_function.api["seals_${l.name}"].invoke_arn
+    })
+  ]
   traitors_endpoints = [
     for l in local.traitors_lambdas : merge(l, {
       invoke_arn = aws_lambda_function.api["traitors_${l.name}"].invoke_arn
@@ -142,5 +147,6 @@ module "api" {
     email         = { path_prefix = "email", endpoints = local.email_endpoints }
     events        = { path_prefix = "events", endpoints = local.events_endpoints }
     favorites     = { path_prefix = "favorites", endpoints = local.favorites_endpoints }
+    seals         = { path_prefix = "seals", endpoints = local.seals_endpoints }
   }
 }

@@ -16,6 +16,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import VIAS, sealing
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
 SEASON = json.loads((SEASONS / "dwts-35.json").read_text())
@@ -168,15 +169,16 @@ def test_season_numbers_and_closest_judge(show):
     assert me["closestJudge"] == {"id": CARRIE, "name": "Carrie Ann Inaba", "mae": 1}
 
 
-def test_sealed_dances_leave_the_callers_numbers_and_reveals(show):
+@pytest.mark.parametrize("via", VIAS)
+def test_sealed_dances_leave_the_callers_numbers_and_reveals(show, via):
     answer(A, X, value=7)
     answer(A, Y, value=8)
-    d = data(sealed=f"5:{Y}#1")
+    d = data(**sealing(via, A, "dwts-35", (5, f"{Y}#1")))
     assert (d["me"]["count"], d["me"]["mae"]) == (1, 1)
     assert d["episodes"][4]["mae"] == 1
     assert [r["key"] for r in d["reveals"]] == [f"{X}#1"]
     assert couple(d, Y)["average"] is None
-    assert data()["me"]["count"] == 2
+    assert data()["me"]["count"] == (1 if via == "server" else 2)
 
 
 def test_accuracy_per_episode(show):

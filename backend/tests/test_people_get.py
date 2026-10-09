@@ -17,6 +17,7 @@ from scripts.seed_season import SEASONS, items, publish_all, write
 from scripts.seed_season import people as person_index
 from tests.conftest import CATALOG_TABLE, WRITEUPS_TABLE
 from tests.events import authorized_event
+from tests.sealing import seal
 from tests.seasons import as_current, close
 from tests.social import A, B, accept, ask, call, post
 
@@ -339,3 +340,26 @@ def test_unknown_show_is_400(seeded):
     status, body = get("denise-richards", show="traitors")
     assert status == 400
     assert body["error"]["detail"] == {"field": "show"}
+
+
+def test_a_sealed_dance_is_locked_and_marked(seeded):
+    answer(B, 1, "denise-richards", 9)
+    answer(A, 1, "denise-richards", 7)
+    seal(A, "dwts-8|1|denise-richards#1")
+    page = data("denise-richards")
+    first = page["performances"][0]
+    assert first["locked"] is True and first["sealed"] is True
+    assert set(first) == LOCKED | {"sealed"}
+    assert page["stats"]["dancer"]["mine"]["count"] == 0
+    assert "9" not in json.dumps(first)
+
+
+def test_a_sealed_night_holds_the_result(seeded):
+    finish(A, 1, 2, 3, 4, 5)
+    assert data("denise-richards")["seasons"][0]["result"]["status"] == "out"
+    seal(A, "dwts-8|3|denise-richards#1")
+    assert data("denise-richards")["seasons"][0]["result"] == {
+        "locked": True,
+        "season": "dwts-8",
+        "ep": 3,
+    }
