@@ -7,12 +7,13 @@ import { EliminatedStamp } from "@/components/eliminated";
 import { Headshot } from "@/components/headshot";
 import { Badge } from "@/components/ui/badge";
 import type { Elimination } from "@/lib/api/couples";
+import { CUE_LABEL, type Cue } from "@/lib/show/running";
 import { personSlug } from "@/lib/show/people";
 import type { GroupMember } from "@armchair/app-core/api/groups";
 import type { Answer, Card, Contestant, Judge, LockedCard, Member, RevealedCard } from "@/lib/api/show";
 import { Paddle as PaddleArt } from "@/components/paddle";
 import { PaddlePicker } from "@/components/paddle-picker";
-import { button } from "@/lib/ui";
+import { button, cn } from "@/lib/ui";
 import { WhatHappened } from "@/components/what-happened";
 
 interface PerformanceCardProps {
@@ -33,6 +34,8 @@ interface PerformanceCardProps {
   onReveal?: () => void;
   /** Its window closed before you scored it. */
   missed?: boolean;
+  /** Up first, on now or up next, while the show airs. */
+  cue?: Cue;
 }
 
 const celebrity = (c: Contestant | undefined): Member | undefined =>
@@ -69,6 +72,7 @@ export function PerformanceCard({
   seats,
   onReveal,
   missed = false,
+  cue,
 }: PerformanceCardProps) {
   const held = card.locked ? card.sealed === true : sealed;
   const team = card.contestants.length > 1;
@@ -82,15 +86,38 @@ export function PerformanceCard({
   const details = [
     team ? "Team dance" : card.n > 1 ? `Dance ${card.n}` : null,
     card.style,
-    card.song && `"${card.song}"`,
+    // Wikipedia's music cell already quotes the title: "Hero" — Mariah Carey.
+    card.song && (card.song.startsWith('"') ? card.song : `"${card.song}"`),
   ].filter(Boolean);
   const headingId = `perf-${card.key}`;
 
   return (
     <article
       aria-labelledby={headingId}
-      className="relative flex h-full flex-col gap-4 rounded-xl border border-silver/10 bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] transition-colors hover:border-silver/20"
+      className={cn(
+        "relative flex h-full flex-col gap-4 rounded-xl border bg-ballroom/45 p-4 shadow-[inset_0_1px_0_rgb(213_219_234/0.05)] transition-colors",
+        cue === "on"
+          ? "border-gold/60 shadow-[0_0_0_1px_rgb(232_194_104/0.25),0_18px_48px_-24px_rgb(232_194_104/0.45)]"
+          : "border-silver/10 hover:border-silver/20",
+      )}
     >
+      {(card.order !== undefined || cue) && (
+        <div className="-mb-2 flex items-center gap-2 text-xs font-semibold tracking-[0.14em] uppercase">
+          {card.order !== undefined && (
+            <span className="text-silver-dim">
+              <span className="sr-only">Running order </span>
+              <span aria-hidden="true">No. </span>
+              <span className="text-gold-light tabular-nums">{card.order}</span>
+            </span>
+          )}
+          {cue && (
+            <span className={cn("ml-auto inline-flex items-center gap-1.5", cue === "on" ? "text-gold-light" : "text-silver")}>
+              {cue === "on" && <span aria-hidden="true" className="size-2 rounded-full bg-brand-magenta motion-safe:animate-pulse" />}
+              {CUE_LABEL[cue]}
+            </span>
+          )}
+        </div>
+      )}
       {out && <EliminatedStamp out={out} className="absolute right-5 bottom-5 z-10" />}
       <div className="flex items-center gap-3">
         {team ? (

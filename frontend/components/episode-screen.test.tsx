@@ -464,6 +464,81 @@ describe("EpisodeScreen", () => {
   });
 });
 
+describe("running order and finding a couple", () => {
+  const julia = {
+    id: "julia-stiles",
+    keyword: "Julia",
+    members: [
+      { ...person("Julia Stiles"), role: "celebrity" as const },
+      { ...person("Ezra Sosa"), role: "pro" as const },
+    ],
+  };
+  const locked = (key: string, order: number) => ({ ...LOCKED, key, contestants: [key.slice(0, -2)], order });
+  // Tyler danced first and the judges have scored him; Julia is on now, Amber up next.
+  const RUNNING: Partial<EpisodeState> = {
+    rateable: 3,
+    answered: 0,
+    runningOrder: true,
+    danced: 1,
+    performances: [locked("tyler-cameron#1", 1), locked("julia-stiles#1", 2), locked("amber-glenn#1", 3)],
+  };
+  const titles = () => screen.getAllByRole("article").map((a) => a.getAttribute("aria-labelledby"));
+
+  beforeEach(() => {
+    vi.mocked(getSeason).mockResolvedValue({ ...SEASON, contestants: [...SEASON.contestants, julia] });
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, ...RUNNING });
+    window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;
+  });
+
+  it("numbers the cards in running order and cues who is on while the show airs", async () => {
+    vi.setSystemTime(Date.parse("2026-09-29T20:40:00-04:00"));
+    render(<EpisodeScreen />);
+    const julia = await screen.findByRole("article", { name: "Julia Stiles & Ezra Sosa" });
+    expect(titles()).toEqual(["perf-tyler-cameron#1", "perf-julia-stiles#1", "perf-amber-glenn#1"]);
+    expect(julia.textContent).toContain("No. 2");
+    expect(julia.textContent).toContain("On now");
+    expect(screen.getByRole("article", { name: "Amber Glenn & Pasha Pashkov" }).textContent).toContain("Up next");
+    expect(screen.getByRole("article", { name: /Tyler Cameron/ }).textContent).not.toMatch(/On now|Up next/);
+  });
+
+  it("keeps the numbers but no cues once the show is over", async () => {
+    render(<EpisodeScreen />);
+    const julia = await screen.findByRole("article", { name: "Julia Stiles & Ezra Sosa" });
+    expect(julia.textContent).toContain("No. 2");
+    expect(screen.queryByText("On now")).toBeNull();
+  });
+
+  it("narrows the cards to a celebrity or pro typed in, and says when nobody matches", async () => {
+    render(<EpisodeScreen />);
+    const find = await screen.findByRole("searchbox", { name: "Find a couple" });
+    fireEvent.change(find, { target: { value: "sosa" } });
+    expect(titles()).toEqual(["perf-julia-stiles#1"]);
+    const chips = within(screen.getByRole("list", { name: "Jump to a dance" })).getAllByRole("button");
+    expect(chips.map((b) => b.getAttribute("aria-label"))).toEqual(["Jump to Julia Stiles, number 2"]);
+
+    fireEvent.change(find, { target: { value: "zendaya" } });
+    expect(screen.getByText("No one by that name tonight")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Show every dance" }));
+    expect(titles()).toHaveLength(3);
+  });
+
+  it("jumps to a dance from its face and moves focus there", async () => {
+    render(<EpisodeScreen />);
+    const amber = await screen.findByRole("button", { name: "Jump to Amber Glenn, number 3" });
+    fireEvent.click(amber);
+    expect(window.scrollTo).toHaveBeenCalled();
+    expect(document.activeElement?.id).toBe("dance-amber-glenn#1");
+  });
+
+  it("lists cards as the server sends them, unnumbered, before the order is set", async () => {
+    vi.mocked(getEpisodeState).mockResolvedValue(STATE);
+    render(<EpisodeScreen />);
+    const amber = await screen.findByRole("article", { name: "Amber Glenn & Pasha Pashkov" });
+    expect(amber.textContent).not.toContain("Running order");
+    expect(screen.getByRole("button", { name: "Jump to Amber Glenn" })).toBeTruthy();
+  });
+});
+
 describe("the end of an episode", () => {
   const amberDone = { ...STATE.performances[1], key: "amber-glenn#1", contestants: ["amber-glenn"], mine: { value: 8 } };
   const results = { eliminated: ["tyler-cameron"], totals: { "amber-glenn": 24, "tyler-cameron": 21 }, bonus: {} };
@@ -508,8 +583,7 @@ describe("the end of an episode", () => {
     vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, ...FINISHED });
     window.localStorage.setItem("armchair.sealed", '["dwts-35|4|results#0"]');
     render(<EpisodeScreen />);
-    await vi.advanceTimersByTimeAsync(0);
-    await vi.advanceTimersByTimeAsync(0);
+    for (let i = 0; i < 5; i++) await act(() => vi.advanceTimersByTimeAsync(0));
     fireEvent.click(screen.getByRole("button", { name: "Reveal results" }));
 
     const stage = screen.getByRole("list", { name: "Couples in the spotlight" });

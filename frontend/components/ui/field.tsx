@@ -49,6 +49,8 @@ export function Input({ label, hideLabel, hint, error, action, className, ...res
 
 interface SearchInputProps {
   label: string;
+  /** For a field whose placeholder and place say what it is: the label stays for screen readers. */
+  hideLabel?: boolean;
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
@@ -58,11 +60,11 @@ interface SearchInputProps {
 }
 
 /** A search field with a magnifier, a spinner while busy, and a clear button once there's text. */
-export function SearchInput({ label, value, onChange, placeholder, maxLength, busy, autoFocus }: SearchInputProps) {
+export function SearchInput({ label, hideLabel, value, onChange, placeholder, maxLength, busy, autoFocus }: SearchInputProps) {
   const id = useId();
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm text-silver-dim">
+      <label htmlFor={id} className={cn("text-sm text-silver-dim", hideLabel && "sr-only")}>
         {label}
       </label>
       <div className="relative">
