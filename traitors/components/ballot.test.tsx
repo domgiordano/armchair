@@ -246,3 +246,13 @@ it("keeps a call's result face down after the seal until you choose to reveal it
   expect(await screen.findByRole("link", { name: /^Ben Hart, your pick, murdered/ })).toBeTruthy();
   expect(screen.getByRole("region", { name: /Everyone's calls/ })).toBeTruthy();
 });
+
+it("shows a call sealed on another device face down, never as a fresh slate", async () => {
+  const sealed = { type: "RT", picks: 3, mine: { picks: ["cal", "ava", "eli"] }, locked: true, sealed: true } as EpisodeEvent;
+  api.getEpisode.mockResolvedValue(episode([locked("MURDER"), sealed, locked("RECRUIT")]));
+  ballot();
+  fireEvent.click(await screen.findByRole("tab", { name: /^Banish/ }));
+  expect(screen.getByText("Your call · locked in")).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Reveal what happened" })).toBeTruthy();
+  expect(screen.queryByRole("button", { name: /^Seal/ })).toBeNull();
+});

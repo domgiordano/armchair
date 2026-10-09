@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getEpisodeState, type Episode, type EpisodeState } from "@/lib/api/show";
 import { pollInterval } from "@armchair/app-core/show/poll";
 import { isLive } from "./schedule";
+import { useSealVersion } from "./sealed";
 
 export interface EpisodeLoad {
   data: EpisodeState | null;
@@ -16,6 +17,7 @@ export interface EpisodeLoad {
  * Polls one episode's gated state: 10s while visible and live, 60s otherwise,
  * nothing while the tab is hidden. Coming back into view fetches at once.
  * A failed poll keeps the last good state and reports the error beside it.
+ * A seal or reveal the server confirms, from any device, fetches again.
  */
 export function useEpisodeState(
   season: string,
@@ -26,6 +28,7 @@ export function useEpisodeState(
   const [data, setData] = useState<EpisodeState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
+  const sealed = useSealVersion();
 
   useEffect(() => {
     let cancelled = false;
@@ -63,7 +66,7 @@ export function useEpisodeState(
       clearTimeout(timer);
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [season, tz, episode, group, attempt]);
+  }, [season, tz, episode, group, attempt, sealed]);
 
   const reload = useCallback(() => setAttempt((n) => n + 1), []);
   return { data, error, reload };

@@ -155,7 +155,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
       await submitScore(season.season, episode.ep, card, answer);
       if (value !== null) setLocked({ key: card.key, title: names(card.contestants), value });
     } catch (e) {
-      if (value !== null) unseal(season.season, episode.ep, card.key);
+      if (value !== null) void unseal(season.season, episode.ep, card.key);
       // The reload below turns the page read-only; this says why the paddle didn't stick.
       if (e instanceof ApiError && e.detail?.code === CLOSED) throw new Error("scoring for this episode has closed");
       throw e;
@@ -174,8 +174,8 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   const win = data.window ?? episode.window;
   const closed = isClosed(win, now);
   const closesAt = !closed && win?.open ? win.closesAt : null;
-  // The episode's result arrives with the last answer, which may still be face down.
-  const anySealed = data.performances.some((c) => !c.locked && sealed(c.key));
+  // The server holds back the result while a dance is sealed; this covers a seal it hasn't had yet.
+  const anySealed = data.performances.some((c) => (c.locked ? c.sealed === true : sealed(c.key)));
   const eliminated = anySealed ? [] : (data.eliminated ?? []);
   const gone = new Set(eliminated);
   const out = eliminated.map(
@@ -259,8 +259,9 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
                 group={picked}
                 onSubmit={submit}
                 sealed={!card.locked && sealed(card.key)}
+                seats={data.panel.length}
                 missed={closed && !card.locked && card.mine === null}
-                onReveal={() => unseal(season.season, episode.ep, card.key)}
+                onReveal={() => void unseal(season.season, episode.ep, card.key)}
               />
             </li>
           ))}
@@ -270,7 +271,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
       <RevealSheet
         locked={locked}
         onReveal={() => {
-          if (locked) unseal(season.season, episode.ep, locked.key);
+          if (locked) void unseal(season.season, episode.ep, locked.key);
           setLocked(null);
         }}
         onClose={() => setLocked(null)}
