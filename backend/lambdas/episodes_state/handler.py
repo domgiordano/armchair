@@ -65,6 +65,7 @@ def handler(event, context):
         closed=window.closed(meta, spans[ep], now),
         sealed=seals.keys(seals.of(sub, show, season, params), ep),
         stage=True,
+        previous=next((r for r in rows if r["sk"] == f"EP#{ep - 1:02d}"), None),
     )
     live = window.active(meta, spans, now)
     if live is None:

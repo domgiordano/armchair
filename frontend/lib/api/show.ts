@@ -132,6 +132,9 @@ export interface EpisodeResults {
   bonus: Record<string, number>;
 }
 
+/** "wikipedia" before air, "admin" set by hand, "live" once the show is scoring. */
+export type OrderSource = "wikipedia" | "admin" | "live" | null;
+
 export interface EpisodeState {
   season: string;
   ep: number;
@@ -149,6 +152,11 @@ export interface EpisodeState {
   runningOrder?: boolean;
   /** How many dances from the top of the running order the judges have scored. */
   danced?: number;
+  /** Where a set running order came from, and when it was set (ISO). */
+  orderSource?: OrderSource;
+  orderAt?: string | null;
+  /** Until tonight's order is out, the cards follow last week's. */
+  orderFrom?: "last-week";
   performances: Card[];
   eliminated?: string[];
   /** With `eliminated`, once the caller has finished the episode; null until the poller writes them. */

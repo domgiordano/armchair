@@ -612,3 +612,13 @@ def _ep4_inputs(show):
     meta, episode, contestants = catalog("dwts", 35, 4)
     pk = "EP#dwts#35#04"
     return meta, episode, contestants, performances(pk), scores(pk)
+
+
+def test_until_tonights_order_is_out_the_cards_follow_last_weeks(show):
+    lineup(show, EP5_KEYS[::-1])
+    view = state(ep="06")
+    keys = [c["key"] for c in view["performances"]]
+    gone = [k for k in EP5_KEYS if k in keys]
+    assert keys[: len(gone)] == [k for k in EP5_KEYS[::-1] if k in keys]
+    assert view["orderFrom"] == "last-week" and "runningOrder" not in view
+    assert "order" not in view["performances"][0]

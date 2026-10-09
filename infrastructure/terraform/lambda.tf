@@ -49,6 +49,8 @@ locals {
     { name = "answer", description = "Admin: set or clear one user's score or pick", path_part = "answer", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "delete", description = "Admin: delete someone's account through users_delete", path_part = "delete", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "view", description = "Admin: what one user sees on a screen, read-only", path_part = "view", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "lineup", description = "Admin: one night's dances in running order, and where it came from", path_part = "lineup", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
+    { name = "order", description = "Admin: set a night's running order by hand before the show", path_part = "order", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
   # The read-only screens admin_view may invoke as a user: SCREENS in
   # backend/lambdas/admin_view/handler.py.
@@ -171,6 +173,8 @@ locals {
     episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "writeups:Query", "users:GetItem"]
     seasons_get        = ["catalog:Query", "performances:Query", "scores:Query"]
     admin_keyword      = ["catalog:UpdateItem"]
+    admin_lineup       = ["catalog:Query", "performances:Query"]
+    admin_order        = ["catalog:Query", "catalog:UpdateItem", "performances:Query", "events:PutItem"]
     stats_get          = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "users:GetItem"]
     stats_me           = ["catalog:Query", "performances:Query", "scores:Query", "board:Query", "board:PutItem", "users:GetItem", "social:GetItem"]
     stats_crowd        = ["catalog:Query", "performances:Query", "scores:Query", "board:Query", "board:PutItem", "groups:Query", "social:Query", "users:BatchGetItem", "users:GetItem"]

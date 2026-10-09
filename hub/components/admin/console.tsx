@@ -10,6 +10,7 @@ import { SignedInPage } from "../account/hub-shell";
 import { ErrorNote, Segmented, Skeleton } from "../account/ui";
 import { AuditTab } from "./audit-tab";
 import { LiveTab } from "./live-tab";
+import { OrderTab } from "./order-tab";
 import { OverviewTab } from "./overview-tab";
 import { UsersTab } from "./users-tab";
 import { UserView } from "./user-view";
@@ -18,6 +19,7 @@ const TABS = [
   { value: "overview", label: "Overview" },
   { value: "users", label: "Users" },
   { value: "live", label: "Live" },
+  { value: "order", label: "Order" },
   { value: "audit", label: "Audit" },
 ] as const;
 type Tab = (typeof TABS)[number]["value"];
@@ -101,6 +103,7 @@ function Console({ email }: { email: string }) {
           {route.tab === "overview" && <OverviewTab />}
           {route.tab === "users" && <UsersTab onOpen={open} />}
           {route.tab === "live" && <LiveTab onOpen={open} />}
+          {route.tab === "order" && <OrderTab />}
           {route.tab === "audit" && <AuditTab onOpen={open} />}
         </>
       )}

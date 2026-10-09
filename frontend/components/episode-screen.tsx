@@ -9,6 +9,7 @@ import { PageLoader } from "@/components/disco-loader";
 import { GroupPicker, scopeName } from "@/components/group-picker";
 import { PerformanceCard } from "@/components/performance-card";
 import { danceId, FindCouple } from "@/components/find-couple";
+import { OrderNote } from "@/components/order-note";
 import { RevealAll } from "@/components/reveal-all";
 import { RevealSheet } from "@/components/reveal-sheet";
 import { ResultsReveal } from "@/components/results-reveal";
@@ -285,6 +286,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
           {out.join(", ")}
         </p>
       )}
+      {!data.open && data.performances.length > 0 && <OrderNote state={data} tz={season.timezone} />}
       {data.performances.length > 1 && (
         <FindCouple cards={shown} contestants={contestants} cues={cues} query={query} onQuery={setQuery} />
       )}

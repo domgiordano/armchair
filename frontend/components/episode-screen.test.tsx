@@ -501,6 +501,16 @@ describe("running order and finding a couple", () => {
     expect(screen.getByRole("article", { name: /Tyler Cameron/ }).textContent).not.toMatch(/On now|Up next/);
   });
 
+  it("says where the order came from, or that it isn't out yet", async () => {
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, ...RUNNING, orderSource: "wikipedia", orderAt: "2026-09-29T18:07:48Z" });
+    render(<EpisodeScreen />);
+    expect(await screen.findByText("Running order confirmed via Wikipedia at Tue 2:07 PM ET.")).toBeTruthy();
+    cleanup();
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, orderFrom: "last-week" });
+    render(<EpisodeScreen />);
+    expect(await screen.findByText("Order not announced yet. Showing last week's order.")).toBeTruthy();
+  });
+
   it("keeps the numbers but no cues once the show is over", async () => {
     render(<EpisodeScreen />);
     const julia = await screen.findByRole("article", { name: "Julia Stiles & Ezra Sosa" });
