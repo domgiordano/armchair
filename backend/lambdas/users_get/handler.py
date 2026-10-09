@@ -9,8 +9,8 @@ the friends and groups the two share.
 The season summary covers the owner's dances the viewer may see too: the
 dances `detail` covers. Someone else's mean error and per-judge errors appear
 once they have MIN_DANCES, the leaderboard floor (docs/features/v2/PLAN.md).
-Every number leaves out `sealed=<ep>:<key>,...`, the current season's dances
-the viewer locked in without revealing.
+Every number leaves out the current season's dances the viewer locked in
+without revealing (common/seals.py, and any `sealed=<ep>:<key>,...` names).
 
 `detail` takes the other route: for someone else it covers only the dances the
 viewer has answered too, which the gate already shows the viewer on each
@@ -32,7 +32,7 @@ from __future__ import annotations
 import math
 from collections import defaultdict
 
-from lambdas.common import board_dynamo, window
+from lambdas.common import board_dynamo, seals, window
 from lambdas.common.accuracy import errors, summary
 from lambdas.common.api import NotFoundError, api_handler, caller_sub, ok, query
 from lambdas.common.couples import people
@@ -52,7 +52,6 @@ from lambdas.common.gate import (
     perf_key,
     places,
     score_owner,
-    sealed_param,
     standing,
     visible_scores,
 )
@@ -79,8 +78,9 @@ def handler(event, context):
 
     index = season_index(show)
     numbers = sorted(int(s["number"]) for s in index)
-    current = next((f"{show}-{int(s['number'])}" for s in index if s.get("current")), None)
-    sealed = sealed_param(params)
+    number = next((int(s["number"]) for s in index if s.get("current")), None)
+    current = f"{show}-{number}" if number else None
+    sealed = seals.of(caller, show, number, params) if number else set()
 
     def kept(r: dict) -> bool:
         return r["season"] != current or (r["ep"], r["key"]) not in sealed
@@ -97,7 +97,7 @@ def handler(event, context):
 
     def place(key: int | str) -> dict:
         if key not in boards:
-            rows = board_dynamo.seen_rows(caller, show, key, sealed)
+            rows = board_dynamo.seen_rows(caller, show, key, params)
             board = {s: standing(r) for s, r in rows.items() if r.get("n")}
             boards[key] = (board, places(board, MIN_DANCES))
         board, ranks = boards[key]

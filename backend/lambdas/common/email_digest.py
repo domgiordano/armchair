@@ -12,8 +12,9 @@ only through the last period they have revealed: every episode in it answered,
 or closed (gate.results_open, traitors_gate.seen). Standings for everyone are
 computed through that same period, so another player's movement can't give
 away an unrevealed night. Nothing names a contestant, dance or result: only
-players, points and ranks. The apps' "not yet" seal lives in each device's
-storage, so the server can't see it; an answered episode counts as revealed.
+players, points and ranks. An episode the reader holds anything sealed in
+(common/seals.py), the apps' "Not yet", is unrevealed however much of it they
+answered, and so is every period after it: the email asks them to reveal it.
 """
 
 from __future__ import annotations
@@ -24,6 +25,7 @@ from collections.abc import Callable
 from datetime import datetime, timedelta
 from typing import NamedTuple
 
+from lambdas.common import seals
 from lambdas.common.board_dynamo import err_pk
 from lambdas.common.dynamo import query_partitions
 from lambdas.common.email_shows import Dwts, Traitors
@@ -146,11 +148,13 @@ def _context(
     names: dict[str, str],
     groups: list[dict],
     url: str,
+    sealed: str | None = None,
 ) -> dict:
     revealed = cutoff == p
     ctx = {
         "label": labels[p],
         "revealed": revealed,
+        "sealed": sealed,
         "through": None if cutoff is None or revealed else labels[cutoff],
         "url": url,
         "you": None,
@@ -217,12 +221,18 @@ def _jobs(
         mates = {s for gs in groups.values() for g in gs for s in g["members"]}
         everyone = set().union(*weekly) | readers | mates
         names = {s: c["name"] or "A player" for s, c in cards(everyone).items()}
+        held = seals.held_by(readers, event_prefix)
         readers_ctx = {}
         for sub in readers:
-            done = open_.get(sub, set())
-            whole = [i for i in range(p + 1) if set(periods[i]) <= done]
+            answered = open_.get(sub, set())
+            mine = held.get(sub, set())
+            done = answered - mine
+            first = next((i for i in range(p + 1) if mine & set(periods[i])), p + 1)
+            whole = [i for i in range(first) if set(periods[i]) <= done]
             cutoff = whole[-1] if whole else None
-            unseen = [n for n in eps if n not in done]
+            # Finished but held back by a seal: the email says reveal, and links there.
+            held_back = first <= p and set(eps) <= answered
+            unseen = [n for n in eps if n not in done] or sorted(mine)
             readers_ctx[sub] = _context(
                 spec,
                 sub,
@@ -234,6 +244,7 @@ def _jobs(
                 names,
                 groups[sub],
                 url(p, cutoff == p, unseen),
+                sealed=labels[first] if held_back else None,
             )
         jobs.append(Job(show, "digest", f"{event_prefix}#{p:02d}", readers_ctx))
     return jobs

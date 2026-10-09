@@ -12,7 +12,9 @@ every aired episode up to it, the episode rule; until then it is
 {locked: true, season, ep} with the first episode left. Every all-time number
 is over dances the caller has answered; friends are their accepted friends.
 A past season (gate.is_open) has no gate, so its dances and results all show;
-nor does an episode whose scoring window has closed (common/window.py).
+nor does an episode whose scoring window has closed (common/window.py). A
+dance the caller sealed (common/seals.py) is locked with `sealed: true`, and
+its night holds the season's result back.
 
 A judge or a long-serving pro spans hundreds of nights, so only some seasons
 are read (`loaded`): the person's latest, the current one, `season`, every
@@ -36,7 +38,7 @@ from collections import Counter, defaultdict
 from datetime import UTC, datetime
 from zoneinfo import ZoneInfo
 
-from lambdas.common import board_dynamo, people, window
+from lambdas.common import board_dynamo, people, seals, window
 from lambdas.common.api import NotFoundError, ValidationError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_partitions
 from lambdas.common.episodes_dynamo import episode_pk, season_index, season_ref, show_ref
@@ -209,6 +211,7 @@ def _episodes(pid: str, stint: dict, season: dict) -> list[int]:
 
 
 def _views(sub: str, show: str, seasons: dict[int, dict], eps: list[tuple[int, int]]) -> dict:
+    stored = seals.stored(sub) if eps else set()
     pks = [episode_pk(show, n, ep) for n, ep in eps]
     perfs = query_partitions("PERFORMANCES_TABLE", pks)
     scores = query_partitions("SCORES_TABLE", pks)
@@ -226,6 +229,7 @@ def _views(sub: str, show: str, seasons: dict[int, dict], eps: list[tuple[int, i
             scores[pk],
             writeups=notes[pk],
             closed=ep in s["closed"],
+            sealed=seals.keys(seals.in_season(stored, show, n), ep),
         )
     return out
 
@@ -246,6 +250,8 @@ def _row(show: str, n: int, ep: int, season: dict, card: dict, friends: set[str]
         "locked": card["locked"],
         "writeup": card["writeup"],
     }
+    if card.get("sealed"):
+        return {**row, "sealed": True}
     if card["locked"]:
         return row
     values = [float(j["value"]) for j in card["judges"] if _confirmed(j)]

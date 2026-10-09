@@ -17,14 +17,15 @@ sealed at; a bet of one or two can be completed later, and `betRoster` is who it
 traitors_gate.wall: in a current season only exits from closed episodes show. `summary`
 is the season article's lead, attributed by `sourceUrl` (CC BY-SA), written by discovery.
 A recap reveals its episode's results, so it follows traitors_gate.seen like the episode
-view: closed, or every event answered. The wiki's recap, else one written from the
-confirmed results.
+view: closed, or every event answered, and nothing of it sealed (common/seals.py), whose
+exits stay off `cast` too. The wiki's recap, else one written from the confirmed results.
 """
 
 from __future__ import annotations
 
 import time
 
+from lambdas.common import seals
 from lambdas.common.api import api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, season_pk
@@ -52,8 +53,13 @@ def handler(event, context):
     meta, episodes, players = season_parts(rows, show, number)
     own_bet = bet(show, number, sub)
     picks = query_many([("SCORES_TABLE", episode_pk(show, number, ep_number(e))) for e in episodes])
-    cast = wall(meta, episodes, players)
-    open_eps = [e for e, answers in zip(episodes, picks) if seen(sub, meta, e, answers)]
+    held = seals.episodes(seals.of(sub, show, number))
+    cast = wall(meta, episodes, players, held)
+    open_eps = [
+        e
+        for e, answers in zip(episodes, picks)
+        if seen(sub, meta, e, answers, ep_number(e) in held)
+    ]
     results = dict(
         zip(
             (ep_number(e) for e in open_eps),
@@ -101,5 +107,5 @@ def handler(event, context):
             if (p["exit"] or {}).get("how") == "winner"
         ]
     if data["current"] and len((own_bet or {}).get("picks", [])) < len(RANK_SHARE):
-        data["betRoster"] = bet_roster(meta, episodes, players)
+        data["betRoster"] = bet_roster(meta, episodes, players, held)
     return ok(data)

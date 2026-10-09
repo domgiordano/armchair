@@ -14,6 +14,7 @@ from __future__ import annotations
 import time
 from datetime import UTC, datetime
 
+from lambdas.common import seals
 from lambdas.common.api import (
     ConflictError,
     ForbiddenError,
@@ -69,7 +70,9 @@ def handler(event, context):
     if calls(given[: len(have)]) != calls(have):
         raise ConflictError("Sealed winner picks are final; you can only fill empty places")
     added = given[len(have) :]
-    allowed = {p["id"] for p in bet_roster(meta, episodes, players)}
+    # As traitors_season lists it: an exit the caller holds sealed stays hidden here too.
+    held = seals.episodes(seals.of(sub, show, number))
+    allowed = {p["id"] for p in bet_roster(meta, episodes, players, held)}
     if any(p["player"] not in allowed for p in added):
         raise ValidationError("Each pick needs a player still in the game", field="picks")
 

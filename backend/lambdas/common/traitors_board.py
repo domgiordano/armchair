@@ -21,7 +21,7 @@ from collections import defaultdict
 
 from lambdas.common import points
 from lambdas.common.board_dynamo import ALL, ATTEMPTS, board_pk, transact
-from lambdas.common.dynamo import query_all, table
+from lambdas.common.dynamo import query_all, query_partitions, table
 from lambdas.common.episodes_dynamo import episode_pk, performances, scores
 from lambdas.common.traitors_gate import pick_owner, result
 
@@ -111,6 +111,31 @@ def settle(show: str, season: int, pk: str, want: dict[str, dict]) -> int:
 def reconcile(show: str, season: int, ep: int) -> int:
     pk = episode_pk(show, season, ep)
     return settle(show, season, pts_pk(show, season, ep), wanted(performances(pk), scores(pk)))
+
+
+def withheld(show: str, season: int, eps: set[int]) -> dict[str, dict[str, int]]:
+    """
+    Per sub, the part of their BOARD sums scored in episodes `eps`: what a reader holding
+    those episodes sealed (common/seals.py) must not see anyone's numbers move by.
+    """
+    found = query_partitions("BOARD_TABLE", [pts_pk(show, season, n) for n in sorted(eps)])
+    out: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    for items in found.values():
+        for item in items:
+            delta = out[item["sk"].partition("#USER#")[2]]
+            delta["pts"] += int(item["pts"])
+            if "hit" in item:
+                delta["events"] += 1
+                delta["banishHits"] += int(bool(item["hit"]))
+    return out
+
+
+def less(rows: dict[str, dict], withheld: dict[str, dict[str, int]]) -> dict[str, dict]:
+    """BOARD rows by sub with `withheld` taken off."""
+    return {
+        s: {**r, **{k: int(r.get(k, 0)) - v for k, v in withheld.get(s, {}).items()}}
+        for s, r in rows.items()
+    }
 
 
 def reconcile_winners(show: str, season: int, winners: dict[str, str], episodes: int) -> int:

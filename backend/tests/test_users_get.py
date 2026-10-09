@@ -17,6 +17,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import VIAS, sealing
 from tests.seasons import close
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
@@ -167,14 +168,15 @@ def test_someone_elses_numbers_cover_only_dances_the_viewer_has_seen(show):
     assert profile(B)["season"]["count"] == 5
 
 
-def test_sealed_dances_leave_the_viewers_numbers(show):
+@pytest.mark.parametrize("via", VIAS)
+def test_sealed_dances_leave_the_viewers_numbers(show, via):
     answer(A, COUPLES[0], value=10)
     answer(A, COUPLES[1], value=8)
-    sealed = profile(sealed=f"5:{COUPLES[0]}#1")
+    sealed = profile(**sealing(via, A, "dwts-35", (5, f"{COUPLES[0]}#1")))
     assert sealed["season"]["count"] == 1 and sealed["season"]["mae"] == 0
     assert sealed["allTime"]["count"] == 1
     assert [d["key"] for d in sealed["dances"]] == [f"{COUPLES[1]}#1"]
-    assert profile()["season"]["count"] == 2
+    assert profile()["season"]["count"] == (1 if via == "server" else 2)
 
 
 def test_unknown_user_is_404(show):

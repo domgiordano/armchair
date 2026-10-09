@@ -13,12 +13,13 @@ Without either it's the caller alone. `scope=friends` adds their accepted friend
 traitors_gate.visible_calls: someone else's call shows only for an event the caller has
 answered or a closed episode, and `points` only once the result is confirmed. Someone
 else's winner bet shows once the caller's has every place, or the season is over
-(traitors_gate.bets_shown). Results the caller hasn't turned over stay face down in the
-app, which holds that state per device.
+(traitors_gate.bets_shown). On an event the caller sealed (common/seals.py) only their
+own call shows, with `sealed` and no points.
 """
 
 from __future__ import annotations
 
+from lambdas.common import seals
 from lambdas.common.api import ForbiddenError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_all, query_many, table
 from lambdas.common.episodes_dynamo import episode_pk, season_pk
@@ -49,9 +50,11 @@ def handler(event, context):
     reads = query_many(
         [("PERFORMANCES_TABLE", pk) for pk in pks] + [("SCORES_TABLE", pk) for pk in pks]
     )
+    sealed = seals.of(sub, show, number)
     by_person: dict[str, list[dict]] = {s: [] for s in people}
     for e, results, picks in zip(episodes, reads[: len(pks)], reads[len(pks) :]):
-        for owner, call in visible_calls(sub, meta, e, results, picks, people):
+        held = seals.keys(sealed, ep_number(e))
+        for owner, call in visible_calls(sub, meta, e, results, picks, people, held):
             by_person[owner].append(call)
 
     bets = {

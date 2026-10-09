@@ -87,12 +87,16 @@ def results_open(
     performances: list[dict],
     scores: list[dict],
     closed: bool = False,
+    sealed: set[str] = frozenset(),
 ) -> bool:
     """
     Whether the caller may see the episode's results, eliminations among them:
     an open season, an episode `closed` for answers (common/window.py), or
-    every rateable performance answered.
+    every rateable performance answered. Never while a dance of it is `sealed`
+    (common/seals.py): who went home would say how it scored.
     """
+    if sealed:
+        return False
     if is_open(meta) or closed:
         return True
     keys = rateable(ep, episode, contestants, performances)
@@ -108,19 +112,23 @@ def eliminated(ep: int, contestants: list[dict]) -> list[str]:
 
 
 def visible_scores(
-    sub: str, scores: list[dict], members: set[str] | None = None, opened: bool = False
+    sub: str,
+    scores: list[dict],
+    members: set[str] | None = None,
+    opened: bool = False,
+    sealed: set[str] = frozenset(),
 ) -> list[dict]:
     """
     Score rows the caller may see: only on performances they have answered,
     unless the season is `opened` (is_open), and only the caller's own plus
-    `members` when a group is given. Every stat is computed over this and
-    nothing wider.
+    `members` when a group is given. Nothing on a dance they `sealed`, their
+    own paddle included. Every stat is computed over this and nothing wider.
     """
     done = answered(sub, scores)
     out = []
     for row in scores:
         key, owner = score_owner(row)
-        if not opened and key not in done:
+        if key in sealed or (not opened and key not in done):
             continue
         if members is not None and owner != sub and owner not in members:
             continue
@@ -130,10 +138,10 @@ def visible_scores(
 
 def sealed_param(params: dict) -> set[tuple[int, str]]:
     """
-    `sealed=6:tyler-cameron#1,6:a+b#1`: dances of the show's current season,
-    the only one anyone answers, that the caller locked in without revealing,
-    from the client's own list (lib/show/sealed.ts). Only ever narrows what
-    they see.
+    `sealed=6:tyler-cameron#1,6:a+b#1`: dances of the season read that the
+    caller locked in without revealing, from a device's list
+    (lib/show/sealed.ts). common/seals.py adds them to the stored ones, so a
+    seal not yet synced still holds. Only ever narrows what they see.
     """
     out = set()
     for part in (params.get("sealed") or "").split(",")[:SEALED_MAX]:
@@ -147,8 +155,8 @@ def sees(ep: int, key: str, mine: set[str] | dict, opened: bool, sealed: set) ->
     """
     visible_scores' rule for one dance, for reads that hold dances rather than
     score rows (common/stats.py, board_dynamo.unseen): answered, or its episode
-    opened. A dance the caller locked in without
-    revealing (`sealed`, as (ep, key), from the client) stays unseen.
+    opened. A dance the caller locked in without revealing (`sealed`, as
+    (ep, key), common/seals.py) stays unseen.
     """
     return (ep, key) not in sealed and (opened or key in mine)
 
@@ -164,12 +172,15 @@ def episode_view(
     members: set[str] | None = None,
     writeups: list[dict] | None = None,
     closed: bool = False,
+    sealed: set[str] = frozenset(),
 ) -> dict:
     """
     The whole episode as the caller may see it. A dance's AI write-up carries
     the judges' reactions, so it opens with the dance: a locked card says only
     that one exists. An episode `closed` for answers shows whole, like an open
-    season, and its unanswered dances stay missed: `mine` None.
+    season, and its unanswered dances stay missed: `mine` None. A dance the
+    caller `sealed` stays locked, closed or not, with `sealed` and their own
+    answer, and keeps the episode's results back (results_open).
     """
     perfs = {perf_key(p["sk"]): p for p in performances}
     notes = {perf_key(w["sk"]): public(w) for w in writeups or [] if w["sk"].startswith("PERF#")}
@@ -180,17 +191,19 @@ def episode_view(
         key, owner = score_owner(row)
         if owner == sub:
             mine[key] = row
-    complete = results_open(sub, ep, meta, episode, contestants, performances, scores, closed)
+    complete = results_open(
+        sub, ep, meta, episode, contestants, performances, scores, closed, sealed
+    )
     panel = episode.get("panel") or meta["defaultPanel"]
 
     values = defaultdict(list)
-    for row in visible_scores(sub, scores, members, opened):
+    for row in visible_scores(sub, scores, members, opened, sealed):
         if "value" in row:
             key, owner = score_owner(row)
             values[key].append((owner, int(row["value"])))
 
     # An unrateable team dance has no answer of its own, so it opens with the episode.
-    cards = [(k, opened or k in mine) for k in keys]
+    cards = [(k, k not in sealed and (opened or k in mine)) for k in keys]
     cards += [(k, complete) for k, p in perfs.items() if p.get("rateable") is False]
 
     view = {
@@ -212,6 +225,11 @@ def episode_view(
             else {
                 **_locked(key, perfs.get(key, {})),
                 "writeup": {"locked": True} if notes.get(key) else None,
+                **(
+                    {"sealed": True, "mine": _answer(mine[key])}
+                    if key in sealed and key in mine
+                    else {}
+                ),
             }
             for key, revealed in _alphabetical(cards, contestants, perfs)
         ],

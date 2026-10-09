@@ -17,6 +17,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import seal
 from tests.seasons import as_current, close
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
@@ -337,3 +338,30 @@ def test_unknown_show_is_400(show):
     status, body = get(season="all", show="traitors")
     assert status == 400
     assert body["error"]["detail"] == {"field": "show"}
+
+
+def test_a_sealed_dance_keeps_your_paddle_and_loses_the_judges(show):
+    answer(A, X, ep=4, value=10)
+    answer(A, X, value=7)
+    seal(A, f"dwts-35|5|{X}#1")
+    x = couple(performers(), X)
+    assert (x["dances"], x["you"], x["judges"], x["judged"]) == (2, 8.5, 8, 1)
+    assert [(w["ep"], w["paddle"], w["judges"]) for w in x["weeks"]] == [(4, 10, 8), (5, 7, None)]
+
+
+def test_someone_elses_page_leaves_out_a_dance_the_viewer_sealed(show):
+    signed_in(A, B)
+    answer(B, X, value=7)
+    answer(A, X, value=8)
+    assert [c["id"] for c in of(B)[1]["data"]["couples"]] == [X]
+    seal(A, f"dwts-35|5|{X}#1")
+    assert of(B)[1]["data"]["couples"] == []
+
+
+def test_a_sealed_dance_holds_that_nights_elimination(show):
+    put_perf(show, S35, 4, T)
+    answer(A, T, ep=4, value=8)
+    finish(A, 4)
+    assert couple(performers(), T)["eliminated"] == {"ep": 4, "week": 3}
+    seal(A, f"dwts-35|4|{T}#1")
+    assert couple(performers(), T)["eliminated"] is None

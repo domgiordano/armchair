@@ -18,6 +18,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, FAVORITES_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import seal
 from tests.social import call, post
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
@@ -142,6 +143,17 @@ def test_through_holds_the_board_for_sealed_dances(show, monkeypatch):
     assert board(A, through="9")["asOf"] == 4
 
 
+def test_a_seal_on_the_server_holds_the_board_on_every_device(show, monkeypatch):
+    at(monkeypatch, BEFORE_EP5)
+    for ep in range(1, 5):
+        finish(A, ep)
+    cron.handler({}, None)
+    assert board(A)["asOf"] == 4
+    seal(A, "dwts-35|3|jenna-dewan#1")
+    assert board(A)["asOf"] == 2
+    assert board(A, through="1")["asOf"] == 1
+
+
 def test_an_unfinished_earlier_episode_holds_the_board_there(show, monkeypatch):
     at(monkeypatch, BEFORE_EP5)
     for ep in (1, 2, 4):
@@ -250,3 +262,11 @@ def test_traitors_banished_player_stays_on_for_a_viewer_who_hasnt_picked_it(trai
     assert behind["asOf"] == 1 and behind["behind"] is True
     assert behind["entries"] == before["entries"]
     assert all(e.get("faction") is None for e in behind["entries"])
+
+
+def test_a_sealed_traitors_call_holds_the_board(traitors, monkeypatch):
+    at(monkeypatch, datetime(2026, 10, 3, tzinfo=UTC))
+    cron.handler({}, None)
+    assert traitors_board(A)["asOf"] == 1
+    seal(A, "tus-5|1|MURDER")
+    assert traitors_board(A)["asOf"] == 0

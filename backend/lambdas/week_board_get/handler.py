@@ -15,15 +15,19 @@ couples.MIN_RATERS of them. `scope=global` is everyone; `scope=friends` narrows
 everyone to the caller's friends; `scope=group` narrows both friends and
 everyone to the group's members and is 403 unless the caller is one. Identity
 is the Cognito sub.
+
+A dance the caller sealed (common/seals.py) keeps their paddle but drops out of
+the judges' and everyone's numbers, and holds back `eliminated`; `sealed` lists
+the couples it touches.
 """
 
 from __future__ import annotations
 
 from collections import defaultdict
 
-from lambdas.common import window
+from lambdas.common import seals, window
 from lambdas.common.api import ValidationError, api_handler, caller_sub, ok, query, require
-from lambdas.common.couples import crowd, dances, friends, group_pool, mean, people
+from lambdas.common.couples import blind, crowd, dances, friends, group_pool, mean, people
 from lambdas.common.episodes_dynamo import (
     episode_pk,
     episode_rows,
@@ -69,9 +73,11 @@ def handler(event, context):
     keys = rateable(ep, episode, contestants, perfs)
     done = answered(sub, score_rows)
     opened = is_open(meta) or closed
+    held = seals.keys(seals.of(sub, show, season, params), ep)
 
     by_couple = defaultdict(list)
-    for d in dances(sub, episode, panel, perfs, score_rows, pool, opened):
+    paddled = dances(sub, episode, panel, perfs, score_rows, pool, opened)
+    for d in blind(paddled, {(ep, k) for k in held}):
         by_couple[d["couple"]].append(d)
 
     roster = {cid(c): c for c in contestants}
@@ -128,8 +134,9 @@ def handler(event, context):
             "locked": locked,
             "disagreements": [r["id"] for r in split[:DISAGREEMENTS]],
             "eliminated": eliminated(ep, contestants)
-            if results_open(sub, ep, meta, episode, contestants, perfs, score_rows, closed)
+            if results_open(sub, ep, meta, episode, contestants, perfs, score_rows, closed, held)
             else [],
+            "sealed": sorted({d["couple"] for d in paddled if d["key"] in held}),
         }
     )
 

@@ -5,12 +5,14 @@ GET /traitors/ranks?season=tus-5 | season=all&show=tus [&scope=global|friends|gr
 Reads only the per-user sums common/traitors_board.py keeps, never a pick. Ranked by
 points, then correct banishments, then events scored; a full tie shares a rank.
 `scope=friends` is the caller and their accepted friends; `scope=group` is 403 unless
-the caller is a member. The caller's own row is always in `me`.
+the caller is a member. The caller's own row is always in `me`. Points from an episode
+the caller holds a sealed call in (common/seals.py) come off everyone's row, so no one
+moves on a night they haven't turned over.
 """
 
 from __future__ import annotations
 
-from lambdas.common import board_dynamo
+from lambdas.common import board_dynamo, seals, traitors_board
 from lambdas.common.api import (
     ForbiddenError,
     ValidationError,
@@ -81,6 +83,13 @@ def handler(event, context):
     else:
         raise ValidationError("scope must be global, friends or group", field="scope")
 
+    stored = seals.stored(sub)
+    numbers = [season] if season != board_dynamo.ALL else _sealed_seasons(stored, show)
+    for n in numbers:
+        held = seals.episodes(seals.in_season(stored, show, n))
+        if held:
+            rows = traitors_board.less(rows, traitors_board.withheld(show, n, held))
+
     board = {s: standing(r) for s, r in rows.items() if r.get("events") or r.get("pts")}
     board.setdefault(sub, standing(None))
     places = ranks(board)
@@ -95,4 +104,10 @@ def handler(event, context):
             "me": {"rank": places[sub], **people[sub], **board[sub]},
         },
         meta={"ranked": len(board)},
+    )
+
+
+def _sealed_seasons(stored: set[str], show: str) -> list[int]:
+    return sorted(
+        {int(i.split("|")[0].rsplit("-", 1)[1]) for i in stored if i.startswith(f"{show}-")}
     )

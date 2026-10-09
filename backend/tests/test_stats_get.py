@@ -15,6 +15,7 @@ from scripts.seed_season import SEASONS, items, write
 from tests.conftest import CATALOG_TABLE, PERFORMANCES_TABLE
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import seal
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
 C = "3f1c2b9a-0000-4000-8000-000000000003"
@@ -122,6 +123,17 @@ def test_others_count_only_performances_the_caller_answered(show):
     assert b["others"] == [{"sub": A, "count": 1, "mae": 0}]
 
 
+def test_a_sealed_dance_counts_for_no_one(show):
+    answer(B, X, value=10)
+    answer(A, X, value=8)
+    answer(A, Y, value=6)
+    seal(A, f"dwts-35|5|{X}#1")
+    data = stats()
+    assert data["mine"]["count"] == 1
+    assert [d["key"] for d in data["dances"]] == [f"{Y}#1"]
+    assert data["others"] == []
+
+
 def test_a_forfeit_opens_others_but_never_counts_for_the_caller(show):
     answer(B, Y, value=1)
     answer(A, Y, forfeit=True)
@@ -157,7 +169,9 @@ def test_eliminated_once_the_caller_finishes_that_episode(show):
             "sk": f"PERF#{T}#1",
             "contestants": [T],
             "rateable": True,
-            "judges": {j: {"value": Decimal(7), "state": "confirmed"} for j in SEASON["defaultPanel"]},
+            "judges": {
+                j: {"value": Decimal(7), "state": "confirmed"} for j in SEASON["defaultPanel"]
+            },
         }
     )
     answer(A, T, ep=4, value=8)

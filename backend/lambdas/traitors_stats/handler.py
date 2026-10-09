@@ -2,16 +2,18 @@
 GET /traitors/stats?season=tus-5 - the caller's own Traitors numbers for one season.
 
 Built from the caller's PTS items (common/traitors_board.py), which exist only for picks
-they made on confirmed results, so nothing here reaches past the gate.
+they made on confirmed results, so nothing here reaches past the gate. An episode with a
+call the caller sealed (common/seals.py) counts for nothing until they reveal it.
 """
 
 from __future__ import annotations
 
+from lambdas.common import seals
 from lambdas.common.api import api_handler, caller_sub, ok, query
 from lambdas.common.board_dynamo import board_pk
 from lambdas.common.dynamo import resource, table
 from lambdas.common.episodes_dynamo import season_rows
-from lambdas.common.traitors_board import pts_pk
+from lambdas.common.traitors_board import less, pts_pk, withheld
 from lambdas.common.traitors_dynamo import season_parts, traitors_ref
 from lambdas.common.traitors_gate import EVENTS, ep_number
 
@@ -34,9 +36,11 @@ def handler(event, context):
     show, number = traitors_ref(query(event))
     _, episodes, _ = season_parts(season_rows(show, number), show, number)
     eps = [ep_number(e) for e in episodes]
+    held = seals.episodes(seals.of(sub, show, number))
     keys = [
         {"pk": pts_pk(show, number, ep), "sk": f"{kind}#USER#{sub}"}
         for ep in eps
+        if ep not in held
         for kind in EVENTS
     ]
     keys.append({"pk": pts_pk(show, number, "WIN"), "sk": f"WIN#USER#{sub}"})
@@ -62,6 +66,8 @@ def handler(event, context):
         .get("Item")
         or {}
     )
+    if held:
+        total = less({sub: total}, withheld(show, number, held))[sub]
     return ok(
         {
             "season": f"{show}-{number}",

@@ -2,10 +2,10 @@
 GET /favorites/get?season=dwts-35[&through=5] - who is favored to win, as of the last
 episode the caller has revealed: every DWTS dance answered or the episode closed
 (gate.results_open), every Traitors event picked or the episode closed
-(traitors_gate.seen). Episodes count in order, so one unfinished episode holds the
-board at the one before it, however many have aired since. `through` lowers that
-further, for dances the caller has answered but sealed on their device; it never
-raises it. Which snapshot, and why: common/favorites.py.
+(traitors_gate.seen), and nothing in it sealed (common/seals.py). Episodes count in
+order, so one unfinished or sealed episode holds the board at the one before it,
+however many have aired since. `through` lowers that further, for a device's seal not
+yet synced; it never raises it. Which snapshot, and why: common/favorites.py.
 
     {season, show, revealed, asOf, latest, behind, computedAt, model,
      market: {source, url, capturedAt} | null,
@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from lambdas.common import window
+from lambdas.common import seals, window
 from lambdas.common.api import NotFoundError, ValidationError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, season_ref, season_rows
@@ -116,6 +116,9 @@ def handler(event, context):
     newest = latest(start, now().strftime("%Y-%m-%dT%H:%M:%SZ"))
     reveal = _dwts_revealed if show == "dwts" else _traitors_revealed
     revealed = reveal(sub, show, number, meta, rows, newest)
+    held = seals.episodes(seals.of(sub, show, number))
+    if held:
+        revealed = min(revealed, min(held) - 1)
     if through is not None:
         revealed = min(revealed, int(through))
 

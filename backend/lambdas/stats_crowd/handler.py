@@ -11,9 +11,9 @@ everyone (`global`) to compare against.
 Built by common/stats.py over the dances the caller may see (gate.sees), for
 them and everyone else alike. Crowd means need MIN_RATERS people besides the
 caller. `scope=group` is 403 unless the caller is a member; `friends` is the
-caller and their accepted friends. `ep` narrows everything to one episode;
-`sealed` lists the caller's locked-in, unrevealed dances, which no number
-includes. Identity is the Cognito sub.
+caller and their accepted friends. `ep` narrows everything to one episode.
+The caller's locked-in, unrevealed dances (common/seals.py, and any `sealed`
+names) leave every number. Identity is the Cognito sub.
 """
 
 from __future__ import annotations

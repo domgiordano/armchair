@@ -23,6 +23,7 @@ from tests.conftest import (
 )
 from tests.events import SUB as A
 from tests.events import authorized_event
+from tests.sealing import seal
 from tests.seasons import close
 
 B = "3f1c2b9a-0000-4000-8000-000000000002"
@@ -505,3 +506,42 @@ def test_an_empty_writeup_is_no_writeup(show):
     )
     score(A, JUDGED, value=6)
     assert cards(state())[JUDGED]["writeup"] is None
+
+
+def test_a_sealed_dance_stays_locked_with_the_callers_answer(show):
+    score(B, JUDGED, value=8)
+    score(A, JUDGED, value=6)
+    seal(A, f"dwts-35|5|{JUDGED}")
+    view = state()
+    card = cards(view)[JUDGED]
+    assert card == {**cards(state(sub=C))[JUDGED], "sealed": True, "mine": {"value": 6}}
+    assert view["answered"] == 1
+    raw = json.dumps(view)
+    assert B not in raw and "7.5" not in raw
+    # Another device, the same user: no list sent, the same face-down card.
+    assert cards(state())[JUDGED]["sealed"] is True
+
+
+def test_a_sealed_dance_holds_the_results_even_once_closed(show):
+    show.Table(CATALOG_TABLE).update_item(
+        Key={"pk": "SEASON#dwts#35", "sk": "EP#05"},
+        UpdateExpression="SET results = :r",
+        ExpressionAttributeValues={":r": {"eliminated": ["tyler-cameron"]}},
+    )
+    for key in EP5_KEYS:
+        score(A, key, value=7)
+    assert state()["complete"] is True
+    seal(A, f"dwts-35|5|{JUDGED}")
+    view = state()
+    assert view["complete"] is False and "eliminated" not in view
+    close(show, SEASON)
+    view = state()
+    assert view["complete"] is False and "results" not in view
+    assert cards(view)[JUDGED]["locked"] is True
+    assert cards(view)["amber-glenn#1"]["locked"] is False
+
+
+def test_another_users_seal_changes_nothing(show):
+    score(A, JUDGED, value=6)
+    seal(B, f"dwts-35|5|{JUDGED}")
+    assert cards(state())[JUDGED]["locked"] is False

@@ -224,7 +224,14 @@ def closing(t: dict, ctx: dict, unsubscribe: list) -> Email:
         heading=heading,
         blocks=[
             para(t, first),
-            stats(t, [("Scored", str(ctx["answered"])), ("Left", str(left)), ("Days to lock", str(days))]),
+            stats(
+                t,
+                [
+                    ("Scored", str(ctx["answered"])),
+                    ("Left", str(left)),
+                    ("Days to lock", str(days)),
+                ],
+            ),
         ],
         lines=[first],
         cta=(f"Finish {ctx['label']}", ctx["url"]),
@@ -235,7 +242,8 @@ def closing(t: dict, ctx: dict, unsubscribe: list) -> Email:
 
 def digest(t: dict, ctx: dict, unsubscribe: list) -> Email:
     """
-    ctx: label, revealed (bool), url, and only what the reader may see:
+    ctx: label, revealed (bool), url, sealed (the label of the first period the reader
+    finished but keeps face down, else None), and only what the reader may see:
       you: {cells: [(label, value)], line} or None
       groups: [{name, rows, note?}]   global: {rows, note?} or None   top: [rows] or None
       through: the label the standings run through when it isn't `label`, else None
@@ -246,6 +254,17 @@ def digest(t: dict, ctx: dict, unsubscribe: list) -> Email:
     if ctx["revealed"]:
         preheader = "Your numbers, your groups and the top of the table."
         heading = f"{label}: your results"
+    elif ctx.get("sealed"):
+        held = ctx["sealed"]
+        preheader = f"Reveal {held} in the app to see how you did."
+        heading = f"{label} results are in"
+        what = "from it" if held == label else f"from {held} on"
+        first = (
+            f"You're keeping {held} face down, so nothing {what} is in this email. "
+            f"Reveal {held} in the app to see your results."
+        )
+        blocks.append(para(t, first))
+        lines.append(first)
     else:
         preheader = f"Finish {label} in the app to see how you did."
         heading = f"{label} results are in"
@@ -256,7 +275,8 @@ def digest(t: dict, ctx: dict, unsubscribe: list) -> Email:
         blocks.append(para(t, first))
         lines.append(first)
     if ctx.get("through"):
-        note = f"Standings below run through {ctx['through']}, the last one you've finished."
+        last = "revealed" if ctx.get("sealed") else "finished"
+        note = f"Standings below run through {ctx['through']}, the last one you've {last}."
         blocks.append(para(t, note, muted=True))
         lines.append(note)
 
@@ -282,7 +302,14 @@ def digest(t: dict, ctx: dict, unsubscribe: list) -> Email:
         heading=heading,
         blocks=blocks,
         lines=lines,
-        cta=(f"See {label}" if ctx["revealed"] else f"Finish {label}", ctx["url"]),
+        cta=(
+            f"See {label}"
+            if ctx["revealed"]
+            else f"Reveal {ctx['sealed']}"
+            if ctx.get("sealed")
+            else f"Finish {label}",
+            ctx["url"],
+        ),
         reason=f"You're getting this because you play {t['name']} on Armchair Judge.",
         unsubscribe=unsubscribe,
     )

@@ -4,7 +4,7 @@ Stats over a season's digests (common/digest.py), as one viewer may see them.
 The viewer sees a dance's judges, and everyone's paddle on it, once they have
 answered it or once its episode is `opened`: a past season or a closed scoring
 window, as gate.visible_scores rules. A dance they locked in without revealing
-(`sealed`, sent by the client from lib/show/sealed.ts) counts as unseen too.
+(`sealed`, common/seals.py) counts as unseen too.
 Every number here is built from `calls()`, which keeps only those dances, so a
 dance the viewer can't see never reaches them through anyone's numbers.
 
@@ -19,11 +19,11 @@ from collections import defaultdict
 from collections.abc import Iterable
 from statistics import pstdev
 
-from lambdas.common import digest, window
+from lambdas.common import digest, seals, window
 from lambdas.common.api import NotFoundError
 from lambdas.common.couples import MIN_RATERS
 from lambdas.common.episodes_dynamo import ref, season_ref, season_rows
-from lambdas.common.gate import eliminated, places, sealed_param, sees
+from lambdas.common.gate import eliminated, places, sees
 
 # The leaderboard's floor (leaderboard_get): fewer dances than this and a mean is luck.
 MIN_DANCES = 5
@@ -440,7 +440,7 @@ def load(sub: str, params: dict) -> dict:
     spans = window.spans(meta, rows)
     at = window.now()
     opened = {d["ep"] for d in digests if window.closed(meta, spans[d["ep"]], at)}
-    sealed = sealed_param(params)
+    sealed = seals.of(sub, show, season, params)
     per_ep = defaultdict(int)
     for d, _ in seen(digests, sub, opened, sealed):
         per_ep[d["ep"]] += 1

@@ -17,6 +17,7 @@ from lambdas.traitors_player.handler import handler as player_handler
 from lambdas.traitors_season.handler import handler as season_handler
 from tests.conftest import BOARD_TABLE, CATALOG_TABLE, PERFORMANCES_TABLE, SCORES_TABLE
 from tests.events import SUB
+from tests.sealing import seal
 from tests.test_traitors_history import backfill, get, index, world
 
 WIKI = Path(__file__).parents[2] / "fixtures" / "wiki"
@@ -747,3 +748,35 @@ def test_poller_writes_a_fresh_wikipedia_recap(db, poll):
 def test_poller_asks_fandom_on_the_hourly_sweep_only(db, poll):
     assert poll("2026-10-09T00:10:30Z", NB_PAGE) == []
     assert poll("2026-10-09T03:00:20Z", NB_PAGE) == [[5]]
+
+
+# --- Seals ---------------------------------------------------------------------------------
+
+
+def test_a_sealed_call_keeps_the_recap_and_the_story_back(db):
+    backfill()
+    index(db)
+    set_recap(db, 5, 2, "Madeline is banished.")
+    answer(db, 2)
+    answer(db, 3)
+    assert episode(2)["recap"]["text"] == "Madeline is banished."
+    seal(SUB, "tus-5|2|RT")
+    assert episode(2)["recap"] is None
+    rt = next(c for c in episode(2)["events"] if c["type"] == "RT")
+    assert (rt["locked"], rt["sealed"]) == (True, True) and "result" not in rt
+    _, current = get(season_handler, "/traitors/season", season="tus-5")
+    assert current["data"]["episodes"][1]["recap"] is None
+    assert [s["ep"] for s in story("victor-vollbrechthausen")] == [1]
+
+
+def test_a_sealed_banishment_keeps_a_traitor_hidden(db):
+    backfill()
+    index(db)
+    set_player(db, 5, "joe-vanella", faction="Traitor", exit={"ep": 4, "how": "banished"})
+    for ep in (2, 3, 4):
+        answer(db, ep)
+    assert profile("joe-vanella")["seasons"][0]["traitorFrom"] == 1
+    seal(SUB, "tus-5|4|RT")
+    joe = profile("joe-vanella")
+    assert joe["seasons"][0]["traitorFrom"] is None
+    assert all(s["murdered"] is None for s in joe["story"])
