@@ -161,9 +161,9 @@ function Leaderboard({ season, data, through }: { season: Season; data: BoardDat
 function BehindNote({ next, season }: { next: NonNullable<BoardData["next"]>; season: string }) {
   return (
     <p role="status" className="rounded-xl border border-gold/20 bg-gold/5 px-3 py-2 text-sm text-silver">
-      {next.sealed ? `Reveal your locked-in week ${next.week} dances` : `Finish week ${next.week}`} to move the board on.{" "}
+      {next.sealed ? `Reveal week ${next.week}` : `Finish week ${next.week}`} to move the board on.{" "}
       <Link href={withSeason(`/episode/?ep=${next.ep}`, season)} className={TEXT_LINK}>
-        {next.sealed ? "Reveal them" : "Score it"}
+        {next.sealed ? "Reveal it" : "Score it"}
       </Link>
     </p>
   );
