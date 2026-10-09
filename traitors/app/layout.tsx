@@ -8,6 +8,7 @@ import "./globals.css";
 import { SsoHandoff } from "@armchair/app-core/auth/sso-handoff";
 
 import { Activity } from "@/components/activity";
+import { SITE_NAME } from "@/lib/share-meta";
 
 const garamond = EB_Garamond({ subsets: ["latin"], variable: "--font-garamond", display: "swap" });
 const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel", display: "swap" });
@@ -26,6 +27,15 @@ export const metadata: Metadata = {
     template: "%s · Armchair Judge",
   },
   description: "Call the banishments and murders on The Traitors before the round table does.",
+  applicationName: "Armchair Judge · The Traitors",
+  // Each route's card is its own opengraph-image.jpg, rendered by scripts/og/render.mjs.
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: "The Traitors · Armchair Judge",
+    description: "Name the murder, the banishment and the recruit before the round table does.",
+  },
+  twitter: { card: "summary_large_image" },
   // A friends-only app: keep it out of search results.
   robots: { index: false, follow: false },
 };

@@ -78,10 +78,11 @@ def test_a_traitors_link_joins_on_the_traitors_site(aws, monkeypatch):
     monkeypatch.setenv("CORS_ALLOW_ORIGIN", f"{SITE},{traitors}")
     code = create(name="Castle Crew")[1]["data"]["inviteCode"]
     page = preview(code, site=traitors)["body"]
-    assert meta(page, "og:title") == "Join Castle Crew"
-    assert meta(page, "og:description") == "Call The Traitors with your friends on Armchair Judge"
-    assert meta(page, "og:site_name") == "Armchair Judge"
-    assert meta(page, "og:image") == "https://armchairjudge.com/opengraph-image.jpg"
+    assert meta(page, "og:title") == "Join Castle Crew · The Traitors"
+    assert meta(page, "og:description").startswith("Call The Traitors with the group")
+    assert meta(page, "og:site_name") == "Armchair Judge · The Traitors"
+    assert meta(page, "og:image") == f"{traitors}/join/opengraph-image.jpg"
+    assert meta(page, "twitter:image") == f"{traitors}/join/opengraph-image.jpg"
     assert f'location.replace("{traitors}/join/?code={code}")' in page
     # A site that isn't ours falls back to DWTS rather than redirecting anywhere asked.
     assert f'location.replace("{SITE}/join/?code={code}")' in preview(code, site="https://evil.example")["body"]
