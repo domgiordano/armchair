@@ -21,6 +21,8 @@ from tests.sealing import VIAS, sealing
 B = "3f1c2b9a-0000-4000-8000-000000000002"
 C = "3f1c2b9a-0000-4000-8000-000000000003"
 SEASON = json.loads((SEASONS / "dwts-35.json").read_text())
+# The scores below are three-judge, so week 5 sits without its guest.
+SEASON["episodes"][5]["panel"] = None
 PANEL = SEASON["defaultPanel"]
 CARRIE, DEREK, BRUNO = PANEL
 X, Y = "tyler-cameron", "amber-glenn"

@@ -58,7 +58,9 @@ def test_returns_schedule_roster_and_credits(aws, monkeypatch):
         "answered": 0,
         "rateable": 12,
     }
-    assert {j["id"] for j in data["judges"]} == set(SEASON["defaultPanel"])
+    assert {j["id"] for j in data["judges"]} == {j["id"] for j in SEASON["judges"]}
+    buck = next(j for j in data["judges"] if j["id"] == "joe-buck")
+    assert (buck["guest"], buck["weeks"]) == (True, [5])
     tyler = next(c for c in data["contestants"] if c["id"] == "tyler-cameron")
     assert tyler["keyword"] == "Tyler"
     assert tyler["members"][1] == {

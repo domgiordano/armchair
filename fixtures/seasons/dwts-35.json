@@ -52,6 +52,21 @@
         "sourceUrl": null,
         "source": "supplied"
       }
+    },
+    {
+      "id": "joe-buck",
+      "name": "Joe Buck",
+      "aliases": [
+        "Joe Buck",
+        "Joseph Buck"
+      ],
+      "headshot": {
+        "file": "Joe_Buck.jpg",
+        "image": "joe-buck-06849b5384.webp",
+        "author": "Monowi",
+        "license": "CC BY-SA 3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joe_Buck.jpg"
+      }
     }
   ],
   "episodes": [
@@ -152,7 +167,12 @@
       "start": "20:00",
       "end": "22:00",
       "theme": "Super Bowl",
-      "panel": null,
+      "panel": [
+        "carrie-ann-inaba",
+        "derek-hough",
+        "joe-buck",
+        "bruno-tonioli"
+      ],
       "dancesPerCouple": null
     },
     {

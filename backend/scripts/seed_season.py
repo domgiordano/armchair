@@ -201,6 +201,21 @@ def write(table, rows: list[dict]) -> None:
             ExpressionAttributeNames={f"#a{i}": k for i, k in enumerate(attrs)},
             ExpressionAttributeValues={f":a{i}": v for i, v in enumerate(attrs.values())},
         )
+        # if_not_exists keeps a stored null too, so a fixture value filled in after the
+        # first seed (a guest judge's panel) replaces the null here, and nothing else.
+        for k, v in attrs.items():
+            if k not in LATER_OWNED or v is None:
+                continue
+            try:
+                table.update_item(
+                    Key={"pk": row["pk"], "sk": row["sk"]},
+                    UpdateExpression="SET #k = :v",
+                    ConditionExpression="attribute_type(#k, :null)",
+                    ExpressionAttributeNames={"#k": k},
+                    ExpressionAttributeValues={":v": v, ":null": "NULL"},
+                )
+            except table.meta.client.exceptions.ConditionalCheckFailedException:
+                pass
 
 
 def publish_all(season: dict) -> int:
