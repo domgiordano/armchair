@@ -47,7 +47,7 @@ def test_one_partition_with_every_item_plus_the_season_index():
     rows = [r for r in rows if r["pk"] != "SEASONS#dwts"]
     sks = [r["sk"] for r in rows]
     assert {r["pk"] for r in rows} == {PK}
-    assert len(sks) == len(set(sks)) == 1 + 12 + 3 + 16
+    assert len(sks) == len(set(sks)) == 1 + 12 + 4 + 16
     assert [s for s in sks if s.startswith("EP#")] == [f"EP#{n:02d}" for n in range(1, 13)]
 
 
@@ -63,7 +63,8 @@ def test_catalog_aliases_resolve_every_row_the_parser_has_seen():
     assert aliases == golden["aliases"]["s35"]
 
     wikitext = (FIXTURES / "wiki" / "s35-1377681547.wikitext").read_text()
-    judges = [a for j in SEASON["judges"] for a in j["aliases"]]
+    regulars = [j for j in SEASON["judges"] if j["id"] in SEASON["defaultPanel"]]
+    judges = [j["aliases"][0] for j in regulars]
     for week in (1, 2, 3, 4):
         parsed = parse_week(wikitext, week, aliases)
         assert parsed["rejected"] == []
@@ -118,3 +119,14 @@ def test_unknowns_are_stored_as_null(table):
     write(table, items(SEASON))
     ep = table.get_item(Key={"pk": PK, "sk": "EP#12"})["Item"]
     assert ep["panel"] is None and ep["dancesPerCouple"] is None
+
+
+def test_reseed_fills_a_panel_first_seeded_as_null(table):
+    rows = items(SEASON)
+    ep = next(r for r in rows if r["sk"] == "EP#06")
+    write(table, [{**ep, "panel": None}])
+
+    write(table, rows)
+
+    stored = table.get_item(Key={"pk": PK, "sk": "EP#06"})["Item"]
+    assert stored["panel"] == ["carrie-ann-inaba", "derek-hough", "joe-buck", "bruno-tonioli"]

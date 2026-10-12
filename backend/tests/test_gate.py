@@ -309,7 +309,7 @@ def test_a_placeholder_lineup_keeps_the_alphabet_but_gives_dance_and_song(show):
 
 
 def test_future_episode_uses_the_default_panel_and_one_dance(show):
-    view = state(ep="06")
+    view = state(ep="07")
     assert view["panel"] == SEASON["defaultPanel"]
     assert view["rateable"] == 12
 

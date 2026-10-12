@@ -89,7 +89,7 @@ def test_a_new_user_sees_the_schedule_and_nothing_scored(show):
     d = data()
     # Episodes 1-4 have closed, so their eliminations show though nothing was answered.
     assert d["progress"] == {"aired": 5, "total": 12, "couples": 16, "couplesLeft": 12}
-    assert [j["id"] for j in d["judges"]] == sorted(SEASON["defaultPanel"])
+    assert [j["id"] for j in d["judges"]] == sorted(j["id"] for j in SEASON["judges"])
     assert d["judges"][0]["name"] == "Bruno Tonioli"
     assert d["me"] == {"scored": 0, "count": 0, "mae": None, "closestJudge": None, "streak": 0}
     assert d["next"] == {
