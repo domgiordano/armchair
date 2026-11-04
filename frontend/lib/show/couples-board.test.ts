@@ -113,7 +113,7 @@ describe("highlights", () => {
 });
 
 const episode = (ep: number, week: number, complete: boolean | undefined, aired = true): OverviewEpisode =>
-  ({ ep, week, theme: `Theme ${week}`, airDate: null, startsAt: null, endsAt: null, aired, complete }) as OverviewEpisode;
+  ({ ep, week, theme: `Theme ${week}`, airDate: null, startsAt: null, endsAt: null, aired, complete, done: complete }) as OverviewEpisode;
 
 describe("revealedThrough", () => {
   const none = () => false;
@@ -147,7 +147,7 @@ const card = (key: string, extra: Partial<Card> = {}): Card =>
     ...extra,
   }) as Card;
 const state = (ep: number, week: number, cards: Card[], eliminated?: string[]): EpisodeState =>
-  ({ season: "dwts-35", ep, week, airDate: null, theme: null, panel: [], open: false, rateable: cards.length, answered: cards.length, complete: true, performances: cards, eliminated }) as EpisodeState;
+  ({ season: "dwts-35", ep, week, airDate: null, theme: null, panel: [], open: false, rateable: cards.length, answered: cards.length, complete: true, done: true, performances: cards, eliminated }) as EpisodeState;
 
 describe("dancesOf", () => {
   it("keeps a single couple's dance with a confirmed panel, and leaves out locked, team and unconfirmed ones", () => {
@@ -202,5 +202,12 @@ describe("loadBoard", () => {
     const data = await loadBoard(SEASON);
     expect(vi.mocked(getEpisodeState).mock.calls.map((c) => c[1])).toEqual([1]);
     expect(data.next).toEqual({ ep: 2, week: 2, sealed: true });
+  });
+
+  it("asks for a reveal, not a finish, when a finished week is held server-side", async () => {
+    const held = { ...episode(2, 2, false), done: true };
+    vi.mocked(getOverview).mockResolvedValue(overview([episode(1, 1, true), held]));
+    vi.mocked(getEpisodeState).mockResolvedValue(state(1, 1, [card("ava#1")]));
+    expect((await loadBoard(SEASON)).next).toEqual({ ep: 2, week: 2, sealed: true });
   });
 });

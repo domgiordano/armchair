@@ -33,12 +33,12 @@ const overview = (episodes: OverviewEpisode[], scored = 0): Overview => ({
 const at = (iso: string) => Date.parse(iso);
 
 describe("hero", () => {
-  const e1 = ep(1, "2026-09-16T00:00:00Z", { aired: true, complete: true });
+  const e1 = ep(1, "2026-09-16T00:00:00Z", { aired: true, complete: true, done: true });
   const e2 = ep(2, "2026-09-23T00:00:00Z", { aired: true, complete: false });
   const e3 = ep(3, "2026-09-30T00:00:00Z");
 
   it("pushes the episode on air, through the 30 minutes after it ends", () => {
-    const o = overview([e1, { ...e2, complete: true }, e3]);
+    const o = overview([e1, { ...e2, complete: true, done: true }, e3]);
     expect(hero(o, at("2026-09-30T01:00:00Z"))).toMatchObject({ kind: "live", episode: { ep: 3 } });
     expect(hero(o, at("2026-09-30T02:29:00Z")).kind).toBe("live");
     expect(hero(o, at("2026-09-30T02:31:00Z")).kind).toBe("catchUp");
@@ -49,13 +49,18 @@ describe("hero", () => {
     expect(h).toEqual({ kind: "catchUp", episode: e2, waiting: 2, fresh: false });
   });
 
+  it("doesn't send a caller back to an episode they finished but hold face down", () => {
+    const held = { ...e2, complete: false, done: true };
+    expect(hero(overview([e1, held, e3]), at("2026-09-25T00:00:00Z")).kind).toBe("upNext");
+  });
+
   it("marks a caller who has never scored as fresh", () => {
     expect(hero(overview([e2, e3]), at("2026-09-25T00:00:00Z"))).toMatchObject({ kind: "catchUp", fresh: true });
   });
 
   it("takes a past season's untimed episodes as aired and never live", () => {
     const past = (n: number, complete: boolean) =>
-      ep(n, "2026-09-16T00:00:00Z", { airDate: null, startsAt: null, endsAt: null, aired: true, complete });
+      ep(n, "2026-09-16T00:00:00Z", { airDate: null, startsAt: null, endsAt: null, aired: true, complete, done: complete });
     const o = overview([past(1, true), past(2, false)]);
     expect(hero(o, at("2026-09-16T00:30:00Z"))).toMatchObject({ kind: "catchUp", episode: { ep: 2 } });
     expect(hero(overview([past(1, true)]), at("2026-09-16T00:30:00Z")).kind).toBe("wrap");
