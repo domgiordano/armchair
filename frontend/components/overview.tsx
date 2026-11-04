@@ -98,7 +98,7 @@ function OverviewView({ o, season }: ViewProps) {
   const couples = new Map(o.couples.map((c) => [c.id, c]));
   const judgeName = (id: string) => o.judges.find((j) => j.id === id)?.name ?? id;
   const fresh = o.me.scored === 0;
-  const firstOpen = o.episodes.find((e) => e.aired && !e.complete);
+  const firstOpen = o.episodes.find((e) => e.aired && !e.done);
   const isSealed = useSealed();
   const reveals = o.reveals.filter((r) => !isSealed(season, r.ep, r.key));
 

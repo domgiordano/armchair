@@ -62,8 +62,8 @@ const card = (couple: string, marks: number[], style = "Tango"): Card => ({
 
 // Week 1: Amber 8, Ezra 7, Taylor 6. Week 2: Ezra 10 (a perfect Jive), Amber 6, Taylor 7, who goes home that night.
 const STATES: Record<number, EpisodeState> = {
-  1: { season: "dwts-35", ep: 1, week: 1, airDate: null, theme: "Premiere", panel: [], open: false, rateable: 3, answered: 3, complete: true, performances: [card("amber-glenn", [8, 8, 8]), card("ezra-frech", [7, 7, 7]), card("taylor-hanson", [6, 6, 6])], eliminated: [] },
-  2: { season: "dwts-35", ep: 2, week: 2, airDate: null, theme: "Viral Hits", panel: [], open: false, rateable: 3, answered: 3, complete: true, performances: [card("amber-glenn", [6, 6, 6]), card("ezra-frech", [10, 10, 10], "Jive"), card("taylor-hanson", [7, 7, 7])], eliminated: ["taylor-hanson"] },
+  1: { season: "dwts-35", ep: 1, week: 1, airDate: null, theme: "Premiere", panel: [], open: false, rateable: 3, answered: 3, complete: true, done: true, performances: [card("amber-glenn", [8, 8, 8]), card("ezra-frech", [7, 7, 7]), card("taylor-hanson", [6, 6, 6])], eliminated: [] },
+  2: { season: "dwts-35", ep: 2, week: 2, airDate: null, theme: "Viral Hits", panel: [], open: false, rateable: 3, answered: 3, complete: true, done: true, performances: [card("amber-glenn", [6, 6, 6]), card("ezra-frech", [10, 10, 10], "Jive"), card("taylor-hanson", [7, 7, 7])], eliminated: ["taylor-hanson"] },
 };
 
 const episode = (ep: number, complete: boolean): OverviewEpisode =>

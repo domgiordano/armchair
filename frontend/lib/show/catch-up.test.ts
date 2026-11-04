@@ -28,7 +28,7 @@ describe("unfinishedBefore", () => {
   });
 
   it("lets a closed episode's missed dances go: the API returns it complete", () => {
-    const closed = [ep(1, { answered: 3, complete: true }), ep(2, { answered: 4 })];
+    const closed = [ep(1, { answered: 3, complete: true, done: true }), ep(2, { answered: 4 })];
     expect(unfinishedBefore(overview(closed), 3).map((e) => e.ep)).toEqual([2]);
   });
 

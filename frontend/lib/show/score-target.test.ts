@@ -20,7 +20,7 @@ const overview = (episodes: OverviewEpisode[], over: Partial<Overview> = {}) =>
 describe("scoreTarget", () => {
   it("is the latest episode to have started, with your progress", () => {
     const o = overview([
-      ep(1, { aired: true, rateable: 8, answered: 8, complete: true }),
+      ep(1, { aired: true, rateable: 8, answered: 8, complete: true, done: true }),
       ep(2, { aired: true, rateable: 8, answered: 3, complete: false }),
       ep(3),
     ]);
@@ -34,7 +34,7 @@ describe("scoreTarget", () => {
   });
 
   it("turns live at showtime, before the overview knows the episode aired", () => {
-    const o = overview([ep(1, { aired: true, rateable: 8, answered: 8, complete: true }), ep(2)]);
+    const o = overview([ep(1, { aired: true, rateable: 8, answered: 8, complete: true, done: true }), ep(2)]);
     expect(scoreTarget(o, Date.parse("2026-10-02T00:30:00Z"))).toMatchObject({
       kind: "score",
       episode: { ep: 2 },
@@ -46,7 +46,7 @@ describe("scoreTarget", () => {
 
   it("is done once every dance is scored, naming the next show", () => {
     const next = { ep: 2, week: 2, theme: null, airDate: "2026-10-01", startsAt: "2026-10-02T00:00:00Z" };
-    const o = overview([ep(1, { aired: true, rateable: 8, answered: 8, complete: true }), ep(2)], { next });
+    const o = overview([ep(1, { aired: true, rateable: 8, answered: 8, complete: true, done: true }), ep(2)], { next });
     expect(scoreTarget(o, Date.parse("2026-10-01T12:00:00Z"))).toMatchObject({ kind: "done", episode: { ep: 1 }, next });
   });
 
@@ -58,7 +58,7 @@ describe("scoreTarget", () => {
 
   it("follows the server's active episode and its close time once the API sends windows", () => {
     const active = { ep: 2, opensAt: "2026-10-02T00:00:00Z", closesAt: "2026-10-03T00:00:00Z", answered: 5, rateable: 8 };
-    const o = overview([ep(1, { aired: true, rateable: 8, answered: 8, complete: true }), ep(2, { aired: true }), ep(3)], {
+    const o = overview([ep(1, { aired: true, rateable: 8, answered: 8, complete: true, done: true }), ep(2, { aired: true }), ep(3)], {
       activeEpisode: active,
     });
     expect(scoreTarget(o, Date.parse("2026-10-02T12:00:00Z"))).toMatchObject({

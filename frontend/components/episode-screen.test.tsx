@@ -186,7 +186,7 @@ describe("EpisodeScreen", () => {
   });
 
   it("stamps the couple sent home once the results are the caller's to see", async () => {
-    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, answered: 2, complete: true, eliminated: ["tyler-cameron"] });
+    vi.mocked(getEpisodeState).mockResolvedValue({ ...STATE, answered: 2, complete: true, done: true, eliminated: ["tyler-cameron"] });
     render(<EpisodeScreen />);
     const tyler = await screen.findByRole("article", { name: "Tyler Cameron & Sharna Burgess" });
     expect(tyler.textContent).toContain("Eliminated · Week 3");
@@ -340,7 +340,7 @@ describe("EpisodeScreen", () => {
     const missed = { ...STATE.performances[1], key: "amber-glenn#1", contestants: ["amber-glenn"], mine: null };
     episodes({
       4: {
-        complete: true,
+        complete: true, done: true,
         answered: 1,
         performances: [missed, STATE.performances[1]],
         window: { opensAt: "2026-09-30T00:00:00Z", closesAt: "2026-10-01T00:00:00Z", open: false },
@@ -554,7 +554,7 @@ describe("the end of an episode", () => {
   const results = { eliminated: ["tyler-cameron"], totals: { "amber-glenn": 24, "tyler-cameron": 21 }, bonus: {} };
   const FINISHED: Partial<EpisodeState> = {
     answered: 2,
-    complete: true,
+    complete: true, done: true,
     eliminated: ["tyler-cameron"],
     results,
     performances: [amberDone, STATE.performances[1]],
@@ -715,7 +715,7 @@ describe("catching up", () => {
     const revealed = STATE.performances[1];
     const amber = { ...revealed, key: "amber-glenn#1", contestants: ["amber-glenn"], mine: null };
     episodes({
-      5: { ep: 5, theme: "Mariah Carey", open: true, answered: 0, complete: true, performances: [amber, revealed] },
+      5: { ep: 5, theme: "Mariah Carey", open: true, answered: 0, complete: true, done: true, performances: [amber, revealed] },
     });
     render(<EpisodeScreen />);
 

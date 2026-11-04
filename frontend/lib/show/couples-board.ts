@@ -285,6 +285,6 @@ export async function loadBoard(season: Season): Promise<BoardData> {
     weeks: [...weeks.values()],
     dances: states.flatMap(dancesOf),
     outs,
-    next: held ? { ep: held.ep, week: weekOf(held), sealed: held.complete === true } : null,
+    next: held ? { ep: held.ep, week: weekOf(held), sealed: held.done === true } : null,
   };
 }
