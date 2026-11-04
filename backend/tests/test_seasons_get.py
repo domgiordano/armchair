@@ -47,6 +47,7 @@ def test_returns_schedule_roster_and_credits(aws, monkeypatch):
         "start": "20:00",
         "end": "22:00",
         "theme": "Super Bowl",
+        "format": None,
         "window": {"opensAt": "2026-10-14T00:00Z", "closesAt": "2026-10-21T00:00Z", "open": False},
     }
     assert data["episodes"][4]["window"]["open"] is True
