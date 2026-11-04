@@ -24,6 +24,7 @@ const overview = (answered: number) =>
         rateable: 12,
         answered,
         complete: answered === 12,
+        done: answered === 12,
       },
     ],
   }) as unknown as Overview;
@@ -50,7 +51,7 @@ describe("Reminders", () => {
     const banner = await screen.findByRole("region", { name: "Reminder" }, SLOW);
     expect(banner.textContent).toContain("Don't forget to score Week 4 · Mariah Carey · 9 left");
     expect(within(banner).getByRole("link", { name: "Score" }).getAttribute("href")).toMatch(/\?ep=5$/);
-    const sheet = screen.getByRole("dialog", { name: "Reminder" });
+    const sheet = await screen.findByRole("dialog", { name: "Reminder" }, SLOW);
     expect(sheet.textContent).toContain("Last night's show");
     expect(sheet.textContent).toContain("9 dances still need your paddle.");
     fireEvent.click(within(sheet).getByRole("button", { name: "Later" }));
