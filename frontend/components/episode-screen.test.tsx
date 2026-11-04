@@ -424,7 +424,7 @@ describe("EpisodeScreen", () => {
   it("reloads the episode for the picked group", async () => {
     vi.mocked(getMyGroups).mockResolvedValue([{ id: "fam", name: "Family", inviteCode: "c".repeat(16), members: [] }]);
     render(<EpisodeScreen />);
-    fireEvent.click(await screen.findByRole("tab", { name: "Family" }));
+    choose(await screen.findByRole("combobox", { name: "Compare with" }), "Family");
     await vi.waitFor(() => expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 4, "fam"));
   });
 
@@ -446,7 +446,7 @@ describe("EpisodeScreen", () => {
     expect(seats()).toEqual(["judge", "judge", "you", "crowd"]);
     expect(screen.queryByRole("region", { name: "Family scores" })).toBeNull();
 
-    fireEvent.click(await screen.findByRole("tab", { name: "Family" }));
+    choose(await screen.findByRole("combobox", { name: "Compare with" }), "Family");
     expect(screen.getByText("Comparing with", { exact: false }).textContent).toBe("Comparing with Family");
     const carousel = await screen.findByRole("region", { name: "Family scores" });
     expect(seats()).toEqual(["judge", "judge", "you", "crowd"]);

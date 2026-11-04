@@ -4,14 +4,15 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
 const api = vi.hoisted(() => ({ getRanks: vi.fn(), getStats: vi.fn(), getEpisode: vi.fn(), FRIENDS: "friends" }));
 vi.mock("@/lib/api/traitors", () => api);
-vi.mock("@armchair/app-core/api/groups", () => ({ getMyGroups: vi.fn(async () => []) }));
-vi.mock("next/navigation", () => ({ useSearchParams: () => new URLSearchParams() }));
+vi.mock("@armchair/app-core/api/groups", () => ({ getMyGroups: vi.fn(async () => []), plays: () => true }));
+vi.mock("next/navigation", () => ({ useSearchParams: () => new URLSearchParams(), useRouter: () => ({ replace: vi.fn() }) }));
 vi.mock("@/components/season-provider", () => ({
   useShellSeason: () => ({ seasons: [{ id: "tus-5", number: 5, year: 2026, current: true }] }),
   useSeasonName: () => ({ title: "Season 5", eyebrow: "US", numbered: null }),
 }));
 
 import type { SeasonView, Standing } from "@/lib/api/traitors";
+import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
 
 import { LeaderboardScreen } from "./leaderboard-screen";
 import { PlayersScreen } from "./players-screen";
@@ -67,17 +68,30 @@ it("puts the top three in the pot and marks your own row", async () => {
 it("ranks friends and all-time for this edition", async () => {
   wrap(<LeaderboardScreen />);
   await screen.findByRole("list", { name: "Top three" });
-  fireEvent.click(screen.getByRole("tab", { name: "Friends" }));
+  fireEvent.click(screen.getByRole("combobox", { name: "Compare with" }));
+  fireEvent.click(screen.getByRole("option", { name: "Friends" }));
   await vi.waitFor(() => expect(api.getRanks).toHaveBeenLastCalledWith("tus-5", "tus", "friends", null));
+  expect(localStorage.getItem("armchair.group")).toBe("friends");
   fireEvent.click(screen.getByRole("combobox", { name: "Standings for" }));
   fireEvent.click(screen.getByRole("option", { name: "All-time" }));
   await vi.waitFor(() => expect(api.getRanks).toHaveBeenLastCalledWith("all", "tus", "friends", null));
+  fireEvent.click(screen.getByRole("button", { name: "Show Everyone" }));
+  await vi.waitFor(() => expect(api.getRanks).toHaveBeenLastCalledWith("all", "tus", "global", null));
+  expect(localStorage.getItem("armchair.group")).toBeNull();
 });
 
-it("asks for a group before ranking one", async () => {
+it("opens on the group picked in any show", async () => {
+  const fam: Group = { id: "fam", name: "Family", inviteCode: "c", members: [] };
+  vi.mocked(getMyGroups).mockResolvedValueOnce([fam]);
+  localStorage.setItem("armchair.group", "fam");
   wrap(<LeaderboardScreen />);
-  fireEvent.click(await screen.findByRole("tab", { name: "Group" }));
-  expect(await screen.findByText("You're not in a group yet")).toBeTruthy();
+  await vi.waitFor(() => expect(api.getRanks).toHaveBeenCalledWith("tus-5", "tus", "group", "fam"));
+  expect(screen.getByRole("combobox", { name: "Compare with" }).textContent).toContain("Family");
+});
+
+it("points to groups when the caller has none", async () => {
+  wrap(<LeaderboardScreen />);
+  expect(await screen.findByRole("link", { name: "Start one or join one" })).toBeTruthy();
 });
 
 it("shows hit rates per call and points by episode", async () => {

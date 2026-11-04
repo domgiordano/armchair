@@ -5,7 +5,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { getOverview, type Overview } from "@/lib/api/overview";
-import { saveGroup } from "@/lib/show/group-filter";
+import { saveScope } from "@armchair/app-core/show/group-scope";
 import { showTime } from "@/lib/show/overview";
 import { episodeLabel, formatAirDate } from "@/lib/show/schedule";
 import { scoreTarget, type ScoreTarget } from "@/lib/show/score-target";
@@ -79,7 +79,7 @@ export function ScoreCta({ overview: given, group, groupName, note, compact = fa
   if (!target || !overview || (onlyToScore && target.kind !== "score")) return null;
 
   const href = (ep: number) => withSeason(`/episode/?ep=${ep}`, season);
-  const remember = group ? () => saveGroup(group) : undefined;
+  const remember = group ? () => saveScope(group) : undefined;
   const name = (e: { week: number; ep: number; theme: string | null }) => {
     const label = episodeLabel(overview.episodes.find((o) => o.ep === e.ep) ?? e, overview.episodes);
     return e.theme ? `${label} · ${e.theme}` : label;

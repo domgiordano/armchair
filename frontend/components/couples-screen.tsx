@@ -6,13 +6,13 @@ import { PerformersView } from "@/components/couples-performers";
 import { WeekBoardView } from "@/components/couples-week-board";
 import { LeaderboardView } from "@/components/couples/leaderboard";
 import { PageLoader } from "@/components/disco-loader";
-import { GroupPicker } from "@/components/group-picker";
+import { GroupScopeControl } from "@/components/group-scope";
 import { SignedIn } from "@/components/signed-in";
 import { PageHeader } from "@/components/ui/page-header";
 import { ErrorState } from "@/components/ui/states";
 import { tabId, Tabs } from "@/components/ui/tabs";
 import type { Season } from "@/lib/api/show";
-import { useGroupFilter } from "@/lib/show/group-filter";
+import { useGroupScope } from "@armchair/app-core/show/group-scope";
 import { seasonLabel, withSeason } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 
@@ -54,7 +54,7 @@ export function couplesHref(view: View, season: string): string {
 function Couples({ season }: { season: Season }) {
   const params = useSearchParams();
   const router = useRouter();
-  const filter = useGroupFilter();
+  const filter = useGroupScope("dwts");
   const view = readView(params);
   const go = (v: View) => router.replace(couplesHref(v, season.season), { scroll: false });
 
@@ -69,7 +69,7 @@ function Couples({ season }: { season: Season }) {
         </div>
         {view !== "board" && (
           <div className="animate-fade-in md:w-80">
-            <GroupPicker {...filter} panelId={PANEL} />
+            <GroupScopeControl {...filter} />
           </div>
         )}
       </div>

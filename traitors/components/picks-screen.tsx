@@ -19,7 +19,7 @@ import { accuracy, headToHead, mostPicked, percent, pointsOverTime, total, type 
 import { released } from "@/lib/schedule";
 import { useFaceDown } from "@/lib/sealed";
 import { cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
-import { getMyGroups, type Group } from "@armchair/app-core/api/groups";
+import { useGroupScope } from "@armchair/app-core/show/group-scope";
 import { useNow } from "@armchair/app-core/show/use-now";
 
 const SHORT: Record<EventType, string> = { MURDER: "Murder", RT: "Banish", RECRUIT: "Recruit" };
@@ -37,23 +37,15 @@ export function PicksScreen() {
   const { view } = useSeasonView();
   const name = useSeasonName(view.season, view.title);
   const faceDown = useFaceDown(view.season);
-  const [groups, setGroups] = useState<Group[]>([]);
-  const [scope, setScope] = useState<string>(FRIENDS);
+  // Picks has no Everyone: it opens on the shared scope's Friends or group, else on Friends.
+  // Just you is this page's own, so it isn't saved.
+  const filter = useGroupScope("traitors", { friends: true });
+  const [justMe, setJustMe] = useState(false);
+  const scope = justMe ? ME : (filter.scope ?? FRIENDS);
   const [chosen, setChosen] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
   const [load, setLoad] = useState<{ key: string; value: Load } | null>(null);
   const key = `${view.season}|${scope}|${attempt}`;
-
-  useEffect(() => {
-    let cancelled = false;
-    getMyGroups().then(
-      (g) => !cancelled && setGroups(g),
-      () => {},
-    );
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -82,10 +74,11 @@ export function PicksScreen() {
         options={[
           { value: ME, label: "Just you" },
           { value: FRIENDS, label: "You and your friends" },
-          ...groups.map((g) => ({ value: g.id, label: `${g.name} (${g.members.length})` })),
+          ...(filter.groups ?? []).map((g) => ({ value: g.id, label: `${g.name} (${g.members.length})` })),
         ]}
         onChange={(v) => {
-          setScope(v);
+          setJustMe(v === ME);
+          if (v !== ME) filter.pick(v);
           setChosen(null);
         }}
       />

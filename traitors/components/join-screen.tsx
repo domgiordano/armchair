@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { errorText } from "@/components/season-data";
 import { Card } from "@/components/ui/card";
 import { SkeletonList } from "@/components/ui/skeleton";
-import { saveGroup } from "@/lib/group-filter";
+import { saveScope } from "@armchair/app-core/show/group-scope";
 import { button, cn, EYEBROW, HEADING } from "@/lib/ui";
 import { joinGroup } from "@armchair/app-core/api/groups";
 
@@ -28,7 +28,7 @@ export function JoinScreen() {
           setPending(group.name);
           return;
         }
-        saveGroup(group.id);
+        saveScope(group.id);
         router.replace("/groups/");
       },
       (e: unknown) => !cancelled && setError(errorText(e)),
