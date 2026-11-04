@@ -7,12 +7,12 @@ import { Ballot } from "@/components/ballot";
 import { PICK_PROMPT, useBet } from "@/components/bet";
 import { CatchUp } from "@/components/catch-up";
 import { FaceDownBefore } from "@/components/face-down";
-import { GroupPicker } from "@/components/group-picker";
+import { GroupScopeControl } from "@/components/group-scope";
 import { useSeasonView } from "@/components/season-data";
 import { useSeasonName } from "@/components/season-provider";
 import { Select } from "@/components/ui/select";
 import { EmptyState } from "@/components/ui/states";
-import { useGroupFilter } from "@/lib/group-filter";
+import { useGroupScope } from "@armchair/app-core/show/group-scope";
 import { defaultEpisode, episodeLabel, formatRelease } from "@/lib/schedule";
 import { withSeason } from "@/lib/seasons";
 import { useNow } from "@armchair/app-core/show/use-now";
@@ -21,7 +21,7 @@ export function EpisodeScreen() {
   const { view, reload } = useSeasonView();
   const name = useSeasonName(view.season, view.title);
   const bet = useBet();
-  const filter = useGroupFilter();
+  const filter = useGroupScope("traitors", { friends: true });
   const router = useRouter();
   const now = useNow();
   const asked = Number(useSearchParams().get("ep"));
@@ -46,7 +46,7 @@ export function EpisodeScreen() {
           }))}
           onChange={(ep) => go(Number(ep))}
         />
-        <GroupPicker {...filter} />
+        <GroupScopeControl {...filter} />
       </div>
       <CatchUp key={episode.ep} episodes={view.episodes} episode={episode} now={now} onCatchUp={go}>
         <FaceDownBefore key={episode.ep} season={view.season} ep={episode.ep}>
@@ -54,7 +54,7 @@ export function EpisodeScreen() {
             key={episode.ep}
             season={view.season}
             episode={episode}
-            group={filter.group}
+            group={filter.scope}
             members={filter.groups?.find((g) => g.id === filter.group)?.members ?? null}
             seasonTitle={name.title}
             onNeedBet={() => bet.open(PICK_PROMPT)}

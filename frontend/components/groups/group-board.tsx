@@ -11,7 +11,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import type { GroupDetail } from "@armchair/app-core/api/groups";
 import { ALL_TIME, getLeaderboard, type Leaderboard } from "@/lib/api/leaderboard";
-import { saveGroup } from "@/lib/show/group-filter";
 import { useSeasonId } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
 import { TEXT_LINK } from "@/lib/ui";
@@ -61,7 +60,7 @@ export function GroupBoard({ group }: { group: GroupDetail }) {
           ]}
           onChange={pick}
         />
-        <Link href="/stats/" onClick={() => saveGroup(group.id)} className={TEXT_LINK}>
+        <Link href={`/stats/?view=compare&group=${encodeURIComponent(group.id)}`} className={TEXT_LINK}>
           Your accuracy against this group
         </Link>
       </div>

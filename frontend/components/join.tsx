@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { SignedIn } from "@/components/signed-in";
 import { PageLoader } from "@/components/disco-loader";
 import { groupHref, joinGroup } from "@armchair/app-core/api/groups";
-import { saveGroup } from "@/lib/show/group-filter";
+import { saveScope } from "@armchair/app-core/show/group-scope";
 import { EmptyState } from "@/components/ui/states";
 import { ApiError } from "@armchair/app-core/api/client";
 import { button, SECONDARY } from "@/lib/ui";
@@ -39,7 +39,7 @@ function Joiner() {
           setPending(group.name);
           return;
         }
-        saveGroup(group.id);
+        saveScope(group.id);
         router.replace(groupHref(group.id));
       },
       (e: unknown) =>

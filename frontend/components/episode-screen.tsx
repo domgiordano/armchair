@@ -6,7 +6,7 @@ import { useCallback, useMemo, useState } from "react";
 
 import { CatchUp } from "@/components/catch-up";
 import { PageLoader } from "@/components/disco-loader";
-import { GroupPicker, scopeName } from "@/components/group-picker";
+import { GroupScopeControl } from "@/components/group-scope";
 import { PerformanceCard } from "@/components/performance-card";
 import { danceId, FindCouple } from "@/components/find-couple";
 import { OrderNote } from "@/components/order-note";
@@ -20,7 +20,7 @@ import { EmptyState, ErrorState } from "@/components/ui/states";
 import { VotePanel } from "@/components/vote-panel";
 import type { Group } from "@armchair/app-core/api/groups";
 import { CLOSED, revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
-import { useGroupFilter } from "@/lib/show/group-filter";
+import { scopeName, useGroupScope } from "@armchair/app-core/show/group-scope";
 import { cues as cuesOf, findCards, type Cue } from "@/lib/show/running";
 import { episodeLabel, formatAirDate, hasAired, isLive, latestAired } from "@/lib/show/schedule";
 import { holdResults, RESULTS, revealResults, seal, unseal, useSealed } from "@/lib/show/sealed";
@@ -57,7 +57,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
   const router = useRouter();
   const now = useNow();
   const asked = Number(useSearchParams().get("ep"));
-  const filter = useGroupFilter();
+  const filter = useGroupScope("dwts");
   const episode =
     season.episodes.find((e) => e.ep === asked) ??
     latestAired(season.episodes, season.timezone, now);
@@ -69,7 +69,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
       now={now}
       group={filter.group}
       picked={filter.groups?.find((g) => g.id === filter.group) ?? null}
-      scope={scopeName(filter)}
+      scope={scopeName(filter.scope, filter.groups)}
     />
   );
 
@@ -92,7 +92,7 @@ function EpisodePicker({ season }: EpisodePickerProps) {
           }))}
           onChange={(ep) => router.replace(withSeason(`/episode/?ep=${ep}`, season.season))}
         />
-        <GroupPicker {...filter} panelId={PANEL} />
+        <GroupScopeControl {...filter} />
       </div>
       <div id={PANEL} className="contents">
         {season.open ? (

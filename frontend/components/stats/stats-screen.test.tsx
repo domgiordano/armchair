@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 let search = new URLSearchParams();
@@ -32,6 +32,7 @@ beforeEach(() => {
   vi.mocked(getSeason).mockResolvedValue(SEASON);
   vi.mocked(getPersonStats).mockResolvedValue(PERSON);
   vi.mocked(getMyGroups).mockResolvedValue([]);
+  window.localStorage.clear();
 });
 
 afterEach(() => {
@@ -99,7 +100,7 @@ describe("StatsScreen, Me", () => {
   });
 });
 
-describe("StatsScreen, Groups and Global", () => {
+describe("StatsScreen, Compare", () => {
   const GROUP = { id: "g1", name: "Family", members: [], shows: ["dwts"] };
 
   beforeEach(() => {
@@ -128,20 +129,38 @@ describe("StatsScreen, Groups and Global", () => {
   });
 
   it("compares a group: member cards, head to head and the group against everyone", async () => {
-    search = new URLSearchParams("view=groups");
+    // The group page's "Your accuracy against this group" link.
+    search = new URLSearchParams("view=compare&group=g1");
     vi.mocked(getMyGroups).mockResolvedValue([GROUP] as never);
-    render(<StatsScreen />);
+    const { rerender } = render(<StatsScreen />);
     const members = await screen.findByRole("list", { name: "Members" });
     expect(within(members).getAllByRole("listitem").filter((li) => li.parentElement === members)).toHaveLength(3);
     expect(screen.getByRole("list", { name: "Head to head" }).textContent).toContain("vs Bea Arthur1-1");
     expect(screen.getByRole("img", { name: "Family and everyone's average gap by week" })).toBeTruthy();
     expect(getCrowdStats).toHaveBeenCalledWith("dwts-35", "group", "g1", null);
+    expect(window.localStorage.getItem("armchair.group")).toBe("g1");
+
+    fireEvent.click(screen.getByRole("button", { name: "Show Everyone" }));
+    expect(replace).toHaveBeenLastCalledWith("/stats/?view=compare", { scroll: false });
+    expect(window.localStorage.getItem("armchair.group")).toBeNull();
+    search = new URLSearchParams("view=compare");
+    rerender(<StatsScreen />);
+    await vi.waitFor(() => expect(getCrowdStats).toHaveBeenLastCalledWith("dwts-35", "global", null, null));
   });
 
-  it("points to starting a group when there are none", async () => {
+  it("opens on the saved group, and an old Groups link lands on Compare", async () => {
     search = new URLSearchParams("view=groups");
+    window.localStorage.setItem("armchair.group", "g1");
+    vi.mocked(getMyGroups).mockResolvedValue([GROUP] as never);
     render(<StatsScreen />);
-    expect(await screen.findByText("No groups yet")).toBeTruthy();
-    expect(getCrowdStats).not.toHaveBeenCalled();
+    expect(await screen.findByRole("tab", { name: "Compare", selected: true })).toBeTruthy();
+    await vi.waitFor(() => expect(getCrowdStats).toHaveBeenCalledWith("dwts-35", "group", "g1", null));
+  });
+
+  it("compares with everyone and points to starting a group when there are none", async () => {
+    search = new URLSearchParams("view=compare");
+    render(<StatsScreen />);
+    expect(await screen.findByRole("link", { name: "Start a group to compare with friends" })).toBeTruthy();
+    await vi.waitFor(() => expect(getCrowdStats).toHaveBeenCalledWith("dwts-35", "global", null, null));
   });
 });
