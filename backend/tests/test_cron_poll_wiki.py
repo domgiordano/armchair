@@ -319,6 +319,56 @@ def test_backfill_confirms_every_past_episode_and_is_idempotent(wiki, db):
     assert everything(db) == before
 
 
+WK3_DANCE_OFFS = """The couples also danced a dance-off for three extra points.
+{| class="wikitable"
+|+Dance-offs
+! Couple
+! Dance
+! Result
+|-
+! Amber & Pasha
+| rowspan="2" | Salsa
+| %s
+|-
+! Jenna & Val
+| %s
+|}
+
+"""
+
+
+def with_dance_offs(winner: str, loser: str) -> str:
+    text = page(FINAL[0])
+    at = text.index("=== Week 4: Mariah Carey Night ===")
+    return text[:at] + WK3_DANCE_OFFS % (winner, loser) + text[at:]
+
+
+def test_dance_off_results_after_who_went_home_still_land(wiki, db):
+    t = epoch(FINAL[2])
+    wiki.tick(FINAL, t, event={"backfill": True})
+    assert "segments" not in catalog(db, "EP#04")["results"]
+
+    # Live polls of a later revision that fills in the dance-offs.
+    late = (FINAL[0], FINAL[1] + 1, FINAL[2])
+    real = with_dance_offs("'''Winners'''", "Losers")
+    assert wiki.tick(late, t + 60, content=real)["pending"]
+    assert "segments" not in catalog(db, "EP#04")["results"]
+
+    # A vandal swap inside the confirm window restarts the clock and never shows.
+    wiki.tick(late, t + 120, content=with_dance_offs("Losers", "'''Winners'''"))
+    assert wiki.tick(late, t + 400, content=real)["pending"]
+    assert "segments" not in catalog(db, "EP#04")["results"]
+
+    assert not wiki.tick(late, t + 600, content=real)["pending"]
+    results = catalog(db, "EP#04")["results"]
+    assert results["segments"] == [
+        {"label": "Dance-off", "contestants": ["amber-glenn"], "points": 3, "text": "Winners"},
+        {"label": "Dance-off", "contestants": ["jenna-dewan"], "points": None, "text": "Losers"},
+    ]
+    assert results["eliminated"] == ["taylor-hanson"]
+    assert catalog(db, "CONTESTANT#taylor-hanson")["eliminatedEp"] == 4
+
+
 def test_a_guest_judge_on_the_order_line_is_created(wiki, db):
     text = page(FINAL[0])
     head = "=== Week 3: Yacht Rock Night ===\n"

@@ -265,7 +265,7 @@ def publish(
     confirmed and every Result cell is filled. True if anything is still provisional.
     Each performance's `panel` is JUDGE# ids; `panel` is the episode's. The night's
     marathon and dance-off rows (`segments`) ride along in the results, so they
-    show no sooner than who went home. They never hold the results up.
+    show no sooner than who went home. They never hold the results up (extras()).
 
     `settled` is a finished season's eliminations for this episode, from the Cast
     table: results are then written without waiting on Result cells, which early
@@ -308,6 +308,7 @@ def publish(
         # A team dance has no Result cell of its own.
         final &= settled is not None or len(p["contestants"]) > 1 or p["result"] is not None
 
+    results = None
     if final and episode.get("results") is None:
         solo = [p for p in perfs if len(p["contestants"]) == 1]
         out = sorted(
@@ -333,13 +334,8 @@ def publish(
             ):
                 log.warning("%s is already out in another episode, not ep %d", cid, ep)
         results = {"eliminated": out, "totals": totals, "bonus": bonus}
-        shown = [
-            {k: s[k] for k in ("label", "contestants", "points", "text")}
-            for s in segments
-            if s["points"] is not None or s["text"] is not None
-        ]
-        if shown:
-            results["segments"] = shown
+    pending |= extras(episode, segments, season_pk, rev, t, window, results)
+    if results is not None:
         # Written last: results are what marks the episode done.
         update(
             "CATALOG_TABLE",
@@ -348,6 +344,50 @@ def publish(
             "attribute_not_exists(#results)",
         )
     return pending
+
+
+def extras(
+    episode: dict,
+    segments: Sequence[dict],
+    season_pk: str,
+    rev: int,
+    t: int,
+    window: int,
+    results: dict | None = None,
+) -> bool:
+    """
+    Confirms the night's marathon and dance-off rows like judges' values, in the
+    episode's `segmentState`, and keeps the confirmed ones as the results'
+    `segments`: in `results` about to be written, else in the stored results, so
+    a row filled in after who went home still lands. Only that key changes;
+    eliminations stay as written. True if a row is still provisional.
+    """
+    stored = episode.get("segmentState") or {}
+    state = {}
+    for s in segments:
+        if s["points"] is None and s["text"] is None:
+            continue
+        row = {k: s[k] for k in ("label", "contestants", "points", "text")}
+        key = f"{s['label']}#{'+'.join(s['contestants'])}"
+        state[key] = confirm.step(stored.get(key), row, t, rev, window)
+    # A row gone from the page keeps only a confirmed value, so a reverted edit disappears.
+    state |= {k: e for k, e in stored.items() if k not in state and e["state"] == "confirmed"}
+    if state != stored:
+        update("CATALOG_TABLE", {"pk": season_pk, "sk": episode["sk"]}, {"segmentState": state})
+
+    shown = [e["value"] for e in state.values() if e["state"] == "confirmed"]
+    old = episode.get("results")
+    if results is not None:
+        if shown:
+            results["segments"] = shown
+    elif old is not None and old.get("segments", []) != shown:
+        update(
+            "CATALOG_TABLE",
+            {"pk": season_pk, "sk": episode["sk"]},
+            {"results": {**old, "segments": shown}},
+            "attribute_exists(#results)",
+        )
+    return any(e["state"] == "provisional" for e in state.values())
 
 
 def handler(event, context):
@@ -426,15 +466,26 @@ def handler(event, context):
                 if p["night"] == night
             ]
             panel = perfs[0]["panel"] if perfs else ids[tuple(week["panel"])]
-            extras = [s for s in week["segments"] if s["night"] == night]
+            rows = [s for s in week["segments"] if s["night"] == night]
             pending |= publish(
-                episode, panel, perfs, revid, t, window, season=(SHOW, SEASON), segments=extras
+                episode, panel, perfs, revid, t, window, season=(SHOW, SEASON), segments=rows
             )
             ep = int(episode["sk"].removeprefix("EP#"))
             board_dynamo.reconcile(SHOW, SEASON, ep, panel)
             # A backfill can rewrite a settled episode's judges.
             digest.forget(SHOW, SEASON, ep)
             processed.append(ep)
+
+    # Episodes already done: a dance-off result or marathon cell can trail the Result column.
+    done = [e for e in episodes if e not in todo and e.get("results") is not None]
+    for w in sorted({int(e["week"]) for e in done}):
+        week = parse_week(text, w, aliases)
+        nights = [e for e in episodes if int(e["week"]) == w]
+        for night, episode in enumerate(nights, start=1):
+            if week is None or episode not in done:
+                continue
+            rows = [s for s in week["segments"] if s["night"] == night]
+            pending |= extras(episode, rows, SEASON_PK, revid, t, window)
 
     if not backfill:
         update(
