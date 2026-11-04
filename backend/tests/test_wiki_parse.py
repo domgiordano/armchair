@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from lambdas.common.wiki_parse import check, parse_week
+from lambdas.common.wiki_parse import check, parse_week, week_format
 
 FIXTURES = Path(__file__).parents[2] / "fixtures"
 GOLDEN = json.loads((FIXTURES / "wiki-golden.json").read_text())
@@ -33,6 +33,7 @@ def test_golden(case):
     # The golden predates style, song, result and order; test_s35_week_3_columns covers those.
     for p in week["performances"]:
         del p["style"], p["song"], p["result"], p["order"]
+    del week["segments"]
     assert week == case["expected"]
 
 
@@ -213,3 +214,106 @@ def test_no_scores_received_is_unscored_not_rejected():
     week = parse_week(PAGE % "''No scores<br>received''", 2, ALIASES)
     assert (week["performances"], week["rejected"]) == ([], [])
     assert week["unscored"] == [{"night": 1, "row": "Amber & Pasha"}]
+
+
+PAIR = {"Amber": "amber-glenn", "Jenna": "jenna-dewan"}
+DANCES = [("Amber & Pasha", "24 (8, 8, 8)", "Tango"), ("Jenna & Val", "27 (9, 9, 9)", "Jive")]
+
+
+def dance_table(rows: list[tuple[str, str, str]]) -> str:
+    return (
+        '{| class="wikitable"\n! Couple !! Scores !! Dance\n'
+        + "".join(f"|-\n! {couple}\n| {score}\n| {dance}\n" for couple, score, dance in rows)
+        + "|}\n"
+    )
+
+
+def test_a_marathon_run_before_the_dances_still_gives_its_points():
+    marathon = [("Amber & Pasha", "4", "Hustle Marathon"), ("Jenna & Val", "2", "Hustle Marathon")]
+    week = parse_week(week_page(dance_table(marathon) + dance_table(DANCES)), 7, PAIR)
+    assert week["rejected"] == []
+    assert [(p["contestants"], p["n"], p["bonus"]) for p in week["performances"]] == [
+        (["amber-glenn"], 1, 4),
+        (["jenna-dewan"], 1, 2),
+    ]
+    assert [(s["label"], s["points"]) for s in week["segments"]] == [
+        ("Hustle Marathon", 4),
+        ("Hustle Marathon", 2),
+    ]
+
+
+def test_a_marathon_row_naming_every_couple_is_no_team_dance():
+    everyone = ("Amber & Pasha<br>Jenna & Val", "", "Endurance Marathon")
+    week = parse_week(week_page(dance_table([*DANCES, everyone])), 7, PAIR)
+    assert [p["contestants"] for p in week["performances"]] == [["amber-glenn"], ["jenna-dewan"]]
+    (segment,) = week["segments"]
+    assert segment["contestants"] == ["amber-glenn", "jenna-dewan"]
+    assert (segment["points"], segment["text"]) == (None, None)
+
+
+def test_a_marathon_place_in_words_is_text_not_a_rejection():
+    place = ("Amber & Pasha", "1st", "Swing Marathon")
+    week = parse_week(week_page(dance_table([DANCES[0], place])), 7, PAIR)
+    assert week["rejected"] == []
+    assert week["performances"][0]["bonus"] is None
+    assert (week["segments"][0]["points"], week["segments"][0]["text"]) == (None, "1st")
+
+
+# S35 week 9's shape: a pair filled in, a pair still "TBA & TBA" with no result.
+DANCE_OFFS = """{| class="wikitable"
+|+Dance-offs
+! Couple
+! Dance
+! Result
+|-
+! Amber & Pasha
+| rowspan="2" | Salsa
+| '''Winners'''
+|-
+! Jenna & Val
+| Losers
+|-
+! TBA & TBA
+| rowspan="2" |
+|
+|-
+! TBA & TBA
+|
+|}
+"""
+
+
+@pytest.mark.parametrize(("prose", "points"), [("three extra points", 3), ("extra points", None)])
+def test_dance_off_winners_get_the_stated_points(prose, points):
+    intro = f"Each couple performed one dance and a dance-off for {prose}.\n"
+    week = parse_week(week_page(intro + dance_table(DANCES) + DANCE_OFFS), 7, PAIR)
+    assert week["rejected"] == []
+    assert [(s["label"], s["contestants"], s["points"], s["text"]) for s in week["segments"]] == [
+        ("Dance-off", ["amber-glenn"], points, "Winners"),
+        ("Dance-off", ["jenna-dewan"], None, "Losers"),
+    ]
+    assert [p["bonus"] for p in week["performances"]] == [points, None]
+
+
+CHART = """== Dance chart ==
+* Weeks 1–7: One unlearned dance
+* Week 9 (Quarterfinals): One unlearned dance & dance-off
+<!--
+* Week 10: Two dances
+-->
+"""
+
+
+@pytest.mark.parametrize(
+    ("week", "want"),
+    [(3, "One unlearned dance"), (9, "One unlearned dance & dance-off"), (10, None)],
+)
+def test_week_format_reads_the_dance_chart(week, want):
+    assert week_format(CHART, week, 1) == want
+
+
+def test_a_night_only_format_line_is_that_nights():
+    # S31: "* Week 5 (Night 2): One unlearned dance & dance marathon".
+    chart = "* Week 5 (Night 2): Dance & dance marathon\n* Week 5: One unlearned dance\n"
+    assert week_format(chart, 5, 2) == "Dance & dance marathon"
+    assert week_format(chart, 5, 1) == "One unlearned dance"

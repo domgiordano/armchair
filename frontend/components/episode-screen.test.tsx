@@ -587,6 +587,25 @@ describe("the end of an episode", () => {
     expect(screen.queryByRole("list", { name: "Couples in the spotlight" })).toBeNull();
   });
 
+  it("lists the marathon beside who went home, and not while the results are held", async () => {
+    const segments = [
+      { label: "Hustle Marathon", contestants: ["tyler-cameron"], points: 2, text: null },
+      { label: "Hustle Marathon", contestants: ["amber-glenn"], points: 4, text: null },
+    ];
+    const marathon = { ...STATE, ...FINISHED, results: { ...results, segments } };
+    vi.mocked(getEpisodeState).mockResolvedValue(marathon);
+    window.localStorage.setItem("armchair.sealed", '["dwts-35|4|results#0"]');
+    const view = render(<EpisodeScreen />);
+    expect(await screen.findByRole("button", { name: "Reveal results" })).toBeTruthy();
+    expect(screen.queryByRole("region", { name: "Hustle Marathon" })).toBeNull();
+    view.unmount();
+
+    window.localStorage.setItem("armchair.sealed", "[]");
+    render(<EpisodeScreen />);
+    const list = await screen.findByRole("region", { name: "Hustle Marathon" });
+    expect(within(list).getAllByRole("listitem").map((li) => li.textContent)).toEqual(["Amber Glenn+4", "Tyler Cameron+2"]);
+  });
+
   it("plays the spotlight, then names who went home and stamps their card", async () => {
     vi.useFakeTimers({ toFake: ["Date", "setTimeout", "clearTimeout"] });
     vi.setSystemTime(Date.parse("2026-10-01T12:00:00Z"));

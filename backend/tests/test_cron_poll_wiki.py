@@ -1,5 +1,6 @@
 import io
 import json
+import re
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -121,6 +122,7 @@ def test_one_request_and_the_log_line(wiki, capsys):
     assert line["revid"] == FINAL[1]
     for p in line["week"]["performances"]:
         del p["style"], p["song"], p["result"], p["order"]
+    assert line["week"].pop("segments") == []
     assert line["week"] == GOLDEN["S35 week 4 pre-show alphabetical table, empty cells"]
 
 
@@ -315,6 +317,56 @@ def test_backfill_confirms_every_past_episode_and_is_idempotent(wiki, db):
     before = everything(db)
     wiki.tick(FINAL, t + 3600, event={"backfill": True})
     assert everything(db) == before
+
+
+WK3_DANCE_OFFS = """The couples also danced a dance-off for three extra points.
+{| class="wikitable"
+|+Dance-offs
+! Couple
+! Dance
+! Result
+|-
+! Amber & Pasha
+| rowspan="2" | Salsa
+| %s
+|-
+! Jenna & Val
+| %s
+|}
+
+"""
+
+
+def with_dance_offs(winner: str, loser: str) -> str:
+    text = page(FINAL[0])
+    at = text.index("=== Week 4: Mariah Carey Night ===")
+    return text[:at] + WK3_DANCE_OFFS % (winner, loser) + text[at:]
+
+
+def test_dance_off_results_after_who_went_home_still_land(wiki, db):
+    t = epoch(FINAL[2])
+    wiki.tick(FINAL, t, event={"backfill": True})
+    assert "segments" not in catalog(db, "EP#04")["results"]
+
+    # Live polls of a later revision that fills in the dance-offs.
+    late = (FINAL[0], FINAL[1] + 1, FINAL[2])
+    real = with_dance_offs("'''Winners'''", "Losers")
+    assert wiki.tick(late, t + 60, content=real)["pending"]
+    assert "segments" not in catalog(db, "EP#04")["results"]
+
+    # A vandal swap inside the confirm window restarts the clock and never shows.
+    wiki.tick(late, t + 120, content=with_dance_offs("Losers", "'''Winners'''"))
+    assert wiki.tick(late, t + 400, content=real)["pending"]
+    assert "segments" not in catalog(db, "EP#04")["results"]
+
+    assert not wiki.tick(late, t + 600, content=real)["pending"]
+    results = catalog(db, "EP#04")["results"]
+    assert results["segments"] == [
+        {"label": "Dance-off", "contestants": ["amber-glenn"], "points": 3, "text": "Winners"},
+        {"label": "Dance-off", "contestants": ["jenna-dewan"], "points": None, "text": "Losers"},
+    ]
+    assert results["eliminated"] == ["taylor-hanson"]
+    assert catalog(db, "CONTESTANT#taylor-hanson")["eliminatedEp"] == 4
 
 
 def test_a_guest_judge_on_the_order_line_is_created(wiki, db):
@@ -564,3 +616,70 @@ def test_a_non_free_photo_gives_a_bio_and_no_headshot(s34, monkeypatch):
 
     assert "headshot" not in s34_catalog(s34, "JUDGE#cheryl-burke")
     assert item(s34, "PERSON#dwts#cheryl-burke")["bio"]["title"] == "Cheryl Burke"
+
+
+def s34_page(marathon_cells: str | None = None) -> str:
+    """S34's page, with week 7's marathon point cells replaced by `marathon_cells` when given."""
+    text = page(S34_REV[0])
+    if marathon_cells is None:
+        return text
+    start = text.index('! scope="row" | Elaine & Alan\n| 0')
+    end = text.index("=== Week 8")
+    cell = f"| {marathon_cells}".rstrip()
+    block = re.sub(r"^\| \d+$", cell, text[start:end], flags=re.MULTILINE)
+    return text[:start] + block + text[end:]
+
+
+def backfill_s34(monkeypatch, content: str | None = None):
+    commons(monkeypatch)
+    at = epoch("2026-01-01T00:00:00Z")
+    Wiki(monkeypatch).tick(S34_REV, at, content=content, event={"backfill": True})
+
+
+def test_marathon_points_ride_in_the_results(s34, monkeypatch):
+    backfill_s34(monkeypatch)
+
+    results = s34_catalog(s34, "EP#07")["results"]
+    assert results["eliminated"] == ["jen-affleck"]
+    assert results["bonus"]["whitney-leavitt"] == 5
+    marathon = results["segments"]
+    assert len(marathon) == 9
+    assert marathon[0] == {
+        "label": "Hustle & Lindy Hop Marathon",
+        "contestants": ["elaine-hendrix"],
+        "points": 0,
+        "text": None,
+    }
+    assert set(perfs(s34, "EP#dwts#34#07")) == {f"{c}#1" for c in results["totals"]}
+
+
+def test_an_unfilled_marathon_is_no_dance_and_holds_nothing_up(s34, monkeypatch):
+    backfill_s34(monkeypatch, s34_page(""))
+
+    assert all(k.endswith("#1") for k in perfs(s34, "EP#dwts#34#07"))
+    results = s34_catalog(s34, "EP#07")["results"]
+    assert results["eliminated"] == ["jen-affleck"]
+    assert results["bonus"] == {} and "segments" not in results
+    assert s34_catalog(s34, "CONTESTANT#jen-affleck")["eliminatedEp"] == 7
+
+
+def test_a_marathon_finishing_order_in_words_is_kept(s34, monkeypatch):
+    backfill_s34(monkeypatch, s34_page("Eliminated 3rd"))
+
+    results = s34_catalog(s34, "EP#07")["results"]
+    assert {s["text"] for s in results["segments"]} == {"Eliminated 3rd"}
+    assert results["bonus"] == {}
+
+
+def test_the_lineup_sets_dances_per_couple_and_format_from_the_page(s34, monkeypatch):
+    for ep in (7, 10, 11):
+        s34.Table(CATALOG_TABLE).update_item(
+            Key={"pk": "SEASON#dwts#34", "sk": f"EP#{ep:02d}"},
+            UpdateExpression="REMOVE dancesPerCouple",
+        )
+    Wiki(monkeypatch).tick(S34_REV, epoch("2026-01-01T00:00:00Z"), event={"lineup": True})
+
+    ep7, ep10, ep11 = (s34_catalog(s34, f"EP#{ep:02d}") for ep in (7, 10, 11))
+    assert (ep7["dancesPerCouple"], ep10["dancesPerCouple"], ep11["dancesPerCouple"]) == (1, 2, 3)
+    assert ep7["format"] == "One unlearned dance & dance marathon"
+    assert not any(k.endswith("#2") for k in ep7["lineup"])

@@ -21,6 +21,15 @@ ONLY = re.compile(r"\s*\(night (\d+) only\)", re.IGNORECASE)
 SPAN = re.compile(r'(row|col)span\s*=\s*"?(\d+)')
 TEMPLATE = re.compile(r"\{\{([^{}]*)\}\}")
 LINK = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]]*)\]\]")
+# A dance marathon is a row per couple under one "Hustle & Lindy Hop Marathon" cell.
+MARATHON = re.compile(r"marathon|endurance", re.IGNORECASE)
+# "a dance-off for three extra points"; S35 week 9 leaves the number out until it airs.
+DANCE_OFF_POINTS = re.compile(r"dance-offs? for (\w+) extra points?", re.IGNORECASE)
+WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
+# The Dance chart's "* Week 9 (Quarterfinals): One unlearned dance & dance-off".
+FORMAT = re.compile(
+    r"^\*\s*Weeks?\s+(\d+)(?:\s*[–-]\s*(\d+))?(?:\s*\(([^)]*)\))?\s*:\s*(.+)$", re.MULTILINE
+)
 
 
 def clean(text: str) -> str:
@@ -242,6 +251,68 @@ def read_score(row: list[dict], lay: dict) -> tuple[str, object]:
     return "scored", (Decimal(m.group(1)), judges, m.group(3) and int(m.group(3)))
 
 
+def marathon(row: list[dict], lay: dict, ids: list[str], night: int, style: str) -> dict:
+    """
+    A marathon row: never a dance to score, whatever its cell says. Points when the
+    cell is a number, else its text ("1st", "Eliminated 3rd"), else nothing yet.
+    """
+    text = row[lay["judges"][0] if lay["judges"] else lay["score"]]["text"]
+    points = int(text) if BONUS.match(text) else None
+    return {
+        "night": night,
+        "label": " ".join(style.split()),
+        "contestants": ids,
+        "points": points,
+        "text": None if points is not None or not text else " ".join(text.split()),
+    }
+
+
+def dance_offs(block: dict, aliases: dict, night: int, points: int | None) -> tuple[list, list]:
+    """
+    (segments, rejected) from an unscored "Dance-offs" table, a Winners/Losers row per
+    couple (S29-S35). Winners earn the week's stated `points`. A row with no result yet,
+    the "TBA & TBA" placeholders among them, is left for a later revision.
+    """
+    rows = block["rows"]
+    if "dance-off" not in block["caption"].lower() or not rows:
+        return [], []
+    names = [c["text"].lower() for c in rows[0]]
+    if "couple" not in names:
+        return [], []
+    segments, rejected = [], []
+    for row in expand(rows[1:]):
+        result = column(row, names, "result")
+        if result is None:
+            continue
+        couple = row[names.index("couple")]["text"]
+        cid = resolve(couple, aliases)
+        if cid is None:
+            rejected.append({"night": night, "row": couple, "reason": "unknown couple"})
+            continue
+        won = result.casefold().startswith("winner")
+        segments.append(
+            {
+                "night": night,
+                "label": "Dance-off",
+                "contestants": [cid],
+                "points": points if won else None,
+                "text": result,
+            }
+        )
+    return segments, rejected
+
+
+def week_format(wikitext: str, week: int, night: int) -> str | None:
+    """What the Dance chart says the couples performed that night, if it lists the week."""
+    text = re.sub(r"<!--.*?-->", "", wikitext, flags=re.DOTALL)
+    for m in FORMAT.finditer(clean(text)):
+        first, last = int(m.group(1)), int(m.group(2) or m.group(1))
+        on = NIGHT.search(m.group(3) or "")
+        if first <= week <= last and (on is None or int(on.group(1)) == night):
+            return cell_text(m.group(4)) or None
+    return None
+
+
 def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None:
     """Performances and rejected rows for `=== Week N`, or None if the heading isn't on the page.
 
@@ -251,6 +322,8 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
     labels, "(Night 2)" captions and scored "Dance-off" tables, not from tables: S11 week 7 has
     two tables on one night.
     `unscored` lists rows the page marks "No scores received", like S1's group Viennese waltz.
+    `segments` are a night's unscored extras, a marathon's or a dance-off's, a row per couple
+    or team; their points also land in the couple's dance's `bonus`.
     """
     text = re.sub(r"<!--.*?-->", "", wikitext, flags=re.DOTALL)
     head = re.search(rf"^===\s*Week {week}(?!\d).*$", text, flags=re.MULTILINE)
@@ -267,8 +340,13 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
     performances: list[dict] = []
     rejected: list[dict] = []
     unscored: list[dict] = []
+    segments: list[dict] = []
+    body = clean(section)
+    stated = DANCE_OFF_POINTS.search(body)
+    word = stated and stated.group(1).lower()
+    points = word and (int(word) if word.isdigit() else WORDS.get(word))
     night = 0
-    for block in blocks(clean(section)):
+    for block in blocks(body):
         panel = panel_of(block["before"]) or panel
         labels = [
             line
@@ -283,6 +361,9 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
 
         lay = layout(block["rows"])
         if lay is None:
+            found, bad = dance_offs(block, aliases, night, points)
+            segments += found
+            rejected += bad
             continue
         # S8's scored dance-offs aired on the results show, a night of their own.
         if not labels and "dance-off" in block["caption"].lower():
@@ -300,6 +381,11 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
             ids = [resolve(c, aliases) for c in couples]
             if None in ids:
                 rejected.append({**fail, "reason": "unknown couple"})
+                continue
+
+            style = column(row, names, "dance")
+            if style and MARATHON.search(style):
+                segments.append(marathon(row, lay, ids, night, style))
                 continue
 
             kind, got = read_score(row, lay)
@@ -339,11 +425,20 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
                     "total": total,
                     "judges": judges,
                     "bonus": bonus,
-                    "style": column(row, names, "dance"),
+                    "style": style,
                     "song": column(row, names, "music"),
                     "result": column(row, names, "result"),
                 }
             )
+
+    # After every table, so a marathon run before the couples' dances still finds them.
+    for s in segments:
+        for cid in s["contestants"] if s["points"] is not None else []:
+            mine = [
+                p for p in performances if p["contestants"] == [cid] and p["night"] == s["night"]
+            ]
+            if mine:
+                mine[-1]["bonus"] = (mine[-1]["bonus"] or 0) + s["points"]
 
     return {
         "week": week,
@@ -351,4 +446,5 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
         "performances": performances,
         "rejected": rejected,
         "unscored": unscored,
+        "segments": segments,
     }

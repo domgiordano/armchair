@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 
+import { BonusPoints } from "@/components/bonus-points";
 import { CatchUp } from "@/components/catch-up";
 import { PageLoader } from "@/components/disco-loader";
 import { GroupScopeControl } from "@/components/group-scope";
@@ -225,6 +226,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
             <h1 id="episode-title" className="text-2xl leading-tight font-semibold tracking-tight text-pearl">
               {episode.theme ?? episodeLabel(episode, season.episodes)}
             </h1>
+            {episode.format && <p className="text-sm font-medium text-gold-light">{episode.format}</p>}
             <p className="text-sm text-silver-dim">
               Comparing with <span className="font-medium text-pearl">{scope}</span>
             </p>
@@ -286,6 +288,7 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
           {out.join(", ")}
         </p>
       )}
+      {!anySealed && !held && data.results && <BonusPoints results={data.results} contestants={contestants} />}
       {!data.open && data.performances.length > 0 && <OrderNote state={data} tz={season.timezone} />}
       {data.performances.length > 1 && (
         <FindCouple cards={shown} contestants={contestants} cues={cues} query={query} onQuery={setQuery} />
