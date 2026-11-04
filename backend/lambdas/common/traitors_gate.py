@@ -28,7 +28,7 @@ EVENTS = ("MURDER", "RT", "RECRUIT")
 PICKS = {"MURDER": 1, "RT": 3, "RECRUIT": 1}
 RESULT_FIELDS = {
     "MURDER": ("victims",),
-    "RT": ("banished", "faction", "firstVote"),
+    "RT": ("banished", "faction", "firstVote", "pardoned"),
     "RECRUIT": ("recruits",),
     "SHIELD": ("shields",),
 }

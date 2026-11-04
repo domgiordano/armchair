@@ -48,6 +48,15 @@ ROUND_TABLES = {
         (2, "Madeline Kostopulos", [13, 7, 1]),
         (4, "Arisa Thomas", [13, 5, 1]),
     ],
+    # Episode 7's Banishment cell is struck through: Victor was pardoned.
+    "traitors-us5-1383625823": [
+        (2, "Madeline Kostopulos", [13, 7, 1]),
+        (4, "Arisa Thomas", [13, 5, 1]),
+        (5, "Sherry Kuehl", [11, 5, 1]),
+        (6, "Michael Foote", [8, 3, 3, 1]),
+        (7, "Victor Vollbrechthausen", [5, 3, 2, 1, 1, 1]),
+        (8, "Tomica Adams", [10, 2]),
+    ],
 }
 
 
@@ -74,6 +83,11 @@ def test_top_three_by_hand():
 def test_uk_dagger_footnote_counts_twice():
     uk4 = {rt["banished"]: rt for rt in parse("traitors-uk4-1374211799")["roundTables"]}
     assert uk4["Matthew Hyndman"]["firstVote"]["Matthew Hyndman"] == 5
+
+
+def test_struck_banishment_is_a_pardon():
+    rts = {rt["ep"]: rt for rt in parse("traitors-us5-1383625823")["roundTables"]}
+    assert [ep for ep, rt in rts.items() if rt["pardoned"]] == [7]
 
 
 def test_tie_revote_and_fate_are_one_round_table():

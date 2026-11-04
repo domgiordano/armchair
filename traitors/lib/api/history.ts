@@ -18,7 +18,7 @@ export interface HistoryEpisode {
   title: string | null;
   airDate: string | null;
   releaseAt: string;
-  roundTable: { banished: string; faction: Faction | null; firstVote: Record<string, number> } | null;
+  roundTable: { banished: string; faction: Faction | null; firstVote: Record<string, number>; pardoned?: boolean } | null;
   murdered: string[] | null;
   recruited: string[] | null;
   recap?: Writeup | null;

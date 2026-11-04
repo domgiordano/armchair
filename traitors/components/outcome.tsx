@@ -31,6 +31,7 @@ export function Outcome({ event, roster, season }: OutcomeProps) {
       return event.result.banished ? (
         <>
           {name(event.result.banished)}{" "}
+          {event.result.pardoned && <span className="text-ash">voted out, then pardoned</span>}
           {event.result.faction && <FactionWord faction={event.result.faction} className="ml-1" />}
         </>
       ) : (

@@ -117,6 +117,8 @@ export interface MurderResult {
 }
 export interface RoundTableResult {
   banished?: string;
+  /** The vote went against `banished`, who was kept in anyway. */
+  pardoned?: boolean;
   faction?: Faction;
   firstVote?: Record<string, number>;
   /** Who each player voted to banish, voter id to target id, once the round table is unlocked for you. */
