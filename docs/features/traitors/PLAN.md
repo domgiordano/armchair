@@ -51,7 +51,7 @@ Every episode offers the same slots, so the list itself can't spoil anything:
 |---|---|---|
 | `RT` round table | ranked 1st, 2nd, 3rd from active players | every episode except those the schedule marks `noRoundTable` (ep 1 everywhere, Celebrity eps 1-2) |
 | `MURDER` | one active player | every episode |
-| `RECRUIT` | one active player, optional | every episode, so its presence never hints at a recruitment night |
+| `RECRUIT` | one active player, optional | every episode, so its presence never hints at a recruitment night. It doesn't count toward finishing an episode, closes as no pick when the last required call is sealed, and drops off the ballot once a night recruits nobody |
 
 If the event doesn't happen, the pick voids: 0 points, no penalty. Edge-case rules:
 - **Tie and revote.** Top 3 ranks by the **first** vote column. Slot 1 scores against whoever actually left, after any revote or Fate draw.

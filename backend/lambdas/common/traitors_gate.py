@@ -26,6 +26,9 @@ from lambdas.common.traitors_recap import written
 # Show order: the breakfast reveal, the round table, then the night's recruitment.
 EVENTS = ("MURDER", "RT", "RECRUIT")
 PICKS = {"MURDER": 1, "RT": 3, "RECRUIT": 1}
+# Most nights recruit nobody, so the recruit call never holds an episode back. It closes,
+# as no pick, once the others are in: their results include the recap, which says.
+OPTIONAL = {"RECRUIT"}
 RESULT_FIELDS = {
     "MURDER": ("victims",),
     "RT": ("banished", "faction", "firstVote"),
@@ -59,6 +62,10 @@ def needs_bet(meta: dict, bet: dict | None) -> bool:
 
 def events(episode: dict) -> list[str]:
     return [e for e in EVENTS if not (e == "RT" and episode.get("noRoundTable"))]
+
+
+def required(episode: dict) -> list[str]:
+    return [e for e in events(episode) if e not in OPTIONAL]
 
 
 def card(player: dict) -> dict:
@@ -172,6 +179,7 @@ def episode_view(
         card = {
             "type": kind,
             "picks": PICKS[kind],
+            "optional": kind in OPTIONAL,
             "mine": row
             and {k: row[k] for k in ("picks", "forfeit", "submittedAt") if k in row}
             | {k: v for k, v in answer(row, settled).items() if k in ("calls", "points")},
@@ -293,8 +301,8 @@ def wall(
 
 
 def answered(sub: str, episode: dict, picks: list[dict]) -> bool:
-    """Every event of the episode picked or forfeited by the caller: gate rule 2."""
-    return set(mine(sub, picks)) >= set(events(episode))
+    """Every required event of the episode picked or forfeited by the caller: gate rule 2."""
+    return set(mine(sub, picks)) >= set(required(episode))
 
 
 def seen(sub: str, meta: dict, episode: dict, picks: list[dict], sealed: bool = False) -> bool:

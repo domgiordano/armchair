@@ -132,6 +132,8 @@ interface EventBase<T extends EventType, R> {
   type: T;
   /** How many players the pick names: 3 for the round table, else 1. */
   picks: number;
+  /** Doesn't hold the episode back, and closes as no pick once the others are sealed. */
+  optional?: boolean;
   mine: Mine | null;
   /** Nothing past the call to pick until you've picked or forfeited. */
   locked: boolean;

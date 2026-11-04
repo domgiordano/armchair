@@ -35,11 +35,11 @@ from lambdas.common.traitors_gate import (
     bet_roster,
     closed,
     ep_number,
-    events,
     mine,
     needs_bet,
     recap,
     released,
+    required,
     seen,
     wall,
 )
@@ -82,8 +82,9 @@ def handler(event, context):
                 "title": e.get("title"),
                 "releaseAt": e["releaseAt"],
                 "closed": closed(meta, e),
-                "events": len(events(e)),
-                "answered": len(mine(sub, answers)),
+                # The calls that finish an episode; the optional recruit isn't one.
+                "events": len(required(e)),
+                "answered": len(set(mine(sub, answers)) & set(required(e))),
                 "mine": {
                     kind: {k: row[k] for k in ("picks", "forfeit") if k in row}
                     for kind, row in mine(sub, answers).items()

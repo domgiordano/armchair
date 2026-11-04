@@ -24,9 +24,18 @@ from lambdas.common.api import (
     ok,
     text,
 )
-from lambdas.common.episodes_dynamo import create_score, episode_pk, ref, season_rows
+from lambdas.common.dynamo import table
+from lambdas.common.episodes_dynamo import create_score, episode_pk, ref, scores, season_rows
 from lambdas.common.traitors_dynamo import bet, episode, season_parts, traitors_ref
-from lambdas.common.traitors_gate import PICKS, closed, events, needs_bet, roster
+from lambdas.common.traitors_gate import (
+    OPTIONAL,
+    PICKS,
+    closed,
+    events,
+    needs_bet,
+    required,
+    roster,
+)
 
 
 def answer(data: dict, kind: str, allowed: set[str]) -> dict:
@@ -65,13 +74,39 @@ def handler(event, context):
         raise ValidationError("That event isn't part of this episode", field="event")
     given = answer(data, kind, {p["id"] for p in roster(ep, players)})
 
+    pk = episode_pk(show, number, ep)
+    at = datetime.now(UTC).isoformat(timespec="seconds")
+    have = {
+        k
+        for r in scores(pk)
+        for k, _, owner in [r["sk"].removeprefix("EVT#").partition("#USER#")]
+        if owner == sub
+    }
+    if kind in OPTIONAL and set(required(found)) <= have:
+        raise ConflictError("The recruit call closed when your other calls were sealed")
+    # The last required call closes the optional ones it would otherwise give away.
+    closing = (
+        [
+            {
+                "Put": {
+                    "TableName": table("SCORES_TABLE").name,
+                    "Item": {
+                        "pk": pk,
+                        "sk": f"EVT#{k}#USER#{sub}",
+                        "forfeit": True,
+                        "submittedAt": at,
+                    },
+                    "ConditionExpression": "attribute_not_exists(sk)",
+                }
+            }
+            for k in events(found)
+            if k in OPTIONAL and k not in have
+        ]
+        if kind not in OPTIONAL and set(required(found)) <= have | {kind}
+        else []
+    )
     stored = create_score(
-        {
-            "pk": episode_pk(show, number, ep),
-            "sk": f"EVT#{kind}#USER#{sub}",
-            **given,
-            "submittedAt": datetime.now(UTC).isoformat(timespec="seconds"),
-        }
+        {"pk": pk, "sk": f"EVT#{kind}#USER#{sub}", **given, "submittedAt": at}, closing
     )
     if stored.get("picks") != given.get("picks") or stored.get("forfeit") != given.get("forfeit"):
         raise ConflictError("Already picked; picks are final")
