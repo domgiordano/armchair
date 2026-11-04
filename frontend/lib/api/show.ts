@@ -63,6 +63,8 @@ export interface Episode {
   start: string | null;
   end: string | null;
   theme: string | null;
+  /** The Dance chart's line for the night, "One unlearned dance & dance-off", once the poller reads it. */
+  format?: string | null;
   window?: ScoringWindow;
 }
 
@@ -125,11 +127,21 @@ export interface RevealedCard extends Omit<LockedCard, "locked" | "writeup" | "s
 
 export type Card = LockedCard | RevealedCard;
 
+/** One couple's row (or a whole-cast row) of a marathon or dance-off: its points, or the page's words for it. */
+export interface Segment {
+  label: string;
+  contestants: string[];
+  points: number | null;
+  text: string | null;
+}
+
 /** What the poller writes once every score is confirmed: who went home and each couple's total. */
 export interface EpisodeResults {
   eliminated: string[];
   totals: Record<string, number>;
   bonus: Record<string, number>;
+  /** Absent on a night with no marathon or dance-off, and on seasons seeded before them. */
+  segments?: Segment[];
 }
 
 /** "wikipedia" before air, "admin" set by hand, "live" once the show is scoring. */
