@@ -1,17 +1,23 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { CrowdStats } from "@/components/crowd-stats";
 import { FaceDownNotice } from "@/components/face-down";
 import { errorText, useSeasonView } from "@/components/season-data";
 import { useSeasonName } from "@/components/season-provider";
 import { Card } from "@/components/ui/card";
+import { Select } from "@/components/ui/select";
 import { SkeletonList } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
+import { tabId, Tabs } from "@/components/ui/tabs";
 import { getStats, type EventType, type Stats } from "@/lib/api/traitors";
+import { useGroupFilter } from "@/lib/group-filter";
 import { roman } from "@/lib/players";
 import { useFaceDown } from "@/lib/sealed";
-import { cn, EYEBROW, HEADING } from "@/lib/ui";
+import { cn, EYEBROW, HEADING, TEXT_LINK } from "@/lib/ui";
 
 const EVENTS: { type: EventType; label: string }[] = [
   { type: "RT", label: "Round table" },
@@ -19,75 +25,126 @@ const EVENTS: { type: EventType; label: string }[] = [
   { type: "RECRUIT", label: "Recruits" },
 ];
 
-type Load = { kind: "loading" } | { kind: "ready"; stats: Stats } | { kind: "error"; message: string };
+const VIEWS = [
+  { id: "me", label: "You" },
+  { id: "groups", label: "Groups" },
+  { id: "global", label: "Everyone" },
+] as const;
+type View = (typeof VIEWS)[number]["id"];
+const PANEL = "stats-panel";
+
+/** The query string holds the tab, so a link opens the same one: ?view=groups. */
+function useView(): [View, (v: View) => void] {
+  const params = useSearchParams();
+  const router = useRouter();
+  const asked = params.get("view");
+  const view = VIEWS.find((v) => v.id === asked)?.id ?? "me";
+  const set = (v: View) => {
+    const next = new URLSearchParams(params.toString());
+    if (v === "me") next.delete("view");
+    else next.set("view", v);
+    const q = next.toString();
+    router.replace(q ? `/stats/?${q}` : "/stats/", { scroll: false });
+  };
+  return [view, set];
+}
 
 export function StatsScreen() {
   const { view } = useSeasonView();
   const name = useSeasonName(view.season, view.title);
+  const [tab, setTab] = useView();
+  const faceDown = useFaceDown(view.season);
+
+  return (
+    <>
+      <div className="flex flex-col gap-1">
+        <p className={EYEBROW}>{name.title}</p>
+        <h1 className={cn(HEADING, "text-2xl")}>{tab === "me" ? "Your ledger" : "The crowd's ledger"}</h1>
+      </div>
+      <Tabs label="Whose stats" tabs={VIEWS} value={tab} onChange={setTab} panelId={PANEL} />
+      <div key={tab} id={PANEL} role="tabpanel" aria-labelledby={tabId(PANEL, tab)} className="flex flex-col gap-4">
+        {faceDown.eps.length > 0 ? (
+          <FaceDownNotice season={view.season} ep={faceDown.eps[0]} what={tab === "me" ? "Your ledger" : "The crowd"} />
+        ) : (
+          <>
+            {tab === "me" && <Ledger season={view.season} />}
+            {tab === "groups" && <GroupStats />}
+            {tab === "global" && <CrowdStats group={null} name="Everyone" />}
+          </>
+        )}
+      </div>
+    </>
+  );
+}
+
+function GroupStats() {
+  const filter = useGroupFilter();
+  const [picked, setPicked] = useState<string | null>(null);
+  if (filter.groups === null && !filter.failed) return <SkeletonList label="Loading your groups" />;
+  const groups = filter.groups ?? [];
+  const group = groups.find((g) => g.id === (picked ?? filter.group)) ?? groups[0];
+  if (!group) {
+    return (
+      <EmptyState title={filter.failed ? "Couldn't load your groups" : "You're not in a group yet"}>
+        A group sets your calls beside just the people in it.{" "}
+        <Link href="/groups/" className={TEXT_LINK}>
+          Start one or join one
+        </Link>
+        .
+      </EmptyState>
+    );
+  }
+  return (
+    <>
+      {groups.length > 1 && (
+        <Select
+          label="Group"
+          value={group.id}
+          options={groups.map((g) => ({ value: g.id, label: `${g.name} (${g.members.length})` }))}
+          onChange={setPicked}
+        />
+      )}
+      <CrowdStats key={group.id} group={group.id} name={group.name} />
+    </>
+  );
+}
+
+type Load = { kind: "loading" } | { kind: "ready"; stats: Stats } | { kind: "error"; message: string };
+
+function Ledger({ season }: { season: string }) {
   const [load, setLoad] = useState<Load>({ kind: "loading" });
   const [attempt, setAttempt] = useState(0);
-  const faceDown = useFaceDown(view.season);
 
   useEffect(() => {
     let cancelled = false;
-    getStats(view.season).then(
+    getStats(season).then(
       (stats) => !cancelled && setLoad({ kind: "ready", stats }),
       (e: unknown) => !cancelled && setLoad({ kind: "error", message: errorText(e) }),
     );
     return () => {
       cancelled = true;
     };
-  }, [view.season, attempt]);
+  }, [season, attempt]);
 
-  const heading = (
-    <div className="flex flex-col gap-1">
-      <p className={EYEBROW}>{name.title}</p>
-      <h1 className={cn(HEADING, "text-2xl")}>Your ledger</h1>
-    </div>
-  );
-  if (faceDown.eps.length > 0) {
-    return (
-      <>
-        {heading}
-        <FaceDownNotice season={view.season} ep={faceDown.eps[0]} what="Your ledger" />
-      </>
-    );
-  }
   if (load.kind === "loading") {
-    return (
-      <>
-        {heading}
-        <SkeletonList label="Reading the ledger" rows={4} row="h-20" />
-      </>
-    );
+    return <SkeletonList label="Reading the ledger" rows={4} row="h-20" />;
   }
   if (load.kind === "error") {
     const retry = () => {
       setLoad({ kind: "loading" });
       setAttempt((n) => n + 1);
     };
-    return (
-      <>
-        {heading}
-        <ErrorState what="your stats" message={load.message} retry={retry} />
-      </>
-    );
+    return <ErrorState what="your stats" message={load.message} retry={retry} />;
   }
 
   const s = load.stats;
   if (s.events === 0 && s.winnerPoints === null) {
-    return (
-      <>
-        {heading}
-        <EmptyState title="Nothing scored yet">Your numbers fill in once results confirm for calls you&apos;ve sealed.</EmptyState>
-      </>
-    );
+    return <EmptyState title="Nothing scored yet">Your numbers fill in once results confirm for calls you&apos;ve sealed.</EmptyState>;
   }
   const best = Math.max(1, ...s.byEpisode.map((e) => e.points));
 
   return (
     <>
-      {heading}
       <Card tartan className="grid grid-cols-3 gap-2 text-center">
         <Figure label="Points" value={s.points} gold />
         <Figure label="Calls scored" value={s.events} />
