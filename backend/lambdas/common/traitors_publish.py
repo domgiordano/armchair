@@ -15,8 +15,10 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
+from botocore.exceptions import ClientError
+
 from lambdas.common import confirm, traitors_board
-from lambdas.common.dynamo import query_many, update
+from lambdas.common.dynamo import query_many, table, update
 from lambdas.common.episodes_dynamo import episode_pk
 from lambdas.common.people import slug
 
@@ -84,9 +86,12 @@ def outcomes(parsed: dict, episodes: list[int]) -> dict[int, dict[str, dict | No
         if rt and rt["complete"]:
             out[e]["RT"] = {
                 "banished": slug(rt["banished"]),
-                "faction": factions.get(rt["banished"]),
+                # A pardon reveals nothing.
+                "faction": None if rt["pardoned"] else factions.get(rt["banished"]),
                 "firstVote": {slug(n): c for n, c in rt["firstVote"].items()},
             }
+            if rt["pardoned"]:
+                out[e]["RT"]["pardoned"] = True
     return out
 
 
@@ -156,11 +161,29 @@ def publish(
     return pending, confirmed
 
 
+def unexit(pk: str, player: str, ep: int) -> None:
+    """Drops an exit written while the page still read a pardon as a banishment. Only this
+    episode's: a later exit of the same player stands."""
+    try:
+        table("CATALOG_TABLE").update_item(
+            Key={"pk": pk, "sk": f"PLAYER#{player}"},
+            UpdateExpression="REMOVE #exit",
+            ConditionExpression="#exit.ep = :ep",
+            ExpressionAttributeNames={"#exit": "exit"},
+            ExpressionAttributeValues={":ep": ep},
+        )
+    except ClientError as e:
+        if e.response["Error"]["Code"] != "ConditionalCheckFailedException":
+            raise
+
+
 def exits(show: str, season: int, ep: int, confirmed: list[dict]) -> None:
     """Marks who left in this episode on their PLAYER item, with the faction a banishment revealed."""
     pk = f"SEASON#{show}#{season}"
     for r in confirmed:
-        if r["kind"] == "RT":
+        if r["kind"] == "RT" and r.get("pardoned"):
+            unexit(pk, r["banished"], ep)
+        elif r["kind"] == "RT":
             fields = {"exit": {"ep": ep, "how": "banished"}}
             if r.get("faction"):
                 fields["faction"] = r["faction"]

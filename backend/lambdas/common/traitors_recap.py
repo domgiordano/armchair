@@ -29,9 +29,12 @@ def written(results: dict[str, dict | None], who: dict[str, str]) -> dict | None
         votes = rt.get("firstVote") or {}
         total = sum(int(v) for v in votes.values())
         got = int(votes.get(rt["banished"], 0))
-        line = f"At the round table, {who.get(rt['banished'], rt['banished'])} was banished"
+        verb = "drew the most votes" if rt.get("pardoned") else "was banished"
+        line = f"At the round table, {who.get(rt['banished'], rt['banished'])} {verb}"
         if total:
             line += f" with {got} of {total} votes"
+        if rt.get("pardoned"):
+            line += ", then was pardoned and stayed in"
         lines.append(
             line + (f" and revealed they were a {rt['faction']}." if rt.get("faction") else ".")
         )

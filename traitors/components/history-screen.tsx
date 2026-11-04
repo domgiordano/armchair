@@ -216,13 +216,13 @@ function Night({ episode: e, players, names, link, season }: NightProps) {
             kind="RT"
             season={season}
             chosen={[]}
-            result={{ banished: rt.banished, faction: rt.faction ?? undefined }}
+            result={{ banished: rt.banished, faction: rt.faction ?? undefined, pardoned: rt.pardoned }}
             tallies={rt.firstVote}
             tallyLabel={(n) => `${n} ${n === 1 ? "vote" : "votes"}`}
             hrefOf={link}
           />
           <p className="text-parchment">
-            Banished: {names([rt.banished])}
+            {rt.pardoned ? "Voted out, then pardoned" : "Banished"}: {names([rt.banished])}
             {rt.faction && <FactionWord faction={rt.faction} className="ml-2 text-base" />}
           </p>
         </>

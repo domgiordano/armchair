@@ -19,6 +19,7 @@ WIKILINK = re.compile(r"\[\[(?!(?:File|Image):)([^\]|#]+)", re.IGNORECASE)
 SORTNAME = re.compile(r"\{\{\s*sortname\s*\|([^{}]*)\}\}", re.IGNORECASE)
 EPISODE = re.compile(r"Episode\s*(\d+)")
 START_DATE = re.compile(r"\{\{\s*Start date\s*\|\s*(\d{4})\s*\|\s*(\d{1,2})\s*\|\s*(\d{1,2})")
+STRUCK = re.compile(r"<s>(.*?)</s>", re.DOTALL)
 DAGGER = re.compile(r"\{\{\s*efn\s*\|\s*name\s*=\s*\"?Dagger|\(2x\)", re.IGNORECASE)
 FACTIONS = {"Faithful", "Traitor", "Accomplice"}
 RECRUIT_ACTIONS = {"recruit", "seduce", "offer", "ultimatum"}
@@ -321,9 +322,15 @@ def round_tables(wikitext: str, names: dict[str, str]) -> list[dict]:
         if c > start and banish[c] is banish[c - 1] and votes[c] is votes[c - 1]:
             continue
         result, declared = banish[c]["text"], votes[c]["text"]
-        if result in ("None", "") and declared in ("None", ""):
+        struck = STRUCK.search(banish[c]["raw"])
+        if result in ("None", "") and declared in ("None", "") and not struck:
             continue
-        column = {"label": header[c]["text"], "result": result, "declared": declared}
+        column = {
+            "label": header[c]["text"],
+            "result": result,
+            "declared": declared,
+            "pardoned": text(struck.group(1)) if struck and not result else None,
+        }
         group = out[-1] if out and out[-1]["columns"][-1]["result"] == "Tie" else None
         if group:
             group["columns"].append(column)
@@ -365,8 +372,12 @@ def round_tables(wikitext: str, names: dict[str, str]) -> list[dict]:
             out.append(group)
 
     for group in out:
-        last = group["columns"][-1]["result"]
-        group["banished"] = resolve(names, last)
+        last = group["columns"][-1]
+        # A struck name in the Banishment row is a player voted out and then kept in
+        # (New Blood episode 7: Shane's pardon of Victor). The vote still happened and
+        # scores as one; only the exit didn't.
+        group["pardoned"] = bool(last["pardoned"]) and resolve(names, last["pardoned"]) is not None
+        group["banished"] = resolve(names, last["pardoned"] or last["result"])
         group["fate"] = any(col["declared"].startswith("Fate") for col in group["columns"])
         group["complete"] = (
             group["banished"] is not None
@@ -456,7 +467,8 @@ def season(wikitext: str) -> dict:
     for rt in tables_:
         # Where a round table airs is the banished player's Finish cell; a `3/4` column
         # label alone can't say which of the two episodes it was.
-        ep = exits.get(rt["banished"] or "", {}).get("ep")
+        # A pardoned player's Finish cell is a later exit, if any.
+        ep = None if rt["pardoned"] else exits.get(rt["banished"] or "", {}).get("ep")
         if ep is None:
             nums = re.findall(r"\d+", rt["columns"][0]["label"])
             ep = int(nums[-1]) if nums else None
