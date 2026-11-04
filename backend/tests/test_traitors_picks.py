@@ -170,10 +170,10 @@ def test_out_needs_an_episode_fully_answered(db):
     assert res["data"]["needsBet"] is False
     assert [o["id"] for o in res["data"]["out"]] == ["ann"]
     pick(A, "MURDER", ["dan"])
-    pick(A, "RT", ["bob", "cat", "dan"])
     _, res = get(episode_handler, "/traitors/episode", A, ep="03")
     assert [o["id"] for o in res["data"]["out"]] == ["ann"]
-    pick(A, "RECRUIT", forfeit=True)
+    # The optional recruit doesn't hold the episode back.
+    pick(A, "RT", ["bob", "cat", "dan"])
     _, res = get(episode_handler, "/traitors/episode", A, ep="03")
     assert res["data"]["out"] == [
         {"id": "ann", "ep": 1, "how": "murdered", "faction": None},
@@ -360,10 +360,11 @@ def test_season_lists_my_progress(db):
     pick(A, "MURDER", ["dan"])
     _, res = get(season_handler, "/traitors/season", A)
     eps = res["data"]["episodes"]
+    # Only the calls that finish an episode count; the recruit is optional.
     assert [(e["ep"], e["closed"], e["events"], e["answered"]) for e in eps] == [
-        (1, True, 2, 0),
-        (2, False, 3, 1),
-        (3, False, 3, 0),
+        (1, True, 1, 0),
+        (2, False, 2, 1),
+        (3, False, 2, 0),
     ]
     assert eps[1]["mine"] == {"MURDER": {"picks": ["dan"]}}
     pick(A, "RECRUIT", forfeit=True)
@@ -375,6 +376,25 @@ def test_season_lists_my_progress(db):
         "MURDER": {"picks": ["dan"]},
         "RECRUIT": {"forfeit": True},
     }
+
+
+def test_the_last_required_call_closes_the_recruit(db):
+    bet(A)
+    pick(A, "MURDER", ["dan"])
+    pick(A, "RT", ["bob", "cat", "dan"])
+    _, res = get(season_handler, "/traitors/season", A)
+    assert res["data"]["episodes"][1]["mine"]["RECRUIT"] == {"forfeit": True}
+    # Its result was in the recap the caller just opened.
+    assert pick(A, "RECRUIT", ["cat"])[0] == 409
+
+
+def test_a_recruit_called_first_stands(db):
+    bet(A)
+    pick(A, "RECRUIT", ["cat"])
+    pick(A, "MURDER", ["dan"])
+    pick(A, "RT", ["bob", "cat", "dan"])
+    _, res = get(season_handler, "/traitors/season", A)
+    assert res["data"]["episodes"][1]["mine"]["RECRUIT"] == {"picks": ["cat"]}
 
 
 def test_not_a_traitors_season(db):

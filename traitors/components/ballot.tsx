@@ -38,28 +38,33 @@ import { eventPoints } from "@/lib/points";
 import { votesByTarget } from "@/lib/recap";
 import { formatRelease } from "@/lib/schedule";
 import { revealCall, sealCall, useFaceDown } from "@/lib/sealed";
+import { nothingHappened } from "@/lib/events";
 import { useEpisodePoll } from "@/lib/use-episode-poll";
 import { button, cn, EYEBROW, FOCUS, HEADING } from "@/lib/ui";
 import { ApiError } from "@armchair/app-core/api/client";
 import type { GroupMember } from "@armchair/app-core/api/groups";
 
-const COPY: Record<EventType, { tab: string; title: string; prompt: string }> = {
-  MURDER: {
-    tab: "Murder",
-    title: "The murder",
-    prompt: "Who won't come down in the morning? Turn the table to them and choose them for the murder.",
-  },
-  RT: {
-    tab: "Banish",
-    title: "The round table",
-    prompt: "Chalk three names in the order the votes fall. I is who you think leaves.",
-  },
-  RECRUIT: {
-    tab: "Recruit",
-    title: "The recruit",
-    prompt: "If the Traitors recruit tonight, who gets the cloak? Turn the table to them and choose, or take no pick.",
-  },
-};
+const COPY: Record<EventType, { tab: string; title: string; prompt: string }> =
+  {
+    MURDER: {
+      tab: "Murder",
+      title: "The murder",
+      prompt:
+        "Who won't come down in the morning? Turn the table to them and choose them for the murder.",
+    },
+    RT: {
+      tab: "Banish",
+      title: "The round table",
+      prompt:
+        "Chalk three names in the order the votes fall. I is who you think leaves.",
+    },
+    RECRUIT: {
+      tab: "Recruit",
+      title: "The recruit",
+      prompt:
+        "Optional. If the Traitors recruit tonight, who gets the cloak? Call it before your other calls are sealed, or leave it.",
+    },
+  };
 
 const PANEL = "event-panel";
 
@@ -79,31 +84,60 @@ interface BallotProps {
 }
 
 /** One episode's three calls: murder, round table, recruit. Blind and final, each under the wax seal. */
-export function Ballot({ season, episode, group, members, seasonTitle, onSealed, onNeedBet, cast = [] }: BallotProps) {
-  const { data, error, reload } = useEpisodePoll(season, episode.ep, episode.releaseAt, group);
+export function Ballot({
+  season,
+  episode,
+  group,
+  members,
+  seasonTitle,
+  onSealed,
+  onNeedBet,
+  cast = [],
+}: BallotProps) {
+  const { data, error, reload } = useEpisodePoll(
+    season,
+    episode.ep,
+    episode.releaseAt,
+    group,
+  );
   const [tab, setTab] = useState<EventType | null>(null);
   const [locked, setLocked] = useState<EventType | null>(null);
   const faceDown = useFaceDown(season);
 
   if (data === null) {
-    if (error !== null) return <ErrorState what="this episode" message={error} retry={reload} />;
+    if (error !== null)
+      return <ErrorState what="this episode" message={error} retry={reload} />;
     return <SkeletonList label="Laying the table" rows={3} row="h-24" />;
   }
 
+  const shown = data.events.filter((e) => !nothingHappened(e));
+  const calls = data.events.filter((e) => !e.optional);
   const active =
-    data.events.find((e) => e.type === tab) ?? data.events.find((e) => e.locked && !e.sealed) ?? data.events[0];
+    shown.find((e) => e.type === tab) ??
+    shown.find((e) => e.locked && !e.sealed) ??
+    shown[0];
   // The server holds the recap back while a call is sealed; the device may know first.
   const held = faceDown.episode(data.ep) || data.events.some((e) => e.sealed);
-  const sealed = data.events.filter((e) => e.mine).length;
+  const sealed = calls.filter((e) => e.mine).length;
+  const finished = calls.every((e) => e.mine);
+  // Sealing this one closes any optional call still open.
+  const closing =
+    active && !active.optional && calls.filter((e) => !e.mine).length === 1
+      ? data.events.filter((e) => e.optional && e.locked && !e.mine)
+      : [];
 
   return (
     <section aria-labelledby="episode-title" className="flex flex-col gap-4">
       <div className="flex items-end justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-1">
           <p className={EYEBROW}>
-            {seasonTitle && `${seasonTitle} · `}Episode {roman(data.ep)} · {formatRelease(data.releaseAt)}
+            {seasonTitle && `${seasonTitle} · `}Episode {roman(data.ep)} ·{" "}
+            {formatRelease(data.releaseAt)}
           </p>
-          <h1 id="episode-title" className={cn(HEADING, "text-2xl leading-tight")}>
+          <h1
+            id="episode-title"
+            className={cn(HEADING, "text-2xl leading-tight")}
+          >
             {data.title ?? `Episode ${data.ep}`}
           </h1>
         </div>
@@ -112,14 +146,20 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed,
             "Closed · view only"
           ) : (
             <>
-              <span className="nums">{sealed}</span> of <span className="nums">{data.events.length}</span> sealed
+              <span className="nums">{sealed}</span> of{" "}
+              <span className="nums">{calls.length}</span> sealed
             </>
           )}
         </p>
       </div>
-      {data.out.length > 0 && <Gone season={season} out={data.out} cast={cast} />}
+      {data.out.length > 0 && (
+        <Gone season={season} out={data.out} cast={cast} />
+      )}
       {error !== null && (
-        <p role="status" className="rounded-sm border border-ember/50 bg-ember/10 px-3 py-2 text-bone">
+        <p
+          role="status"
+          className="rounded-sm border border-ember/50 bg-ember/10 px-3 py-2 text-bone"
+        >
           Couldn&apos;t refresh: {error}. Showing the last view loaded.
         </p>
       )}
@@ -127,12 +167,21 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed,
         <>
           <Tabs
             label="Calls this episode"
-            tabs={data.events.map((e) => ({ id: e.type, label: COPY[e.type].tab, done: Boolean(e.mine) }))}
+            tabs={shown.map((e) => ({
+              id: e.type,
+              label: COPY[e.type].tab,
+              done: Boolean(e.mine),
+            }))}
             value={active.type}
             onChange={setTab}
             panelId={PANEL}
           />
-          <div id={PANEL} role="tabpanel" aria-labelledby={tabId(PANEL, active.type)} className="flex flex-col gap-4">
+          <div
+            id={PANEL}
+            role="tabpanel"
+            aria-labelledby={tabId(PANEL, active.type)}
+            className="flex flex-col gap-4"
+          >
             <EventPanel
               key={active.type}
               season={season}
@@ -145,21 +194,35 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed,
                 onSealed();
               }}
               onLocked={setLocked}
+              closing={closing.map((e) => COPY[e.type].tab.toLowerCase())}
             />
           </div>
         </>
       )}
-      {held && (data.recap || data.events.every((e) => e.mine)) ? (
-        <FaceDownNotice season={season} ep={data.ep} what="The recap" link={false} />
+      {held && (data.recap || finished) ? (
+        <FaceDownNotice
+          season={season}
+          ep={data.ep}
+          what="The recap"
+          link={false}
+        />
       ) : data.recap ? (
         <RecapCard recap={data.recap} />
-      ) : data.closed || data.events.every((e) => e.mine) ? (
-        <p className="text-ash">The recap isn&apos;t written yet. It appears here once the wiki has it.</p>
+      ) : data.closed || finished ? (
+        <p className="text-ash">
+          The recap isn&apos;t written yet. It appears here once the wiki has
+          it.
+        </p>
       ) : (
         <SealedScroll />
       )}
       <RevealSheet
-        locked={locked && { what: `Your ${COPY[locked].title.replace(/^The /, "")} call`, ep: data.ep }}
+        locked={
+          locked && {
+            what: `Your ${COPY[locked].title.replace(/^The /, "")} call`,
+            ep: data.ep,
+          }
+        }
         onReveal={() => {
           if (locked) revealCall(season, data.ep, locked);
           setLocked(null);
@@ -171,7 +234,15 @@ export function Ballot({ season, episode, group, members, seasonTitle, onSealed,
 }
 
 /** Who has already left the castle, crossed off, so the table's empty places make sense. */
-function Gone({ season, out, cast }: { season: string; out: Episode["out"]; cast: CastMember[] }) {
+function Gone({
+  season,
+  out,
+  cast,
+}: {
+  season: string;
+  out: Episode["out"];
+  cast: CastMember[];
+}) {
   const faces = new Map(cast.map((p) => [p.id, p]));
   const hrefOf = seasonPlayerHref(season);
   return (
@@ -187,12 +258,22 @@ function Gone({ season, out, cast }: { season: string; out: Episode["out"]; cast
               <Link
                 href={hrefOf(o.id)}
                 aria-label={`${name}, ${finishText(o)}${o.faction ? `, ${o.faction}` : ""}`}
-                className={cn(FOCUS, "group flex w-16 flex-col items-center gap-1 rounded-sm p-1 text-center hover:bg-cloak/50")}
+                className={cn(
+                  FOCUS,
+                  "group flex w-16 flex-col items-center gap-1 rounded-sm p-1 text-center hover:bg-cloak/50",
+                )}
               >
                 <span aria-hidden="true">
-                  <Headshot name={name} image={faces.get(o.id)?.headshot ?? null} exit={o} size={44} />
+                  <Headshot
+                    name={name}
+                    image={faces.get(o.id)?.headshot ?? null}
+                    exit={o}
+                    size={44}
+                  />
                 </span>
-                <span className="w-full truncate text-xs text-ash group-hover:text-bone">{firstName(name)}</span>
+                <span className="w-full truncate text-xs text-ash group-hover:text-bone">
+                  {firstName(name)}
+                </span>
               </Link>
             </li>
           );
@@ -211,16 +292,29 @@ interface EventPanelProps {
   onNeedBet?: () => void;
   /** Sealed just now, on this device: its result stays face down until revealed. */
   onLocked: (type: EventType) => void;
+  /** Optional calls this seal closes as no pick. */
+  closing: string[];
 }
 
-function EventPanel({ season, episode, event, members, onSealed, onNeedBet, onLocked }: EventPanelProps) {
+function EventPanel({
+  season,
+  episode,
+  event,
+  members,
+  onSealed,
+  onNeedBet,
+  onLocked,
+  closing,
+}: EventPanelProps) {
   const toast = useToast();
   const faceDown = useFaceDown(season);
   const [picks, setPicks] = useState<string[]>([]);
   const [forfeit, setForfeit] = useState(false);
   const [showVotes, setShowVotes] = useState(true);
   const picking = event.locked && !event.sealed && !episode.closed;
-  const hidden = event.sealed === true || (!picking && faceDown.call(episode.ep, event.type));
+  const hidden =
+    event.sealed === true ||
+    (!picking && faceDown.call(episode.ep, event.type));
   // Before the winner bet the table looks the same, but a tap asks for the bet.
   const waiting = episode.needsBet ? onNeedBet : undefined;
   const rows = consensusRows(event, Infinity);
@@ -233,11 +327,21 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet, onLo
     // Sealed before the request, so a poll landing in between can't turn the result over.
     sealCall(season, episode.ep, event.type);
     try {
-      await submitPick(season, episode.ep, event.type, forfeit ? { forfeit: true } : { picks });
+      await submitPick(
+        season,
+        episode.ep,
+        event.type,
+        forfeit ? { forfeit: true } : { picks },
+      );
     } catch (e) {
       revealCall(season, episode.ep, event.type);
       if (e instanceof ApiError && (e.status === 409 || e.status === 403)) {
-        toast(e.status === 409 ? "You already made this call on another device." : "This episode is closed.", "error");
+        toast(
+          e.status === 409
+            ? "You already made this call on another device."
+            : "This episode is closed.",
+          "error",
+        );
         onSealed();
       } else {
         toast(`Your call didn't go through: ${errorText(e)}`, "error");
@@ -304,10 +408,14 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet, onLo
           picking || hidden
             ? null
             : drawn
-              ? Object.fromEntries(votesByTarget(drawn).map((v) => [v.target, v.voters.length]))
+              ? Object.fromEntries(
+                  votesByTarget(drawn).map((v) => [v.target, v.voters.length]),
+                )
               : Object.fromEntries(rows.map((r) => [r.id, r.count]))
         }
-        tallyLabel={drawn ? (n) => `${n} ${n === 1 ? "vote" : "votes"}` : undefined}
+        tallyLabel={
+          drawn ? (n) => `${n} ${n === 1 ? "vote" : "votes"}` : undefined
+        }
         hrefOf={picking ? undefined : seasonPlayerHref(season)}
         ballots={drawn}
         shields={shields}
@@ -315,23 +423,39 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet, onLo
       {picking && waiting ? (
         <Slate className="flex flex-col items-start gap-3">
           <p className={EYEBROW}>Your slate</p>
-          <p className="text-parchment">Lock in your winners to start playing. Your calls open once they&apos;re sealed.</p>
+          <p className="text-parchment">
+            Lock in your winners to start playing. Your calls open once
+            they&apos;re sealed.
+          </p>
           <Button variant="gold" onClick={waiting}>
             Lock in your winners
           </Button>
         </Slate>
       ) : picking ? (
-        <PickSlate
+        <>
+          <PickSlate
+            event={event}
+            roster={episode.roster}
+            picks={picks}
+            forfeit={forfeit}
+            onPicks={setPicks}
+            onForfeit={setForfeit}
+            onSeal={submit}
+          />
+          {closing.length > 0 && (
+            <p className="text-sm text-ash">
+              Sealing this closes your {closing.join(" and ")} call with no
+              pick.
+            </p>
+          )}
+        </>
+      ) : hidden ? (
+        <FaceDownCall
+          season={season}
           event={event}
           roster={episode.roster}
-          picks={picks}
-          forfeit={forfeit}
-          onPicks={setPicks}
-          onForfeit={setForfeit}
-          onSeal={submit}
+          ep={episode.ep}
         />
-      ) : hidden ? (
-        <FaceDownCall season={season} event={event} roster={episode.roster} ep={episode.ep} />
       ) : (
         <>
           <Reveal
@@ -342,7 +466,14 @@ function EventPanel({ season, episode, event, members, onSealed, onNeedBet, onLo
             named={episode.people}
             closed={episode.closed}
           />
-          {ballots && <Votes season={season} ballots={ballots} shields={shields} roster={episode.roster} />}
+          {ballots && (
+            <Votes
+              season={season}
+              ballots={ballots}
+              shields={shields}
+              roster={episode.roster}
+            />
+          )}
         </>
       )}
     </>
@@ -405,7 +536,15 @@ interface PickSlateProps {
   onSeal: () => Promise<void>;
 }
 
-function PickSlate({ event, roster, picks, forfeit, onPicks, onForfeit, onSeal }: PickSlateProps) {
+function PickSlate({
+  event,
+  roster,
+  picks,
+  forfeit,
+  onPicks,
+  onForfeit,
+  onSeal,
+}: PickSlateProps) {
   const ranked = event.type === "RT";
   const ready = forfeit || picks.length === event.picks;
   const slots = Array.from({ length: event.picks }, (_, i) => picks[i] ?? null);
@@ -422,17 +561,30 @@ function PickSlate({ event, roster, picks, forfeit, onPicks, onForfeit, onSeal }
       </div>
       <ol aria-label="Your slate" className="flex flex-col gap-1">
         {slots.map((id, i) => (
-          <li key={i} className="flex min-h-12 items-center gap-3 border-b border-bone/10 last:border-b-0">
-            <span aria-hidden="true" className="w-8 shrink-0 font-display text-lg text-gilt">
+          <li
+            key={i}
+            className="flex min-h-12 items-center gap-3 border-b border-bone/10 last:border-b-0"
+          >
+            <span
+              aria-hidden="true"
+              className="w-8 shrink-0 font-display text-lg text-gilt"
+            >
               {ranked ? roman(i + 1) : ""}
             </span>
             {id && !forfeit ? (
               <>
                 <span aria-hidden="true" className="inline-flex">
-                  <Headshot name={nameOf(id, roster)} image={playerOf(id, roster).headshot} size={32} round />
+                  <Headshot
+                    name={nameOf(id, roster)}
+                    image={playerOf(id, roster).headshot}
+                    size={32}
+                    round
+                  />
                 </span>
                 <Chalk key={id} className="min-w-0 flex-1 truncate">
-                  <span className="sr-only">{ranked ? `${roman(i + 1)}: ` : ""}</span>
+                  <span className="sr-only">
+                    {ranked ? `${roman(i + 1)}: ` : ""}
+                  </span>
                   {nameOf(id, roster)}
                 </Chalk>
                 {ranked && (
@@ -461,7 +613,9 @@ function PickSlate({ event, roster, picks, forfeit, onPicks, onForfeit, onSeal }
                 </SlateButton>
               </>
             ) : (
-              <span className="text-ash italic">{forfeit ? "No pick" : "Turn to a seat"}</span>
+              <span className="text-ash italic">
+                {forfeit ? "No pick" : "Turn to a seat"}
+              </span>
             )}
           </li>
         ))}
@@ -476,13 +630,20 @@ function PickSlate({ event, roster, picks, forfeit, onPicks, onForfeit, onSeal }
         No pick (reveal)
       </label>
       <WaxSeal
-        label={forfeit ? "Seal: no pick" : ranked ? "Seal your slate" : "Seal your call"}
+        label={
+          forfeit
+            ? "Seal: no pick"
+            : ranked
+              ? "Seal your slate"
+              : "Seal your call"
+        }
         sealed={false}
         disabled={!ready}
         onSeal={onSeal}
       />
       <p className="text-sm text-ash">
-        Sealed is final. The results and everyone else&apos;s calls open once you seal.
+        Sealed is final. The results and everyone else&apos;s calls open once
+        you seal.
       </p>
     </Slate>
   );
@@ -535,16 +696,31 @@ interface VotesProps {
 /** The slates as they were read out, gathered by who they named. */
 function Votes({ season, ballots, shields, roster }: VotesProps) {
   const hrefOf = seasonPlayerHref(season);
-  const link = (id: string) => <PlayerChip key={id} player={playerOf(id, roster)} href={hrefOf(id)} size={24} />;
-  const list = (ids: string[]) => ids.flatMap((id, i) => (i > 0 ? [", ", link(id)] : [link(id)]));
+  const link = (id: string) => (
+    <PlayerChip
+      key={id}
+      player={playerOf(id, roster)}
+      href={hrefOf(id)}
+      size={24}
+    />
+  );
+  const list = (ids: string[]) =>
+    ids.flatMap((id, i) => (i > 0 ? [", ", link(id)] : [link(id)]));
   return (
-    <Card as="section" aria-labelledby="votes-title" className="flex flex-col gap-3">
+    <Card
+      as="section"
+      aria-labelledby="votes-title"
+      className="flex flex-col gap-3"
+    >
       <h3 id="votes-title" className={EYEBROW}>
         How the castle voted
       </h3>
       <ul className="flex flex-col gap-2">
         {votesByTarget(ballots).map(({ target, voters }) => (
-          <li key={target} className="flex flex-col gap-1 border-b border-bone/10 pb-2 last:border-b-0 last:pb-0">
+          <li
+            key={target}
+            className="flex flex-col gap-1 border-b border-bone/10 pb-2 last:border-b-0 last:pb-0"
+          >
             <span className="flex items-center gap-3">
               <PlayerChip
                 player={playerOf(target, roster)}
@@ -554,7 +730,8 @@ function Votes({ season, ballots, shields, roster }: VotesProps) {
               />
               <Tally count={voters.length} />
               <span className="ml-auto text-sm text-ash">
-                <span className="nums">{voters.length}</span> {voters.length === 1 ? "vote" : "votes"}
+                <span className="nums">{voters.length}</span>{" "}
+                {voters.length === 1 ? "vote" : "votes"}
               </span>
             </span>
             <span className="text-parchment">from {list(voters)}</span>
@@ -585,7 +762,8 @@ function FaceDownCall({ season, event, roster, ep }: FaceDownCallProps) {
       <p className={EYEBROW}>Your call · locked in</p>
       <MyCall season={season} event={event} roster={roster} />
       <p className="border-t border-bone/10 pt-3 text-parchment">
-        What happened, everyone&apos;s calls and your points are face down until you choose to look.
+        What happened, everyone&apos;s calls and your points are face down until
+        you choose to look.
       </p>
       <Button variant="gold" onClick={() => revealCall(season, ep, event.type)}>
         Reveal what happened
@@ -594,7 +772,15 @@ function FaceDownCall({ season, event, roster, ep }: FaceDownCallProps) {
   );
 }
 
-function MyCall({ season, event, roster }: { season: string; event: EpisodeEvent; roster: Player[] }) {
+function MyCall({
+  season,
+  event,
+  roster,
+}: {
+  season: string;
+  event: EpisodeEvent;
+  roster: Player[];
+}) {
   const mine = event.mine;
   if (mine?.forfeit) return <p className="text-ash italic">No pick</p>;
   if (!mine?.picks) return null;
@@ -602,9 +788,14 @@ function MyCall({ season, event, roster }: { season: string; event: EpisodeEvent
     <ol className="flex flex-wrap gap-x-5 gap-y-1">
       {mine.picks.map((id, i) => (
         <li key={id} className="flex items-center gap-2">
-          {event.type === "RT" && <span className="font-display text-gilt">{roman(i + 1)}</span>}
+          {event.type === "RT" && (
+            <span className="font-display text-gilt">{roman(i + 1)}</span>
+          )}
           <Chalk>
-            <PlayerChip player={playerOf(id, roster)} href={seasonPlayerHref(season)(id)} />
+            <PlayerChip
+              player={playerOf(id, roster)}
+              href={seasonPlayerHref(season)(id)}
+            />
           </Chalk>
         </li>
       ))}
@@ -622,10 +813,19 @@ interface RevealProps {
   closed: boolean;
 }
 
-function Reveal({ season, event, roster, members, named, closed }: RevealProps) {
+function Reveal({
+  season,
+  event,
+  roster,
+  members,
+  named,
+  closed,
+}: RevealProps) {
   const points = eventPoints(event);
   const rows = consensusRows(event);
-  const people = new Map<string, Person>(members ? members.map((m) => [m.sub, m]) : Object.entries(named ?? {}));
+  const people = new Map<string, Person>(
+    members ? members.map((m) => [m.sub, m]) : Object.entries(named ?? {}),
+  );
   const mine = event.mine;
 
   return (
@@ -633,35 +833,57 @@ function Reveal({ season, event, roster, members, named, closed }: RevealProps) 
       <Slate className="flex flex-col gap-3">
         <p className={EYEBROW}>{mine ? "Your call" : "Result"}</p>
         <MyCall season={season} event={event} roster={roster} />
-        {!mine && closed && <p className="text-ash">This episode aired before the season opened here: view only.</p>}
+        {!mine && closed && (
+          <p className="text-ash">
+            This episode aired before the season opened here: view only.
+          </p>
+        )}
         <p
           className="flex flex-wrap items-baseline gap-x-2 border-t border-bone/10 pt-3 text-lg text-bone"
           aria-live="polite"
         >
-          <span className="font-display text-xs tracking-[0.14em] text-ash uppercase">What happened</span>
+          <span className="font-display text-xs tracking-[0.14em] text-ash uppercase">
+            What happened
+          </span>
           <Outcome event={event} roster={roster} season={season} />
         </p>
         {points !== null && (
           <p className="font-display text-2xl font-semibold text-candle">
-            +<span className="nums">{points}</span> {points === 1 ? "point" : "points"}
+            +<span className="nums">{points}</span>{" "}
+            {points === 1 ? "point" : "points"}
           </p>
         )}
       </Slate>
 
       {rows.length > 0 && (
-        <Card as="section" aria-labelledby="consensus-title" className="flex flex-col gap-3">
+        <Card
+          as="section"
+          aria-labelledby="consensus-title"
+          className="flex flex-col gap-3"
+        >
           <h3 id="consensus-title" className={EYEBROW}>
-            Everyone&apos;s calls · <span className="nums">{event.consensus?.voters}</span>
+            Everyone&apos;s calls ·{" "}
+            <span className="nums">{event.consensus?.voters}</span>
           </h3>
           <ul className="flex flex-col gap-2.5">
             {rows.map((r, i) => (
               <li key={r.id} className="flex flex-col gap-1">
                 <span className="text-parchment">
-                  <span className="nums text-bone">{Math.round(r.share * 100)}%</span> had{" "}
-                  <PlayerChip player={playerOf(r.id, roster)} href={seasonPlayerHref(season)(r.id)} size={24} />
+                  <span className="nums text-bone">
+                    {Math.round(r.share * 100)}%
+                  </span>{" "}
+                  had{" "}
+                  <PlayerChip
+                    player={playerOf(r.id, roster)}
+                    href={seasonPlayerHref(season)(r.id)}
+                    size={24}
+                  />
                   {event.type === "RT" ? " first" : ""}
                 </span>
-                <span aria-hidden="true" className="h-2 overflow-hidden rounded-full bg-night">
+                <span
+                  aria-hidden="true"
+                  className="h-2 overflow-hidden rounded-full bg-night"
+                >
                   <span
                     className={cn(
                       "block h-full origin-left animate-grow-x rounded-full",

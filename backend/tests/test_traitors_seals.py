@@ -37,6 +37,7 @@ def test_a_sealed_call_stays_locked_with_your_picks(played):
     assert rt == {
         "type": "RT",
         "picks": 3,
+        "optional": False,
         "mine": {"picks": ["bob", "cat", "dan"], "submittedAt": rt["mine"]["submittedAt"]},
         "locked": True,
         "sealed": True,
