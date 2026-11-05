@@ -32,26 +32,6 @@ from lambdas.common.users_dynamo import cards
 LIMIT = 100
 
 
-def standing(row: dict | None) -> dict:
-    row = row or {}
-    pts, events = int(row.get("pts", 0)), int(row.get("events", 0))
-    return {
-        "points": pts,
-        "events": events,
-        "banishHits": int(row.get("banishHits", 0)),
-        "average": round(pts / events, 2) if events else None,
-    }
-
-
-def ranks(board: dict[str, dict]) -> dict[str, int]:
-    key = {s: (b["points"], b["banishHits"], b["events"]) for s, b in board.items()}
-    order = sorted(board, key=lambda s: key[s], reverse=True)
-    out: dict[str, int] = {}
-    for i, s in enumerate(order):
-        out[s] = out[order[i - 1]] if i and key[s] == key[order[i - 1]] else i + 1
-    return out
-
-
 @api_handler("traitors_ranks")
 def handler(event, context):
     sub = caller_sub(event)
@@ -90,9 +70,11 @@ def handler(event, context):
         if held:
             rows = traitors_board.less(rows, traitors_board.withheld(show, n, held))
 
-    board = {s: standing(r) for s, r in rows.items() if r.get("events") or r.get("pts")}
-    board.setdefault(sub, standing(None))
-    places = ranks(board)
+    board = {
+        s: traitors_board.standing(r) for s, r in rows.items() if r.get("events") or r.get("pts")
+    }
+    board.setdefault(sub, traitors_board.standing(None))
+    places = traitors_board.ranks(board)
     order = sorted(board, key=lambda s: places[s])[:LIMIT]
     people = cards(set(order) | {sub})
     return ok(

@@ -212,7 +212,7 @@ locals {
     traitors_player    = ["catalog:GetItem", "catalog:Query", "performances:Query", "scores:Query", "users:GetItem"]
     traitors_history   = ["catalog:Query", "performances:Query"]
     traitors_ranks     = ["catalog:Query", "board:Query", "board:BatchGetItem", "groups:Query", "social:Query", "users:BatchGetItem", "users:GetItem"]
-    traitors_stats     = ["catalog:Query", "board:BatchGetItem", "board:GetItem", "users:GetItem"]
+    traitors_stats     = ["catalog:Query", "performances:Query", "scores:Query", "board:Query", "board:BatchGetItem", "board:GetItem", "groups:Query", "users:BatchGetItem", "users:GetItem"]
     traitors_credits   = ["catalog:Query"]
     traitors_record    = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "social:Query", "users:BatchGetItem", "users:GetItem"]
     invite_preview     = ["groups:GetItem"]

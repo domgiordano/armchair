@@ -223,6 +223,37 @@ export interface Stats {
 
 export const getStats = (season: string) => request<Stats>(`/traitors/stats?season=${encodeURIComponent(season)}`);
 
+export interface CrowdCall {
+  voters: number;
+  /** RT: first picks naming who was banished. Murders and recruits: right calls. */
+  hits: number;
+  banished?: string;
+  /** RT: the most-picked first choice and how many had it. */
+  top?: string;
+  topVotes?: number;
+}
+
+export type Tally = Record<EventType, { scored: number; hits: number }>;
+
+/** Everyone's or a group's calls, over only the episodes you've seen whole. */
+export interface CrowdStats {
+  season: string;
+  scope: "global" | "group";
+  group: string | null;
+  episodes: { ep: number; title: string | null; calls: Partial<Record<EventType, CrowdCall>> }[];
+  byEvent: Tally;
+  mine: Tally;
+  leaders: { rank: number; sub: string; name: string | null; picture: string | null; points: number }[];
+  me: { rank: number; points: number };
+  ranked: number;
+}
+
+export function getCrowdStats(season: string, group: string | null) {
+  const query = new URLSearchParams({ season, scope: group ? "group" : "global" });
+  if (group) query.set("group", group);
+  return request<CrowdStats>(`/traitors/stats?${query}`);
+}
+
 export type Scope = "global" | "friends" | "group";
 
 export interface Standing {
