@@ -369,6 +369,29 @@ def test_dance_off_results_after_who_went_home_still_land(wiki, db):
     assert catalog(db, "CONTESTANT#taylor-hanson")["eliminatedEp"] == 4
 
 
+def test_an_immune_couple_named_in_full_lands_after_who_went_home(wiki, db):
+    t = epoch(FINAL[2])
+    wiki.tick(FINAL, t, event={"backfill": True})
+
+    # The alias is "Harry"; the prose names the couple in full, as S35 week 9's does.
+    sentence = (
+        "[[Harry Shum Jr.]] & [[Jenna Johnson]] earned immunity and automatically received "
+        "bonus points.<ref>x</ref>\n"
+    )
+    text = page(FINAL[0])
+    head = "=== Week 3: Yacht Rock Night ===\n"
+    at = text.index(head) + len(head)
+    late = (FINAL[0], FINAL[1] + 1, FINAL[2])
+    content = text[:at] + sentence + text[at:]
+    assert wiki.tick(late, t + 60, content=content)["pending"]
+    assert "segments" not in catalog(db, "EP#04")["results"]
+
+    assert not wiki.tick(late, t + 300, content=content)["pending"]
+    assert catalog(db, "EP#04")["results"]["segments"] == [
+        {"label": "Immunity", "contestants": ["harry-shum-jr"], "points": None, "text": "Immune"}
+    ]
+
+
 def test_a_guest_judge_on_the_order_line_is_created(wiki, db):
     text = page(FINAL[0])
     head = "=== Week 3: Yacht Rock Night ===\n"

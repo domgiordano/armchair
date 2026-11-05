@@ -14,6 +14,7 @@ unless an expectation was deliberately changed.
 | `s35-1377681547.wikitext` | season 35 | [1377681547][r1] | 2026-09-30 15:03:34 | wk1 two nights, wk2 and wk3 final, wk4 pre-show table, wk5-9 commented out |
 | `s35-1377570871-vandal.wikitext` | season 35 | [1377570871][r2] | 2026-09-30 01:23:22 | wk3 vandal edit: Jenna & Val `30 (10, 10, 10)`, Connor `20 (7, 7, 6)` |
 | `s35-1377571301-revert.wikitext` | season 35 | [1377571301][r3] | 2026-09-30 01:25:08 | wk3 revert of the above, mid-show with four rows empty |
+| `s35-1383824613.wikitext` | season 35 | [1383824613][r10] | 2026-11-05 01:38:48 | wk9 before air: immune couple named in full ("Harry Shum Jr. & Jenna Johnson"), no points stated |
 | `s34-1375977389.wikitext` | season 34 | [1375977389][r4] | 2026-09-21 06:20:04 | wk1 2 judges, wk7 marathon bonus, wk8 team dances, wk9 4 judges + relay table, wk10 rowspan, wk11 Judge column |
 | `s1-1375742773.wikitext` | season 1 | [1375742773][r5] | 2026-09-19 19:41:48 | wk4 group dance "No scores received" |
 | `s8-1372835313.wikitext` | season 8 | [1372835313][r6] | 2026-09-02 14:26:37 | wk3 scored dance-off on the results show |
@@ -54,6 +55,7 @@ reproduced unmodified at the revisions linked above.
 [r7]: https://en.wikipedia.org/w/index.php?oldid=1372836123
 [r8]: https://en.wikipedia.org/w/index.php?oldid=1375764332
 [r9]: https://en.wikipedia.org/w/index.php?oldid=1372832846
+[r10]: https://en.wikipedia.org/w/index.php?oldid=1383824613
 [wp35]: https://en.wikipedia.org/w/index.php?title=Dancing_with_the_Stars_(American_TV_series)_season_35&action=history
 [wp34]: https://en.wikipedia.org/w/index.php?title=Dancing_with_the_Stars_(American_TV_series)_season_34&action=history
 [wp1]: https://en.wikipedia.org/w/index.php?title=Dancing_with_the_Stars_(American_TV_series)_season_1&action=history

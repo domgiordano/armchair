@@ -364,7 +364,8 @@ CASES = [
                 perf("dylan", 40, (10, 10, 10, 10)),
                 perf("jordan", 37, (9, 10, 9, 9)),
                 perf("alix", 40, (10, 10, 10, 10)),
-                perf("whitney", 40, (10, 10, 10, 10)),
+                # "Whitney & Mark earned immunity ... and automatically received two bonus points."
+                perf("whitney", 40, (10, 10, 10, 10), bonus=2),
             ],
         ),
     },

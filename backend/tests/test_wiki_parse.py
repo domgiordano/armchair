@@ -295,6 +295,67 @@ def test_dance_off_winners_get_the_stated_points(prose, points):
     assert [p["bonus"] for p in week["performances"]] == [points, None]
 
 
+S35 = json.loads((FIXTURES / "seasons" / "dwts-35.json").read_text())
+S35_FULL = {m["name"]: c["id"] for c in S35["contestants"] for m in c["members"]}
+FULL = {"Amber Glenn": "amber-glenn", "Pasha Pashkov": "amber-glenn"}
+
+
+def immune(week: dict) -> list[tuple]:
+    return [
+        (s["night"], s["contestants"], s["points"], s["text"])
+        for s in week["segments"]
+        if s["label"] == "Immunity"
+    ]
+
+
+def test_the_live_s35_week_9_immune_couple_is_named_in_full():
+    # "[[Harry Shum Jr.]] & [[Jenna Johnson]] earned immunity from the dance-offs and
+    # automatically received bonus points." The alias is only "Harry", and no number is given.
+    text = (FIXTURES / "wiki" / "s35-1383824613.wikitext").read_text()
+    week = parse_week(text, 9, GOLDEN["aliases"]["s35"], S35_FULL)
+    assert week["rejected"] == []
+    assert immune(week) == [(1, ["harry-shum-jr"], None, "Immune")]
+    assert immune(parse_week(text, 9, GOLDEN["aliases"]["s35"])) == []
+
+
+def test_s34_immunity_by_alias_gives_its_stated_points():
+    text = (FIXTURES / "wiki" / "s34-1375977389.wikitext").read_text()
+    week = parse_week(text, 9, GOLDEN["aliases"]["s34"])
+    assert immune(week) == [(1, ["whitney"], 2, None)]
+
+
+@pytest.mark.parametrize(
+    ("subject", "rest", "points"),
+    [
+        ("Amber Glenn & Pasha Pashkov", "automatically received bonus points", 3),
+        ("Amber Glenn", "automatically received two bonus points", 2),
+        ("Pasha Pashkov", "automatically received bonus points", 3),
+        ("Amber & Pasha", "automatically received four extra points", 4),
+    ],
+)
+def test_the_immune_couple_gets_its_own_points_else_the_dance_offs(subject, rest, points):
+    intro = (
+        "Each couple danced, then a dance-off for three extra points. For earning the most "
+        f"points, {subject} earned immunity from the dance-offs and {rest}. Later text.\n"
+    )
+    week = parse_week(week_page(intro + dance_table(DANCES)), 7, PAIR, FULL)
+    assert week["rejected"] == []
+    assert immune(week) == [(1, ["amber-glenn"], points, None)]
+    assert [p["bonus"] for p in week["performances"]] == [points, None]
+
+
+def test_an_unknown_immune_couple_is_rejected_and_a_generic_subject_ignored():
+    intro = (
+        "Amber Glen & Pasha earned immunity. "
+        "The couple with the highest score earned immunity from elimination.\n"
+    )
+    week = parse_week(week_page(intro + dance_table(DANCES)), 7, PAIR, FULL)
+    assert immune(week) == []
+    assert week["rejected"] == [
+        {"night": 1, "row": "Amber Glen & Pasha", "reason": "unknown couple"}
+    ]
+
+
 CHART = """== Dance chart ==
 * Weeks 1–7: One unlearned dance
 * Week 9 (Quarterfinals): One unlearned dance & dance-off
