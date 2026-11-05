@@ -144,6 +144,25 @@ export interface EpisodeResults {
   segments?: Segment[];
 }
 
+export type CallKind = "marathon" | "dance-off";
+
+/** How a call did: dance-off winners called, or where the marathon pick finished (null: not in the results). */
+export type CallOutcome = { hits: number; winners: number } | { place: number | null; of: number };
+
+/** The caller's optional call on a marathon or dance-off the night's format names. */
+export interface SegmentCall {
+  kind: CallKind;
+  /** The most couples the call may name. */
+  limit: number;
+  picks: string[] | null;
+  /** Showtime: calls stay blind, so they lock when the episode airs. */
+  locksAt: string | null;
+  /** Taking a call now: the night's couples are set and it hasn't aired. */
+  open: boolean;
+  /** Once the caller's results open; null until the segment's results are in. */
+  outcome?: CallOutcome | null;
+}
+
 /** "wikipedia" before air, "admin" set by hand, "live" once the show is scoring. */
 export type OrderSource = "wikipedia" | "admin" | "live" | null;
 
@@ -175,6 +194,8 @@ export interface EpisodeState {
   results?: EpisodeResults | null;
   window?: ScoringWindow;
   activeEpisode?: ActiveEpisode | null;
+  /** One per marathon or dance-off the night has; absent from an API older than calls. */
+  calls?: SegmentCall[];
 }
 
 export const epParam = (ep: number) => String(ep).padStart(2, "0");
@@ -205,4 +226,10 @@ export const revealAll = (season: string, ep: number) =>
   request<{ revealed: string[] }>("/scores/reveal-all", {
     method: "POST",
     body: JSON.stringify({ season, ep: epParam(ep) }),
+  });
+
+export const submitCall = (season: string, ep: number, kind: CallKind, picks: string[]) =>
+  request<unknown>("/scores/call", {
+    method: "POST",
+    body: JSON.stringify({ season, ep: epParam(ep), kind, picks }),
   });

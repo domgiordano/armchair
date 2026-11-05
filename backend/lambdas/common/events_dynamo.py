@@ -35,6 +35,7 @@ ANSWERS = (
     "scores_submit",
     "scores_reveal_all",
     "scores_skip_before",
+    "scores_call",
     "traitors_pick",
     "traitors_winner",
 )

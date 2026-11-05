@@ -13,6 +13,7 @@ locals {
     { name = "submit", description = "Record the caller's final answer on one performance", path_part = "submit", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "reveal_all", description = "Forfeit every performance the caller left unanswered in one episode", path_part = "reveal-all", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
     { name = "skip_before", description = "Forfeit every performance the caller left unanswered in the aired episodes before one", path_part = "skip-before", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
+    { name = "call", description = "Record the caller's final call on a night's marathon or dance-off", path_part = "call", http_method = "POST", authorization = "COGNITO_USER_POOLS" },
   ]
   episodes_lambdas = [
     { name = "state", description = "One episode as the caller may see it, through the gate", path_part = "state", http_method = "GET", authorization = "COGNITO_USER_POOLS" },
@@ -169,6 +170,7 @@ locals {
   api_grants = {
     users_me           = ["users:UpdateItem", "social:GetItem", "social:PutItem", "social:DeleteItem"]
     scores_submit      = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem", "board:PutItem", "board:UpdateItem"]
+    scores_call        = ["catalog:Query", "performances:Query", "scores:PutItem", "scores:GetItem"]
     scores_reveal_all  = ["catalog:Query", "performances:Query", "scores:Query", "scores:PutItem", "scores:GetItem"]
     episodes_state     = ["catalog:Query", "performances:Query", "scores:Query", "groups:Query", "writeups:Query", "users:GetItem"]
     seasons_get        = ["catalog:Query", "performances:Query", "scores:Query"]
