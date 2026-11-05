@@ -13,8 +13,18 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ErrorState } from "@/components/ui/states";
 import { tabId, Tabs } from "@/components/ui/tabs";
 import type { Season } from "@/lib/api/show";
-import { getCrowdStats, getPersonStats, type CrowdScope, type CrowdStats, type PersonStats } from "@/lib/api/stats";
-import { scopeName, useGroupScope, type GroupScope } from "@armchair/app-core/show/group-scope";
+import {
+  getCrowdStats,
+  getPersonStats,
+  type CrowdScope,
+  type CrowdStats,
+  type PersonStats,
+} from "@/lib/api/stats";
+import {
+  scopeName,
+  useGroupScope,
+  type GroupScope,
+} from "@armchair/app-core/show/group-scope";
 import { hasAired } from "@/lib/show/schedule";
 import { useSeason } from "@/lib/show/use-season";
 import { TEXT_LINK } from "@/lib/ui";
@@ -35,7 +45,10 @@ export function StatsScreen() {
 function SeasonLoader() {
   const load = useSeason();
   if (load.kind === "loading") return <PageLoader label="Loading the season" />;
-  if (load.kind === "error") return <ErrorState what="the season" message={load.message} retry={load.retry} />;
+  if (load.kind === "error")
+    return (
+      <ErrorState what="the season" message={load.message} retry={load.retry} />
+    );
   return <StatsPage season={load.season} />;
 }
 
@@ -60,7 +73,11 @@ function useStatsParams() {
     router.replace(q ? `/stats/?${q}` : "/stats/", { scroll: false });
   };
   const asked = params.get("view");
-  const view: View = !params.get("sub") && (asked === "compare" || asked === "groups" || asked === "global") ? "compare" : "me";
+  const view: View =
+    !params.get("sub") &&
+    (asked === "compare" || asked === "groups" || asked === "global")
+      ? "compare"
+      : "me";
   return { sub: params.get("sub"), ep, view, group: params.get("group"), set };
 }
 
@@ -68,7 +85,9 @@ function StatsPage({ season }: { season: Season }) {
   const { sub, ep, view, group, set } = useStatsParams();
   const [name, setName] = useState<string | null>(null);
   const [now] = useState(Date.now);
-  const aired = season.episodes.filter((e) => season.open || hasAired(e, season.timezone, now));
+  const aired = season.episodes.filter(
+    (e) => season.open || hasAired(e, season.timezone, now),
+  );
   const scope = useGroupScope("dwts", { asked: group ?? undefined });
   // A ?group= link has done its job once the scope is saved; the control owns it from here.
   const pick = (next: string | null) => {
@@ -89,7 +108,13 @@ function StatsPage({ season }: { season: Season }) {
             value={ep === null ? "all" : String(ep)}
             options={[
               { value: "all", label: "All season" },
-              ...[...aired].reverse().map((e) => ({ value: String(e.ep), label: weekName(season, e.ep), detail: e.theme ?? undefined })),
+              ...[...aired]
+                .reverse()
+                .map((e) => ({
+                  value: String(e.ep),
+                  label: weekName(season, e.ep),
+                  detail: e.theme ?? undefined,
+                })),
             ]}
             onChange={(v) => set({ ep: v === "all" ? null : v })}
           />
@@ -120,22 +145,57 @@ function StatsPage({ season }: { season: Season }) {
           />
         </div>
       )}
-      <div key={view} role="tabpanel" id={PANEL} aria-labelledby={sub ? undefined : tabId(PANEL, view)} className="flex flex-col gap-4 animate-fade-in">
-        {view === "me" && <PersonFetcher season={season} sub={sub} ep={ep} onName={setName} />}
-        {view === "compare" && <ComparePanel season={season} ep={ep} filter={filter} />}
+      <div
+        key={view}
+        role="tabpanel"
+        id={PANEL}
+        aria-labelledby={sub ? undefined : tabId(PANEL, view)}
+        className="flex flex-col gap-4 animate-fade-in"
+      >
+        {view === "me" && (
+          <PersonFetcher season={season} sub={sub} ep={ep} onName={setName} />
+        )}
+        {view === "compare" && (
+          <ComparePanel season={season} ep={ep} filter={filter} />
+        )}
       </div>
     </>
   );
 }
 
-function ComparePanel({ season, ep, filter }: { season: Season; ep: number | null; filter: GroupScope }) {
+function ComparePanel({
+  season,
+  ep,
+  filter,
+}: {
+  season: Season;
+  ep: number | null;
+  filter: GroupScope;
+}) {
   const name = scopeName(filter.scope, filter.groups);
   return (
     <>
-      <div className="md:max-w-md">
-        <GroupScopeControl {...filter} />
+      <div className="flex flex-wrap items-end gap-3">
+        <div className="min-w-0 flex-1 md:max-w-md">
+          <GroupScopeControl {...filter} />
+        </div>
+        {filter.group && (
+          <Link
+            href={`/groups/?id=${encodeURIComponent(filter.group)}`}
+            className={`${TEXT_LINK} pb-2`}
+          >
+            Group page
+          </Link>
+        )}
       </div>
-      <CrowdFetcher key={filter.group ?? ""} season={season} scope={filter.group ? "group" : "global"} group={filter.group} ep={ep} name={name} />
+      <CrowdFetcher
+        key={filter.group ?? ""}
+        season={season}
+        scope={filter.group ? "group" : "global"}
+        group={filter.group}
+        ep={ep}
+        name={name}
+      />
     </>
   );
 }
@@ -155,12 +215,29 @@ function CrowdFetcher({
 }) {
   const key = `${season.season}|${scope}|${group}|${ep}`;
   const [load, retry] = useFetch<[CrowdStats, PersonStats | null]>(
-    () => Promise.all([getCrowdStats(season.season, scope, group, ep), getPersonStats(season.season, null, ep).catch(() => null)]),
+    () =>
+      Promise.all([
+        getCrowdStats(season.season, scope, group, ep),
+        getPersonStats(season.season, null, ep).catch(() => null),
+      ]),
     key,
   );
-  if (load.kind === "loading") return <StatsSkeleton label={`Loading ${name.toLowerCase() === "everyone" ? "everyone's" : name} stats`} />;
-  if (load.kind === "error") return <ErrorState what="the stats" message={load.message} retry={retry} />;
-  return <CrowdView season={season} crowd={load.value[0]} me={load.value[1]} name={name} />;
+  if (load.kind === "loading")
+    return (
+      <StatsSkeleton
+        label={`Loading ${name.toLowerCase() === "everyone" ? "everyone's" : name} stats`}
+      />
+    );
+  if (load.kind === "error")
+    return <ErrorState what="the stats" message={load.message} retry={retry} />;
+  return (
+    <CrowdView
+      season={season}
+      crowd={load.value[0]}
+      me={load.value[1]}
+      name={name}
+    />
+  );
 }
 
 function PersonFetcher({
@@ -174,12 +251,17 @@ function PersonFetcher({
   ep: number | null;
   onName: (name: string | null) => void;
 }) {
-  const [load, retry] = useFetch<PersonStats>(() => getPersonStats(season.season, sub, ep), `${season.season}|${sub}|${ep}`);
-  const name = load.kind === "ready" && sub ? (load.value.person.name ?? null) : null;
+  const [load, retry] = useFetch<PersonStats>(
+    () => getPersonStats(season.season, sub, ep),
+    `${season.season}|${sub}|${ep}`,
+  );
+  const name =
+    load.kind === "ready" && sub ? (load.value.person.name ?? null) : null;
   useEffect(() => onName(name), [name, onName]);
 
   if (load.kind === "loading") return <StatsSkeleton label="Loading stats" />;
-  if (load.kind === "error") return <ErrorState what="the stats" message={load.message} retry={retry} />;
+  if (load.kind === "error")
+    return <ErrorState what="the stats" message={load.message} retry={retry} />;
   return <PersonView season={season} stats={load.value} mine={sub === null} />;
 }
 

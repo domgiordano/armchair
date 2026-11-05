@@ -2,26 +2,40 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, type MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 import { GroupBoard } from "@/components/groups/group-board";
 import { GroupMembers } from "@/components/groups/group-members";
 import { GroupCompare, GroupStats } from "@/components/groups/group-stats";
-import { InviteSheet, LeaveSheet, SettingsSheet } from "@/components/groups/group-sheets";
+import {
+  InviteSheet,
+  LeaveSheet,
+  SettingsSheet,
+} from "@/components/groups/group-sheets";
 import { Redirect } from "@/components/redirect";
 import { GroupActivity, GroupWeek } from "@/components/groups/group-side";
 import { OtherShows, StartHere } from "@/components/groups/group-shows";
 import { ShowIcon } from "@/components/show-icon";
 import { SignedIn } from "@/components/signed-in";
-import { AvatarStack, GroupMark, useAction, useLoad } from "@/components/social/parts";
+import {
+  AvatarStack,
+  GroupMark,
+  useAction,
+  useLoad,
+} from "@/components/social/parts";
 import { Badge } from "@/components/ui/badge";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { tabId, Tabs } from "@/components/ui/tabs";
-import { getGroupDetails, plays, type GroupDetail } from "@armchair/app-core/api/groups";
+import {
+  getGroupDetails,
+  plays,
+  type GroupDetail,
+} from "@armchair/app-core/api/groups";
 import { getFriends, mySub } from "@armchair/app-core/api/social";
 import { useNotifications } from "@armchair/app-core/social/notifications";
+import { saveScope } from "@armchair/app-core/show/group-scope";
 import { button, cn, FOCUS } from "@/lib/ui";
 
 /** /groups/?id=: one group's page. Without an id, your groups list on your profile. */
@@ -44,12 +58,23 @@ function GroupScreen({ id }: { id: string }) {
   const [groups, reload] = useLoad(getGroupDetails);
   const [me] = useLoad(mySub);
 
-  if (groups.kind === "loading" || me.kind === "loading") return <GroupSkeleton />;
-  if (groups.kind === "error") return <ErrorState what="the group" message={groups.message} retry={reload} />;
+  if (groups.kind === "loading" || me.kind === "loading")
+    return <GroupSkeleton />;
+  if (groups.kind === "error")
+    return (
+      <ErrorState what="the group" message={groups.message} retry={reload} />
+    );
   const group = groups.value.find((g) => g.id === id);
   if (!group) return <NotIn id={id} onJoined={reload} />;
   const dwts = groups.value.filter((g) => plays(g, "dwts"));
-  return <GroupView group={group} groups={dwts} me={me.kind === "ready" ? me.value : null} reload={reload} />;
+  return (
+    <GroupView
+      group={group}
+      groups={dwts}
+      me={me.kind === "ready" ? me.value : null}
+      reload={reload}
+    />
+  );
 }
 
 function GroupView({
@@ -66,9 +91,15 @@ function GroupView({
   const owner = group.owner === me;
   const here = plays(group, "dwts");
   const asked = useSearchParams().get("tab") as Tab | null;
-  const [picked, setTab] = useState<Tab>(asked && TABS.includes(asked) ? asked : "board");
+  const [picked, setTab] = useState<Tab>(
+    asked && TABS.includes(asked) ? asked : "board",
+  );
   // A group not playing DWTS has no board here, only its members.
   const tab: Tab = here ? picked : "members";
+  // Opening a group compares every page with it; each page's control has the way back to Everyone.
+  useEffect(() => {
+    if (here) saveScope(group.id);
+  }, [here, group.id]);
   const [sheet, setSheet] = useState<Sheet>(null);
   const [friends, reloadFriends] = useLoad(getFriends);
   const count = group.members.length;
@@ -83,7 +114,10 @@ function GroupView({
     <div className="flex flex-col gap-6">
       <header className="relative rounded-2xl border border-silver/10 bg-gradient-to-br from-ballroom/90 via-ballroom/50 to-ink p-5 shadow-[inset_0_1px_0_rgb(213_219_234/0.06)] sm:p-7">
         {/* Clipped on their own layer, so the options menu can hang past the card. */}
-        <span aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl"
+        >
           <span className="absolute -top-28 -right-20 size-80 rounded-full bg-gold/15 blur-3xl" />
           <span className="absolute -bottom-32 -left-24 size-80 rounded-full bg-brand-violet/15 blur-3xl" />
         </span>
@@ -102,11 +136,17 @@ function GroupView({
                 <span>
                   {count} {count === 1 ? "member" : "members"}
                 </span>
-                <Badge tone={owner ? "gold" : "silver"}>{owner ? "Owner" : "Member"}</Badge>
+                <Badge tone={owner ? "gold" : "silver"}>
+                  {owner ? "Owner" : "Member"}
+                </Badge>
               </div>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
-              <button type="button" onClick={open("invite")} className={cn(button("primary"), "min-w-28")}>
+              <button
+                type="button"
+                onClick={open("invite")}
+                className={cn(button("primary"), "min-w-28")}
+              >
                 <InviteIcon />
                 Invite
               </button>
@@ -119,7 +159,9 @@ function GroupView({
                 )}
               >
                 {owner ? (
-                  <MenuItem onSelect={() => setSheet("settings")}>Group settings</MenuItem>
+                  <MenuItem onSelect={() => setSheet("settings")}>
+                    Group settings
+                  </MenuItem>
                 ) : (
                   <MenuItem
                     onSelect={() => setSheet("leave")}
@@ -137,23 +179,36 @@ function GroupView({
       {/* Phones read this week first and the activity last; wide screens keep both beside the board. */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
         <div className="lg:col-start-2 lg:row-start-1">
-          {here ? <GroupWeek group={group} me={me} /> : <StartHere group={group} onStarted={reload} />}
+          {here ? (
+            <GroupWeek group={group} me={me} />
+          ) : (
+            <StartHere group={group} onStarted={reload} />
+          )}
         </div>
         <div className="flex min-w-0 flex-col gap-4 lg:col-start-1 lg:row-span-2 lg:row-start-1">
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-silver-dim">
             <ShowIcon show="dwts" size={22} />
             <span>
-              {here ? "Showing" : "Members of"} <span className="font-medium text-pearl">{group.name}</span>
-              {here ? " on Dancing with the Stars." : ". The same people on every Armchair Judge show."}
+              {here ? "Showing" : "Members of"}{" "}
+              <span className="font-medium text-pearl">{group.name}</span>
+              {here
+                ? " on Dancing with the Stars."
+                : ". The same people on every Armchair Judge show."}
             </span>
           </p>
           {count === 1 && (
             <div className="flex flex-col gap-3 rounded-xl border border-gold/35 bg-gold/[0.06] p-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-col gap-0.5">
                 <p className="font-semibold text-pearl">Just you so far</p>
-                <p className="text-sm text-silver-dim">Send the group link to the people you watch with.</p>
+                <p className="text-sm text-silver-dim">
+                  Send the group link to the people you watch with.
+                </p>
               </div>
-              <button type="button" onClick={open("invite")} className={cn(button("primary"), "shrink-0")}>
+              <button
+                type="button"
+                onClick={open("invite")}
+                className={cn(button("primary"), "shrink-0")}
+              >
                 <InviteIcon />
                 Invite people
               </button>
@@ -173,7 +228,10 @@ function GroupView({
                 {
                   id: "members",
                   label: "Members",
-                  badge: owner && group.requests.length > 0 ? group.requests.length : undefined,
+                  badge:
+                    owner && group.requests.length > 0
+                      ? group.requests.length
+                      : undefined,
                 },
               ]}
               value={tab}
@@ -190,8 +248,17 @@ function GroupView({
           >
             {tab === "board" && <GroupBoard group={group} />}
             {tab === "stats" && <GroupStats group={group} />}
-            {tab === "compare" && <GroupCompare group={group} groups={groups} />}
-            {tab === "members" && <GroupMembers group={group} me={me} owner={owner} reload={reload} />}
+            {tab === "compare" && (
+              <GroupCompare group={group} groups={groups} />
+            )}
+            {tab === "members" && (
+              <GroupMembers
+                group={group}
+                me={me}
+                owner={owner}
+                reload={reload}
+              />
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-6 lg:col-start-2 lg:row-start-2">
@@ -209,9 +276,18 @@ function GroupView({
         onInvited={reload}
       />
       {owner ? (
-        <SettingsSheet open={sheet === "settings"} onClose={() => setSheet(null)} group={group} reload={reload} />
+        <SettingsSheet
+          open={sheet === "settings"}
+          onClose={() => setSheet(null)}
+          group={group}
+          reload={reload}
+        />
       ) : (
-        <LeaveSheet open={sheet === "leave"} onClose={() => setSheet(null)} group={group} />
+        <LeaveSheet
+          open={sheet === "leave"}
+          onClose={() => setSheet(null)}
+          group={group}
+        />
       )}
     </div>
   );
@@ -221,7 +297,10 @@ function GroupView({
 function NotIn({ id, onJoined }: { id: string; onJoined: () => void }) {
   const router = useRouter();
   const { items, answer } = useNotifications();
-  const invite = items.find((n) => n.type === "group_invite" && n.state === "pending" && n.group?.id === id);
+  const invite = items.find(
+    (n) =>
+      n.type === "group_invite" && n.state === "pending" && n.group?.id === id,
+  );
   const act = useAction();
 
   if (invite) {
@@ -235,7 +314,11 @@ function NotIn({ id, onJoined }: { id: string; onJoined: () => void }) {
               <button
                 type="button"
                 disabled={act.busy !== null}
-                onClick={() => void act.run("join", () => answer(invite, true).then(onJoined))}
+                onClick={() =>
+                  void act.run("join", () =>
+                    answer(invite, true).then(onJoined),
+                  )
+                }
                 className={button("primary", "sm")}
               >
                 {act.busy === "join" ? "Joining..." : "Join group"}
@@ -244,7 +327,11 @@ function NotIn({ id, onJoined }: { id: string; onJoined: () => void }) {
                 type="button"
                 disabled={act.busy !== null}
                 onClick={() =>
-                  void act.run("decline", () => answer(invite, false).then(() => router.push("/social/?view=groups")))
+                  void act.run("decline", () =>
+                    answer(invite, false).then(() =>
+                      router.push("/social/?view=groups"),
+                    ),
+                  )
                 }
                 className={button("secondary", "sm")}
               >
@@ -269,7 +356,10 @@ function NotIn({ id, onJoined }: { id: string; onJoined: () => void }) {
       <EmptyState
         title="You're not in this group"
         action={
-          <Link href="/social/?view=groups" className={button("secondary", "sm")}>
+          <Link
+            href="/social/?view=groups"
+            className={button("secondary", "sm")}
+          >
             Your groups
           </Link>
         }
@@ -327,7 +417,12 @@ function InviteIcon() {
 
 function DotsIcon() {
   return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" className="size-5" fill="currentColor">
+    <svg
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      className="size-5"
+      fill="currentColor"
+    >
       <circle cx="4.5" cy="10" r="1.6" />
       <circle cx="10" cy="10" r="1.6" />
       <circle cx="15.5" cy="10" r="1.6" />
