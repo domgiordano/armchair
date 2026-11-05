@@ -26,6 +26,13 @@ MARATHON = re.compile(r"marathon|endurance", re.IGNORECASE)
 # "a dance-off for three extra points"; S35 week 9 leaves the number out until it airs.
 DANCE_OFF_POINTS = re.compile(r"dance-offs? for (\w+) extra points?", re.IGNORECASE)
 WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
+# "Whitney & Mark earned immunity from the dance relays and automatically received two bonus
+# points" (S34 week 9); S35 week 9 leaves the number out.
+IMMUNE = re.compile(r"(?:earned|received|won|was granted|were granted) immunity", re.IGNORECASE)
+IMMUNE_POINTS = re.compile(r"received (\w+) (?:bonus|extra) points?", re.IGNORECASE)
+# A sentence ends at a period after two lowercase letters, so "Harry Shum Jr." doesn't end one.
+SENTENCE = re.compile(r"(?<=[a-z]{2}[.!?])\s+")
+CLAUSE = re.compile(r"[,;:]")
 # The Dance chart's "* Week 9 (Quarterfinals): One unlearned dance & dance-off".
 FORMAT = re.compile(
     r"^\*\s*Weeks?\s+(\d+)(?:\s*[–-]\s*(\d+))?(?:\s*\(([^)]*)\))?\s*:\s*(.+)$", re.MULTILINE
@@ -138,6 +145,13 @@ def resolve(couple: str, aliases: dict[str, str]) -> str | None:
 
 def norm(name: str) -> str:
     return " ".join(name.split()).casefold()
+
+
+def stated(pattern: re.Pattern, text: str) -> int | None:
+    """The points `pattern` captures, as a digit or a word, or None."""
+    m = pattern.search(text)
+    word = m.group(1).lower() if m else ""
+    return int(word) if word.isdigit() else WORDS.get(word)
 
 
 def check(total: Decimal, judges: list[Decimal | None], panel: list[str]) -> str | None:
@@ -302,6 +316,43 @@ def dance_offs(block: dict, aliases: dict, night: int, points: int | None) -> tu
     return segments, rejected
 
 
+def immunity(
+    text: str, aliases: dict, full: dict, night: int, points: int | None
+) -> tuple[list, list]:
+    """
+    (segments, rejected) from prose naming an immune couple. The subject is the clause
+    before "earned immunity", matched exactly on its celebrity part against `aliases`
+    ("Whitney & Mark") or a member's full name in `full` ("Harry Shum Jr. & Jenna
+    Johnson"). A subject with no "&" that matches nothing, like "The couple with the
+    highest score", names no couple. Points are the sentence's own, else the week's
+    dance-off points, which the immune couple gets without dancing, else none: "Immune".
+    """
+    segments, rejected = [], []
+    for sentence in SENTENCE.split(text):
+        m = IMMUNE.search(sentence)
+        if not m:
+            continue
+        subject = CLAUSE.split(sentence[: m.start()])[-1].strip()
+        celeb = norm(subject.split("&")[0])
+        cid = aliases.get(celeb) or full.get(celeb)
+        if cid is None:
+            if "&" in subject:
+                rejected.append({"night": night, "row": subject, "reason": "unknown couple"})
+            continue
+        own = stated(IMMUNE_POINTS, sentence[m.end() :])
+        got = own if own is not None else points
+        segments.append(
+            {
+                "night": night,
+                "label": "Immunity",
+                "contestants": [cid],
+                "points": got,
+                "text": None if got is not None else "Immune",
+            }
+        )
+    return segments, rejected
+
+
 def week_format(wikitext: str, week: int, night: int) -> str | None:
     """What the Dance chart says the couples performed that night, if it lists the week."""
     text = re.sub(r"<!--.*?-->", "", wikitext, flags=re.DOTALL)
@@ -313,17 +364,21 @@ def week_format(wikitext: str, week: int, night: int) -> str | None:
     return None
 
 
-def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None:
+def parse_week(
+    wikitext: str, week: int, aliases: dict[str, str], full: dict[str, str] | None = None
+) -> dict | None:
     """Performances and rejected rows for `=== Week N`, or None if the heading isn't on the page.
 
     `aliases` maps a celebrity's short name as Wikipedia writes it ("Connor W.") to a contestant id.
+    `full` maps each member's full name, celebrity and pro, to the id, for prose that names a
+    couple in full, like an immune couple's (immunity()).
     Each performance carries the panel that scored it: a judge-order line applies to every table
     after it in the week, so a guest judge can join mid-week. Nights are counted from ";Night 2"
     labels, "(Night 2)" captions and scored "Dance-off" tables, not from tables: S11 week 7 has
     two tables on one night.
     `unscored` lists rows the page marks "No scores received", like S1's group Viennese waltz.
-    `segments` are a night's unscored extras, a marathon's or a dance-off's, a row per couple
-    or team; their points also land in the couple's dance's `bonus`.
+    `segments` are a night's unscored extras, a marathon's, a dance-off's or an immune
+    couple's, a row per couple or team; their points also land in the couple's dance's `bonus`.
     """
     text = re.sub(r"<!--.*?-->", "", wikitext, flags=re.DOTALL)
     head = re.search(rf"^===\s*Week {week}(?!\d).*$", text, flags=re.MULTILINE)
@@ -336,15 +391,14 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
     panel = panel_of(text[: first_week.start()])
 
     aliases = {norm(k): v for k, v in aliases.items()}
+    full = {norm(k): v for k, v in (full or {}).items()}
     week_panel: list[str] | None = None
     performances: list[dict] = []
     rejected: list[dict] = []
     unscored: list[dict] = []
     segments: list[dict] = []
     body = clean(section)
-    stated = DANCE_OFF_POINTS.search(body)
-    word = stated and stated.group(1).lower()
-    points = word and (int(word) if word.isdigit() else WORDS.get(word))
+    points = stated(DANCE_OFF_POINTS, body)
     night = 0
     for block in blocks(body):
         panel = panel_of(block["before"]) or panel
@@ -358,6 +412,9 @@ def parse_week(wikitext: str, week: int, aliases: dict[str, str]) -> dict | None
             m = NIGHT.search(label)
             night = int(m.group(1)) if m else night + 1
         night = max(night, 1)
+        found, bad = immunity(block["before"], aliases, full, night, points)
+        segments += found
+        rejected += bad
 
         lay = layout(block["rows"])
         if lay is None:

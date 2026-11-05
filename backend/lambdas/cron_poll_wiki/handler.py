@@ -425,6 +425,12 @@ def handler(event, context):
         if r["sk"].startswith("CONTESTANT#")
         for a in r.get("aliases", [])
     }
+    full = {
+        m["name"]: r["sk"].removeprefix("CONTESTANT#")
+        for r in rows
+        if r["sk"].startswith("CONTESTANT#")
+        for m in r["members"]
+    }
     judges = [r for r in rows if r["sk"].startswith("JUDGE#")]
     episodes = sorted((r for r in rows if r["sk"].startswith("EP#")), key=lambda e: e["sk"])
     window = 0 if backfill else confirm.WINDOW
@@ -446,7 +452,7 @@ def handler(event, context):
     processed = []
     seated: dict[str, str] = {}
     for w in sorted({int(e["week"]) for e in todo}):
-        week = parse_week(text, w, aliases)
+        week = parse_week(text, w, aliases, full)
         if week is None:
             continue
         ids = {}
@@ -479,7 +485,7 @@ def handler(event, context):
     # Episodes already done: a dance-off result or marathon cell can trail the Result column.
     done = [e for e in episodes if e not in todo and e.get("results") is not None]
     for w in sorted({int(e["week"]) for e in done}):
-        week = parse_week(text, w, aliases)
+        week = parse_week(text, w, aliases, full)
         nights = [e for e in episodes if int(e["week"]) == w]
         for night, episode in enumerate(nights, start=1):
             if week is None or episode not in done:
