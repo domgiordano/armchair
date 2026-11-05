@@ -361,8 +361,11 @@ describe("Group stats and compare", () => {
     nav.params = new URLSearchParams({ id: GID, tab: "stats" });
     render(<GroupRoute />);
     expect(await screen.findByRole("list", { name: "Members" })).toBeTruthy();
-    expect(getCrowdStats).toHaveBeenCalledWith("dwts-35", "group", GID);
+    expect(getCrowdStats).toHaveBeenCalledWith("dwts-35", "group", GID, null);
     expect(screen.getByRole("tab", { name: "Stats" }).getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByRole("link", { name: "Open in Stats" }).getAttribute("href")).toContain(`view=compare&group=${GID}`);
+    // Opening the group makes it the scope the other pages compare with.
+    expect(localStorage.getItem("armchair.group")).toBe(GID);
   });
 
   it("compares the group with everyone, the better number in gold", async () => {

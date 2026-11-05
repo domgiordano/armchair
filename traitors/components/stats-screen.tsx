@@ -99,14 +99,30 @@ export function StatsScreen() {
 /** The crowd's ledger for the shared scope: Everyone or one of your groups. */
 function Compare() {
   const params = useSearchParams();
-  const scope = useGroupScope("traitors", {
-    asked: params.get("group") ?? undefined,
-  });
+  const router = useRouter();
+  const asked = params.get("group");
+  const scope = useGroupScope("traitors", { asked: asked ?? undefined });
+  const pick = (next: string | null) => {
+    scope.pick(next);
+    if (asked) router.replace("/stats/?view=compare", { scroll: false });
+  };
   if (scope.groups === null && !scope.failed)
     return <SkeletonList label="Loading your groups" />;
   return (
     <>
-      <GroupScopeControl {...scope} />
+      <div className="flex flex-wrap items-end gap-3">
+        <div className="min-w-0 flex-1">
+          <GroupScopeControl {...scope} pick={pick} />
+        </div>
+        {scope.group && (
+          <Link
+            href={`/leaderboard/?group=${encodeURIComponent(scope.group)}`}
+            className={cn(TEXT_LINK, "pb-2")}
+          >
+            Group board
+          </Link>
+        )}
+      </div>
       {scope.groups?.length === 0 && (
         <p className="text-ash">
           A group sets your calls beside just the people in it.{" "}

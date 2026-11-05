@@ -135,3 +135,13 @@ it("reads a group's stats for a member, and goes back to everyone in one tap", a
   expect(await screen.findByText("You vs Castle")).toBeTruthy();
   expect(api.getCrowdStats).toHaveBeenCalledWith("tus-5", "g1");
 });
+
+it("lets the control take over from a ?group= link", async () => {
+  nav.search = "view=compare&group=g1";
+  groups.getMyGroups.mockResolvedValue([{ id: "g1", name: "Castle", members: ["a", "b"] }]);
+  wrap();
+  await screen.findByText("You vs Castle");
+  fireEvent.click(screen.getByRole("button", { name: "Show Everyone" }));
+  expect(nav.replace).toHaveBeenCalledWith("/stats/?view=compare", { scroll: false });
+  expect(localStorage.getItem("armchair.group")).toBeNull();
+});
