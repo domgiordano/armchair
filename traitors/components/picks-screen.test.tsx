@@ -52,6 +52,16 @@ beforeEach(() => {
   api.getRecord.mockResolvedValue({ season: "tus-5", people: PEOPLE });
 });
 
+it("opens on the shared group, and Just you doesn't change it", async () => {
+  localStorage.setItem("armchair.group", "fam");
+  renderScreen();
+  await vi.waitFor(() => expect(api.getRecord).toHaveBeenCalledWith("tus-5", "fam"));
+  fireEvent.click(screen.getByRole("combobox", { name: "Whose picks" }));
+  fireEvent.click(screen.getByRole("option", { name: "Just you" }));
+  await vi.waitFor(() => expect(api.getRecord).toHaveBeenLastCalledWith("tus-5", null));
+  expect(localStorage.getItem("armchair.group")).toBe("fam");
+});
+
 it("compares friends and opens one person's season with head to head", async () => {
   renderScreen();
   const table = within(await screen.findByRole("table", { name: "Points and accuracy for each person" }));

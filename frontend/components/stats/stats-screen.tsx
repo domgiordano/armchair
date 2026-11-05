@@ -5,19 +5,19 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { PageLoader } from "@/components/disco-loader";
+import { GroupScopeControl } from "@/components/group-scope";
 import { SignedIn } from "@/components/signed-in";
 import { PageHeader } from "@/components/ui/page-header";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
-import { EmptyState, ErrorState } from "@/components/ui/states";
+import { ErrorState } from "@/components/ui/states";
 import { tabId, Tabs } from "@/components/ui/tabs";
-import { groupHref } from "@armchair/app-core/api/groups";
 import type { Season } from "@/lib/api/show";
 import { getCrowdStats, getPersonStats, type CrowdScope, type CrowdStats, type PersonStats } from "@/lib/api/stats";
-import { useGroupFilter, type GroupFilter } from "@/lib/show/group-filter";
+import { scopeName, useGroupScope, type GroupScope } from "@armchair/app-core/show/group-scope";
 import { hasAired } from "@/lib/show/schedule";
 import { useSeason } from "@/lib/show/use-season";
-import { button, TEXT_LINK } from "@/lib/ui";
+import { TEXT_LINK } from "@/lib/ui";
 
 import { CrowdView } from "./crowd-view";
 import { weekName } from "./parts";
@@ -39,11 +39,13 @@ function SeasonLoader() {
   return <StatsPage season={load.season} />;
 }
 
-type View = "me" | "groups" | "global";
-const VIEWS: View[] = ["me", "groups", "global"];
+type View = "me" | "compare";
 const PANEL = "stats-panel";
 
-/** The query string is the state, so a link opens the same view: ?view=, ?sub=, ?ep=. */
+/**
+ * The query string is the state, so a link opens the same view: ?view=, ?sub=, ?ep=, and
+ * ?group=, which becomes the scope every page shares. The old Groups and Global tabs are Compare now.
+ */
 function useStatsParams() {
   const params = useSearchParams();
   const router = useRouter();
@@ -57,16 +59,23 @@ function useStatsParams() {
     const q = next.toString();
     router.replace(q ? `/stats/?${q}` : "/stats/", { scroll: false });
   };
-  const view: View = params.get("sub") ? "me" : VIEWS.includes(params.get("view") as View) ? (params.get("view") as View) : "me";
-  return { sub: params.get("sub"), ep, view, set };
+  const asked = params.get("view");
+  const view: View = !params.get("sub") && (asked === "compare" || asked === "groups" || asked === "global") ? "compare" : "me";
+  return { sub: params.get("sub"), ep, view, group: params.get("group"), set };
 }
 
 function StatsPage({ season }: { season: Season }) {
-  const { sub, ep, view, set } = useStatsParams();
+  const { sub, ep, view, group, set } = useStatsParams();
   const [name, setName] = useState<string | null>(null);
   const [now] = useState(Date.now);
   const aired = season.episodes.filter((e) => season.open || hasAired(e, season.timezone, now));
-  const filter = useGroupFilter();
+  const scope = useGroupScope("dwts", { asked: group ?? undefined });
+  // A ?group= link has done its job once the scope is saved; the control owns it from here.
+  const pick = (next: string | null) => {
+    scope.pick(next);
+    if (group) set({ group: null });
+  };
+  const filter = { ...scope, pick };
 
   return (
     <>
@@ -103,59 +112,30 @@ function StatsPage({ season }: { season: Season }) {
             label="Whose stats"
             tabs={[
               { id: "me", label: "Me" },
-              { id: "groups", label: "Groups" },
-              { id: "global", label: "Global" },
+              { id: "compare", label: "Compare" },
             ]}
             value={view}
-            onChange={(v) => set({ view: v === "me" ? null : v })}
+            onChange={(v) => set({ view: v === "me" ? null : v, group: null })}
             panelId={PANEL}
           />
         </div>
       )}
       <div key={view} role="tabpanel" id={PANEL} aria-labelledby={sub ? undefined : tabId(PANEL, view)} className="flex flex-col gap-4 animate-fade-in">
         {view === "me" && <PersonFetcher season={season} sub={sub} ep={ep} onName={setName} />}
-        {view === "groups" && <GroupsPanel season={season} ep={ep} filter={filter} />}
-        {view === "global" && <CrowdFetcher season={season} scope="global" group={null} ep={ep} name="Everyone" />}
+        {view === "compare" && <ComparePanel season={season} ep={ep} filter={filter} />}
       </div>
     </>
   );
 }
 
-function GroupsPanel({ season, ep, filter }: { season: Season; ep: number | null; filter: GroupFilter }) {
-  const { groups, failed, group, pick } = filter;
-  if (failed) return <ErrorState what="your groups" message="Couldn't load your groups" retry={() => window.location.reload()} />;
-  if (groups === null) return <StatsSkeleton label="Loading your groups" />;
-  if (groups.length === 0) {
-    return (
-      <EmptyState
-        title="No groups yet"
-        action={
-          <Link href="/social/?view=groups" className={button("primary", "sm")}>
-            Start a group
-          </Link>
-        }
-      >
-        Start a group with the people you watch with to compare week by week.
-      </EmptyState>
-    );
-  }
-  const current = groups.find((g) => g.id === group) ?? groups[0];
+function ComparePanel({ season, ep, filter }: { season: Season; ep: number | null; filter: GroupScope }) {
+  const name = scopeName(filter.scope, filter.groups);
   return (
     <>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <Select
-          label="Group"
-          hideLabel
-          className="w-56"
-          value={current.id}
-          options={groups.map((g) => ({ value: g.id, label: g.name }))}
-          onChange={pick}
-        />
-        <Link href={groupHref(current.id)} className={TEXT_LINK}>
-          Group page
-        </Link>
+      <div className="md:max-w-md">
+        <GroupScopeControl {...filter} />
       </div>
-      <CrowdFetcher key={current.id} season={season} scope="group" group={current.id} ep={ep} name={current.name} />
+      <CrowdFetcher key={filter.group ?? ""} season={season} scope={filter.group ? "group" : "global"} group={filter.group} ep={ep} name={name} />
     </>
   );
 }

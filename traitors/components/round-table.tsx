@@ -27,6 +27,8 @@ import { useSpin } from "@/lib/use-spin";
 
 export interface TableResult {
   banished?: string;
+  /** The vote went against `banished`, who was kept in anyway. */
+  pardoned?: boolean;
   faction?: Faction;
   victims?: string[];
   recruits?: string[];
@@ -38,7 +40,7 @@ export type Seated = Player & { exit?: Exit | null; faction?: Faction | null };
 /** The three calls, plus the winner bet, which picks up to three seats too. */
 export type TableKind = EventType | "WINNER";
 
-type SeatState = "banished" | "murdered" | "recruited" | null;
+type SeatState = "banished" | "pardoned" | "murdered" | "recruited" | null;
 
 interface RoundTableProps {
   roster: Seated[];
@@ -133,6 +135,7 @@ export function RoundTable({
       finish,
       rank >= 0 && (kind === "RT" ? `your ${RANKS[rank]}` : "your pick"),
       state === "banished" && `banished${result?.faction ? `, ${result.faction}` : ""}`,
+      state === "pardoned" && "voted out, then pardoned",
       state === "murdered" && "murdered",
       state === "recruited" && "recruited",
       tally,
@@ -214,7 +217,7 @@ export function RoundTable({
 
 function stateOf(kind: TableKind, result: TableResult | null, id: string): SeatState {
   if (!result) return null;
-  if (kind === "RT" && result.banished === id) return "banished";
+  if (kind === "RT" && result.banished === id) return result.pardoned ? "pardoned" : "banished";
   if (kind === "MURDER" && result.victims?.includes(id)) return "murdered";
   if (kind === "RECRUIT" && result.recruits?.includes(id)) return "recruited";
   return null;

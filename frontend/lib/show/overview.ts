@@ -15,9 +15,9 @@ export type Hero =
 export function hero(o: Overview, now: number): Hero {
   // A past season's episodes have no times, only `aired`.
   const started = o.episodes.filter((e) => (e.startsAt === null ? e.aired : Date.parse(e.startsAt) <= now));
-  const live = started.find((e) => e.endsAt !== null && now < Date.parse(e.endsAt) + LIVE_TAIL_MS && !e.complete);
+  const live = started.find((e) => e.endsAt !== null && now < Date.parse(e.endsAt) + LIVE_TAIL_MS && !e.done);
   if (live) return { kind: "live", episode: live };
-  const open = started.filter((e) => !e.complete);
+  const open = started.filter((e) => !e.done);
   if (open.length > 0) {
     return { kind: "catchUp", episode: open[0], waiting: open.length, fresh: o.me.scored === 0 };
   }

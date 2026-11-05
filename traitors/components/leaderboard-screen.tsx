@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { FaceDownNotice } from "@/components/face-down";
@@ -12,34 +12,31 @@ import { SkeletonList } from "@/components/ui/skeleton";
 import { Select } from "@/components/ui/select";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { TartanBand } from "@/components/ui/tartan-band";
-import { tabId, Tabs } from "@/components/ui/tabs";
+import { GroupScopeControl } from "@/components/group-scope";
 import { getRanks, type Ranks, type Scope, type Standing } from "@/lib/api/traitors";
-import { useGroupFilter } from "@/lib/group-filter";
+import { FRIENDS, useGroupScope } from "@armchair/app-core/show/group-scope";
 import { useFaceDown } from "@/lib/sealed";
 import { showOf } from "@/lib/seasons";
 import { cn, HEADING, TEXT_LINK } from "@/lib/ui";
 
-const SCOPES = [
-  { id: "global", label: "Everyone" },
-  { id: "friends", label: "Friends" },
-  { id: "group", label: "Group" },
-] as const;
-const PANEL = "board-panel";
 const ALL = "all";
 
 export function LeaderboardScreen() {
   const { view } = useSeasonView();
   const name = useSeasonName(view.season, view.title);
-  const filter = useGroupFilter();
+  const router = useRouter();
   const [range, setRange] = useState<string>(view.season);
-  // A group's "Group board" link opens on that group.
+  // A group's "Group board" link opens on that group and makes it the scope every page shares.
   const asked = useSearchParams().get("group");
-  const [scope, setScope] = useState<Scope>(asked ? "group" : "global");
-  const [picked, setPicked] = useState<string | null>(asked);
-  const groups = filter.groups ?? [];
-  const group = groups.find((g) => g.id === (picked ?? filter.group))?.id ?? groups[0]?.id ?? null;
-  const waiting = scope === "group" && filter.groups === null && !filter.failed;
-  const noGroup = scope === "group" && !waiting && group === null;
+  const filter = useGroupScope("traitors", { friends: true, asked: asked ?? undefined });
+  const pick = (next: string | null) => {
+    filter.pick(next);
+    if (asked) router.replace("/leaderboard/");
+  };
+  const scope: Scope = filter.scope === null ? "global" : filter.scope === FRIENDS ? "friends" : "group";
+  const group = filter.group;
+  // A saved group is checked against the caller's groups before its board is asked for.
+  const waiting = scope === "group" && filter.groups === null;
   const faceDown = useFaceDown(view.season);
 
   return (
@@ -58,34 +55,26 @@ export function LeaderboardScreen() {
           onChange={setRange}
         />
       </div>
-      <Tabs label="Who to rank" tabs={SCOPES} value={scope} onChange={setScope} panelId={PANEL} />
-      {scope === "group" && groups.length > 1 && (
-        <Select
-          label="Group"
-          value={group ?? ""}
-          options={groups.map((g) => ({ value: g.id, label: `${g.name} (${g.members.length})` }))}
-          onChange={setPicked}
-        />
+      <GroupScopeControl {...filter} pick={pick} />
+      {filter.groups?.length === 0 && (
+        <p className="text-sm text-ash">
+          A group ranks just the people in it.{" "}
+          <Link href="/groups/" className={TEXT_LINK}>
+            Start one or join one
+          </Link>
+          ; the same groups work in every Armchair Judge show.
+        </p>
       )}
-      <div id={PANEL} role="tabpanel" aria-labelledby={tabId(PANEL, scope)} className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         {waiting && <SkeletonList label="Loading your groups" />}
-        {noGroup && (
-          <EmptyState title={filter.failed ? "Couldn't load your groups" : "You're not in a group yet"}>
-            A group ranks just the people in it.{" "}
-            <Link href="/groups/" className={TEXT_LINK}>
-              Start one or join one
-            </Link>
-            ; the same groups work in every Armchair Judge show.
-          </EmptyState>
-        )}
         {faceDown.eps.length > 0 && <FaceDownNotice season={view.season} ep={faceDown.eps[0]} what="The board" />}
-        {!waiting && !noGroup && faceDown.eps.length === 0 && (
+        {!waiting && faceDown.eps.length === 0 && (
           <Board
             key={`${range}|${scope}|${group}`}
             season={range}
             show={showOf(view.season)}
             scope={scope}
-            group={scope === "group" ? group : null}
+            group={group}
           />
         )}
       </div>

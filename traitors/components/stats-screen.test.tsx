@@ -1,7 +1,11 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
-const api = vi.hoisted(() => ({ getStats: vi.fn(), getCrowdStats: vi.fn(), FRIENDS: "friends" }));
+const api = vi.hoisted(() => ({
+  getStats: vi.fn(),
+  getCrowdStats: vi.fn(),
+  FRIENDS: "friends",
+}));
 const nav = vi.hoisted(() => ({ search: "", replace: vi.fn() }));
 const groups = vi.hoisted(() => ({ getMyGroups: vi.fn(), plays: () => true }));
 vi.mock("@/lib/api/traitors", () => api);
@@ -47,14 +51,27 @@ const CROWD: CrowdStats = {
       },
     },
   ],
-  byEvent: { RT: { scored: 4, hits: 1 }, MURDER: { scored: 4, hits: 3 }, RECRUIT: { scored: 0, hits: 0 } },
-  mine: { RT: { scored: 1, hits: 1 }, MURDER: { scored: 1, hits: 0 }, RECRUIT: { scored: 0, hits: 0 } },
+  byEvent: {
+    RT: { scored: 4, hits: 1 },
+    MURDER: { scored: 4, hits: 3 },
+    RECRUIT: { scored: 0, hits: 0 },
+  },
+  mine: {
+    RT: { scored: 1, hits: 1 },
+    MURDER: { scored: 1, hits: 0 },
+    RECRUIT: { scored: 0, hits: 0 },
+  },
   leaders: [{ rank: 1, sub: "a", name: "Ann", picture: null, points: 12 }],
   me: { rank: 3, points: 5 },
   ranked: 4,
 };
 
-const wrap = () => render(<SeasonDataContext value={{ view: VIEW, reload: vi.fn() }}><StatsScreen /></SeasonDataContext>);
+const wrap = () =>
+  render(
+    <SeasonDataContext value={{ view: VIEW, reload: vi.fn() }}>
+      <StatsScreen />
+    </SeasonDataContext>,
+  );
 
 beforeEach(() => {
   localStorage.clear();
@@ -67,9 +84,13 @@ afterEach(() => vi.clearAllMocks());
 
 it("puts the tab in the query string", () => {
   wrap();
-  expect(screen.getByRole("tab", { name: "You" }).getAttribute("aria-selected")).toBe("true");
-  fireEvent.click(screen.getByRole("tab", { name: "Everyone" }));
-  expect(nav.replace).toHaveBeenCalledWith("/stats/?view=global", { scroll: false });
+  expect(
+    screen.getByRole("tab", { name: "You" }).getAttribute("aria-selected"),
+  ).toBe("true");
+  fireEvent.click(screen.getByRole("tab", { name: "Compare" }));
+  expect(nav.replace).toHaveBeenCalledWith("/stats/?view=compare", {
+    scroll: false,
+  });
 });
 
 it("sets the crowd's calls beside yours", async () => {
@@ -77,22 +98,39 @@ it("sets the crowd's calls beside yours", async () => {
   wrap();
   expect(await screen.findByText("You vs Everyone")).toBeTruthy();
   expect(api.getCrowdStats).toHaveBeenCalledWith("tus-5", null);
-  expect(screen.getByText(/had Bob Ray first\. Most picked Cat Fox/)).toBeTruthy();
-  expect(within(screen.getByRole("list", { name: "Leaders" })).getByText("Ann")).toBeTruthy();
-  expect(within(screen.getByRole("list", { name: "Hardest calls" })).getByText(/Round table/)).toBeTruthy();
-  expect(within(screen.getByRole("list", { name: "Easiest calls" })).getByText(/Murders/)).toBeTruthy();
+  expect(
+    screen.getByText(/had Bob Ray first\. Most picked Cat Fox/),
+  ).toBeTruthy();
+  expect(
+    within(screen.getByRole("list", { name: "Leaders" })).getByText("Ann"),
+  ).toBeTruthy();
+  expect(
+    within(screen.getByRole("list", { name: "Hardest calls" })).getByText(
+      /Round table/,
+    ),
+  ).toBeTruthy();
+  expect(
+    within(screen.getByRole("list", { name: "Easiest calls" })).getByText(
+      /Murders/,
+    ),
+  ).toBeTruthy();
 });
 
-it("asks for a group, then compares with the first one", async () => {
+it("compares with everyone, and points a caller with no group at one", async () => {
   nav.search = "view=groups";
   wrap();
-  expect(await screen.findByText("You're not in a group yet")).toBeTruthy();
-  expect(api.getCrowdStats).not.toHaveBeenCalled();
+  expect(await screen.findByText("You vs Everyone")).toBeTruthy();
+  expect(
+    screen.getByRole("link", { name: "Start one or join one" }),
+  ).toBeTruthy();
+  expect(api.getCrowdStats).toHaveBeenCalledWith("tus-5", null);
 });
 
-it("reads a group's stats for a member", async () => {
-  nav.search = "view=groups";
-  groups.getMyGroups.mockResolvedValue([{ id: "g1", name: "Castle", members: ["a", "b"] }]);
+it("reads a group's stats for a member, and goes back to everyone in one tap", async () => {
+  nav.search = "view=compare&group=g1";
+  groups.getMyGroups.mockResolvedValue([
+    { id: "g1", name: "Castle", members: ["a", "b"] },
+  ]);
   wrap();
   expect(await screen.findByText("You vs Castle")).toBeTruthy();
   expect(api.getCrowdStats).toHaveBeenCalledWith("tus-5", "g1");

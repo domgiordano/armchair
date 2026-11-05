@@ -424,7 +424,7 @@ describe("EpisodeScreen", () => {
   it("reloads the episode for the picked group", async () => {
     vi.mocked(getMyGroups).mockResolvedValue([{ id: "fam", name: "Family", inviteCode: "c".repeat(16), members: [] }]);
     render(<EpisodeScreen />);
-    fireEvent.click(await screen.findByRole("tab", { name: "Family" }));
+    choose(await screen.findByRole("combobox", { name: "Compare with" }), "Family");
     await vi.waitFor(() => expect(getEpisodeState).toHaveBeenLastCalledWith("dwts-35", 4, "fam"));
   });
 
@@ -446,7 +446,7 @@ describe("EpisodeScreen", () => {
     expect(seats()).toEqual(["judge", "judge", "you", "crowd"]);
     expect(screen.queryByRole("region", { name: "Family scores" })).toBeNull();
 
-    fireEvent.click(await screen.findByRole("tab", { name: "Family" }));
+    choose(await screen.findByRole("combobox", { name: "Compare with" }), "Family");
     expect(screen.getByText("Comparing with", { exact: false }).textContent).toBe("Comparing with Family");
     const carousel = await screen.findByRole("region", { name: "Family scores" });
     expect(seats()).toEqual(["judge", "judge", "you", "crowd"]);
@@ -585,6 +585,25 @@ describe("the end of an episode", () => {
     expect(screen.getByText("Ready to see who's going home?")).toBeTruthy();
     expect(stamped()).toEqual([]);
     expect(screen.queryByRole("list", { name: "Couples in the spotlight" })).toBeNull();
+  });
+
+  it("lists the marathon beside who went home, and not while the results are held", async () => {
+    const segments = [
+      { label: "Hustle Marathon", contestants: ["tyler-cameron"], points: 2, text: null },
+      { label: "Hustle Marathon", contestants: ["amber-glenn"], points: 4, text: null },
+    ];
+    const marathon = { ...STATE, ...FINISHED, results: { ...results, segments } };
+    vi.mocked(getEpisodeState).mockResolvedValue(marathon);
+    window.localStorage.setItem("armchair.sealed", '["dwts-35|4|results#0"]');
+    const view = render(<EpisodeScreen />);
+    expect(await screen.findByRole("button", { name: "Reveal results" })).toBeTruthy();
+    expect(screen.queryByRole("region", { name: "Hustle Marathon" })).toBeNull();
+    view.unmount();
+
+    window.localStorage.setItem("armchair.sealed", "[]");
+    render(<EpisodeScreen />);
+    const list = await screen.findByRole("region", { name: "Hustle Marathon" });
+    expect(within(list).getAllByRole("listitem").map((li) => li.textContent)).toEqual(["Amber Glenn+4", "Tyler Cameron+2"]);
   });
 
   it("plays the spotlight, then names who went home and stamps their card", async () => {

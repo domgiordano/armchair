@@ -58,7 +58,7 @@ import { getOverview, type Overview } from "@/lib/api/overview";
 import { getSeason, type Season } from "@/lib/api/show";
 import { addFriend, getFriends, getNotifications, mySub, type Friends, type Notification } from "@armchair/app-core/api/social";
 import { resetNotifications } from "@armchair/app-core/social/notifications";
-import { readGroup } from "@/lib/show/group-filter";
+import { readScope } from "@armchair/app-core/show/group-scope";
 import { getCrowdStats, getPersonStats } from "@/lib/api/stats";
 import { CROWD, PERSON } from "@/components/stats/test-fixtures";
 import { GroupRoute } from "./group-screen";
@@ -152,7 +152,7 @@ describe("GroupRoute", () => {
     const go = within(show).getByRole("link", { name: "Keep scoring" });
     expect(go.getAttribute("href")).toMatch(/^\/episode\/?\?ep=5$/);
     fireEvent.click(go);
-    expect(readGroup()).toBe(GID);
+    expect(readScope()).toBe(GID);
   });
 
   it("offers to start DWTS for a group that isn't playing it, with no board", async () => {
@@ -222,6 +222,8 @@ describe("GroupRoute", () => {
     expect(numbers.textContent).toContain("#2");
     expect(numbers.textContent).toContain("1.00");
     expect(numbers.textContent).toContain("2/2");
+    const accuracy = screen.getByRole("link", { name: "Your accuracy against this group" });
+    expect(accuracy.getAttribute("href")).toMatch(new RegExp(`^/stats/?\\?view=compare&group=${GID}$`));
   });
 
   it("lets the owner answer join requests and remove members", async () => {

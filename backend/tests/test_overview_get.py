@@ -181,6 +181,17 @@ def test_sealed_dances_leave_the_callers_numbers_and_reveals(show, via):
     assert data()["me"]["count"] == (1 if via == "server" else 2)
 
 
+@pytest.mark.parametrize("via", VIAS)
+def test_a_held_reveal_is_done_but_not_complete(show, via):
+    finish(A, 5)
+    ep5 = data(**sealing(via, A, "dwts-35", (5, f"{Y}#1")))["episodes"][4]
+    assert (ep5["complete"], ep5["done"]) == (False, True)
+
+
+def test_unanswered_aired_episode_is_not_done(show):
+    assert data()["episodes"][4]["done"] is False
+
+
 def test_accuracy_per_episode(show):
     answer(A, X, ep=4, value=6)
     answer(A, X, value=8)

@@ -6,7 +6,7 @@ import { getPerson } from "@/lib/api/people";
 import { getEpisodeState, getSeason } from "@/lib/api/show";
 import { getFriends } from "@armchair/app-core/api/social";
 import { getPersonStats } from "@/lib/api/stats";
-import { readGroup } from "@/lib/show/group-filter";
+import { FRIENDS, readScope } from "@armchair/app-core/show/group-scope";
 
 /**
  * Starts the reads a page makes on load, with the same arguments, so the page
@@ -16,7 +16,8 @@ import { readGroup } from "@/lib/show/group-filter";
  */
 export function prefetchPage(href: string, season: string): void {
   const url = new URL(href, "https://dwts.invalid");
-  const group = readGroup();
+  const saved = readScope();
+  const group = saved === FRIENDS ? null : saved;
   const start = (...reads: Promise<unknown>[]) => reads.forEach((r) => r.catch(() => {}));
   switch (url.pathname) {
     case "/":
@@ -28,7 +29,8 @@ export function prefetchPage(href: string, season: string): void {
       return;
     }
     case "/leaderboard/": {
-      const scope = url.searchParams.get("scope");
+      // No scope in the URL opens the saved one.
+      const scope = url.searchParams.get("scope") ?? (saved === null ? "global" : saved === FRIENDS ? "friends" : "group");
       const board = url.searchParams.get("season") === ALL_TIME ? ALL_TIME : season;
       start(getSeason(season), getMyGroups());
       // A group board needs the group list first to pick its group.

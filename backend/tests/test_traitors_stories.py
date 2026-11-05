@@ -435,11 +435,11 @@ def episode(ep: int) -> dict:
     return body["data"]
 
 
-def test_recap_waits_for_every_event(db):
+def test_recap_waits_for_every_required_event(db):
     backfill()
     set_recap(db, 5, 2, "Madeline is banished.")
     assert episode(2)["recap"] is None
-    answer(db, 2, ("MURDER", "RT"))
+    answer(db, 2, ("RT",))
     view = episode(2)
     assert view["recap"] is None
     rt = next(c for c in view["events"] if c["type"] == "RT")

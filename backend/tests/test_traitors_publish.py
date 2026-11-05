@@ -128,3 +128,38 @@ def test_backfill_confirms_at_once(db, monkeypatch):
     assert tick(monkeypatch, EP4 + 30 * 24 * 3600, {"backfill": True}) == {"polled": ["tus-5"]}
     assert event(db, 2, "RT")["state"] == "confirmed"
     assert event(db, 4, "RT")["state"] == "confirmed"
+
+
+PARDON = (WIKI / "traitors-us5-1383625823.wikitext").read_text()
+
+
+def test_pardon_outcome_scores_the_vote_and_reveals_nothing():
+    rt = outcomes(season(PARDON), [7])[7]["RT"]
+    assert rt["banished"] == "victor-vollbrechthausen"
+    assert rt["pardoned"] is True
+    assert rt["faction"] is None
+    assert rt["firstVote"]["victor-vollbrechthausen"] == 5
+
+
+def test_pardon_undoes_an_exit_written_before_it(db, monkeypatch):
+    def backfill(content):
+        monkeypatch.setattr(poller.time, "time", lambda: poller.epoch("2026-11-04T00:00:00Z"))
+        monkeypatch.setattr(
+            poller,
+            "latest",
+            lambda pageid: {"revid": 8, "timestamp": "t", "content": content, "title": "x"},
+        )
+        poller.handler({"backfill": True}, None)
+        return db.Table(CATALOG_TABLE).get_item(
+            Key={"pk": "SEASON#tus#5", "sk": "PLAYER#victor-vollbrechthausen"}
+        )["Item"]
+
+    # Before episode 8 aired, the page read episode 7 as a plain banishment.
+    assert backfill(PARDON.replace("<s>Victor</s>", "Victor"))["exit"] == {
+        "ep": 7,
+        "how": "banished",
+    }
+    victor = backfill(PARDON)
+    assert "exit" not in victor
+    rt = event(db, 7, "RT")
+    assert (rt["state"], rt["pardoned"]) == ("confirmed", True)

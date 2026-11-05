@@ -3,21 +3,44 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 
 const api = vi.hoisted(() => ({ getEpisode: vi.fn(), submitPick: vi.fn() }));
 vi.mock("@/lib/api/traitors", () => api);
-vi.mock("@/lib/api/history", () => ({ getPlayer: () => new Promise(() => {}) }));
-vi.mock("@armchair/app-core/api/client", () => ({ ApiError: class ApiError extends Error {} }));
+vi.mock("@/lib/api/history", () => ({
+  getPlayer: () => new Promise(() => {}),
+}));
+vi.mock("@armchair/app-core/api/client", () => ({
+  ApiError: class ApiError extends Error {},
+}));
 
 import type { Episode, EpisodeEvent, SeasonEpisode } from "@/lib/api/traitors";
 import { spoken } from "@/test/spoken";
 
 import { Ballot } from "./ballot";
 
-const ROSTER = ["Ava Stone", "Ben Hart", "Cal Reyes", "Dee Moss", "Eli Park"].map((name) => ({
+const ROSTER = [
+  "Ava Stone",
+  "Ben Hart",
+  "Cal Reyes",
+  "Dee Moss",
+  "Eli Park",
+].map((name) => ({
   id: name.split(" ")[0].toLowerCase(),
   name,
   headshot: name === "Ava Stone" ? "ava.jpg" : null,
 }));
-const SEASON_EP: SeasonEpisode = { ep: 5, title: null, releaseAt: "2026-10-16T01:00:00Z", closed: false, events: 3, answered: 0 };
-const locked = (type: EpisodeEvent["type"]) => ({ type, picks: type === "RT" ? 3 : 1, mine: null, locked: true }) as EpisodeEvent;
+const SEASON_EP: SeasonEpisode = {
+  ep: 5,
+  title: null,
+  releaseAt: "2026-10-16T01:00:00Z",
+  closed: false,
+  events: 3,
+  answered: 0,
+};
+const locked = (type: EpisodeEvent["type"]) =>
+  ({
+    type,
+    picks: type === "RT" ? 3 : 1,
+    mine: null,
+    locked: true,
+  }) as EpisodeEvent;
 const episode = (events: EpisodeEvent[]): Episode => ({
   season: "tus-5",
   ep: 5,
@@ -31,26 +54,57 @@ const episode = (events: EpisodeEvent[]): Episode => ({
 });
 
 beforeEach(() => {
-  api.getEpisode.mockResolvedValue(episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]));
+  api.getEpisode.mockResolvedValue(
+    episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]),
+  );
   api.submitPick.mockResolvedValue({});
 });
 afterEach(() => vi.clearAllMocks());
 
 const ballot = (onSealed = vi.fn()) =>
-  render(<Ballot season="tus-5" episode={SEASON_EP} group={null} members={null} onSealed={onSealed} />);
-const seat = (name: string) => screen.getByRole("button", { name: new RegExp(`^${name}`) });
-const para = (text: string) => (_: string, el: Element | null) => el?.tagName === "P" && el.textContent === text;
-const seal = () => screen.getByRole("button", { name: /^Seal/ }) as HTMLButtonElement;
+  render(
+    <Ballot
+      season="tus-5"
+      episode={SEASON_EP}
+      group={null}
+      members={null}
+      onSealed={onSealed}
+    />,
+  );
+const seat = (name: string) =>
+  screen.getByRole("button", { name: new RegExp(`^${name}`) });
+const para = (text: string) => (_: string, el: Element | null) =>
+  el?.tagName === "P" && el.textContent === text;
+const seal = () =>
+  screen.getByRole("button", { name: /^Seal/ }) as HTMLButtonElement;
 
 it("shows the table before the winner bet, and asks for the bet instead of taking a pick", async () => {
-  api.getEpisode.mockResolvedValue({ ...episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]), needsBet: true });
+  api.getEpisode.mockResolvedValue({
+    ...episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]),
+    needsBet: true,
+  });
   const onNeedBet = vi.fn();
-  render(<Ballot season="tus-5" episode={SEASON_EP} group={null} members={null} onSealed={vi.fn()} onNeedBet={onNeedBet} />);
+  render(
+    <Ballot
+      season="tus-5"
+      episode={SEASON_EP}
+      group={null}
+      members={null}
+      onSealed={vi.fn()}
+      onNeedBet={onNeedBet}
+    />,
+  );
   fireEvent.click(await screen.findByRole("button", { name: /^Cal Reyes/ }));
   expect(onNeedBet).not.toHaveBeenCalled();
-  fireEvent.click(screen.getByRole("button", { name: "Choose for the murder" }));
+  fireEvent.click(
+    screen.getByRole("button", { name: "Choose for the murder" }),
+  );
   expect(onNeedBet).toHaveBeenCalledOnce();
-  expect(screen.getByRole("button", { name: /^Cal Reyes/ }).getAttribute("aria-pressed")).toBe("false");
+  expect(
+    screen
+      .getByRole("button", { name: /^Cal Reyes/ })
+      .getAttribute("aria-pressed"),
+  ).toBe("false");
   expect(screen.queryByRole("button", { name: /^Seal/ })).toBeNull();
   fireEvent.click(screen.getByRole("button", { name: "Lock in your winners" }));
   expect(onNeedBet).toHaveBeenCalledTimes(2);
@@ -68,66 +122,111 @@ it("ranks three heads at the round table, reorders them on the slate, and seals 
     fireEvent.click(screen.getByRole("button", { name: `Chalk ${rank}` }));
   };
   fireEvent.click(seat("Cal Reyes"));
-  expect(screen.getByRole("button", { name: "Chalk II" })).toHaveProperty("disabled", true);
+  expect(screen.getByRole("button", { name: "Chalk II" })).toHaveProperty(
+    "disabled",
+    true,
+  );
   fireEvent.click(screen.getByRole("button", { name: "Chalk I" }));
   chalk("Ava Stone", "II");
   expect(seal().disabled).toBe(true);
   // A second tap on the seat at the head chalks the next rank.
   fireEvent.click(seat("Eli Park"));
   fireEvent.click(seat("Eli Park"));
-  expect(seat("Ava Stone").getAttribute("aria-label")).toBe("Ava Stone, your second");
-  expect(screen.getByRole("button", { name: "Chalk III" }).getAttribute("aria-pressed")).toBe("true");
+  expect(seat("Ava Stone").getAttribute("aria-label")).toBe(
+    "Ava Stone, your second",
+  );
+  expect(
+    screen
+      .getByRole("button", { name: "Chalk III" })
+      .getAttribute("aria-pressed"),
+  ).toBe("true");
 
   fireEvent.click(screen.getByRole("button", { name: "Move Eli Park up" }));
   const slate = within(screen.getByRole("list", { name: "Your slate" }));
-  expect(slate.getAllByRole("listitem").map((li) => li.textContent?.match(/Cal|Ava|Eli/)?.[0])).toEqual([
-    "Cal",
-    "Eli",
-    "Ava",
-  ]);
+  expect(
+    slate
+      .getAllByRole("listitem")
+      .map((li) => li.textContent?.match(/Cal|Ava|Eli/)?.[0]),
+  ).toEqual(["Cal", "Eli", "Ava"]);
 
   // Chalking Cal again on his own rank rubs him out.
   chalk("Cal Reyes", "I");
   chalk("Dee Moss", "III");
   fireEvent.click(seal());
   await vi.waitFor(() => expect(onSealed).toHaveBeenCalledOnce());
-  expect(api.submitPick).toHaveBeenCalledWith("tus-5", 5, "RT", { picks: ["eli", "ava", "dee"] });
+  expect(api.submitPick).toHaveBeenCalledWith("tus-5", 5, "RT", {
+    picks: ["eli", "ava", "dee"],
+  });
   expect(api.getEpisode).toHaveBeenCalledTimes(2);
 });
 
 it("opens on the first call still to make, and a single pick swaps on the next tap", async () => {
   ballot();
-  expect((await screen.findByRole("tab", { name: "Murder" })).getAttribute("aria-selected")).toBe("true");
+  expect(
+    (await screen.findByRole("tab", { name: "Murder" })).getAttribute(
+      "aria-selected",
+    ),
+  ).toBe("true");
   fireEvent.click(seat("Ben Hart"));
-  fireEvent.click(screen.getByRole("button", { name: "Choose for the murder" }));
-  expect(screen.getByRole("button", { name: "Choose for the murder" }).getAttribute("aria-pressed")).toBe("true");
+  fireEvent.click(
+    screen.getByRole("button", { name: "Choose for the murder" }),
+  );
+  expect(
+    screen
+      .getByRole("button", { name: "Choose for the murder" })
+      .getAttribute("aria-pressed"),
+  ).toBe("true");
   fireEvent.click(seat("Dee Moss"));
-  expect(screen.getByRole("button", { name: "Choose for the murder" }).getAttribute("aria-pressed")).toBe("false");
+  expect(
+    screen
+      .getByRole("button", { name: "Choose for the murder" })
+      .getAttribute("aria-pressed"),
+  ).toBe("false");
   fireEvent.click(seat("Dee Moss"));
   expect(seat("Ben Hart").getAttribute("aria-pressed")).toBe("false");
   fireEvent.click(seal());
-  await vi.waitFor(() => expect(api.submitPick).toHaveBeenCalledWith("tus-5", 5, "MURDER", { picks: ["dee"] }));
+  await vi.waitFor(() =>
+    expect(api.submitPick).toHaveBeenCalledWith("tus-5", 5, "MURDER", {
+      picks: ["dee"],
+    }),
+  );
 });
 
 it("seals no pick to see the result", async () => {
   ballot();
   await screen.findByRole("tab", { name: "Murder" });
   fireEvent.click(screen.getByRole("checkbox", { name: "No pick (reveal)" }));
-  expect(screen.queryByRole("button", { name: "Choose for the murder" })).toBeNull();
+  expect(
+    screen.queryByRole("button", { name: "Choose for the murder" }),
+  ).toBeNull();
   fireEvent.click(screen.getByRole("button", { name: "Seal: no pick" }));
-  await vi.waitFor(() => expect(api.submitPick).toHaveBeenCalledWith("tus-5", 5, "MURDER", { forfeit: true }));
+  await vi.waitFor(() =>
+    expect(api.submitPick).toHaveBeenCalledWith("tus-5", 5, "MURDER", {
+      forfeit: true,
+    }),
+  );
 });
 
 it("reveals the banishment on the table with your points and everyone's first picks", async () => {
   api.getEpisode.mockResolvedValue(
     episode([
-      { type: "MURDER", picks: 1, locked: false, mine: { picks: ["ben"], submittedAt: "" }, result: { victims: ["ben"] } },
+      {
+        type: "MURDER",
+        picks: 1,
+        locked: false,
+        mine: { picks: ["ben"], submittedAt: "" },
+        result: { victims: ["ben"] },
+      },
       {
         type: "RT",
         picks: 3,
         locked: false,
         mine: { picks: ["ava", "cal", "eli"], submittedAt: "" },
-        result: { banished: "ava", faction: "Traitor", firstVote: { ava: 6, cal: 3, eli: 1 } },
+        result: {
+          banished: "ava",
+          faction: "Traitor",
+          firstVote: { ava: 6, cal: 3, eli: 1 },
+        },
         consensus: { voters: 8, picks: { ava: 8 }, first: { ava: 5, cal: 3 } },
       },
       locked("RECRUIT"),
@@ -135,17 +234,29 @@ it("reveals the banishment on the table with your points and everyone's first pi
   );
   ballot();
   fireEvent.click(await screen.findByRole("tab", { name: "Banish, sealed" }));
-  expect(screen.getByRole("link", { name: "Ava Stone, your first, banished, Traitor, 5 called" })).toBeTruthy();
+  expect(
+    screen.getByRole("link", {
+      name: "Ava Stone, your first, banished, Traitor, 5 called",
+    }),
+  ).toBeTruthy();
   expect(screen.getByText(para("+10 points"))).toBeTruthy();
-  const consensus = within(screen.getByRole("region", { name: /Everyone's calls/ }));
-  expect(spoken(consensus.getAllByRole("listitem")[0])).toBe("63% had Ava Stone first");
+  const consensus = within(
+    screen.getByRole("region", { name: /Everyone's calls/ }),
+  );
+  expect(spoken(consensus.getAllByRole("listitem")[0])).toBe(
+    "63% had Ava Stone first",
+  );
   const ava = consensus.getByRole("link", { name: "Ava Stone" });
   expect(ava.getAttribute("href")).toMatch(/show=tus&id=ava&season=tus-5/);
   // Her photo, not the hood.
-  expect(ava.querySelector("img")?.getAttribute("src")).toMatch(/\/headshots\/ava\.jpg$/);
+  expect(ava.querySelector("img")?.getAttribute("src")).toMatch(
+    /\/headshots\/ava\.jpg$/,
+  );
 
   fireEvent.click(screen.getByRole("tab", { name: "Murder, sealed" }));
-  expect(screen.getByRole("link", { name: "Ben Hart, your pick, murdered" })).toBeTruthy();
+  expect(
+    screen.getByRole("link", { name: "Ben Hart, your pick, murdered" }),
+  ).toBeTruthy();
   expect(screen.getByText(para("+4 points"))).toBeTruthy();
 });
 
@@ -154,8 +265,17 @@ const RECAP = {
   source: "fandom" as const,
   sourceUrl: "https://thetraitors.fandom.com/wiki/Episode_5",
 };
-const sealedEvent = (type: EpisodeEvent["type"], result: EpisodeEvent["result"]) =>
-  ({ type, picks: type === "RT" ? 3 : 1, locked: false, mine: { forfeit: true, submittedAt: "" }, result }) as EpisodeEvent;
+const sealedEvent = (
+  type: EpisodeEvent["type"],
+  result: EpisodeEvent["result"],
+) =>
+  ({
+    type,
+    picks: type === "RT" ? 3 : 1,
+    locked: false,
+    mine: { forfeit: true, submittedAt: "" },
+    result,
+  }) as EpisodeEvent;
 
 it("keeps the recap sealed, saying nothing of it, until every call is made", async () => {
   ballot();
@@ -167,13 +287,23 @@ it("keeps the recap sealed, saying nothing of it, until every call is made", asy
 
 it("unseals the recap once every call is in, credited to the wiki it came from", async () => {
   api.getEpisode.mockResolvedValue({
-    ...episode([sealedEvent("MURDER", { victims: [] }), sealedEvent("RT", { banished: "ava" }), sealedEvent("RECRUIT", {})]),
+    ...episode([
+      sealedEvent("MURDER", { victims: [] }),
+      sealedEvent("RT", { banished: "ava" }),
+      sealedEvent("RECRUIT", {}),
+    ]),
     recap: RECAP,
   });
   ballot();
-  const card = within(await screen.findByRole("region", { name: "What happened" }));
+  const card = within(
+    await screen.findByRole("region", { name: "What happened" }),
+  );
   expect(card.getByText(RECAP.text)).toBeTruthy();
-  expect(card.getByRole("link", { name: "From The Traitors Wiki (Fandom)" }).getAttribute("href")).toBe(RECAP.sourceUrl);
+  expect(
+    card
+      .getByRole("link", { name: "From The Traitors Wiki (Fandom)" })
+      .getAttribute("href"),
+  ).toBe(RECAP.sourceUrl);
   expect(screen.queryByText("Make your calls to unseal the recap.")).toBeNull();
 });
 
@@ -195,21 +325,37 @@ it("draws who voted for whom on the table, lists the votes by target and badges 
 
   const toggle = screen.getByRole("button", { name: "Show the votes" });
   expect(toggle.getAttribute("aria-pressed")).toBe("true");
-  expect(screen.getByRole("link", { name: "Ava Stone, banished, Faithful, 3 votes, voted for Cal Reyes" })).toBeTruthy();
-  expect(screen.getByRole("link", { name: "Eli Park, voted for Cal Reyes, held a shield" })).toBeTruthy();
+  expect(
+    screen.getByRole("link", {
+      name: "Ava Stone, banished, Faithful, 3 votes, voted for Cal Reyes",
+    }),
+  ).toBeTruthy();
+  expect(
+    screen.getByRole("link", {
+      name: "Eli Park, voted for Cal Reyes, held a shield",
+    }),
+  ).toBeTruthy();
 
-  const votes = within(screen.getByRole("region", { name: "How the castle voted" }));
+  const votes = within(
+    screen.getByRole("region", { name: "How the castle voted" }),
+  );
   expect(votes.getAllByRole("listitem").map(spoken)).toEqual([
     "Ava Stone3 votesfrom Ben Hart, Cal Reyes, Dee Moss",
     "Cal Reyes2 votesfrom Ava Stone, Eli Park",
   ]);
-  expect(spoken(votes.getByText(/Shielded tonight/))).toBe("Shielded tonight: Eli Park");
+  expect(spoken(votes.getByText(/Shielded tonight/))).toBe(
+    "Shielded tonight: Eli Park",
+  );
 
   // Off, the table goes back to counting everyone's calls; the shield stays.
   fireEvent.click(toggle);
   expect(toggle.getAttribute("aria-pressed")).toBe("false");
-  expect(screen.getByRole("link", { name: "Ava Stone, banished, Faithful" })).toBeTruthy();
-  expect(screen.getByRole("link", { name: "Eli Park, held a shield" })).toBeTruthy();
+  expect(
+    screen.getByRole("link", { name: "Ava Stone, banished, Faithful" }),
+  ).toBeTruthy();
+  expect(
+    screen.getByRole("link", { name: "Eli Park, held a shield" }),
+  ).toBeTruthy();
 });
 
 it("keeps a call's result face down after the seal until you choose to reveal it", async () => {
@@ -222,37 +368,107 @@ it("keeps a call's result face down after the seal until you choose to reveal it
     consensus: { voters: 4, picks: { ben: 3, cal: 1 } },
   } as EpisodeEvent;
   api.getEpisode
-    .mockResolvedValueOnce(episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]))
-    .mockResolvedValue(episode([sealedMurder, locked("RT"), locked("RECRUIT")]));
+    .mockResolvedValueOnce(
+      episode([locked("MURDER"), locked("RT"), locked("RECRUIT")]),
+    )
+    .mockResolvedValue(
+      episode([sealedMurder, locked("RT"), locked("RECRUIT")]),
+    );
   ballot();
   await screen.findByRole("tab", { name: "Murder" });
   fireEvent.click(seat("Ben Hart"));
   fireEvent.click(seat("Ben Hart"));
   fireEvent.click(seal());
 
-  const sheet = within(await screen.findByRole("dialog", { name: "Locked in" }));
-  expect(sheet.getByRole("heading", { name: "Ready to see what happened?" })).toBeTruthy();
+  const sheet = within(
+    await screen.findByRole("dialog", { name: "Locked in" }),
+  );
+  expect(
+    sheet.getByRole("heading", { name: "Ready to see what happened?" }),
+  ).toBeTruthy();
   fireEvent.click(sheet.getByRole("button", { name: "Not yet" }));
   expect(screen.queryByRole("dialog")).toBeNull();
 
   fireEvent.click(await screen.findByRole("tab", { name: "Murder, sealed" }));
-  expect(await screen.findByText(/face down until you choose to look/)).toBeTruthy();
-  expect(screen.getByRole("link", { name: "Ben Hart, your pick" })).toBeTruthy();
+  expect(
+    await screen.findByText(/face down until you choose to look/),
+  ).toBeTruthy();
+  expect(
+    screen.getByRole("link", { name: "Ben Hart, your pick" }),
+  ).toBeTruthy();
   expect(screen.queryByText(/murdered/)).toBeNull();
   expect(screen.queryByRole("region", { name: /Everyone's calls/ })).toBeNull();
   expect(screen.queryByText(/\+\d+ points?/)).toBeNull();
 
   fireEvent.click(screen.getByRole("button", { name: "Reveal what happened" }));
-  expect(await screen.findByRole("link", { name: /^Ben Hart, your pick, murdered/ })).toBeTruthy();
+  expect(
+    await screen.findByRole("link", { name: /^Ben Hart, your pick, murdered/ }),
+  ).toBeTruthy();
   expect(screen.getByRole("region", { name: /Everyone's calls/ })).toBeTruthy();
 });
 
 it("shows a call sealed on another device face down, never as a fresh slate", async () => {
-  const sealed = { type: "RT", picks: 3, mine: { picks: ["cal", "ava", "eli"] }, locked: true, sealed: true } as EpisodeEvent;
-  api.getEpisode.mockResolvedValue(episode([locked("MURDER"), sealed, locked("RECRUIT")]));
+  const sealed = {
+    type: "RT",
+    picks: 3,
+    mine: { picks: ["cal", "ava", "eli"] },
+    locked: true,
+    sealed: true,
+  } as EpisodeEvent;
+  api.getEpisode.mockResolvedValue(
+    episode([locked("MURDER"), sealed, locked("RECRUIT")]),
+  );
   ballot();
   fireEvent.click(await screen.findByRole("tab", { name: /^Banish/ }));
   expect(screen.getByText("Your call · locked in")).toBeTruthy();
-  expect(screen.getByRole("button", { name: "Reveal what happened" })).toBeTruthy();
+  expect(
+    screen.getByRole("button", { name: "Reveal what happened" }),
+  ).toBeTruthy();
   expect(screen.queryByRole("button", { name: /^Seal/ })).toBeNull();
+});
+
+const recruit = (extra: Partial<EpisodeEvent>) =>
+  ({ ...locked("RECRUIT"), optional: true, ...extra }) as EpisodeEvent;
+const murdered = {
+  ...locked("MURDER"),
+  locked: false,
+  mine: { picks: ["ava"], submittedAt: "t" },
+  result: { victims: ["ava"] },
+} as EpisodeEvent;
+
+it("counts only the calls that finish an episode, and says the last one closes the recruit", async () => {
+  api.getEpisode.mockResolvedValue(
+    episode([murdered, locked("RT"), recruit({})]),
+  );
+  ballot();
+  expect(await screen.findByText(para("1 of 2 sealed"))).toBeTruthy();
+  fireEvent.click(screen.getByRole("tab", { name: "Banish" }));
+  expect(
+    screen.getByText("Sealing this closes your recruit call with no pick."),
+  ).toBeTruthy();
+});
+
+it("drops the recruit once the night turns out to have recruited nobody", async () => {
+  const none = recruit({
+    locked: false,
+    mine: { forfeit: true, submittedAt: "t" },
+    result: { recruits: [] },
+  });
+  api.getEpisode.mockResolvedValue(
+    episode([
+      murdered,
+      {
+        ...locked("RT"),
+        locked: false,
+        mine: { picks: ["ben", "cal", "dee"], submittedAt: "t" },
+      } as EpisodeEvent,
+      none,
+    ]),
+  );
+  ballot();
+  const tabs = await screen.findAllByRole("tab");
+  expect(tabs.map((t) => t.textContent)).not.toContainEqual(
+    expect.stringContaining("Recruit"),
+  );
+  expect(tabs).toHaveLength(2);
 });

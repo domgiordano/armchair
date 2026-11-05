@@ -36,8 +36,8 @@ export function scoreTarget(o: Overview, now: number): ScoreTarget | null {
     return { kind: "score", episode, live: live(episode, now), answered, rateable, closesAt };
   }
   // With windows, nothing taking answers means the latest episode closed: point at the next show, if any.
-  if (active === null && !episode.complete) return o.next ? { kind: "upcoming", next: o.next } : null;
-  if (episode.complete) return { kind: "done", episode, next: o.next };
+  if (active === null && !episode.done) return o.next ? { kind: "upcoming", next: o.next } : null;
+  if (episode.done) return { kind: "done", episode, next: o.next };
   return {
     kind: "score",
     episode,

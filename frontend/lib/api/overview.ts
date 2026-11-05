@@ -17,7 +17,10 @@ export interface OverviewEpisode {
   // Only on aired episodes.
   rateable?: number;
   answered?: number;
+  /** Results open: answered or closed, and nothing held face down. */
   complete?: boolean;
+  /** Nothing left to answer. Stays true while a reveal is held. */
+  done?: boolean;
   scored?: number;
   mae?: number | null;
   window?: ScoringWindow;

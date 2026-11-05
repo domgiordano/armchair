@@ -103,6 +103,7 @@ def handler(event, context):
     out: dict[str, dict] = {}
     for i, (n, ep, entry) in enumerate(past):
         perfs, score_rows = found[2 * i], found[2 * i + 1]
+        closed = window.closed(meta, spans[n], now)
         view = episode_view(
             sub,
             n,
@@ -111,7 +112,7 @@ def handler(event, context):
             contestants,
             perfs,
             score_rows,
-            closed=window.closed(meta, spans[n], now),
+            closed=closed,
             sealed=seals.keys(sealed, n),
         )
         # An empty member set leaves only the caller's own rows.
@@ -123,6 +124,11 @@ def handler(event, context):
             rateable=view["rateable"],
             answered=view["answered"],
             complete=view["complete"],
+            # Nothing left to answer. Unlike `complete`, a held reveal doesn't undo it:
+            # finished but face down is not behind.
+            done=is_open(meta)
+            or closed
+            or 0 < view["rateable"] <= view["answered"],
             scored=sum("value" in r for r in own),
             mae=summary(errs)["mae"],
         )

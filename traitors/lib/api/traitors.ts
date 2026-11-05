@@ -117,6 +117,8 @@ export interface MurderResult {
 }
 export interface RoundTableResult {
   banished?: string;
+  /** The vote went against `banished`, who was kept in anyway. */
+  pardoned?: boolean;
   faction?: Faction;
   firstVote?: Record<string, number>;
   /** Who each player voted to banish, voter id to target id, once the round table is unlocked for you. */
@@ -132,6 +134,8 @@ interface EventBase<T extends EventType, R> {
   type: T;
   /** How many players the pick names: 3 for the round table, else 1. */
   picks: number;
+  /** Doesn't hold the episode back, and closes as no pick once the others are sealed. */
+  optional?: boolean;
   mine: Mine | null;
   /** Nothing past the call to pick until you've picked or forfeited. */
   locked: boolean;

@@ -30,6 +30,7 @@ function episodes(aired: number, done: number[] = [], mae: Record<number, number
       rateable: 10,
       answered: done.includes(ep) ? 10 : 0,
       complete: done.includes(ep),
+      done: done.includes(ep),
       scored: done.includes(ep) ? 10 : 0,
       mae: mae[ep] ?? null,
     };
@@ -159,7 +160,7 @@ describe("Overview", () => {
 
   it("shows a past season as a wrap to browse, with no catch-up or paddle prompts", async () => {
     vi.setSystemTime(new Date("2026-12-20T12:00:00Z"));
-    const all = episodes(12).map((e) => ({ ...e, answered: 0, complete: true }));
+    const all = episodes(12).map((e) => ({ ...e, answered: 0, complete: true, done: true }));
     vi.mocked(getOverview).mockResolvedValue(
       data({ open: true, episodes: all, next: null, progress: { aired: 12, total: 12, couples: 16, couplesLeft: 1 } }),
     );

@@ -52,7 +52,7 @@ def handler(event, context):
             "episodes": [
                 {
                     "ep": int(ep),
-                    **_pick(e, "week", "airDate", "start", "end", "theme"),
+                    **_pick(e, "week", "airDate", "start", "end", "theme", "format"),
                     "window": window.view(meta, spans[int(ep)], now),
                 }
                 for ep, e in kind("EP#")

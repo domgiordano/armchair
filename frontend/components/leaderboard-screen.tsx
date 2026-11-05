@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 
 import { Avatar } from "@/components/avatar";
+import { GroupScopeControl } from "@/components/group-scope";
 import { UserLink } from "@/components/user-link";
 import { ScoreCta } from "@/components/score-cta";
 import { SignedIn } from "@/components/signed-in";
@@ -13,17 +13,14 @@ import { PageHeader } from "@/components/ui/page-header";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
-import { tabId, Tabs } from "@/components/ui/tabs";
 import { ALL_TIME, getLeaderboard, type Leaderboard, type Ranked, type Scope } from "@/lib/api/leaderboard";
 import type { Judge } from "@/lib/api/show";
-import { useGroupFilter } from "@/lib/show/group-filter";
+import { FRIENDS, scopeName, useGroupScope } from "@armchair/app-core/show/group-scope";
 import { seasonLabel as shellSeasonLabel, useSeasonId } from "@/lib/show/seasons";
 import { useSeason } from "@/lib/show/use-season";
-import { button, cn } from "@/lib/ui";
+import { cn } from "@/lib/ui";
 
 type BoardLoad = { kind: "loading" } | { kind: "ready"; board: Leaderboard } | { kind: "error"; message: string };
-
-const PANEL = "leaderboard-panel";
 
 export const off = (mae: number) => `${mae.toFixed(2)} off`;
 
@@ -43,49 +40,47 @@ export function LeaderboardScreen() {
   );
 }
 
+/** The URL's scope, if it names one: `?scope=global|friends`, or `?scope=group&group=<id>`. */
+function askedScope(params: URLSearchParams): string | null | undefined {
+  const scope = params.get("scope");
+  if (scope === "global") return null;
+  if (scope === "friends") return FRIENDS;
+  return (scope === "group" && params.get("group")) || undefined;
+}
+
 function Controls() {
   const params = useSearchParams();
   const router = useRouter();
   const seasonLoad = useSeason();
-  const filter = useGroupFilter();
+  // With no scope in the URL the board opens on the one every page shares, and a pick here sets it.
+  const filter = useGroupScope("dwts", { friends: true, asked: askedScope(params) });
 
   // The shell's picker sets a season; All-time is this page's own option on top.
   const picked = useSeasonId();
   const season = params.get("season") === ALL_TIME ? ALL_TIME : picked;
-  const asScope = params.get("scope");
-  const scope: Scope = asScope === "group" || asScope === "friends" ? asScope : "global";
-  const groups = filter.groups ?? [];
-  const asked = params.get("group") ?? filter.group;
-  const group = groups.find((g) => g.id === asked)?.id ?? groups[0]?.id ?? null;
+  const scope: Scope = filter.scope === null ? "global" : filter.scope === FRIENDS ? "friends" : "group";
 
-  const go = (next: { season?: string; scope?: Scope; group?: string | null }) => {
-    const q = new URLSearchParams({ season: next.season ?? season, scope: next.scope ?? scope });
-    const g = next.group === undefined ? group : next.group;
-    if ((next.scope ?? scope) === "group" && g) q.set("group", g);
+  const go = (next: { season?: string; scope?: string | null }) => {
+    const s = next.scope === undefined ? filter.scope : next.scope;
+    const q = new URLSearchParams({ season: next.season ?? season, scope: s === null ? "global" : s === FRIENDS ? "friends" : "group" });
+    if (s !== null && s !== FRIENDS) q.set("group", s);
     router.replace(`/leaderboard/?${q}`);
   };
+  const pick = (s: string | null) => {
+    filter.pick(s);
+    go({ scope: s });
+  };
 
-  const scoped = scope === "group" ? group : null;
-  // One tab per group, so a group is one tap away and the tab bar says which board this is.
-  const tabs = [
-    { id: "global", label: "Global" },
-    { id: "friends", label: "Friends" },
-    ...(groups.length > 0 ? groups.map((g) => ({ id: `group:${g.id}`, label: g.name })) : [{ id: "group", label: "Groups" }]),
-  ];
-  const tab = scope === "group" && group ? `group:${group}` : scope;
-  const pickTab = (id: string) =>
-    id.startsWith("group:") ? go({ scope: "group", group: id.slice("group:".length) }) : go({ scope: id as Scope });
-  const scopeLabel = scope === "group" ? (groups.find((g) => g.id === group)?.name ?? "Groups") : scope === "friends" ? "Friends" : "Global";
   const judges = seasonLoad.kind === "ready" ? seasonLoad.season.judges : [];
-  const waiting = scope === "group" && filter.groups === null && !filter.failed;
-  const noGroups = scope === "group" && (filter.failed || (filter.groups !== null && group === null));
+  // A saved group is checked against the caller's groups before its board is asked for.
+  const waiting = scope === "group" && filter.groups === null;
 
   return (
     <>
       <div className="flex flex-col gap-4">
         <PageHeader
           title="Leaderboard"
-          eyebrow={scopeLabel}
+          eyebrow={scopeName(filter.scope, filter.groups)}
           action={
             <Select
               label="Standings for"
@@ -100,29 +95,20 @@ function Controls() {
             />
           }
         />
-        <Tabs label="Who to rank" scroll tabs={tabs} value={tab} onChange={pickTab} panelId={PANEL} />
+        <div className="md:max-w-md">
+          <GroupScopeControl {...filter} pick={pick} />
+        </div>
       </div>
 
-      <div id={PANEL} role="tabpanel" aria-labelledby={tabId(PANEL, tab)} className="flex flex-1 flex-col gap-4">
-        {waiting && <BoardSkeleton label="Loading your groups" />}
-        {noGroups && (
-          <EmptyState
-            title={filter.failed ? "Couldn't load your groups" : "You're not in a group yet"}
-            action={
-              <Link href="/social/?view=groups" className={button("primary", "sm")}>
-                Start or join one
-              </Link>
-            }
-          >
-            A group ranks just the people in it.
-          </EmptyState>
-        )}
-        {!waiting && !noGroups && (
+      <div className="flex flex-1 flex-col gap-4">
+        {waiting ? (
+          <BoardSkeleton label="Loading your groups" />
+        ) : (
           <BoardFetcher
-            key={`${season}|${scope}|${scoped}`}
+            key={`${season}|${scope}|${filter.group}`}
             season={season}
             scope={scope}
-            group={scoped}
+            group={filter.group}
             judges={judges}
           />
         )}

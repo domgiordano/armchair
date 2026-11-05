@@ -139,32 +139,43 @@ describe("LeaderboardScreen", () => {
     search = new URLSearchParams({ season: "all", scope: "group", group: "fam" });
     render(<LeaderboardScreen />);
     await vi.waitFor(() => expect(getLeaderboard).toHaveBeenCalledWith("all", "group", "fam"));
-    expect(screen.getByRole("tab", { name: "Family" }).getAttribute("aria-selected")).toBe("true");
+    expect(screen.getByRole("combobox", { name: "Compare with" }).textContent).toContain("Family");
     expect(screen.getByRole("heading", { level: 1 }).closest("header")?.textContent).toContain("Family");
+    expect(window.localStorage.getItem("armchair.group")).toBe("fam");
   });
 
-  it("switching tab or season rewrites the URL", async () => {
+  it("opens on the group another page picked", async () => {
+    vi.mocked(getMyGroups).mockResolvedValue([FAMILY]);
+    window.localStorage.setItem("armchair.group", "fam");
+    render(<LeaderboardScreen />);
+    await vi.waitFor(() => expect(getLeaderboard).toHaveBeenCalledWith("dwts-35", "group", "fam"));
+    expect(getLeaderboard).toHaveBeenCalledTimes(1);
+  });
+
+  it("picking a scope or season rewrites the URL, and Everyone is one tap back", async () => {
     vi.mocked(getMyGroups).mockResolvedValue([FAMILY]);
     render(<LeaderboardScreen />);
-    fireEvent.click(await screen.findByRole("tab", { name: "Family" }));
+    choose(await screen.findByRole("combobox", { name: "Compare with" }), "Family");
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=dwts-35&scope=group&group=fam");
+    expect(window.localStorage.getItem("armchair.group")).toBe("fam");
     choose(screen.getByRole("combobox", { name: "Standings for" }), "All-time");
-    expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=all&scope=global");
-    fireEvent.click(screen.getByRole("tab", { name: "Friends" }));
+    expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=all&scope=group&group=fam");
+    choose(screen.getByRole("combobox", { name: "Compare with" }), "Friends");
     expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=dwts-35&scope=friends");
+    fireEvent.click(screen.getByRole("button", { name: "Show Everyone" }));
+    expect(replace).toHaveBeenLastCalledWith("/leaderboard/?season=dwts-35&scope=global");
+    expect(window.localStorage.getItem("armchair.group")).toBeNull();
   });
 
-  it("ranks friends from the Friends tab", async () => {
+  it("ranks friends from the URL", async () => {
     search = new URLSearchParams({ scope: "friends" });
     render(<LeaderboardScreen />);
     await vi.waitFor(() => expect(getLeaderboard).toHaveBeenCalledWith("dwts-35", "friends", null));
   });
 
   it("points to groups when the caller has none", async () => {
-    search = new URLSearchParams({ scope: "group" });
     render(<LeaderboardScreen />);
-    expect(await screen.findByRole("link", { name: "Start or join one" })).toBeTruthy();
-    expect(getLeaderboard).not.toHaveBeenCalled();
+    expect(await screen.findByRole("link", { name: "Start a group to compare with friends" })).toBeTruthy();
   });
 
   it("retries after a failed load", async () => {
