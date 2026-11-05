@@ -11,6 +11,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
+from lambdas.common import calls as segment_calls
 from lambdas.common.writeups import public
 
 SEALED_MAX = 200
@@ -178,6 +179,7 @@ def episode_view(
     sealed: set[str] = frozenset(),
     stage: bool = False,
     previous: dict | None = None,
+    calls: list[dict] | None = None,
 ) -> dict:
     """
     The whole episode as the caller may see it. A dance's AI write-up carries
@@ -194,6 +196,10 @@ def episode_view(
     ones the judges have scored, for "On now", and where the order came from and
     when. Before then, in the `previous` episode's running order if it had one,
     else by celebrity name.
+
+    Given the episode's segment-call rows (`calls`, common/calls.py), a `calls`
+    entry per segment the night has: only the caller's own picks, scored
+    against the results' segments once the results open to them.
     """
     held = stage and RESULTS in sealed
     if held:
@@ -270,7 +276,26 @@ def episode_view(
     if complete:
         view["results"] = episode.get("results")
         view["eliminated"] = eliminated(ep, contestants)
+    if calls is not None:
+        view["calls"] = _calls(sub, episode, keys, calls, complete)
     return view
+
+
+def _calls(sub: str, episode: dict, keys: list[str], rows: list[dict], complete: bool) -> list:
+    couples = len(segment_calls.couples(keys))
+    picks = {}
+    for row in rows:
+        kind, _, owner = row["sk"].partition("#USER#")
+        if owner == sub:
+            picks[kind] = list(row["picks"])
+    segments = (episode.get("results") or {}).get("segments") or []
+    out = []
+    for kind in segment_calls.kinds(episode):
+        call = {"kind": kind, "limit": segment_calls.limit(kind, couples), "picks": picks.get(kind)}
+        if complete and call["picks"]:
+            call["outcome"] = segment_calls.outcome(kind, call["picks"], segments)
+        out.append(call)
+    return out
 
 
 def _last_week(view: dict, lineup: dict) -> None:

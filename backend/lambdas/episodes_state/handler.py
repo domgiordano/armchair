@@ -14,13 +14,15 @@ Beside the gated view: `window` {opensAt, closesAt, open} for this episode, and
 it ({ep, pk, opensAt, closesAt, answered, rateable}), or null between seasons.
 A dance the caller sealed (common/seals.py) stays locked with their answer and
 `sealed`, and holds back the results. Held behind "Reveal results" alone
-(gate.RESULTS), the results come with `resultsHeld` for the app's reveal. Identity is the Cognito sub; admins get
-the same view as everyone else.
+(gate.RESULTS), the results come with `resultsHeld` for the app's reveal.
+`calls` carries the caller's own segment calls (common/calls.py), scored once
+the results open. Identity is the Cognito sub; admins get the same view as
+everyone else.
 """
 
 from __future__ import annotations
 
-from lambdas.common import seals, window
+from lambdas.common import calls, seals, window
 from lambdas.common.api import ForbiddenError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, episode_rows, ref, season_pk
@@ -41,12 +43,13 @@ def handler(event, context):
         if sub not in in_group:
             raise ForbiddenError("Not a member of that group")
     pk = episode_pk(show, season, ep)
-    rows, perfs, score_rows, notes = query_many(
+    rows, perfs, score_rows, notes, call_rows = query_many(
         [
             ("CATALOG_TABLE", season_pk(show, season)),
             ("PERFORMANCES_TABLE", pk),
             ("SCORES_TABLE", pk),
             ("WRITEUPS_TABLE", pk),
+            ("SCORES_TABLE", calls.pk(show, season, ep)),
         ]
     )
     meta, episode, contestants = episode_rows(rows, show, season, ep)
@@ -66,6 +69,7 @@ def handler(event, context):
         sealed=seals.keys(seals.of(sub, show, season, params), ep),
         stage=True,
         previous=next((r for r in rows if r["sk"] == f"EP#{ep - 1:02d}"), None),
+        calls=call_rows,
     )
     live = window.active(meta, spans, now)
     if live is None:

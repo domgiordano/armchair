@@ -14,13 +14,24 @@ import { OrderNote } from "@/components/order-note";
 import { RevealAll } from "@/components/reveal-all";
 import { RevealSheet } from "@/components/reveal-sheet";
 import { ResultsReveal } from "@/components/results-reveal";
+import { SegmentCalls } from "@/components/segment-call";
 import { SignedIn } from "@/components/signed-in";
 import { Select } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
 import { VotePanel } from "@/components/vote-panel";
 import type { Group } from "@armchair/app-core/api/groups";
-import { CLOSED, revealAll, submitScore, type Answer, type Episode, type LockedCard, type Season } from "@/lib/api/show";
+import {
+  CLOSED,
+  revealAll,
+  submitCall,
+  submitScore,
+  type Answer,
+  type CallKind,
+  type Episode,
+  type LockedCard,
+  type Season,
+} from "@/lib/api/show";
 import { scopeName, useGroupScope } from "@armchair/app-core/show/group-scope";
 import { cues as cuesOf, findCards, type Cue } from "@/lib/show/running";
 import { episodeLabel, formatAirDate, hasAired, isLive, latestAired } from "@/lib/show/schedule";
@@ -193,6 +204,19 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
   const couples = [...new Set(data.performances.flatMap((card) => card.contestants))].flatMap(
     (id) => contestants.get(id) ?? [],
   );
+  const call = async (kind: CallKind, picks: string[]) => {
+    try {
+      await submitCall(season.season, episode.ep, kind, picks);
+    } catch (e) {
+      if (e instanceof ApiError && e.detail?.code === CLOSED) throw new Error("calls for this episode have closed");
+      throw e;
+    } finally {
+      reload();
+    }
+  };
+  const solo = [...new Set(data.performances.filter((c) => c.contestants.length === 1).map((c) => c.contestants[0]))].flatMap(
+    (id) => contestants.get(id) ?? [],
+  );
   const sealed = (key: string) => isSealed(season.season, episode.ep, key);
   // From the episode state when the API sends windows; the season catalog may be cached.
   const win = data.window ?? episode.window;
@@ -289,6 +313,15 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
         </p>
       )}
       {!anySealed && !held && data.results && <BonusPoints results={data.results} contestants={contestants} />}
+      {data.calls && (
+        <SegmentCalls
+          calls={data.calls}
+          couples={solo}
+          open={!data.open && !closed && win?.open === true}
+          reveal={!anySealed && !held}
+          onCall={call}
+        />
+      )}
       {!data.open && data.performances.length > 0 && <OrderNote state={data} tz={season.timezone} />}
       {data.performances.length > 1 && (
         <FindCouple cards={shown} contestants={contestants} cues={cues} query={query} onQuery={setQuery} />
