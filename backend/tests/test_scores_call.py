@@ -16,11 +16,14 @@ from tests.test_gate import EP5_KEYS, SEASON, B, score, state
 
 X, Y, Z = "tyler-cameron", "amber-glenn", "jenna-dewan"
 GONE = "conner-leavitt"
+# Episode 5 airs 2026-10-06 at 8pm EDT.
+SHOWTIME = datetime(2026, 10, 7, 0, tzinfo=UTC)
+BEFORE = datetime(2026, 10, 6, 12, tzinfo=UTC)
 
 
-def set_episode(db, **values) -> None:
+def set_episode(db, ep="05", **values) -> None:
     db.Table(CATALOG_TABLE).update_item(
-        Key={"pk": "SEASON#dwts#35", "sk": "EP#05"},
+        Key={"pk": "SEASON#dwts#35", "sk": f"EP#{ep}"},
         UpdateExpression="SET " + ", ".join(f"#{k} = :{k}" for k in values),
         ExpressionAttributeNames={f"#{k}": k for k in values},
         ExpressionAttributeValues={f":{k}": v for k, v in values.items()},
@@ -28,8 +31,11 @@ def set_episode(db, **values) -> None:
 
 
 @pytest.fixture
-def show(aws):
+def show(aws, monkeypatch):
+    """The morning before episode 5 airs, with episode 4's results in."""
     write(aws.Table(CATALOG_TABLE), items(SEASON))
+    set_episode(aws, ep="04", results={"eliminated": ["taylor-hanson"], "totals": {}, "bonus": {}})
+    monkeypatch.setattr(window, "now", lambda: BEFORE)
     return aws
 
 
@@ -72,7 +78,15 @@ def test_a_call_comes_back_to_its_caller_only(dance_off):
     assert call([Z], sub=B)[0] == 200
     view = state()
     # Twelve couples dance, so at most six dance-offs are won.
-    assert view["calls"] == [{"kind": "dance-off", "limit": 6, "picks": [Y, X]}]
+    assert view["calls"] == [
+        {
+            "kind": "dance-off",
+            "limit": 6,
+            "picks": [Y, X],
+            "locksAt": "2026-10-07T00:00Z",
+            "open": True,
+        }
+    ]
     assert B not in json.dumps(view) and Z not in json.dumps(view["calls"])
 
 
@@ -133,13 +147,22 @@ def test_a_past_season_takes_no_calls(dance_off):
     assert call([X])[0] == 403
 
 
-@pytest.mark.scoring_window
-def test_calls_close_with_the_episode(dance_off, monkeypatch):
-    monkeypatch.setattr(window, "now", lambda: datetime(2026, 10, 14, 1, tzinfo=UTC))
+@pytest.mark.parametrize("at", [SHOWTIME, datetime(2026, 10, 20, tzinfo=UTC)])
+def test_calls_lock_at_showtime(dance_off, monkeypatch, at):
+    monkeypatch.setattr(window, "now", lambda: at)
     status, body = call([X])
-    assert status == 409 and body["error"]["detail"]["code"] == "episode_closed"
-    monkeypatch.setattr(window, "now", lambda: datetime(2026, 10, 6, 12, tzinfo=UTC))
-    assert call([X])[1]["error"]["detail"]["code"] == "episode_not_open"
+    assert status == 403 and body["error"]["detail"]["code"] == "calls_locked"
+    assert dance_off.Table(SCORES_TABLE).scan()["Items"] == []
+    assert state()["calls"][0]["open"] is False
+
+
+def test_calls_wait_for_the_nights_couples(dance_off):
+    set_episode(dance_off, ep="04", results=None)
+    status, body = call([X])
+    assert status == 409 and body["error"]["detail"]["code"] == "calls_not_open"
+    assert state()["calls"][0]["open"] is False
+    set_episode(dance_off, lineup={f"{X}#1": {"order": 1}})
+    assert call([X])[0] == 200
 
 
 def test_a_winner_without_stated_points_still_counts():

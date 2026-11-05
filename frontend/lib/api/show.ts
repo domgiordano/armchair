@@ -155,6 +155,10 @@ export interface SegmentCall {
   /** The most couples the call may name. */
   limit: number;
   picks: string[] | null;
+  /** Showtime: calls stay blind, so they lock when the episode airs. */
+  locksAt: string | null;
+  /** Taking a call now: the night's couples are set and it hasn't aired. */
+  open: boolean;
   /** Once the caller's results open; null until the segment's results are in. */
   outcome?: CallOutcome | null;
 }

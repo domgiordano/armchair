@@ -31,6 +31,17 @@ def kinds(episode: dict) -> list[str]:
     return out + ([DANCE_OFF] if "dance-off" in line.lower() else [])
 
 
+def known(episode: dict, previous: dict | None) -> bool:
+    """
+    Whether the night's couples are set, so a call can open before air: its own
+    lineup or rateableKeys, or the previous episode's results, which settle who
+    is still in. Calls lock at showtime so they stay blind (scores_call).
+    """
+    if episode.get("lineup") or episode.get("rateableKeys") is not None:
+        return True
+    return previous is None or previous.get("results") is not None
+
+
 def couples(keys: list[str]) -> set[str]:
     """The couples dancing on their own that night, from gate.rateable's keys."""
     return {k.rsplit("#", 1)[0] for k in keys if "+" not in k}

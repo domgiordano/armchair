@@ -4,14 +4,15 @@ import { useState } from "react";
 
 import type { CallKind, CallOutcome, Contestant, SegmentCall } from "@/lib/api/show";
 import { ordinal } from "@/lib/show/couples";
+import { closesOn } from "@/lib/show/window";
 import { cn, EYEBROW, PRIMARY } from "@/lib/ui";
 
 interface SegmentCallsProps {
   calls: SegmentCall[];
   /** The couples dancing on their own tonight: what a call may name. */
   couples: Contestant[];
-  /** The episode is taking answers. */
-  open: boolean;
+  tz: string;
+  now: number;
   /** The results may show here, as with the bonus points beside them. */
   reveal: boolean;
   onCall: (kind: CallKind, picks: string[]) => Promise<void>;
@@ -30,10 +31,8 @@ function outcomeText(outcome: CallOutcome): string {
 }
 
 /** Optional calls on the night's marathon or dance-off: blind and final, and never part of the scorecard. */
-export function SegmentCalls({ calls, couples, open, reveal, onCall }: SegmentCallsProps) {
-  return calls.map((call) => (
-    <CallCard key={call.kind} call={call} couples={couples} open={open} reveal={reveal} onCall={onCall} />
-  ));
+export function SegmentCalls({ calls, ...rest }: SegmentCallsProps) {
+  return calls.map((call) => <CallCard key={call.kind} call={call} {...rest} />);
 }
 
 type Step = { kind: "idle" } | { kind: "sending" } | { kind: "error"; message: string };
@@ -42,23 +41,29 @@ interface CallCardProps extends Omit<SegmentCallsProps, "calls"> {
   call: SegmentCall;
 }
 
-function CallCard({ call, couples, open, reveal, onCall }: CallCardProps) {
+function CallCard({ call, couples, tz, now, reveal, onCall }: CallCardProps) {
   const [picked, setPicked] = useState<string[]>([]);
   const [step, setStep] = useState<Step>({ kind: "idle" });
   const names = new Map(couples.map((c) => [c.id, celebrity(c)]));
 
-  if (call.picks !== null) {
+  const locked = call.locksAt !== null && now >= Date.parse(call.locksAt);
+
+  if (call.picks !== null || locked) {
     return (
       <section aria-label={TITLE[call.kind]} className="flex flex-col gap-1 rounded-lg border border-silver/15 bg-ink/40 px-3 py-2.5 text-sm text-silver">
         <h2 className={EYEBROW}>{TITLE[call.kind]}</h2>
-        <p>
-          Your call: <span className="text-pearl">{call.picks.map((id) => names.get(id) ?? id).join(", ")}</span>
-        </p>
+        {call.picks === null ? (
+          <p>No call made</p>
+        ) : (
+          <p>
+            Your call: <span className="text-pearl">{call.picks.map((id) => names.get(id) ?? id).join(", ")}</span>
+          </p>
+        )}
         {reveal && call.outcome && <p className="font-semibold text-gold-light">{outcomeText(call.outcome)}</p>}
       </section>
     );
   }
-  if (!open) return null;
+  if (!call.open) return null;
 
   const single = call.kind === "marathon";
   const full = picked.length >= call.limit;
@@ -90,7 +95,10 @@ function CallCard({ call, couples, open, reveal, onCall }: CallCardProps) {
             ? "Who lasts longest in the marathon?"
             : `Who wins their dance-off? Pick up to ${call.limit}.`}
         </p>
-        <p className="text-xs text-silver-dim">Optional and final once locked in. It doesn&apos;t count toward your scorecard.</p>
+        <p className="text-xs text-silver-dim">
+          {call.locksAt && <>Calls lock at showtime, {closesOn(call.locksAt, tz)}. </>}
+          Optional and final once locked in. It doesn&apos;t count toward your scorecard.
+        </p>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {couples.map((c) => {
             const on = picked.includes(c.id);

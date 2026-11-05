@@ -13,17 +13,22 @@ const couple = (id: string, celebrity: string): Contestant => ({
   ],
 });
 const COUPLES = [couple("amber-glenn", "Amber Glenn"), couple("connor-wood", "Connor Wood"), couple("jenna-dewan", "Jenna Dewan")];
-const DANCE_OFF: SegmentCall = { kind: "dance-off", limit: 2, picks: null };
-const MARATHON: SegmentCall = { kind: "marathon", limit: 1, picks: null };
+const TZ = "America/New_York";
+const SHOWTIME = "2026-11-11T01:00Z";
+const BEFORE = Date.parse(SHOWTIME) - 3_600_000;
+const AFTER = Date.parse(SHOWTIME) + 60_000;
+const DANCE_OFF: SegmentCall = { kind: "dance-off", limit: 2, picks: null, locksAt: SHOWTIME, open: true };
+const MARATHON: SegmentCall = { kind: "marathon", limit: 1, picks: null, locksAt: SHOWTIME, open: true };
 
-const renderCalls = (calls: SegmentCall[], { open = true, reveal = true, onCall = vi.fn(async () => {}) } = {}) => {
-  render(<SegmentCalls calls={calls} couples={COUPLES} open={open} reveal={reveal} onCall={onCall} />);
+const renderCalls = (calls: SegmentCall[], { now = BEFORE, reveal = true, onCall = vi.fn(async () => {}) } = {}) => {
+  render(<SegmentCalls calls={calls} couples={COUPLES} tz={TZ} now={now} reveal={reveal} onCall={onCall} />);
   return onCall;
 };
 
 describe("SegmentCalls", () => {
   it("locks in up to the limit of dance-off winners", async () => {
     const onCall = renderCalls([DANCE_OFF]);
+    expect(screen.getByText(/Calls lock at showtime, Tue 8:00 PM/)).toBeTruthy();
     const lock = screen.getByRole("button", { name: "Lock in call" });
     expect((lock as HTMLButtonElement).disabled).toBe(true);
 
@@ -46,15 +51,23 @@ describe("SegmentCalls", () => {
     expect(onCall).toHaveBeenCalledWith("marathon", ["amber-glenn"]);
   });
 
-  it("offers nothing once the episode stops taking calls", () => {
-    renderCalls([DANCE_OFF], { open: false });
+  it("offers nothing until the night's couples are set", () => {
+    renderCalls([{ ...DANCE_OFF, open: false }]);
     expect(screen.queryByRole("button")).toBeNull();
     expect(screen.queryByText("Dance-off call")).toBeNull();
   });
 
+  it("says no call was made once showtime passes", () => {
+    renderCalls([{ ...DANCE_OFF, open: false }], { now: AFTER });
+    expect(screen.queryByRole("button")).toBeNull();
+    expect(screen.getByText("No call made")).toBeTruthy();
+  });
+
   it("shows the caller's call, and how it did only once the results may show", () => {
     const made: SegmentCall = { ...DANCE_OFF, picks: ["amber-glenn", "connor-wood"], outcome: { hits: 1, winners: 2 } };
-    const { unmount } = render(<SegmentCalls calls={[made]} couples={COUPLES} open reveal={false} onCall={vi.fn()} />);
+    const { unmount } = render(
+      <SegmentCalls calls={[made]} couples={COUPLES} tz={TZ} now={AFTER} reveal={false} onCall={vi.fn()} />,
+    );
     expect(screen.getByText("Amber Glenn, Connor Wood")).toBeTruthy();
     expect(screen.queryByText(/You called/)).toBeNull();
     unmount();

@@ -16,17 +16,19 @@ A dance the caller sealed (common/seals.py) stays locked with their answer and
 `sealed`, and holds back the results. Held behind "Reveal results" alone
 (gate.RESULTS), the results come with `resultsHeld` for the app's reveal.
 `calls` carries the caller's own segment calls (common/calls.py), scored once
-the results open. Identity is the Cognito sub; admins get the same view as
+the results open, each with `locksAt` (air time) and whether it takes a call now. Identity is the Cognito sub; admins get the same view as
 everyone else.
 """
 
 from __future__ import annotations
 
+from zoneinfo import ZoneInfo
+
 from lambdas.common import calls, seals, window
 from lambdas.common.api import ForbiddenError, api_handler, caller_sub, ok, query
 from lambdas.common.dynamo import query_many
 from lambdas.common.episodes_dynamo import episode_pk, episode_rows, ref, season_pk
-from lambdas.common.gate import episode_view
+from lambdas.common.gate import episode_view, is_open
 from lambdas.common.groups_dynamo import members
 
 
@@ -55,6 +57,7 @@ def handler(event, context):
     meta, episode, contestants = episode_rows(rows, show, season, ep)
     spans = window.spans(meta, rows)
     now = window.now()
+    previous = next((r for r in rows if r["sk"] == f"EP#{ep - 1:02d}"), None)
     view = episode_view(
         sub,
         ep,
@@ -68,9 +71,15 @@ def handler(event, context):
         closed=window.closed(meta, spans[ep], now),
         sealed=seals.keys(seals.of(sub, show, season, params), ep),
         stage=True,
-        previous=next((r for r in rows if r["sk"] == f"EP#{ep - 1:02d}"), None),
+        previous=previous,
         calls=call_rows,
     )
+    locks = window.airs_at(episode, ZoneInfo(meta["timezone"]))
+    taking = (
+        not is_open(meta) and locks is not None and now < locks and calls.known(episode, previous)
+    )
+    for c in view.get("calls", []):
+        c.update(locksAt=window.iso(locks), open=taking)
     live = window.active(meta, spans, now)
     if live is None:
         current = None

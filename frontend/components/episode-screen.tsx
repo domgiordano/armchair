@@ -315,9 +315,11 @@ function EpisodeView({ season, episode, now, group, picked, scope }: EpisodeView
       {!anySealed && !held && data.results && <BonusPoints results={data.results} contestants={contestants} />}
       {data.calls && (
         <SegmentCalls
-          calls={data.calls}
+          // A past season took no calls, so it says nothing of the ones not made.
+          calls={data.open ? data.calls.filter((c) => c.picks !== null) : data.calls}
           couples={solo}
-          open={!data.open && !closed && win?.open === true}
+          tz={season.timezone}
+          now={now}
           reveal={!anySealed && !held}
           onCall={call}
         />
