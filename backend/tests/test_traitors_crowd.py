@@ -17,12 +17,13 @@ def crowd(sub=A, **params):
 
 @pytest.fixture
 def answered(db):  # noqa: F811
-    # Ada forfeits the recruit, so she has answered all of episode 2.
+    # Ada's murder and round table finish episode 2; the recruit forfeit is the pick handler's.
     db.Table(SCORES_TABLE).put_item(Item={"pk": EP, "sk": f"EVT#RECRUIT#USER#{A}", "forfeit": True})
     return db
 
 
 def test_an_episode_you_havent_answered_tells_nothing(db):  # noqa: F811
+    db.Table(SCORES_TABLE).delete_item(Key={"pk": EP, "sk": f"EVT#MURDER#USER#{A}"})
     data = crowd(scope="global")
     assert data["episodes"] == []
     assert data["byEvent"]["RT"] == {"scored": 0, "hits": 0}
