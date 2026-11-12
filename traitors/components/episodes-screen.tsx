@@ -62,6 +62,7 @@ function Status({ episode: e, now }: { episode: SeasonEpisode; now: number }) {
   const pill = "shrink-0 rounded-sm border px-2 py-0.5 font-display text-xs font-semibold tracking-[0.1em] uppercase";
   if (e.closed) return <span className={cn(pill, "border-ash-dim text-ash")}>Closed</span>;
   if (!released(e, now)) return <span className={cn(pill, "border-gilt/40 text-parchment")}>Soon</span>;
+  if (e.events === 0) return <span className={cn(pill, "border-ash-dim text-ash")}>No calls</span>;
   if (e.answered >= e.events) {
     return (
       <span className={cn(pill, "border-moss/60 text-moss")}>

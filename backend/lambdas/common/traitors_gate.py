@@ -6,7 +6,7 @@ Inputs are raw DynamoDB items; nothing here reads a table. The caller's seals
 (common/seals.py) come in as `sealed`, one episode's event types, or `held`, the
 episodes with any event sealed: a sealed call shows only the caller's own picks, and
 its episode counts as unseen for anything that tells how the night went.
-- catalog `SEASON#{show}#{n}`: META, `EP#{nn}` (releaseAt, noRoundTable, recap),
+- catalog `SEASON#{show}#{n}`: META, `EP#{nn}` (releaseAt, noRoundTable, noMurder, recap),
   `PLAYER#{id}` (`exit: {ep, how}` once the poller writes it).
 - performances `EP#{show}#{n}#{nn}`: `EVT#{type}` with `state` and the result fields
   (RT: banished, faction, firstVote, and the notes ballots, daggers; MURDER: victims;
@@ -61,7 +61,10 @@ def needs_bet(meta: dict, bet: dict | None) -> bool:
 
 
 def events(episode: dict) -> list[str]:
-    return [e for e in EVENTS if not (e == "RT" and episode.get("noRoundTable"))]
+    skip = {"RT": episode.get("noRoundTable"), "MURDER": episode.get("noMurder")}
+    out = [e for e in EVENTS if not skip.get(e)]
+    # A recruit alone can't be called: it closes as the required calls seal, and there are none.
+    return out if set(out) - OPTIONAL else []
 
 
 def required(episode: dict) -> list[str]:

@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 
 from lambdas.common.traitors_catalog import items
+from lambdas.common.traitors_gate import events, required
 from lambdas.common.traitors_parse import season
 from lambdas.common.traitors_publish import outcomes, winners
 from lambdas.cron_poll_traitors import handler as poller
@@ -128,6 +129,19 @@ def test_backfill_confirms_at_once(db, monkeypatch):
     assert tick(monkeypatch, EP4 + 30 * 24 * 3600, {"backfill": True}) == {"polled": ["tus-5"]}
     assert event(db, 2, "RT")["state"] == "confirmed"
     assert event(db, 4, "RT")["state"] == "confirmed"
+
+
+def test_a_night_with_no_murder_drops_the_murder_call(db, monkeypatch):
+    tick(monkeypatch, EP4 + 30 * 24 * 3600, {"backfill": True})
+
+    def ep(n):
+        return db.Table(CATALOG_TABLE).get_item(Key={"pk": "SEASON#tus#5", "sk": f"EP#{n:02d}"})["Item"]
+
+    # Episode 1's breakfast had no body; episode 2's had Kim's.
+    assert ep(1)["noMurder"] is True
+    assert "noMurder" not in ep(2)
+    assert events(ep(1)) == []
+    assert required(ep(2)) == ["MURDER", "RT"]
 
 
 PARDON = (WIKI / "traitors-us5-1383625823.wikitext").read_text()
