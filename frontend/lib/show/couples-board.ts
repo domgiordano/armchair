@@ -2,6 +2,7 @@ import type { Elimination } from "@/lib/api/couples";
 import { getOverview, type OverviewEpisode } from "@/lib/api/overview";
 import { getEpisodeState, type EpisodeState, type Member, type Season } from "@/lib/api/show";
 import { currentSeals } from "@/lib/show/sealed";
+import { isClosed } from "@/lib/show/window";
 import type { OddsEntry } from "@armchair/app-core/favorites/odds";
 
 /*
@@ -96,11 +97,17 @@ export const weekOf = (e: { ep: number; week: number | null }) => e.week ?? e.ep
 export const celebrityName = (members: Member[]) => (members.find((m) => m.role === "celebrity") ?? members[0])?.name ?? "";
 
 /**
- * The last week the viewer has revealed: every aired episode up to and
- * including it complete and unsealed. Null before they've finished week one.
+ * Whether an aired episode lets the board move past it: complete and unsealed, or
+ * closed. A held reveal only holds while the night takes answers; past that it's
+ * stale, and the board would nag about a week that's long over.
  */
-export function revealedThrough(episodes: OverviewEpisode[], sealed: (ep: number) => boolean): number | null {
-  const done = (e: OverviewEpisode) => e.aired && e.complete === true && !sealed(e.ep);
+function passed(e: OverviewEpisode, sealed: (ep: number) => boolean, now: number): boolean {
+  return e.aired && ((e.complete === true && !sealed(e.ep)) || isClosed(e.window, now));
+}
+
+/** The last week the viewer has revealed through, every night of it passed. Null before week one. */
+export function revealedThrough(episodes: OverviewEpisode[], sealed: (ep: number) => boolean, now: number): number | null {
+  const done = (e: OverviewEpisode) => passed(e, sealed, now);
   let through: number | null = null;
   for (const week of [...new Set(episodes.map(weekOf))].sort((a, b) => a - b)) {
     const nights = episodes.filter((e) => weekOf(e) === week);
@@ -269,7 +276,8 @@ export async function loadBoard(season: Season): Promise<BoardData> {
   const overview = await getOverview(season.season);
   const seals = currentSeals();
   const sealed = (ep: number) => seals.episode(season.season, ep);
-  const through = revealedThrough(overview.episodes, sealed);
+  const now = Date.now();
+  const through = revealedThrough(overview.episodes, sealed, now);
   const shown = through === null ? [] : overview.episodes.filter((e) => weekOf(e) <= through);
   const states = await Promise.all(shown.map((e) => getEpisodeState(season.season, e.ep)));
   const outs = new Map<string, Elimination>();
@@ -279,7 +287,7 @@ export async function loadBoard(season: Season): Promise<BoardData> {
     const w = weekOf(e);
     weeks.set(w, { week: w, theme: weeks.get(w)?.theme ?? e.theme, lastEp: Math.max(e.ep, weeks.get(w)?.lastEp ?? 0) });
   }
-  const held = overview.episodes.find((e) => e.aired && weekOf(e) > (through ?? 0) && (e.complete !== true || sealed(e.ep)));
+  const held = overview.episodes.find((e) => e.aired && weekOf(e) > (through ?? 0) && !passed(e, sealed, now));
   return {
     through,
     weeks: [...weeks.values()],

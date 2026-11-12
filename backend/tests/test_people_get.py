@@ -363,3 +363,18 @@ def test_a_sealed_night_holds_the_result(seeded):
         "season": "dwts-8",
         "ep": 3,
     }
+
+
+@pytest.mark.scoring_window
+def test_a_sealed_night_stops_holding_the_result_once_it_closes(aws, monkeypatch):
+    table = aws.Table(CATALOG_TABLE)
+    write(table, items(S35))
+    write(table, person_index([S35], {}))
+    # Episode 1 closed when episode 2 aired (9/16); episode 3 takes answers until 9/29.
+    monkeypatch.setattr(people_get, "_now", lambda: datetime(2026, 9, 25, tzinfo=UTC))
+    seal(A, "dwts-35|1|tyler-cameron#1")
+    assert data("tyler-cameron")["seasons"][0]["result"] == {
+        "locked": True,
+        "season": "dwts-35",
+        "ep": 3,
+    }

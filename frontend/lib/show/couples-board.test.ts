@@ -119,14 +119,21 @@ describe("revealedThrough", () => {
   const none = () => false;
   it("needs every night of a week, and every week before it, complete", () => {
     const eps = [episode(1, 1, true), episode(2, 1, true), episode(3, 2, true), episode(4, 3, false), episode(5, 4, true)];
-    expect(revealedThrough(eps, none)).toBe(2);
-    expect(revealedThrough([episode(1, 1, true), episode(2, 1, false)], none)).toBeNull();
-    expect(revealedThrough([episode(1, 1, undefined, false)], none)).toBeNull();
+    expect(revealedThrough(eps, none, 0)).toBe(2);
+    expect(revealedThrough([episode(1, 1, true), episode(2, 1, false)], none, 0)).toBeNull();
+    expect(revealedThrough([episode(1, 1, undefined, false)], none, 0)).toBeNull();
   });
 
   it("holds the board before a week with a sealed dance", () => {
     const eps = [episode(1, 1, true), episode(2, 2, true)];
-    expect(revealedThrough(eps, (ep) => ep === 2)).toBe(1);
+    expect(revealedThrough(eps, (ep) => ep === 2, 0)).toBe(1);
+  });
+
+  it("stops holding the board once a held week's window has closed", () => {
+    const closed = { opensAt: "2026-10-06T00:00Z", closesAt: "2026-10-13T00:00Z", open: false };
+    const eps = [episode(1, 1, true), { ...episode(2, 2, false), done: true, window: closed }];
+    expect(revealedThrough(eps, (ep) => ep === 2, Date.parse("2026-10-12T00:00Z"))).toBe(1);
+    expect(revealedThrough(eps, (ep) => ep === 2, Date.parse("2026-11-12T00:00Z"))).toBe(2);
   });
 });
 
