@@ -188,6 +188,9 @@ def exits(show: str, season: int, ep: int, confirmed: list[dict]) -> None:
             if r.get("faction"):
                 fields["faction"] = r["faction"]
             update("CATALOG_TABLE", {"pk": pk, "sk": f"PLAYER#{r['banished']}"}, fields)
+        elif r["kind"] == "MURDER" and not r["victims"]:
+            # Nobody died: the call drops off the episode (gate.events), like a missing round table.
+            update("CATALOG_TABLE", {"pk": pk, "sk": f"EP#{ep:02d}"}, {"noMurder": True})
         elif r["kind"] == "MURDER":
             for v in r["victims"]:
                 update(

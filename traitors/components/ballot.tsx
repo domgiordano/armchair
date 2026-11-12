@@ -144,6 +144,8 @@ export function Ballot({
         <p className="shrink-0 pb-0.5 text-ash">
           {data.closed ? (
             "Closed · view only"
+          ) : calls.length === 0 ? (
+            "Nothing to call"
           ) : (
             <>
               <span className="nums">{sealed}</span> of{" "}
