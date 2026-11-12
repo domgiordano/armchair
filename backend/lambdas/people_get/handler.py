@@ -284,7 +284,9 @@ def _result(show: str, n: int, couple: str, season: dict, views: dict) -> dict:
     c = next(c for c in season["contestants"] if cid(c) == couple)
     last = c.get("eliminatedEp")
     upto = [ep for ep in season["aired"] if last is None or ep <= last]
-    left = [ep for ep in upto if not views[(n, ep)]["complete"]]
+    # A held reveal only holds while the night still takes answers. Once it closes the
+    # hold is stale, and "Finish week N" would nag about a week that's long over.
+    left = [ep for ep in upto if not (views[(n, ep)]["complete"] or ep in season["closed"])]
     if left:
         return {"locked": True, "season": f"{show}-{n}", "ep": left[0]}
     if last is not None:
