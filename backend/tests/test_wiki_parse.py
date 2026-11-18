@@ -393,3 +393,24 @@ def test_no_elimination_prose_alone_never_settles_a_table_with_a_result_column()
     head = re.search(r"^=== Week 7.*$", text, flags=re.MULTILINE).group(0)
     text = text.replace(head, head + "\nThere was no elimination this week.\n")
     assert parse_week(text, 7, GOLDEN["aliases"]["s35"])["noElimination"] == []
+
+
+def test_a_two_dance_night_runs_in_rounds_not_couple_by_couple():
+    # S35 week 10 lists each couple's two dances together; the show runs every first
+    # dance, then every second. Connor and Harry's first dances are already scored.
+    text = (FIXTURES / "wiki" / "s35-1386343229.wikitext").read_text()
+    rows = sorted(
+        parse_week(text, 10, GOLDEN["aliases"]["s35"])["performances"], key=lambda p: p["order"]
+    )
+    couples = [
+        "connor-wood",
+        "harry-shum-jr",
+        "maura-higgins",
+        "ezra-frech",
+        "amber-glenn",
+        "tatyana-ali",
+    ]
+    assert [(p["contestants"][0], p["n"]) for p in rows] == [(c, 1) for c in couples] + [
+        (c, 2) for c in couples
+    ]
+    assert [p["order"] for p in rows] == list(range(1, 13))
