@@ -123,6 +123,7 @@ def test_one_request_and_the_log_line(wiki, capsys):
     for p in line["week"]["performances"]:
         del p["style"], p["song"], p["result"], p["order"]
     assert line["week"].pop("segments") == []
+    assert line["week"].pop("noElimination") == []
     assert line["week"] == GOLDEN["S35 week 4 pre-show alphabetical table, empty cells"]
 
 
@@ -706,3 +707,19 @@ def test_the_lineup_sets_dances_per_couple_and_format_from_the_page(s34, monkeyp
     assert (ep7["dancesPerCouple"], ep10["dancesPerCouple"], ep11["dancesPerCouple"]) == (1, 2, 3)
     assert ep7["format"] == "One unlearned dance & dance marathon"
     assert not any(k.endswith("#2") for k in ep7["lineup"])
+
+
+LIVE = ("s35-1383824613.wikitext", 1383824613, "2026-11-04T12:00:00Z")
+
+
+def test_a_night_nobody_went_home_still_gets_its_results(wiki, db, monkeypatch):
+    # S35 week 6 (EP#07) has no Result column, so it used to wait on Result cells forever.
+    monkeypatch.setattr(poller.guest_judges, "profile", lambda *a: None)
+    t = epoch(LIVE[2])
+    wiki.tick(LIVE, t)
+    assert not wiki.tick(LIVE, t + 3600)["pending"]
+
+    assert catalog(db, "EP#07")["results"]["eliminated"] == []
+    assert catalog(db, "EP#08")["results"]["eliminated"]
+    eliminated = [r.get("eliminatedEp") for r in db.Table(CATALOG_TABLE).scan()["Items"]]
+    assert 7 not in eliminated

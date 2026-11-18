@@ -23,6 +23,7 @@ TEMPLATE = re.compile(r"\{\{([^{}]*)\}\}")
 LINK = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]]*)\]\]")
 # A dance marathon is a row per couple under one "Hustle & Lindy Hop Marathon" cell.
 MARATHON = re.compile(r"marathon|endurance", re.IGNORECASE)
+NO_ELIMINATION = re.compile(r"\bno elimination\b", re.IGNORECASE)
 # "a dance-off for three extra points"; S35 week 9 leaves the number out until it airs.
 DANCE_OFF_POINTS = re.compile(r"dance-offs? for (\w+) extra points?", re.IGNORECASE)
 WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
@@ -397,6 +398,9 @@ def parse_week(
     rejected: list[dict] = []
     unscored: list[dict] = []
     segments: list[dict] = []
+    # Nights whose table has no Result column. Only a page that also says so in prose
+    # counts as a night nobody went home: a live table may not have the column yet.
+    resultless: set[int] = set()
     body = clean(section)
     points = stated(DANCE_OFF_POINTS, body)
     night = 0
@@ -429,6 +433,8 @@ def parse_week(
         if week_panel is None:
             week_panel = seats
         names = lay["names"]
+        if not any("result" in n for n in names):
+            resultless.add(night)
         for row in expand(lay["rows"]):
             couple = row[names.index("couple")]["text"]
             fail = {"night": night, "row": couple}
@@ -504,4 +510,5 @@ def parse_week(
         "rejected": rejected,
         "unscored": unscored,
         "segments": segments,
+        "noElimination": sorted(resultless) if NO_ELIMINATION.search(body) else [],
     }
