@@ -1,4 +1,5 @@
 import json
+import re
 from decimal import Decimal
 from pathlib import Path
 
@@ -33,7 +34,7 @@ def test_golden(case):
     # The golden predates style, song, result and order; test_s35_week_3_columns covers those.
     for p in week["performances"]:
         del p["style"], p["song"], p["result"], p["order"]
-    del week["segments"]
+    del week["segments"], week["noElimination"]
     assert week == case["expected"]
 
 
@@ -378,3 +379,17 @@ def test_a_night_only_format_line_is_that_nights():
     chart = "* Week 5 (Night 2): Dance & dance marathon\n* Week 5: One unlearned dance\n"
     assert week_format(chart, 5, 2) == "Dance & dance marathon"
     assert week_format(chart, 5, 1) == "One unlearned dance"
+
+
+def test_a_week_the_page_says_nobody_went_home_has_no_elimination():
+    # S35 week 6: "There was no elimination this week", and its table has no Result column.
+    text = (FIXTURES / "wiki" / "s35-1383824613.wikitext").read_text()
+    assert parse_week(text, 6, GOLDEN["aliases"]["s35"])["noElimination"] == [1]
+    assert parse_week(text, 7, GOLDEN["aliases"]["s35"])["noElimination"] == []
+
+
+def test_no_elimination_prose_alone_never_settles_a_table_with_a_result_column():
+    text = (FIXTURES / "wiki" / "s35-1383824613.wikitext").read_text()
+    head = re.search(r"^=== Week 7.*$", text, flags=re.MULTILINE).group(0)
+    text = text.replace(head, head + "\nThere was no elimination this week.\n")
+    assert parse_week(text, 7, GOLDEN["aliases"]["s35"])["noElimination"] == []

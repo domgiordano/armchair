@@ -268,8 +268,8 @@ def publish(
     show no sooner than who went home. They never hold the results up (extras()).
 
     `settled` is a finished season's eliminations for this episode, from the Cast
-    table: results are then written without waiting on Result cells, which early
-    seasons leave out on nights with no elimination.
+    table, or [] for a night the page says nobody went home: results are then
+    written without waiting on Result cells, which a no-elimination night leaves out.
     """
     ep = int(episode["sk"].removeprefix("EP#"))
     pk = episode_pk(*season, ep)
@@ -473,8 +473,18 @@ def handler(event, context):
             ]
             panel = perfs[0]["panel"] if perfs else ids[tuple(week["panel"])]
             rows = [s for s in week["segments"] if s["night"] == night]
+            # A night with no Result column to wait on: nobody went home.
+            out = [] if night in week["noElimination"] else None
             pending |= publish(
-                episode, panel, perfs, revid, t, window, season=(SHOW, SEASON), segments=rows
+                episode,
+                panel,
+                perfs,
+                revid,
+                t,
+                window,
+                season=(SHOW, SEASON),
+                settled=out,
+                segments=rows,
             )
             ep = int(episode["sk"].removeprefix("EP#"))
             board_dynamo.reconcile(SHOW, SEASON, ep, panel)
