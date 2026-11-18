@@ -6,6 +6,7 @@ Pure functions, no network. Real-revision fixtures live in fixtures/wiki/.
 from __future__ import annotations
 
 import re
+from collections import Counter
 from decimal import Decimal
 
 # "listed in this order from left to right: ...", "given in this order from left to right: ..."
@@ -503,6 +504,7 @@ def parse_week(
             if mine:
                 mine[-1]["bonus"] = (mine[-1]["bonus"] or 0) + s["points"]
 
+    by_rounds(performances)
     return {
         "week": week,
         "panel": week_panel if week_panel is not None else seated(panel, 1),
@@ -512,3 +514,19 @@ def parse_week(
         "segments": segments,
         "noElimination": sorted(resultless) if NO_ELIMINATION.search(body) else [],
     }
+
+
+def by_rounds(performances: list[dict]) -> None:
+    """
+    A two-dance night's table groups each couple's dances under one rowspan, but the
+    show runs in rounds: every couple's first dance, then every second. Reorders a
+    couple's repeat dances into rounds, keeping the couples' table order, within the
+    slots those rows hold. A team dance stays where the table puts it.
+    """
+    for night in {p["night"] for p in performances}:
+        rows = sorted((p for p in performances if p["night"] == night), key=lambda p: p["order"])
+        counts = Counter(tuple(p["contestants"]) for p in rows)
+        repeat = [p for p in rows if counts[tuple(p["contestants"])] > 1]
+        slots = [p["order"] for p in repeat]
+        for slot, p in zip(slots, sorted(repeat, key=lambda p: (p["n"], p["order"])), strict=True):
+            p["order"] = slot
