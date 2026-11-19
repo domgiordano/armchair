@@ -54,7 +54,7 @@ describe("OddsBoard", () => {
 
   it("lists American odds with the chance, movement and why chips, favorite first", async () => {
     vi.mocked(getOdds).mockResolvedValue(board());
-    render(<OddsBoard season="dwts-35" />);
+    render(<OddsBoard season="dwts-35" episodes={[]} />);
     const rows = await screen.findAllByRole("listitem", { name: undefined });
     const first = rows[0];
     expect(within(first).getByText("Star a")).toBeTruthy();
@@ -68,13 +68,13 @@ describe("OddsBoard", () => {
 
   it("says the board is held at the last episode you finished, without naming a result", async () => {
     vi.mocked(getOdds).mockResolvedValue(board({ behind: true, latest: 5 }));
-    render(<OddsBoard season="dwts-35" />);
+    render(<OddsBoard season="dwts-35" episodes={[]} />);
     expect(await screen.findByText(/As of Week 4\. The odds update after you finish Week 5/)).toBeTruthy();
   });
 
   it("labels model odds when there is no market", async () => {
     vi.mocked(getOdds).mockResolvedValue(board({ market: null, source: "model" }));
-    render(<OddsBoard season="dwts-35" />);
+    render(<OddsBoard season="dwts-35" episodes={[]} />);
     expect(await screen.findByText("Armchair odds (model)")).toBeTruthy();
     expect(screen.getByText(/No published odds for this season/)).toBeTruthy();
   });
@@ -82,7 +82,7 @@ describe("OddsBoard", () => {
   it("holds the board before an episode with a sealed dance", async () => {
     seal("dwts-35", 5, "a#1");
     vi.mocked(getOdds).mockResolvedValue(board());
-    render(<OddsBoard season="dwts-35" />);
+    render(<OddsBoard season="dwts-35" episodes={[]} />);
     await screen.findByText("Star a");
     expect(getOdds).toHaveBeenLastCalledWith("dwts-35", 4);
   });

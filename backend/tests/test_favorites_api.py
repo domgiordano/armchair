@@ -154,6 +154,18 @@ def test_a_seal_on_the_server_holds_the_board_on_every_device(show, monkeypatch)
     assert board(A, through="1")["asOf"] == 1
 
 
+@pytest.mark.scoring_window
+def test_a_seal_on_a_closed_night_holds_nothing(show, monkeypatch):
+    # On Oct 5 episodes 1-3 are closed and count as revealed; episode 4 still takes
+    # answers and is unanswered, so the board stands at 3.
+    at(monkeypatch, BEFORE_EP5)
+    cron.handler({}, None)
+    assert board(A)["asOf"] == 3
+    # Episode 3 closed when episode 4 aired: the next show started, so its hold is stale.
+    seal(A, "dwts-35|3|jenna-dewan#1")
+    assert board(A)["asOf"] == 3
+
+
 def test_an_unfinished_earlier_episode_holds_the_board_there(show, monkeypatch):
     at(monkeypatch, BEFORE_EP5)
     for ep in (1, 2, 4):

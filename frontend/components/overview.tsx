@@ -186,7 +186,7 @@ function OverviewView({ o, season }: ViewProps) {
         </div>
 
         <div className="grid items-start gap-8 md:grid-cols-2 lg:flex lg:flex-col lg:items-stretch">
-          {!o.open && <OddsBoard season={season} />}
+          {!o.open && <OddsBoard season={season} episodes={o.episodes} />}
           <LeaderboardTop season={season} />
           <Standings couples={o.couples} season={season} />
         </div>
