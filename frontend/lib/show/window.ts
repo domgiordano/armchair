@@ -6,6 +6,14 @@ export function isClosed(w: ScoringWindow | undefined, now: number): boolean {
   return w !== undefined && !w.open && w.closesAt !== null && now >= Date.parse(w.closesAt);
 }
 
+/**
+ * The sealed episodes still taking answers. Once a night closes the next show has
+ * started, and a reveal held on it is stale: it holds nothing else back.
+ */
+export function liveHolds(sealed: number[], episodes: { ep: number; window?: ScoringWindow }[], now: number): number[] {
+  return sealed.filter((n) => !isClosed(episodes.find((e) => e.ep === n)?.window, now));
+}
+
 /** "6d 4h", "4h 12m", "12m": how long until `closesAt`. */
 export function closesIn(closesAt: string, now: number): string {
   const min = Math.max(0, Math.floor((Date.parse(closesAt) - now) / 60_000));

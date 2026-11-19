@@ -6,6 +6,8 @@ import { getOverview, type OverviewEpisode } from "@/lib/api/overview";
 import type { Episode } from "@/lib/api/show";
 import { unfinishedBefore } from "@/lib/show/catch-up";
 import { useSealedEpisodes } from "@/lib/show/sealed";
+import { liveHolds } from "@/lib/show/window";
+import { useNow } from "@armchair/app-core/show/use-now";
 import { episodeLabel } from "@/lib/show/schedule";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -28,12 +30,13 @@ type Check =
  * Asks before showing episode N while earlier episodes still take answers:
  * N's roster gives away who went home. Catch up week by week, or open N anyway.
  * A closed episode doesn't count, its unanswered dances are missed. A finished one
- * whose results or a dance are still face down asks the same way.
+ * whose results or a dance are still face down asks the same way, until it closes.
  */
 export function CatchUp({ season, episodes, episode, onCatchUp, children }: CatchUpProps) {
   const [check, setCheck] = useState<Check>({ kind: "checking" });
   const [anyway, setAnyway] = useState(false);
-  const faceDown = useSealedEpisodes(season).filter((e) => e < episode.ep);
+  const now = useNow(60_000);
+  const faceDown = liveHolds(useSealedEpisodes(season), episodes, now).filter((e) => e < episode.ep);
 
   useEffect(() => {
     let cancelled = false;

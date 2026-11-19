@@ -2,12 +2,16 @@
 
 import { useId, useState } from "react";
 
+import { useNow } from "@armchair/app-core/show/use-now";
+
 import { Headshot } from "@/components/headshot";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState, ErrorState } from "@/components/ui/states";
+import type { OverviewEpisode } from "@/lib/api/overview";
 import type { Headshot as HeadshotData } from "@/lib/api/show";
 import { useSealedEpisodes } from "@/lib/show/sealed";
 import { useOdds } from "@/lib/show/use-odds";
+import { liveHolds } from "@/lib/show/window";
 import { cn, TEXT_LINK } from "@/lib/ui";
 import {
   moveLabel,
@@ -33,8 +37,8 @@ export function weekLabel(episodes: Board<unknown>["episodes"], ep: number): str
 }
 
 /** Odds to win the season, as of the last episode you've finished: never a result you haven't seen. */
-export function OddsBoard({ season }: { season: string }) {
-  const sealed = useSealedEpisodes(season);
+export function OddsBoard({ season, episodes }: { season: string; episodes: OverviewEpisode[] }) {
+  const sealed = liveHolds(useSealedEpisodes(season), episodes, useNow(60_000));
   const through = sealed.length ? sealed[0] - 1 : undefined;
   const load = useOdds(season, through);
   const heading = useId();

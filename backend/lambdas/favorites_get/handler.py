@@ -117,6 +117,10 @@ def handler(event, context):
     reveal = _dwts_revealed if show == "dwts" else _traitors_revealed
     revealed = reveal(sub, show, number, meta, rows, newest)
     held = seals.episodes(seals.of(sub, show, number))
+    if show == "dwts" and not is_open(meta):
+        # A reveal held on a closed night is stale: the next show has started.
+        spans, at = window.spans(meta, rows), now()
+        held = {n for n in held if n in spans and not window.closed(meta, spans[n], at)}
     if held:
         revealed = min(revealed, min(held) - 1)
     if through is not None:
